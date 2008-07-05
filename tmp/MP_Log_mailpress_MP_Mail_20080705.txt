@@ -1,0 +1,673 @@
+
+2008-07-05 19:51:55 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 19:51:55 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 8191
+2008-07-05 19:51:55 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 63 
+2008-07-05 19:51:55 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 48 
+2008-07-05 19:51:55 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 308 
+2008-07-05 19:51:55 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 19:51:55 000000 -- Missing template file comments. You should create the template in wp-content/plugins/mailpress/mp-content/themes/plaintext .
+2008-07-05 19:51:55 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 19:51:55 000000 -- Missing template file comments. You should create the template in wp-content/plugins/mailpress/mp-content/themes/MailPress .
+2008-07-05 19:51:55 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 19:51:55 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject : [MailPress] Nouveau commentaire (11) 
+   ------------------- plaintext -------------------  
+  
+
+ ------------------- text/html -------------------  
+  
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-05 19:51:55 000000 -- PHP [E_STRICT] 2048 : date_default_timezone_get() [<a href='function.date-default-timezone-get'>function.date-default-timezone-get</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\swift\Swift\Message.php at line 75 
+2008-07-05 19:51:57 000000 -- PHP [E_STRICT] 2048 : Non-static method MailPress::update_stats() should not be called statically, assuming $this from incompatible context in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 231 
+2008-07-05 19:51:57 000000 -- PHP [E_STRICT] 2048 : Non-static method MailPress::get_wp_user_id() should not be called statically, assuming $this from incompatible context in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 234 
+2008-07-05 19:51:57 000000 -- ::: MAIL SAVED :::
+2008-07-05 19:51:57 000000 -- LOG ended with status  : TRUE
+2008-07-05 19:51:57 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 8191
+
+2008-07-05 19:51:57 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 8191
+2008-07-05 19:51:57 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 48 
+2008-07-05 19:51:57 000000 -- *** ERROR *** No recipient
+2008-07-05 19:51:57 000000 -- LOG ended with status  : FALSE
+2008-07-05 19:51:57 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 8191
+
+2008-07-05 19:54:20 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 19:54:20 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 8191
+2008-07-05 19:54:20 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 63 
+2008-07-05 19:54:20 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 47 
+2008-07-05 19:54:20 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 307 
+2008-07-05 19:54:20 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 19:54:20 000000 -- Missing template file comments. You should create the template in wp-content/plugins/mailpress/mp-content/themes/plaintext .
+2008-07-05 19:54:20 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 19:54:20 000000 -- Missing template file comments. You should create the template in wp-content/plugins/mailpress/mp-content/themes/MailPress .
+2008-07-05 19:54:20 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 19:54:20 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject : [MailPress] Nouveau commentaire (12) 
+   ------------------- plaintext -------------------  
+  
+
+ ------------------- text/html -------------------  
+  
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-05 19:54:20 000000 -- PHP [E_STRICT] 2048 : date_default_timezone_get() [<a href='function.date-default-timezone-get'>function.date-default-timezone-get</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\swift\Swift\Message.php at line 75 
+2008-07-05 19:54:23 000000 -- PHP [E_STRICT] 2048 : Non-static method MailPress::update_stats() should not be called statically, assuming $this from incompatible context in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 230 
+2008-07-05 19:54:23 000000 -- PHP [E_STRICT] 2048 : Non-static method MailPress::get_wp_user_id() should not be called statically, assuming $this from incompatible context in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 233 
+2008-07-05 19:54:23 000000 -- ::: MAIL SAVED :::
+2008-07-05 19:54:23 000000 -- LOG ended with status  : TRUE
+2008-07-05 19:54:23 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 8191
+
+2008-07-05 19:54:23 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 8191
+2008-07-05 19:54:23 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 47 
+2008-07-05 19:54:23 000000 -- *** ERROR *** No recipient
+2008-07-05 19:54:23 000000 -- LOG ended with status  : FALSE
+2008-07-05 19:54:23 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 8191
+
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:01:48 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 8191
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 63 
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 47 
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 307 
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:01:48 000000 -- Missing template file comments. You should create the template in wp-content/plugins/mailpress/mp-content/themes/plaintext .
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:01:48 000000 -- Mail decorator : 0 {{unsubscribe}} => {{unsubscribe}} *** DONE (1) *** 
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:01:48 000000 -- Mail decorator : 0 {{viewhtml}} => {{viewhtml}} *** DONE (1) *** 
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:01:48 000000 -- Missing template file comments. You should create the template in wp-content/plugins/mailpress/mp-content/themes/MailPress .
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : mktime() [<a href='function.mktime'>function.mktime</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 19 
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 28 
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 30 
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 32 
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 33 
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 44 
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:01:48 000000 -- Mail decorator : 0 {{unsubscribe}} => {{unsubscribe}} *** DONE (1) *** 
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:01:48 000000 -- Mail decorator : 0 {{viewhtml}} => {{viewhtml}} *** DONE (1) *** 
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:01:48 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject : [MailPress] Nouveau commentaire (13) 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+toto
+totototo
+totototototo
+ppp
+Html version of this mail -> {{viewhtml}}
+
+						this mail is brought to you by MailPress
+
+Unsubscribe ? -> {{unsubscribe}}
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='{{viewhtml}}' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 5, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->toto
+totototo
+totototototo
+ppp<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<small style='color:#6D8C82;'>
+			<br/>
+			<br/>
+			Wish to unsubscribe <a href='{{unsubscribe}}' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>?</a>
+		</small>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-05 20:01:48 000000 -- PHP [E_STRICT] 2048 : date_default_timezone_get() [<a href='function.date-default-timezone-get'>function.date-default-timezone-get</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\swift\Swift\Message.php at line 75 
+2008-07-05 20:01:48 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-05 20:01:51 000000 -- PHP [E_STRICT] 2048 : Non-static method MailPress::update_stats() should not be called statically, assuming $this from incompatible context in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 230 
+2008-07-05 20:01:51 000000 -- PHP [E_STRICT] 2048 : Non-static method MailPress::get_wp_user_id() should not be called statically, assuming $this from incompatible context in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 233 
+2008-07-05 20:01:51 000000 -- ::: MAIL SAVED :::
+2008-07-05 20:01:51 000000 -- LOG ended with status  : TRUE
+2008-07-05 20:01:51 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 8191
+
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:03:00 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 8191
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 63 
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 47 
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 307 
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:03:00 000000 -- Missing template file comments. You should create the template in wp-content/plugins/mailpress/mp-content/themes/plaintext .
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:03:00 000000 -- Mail decorator : 0 {{unsubscribe}} => {{unsubscribe}} *** DONE (1) *** 
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:03:00 000000 -- Mail decorator : 0 {{viewhtml}} => {{viewhtml}} *** DONE (1) *** 
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:03:00 000000 -- Missing template file comments. You should create the template in wp-content/plugins/mailpress/mp-content/themes/MailPress .
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : mktime() [<a href='function.mktime'>function.mktime</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 19 
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 28 
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 30 
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 32 
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 33 
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 44 
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:03:00 000000 -- Mail decorator : 0 {{unsubscribe}} => {{unsubscribe}} *** DONE (1) *** 
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:03:00 000000 -- Mail decorator : 0 {{viewhtml}} => {{viewhtml}} *** DONE (1) *** 
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:03:00 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject : [MailPress] Nouveau commentaire (14) 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+zzz
+zazaza
+opopop
+popopo
+
+Html version of this mail -> {{viewhtml}}
+
+						this mail is brought to you by MailPress
+
+Unsubscribe ? -> {{unsubscribe}}
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='{{viewhtml}}' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 5, 2008					</td>
+				</tr>
+			</table>
+<!-- end header --><p>zzz<br />
+zazaza<br />
+opopop<br />
+popopo</p>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<small style='color:#6D8C82;'>
+			<br/>
+			<br/>
+			Wish to unsubscribe <a href='{{unsubscribe}}' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>?</a>
+		</small>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-05 20:03:00 000000 -- PHP [E_STRICT] 2048 : date_default_timezone_get() [<a href='function.date-default-timezone-get'>function.date-default-timezone-get</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\swift\Swift\Message.php at line 75 
+2008-07-05 20:03:00 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-05 20:03:03 000000 -- PHP [E_STRICT] 2048 : Non-static method MailPress::update_stats() should not be called statically, assuming $this from incompatible context in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 230 
+2008-07-05 20:03:03 000000 -- PHP [E_STRICT] 2048 : Non-static method MailPress::get_wp_user_id() should not be called statically, assuming $this from incompatible context in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 233 
+2008-07-05 20:03:03 000000 -- ::: MAIL SAVED :::
+2008-07-05 20:03:03 000000 -- LOG ended with status  : TRUE
+2008-07-05 20:03:03 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 8191
+
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:24:44 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 8191
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 63 
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 47 
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 307 
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:24:44 000000 -- Missing template file comments. You should create the template in wp-content/plugins/mailpress/mp-content/themes/plaintext .
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:24:44 000000 -- Mail decorator : 0 {{unsubscribe}} => {{unsubscribe}} *** DONE (1) *** 
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:24:44 000000 -- Mail decorator : 0 {{viewhtml}} => {{viewhtml}} *** DONE (1) *** 
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:24:44 000000 -- Missing template file comments. You should create the template in wp-content/plugins/mailpress/mp-content/themes/MailPress .
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : mktime() [<a href='function.mktime'>function.mktime</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 19 
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 28 
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 30 
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 32 
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 33 
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 44 
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:24:44 000000 -- Mail decorator : 0 {{unsubscribe}} => {{unsubscribe}} *** DONE (1) *** 
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:24:44 000000 -- Mail decorator : 0 {{viewhtml}} => {{viewhtml}} *** DONE (1) *** 
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:24:44 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject : [MailPress] Nouveau commentaire (15) 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+opop
+popo
+uiui
+
+Html version of this mail -> {{viewhtml}}
+
+						this mail is brought to you by MailPress
+
+Unsubscribe ? -> {{unsubscribe}}
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='{{viewhtml}}' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 5, 2008					</td>
+				</tr>
+			</table>
+<!-- end header --><p>opop<br />
+popo<br />
+uiui</p>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<small style='color:#6D8C82;'>
+			<br/>
+			<br/>
+			Wish to unsubscribe <a href='{{unsubscribe}}' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>?</a>
+		</small>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-05 20:24:44 000000 -- PHP [E_STRICT] 2048 : date_default_timezone_get() [<a href='function.date-default-timezone-get'>function.date-default-timezone-get</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\swift\Swift\Message.php at line 75 
+2008-07-05 20:24:44 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-05 20:24:47 000000 -- PHP [E_STRICT] 2048 : Non-static method MailPress::update_stats() should not be called statically, assuming $this from incompatible context in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 230 
+2008-07-05 20:24:47 000000 -- PHP [E_STRICT] 2048 : Non-static method MailPress::get_wp_user_id() should not be called statically, assuming $this from incompatible context in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 233 
+2008-07-05 20:24:47 000000 -- ::: MAIL SAVED :::
+2008-07-05 20:24:47 000000 -- LOG ended with status  : TRUE
+2008-07-05 20:24:47 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 8191
+
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:27:52 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 8191
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 63 
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 47 
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 307 
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:27:52 000000 -- Missing template file comments. You should create the template in wp-content/plugins/mailpress/mp-content/themes/plaintext .
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:27:52 000000 -- Mail decorator : 0 {{unsubscribe}} => {{unsubscribe}} *** DONE (1) *** 
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:27:52 000000 -- Mail decorator : 0 {{viewhtml}} => {{viewhtml}} *** DONE (1) *** 
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:27:52 000000 -- Missing template file comments. You should create the template in wp-content/plugins/mailpress/mp-content/themes/MailPress .
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : mktime() [<a href='function.mktime'>function.mktime</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 19 
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 28 
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 30 
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 32 
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 33 
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 44 
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:27:52 000000 -- Mail decorator : 0 {{unsubscribe}} => {{unsubscribe}} *** DONE (1) *** 
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:27:52 000000 -- Mail decorator : 0 {{viewhtml}} => {{viewhtml}} *** DONE (1) *** 
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:27:52 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject : [MailPress] Nouveau commentaire (17) 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+puto
+pite
+poyt
+
+Html version of this mail -> {{viewhtml}}
+
+						this mail is brought to you by MailPress
+
+Unsubscribe ? -> {{unsubscribe}}
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='{{viewhtml}}' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 5, 2008					</td>
+				</tr>
+			</table>
+<!-- end header --><p>puto<br />
+pite<br />
+poyt</p>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<small style='color:#6D8C82;'>
+			<br/>
+			<br/>
+			Wish to unsubscribe <a href='{{unsubscribe}}' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>?</a>
+		</small>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-05 20:27:52 000000 -- PHP [E_STRICT] 2048 : date_default_timezone_get() [<a href='function.date-default-timezone-get'>function.date-default-timezone-get</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\swift\Swift\Message.php at line 75 
+2008-07-05 20:27:52 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-05 20:27:55 000000 -- PHP [E_STRICT] 2048 : Non-static method MailPress::update_stats() should not be called statically, assuming $this from incompatible context in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 230 
+2008-07-05 20:27:55 000000 -- PHP [E_STRICT] 2048 : Non-static method MailPress::get_wp_user_id() should not be called statically, assuming $this from incompatible context in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 233 
+2008-07-05 20:27:55 000000 -- ::: MAIL SAVED :::
+2008-07-05 20:27:55 000000 -- LOG ended with status  : TRUE
+2008-07-05 20:27:55 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 8191
+
+2008-07-05 20:27:55 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 8191
+2008-07-05 20:27:55 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 47 
+2008-07-05 20:27:55 000000 -- *** ERROR *** No recipient
+2008-07-05 20:27:55 000000 -- LOG ended with status  : FALSE
+2008-07-05 20:27:55 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 8191
+
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:29:02 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 8191
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 63 
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 47 
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : Creating default object from empty value in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 307 
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:29:02 000000 -- Missing template file comments. You should create the template in wp-content/plugins/mailpress/mp-content/themes/plaintext .
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:29:02 000000 -- Mail decorator : 0 {{unsubscribe}} => {{unsubscribe}} *** DONE (1) *** 
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:29:02 000000 -- Mail decorator : 0 {{viewhtml}} => {{viewhtml}} *** DONE (1) *** 
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:29:02 000000 -- Missing template file comments. You should create the template in wp-content/plugins/mailpress/mp-content/themes/MailPress .
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : mktime() [<a href='function.mktime'>function.mktime</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 19 
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 28 
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 30 
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 32 
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 33 
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-includes\functions.php at line 44 
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:29:02 000000 -- Mail decorator : 0 {{unsubscribe}} => {{unsubscribe}} *** DONE (1) *** 
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:29:02 000000 -- Mail decorator : 0 {{viewhtml}} => {{viewhtml}} *** DONE (1) *** 
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : date() [<a href='function.date'>function.date</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Log.class.php at line 81 
+2008-07-05 20:29:02 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject : [MailPress] Nouveau commentaire (18) 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+wpkk6
+
+Html version of this mail -> {{viewhtml}}
+
+						this mail is brought to you by MailPress
+
+Unsubscribe ? -> {{unsubscribe}}
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='{{viewhtml}}' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 5, 2008					</td>
+				</tr>
+			</table>
+<!-- end header --><p>wpkk6</p>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<small style='color:#6D8C82;'>
+			<br/>
+			<br/>
+			Wish to unsubscribe <a href='{{unsubscribe}}' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>?</a>
+		</small>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-05 20:29:02 000000 -- PHP [E_STRICT] 2048 : date_default_timezone_get() [<a href='function.date-default-timezone-get'>function.date-default-timezone-get</a>]: It is not safe to rely on the system's timezone settings. Please use the date.timezone setting, the TZ environment variable or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'Europe/Paris' for '2.0/DST' instead in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\swift\Swift\Message.php at line 75 
+2008-07-05 20:29:02 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-05 20:29:05 000000 -- PHP [E_STRICT] 2048 : Non-static method MailPress::update_stats() should not be called statically, assuming $this from incompatible context in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 230 
+2008-07-05 20:29:05 000000 -- PHP [E_STRICT] 2048 : Non-static method MailPress::get_wp_user_id() should not be called statically, assuming $this from incompatible context in C:\Vn\wptest\wp-content\plugins\mailpress\mp-includes\class\MP_Mail.class.php at line 233 
+2008-07-05 20:29:05 000000 -- ::: MAIL SAVED :::
+2008-07-05 20:29:05 000000 -- LOG ended with status  : TRUE
+2008-07-05 20:29:05 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 8191
