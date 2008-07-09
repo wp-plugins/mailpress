@@ -1,0 +1,12 @@
+div#MailPress div#container, div#MailPress div#formdiv {
+position:relative;
+}
+
+div#MailPress div#loading, div#MailPress div#message {
+position:absolute;
+opacity:0;
+}
+
+div#MailPress div#loading, div#MailPress div#message {
+filter:alpha(opacity=0);
+}
