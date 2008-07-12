@@ -1,0 +1,1700 @@
+
+2008-07-12 13:30:34 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 512
+2008-07-12 13:30:35 000000 -- Mail decorator : 0 {{subscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=a0a62e812f065b3e14e3764c15b4c08a *** DONE (1) *** 
+2008-07-12 13:30:35 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=a0a62e812f065b3e14e3764c15b4c08a&id=32 *** DONE (1) *** 
+2008-07-12 13:30:35 000000 -- Mail decorator : 0 {{subscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=a0a62e812f065b3e14e3764c15b4c08a *** DONE (1) *** 
+2008-07-12 13:30:35 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=a0a62e812f065b3e14e3764c15b4c08a&id=32 *** DONE (1) *** 
+2008-07-12 13:30:35 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject :  [MailPress] Waiting for : andre.renaut@gmail.com 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+
+			Subscription to MailPress
+
+Confirm your subscription by activating the following link :
+http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=a0a62e812f065b3e14e3764c15b4c08a
+
+
+
+Html version of this mail -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=a0a62e812f065b3e14e3764c15b4c08a&id=32
+
+						this mail is brought to you by MailPress
+
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=a0a62e812f065b3e14e3764c15b4c08a&id=32' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 12, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->			<table style='margin:0;padding:0;border:none;width:100%;'>
+				<tr>
+					<td style='margin:0;padding:0pt 0pt 20px 45px;border:none;width:450px;float:left;color:#333333;text-align:left;font-family:Verdana,Sans-Serif;'>
+						<div style='margin:0pt 0pt 40px;padding:0;border:none;text-align:justify;'>
+							<h2 style='margin:30px 0pt 0pt;padding:0;border:none;color:#333;font-size:1.4em;font-weight:bold;font-family:Verdana,Sans-Serif;'>
+Email validation.
+							</h2>
+							<small style='margin:0;padding:0;border:none;line-height:2em;color:#777;font-size:0.7em;font-family:Arial,Sans-Serif;'>
+juillet 12, 2008							</small>
+							<div style='margin:0;padding:0;border:none;'>
+								<p style='margin:0;padding:0;border:none;line-height:1.4em;font-size:0.85em;'>
+Please confirm your email by clicking the following <a style='color:#6D8C82;font-family: verdana,geneva;font-weight:bold;' href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=a0a62e812f065b3e14e3764c15b4c08a'>link</a>. 
+								</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-12 13:30:35 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-12 13:30:38 000000 -- ::: MAIL SAVED :::
+2008-07-12 13:30:38 000000 -- LOG ended with status  : TRUE
+2008-07-12 13:30:38 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 512
+
+2008-07-12 13:35:36 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 512
+2008-07-12 13:35:36 000000 -- Mail decorator : 0 {{subscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=7ff307d45701c5aae3a460236f4c66fb *** DONE (1) *** 
+2008-07-12 13:35:36 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=7ff307d45701c5aae3a460236f4c66fb&id=33 *** DONE (1) *** 
+2008-07-12 13:35:36 000000 -- Mail decorator : 0 {{subscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=7ff307d45701c5aae3a460236f4c66fb *** DONE (1) *** 
+2008-07-12 13:35:36 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=7ff307d45701c5aae3a460236f4c66fb&id=33 *** DONE (1) *** 
+2008-07-12 13:35:36 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject :  [MailPress] Waiting for : andre.renaut@gmail.com 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+
+			Subscription to MailPress
+
+Confirm your subscription by activating the following link :
+http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=7ff307d45701c5aae3a460236f4c66fb
+
+
+
+Html version of this mail -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=7ff307d45701c5aae3a460236f4c66fb&id=33
+
+						this mail is brought to you by MailPress
+
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=7ff307d45701c5aae3a460236f4c66fb&id=33' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 12, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->			<table style='margin:0;padding:0;border:none;width:100%;'>
+				<tr>
+					<td style='margin:0;padding:0pt 0pt 20px 45px;border:none;width:450px;float:left;color:#333333;text-align:left;font-family:Verdana,Sans-Serif;'>
+						<div style='margin:0pt 0pt 40px;padding:0;border:none;text-align:justify;'>
+							<h2 style='margin:30px 0pt 0pt;padding:0;border:none;color:#333;font-size:1.4em;font-weight:bold;font-family:Verdana,Sans-Serif;'>
+Email validation.
+							</h2>
+							<small style='margin:0;padding:0;border:none;line-height:2em;color:#777;font-size:0.7em;font-family:Arial,Sans-Serif;'>
+juillet 12, 2008							</small>
+							<div style='margin:0;padding:0;border:none;'>
+								<p style='margin:0;padding:0;border:none;line-height:1.4em;font-size:0.85em;'>
+Please confirm your email by clicking the following <a style='color:#6D8C82;font-family: verdana,geneva;font-weight:bold;' href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=7ff307d45701c5aae3a460236f4c66fb'>link</a>. 
+								</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-12 13:35:36 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-12 13:35:39 000000 -- ::: MAIL SAVED :::
+2008-07-12 13:35:39 000000 -- LOG ended with status  : TRUE
+2008-07-12 13:35:39 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 512
+
+2008-07-12 13:35:50 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 512
+2008-07-12 13:35:50 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=7ff307d45701c5aae3a460236f4c66fb *** DONE (1) *** 
+2008-07-12 13:35:50 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=7ff307d45701c5aae3a460236f4c66fb&id=34 *** DONE (1) *** 
+2008-07-12 13:35:50 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=7ff307d45701c5aae3a460236f4c66fb *** DONE (1) *** 
+2008-07-12 13:35:50 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=7ff307d45701c5aae3a460236f4c66fb&id=34 *** DONE (1) *** 
+2008-07-12 13:35:50 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject :  [MailPress] andre.renaut@gmail.com confirmed 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+
+Congratulations !
+
+
+You are now a subscriber of : MailPress (http://127.0.0.1/wptest)
+
+
+
+Html version of this mail -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=7ff307d45701c5aae3a460236f4c66fb&id=34
+
+						this mail is brought to you by MailPress
+
+Unsubscribe ? -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=7ff307d45701c5aae3a460236f4c66fb
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=7ff307d45701c5aae3a460236f4c66fb&id=34' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 12, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->			<table style='margin:0;padding:0;border:none;width:100%;'>
+				<tr>
+					<td style='margin:0;padding:0pt 0pt 20px 45px;border:none;width:450px;float:left;color:#333333;text-align:left;font-family:Verdana,Sans-Serif;'>
+						<div style='margin:0pt 0pt 40px;padding:0;border:none;text-align:justify;'>
+							<h2 style='margin:30px 0pt 0pt;padding:0;border:none;color:#333;font-size:1.4em;font-weight:bold;font-family:Verdana,Sans-Serif;'>
+Congratulations !
+							</h2>
+							<small style='margin:0;padding:0;border:none;line-height:2em;color:#777;font-size:0.7em;font-family:Arial,Sans-Serif;'>
+juillet 12, 2008							</small>
+							<div style='margin:0;padding:0;border:none;'>
+								<p style='margin:0;padding:0;border:none;line-height:1.4em;font-size:0.85em;'>
+You are now a subscriber of : <a style='color:#000;' href='http://127.0.0.1/wptest'>MailPress</a>								</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<small style='color:#6D8C82;'>
+			<br/>
+			<br/>
+			Wish to unsubscribe <a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=7ff307d45701c5aae3a460236f4c66fb' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>?</a>
+		</small>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-12 13:35:50 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-12 13:35:53 000000 -- ::: MAIL SAVED :::
+2008-07-12 13:35:53 000000 -- LOG ended with status  : TRUE
+2008-07-12 13:35:53 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 512
+
+2008-07-12 14:28:57 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 512
+2008-07-12 14:28:57 000000 -- Mail decorator : 0 {{subscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=595ba2c10507500cc4d8488cf7b2a45b *** DONE (1) *** 
+2008-07-12 14:28:57 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=595ba2c10507500cc4d8488cf7b2a45b&id=35 *** DONE (1) *** 
+2008-07-12 14:28:57 000000 -- Mail decorator : 0 {{subscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=595ba2c10507500cc4d8488cf7b2a45b *** DONE (1) *** 
+2008-07-12 14:28:57 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=595ba2c10507500cc4d8488cf7b2a45b&id=35 *** DONE (1) *** 
+2008-07-12 14:28:57 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject :  [MailPress] Waiting for : contact@nogent94.com 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+
+			Subscription to MailPress
+
+Confirm your subscription by activating the following link :
+http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=595ba2c10507500cc4d8488cf7b2a45b
+
+
+
+Html version of this mail -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=595ba2c10507500cc4d8488cf7b2a45b&id=35
+
+						this mail is brought to you by MailPress
+
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=595ba2c10507500cc4d8488cf7b2a45b&id=35' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 12, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->			<table style='margin:0;padding:0;border:none;width:100%;'>
+				<tr>
+					<td style='margin:0;padding:0pt 0pt 20px 45px;border:none;width:450px;float:left;color:#333333;text-align:left;font-family:Verdana,Sans-Serif;'>
+						<div style='margin:0pt 0pt 40px;padding:0;border:none;text-align:justify;'>
+							<h2 style='margin:30px 0pt 0pt;padding:0;border:none;color:#333;font-size:1.4em;font-weight:bold;font-family:Verdana,Sans-Serif;'>
+Email validation.
+							</h2>
+							<small style='margin:0;padding:0;border:none;line-height:2em;color:#777;font-size:0.7em;font-family:Arial,Sans-Serif;'>
+juillet 12, 2008							</small>
+							<div style='margin:0;padding:0;border:none;'>
+								<p style='margin:0;padding:0;border:none;line-height:1.4em;font-size:0.85em;'>
+Please confirm your email by clicking the following <a style='color:#6D8C82;font-family: verdana,geneva;font-weight:bold;' href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=595ba2c10507500cc4d8488cf7b2a45b'>link</a>. 
+								</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-12 14:28:57 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-12 14:29:00 000000 -- ::: MAIL SAVED :::
+2008-07-12 14:29:00 000000 -- LOG ended with status  : TRUE
+2008-07-12 14:29:00 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 512
+
+2008-07-12 14:29:15 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 512
+2008-07-12 14:29:15 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=595ba2c10507500cc4d8488cf7b2a45b *** DONE (1) *** 
+2008-07-12 14:29:15 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=595ba2c10507500cc4d8488cf7b2a45b&id=36 *** DONE (1) *** 
+2008-07-12 14:29:15 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=595ba2c10507500cc4d8488cf7b2a45b *** DONE (1) *** 
+2008-07-12 14:29:15 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=595ba2c10507500cc4d8488cf7b2a45b&id=36 *** DONE (1) *** 
+2008-07-12 14:29:15 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject :  [MailPress] contact@nogent94.com confirmed 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+
+Congratulations !
+
+
+You are now a subscriber of : MailPress (http://127.0.0.1/wptest)
+
+
+
+Html version of this mail -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=595ba2c10507500cc4d8488cf7b2a45b&id=36
+
+						this mail is brought to you by MailPress
+
+Unsubscribe ? -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=595ba2c10507500cc4d8488cf7b2a45b
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=595ba2c10507500cc4d8488cf7b2a45b&id=36' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 12, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->			<table style='margin:0;padding:0;border:none;width:100%;'>
+				<tr>
+					<td style='margin:0;padding:0pt 0pt 20px 45px;border:none;width:450px;float:left;color:#333333;text-align:left;font-family:Verdana,Sans-Serif;'>
+						<div style='margin:0pt 0pt 40px;padding:0;border:none;text-align:justify;'>
+							<h2 style='margin:30px 0pt 0pt;padding:0;border:none;color:#333;font-size:1.4em;font-weight:bold;font-family:Verdana,Sans-Serif;'>
+Congratulations !
+							</h2>
+							<small style='margin:0;padding:0;border:none;line-height:2em;color:#777;font-size:0.7em;font-family:Arial,Sans-Serif;'>
+juillet 12, 2008							</small>
+							<div style='margin:0;padding:0;border:none;'>
+								<p style='margin:0;padding:0;border:none;line-height:1.4em;font-size:0.85em;'>
+You are now a subscriber of : <a style='color:#000;' href='http://127.0.0.1/wptest'>MailPress</a>								</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<small style='color:#6D8C82;'>
+			<br/>
+			<br/>
+			Wish to unsubscribe <a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=595ba2c10507500cc4d8488cf7b2a45b' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>?</a>
+		</small>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-12 14:29:15 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-12 14:29:17 000000 -- ::: MAIL SAVED :::
+2008-07-12 14:29:17 000000 -- LOG ended with status  : TRUE
+2008-07-12 14:29:17 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 512
+
+2008-07-12 14:35:26 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 512
+2008-07-12 14:35:26 000000 -- Mail decorator : 0 {{subscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 14:35:26 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=37 *** DONE (1) *** 
+2008-07-12 14:35:26 000000 -- Mail decorator : 0 {{subscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 14:35:26 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=37 *** DONE (1) *** 
+2008-07-12 14:35:26 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject :  [MailPress] Waiting for : contact@nogent94.com 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+
+			Subscription to MailPress
+
+Confirm your subscription by activating the following link :
+http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=895f9de8c50eb66757b560c90b30b647
+
+
+
+Html version of this mail -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=37
+
+						this mail is brought to you by MailPress
+
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=37' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 12, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->			<table style='margin:0;padding:0;border:none;width:100%;'>
+				<tr>
+					<td style='margin:0;padding:0pt 0pt 20px 45px;border:none;width:450px;float:left;color:#333333;text-align:left;font-family:Verdana,Sans-Serif;'>
+						<div style='margin:0pt 0pt 40px;padding:0;border:none;text-align:justify;'>
+							<h2 style='margin:30px 0pt 0pt;padding:0;border:none;color:#333;font-size:1.4em;font-weight:bold;font-family:Verdana,Sans-Serif;'>
+Email validation.
+							</h2>
+							<small style='margin:0;padding:0;border:none;line-height:2em;color:#777;font-size:0.7em;font-family:Arial,Sans-Serif;'>
+juillet 12, 2008							</small>
+							<div style='margin:0;padding:0;border:none;'>
+								<p style='margin:0;padding:0;border:none;line-height:1.4em;font-size:0.85em;'>
+Please confirm your email by clicking the following <a style='color:#6D8C82;font-family: verdana,geneva;font-weight:bold;' href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=895f9de8c50eb66757b560c90b30b647'>link</a>. 
+								</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-12 14:35:26 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-12 14:35:30 000000 -- ::: MAIL SAVED :::
+2008-07-12 14:35:30 000000 -- LOG ended with status  : TRUE
+2008-07-12 14:35:30 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 512
+
+2008-07-12 14:35:41 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 512
+2008-07-12 14:35:41 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 14:35:41 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=38 *** DONE (1) *** 
+2008-07-12 14:35:41 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 14:35:41 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=38 *** DONE (1) *** 
+2008-07-12 14:35:41 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject :  [MailPress] contact@nogent94.com confirmed 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+
+Congratulations !
+
+
+You are now a subscriber of : MailPress (http://127.0.0.1/wptest)
+
+
+
+Html version of this mail -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=38
+
+						this mail is brought to you by MailPress
+
+Unsubscribe ? -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=38' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 12, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->			<table style='margin:0;padding:0;border:none;width:100%;'>
+				<tr>
+					<td style='margin:0;padding:0pt 0pt 20px 45px;border:none;width:450px;float:left;color:#333333;text-align:left;font-family:Verdana,Sans-Serif;'>
+						<div style='margin:0pt 0pt 40px;padding:0;border:none;text-align:justify;'>
+							<h2 style='margin:30px 0pt 0pt;padding:0;border:none;color:#333;font-size:1.4em;font-weight:bold;font-family:Verdana,Sans-Serif;'>
+Congratulations !
+							</h2>
+							<small style='margin:0;padding:0;border:none;line-height:2em;color:#777;font-size:0.7em;font-family:Arial,Sans-Serif;'>
+juillet 12, 2008							</small>
+							<div style='margin:0;padding:0;border:none;'>
+								<p style='margin:0;padding:0;border:none;line-height:1.4em;font-size:0.85em;'>
+You are now a subscriber of : <a style='color:#000;' href='http://127.0.0.1/wptest'>MailPress</a>								</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<small style='color:#6D8C82;'>
+			<br/>
+			<br/>
+			Wish to unsubscribe <a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>?</a>
+		</small>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-12 14:35:41 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-12 14:35:44 000000 -- ::: MAIL SAVED :::
+2008-07-12 14:35:44 000000 -- LOG ended with status  : TRUE
+2008-07-12 14:35:44 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 512
+
+2008-07-12 15:29:59 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 512
+2008-07-12 15:29:59 000000 -- Mail decorator : 0 {{subscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 15:29:59 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=39 *** DONE (1) *** 
+2008-07-12 15:29:59 000000 -- Mail decorator : 0 {{subscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 15:29:59 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=39 *** DONE (1) *** 
+2008-07-12 15:29:59 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject :  [MailPress] Waiting for : contact@nogent94.com 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+
+			Subscription to MailPress
+
+Confirm your subscription by activating the following link :
+http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=895f9de8c50eb66757b560c90b30b647
+
+
+
+Html version of this mail -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=39
+
+						this mail is brought to you by MailPress
+
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=39' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 12, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->			<table style='margin:0;padding:0;border:none;width:100%;'>
+				<tr>
+					<td style='margin:0;padding:0pt 0pt 20px 45px;border:none;width:450px;float:left;color:#333333;text-align:left;font-family:Verdana,Sans-Serif;'>
+						<div style='margin:0pt 0pt 40px;padding:0;border:none;text-align:justify;'>
+							<h2 style='margin:30px 0pt 0pt;padding:0;border:none;color:#333;font-size:1.4em;font-weight:bold;font-family:Verdana,Sans-Serif;'>
+Email validation.
+							</h2>
+							<small style='margin:0;padding:0;border:none;line-height:2em;color:#777;font-size:0.7em;font-family:Arial,Sans-Serif;'>
+juillet 12, 2008							</small>
+							<div style='margin:0;padding:0;border:none;'>
+								<p style='margin:0;padding:0;border:none;line-height:1.4em;font-size:0.85em;'>
+Please confirm your email by clicking the following <a style='color:#6D8C82;font-family: verdana,geneva;font-weight:bold;' href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&add=895f9de8c50eb66757b560c90b30b647'>link</a>. 
+								</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-12 15:29:59 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-12 15:30:03 000000 -- ::: MAIL SAVED :::
+2008-07-12 15:30:03 000000 -- LOG ended with status  : TRUE
+2008-07-12 15:30:03 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 512
+
+2008-07-12 15:30:19 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 512
+2008-07-12 15:30:19 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 15:30:19 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=40 *** DONE (1) *** 
+2008-07-12 15:30:19 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 15:30:19 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=40 *** DONE (1) *** 
+2008-07-12 15:30:19 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject :  [MailPress] contact@nogent94.com confirmed 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+
+Congratulations !
+
+
+You are now a subscriber of : MailPress (http://127.0.0.1/wptest)
+
+
+
+Html version of this mail -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=40
+
+						this mail is brought to you by MailPress
+
+Unsubscribe ? -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=40' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 12, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->			<table style='margin:0;padding:0;border:none;width:100%;'>
+				<tr>
+					<td style='margin:0;padding:0pt 0pt 20px 45px;border:none;width:450px;float:left;color:#333333;text-align:left;font-family:Verdana,Sans-Serif;'>
+						<div style='margin:0pt 0pt 40px;padding:0;border:none;text-align:justify;'>
+							<h2 style='margin:30px 0pt 0pt;padding:0;border:none;color:#333;font-size:1.4em;font-weight:bold;font-family:Verdana,Sans-Serif;'>
+Congratulations !
+							</h2>
+							<small style='margin:0;padding:0;border:none;line-height:2em;color:#777;font-size:0.7em;font-family:Arial,Sans-Serif;'>
+juillet 12, 2008							</small>
+							<div style='margin:0;padding:0;border:none;'>
+								<p style='margin:0;padding:0;border:none;line-height:1.4em;font-size:0.85em;'>
+You are now a subscriber of : <a style='color:#000;' href='http://127.0.0.1/wptest'>MailPress</a>								</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<small style='color:#6D8C82;'>
+			<br/>
+			<br/>
+			Wish to unsubscribe <a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>?</a>
+		</small>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-12 15:30:19 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-12 15:30:22 000000 -- ::: MAIL SAVED :::
+2008-07-12 15:30:22 000000 -- LOG ended with status  : TRUE
+2008-07-12 15:30:22 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 512
+
+2008-07-12 15:32:17 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 512
+2008-07-12 15:32:17 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 15:32:17 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=41 *** DONE (1) *** 
+2008-07-12 15:32:17 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 15:32:17 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=41 *** DONE (1) *** 
+2008-07-12 15:32:17 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject :  [MailPress] contact@nogent94.com confirmed 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+
+Congratulations !
+
+
+You are now a subscriber of : MailPress (http://127.0.0.1/wptest)
+
+
+
+Html version of this mail -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=41
+
+						this mail is brought to you by MailPress
+
+Unsubscribe ? -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=41' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 12, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->			<table style='margin:0;padding:0;border:none;width:100%;'>
+				<tr>
+					<td style='margin:0;padding:0pt 0pt 20px 45px;border:none;width:450px;float:left;color:#333333;text-align:left;font-family:Verdana,Sans-Serif;'>
+						<div style='margin:0pt 0pt 40px;padding:0;border:none;text-align:justify;'>
+							<h2 style='margin:30px 0pt 0pt;padding:0;border:none;color:#333;font-size:1.4em;font-weight:bold;font-family:Verdana,Sans-Serif;'>
+Congratulations !
+							</h2>
+							<small style='margin:0;padding:0;border:none;line-height:2em;color:#777;font-size:0.7em;font-family:Arial,Sans-Serif;'>
+juillet 12, 2008							</small>
+							<div style='margin:0;padding:0;border:none;'>
+								<p style='margin:0;padding:0;border:none;line-height:1.4em;font-size:0.85em;'>
+You are now a subscriber of : <a style='color:#000;' href='http://127.0.0.1/wptest'>MailPress</a>								</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<small style='color:#6D8C82;'>
+			<br/>
+			<br/>
+			Wish to unsubscribe <a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>?</a>
+		</small>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-12 15:32:17 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-12 15:32:19 000000 -- ::: MAIL SAVED :::
+2008-07-12 15:32:19 000000 -- LOG ended with status  : TRUE
+2008-07-12 15:32:19 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 512
+
+2008-07-12 15:34:58 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 512
+2008-07-12 15:34:58 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 15:34:58 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=42 *** DONE (1) *** 
+2008-07-12 15:34:58 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 15:34:58 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=42 *** DONE (1) *** 
+2008-07-12 15:34:58 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject :  [MailPress] contact@nogent94.com confirmed 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+
+Congratulations !
+
+
+You are now a subscriber of : MailPress (http://127.0.0.1/wptest)
+
+
+
+Html version of this mail -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=42
+
+						this mail is brought to you by MailPress
+
+Unsubscribe ? -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=42' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 12, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->			<table style='margin:0;padding:0;border:none;width:100%;'>
+				<tr>
+					<td style='margin:0;padding:0pt 0pt 20px 45px;border:none;width:450px;float:left;color:#333333;text-align:left;font-family:Verdana,Sans-Serif;'>
+						<div style='margin:0pt 0pt 40px;padding:0;border:none;text-align:justify;'>
+							<h2 style='margin:30px 0pt 0pt;padding:0;border:none;color:#333;font-size:1.4em;font-weight:bold;font-family:Verdana,Sans-Serif;'>
+Congratulations !
+							</h2>
+							<small style='margin:0;padding:0;border:none;line-height:2em;color:#777;font-size:0.7em;font-family:Arial,Sans-Serif;'>
+juillet 12, 2008							</small>
+							<div style='margin:0;padding:0;border:none;'>
+								<p style='margin:0;padding:0;border:none;line-height:1.4em;font-size:0.85em;'>
+You are now a subscriber of : <a style='color:#000;' href='http://127.0.0.1/wptest'>MailPress</a>								</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<small style='color:#6D8C82;'>
+			<br/>
+			<br/>
+			Wish to unsubscribe <a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>?</a>
+		</small>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-12 15:34:58 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-12 15:35:01 000000 -- ::: MAIL SAVED :::
+2008-07-12 15:35:01 000000 -- LOG ended with status  : TRUE
+2008-07-12 15:35:01 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 512
+
+2008-07-12 15:40:06 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 512
+2008-07-12 15:40:07 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 15:40:07 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=43 *** DONE (1) *** 
+2008-07-12 15:40:07 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 15:40:07 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=43 *** DONE (1) *** 
+2008-07-12 15:40:07 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject :  [MailPress] contact@nogent94.com confirmed 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+
+Congratulations !
+
+
+You are now a subscriber of : MailPress (http://127.0.0.1/wptest)
+
+
+
+Html version of this mail -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=43
+
+						this mail is brought to you by MailPress
+
+Unsubscribe ? -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=43' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 12, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->			<table style='margin:0;padding:0;border:none;width:100%;'>
+				<tr>
+					<td style='margin:0;padding:0pt 0pt 20px 45px;border:none;width:450px;float:left;color:#333333;text-align:left;font-family:Verdana,Sans-Serif;'>
+						<div style='margin:0pt 0pt 40px;padding:0;border:none;text-align:justify;'>
+							<h2 style='margin:30px 0pt 0pt;padding:0;border:none;color:#333;font-size:1.4em;font-weight:bold;font-family:Verdana,Sans-Serif;'>
+Congratulations !
+							</h2>
+							<small style='margin:0;padding:0;border:none;line-height:2em;color:#777;font-size:0.7em;font-family:Arial,Sans-Serif;'>
+juillet 12, 2008							</small>
+							<div style='margin:0;padding:0;border:none;'>
+								<p style='margin:0;padding:0;border:none;line-height:1.4em;font-size:0.85em;'>
+You are now a subscriber of : <a style='color:#000;' href='http://127.0.0.1/wptest'>MailPress</a>								</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<small style='color:#6D8C82;'>
+			<br/>
+			<br/>
+			Wish to unsubscribe <a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>?</a>
+		</small>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-12 15:40:07 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-12 15:40:09 000000 -- ::: MAIL SAVED :::
+2008-07-12 15:40:09 000000 -- LOG ended with status  : TRUE
+2008-07-12 15:40:09 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 512
+
+2008-07-12 15:46:18 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 512
+2008-07-12 15:46:18 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 15:46:18 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=44 *** DONE (1) *** 
+2008-07-12 15:46:18 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 15:46:18 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=44 *** DONE (1) *** 
+2008-07-12 15:46:18 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject :  [MailPress] contact@nogent94.com confirmed 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+
+Congratulations !
+
+
+You are now a subscriber of : MailPress (http://127.0.0.1/wptest)
+
+
+
+Html version of this mail -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=44
+
+						this mail is brought to you by MailPress
+
+Unsubscribe ? -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=44' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 12, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->			<table style='margin:0;padding:0;border:none;width:100%;'>
+				<tr>
+					<td style='margin:0;padding:0pt 0pt 20px 45px;border:none;width:450px;float:left;color:#333333;text-align:left;font-family:Verdana,Sans-Serif;'>
+						<div style='margin:0pt 0pt 40px;padding:0;border:none;text-align:justify;'>
+							<h2 style='margin:30px 0pt 0pt;padding:0;border:none;color:#333;font-size:1.4em;font-weight:bold;font-family:Verdana,Sans-Serif;'>
+Congratulations !
+							</h2>
+							<small style='margin:0;padding:0;border:none;line-height:2em;color:#777;font-size:0.7em;font-family:Arial,Sans-Serif;'>
+juillet 12, 2008							</small>
+							<div style='margin:0;padding:0;border:none;'>
+								<p style='margin:0;padding:0;border:none;line-height:1.4em;font-size:0.85em;'>
+You are now a subscriber of : <a style='color:#000;' href='http://127.0.0.1/wptest'>MailPress</a>								</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<small style='color:#6D8C82;'>
+			<br/>
+			<br/>
+			Wish to unsubscribe <a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>?</a>
+		</small>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-12 15:46:18 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-12 15:46:21 000000 -- ::: MAIL SAVED :::
+2008-07-12 15:46:21 000000 -- LOG ended with status  : TRUE
+2008-07-12 15:46:21 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 512
+
+2008-07-12 15:59:21 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 512
+2008-07-12 15:59:21 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=7ff307d45701c5aae3a460236f4c66fb *** DONE (1) *** 
+2008-07-12 15:59:21 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=7ff307d45701c5aae3a460236f4c66fb&id=45 *** DONE (1) *** 
+2008-07-12 15:59:21 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=7ff307d45701c5aae3a460236f4c66fb *** DONE (1) *** 
+2008-07-12 15:59:21 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=7ff307d45701c5aae3a460236f4c66fb&id=45 *** DONE (1) *** 
+2008-07-12 15:59:21 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject :  [MailPress] andre.renaut@gmail.com confirmed 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+
+Congratulations !
+
+
+You are now a subscriber of : MailPress (http://127.0.0.1/wptest)
+
+
+
+Html version of this mail -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=7ff307d45701c5aae3a460236f4c66fb&id=45
+
+						this mail is brought to you by MailPress
+
+Unsubscribe ? -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=7ff307d45701c5aae3a460236f4c66fb
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=7ff307d45701c5aae3a460236f4c66fb&id=45' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 12, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->			<table style='margin:0;padding:0;border:none;width:100%;'>
+				<tr>
+					<td style='margin:0;padding:0pt 0pt 20px 45px;border:none;width:450px;float:left;color:#333333;text-align:left;font-family:Verdana,Sans-Serif;'>
+						<div style='margin:0pt 0pt 40px;padding:0;border:none;text-align:justify;'>
+							<h2 style='margin:30px 0pt 0pt;padding:0;border:none;color:#333;font-size:1.4em;font-weight:bold;font-family:Verdana,Sans-Serif;'>
+Congratulations !
+							</h2>
+							<small style='margin:0;padding:0;border:none;line-height:2em;color:#777;font-size:0.7em;font-family:Arial,Sans-Serif;'>
+juillet 12, 2008							</small>
+							<div style='margin:0;padding:0;border:none;'>
+								<p style='margin:0;padding:0;border:none;line-height:1.4em;font-size:0.85em;'>
+You are now a subscriber of : <a style='color:#000;' href='http://127.0.0.1/wptest'>MailPress</a>								</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<small style='color:#6D8C82;'>
+			<br/>
+			<br/>
+			Wish to unsubscribe <a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=7ff307d45701c5aae3a460236f4c66fb' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>?</a>
+		</small>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-12 15:59:21 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-12 15:59:24 000000 -- ::: MAIL SAVED :::
+2008-07-12 15:59:24 000000 -- LOG ended with status  : TRUE
+2008-07-12 15:59:24 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 512
+
+2008-07-12 16:00:07 000000 --  **** Start logging **** mailpress *** MP_Mail *** level : 512
+2008-07-12 16:00:07 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 16:00:07 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=46 *** DONE (1) *** 
+2008-07-12 16:00:07 000000 -- Mail decorator : 0 {{unsubscribe}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647 *** DONE (1) *** 
+2008-07-12 16:00:07 000000 -- Mail decorator : 0 {{viewhtml}} => http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=46 *** DONE (1) *** 
+2008-07-12 16:00:07 000000 --  
+
+ ------------------- start of mail -------------------   
+ From : noreplies <noreplies@nogent94.com>  
+ Subject :  [MailPress] contact@nogent94.com confirmed 
+   ------------------- plaintext -------------------  
+ MailPress
+Just another MailPress mail
+
+
+Congratulations !
+
+
+You are now a subscriber of : MailPress (http://127.0.0.1/wptest)
+
+
+
+Html version of this mail -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=46
+
+						this mail is brought to you by MailPress
+
+Unsubscribe ? -> http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647
+ 
+
+ ------------------- text/html -------------------  
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div align='center' style='color:#000;font-family: verdana,geneva;'>
+			<small style='color:#6D8C82;'>
+				Having trouble reading this email? View it on our 
+				<a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&view=895f9de8c50eb66757b560c90b30b647&id=46' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>website</a>.
+				<br />
+				<br />
+			</small>
+			<table style='padding:0;margin:0;border:none;background:#6D8C82;width:100%;'>	
+				<tbody style='padding:0;margin:0;border:none;'>
+					<tr style='padding:0;margin:0;border:none;height:60px;'>
+						<td style='padding:0;margin:0;border:none;'>
+							<img src='MailPresslogo.gif' style='padding:20px 10px 20px 50px' alt=''/>
+						</td>
+						<td style='width:50px;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+					<tr style='padding:0;margin:0;border:none;'>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+						<td style='padding:0;margin:0;border:none;'></td>
+					</tr>
+				</tbody>
+			</table>
+			<table style='width:100%;height:70px;padding:0;margin:0;border-bottom:1px solid #C6D9E9;background:#DCFAF1;'>
+				<tr style='padding:0;margin:0;border:none;'>
+					<td style='padding:0 10px 0 0;margin:0;border:none;background:#DCFAF1;font-family:Georgia,Times,serif;color#555;font-size:30px;text-align:right;'>
+						juillet 12, 2008					</td>
+				</tr>
+			</table>
+<!-- end header -->			<table style='margin:0;padding:0;border:none;width:100%;'>
+				<tr>
+					<td style='margin:0;padding:0pt 0pt 20px 45px;border:none;width:450px;float:left;color:#333333;text-align:left;font-family:Verdana,Sans-Serif;'>
+						<div style='margin:0pt 0pt 40px;padding:0;border:none;text-align:justify;'>
+							<h2 style='margin:30px 0pt 0pt;padding:0;border:none;color:#333;font-size:1.4em;font-weight:bold;font-family:Verdana,Sans-Serif;'>
+Congratulations !
+							</h2>
+							<small style='margin:0;padding:0;border:none;line-height:2em;color:#777;font-size:0.7em;font-family:Arial,Sans-Serif;'>
+juillet 12, 2008							</small>
+							<div style='margin:0;padding:0;border:none;'>
+								<p style='margin:0;padding:0;border:none;line-height:1.4em;font-size:0.85em;'>
+You are now a subscriber of : <a style='color:#000;' href='http://127.0.0.1/wptest'>MailPress</a>								</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+<!-- start footer -->
+			<table style='margin:0;padding:10px 20px;border-top:1px solid #DEDEDE;width:100%;'>
+				<tr>	
+					<td style='font-family:Verdana,sans-serif;color:#2583AD;font-size:10px;'>
+						<b>
+							This mail is brought to you by MailPress.
+						</b>
+					</td>
+					<td style='font-family:Georgia,Times,serif;color:#8c8c8c;font-size:14px;text-align:right;'>
+						<b>
+							MAIL IS SHARING POETRY
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<small style='color:#6D8C82;'>
+			<br/>
+			<br/>
+			Wish to unsubscribe <a href='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-includes/action.php/?action=mail_link&del=895f9de8c50eb66757b560c90b30b647' style='color: rgb(153, 153, 153);font-family: verdana,geneva;font-weight:bold;'>?</a>
+		</small>
+	</body>
+</html> 
+
+ ------------------ end of mail ------------------  
+
+
+2008-07-12 16:00:07 000000 -- Image found : C:\Vn\wptest/wp-content/plugins/mailpress/mp-content/themes/MailPress/images/MailPresslogo.gif
+2008-07-12 16:00:10 000000 -- ::: MAIL SAVED :::
+2008-07-12 16:00:10 000000 -- LOG ended with status  : TRUE
+2008-07-12 16:00:10 000000 --  **** End logging   **** mailpress *** MP_Mail *** level : 512
