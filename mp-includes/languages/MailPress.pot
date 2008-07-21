@@ -1,0 +1,1336 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-07-21 17:06+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: dashboard.php:19 MP_Admin.class.php:312
+msgid "Dashboard"
+msgstr ""
+
+#: dashboard.php:23
+msgid "Right now"
+msgstr ""
+
+#: dashboard.php:27
+msgid "Write a New Mail"
+msgstr ""
+
+#: dashboard.php:34
+#, php-format
+msgid "%s active subscriber"
+msgstr ""
+
+#: dashboard.php:34
+#, php-format
+msgid "%s active subscribers"
+msgstr ""
+
+#: dashboard.php:35
+#, php-format
+msgid "%s mail"
+msgstr ""
+
+#: dashboard.php:35
+#, php-format
+msgid "%s mails"
+msgstr ""
+
+#: dashboard.php:36
+#, php-format
+msgid ""
+"You have <a href='%1$s'>%2$s</a> and send <a href='%3$s'>%4$s</a> ... and "
+"counting ..."
+msgstr ""
+
+#: dashboard.php:40
+#, php-format
+msgid "You are using MailPress \"%1$s\" theme."
+msgstr ""
+
+#: dashboard.php:42
+msgid "Change Theme"
+msgstr ""
+
+#: dashboard.php:45
+#, php-format
+msgid "This is MailPress version %1$s."
+msgstr ""
+
+#: dashboard.php:60
+#, php-format
+msgid "Thank you for mailing with <a href=\"%1$s \">MailPress</a>"
+msgstr ""
+
+#: dashboard.php:60
+msgid "Documentation"
+msgstr ""
+
+#: dashboard.php:60
+msgid "Feedback"
+msgstr ""
+
+#: dashboard.php:60
+#, php-format
+msgid "Version %1$s"
+msgstr ""
+
+#: dashboard0.php:16 dashboard0.php:23
+msgid "Subscribers - Map"
+msgstr ""
+
+#: dashboard0.php:18 dashboard0.php:30 dashboard0.php:36 dashboard0.php:42
+#: dashboard0.php:48 dashboard0.php:54 MP_Admin.class.php:312
+#: MP_Admin.class.php:321
+msgid "MailPress Dashboard"
+msgstr ""
+
+#: dashboard0.php:28 dashboard0.php:236
+msgid "Mails - send"
+msgstr ""
+
+#: dashboard0.php:34 dashboard0.php:351
+msgid "Subscribers - Activity"
+msgstr ""
+
+#: dashboard0.php:40 dashboard0.php:409
+msgid "Mails - Activity"
+msgstr ""
+
+#: dashboard0.php:46
+msgid "Posts - Most subscribed"
+msgstr ""
+
+#: dashboard0.php:52 dashboard0.php:565
+msgid "Comments subscribers per post"
+msgstr ""
+
+#: dashboard0.php:65 dashboard0.php:102 dashboard0.php:139
+msgid "Subscribers - World"
+msgstr ""
+
+#: dashboard0.php:133
+msgid "Subscribers - Africa"
+msgstr ""
+
+#: dashboard0.php:134
+msgid "Subscribers - Asia"
+msgstr ""
+
+#: dashboard0.php:135
+msgid "Subscribers - Europe"
+msgstr ""
+
+#: dashboard0.php:136
+msgid "Subscribers - Middle East"
+msgstr ""
+
+#: dashboard0.php:137
+msgid "Subscribers - South America"
+msgstr ""
+
+#: dashboard0.php:138
+msgid "Subscribers - USA"
+msgstr ""
+
+#: dashboard0.php:352
+msgid "waiting"
+msgstr ""
+
+#: dashboard0.php:352
+msgid "comment"
+msgstr ""
+
+#: dashboard0.php:352
+msgid "blog &amp; comment"
+msgstr ""
+
+#: dashboard0.php:380 settings-general.php:100
+msgid "Admin"
+msgstr ""
+
+#: dashboard0.php:381
+msgid "Posts"
+msgstr ""
+
+#: dashboard0.php:382
+msgid "Subscription"
+msgstr ""
+
+#: dashboard0.php:383 mp-mail-links.php:61
+msgid "Comments"
+msgstr ""
+
+#: dashboard0.php:384 settings.php:152
+msgid "Test"
+msgstr ""
+
+#: dashboard0.php:402
+msgid "Misc."
+msgstr ""
+
+#: mail-form.php:4
+msgid "Mail sent"
+msgstr ""
+
+#: mail-form.php:5 mail-new.php:34 mails.php:40 mails0.php:40
+msgid "Mail saved"
+msgstr ""
+
+#: mail-form.php:6 mail-new.php:35
+msgid "Mail NOT sent"
+msgstr ""
+
+#: mail-form.php:7 mail-new.php:37
+msgid "Mail NOT sent, no recipient"
+msgstr ""
+
+#: mail-form.php:22 mail-new.php:77
+msgid "Related"
+msgstr ""
+
+#: mail-form.php:33 mail-new.php:87
+msgid "From"
+msgstr ""
+
+#: mail-form.php:41 mail-new.php:99 settings-test.php:30
+msgid "To"
+msgstr ""
+
+#: mail-form.php:49 mail-new.php:117 mails.php:150 mails0.php:147
+msgid "Subject"
+msgstr ""
+
+#: mail-form.php:59
+msgid "Plaintext View"
+msgstr ""
+
+#: mail-form.php:60
+msgid "Html View"
+msgstr ""
+
+#: mail-new.php:2 MP_Mail.class.php:630 MP_Mail.class.php:948
+msgid "active blog"
+msgstr ""
+
+#: mail-new.php:2 MP_Mail.class.php:630 MP_Mail.class.php:948
+msgid "active comments"
+msgstr ""
+
+#: mail-new.php:2 MP_Mail.class.php:630 MP_Mail.class.php:948
+msgid "active blog + comments"
+msgstr ""
+
+#: mail-new.php:2 MP_Mail.class.php:630 MP_Mail.class.php:948
+msgid "active + not active"
+msgstr ""
+
+#: mail-new.php:4
+msgid "Write Mail"
+msgstr ""
+
+#: mail-new.php:5
+msgid "Preview this mail"
+msgstr ""
+
+#: mail-new.php:16
+#, php-format
+msgid "Edit Draft # %1$s"
+msgstr ""
+
+#: mail-new.php:17
+msgid "View this mail"
+msgstr ""
+
+#: mail-new.php:36 mail.php:87 mail.php:96 settings.php:40 mail.php:85
+#: mail.php:94
+msgid "Please, enter a valid email"
+msgstr ""
+
+#: mail-new.php:62 mail.php:57 mail.php:134 settings-general.php:140
+#: settings-smtp.php:83 settings-test.php:92 mail.php:55 mail.php:132
+msgid "Save"
+msgstr ""
+
+#: mail-new.php:63 mail.php:58 mail.php:135 mails.php:133 mails0.php:133
+#: MP_Mail.class.php:643 mail.php:56 mail.php:133
+msgid "Send"
+msgstr ""
+
+#: mail-new.php:65 mail.php:73 mail.php:147 mail.php:71 mail.php:145
+#, php-format
+msgid ""
+"You are about to delete this draft '%s'\n"
+"  'Cancel' to stop, 'OK' to delete."
+msgstr ""
+
+#: mail-new.php:66 mail.php:73 mail.php:71
+msgid "Delete&nbsp;draft"
+msgstr ""
+
+#: mail-new.php:71 mail.php:44 mail.php:76 mail.php:150 mail.php:74
+#: mail.php:148
+#, php-format
+msgid "Last edited by %1$s on %2$s at %3$s"
+msgstr ""
+
+#: mail-new.php:79
+msgid "Manage All Mails"
+msgstr ""
+
+#: mail-new.php:90 mail-new.php:102 settings-general.php:28
+#: settings-test.php:33
+msgid "Email : "
+msgstr ""
+
+#: mail-new.php:93 mail-new.php:105 settings-general.php:31
+#: settings-test.php:36
+msgid "Name : "
+msgstr ""
+
+#: mail-new.php:108
+msgid "OR all"
+msgstr ""
+
+#: mail-new.php:125
+msgid "Html"
+msgstr ""
+
+#: mail-new.php:134
+msgid "Plain Text"
+msgstr ""
+
+#: mail.php:32
+#, php-format
+msgid "View Mail # %1$s"
+msgstr ""
+
+#: mail.php:44
+#, php-format
+msgid "Sent by %1$s on %2$s at %3$s"
+msgstr ""
+
+#: mail.php:47
+msgid "Back to list"
+msgstr ""
+
+#: mail.php:80 mail.php:78
+#, php-format
+msgid ""
+"You are about to delete this mail '%s'\n"
+"  'Cancel' to stop, 'OK' to delete."
+msgstr ""
+
+#: mail.php:80 mail.php:78
+msgid "Delete&nbsp;mail"
+msgstr ""
+
+#: mail.php:109 mail.php:107
+#, php-format
+msgid "View Draft # %1$s"
+msgstr ""
+
+#: mail.php:114 mail.php:112
+msgid "View Draft"
+msgstr ""
+
+#: mail.php:147 mail.php:145
+msgid "Delete draft"
+msgstr ""
+
+#: mail.php:175 mail.php:177 mail.php:173
+msgid "You should not be here"
+msgstr ""
+
+#: MailPress.php:83
+msgid "Title:"
+msgstr ""
+
+#: MailPress.php:172
+#, php-format
+msgid "[%1$s] Waiting for %2$s"
+msgstr ""
+
+#: MailPress.php:174 MailPress.php:182
+#, php-format
+msgid ""
+"Please, confirm your subscription to %1$s emails by clicking the following "
+"link :"
+msgstr ""
+
+#: MailPress.php:178 MailPress.php:186
+msgid "If you do not want to receive more emails, ignore this one !"
+msgstr ""
+
+#: MailPress.php:184
+msgid "Confirm"
+msgstr ""
+
+#: MailPress.php:215
+#, php-format
+msgid "[%1$s] Successful subscription for %2$s"
+msgstr ""
+
+#: MailPress.php:217 MailPress.php:223
+#, php-format
+msgid "We confirm your subscription to %1$s emails"
+msgstr ""
+
+#: MailPress.php:219 MailPress.php:225
+msgid "Congratulations !"
+msgstr ""
+
+#: MailPress.php:256
+#, php-format
+msgid "[%1$s] New post (%2$s)"
+msgstr ""
+
+#: MailPress.php:293
+#, php-format
+msgid "[%1$s] Posts of Yesterday (%2$s)"
+msgstr ""
+
+#: MailPress.php:339
+#, php-format
+msgid "[%1$s] Posts of last week (%2$s)"
+msgstr ""
+
+#: MailPress.php:375
+#, php-format
+msgid "[%1$s] Posts of last month (%2$s)"
+msgstr ""
+
+#: MailPress.php:412
+#, php-format
+msgid "[%1$s] New Comment (%2$s)"
+msgstr ""
+
+#: mails.php:8 mails0.php:8 users.php:8
+#, php-format
+msgid "by %s"
+msgstr ""
+
+#: mails.php:25 mails0.php:25
+#, php-format
+msgid "%s mail deleted"
+msgstr ""
+
+#: mails.php:25 mails0.php:25
+#, php-format
+msgid "%s mails deleted"
+msgstr ""
+
+#: mails.php:30 mails0.php:30
+#, php-format
+msgid "%s mail sent"
+msgstr ""
+
+#: mails.php:30 mails0.php:30
+#, php-format
+msgid "%s mails sent"
+msgstr ""
+
+#: mails.php:35 mails0.php:35
+#, php-format
+msgid "%s mail NOT sent"
+msgstr ""
+
+#: mails.php:35 mails0.php:35
+#, php-format
+msgid "%s mails NOT sent"
+msgstr ""
+
+#: mails.php:53 mails0.php:53
+#, php-format
+msgid "Draft (%s)"
+msgstr ""
+
+#: mails.php:53 mails0.php:53
+msgid "Sent"
+msgstr ""
+
+#: mails.php:55 mails0.php:55
+msgid "Show All mails"
+msgstr ""
+
+#: mails.php:108 mails0.php:108
+msgid "Manage Mails"
+msgstr ""
+
+#: mails.php:118 mails0.php:118
+msgid "Search mails"
+msgstr ""
+
+#: mails.php:124 mails0.php:124 users.php:117
+msgid "Detail View"
+msgstr ""
+
+#: mails.php:125 mails0.php:125 users.php:118
+msgid "List View"
+msgstr ""
+
+#: mails.php:134 mails.php:136 mails0.php:134 MP_Mail.class.php:646
+#: MP_User.class.php:622 users.php:131
+msgid "Delete"
+msgstr ""
+
+#: mails.php:151 mails0.php:148 users.php:144
+msgid "by"
+msgstr ""
+
+#: mails.php:152 mails0.php:149
+msgid "to"
+msgstr ""
+
+#: mails.php:153 mails0.php:150 settings-test.php:45
+msgid "Theme"
+msgstr ""
+
+#: mails.php:154 mails0.php:151 users.php:146
+msgid "Actions"
+msgstr ""
+
+#: mails.php:184 mails0.php:181 users.php:176
+msgid "No results found."
+msgstr ""
+
+#: mp-mail-links.php:14
+#, php-format
+msgid "Manage Subscription (%1$s)"
+msgstr ""
+
+#: mp-mail-links.php:20 mp-mail-links.php:98
+msgid "Cancelled action"
+msgstr ""
+
+#: mp-mail-links.php:52
+#, php-format
+msgid "I wish to receive the newsletters from <b>%1$s</b>."
+msgstr ""
+
+#: mp-mail-links.php:65
+msgid "Newsletters"
+msgstr ""
+
+#: mp-mail-links.php:69 mp-mail-links.php:107
+msgid "OK"
+msgstr ""
+
+#: mp-mail-links.php:70 mp-mail-links.php:108
+msgid "Cancel"
+msgstr ""
+
+#: mp-mail-links.php:73 mp-mail-links.php:83
+msgid "Delete Subscription"
+msgstr ""
+
+#: mp-mail-links.php:91
+#, php-format
+msgid ""
+"<p>We confirm that the email adress <b>%1$s</b> has been removed from the "
+"database.</p>"
+msgstr ""
+
+#: mp-mail-links.php:104
+#, php-format
+msgid ""
+"<p>Are you sure you want to unsubscribe <b>%1$s</b> from <b>%2$s</b>.</p>"
+msgstr ""
+
+#: mp-mail-links.php:120
+msgid "Confirm Subscription"
+msgstr ""
+
+#: mp-mail-links.php:128
+#, php-format
+msgid "<p><b>%1$s</b> has been succesfully inserted in the database.</p>"
+msgstr ""
+
+#: mp-mail-links.php:157 mp-mail-links.php:170
+#, php-format
+msgid "<p> From : <b>%1$s</b> &lt;<b>%2$s</b>&gt; </p>"
+msgstr ""
+
+#: mp-mail-links.php:158 mp-mail-links.php:171
+#, php-format
+msgid "<p> To   : <b>%1$s</b> &lt;<b>%2$s</b>&gt; </p>"
+msgstr ""
+
+#: mp-mail-links.php:186
+#, php-format
+msgid "<p> ERROR # %1$s !</p>"
+msgstr ""
+
+#: mp-mail-links.php:187
+msgid "Check you are using the appropriate link."
+msgstr ""
+
+#: mp-mail-links.php:188 mp-mail-links.php:187
+msgid "Incorrect link or already processed."
+msgstr ""
+
+#: MP_Admin.class.php:201
+msgid "MailPress Edit"
+msgstr ""
+
+#: MP_Admin.class.php:202
+msgid "MailPress View Draft"
+msgstr ""
+
+#: MP_Admin.class.php:203
+msgid "MailPress View"
+msgstr ""
+
+#: MP_Admin.class.php:217 MP_User.class.php:232
+msgid "Enter a valid email !"
+msgstr ""
+
+#: MP_Admin.class.php:220 MP_Admin.class.php:227
+msgid "%i% pending"
+msgstr ""
+
+#: MP_Admin.class.php:232
+msgid "Email was not sent AND/OR Update database failed"
+msgstr ""
+
+#: MP_Admin.class.php:232
+msgid "An unidentified error has occurred."
+msgstr ""
+
+#: MP_Admin.class.php:313 MP_Admin.class.php:322
+msgid "MailPress Create New Mail"
+msgstr ""
+
+#: MP_Admin.class.php:313
+msgid "Write"
+msgstr ""
+
+#: MP_Admin.class.php:314 MP_Admin.class.php:323
+msgid "MailPress Mails"
+msgstr ""
+
+#: MP_Admin.class.php:314
+msgid "Manage"
+msgstr ""
+
+#: MP_Admin.class.php:315 MP_Admin.class.php:324
+msgid "MailPress Themes"
+msgstr ""
+
+#: MP_Admin.class.php:315
+msgid "Design"
+msgstr ""
+
+#: MP_Admin.class.php:316 MP_Admin.class.php:325 settings.php:143
+msgid "MailPress Settings"
+msgstr ""
+
+#: MP_Admin.class.php:316
+msgid "Settings"
+msgstr ""
+
+#: MP_Admin.class.php:317 MP_Admin.class.php:326
+msgid "MailPress Users"
+msgstr ""
+
+#: MP_Admin.class.php:317
+msgid "Users"
+msgstr ""
+
+#: MP_Mail.class.php:40
+msgid "*** ERROR *** Sorry invalid arguments in MP_Mail::send"
+msgstr ""
+
+#: MP_Mail.class.php:64
+msgid "*** WARNING *** No recipient"
+msgstr ""
+
+#: MP_Mail.class.php:80
+msgid "*** ERROR *** No recipient"
+msgstr ""
+
+#: MP_Mail.class.php:103
+msgid "*** WARNING *** Mail is empty"
+msgstr ""
+
+#: MP_Mail.class.php:119
+msgid ":::: Mail not sent as required ::::"
+msgstr ""
+
+#: MP_Mail.class.php:280
+msgid "*** ERROR *** Database error, Mail not saved"
+msgstr ""
+
+#: MP_Mail.class.php:282
+msgid "::: MAIL SAVED :::"
+msgstr ""
+
+#: MP_Mail.class.php:643
+msgid "Send this mail"
+msgstr ""
+
+#: MP_Mail.class.php:666 MP_Mail.class.php:701 MP_User.class.php:660
+msgid "(unknown)"
+msgstr ""
+
+#: MP_Mail.class.php:694
+#, php-format
+msgid "Edit \"%1$s\""
+msgstr ""
+
+#: MP_Mail.class.php:694
+#, php-format
+msgid "View \"%1$s\""
+msgstr ""
+
+#: MP_Mail.class.php:694 MP_Mail.class.php:695
+msgid "(no subject)"
+msgstr ""
+
+#: MP_Mail.class.php:700
+#, php-format
+msgid "Mails by \"%1$s\""
+msgstr ""
+
+#: MP_Mail.class.php:707
+#, php-format
+msgid "Search \"%1$s\""
+msgstr ""
+
+#: MP_Mail.class.php:813
+msgid "no recipient"
+msgstr ""
+
+#: MP_Themes.class.php:222
+msgid "Visit author homepage"
+msgstr ""
+
+#: MP_Themes.class.php:225
+msgid "Anonymous"
+msgstr ""
+
+#: MP_Themes.class.php:284
+msgid "Stylesheet is missing."
+msgstr ""
+
+#: MP_Themes.class.php:298
+msgid "File not readable."
+msgstr ""
+
+#: MP_Themes.class.php:339
+msgid "Template is missing."
+msgstr ""
+
+#: MP_User.class.php:41 MP_User.class.php:44 MP_User.class.php:50
+#: MP_User.class.php:64 MP_User.class.php:209 MP_User.class.php:212
+#: MP_User.class.php:218
+msgid "Your email"
+msgstr ""
+
+#: MP_User.class.php:43 MP_User.class.php:211
+msgid "Waiting for ..."
+msgstr ""
+
+#: MP_User.class.php:98 MP_User.class.php:99
+msgid "Loading..."
+msgstr ""
+
+#: MP_User.class.php:106
+msgid "Subscribe"
+msgstr ""
+
+#: MP_User.class.php:141
+msgid "Subscribe to comments on this post"
+msgstr ""
+
+#: MP_User.class.php:242
+msgid "You have already subscribed"
+msgstr ""
+
+#: MP_User.class.php:249 MP_User.class.php:265
+msgid "Waiting for your confirmation"
+msgstr ""
+
+#: MP_User.class.php:254
+msgid "ERROR. resend confirmation email failed"
+msgstr ""
+
+#: MP_User.class.php:270
+msgid "ERROR. send confirmation email failed"
+msgstr ""
+
+#: MP_User.class.php:348 settings-general.php:86
+msgid "Mail when new post published"
+msgstr ""
+
+#: MP_User.class.php:350 settings-general.php:89
+msgid "Mail 'previous day'"
+msgstr ""
+
+#: MP_User.class.php:352 settings-general.php:92
+msgid "Mail 'previous week'"
+msgstr ""
+
+#: MP_User.class.php:354 settings-general.php:95
+msgid "Mail 'previous month'"
+msgstr ""
+
+#: MP_User.class.php:610 MP_User.class.php:615
+msgid "Activate this user"
+msgstr ""
+
+#: MP_User.class.php:610 MP_User.class.php:615 users.php:126
+msgid "Activate"
+msgstr ""
+
+#: MP_User.class.php:611 MP_User.class.php:618
+msgid "Deactivate this user"
+msgstr ""
+
+#: MP_User.class.php:611 MP_User.class.php:618 users.php:129
+msgid "Deactivate"
+msgstr ""
+
+#: MP_User.class.php:637
+#, php-format
+msgid "Write to \"%1$s\""
+msgstr ""
+
+#: MP_User.class.php:659
+#, php-format
+msgid "Users by \"%1$s\""
+msgstr ""
+
+#: settings-general.php:2
+msgid "No logging"
+msgstr ""
+
+#: settings-general.php:3
+msgid "Mailing log"
+msgstr ""
+
+#: settings-general.php:25
+msgid "All Emails send from"
+msgstr ""
+
+#: settings-general.php:37
+msgid "Managing subcription with"
+msgstr ""
+
+#: settings-general.php:46
+msgid "Default"
+msgstr ""
+
+#: settings-general.php:54
+msgid "Page template"
+msgstr ""
+
+#: settings-general.php:59
+msgid "Page id"
+msgstr ""
+
+#: settings-general.php:66
+msgid "Category template"
+msgstr ""
+
+#: settings-general.php:71
+msgid "Category id"
+msgstr ""
+
+#: settings-general.php:79
+msgid "Allow"
+msgstr ""
+
+#: settings-general.php:83
+msgid "Subscribe to comments"
+msgstr ""
+
+#: settings-general.php:104
+msgid "MailPress version of wp_mail"
+msgstr ""
+
+#: settings-general.php:107
+msgid "MailPress admin menus in one place"
+msgstr ""
+
+#: settings-general.php:113
+msgid "Logging"
+msgstr ""
+
+#: settings-general.php:116
+msgid "Logging level : "
+msgstr ""
+
+#: settings-general.php:121
+msgid "(for <b>ALL</b> mails send through MailPress)"
+msgstr ""
+
+#: settings-general.php:123
+msgid "Number of Log files : "
+msgstr ""
+
+#: settings-general.php:127
+msgid "(one log file per day)"
+msgstr ""
+
+#: settings-general.php:129
+msgid "Date of last purge"
+msgstr ""
+
+#: settings-general.php:137
+msgid ""
+"You can start to update your SMTP config, once you have saved your General "
+"settings"
+msgstr ""
+
+#: settings-smtp.php:2
+msgid "No"
+msgstr ""
+
+#: settings-smtp.php:5
+msgid "Default SMTP Port"
+msgstr ""
+
+#: settings-smtp.php:6
+msgid "Use for SSL/TLS/GMAIL"
+msgstr ""
+
+#: settings-smtp.php:7
+msgid "Custom Port: (Use Box)"
+msgstr ""
+
+#: settings-smtp.php:8
+msgid "None"
+msgstr ""
+
+#: settings-smtp.php:9
+msgid "CRAM-MD5"
+msgstr ""
+
+#: settings-smtp.php:10
+msgid "LOGIN"
+msgstr ""
+
+#: settings-smtp.php:11
+msgid "PLAIN"
+msgstr ""
+
+#: settings-smtp.php:12
+msgid "POP before SMTP"
+msgstr ""
+
+#: settings-smtp.php:20
+msgid "SMTP Server"
+msgstr ""
+
+#: settings-smtp.php:28
+msgid "Username"
+msgstr ""
+
+#: settings-smtp.php:36
+msgid "Password"
+msgstr ""
+
+#: settings-smtp.php:44
+msgid "Use SSL or TLS ?"
+msgstr ""
+
+#: settings-smtp.php:51
+#, php-format
+msgid "Site registered socket transports are : <b>%1$s</b>"
+msgstr ""
+
+#: settings-smtp.php:51 settings-test.php:21
+msgid "no"
+msgstr ""
+
+#: settings-smtp.php:56
+msgid "Port"
+msgstr ""
+
+#: settings-smtp.php:68
+msgid "SMTP-AUTH ..."
+msgstr ""
+
+#: settings-smtp.php:76
+msgid "POP3 hostname"
+msgstr ""
+
+#: settings-test.php:42
+msgid "Advanced options"
+msgstr ""
+
+#: settings-test.php:51
+msgid "Template"
+msgstr ""
+
+#: settings-test.php:68
+msgid "Log it"
+msgstr ""
+
+#: settings-test.php:72
+msgid "Send it"
+msgstr ""
+
+#: settings-test.php:76
+msgid "Archive it"
+msgstr ""
+
+#: settings-test.php:81
+msgid "as draft"
+msgstr ""
+
+#: settings-test.php:86
+msgid "Include it in statistics"
+msgstr ""
+
+#: settings-test.php:93
+msgid "Save &amp; Test"
+msgstr ""
+
+#: settings.php:36
+msgid "Id should be numeric"
+msgstr ""
+
+#: settings.php:44 settings.php:136
+msgid "General settings saved"
+msgstr ""
+
+#: settings.php:60
+msgid "SMTP settings saved, Test it !!"
+msgstr ""
+
+#: settings.php:79
+msgid "Please, enter a valid Test email"
+msgstr ""
+
+#: settings.php:106
+msgid "Connection test - MailPress - "
+msgstr ""
+
+#: settings.php:108
+msgid "This is a test message of MailPress from"
+msgstr ""
+
+#: settings.php:111
+#, php-format
+msgid "This is a <blink>test</blink> message of %1$s from %2$s. <br/><br/>"
+msgstr ""
+
+#: settings.php:124
+msgid "Test settings saved, Mail not send as required"
+msgstr ""
+
+#: settings.php:125
+msgid "Test successfull, CONGRATULATION !"
+msgstr ""
+
+#: settings.php:127
+msgid "FAILED. Check your settings !"
+msgstr ""
+
+#: settings.php:132
+msgid "Test settings saved"
+msgstr ""
+
+#: settings.php:146
+msgid "General"
+msgstr ""
+
+#: settings.php:151
+msgid "SMTP"
+msgstr ""
+
+#: themes.php:12
+msgid ""
+"The active MailPress theme is broken.  Reverting to the default MailPress "
+"theme."
+msgstr ""
+
+#: themes.php:18
+msgid "New MailPress theme activated."
+msgstr ""
+
+#: themes.php:28
+msgid "Current MailPress Theme"
+msgstr ""
+
+#: themes.php:77
+msgid "Current MailPress theme preview"
+msgstr ""
+
+#: themes.php:85
+#, php-format
+msgid ""
+"The template files are located in <code>%2$s</code>.  The stylesheet files "
+"are located in <code>%3$s</code>.  <strong>%4$s</strong> uses templates from "
+"<strong>%5$s</strong>.  Changes made to the templates will affect both "
+"MailPress themes."
+msgstr ""
+
+#: themes.php:87
+#, php-format
+msgid "All theme&#8217;s files in : <code>%2$s</code>."
+msgstr ""
+
+#: themes.php:91
+msgid "Tags:"
+msgstr ""
+
+#: themes.php:103
+msgid "Incomplete Themes"
+msgstr ""
+
+#: themes.php:108
+msgid "Folder"
+msgstr ""
+
+#: themes.php:109
+msgid "Name"
+msgstr ""
+
+#: themes.php:110
+msgid "Description"
+msgstr ""
+
+#: users.php:25
+#, php-format
+msgid "%s subscriber activated"
+msgstr ""
+
+#: users.php:25
+#, php-format
+msgid "%s subscribers activated"
+msgstr ""
+
+#: users.php:30
+#, php-format
+msgid "%s subscriber deactivated"
+msgstr ""
+
+#: users.php:30
+#, php-format
+msgid "%s subscribers deactivated"
+msgstr ""
+
+#: users.php:35
+#, php-format
+msgid "%s subscriber deleted"
+msgstr ""
+
+#: users.php:35
+#, php-format
+msgid "%s subscribers deleted"
+msgstr ""
+
+#: users.php:46
+#, php-format
+msgid "Waiting (%s)"
+msgstr ""
+
+#: users.php:46
+msgid "Active"
+msgstr ""
+
+#: users.php:48
+msgid "Show All subscribers"
+msgstr ""
+
+#: users.php:101
+msgid "Manage MailPress users"
+msgstr ""
+
+#: users.php:111
+msgid "Search subscribers"
+msgstr ""
+
+#: users.php:143
+msgid "E-mail"
+msgstr ""
+
+#: users.php:145
+msgid "since"
+msgstr ""
+
+#: wp-pluggable.php:112
+#, php-format
+msgid "New trackback on your post #%1$s \"%2$s\""
+msgstr ""
+
+#: wp-pluggable.php:113 wp-pluggable.php:122
+#, php-format
+msgid "Website: %1$s (IP: %2$s , %3$s)"
+msgstr ""
+
+#: wp-pluggable.php:114 wp-pluggable.php:123 wp-pluggable.php:133
+#: wp-pluggable.php:193 wp-pluggable.php:201 wp-pluggable.php:210
+#, php-format
+msgid "URL    : %s"
+msgstr ""
+
+#: wp-pluggable.php:115 wp-pluggable.php:124
+msgid "Excerpt: "
+msgstr ""
+
+#: wp-pluggable.php:116
+msgid "You can see all trackbacks on this post here: "
+msgstr ""
+
+#: wp-pluggable.php:118
+#, php-format
+msgid "[%1$s] Trackback: \"%2$s\""
+msgstr ""
+
+#: wp-pluggable.php:121
+#, php-format
+msgid "New pingback on your post #%1$s \"%2$s\""
+msgstr ""
+
+#: wp-pluggable.php:125
+msgid "You can see all pingbacks on this post here: "
+msgstr ""
+
+#: wp-pluggable.php:127
+#, php-format
+msgid "[%1$s] Pingback: \"%2$s\""
+msgstr ""
+
+#: wp-pluggable.php:130
+#, php-format
+msgid "New comment on your post #%1$s \"%2$s\""
+msgstr ""
+
+#: wp-pluggable.php:131 wp-pluggable.php:208
+#, php-format
+msgid "Author : %1$s (IP: %2$s , %3$s)"
+msgstr ""
+
+#: wp-pluggable.php:132 wp-pluggable.php:209
+#, php-format
+msgid "E-mail : %s"
+msgstr ""
+
+#: wp-pluggable.php:134 wp-pluggable.php:211
+#, php-format
+msgid "Whois  : http://ws.arin.net/cgi-bin/whois.pl?queryinput=%s"
+msgstr ""
+
+#: wp-pluggable.php:135 wp-pluggable.php:212
+msgid "Comment: "
+msgstr ""
+
+#: wp-pluggable.php:136
+msgid "You can see all comments on this post here: "
+msgstr ""
+
+#: wp-pluggable.php:138
+#, php-format
+msgid "[%1$s] Comment: \"%2$s\""
+msgstr ""
+
+#: wp-pluggable.php:143 wp-pluggable.php:218
+#, php-format
+msgid "Delete it: %s"
+msgstr ""
+
+#: wp-pluggable.php:144 wp-pluggable.php:219
+#, php-format
+msgid "Spam it: %s"
+msgstr ""
+
+#: wp-pluggable.php:190
+#, php-format
+msgid "A new trackback on the post #%1$s \"%2$s\" is waiting for your approval"
+msgstr ""
+
+#: wp-pluggable.php:192 wp-pluggable.php:200
+#, php-format
+msgid "Website : %1$s (IP: %2$s , %3$s)"
+msgstr ""
+
+#: wp-pluggable.php:194
+msgid "Trackback excerpt: "
+msgstr ""
+
+#: wp-pluggable.php:198
+#, php-format
+msgid "A new pingback on the post #%1$s \"%2$s\" is waiting for your approval"
+msgstr ""
+
+#: wp-pluggable.php:202
+msgid "Pingback excerpt: "
+msgstr ""
+
+#: wp-pluggable.php:206
+#, php-format
+msgid "A new comment on the post #%1$s \"%2$s\" is waiting for your approval"
+msgstr ""
+
+#: wp-pluggable.php:217
+#, php-format
+msgid "Approve it: %s"
+msgstr ""
+
+#: wp-pluggable.php:222
+#, php-format
+msgid ""
+"Currently %s are waiting for approval. Please visit the moderation panel:"
+msgstr ""
+
+#: wp-pluggable.php:225
+#, php-format
+msgid "[%1$s] Please moderate: \"%2$s\""
+msgstr ""
+
+#: wp-pluggable.php:266
+#, php-format
+msgid "New user registration on your blog %s:"
+msgstr ""
+
+#: wp-pluggable.php:267 wp-pluggable.php:289
+#, php-format
+msgid "Username: %s"
+msgstr ""
+
+#: wp-pluggable.php:268
+#, php-format
+msgid "E-mail: %s"
+msgstr ""
+
+#: wp-pluggable.php:273
+#, php-format
+msgid "[%s] New User Registration"
+msgstr ""
+
+#: wp-pluggable.php:290
+#, php-format
+msgid "Password: %s"
+msgstr ""
+
+#: wp-pluggable.php:297
+#, php-format
+msgid "[%s] Your username and password"
+msgstr ""
+
+#: mp-mail-links.php:187
+msgid "Mail has been deleted."
+msgstr ""
+
+#: mail.php:78
+#, php-format
+msgid ""
+"You are about to delete this mail  '%s'\n"
+"  'Cancel' to stop, 'OK' to delete."
+msgstr ""
