@@ -1,0 +1,11 @@
+.ui-tabs-nav li a span {
+background:#CEE1EF none repeat scroll 0;
+color:#246;
+border:1px solid #80B5D0;
+}
+
+.ui-tabs-nav li a:hover span {
+color:#D54E21;
+border:1px solid #328AB2;
+}
+
