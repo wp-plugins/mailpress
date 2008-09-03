@@ -1,0 +1,40 @@
+div#rightcol {
+float:right;
+width:250px;
+}
+
+div#rightcol2 {
+overflow:scroll;
+height:500px;
+}
+
+div.righttheme {
+margin:1em 0 0.5em 0;
+overflow:hidden;
+text-align:center;
+width:auto;
+background:#c0c0c0;
+}
+
+div.alternate {
+border:1px solid #c0c0c0;
+background:#fff;
+}
+
+div.righttheme img{
+width:200px;
+}
+
+div.leftcol {
+margin-right:250px;
+}
+
+div.leftcol img{
+width:500px;
+margin:1em;
+border:1px solid #666;
+}
+
+div.leftcol h3 {
+margin:0px;
+}
