@@ -1,0 +1,12 @@
+td.avatar {
+	background-color:#fff;
+	text-align:center;
+	vertical-align:middle;
+}
+
+img.avatar  {
+	border:solid #EAF3FA 10px;
+	-moz-border-radius: 5px;
+	padding:5px;
+}
+
