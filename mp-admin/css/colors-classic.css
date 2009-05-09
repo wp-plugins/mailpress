@@ -1,0 +1,95 @@
+#adminmenu #toplevel_page_mailpress_mails div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_design div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_users div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_mailinglists div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_settings div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_import div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_viewlogs div.wp-menu-image
+{
+	background:transparent url(../images/menu-vs.png) no-repeat scroll -1px -33px;
+}
+
+#adminmenu #toplevel_page_mailpress_mails:hover div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_mails.wp-has-current-submenu div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_mails.current div.wp-menu-image,
+
+#adminmenu #toplevel_page_mailpress_design:hover div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_design.wp-has-current-submenu div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_design.current div.wp-menu-image,
+
+#adminmenu #toplevel_page_mailpress_users:hover div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_users.wp-has-current-submenu div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_users.current div.wp-menu-image,
+
+#adminmenu #toplevel_page_mailpress_mailinglists:hover div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_mailinglists.wp-has-current-submenu div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_mailinglists.current div.wp-menu-image,
+
+#adminmenu #toplevel_page_mailpress_settings:hover div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_settings.wp-has-current-submenu div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_settings.current div.wp-menu-image,
+
+#adminmenu #toplevel_page_mailpress_import:hover div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_import.wp-has-current-submenu div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_import.current div.wp-menu-image,
+
+#adminmenu #toplevel_page_mailpress_viewlogs:hover div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_viewlogs.wp-has-current-submenu div.wp-menu-image,
+#adminmenu #toplevel_page_mailpress_viewlogs.current div.wp-menu-image
+{
+	background:transparent url(../images/menu-vs.png) no-repeat scroll -1px -1px;
+}
+
+#icon-mailpress-users {
+	background:transparent url(../images/icons32-vs.png) no-repeat scroll -10px -4px;
+}
+#icon-mailpress-mailnew {
+	background:transparent url(../images/icons32-vs.png) no-repeat scroll -71px -4px;
+}
+#icon-mailpress-mails {
+	background:transparent url(../images/icons32-vs.png) no-repeat scroll -136px -4px;
+}
+#icon-mailpress-themes {
+	background:transparent url(../images/icons32-vs.png) no-repeat scroll -189px -4px;
+}
+#icon-mailpress-tools {
+	background:transparent url(../images/icons32-vs.png) no-repeat scroll -250px -4px;
+}
+#icon-mailpress-settings {
+	background:transparent url(../images/icons32-vs.png) no-repeat scroll -311px -4px;
+}
+
+td.mp_avatar {
+	background-color:#fff;
+	text-align:center;
+	vertical-align:middle;
+}
+td.mp_avatar img.avatar  {
+	border:solid #BBD8E7 10px;
+	-moz-border-radius: 5px;
+	padding:5px;
+}
+h3.mp_hndle  {
+	background-image:url(../images/blue-grad.png);
+	background-position:left top;
+	background-repeat:repeat-x;
+	background-color:#EDFBFC;
+	font-size:12px;
+	font-weight:bold;
+	line-height:1;
+	margin:0;
+	padding:7px 9px;
+	text-shadow:0 1px 0 #FFFFFF;	
+	-moz-border-radius-topleft:6px;	
+	-moz-border-radius-topright:6px;
+}
+#the-user-list .unapproved, #the-mail-list .draft, .bkgndc {
+	background-color:#EDFBFC;
+}
+.bd1sc {
+	border:1px solid #8CBDD5;
+}
+
+div.mp_fileupload_bar_backgrnd {
+	background-color: #21759B;
+}
