@@ -1,0 +1,1 @@
+PHP c:\Vn\wp27\wp-content\plugins\mailpress_batch_send\mp-includes\cron.php
