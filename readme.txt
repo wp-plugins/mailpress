@@ -10,9 +10,9 @@ The WordPress mailing platform
 
 == Description ==
 
-This is an ALPHA version of what will be MailPress 4.0
+This is a BETA version of MailPress 4.0
 
-So many changes, i cannot list them all, need to rewrite the doc.
+So many changes, i cannot list them all, the doc is currently re written.
 
 	* Code has been deeeeeply and completely reviewed, 
 
@@ -26,7 +26,7 @@ So many changes, i cannot list them all, need to rewrite the doc.
 
 == Installation ==
 
-Some words about installation. But it is still an ALPHA ! so do not use it in production.
+Some words about installation.
 
 * Deactivate MailPress and add ons
 
@@ -52,8 +52,7 @@ Thank you
 
 == Frequently Asked Questions ==
 
-* looking for 'mailpress_deregister_scripts' ?
-see mailpress/mp-admin/xml
+* ?
 
 == Screenshots ==
 
