@@ -20,29 +20,35 @@ So many changes, i cannot list them all, the doc is currently re written.
 
 	* less ressources needed if not activated (till 3.0.2 MailPress was loading everything before doing something)
 	* new swiftmailer 4.0.3 (needs php 5.3 but tested with 5.2.5 locally without bugs)
-	* new ip search management
-	* less subscriber specific data stored for each recipients, when sending a multi-recipients mail.
-	* some add ons have been completely integrated to MailPress
+	* new api's for mailpress, ip, newsletter, import
+	* optimized size for toemail field for multi recipients mails.
+	* some add ons are integrated to MailPress
 
 == Installation ==
 
-Some words about installation.
+1. Make sure you have already installed WordPress 2.8 or above.
+1. Unzip the MailPress package.
+1. Upload the mailpress folder into wp-content/plugins.
+1. Make sure the wp-content/plugins/mailpress/tmp folder is writable.
+1. Log in to your WordPress admin and point your browser to "Plugins > installed" page.
+1. Activate MailPress plugin first.
+1. Point your browser to "Settings > MailPress", fill and save the settings for each tab.
+1. Activate MailPress add ons if required and update the settings if necessary.
+1. Once everything is installed, use the Test tab in "Settings > MailPress" to validate your settings.
 
-* Deactivate MailPress and add ons
+Upgrading
 
-* If you are using a specific page or category for subscription management, see mailpress/xtras templates. there has been some changes here too.
-  So make the changes accordingly.
-* Delete all add on folders !! Yes, all new add ons will be in the mailpress folder
-* Inside 'mailpress' folder, delete folders 'mp-admin', 'mp-includes', 'xtras' .
+Do not use WordPress automatic upgrade : you will loose the content of mailpress/mp-content and mailpress/tmp folders !
 
+1. Deactivate all add ons.
+1. Deactivate MailPress.
+1. Delete all add ons folders
+1. Move mailpress/mp-includes/languages to mailpress/mp-content/languages
+1. Delete mailpress/mp-admin, mailpress/mp-includes, mailpress/xtras folders.
+1. Follow installation procedure
+1. If you implemented page or category template, upgrade from mailpress/mp-content/xtras folder.
 
-* Unzip the downloaded mailpress zip file.
-* Upload everything in you wordpress plugin folder
-* Activate MailPress
-* Activate add ons needed.
-* Check your settings (MailPress settings are now in the WP Settings menu).
-* Check your MailPress theme (Mails > Themes)
-* Make a test (or with Settings > MailPress > Test or using new MailPress test feature available in Write Post page !!!
+MailPress themes and templates do not need to be changed if customized in a previous MailPress release. 
 
 Please report any bug in the mailpress google group http://groups.google.com/group/mailpress
 starting your subject title with : "(MailPress 4)".
