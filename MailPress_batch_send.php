@@ -33,7 +33,7 @@ class MailPress_batch_send
 		if (is_admin())
 		{
 		// for install
-			add_action('activate_' . MP_FOLDER . '/add_ons/MailPress_batch_send.php', 	array('MailPress_batch_send', 'install'));
+			add_action('activate_' . MP_FOLDER . '/MailPress_batch_send.php', 	array('MailPress_batch_send', 'install'));
 		// for link on plugin page
 			add_filter('plugin_action_links', 		array('MailPress_batch_send', 'plugin_action_links'), 10, 2 );
 		// for settings

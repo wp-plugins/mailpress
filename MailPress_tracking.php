@@ -34,7 +34,7 @@ class MailPress_tracking
 			$file = 'admin.php';
 			define ('MailPress_tracking', 	$file . '?page=' 	. MailPress_page_tracking);
 		// install
-			register_activation_hook(MP_FOLDER . '/add_ons/MailPress_tracking.php', 	array('MailPress_tracking', 'install'));
+			register_activation_hook(MP_FOLDER . '/MailPress_tracking.php', 	array('MailPress_tracking', 'install'));
 		// for init
 			add_action('init', 				array('MailPress_tracking', 'init'));
 		// for link on plugin page
