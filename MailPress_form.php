@@ -44,16 +44,16 @@ class MailPress_form
 			add_filter('MailPress_capabilities', 		array('MailPress_form', 'capabilities'), 1, 1);
 		// for load admin page
 			add_action('MailPress_load_admin_page', 		array('MailPress_form', 'load_admin_page'), 10, 1);
-		// for ajax
-			add_action('mp_action_add_form', 			array('MailPress_form', 'mp_action_add_form'));
-			add_action('mp_action_delete_form', 		array('MailPress_form', 'mp_action_delete_form'));
-			add_action('mp_action_dim_form', 			array('MailPress_form', 'mp_action_dim_form'));
-			add_action('mp_action_add_field', 			array('MailPress_form', 'mp_action_add_field'));
-			add_action('mp_action_delete_field', 		array('MailPress_form', 'mp_action_delete_field'));
-			add_action('mp_action_dim_field', 			array('MailPress_form', 'mp_action_dim_field'));
-
-			add_action('mp_action_ifview', 			array('MailPress_form', 'mp_action_ifview'));
 		}
+		// for ajax
+		add_action('mp_action_add_form', 			array('MailPress_form', 'mp_action_add_form'));
+		add_action('mp_action_delete_form', 		array('MailPress_form', 'mp_action_delete_form'));
+		add_action('mp_action_dim_form', 			array('MailPress_form', 'mp_action_dim_form'));
+		add_action('mp_action_add_field', 			array('MailPress_form', 'mp_action_add_field'));
+		add_action('mp_action_delete_field', 		array('MailPress_form', 'mp_action_delete_field'));
+		add_action('mp_action_dim_field', 			array('MailPress_form', 'mp_action_dim_field'));
+
+		add_action('mp_action_ifview', 			array('MailPress_form', 'mp_action_ifview'));
 	}
 
 ////  Shortcode  ////
@@ -278,7 +278,7 @@ class MailPress_form
 	{
 		MailPress::require_class('Forms');
 		$form = MP_Forms::get($_GET['id']);
-		global $title; $title = sprintf(__('Preview "%1$s"','MailPress'), $form->name);
+		global $title; $title = sprintf(__('Preview "%1$s"','MailPress'), stripslashes($form->label));
 	}
 
 	public static function mp_action_captcha_gd1()

@@ -198,7 +198,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		$actions['edit_fields'] = '<a href="' . $edit_fields_url . '">' . __('Fields', 'MailPress') . '</a>';
 		$actions['duplicate'] = "<a class='dim:" . self::list_id . ":" . self::tr_prefix_id . "-" . $form->id . ":unapproved:e7e7d3:e7e7d3' href='$duplicate_url'>" . __('Duplicate', 'MailPress') . "</a>";
 		$actions['delete'] = "<a class='delete:" . self::list_id . ":" . self::tr_prefix_id . "-" . $form->id . " submitdelete' href='$delete_url'>" . __('Delete') . "</a>";
-		$actions['view'] = "<a class='thickbox' href='$view_url' title=\"" . sprintf(__('Form preview #%1$s (%2$s)', 'MailPress'), $form->id, $form->description) . "\" >" . __('Preview', 'MailPress') . "</a>";
+		$actions['view'] = "<a class='thickbox' href='$view_url' title=\"" . sprintf(__('Form preview #%1$s (%2$s)', 'MailPress'), $form->id, stripslashes($form->label)) . "\" >" . __('Preview', 'MailPress') . "</a>";
 
 		$row_class = 'alternate' == $row_class ? '' : 'alternate';
 

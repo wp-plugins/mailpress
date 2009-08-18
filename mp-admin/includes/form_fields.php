@@ -12,7 +12,7 @@ $args['action'] 	= 'ifview';
 $args['KeepThis'] = 'true'; $args['TB_iframe']= 'true'; $args['width'] = '600'; $args['height']	= '400';
 $view_url		= clean_url(self::url(MP_Action_url, $args));
 
-$h2 = sprintf(__('Fields in "%1$s" form','MailPress'), "<a class='thickbox' href='$view_url' title=\"" . __('Form preview', 'MailPress') . "\" >" . stripslashes($form->label) . "</a>");
+$h2 = sprintf(__('Fields in "%1$s" form','MailPress'), "<a class='thickbox' href='$view_url' title=\"" . sprintf(__('Form preview #%1$s (%2$s)', 'MailPress'), $form->id, stripslashes($form->label))  . "\" >" . stripslashes($form->label) . "</a>");
 
 self::require_class('Forms_field_types');
 $field_types = MP_Forms_field_types::get_all();

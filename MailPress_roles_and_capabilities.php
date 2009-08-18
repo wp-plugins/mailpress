@@ -1,6 +1,4 @@
 <?php
-if ( (class_exists('MailPress')) && (is_admin()) )
-{
 /*
 Plugin Name: MailPress_roles_and_capabilities
 Plugin URI: http://www.mailpress.org
@@ -124,5 +122,4 @@ class MailPress_roles_and_capabilities
 }
 
 $MailPress_roles_and_capabilities = new MailPress_roles_and_capabilities();
-}
 ?>

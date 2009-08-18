@@ -55,9 +55,6 @@ class MailPress_mailinglist
 
 		// for load admin page
 			add_action('MailPress_load_admin_page', 		array('MailPress_mailinglist', 'load_admin_page'), 10, 1);
-			// for ajax
-			add_action('mp_action_add_mlnglst', 		array('MailPress_mailinglist', 'mp_action_add_mlnglst'));
-			add_action('mp_action_delete_mlnglst', 		array('MailPress_mailinglist', 'mp_action_delete_mlnglst'));
 
 		// for mp_users list
 			add_action('MailPress_restrict_users', 		array('MailPress_mailinglist', 'restrict_users'), 1, 1);
@@ -69,9 +66,12 @@ class MailPress_mailinglist
 			add_filter('MailPress_styles', 			array('MailPress_mailinglist', 'styles'), 8, 2);
 			add_filter('MailPress_scripts', 			array('MailPress_mailinglist', 'scripts'), 8, 2);
 			add_action('MailPress_add_meta_boxes_user', 	array('MailPress_mailinglist', 'meta_boxes_user'), 8, 2);
-			// for ajax
-			add_action('mp_action_add_mailinglist', 		array('MailPress_mailinglist', 'mp_action_add_mailinglist'));
 		}
+		// for ajax
+		add_action('mp_action_add_mlnglst', 		array('MailPress_mailinglist', 'mp_action_add_mlnglst'));
+		add_action('mp_action_delete_mlnglst', 		array('MailPress_mailinglist', 'mp_action_delete_mlnglst'));
+		// for ajax
+		add_action('mp_action_add_mailinglist', 		array('MailPress_mailinglist', 'mp_action_add_mailinglist'));
 	}
 
 //// Taxonomy ////
