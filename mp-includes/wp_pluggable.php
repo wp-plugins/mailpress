@@ -318,9 +318,9 @@ function wp_new_user_notification($user_id, $plaintext_pass = '') {
 
 	$mail->admin 	= '';
 
-	return MailPress::mail($mail);
+	$ret = MailPress::mail($mail);
 
-	if ( empty($plaintext_pass) ) return MailPress::mail($mail);
+	if ( empty($plaintext_pass) ) return $ret;
 
 	$message  = sprintf(__('Username: %s'), $user_login) . "<br />\r\n";
 	$message .= sprintf(__('Password: %s'), $plaintext_pass) . "<br />\r\n";
