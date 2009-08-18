@@ -44,14 +44,20 @@ class MailPress_autoresponder
 		add_action('mp_autoresponder_process', 				array('MailPress_autoresponder', 'process'));
 		add_action('mp_process_autoresponder', 				array('MailPress_autoresponder', 'process'));
 
+// for admin plugin pages
+		define ('MailPress_page_autoresponders', 	'mailpress_autoresponders');
+// for admin plugin urls
+		$file = 'admin.php';
+		define ('MailPress_autoresponders', $file . '?page=' . MailPress_page_autoresponders);
+// for ajax
+		add_action('mp_action_add_atrspndr', 			array('MailPress_autoresponder', 'mp_action_add_atrspndr'));
+		add_action('mp_action_delete_atrspndr', 			array('MailPress_autoresponder', 'mp_action_delete_atrspndr'));
+		add_action('mp_action_add_wa', 				array('MailPress_autoresponder', 'mp_action_add_wa'));
+		add_action('mp_action_delete_wa', 				array('MailPress_autoresponder', 'mp_action_delete_wa'));
+
 // for wp admin
 		if (is_admin())
 		{
-		// for admin plugin pages
-			define ('MailPress_page_autoresponders', 	'mailpress_autoresponders');
-		// for admin plugin urls
-			$file = 'admin.php';
-			define ('MailPress_autoresponders', $file . '?page=' . MailPress_page_autoresponders);
 		// for link on plugin page
 			add_filter('plugin_action_links', 			array('MailPress_autoresponder', 'plugin_action_links'), 10, 2 );
 		// for role & capabilities
@@ -66,17 +72,11 @@ class MailPress_autoresponder
 			add_action('MailPress_get_icon_mails', 		array('MailPress_autoresponder', 'get_icon_mails'), 8, 1);
 
 		// for meta box in write page
-			add_action('MailPress_redirect', 			array('MailPress_mailinglist', 'redirect'), 8, 1);
+			add_action('MailPress_redirect', 			array('MailPress_autoresponder', 'redirect'), 8, 1);
 			add_filter('MailPress_styles', 			array('MailPress_autoresponder', 'styles'), 8, 2);
 			add_filter('MailPress_scripts', 			array('MailPress_autoresponder', 'scripts'), 8, 2);
 			add_action('MailPress_add_meta_boxes_write',	array('MailPress_autoresponder', 'meta_boxes_write'), 8, 2);
 		}
-		// for ajax
-		add_action('mp_action_add_atrspndr', 			array('MailPress_autoresponder', 'mp_action_add_atrspndr'));
-		add_action('mp_action_delete_atrspndr', 			array('MailPress_autoresponder', 'mp_action_delete_atrspndr'));
-		// for ajax
-		add_action('mp_action_add_wa', 				array('MailPress_autoresponder', 'mp_action_add_wa'));
-		add_action('mp_action_delete_wa', 				array('MailPress_autoresponder', 'mp_action_delete_wa'));
 	}
 
 //// Taxonomy ////

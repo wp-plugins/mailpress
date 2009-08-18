@@ -34,16 +34,22 @@ class MailPress_mailinglist
 		add_action('MailPress_insert_user', 	array('MailPress_mailinglist', 'set_user_mailinglists'), 1, 1);
 		add_action('MailPress_delete_user', 	array('MailPress_mailinglist', 'delete_user'), 1, 1);
 
+// for admin plugin pages
+		define ('MailPress_page_mailinglists', 	'mailpress_mailinglists');
+// for admin plugin urls
+		$file = 'admin.php';
+		define ('MailPress_mailinglists', $file . '?page=' . MailPress_page_mailinglists);
+// for ajax
+		add_action('mp_action_add_mlnglst', 		array('MailPress_mailinglist', 'mp_action_add_mlnglst'));
+		add_action('mp_action_delete_mlnglst', 		array('MailPress_mailinglist', 'mp_action_delete_mlnglst'));
+		add_action('mp_action_add_mailinglist', 		array('MailPress_mailinglist', 'mp_action_add_mailinglist'));
+
 // for wp admin
 		if (is_admin())
 		{
 		// for plugin
 			add_action('activate_' . MP_FOLDER . '/MailPress_mailinglist.php', 	array('MailPress_mailinglist', 'install'));
-		// for admin plugin pages
-			define ('MailPress_page_mailinglists', 	'mailpress_mailinglists');
-		// for admin plugin urls
-			$file = 'admin.php';
-			define ('MailPress_mailinglists', $file . '?page=' . MailPress_page_mailinglists);
+
 		// for link on plugin page
 			add_filter('plugin_action_links', 			array('MailPress_mailinglist', 'plugin_action_links'), 10, 2 );
 		// for role & capabilities
@@ -67,11 +73,6 @@ class MailPress_mailinglist
 			add_filter('MailPress_scripts', 			array('MailPress_mailinglist', 'scripts'), 8, 2);
 			add_action('MailPress_add_meta_boxes_user', 	array('MailPress_mailinglist', 'meta_boxes_user'), 8, 2);
 		}
-		// for ajax
-		add_action('mp_action_add_mlnglst', 		array('MailPress_mailinglist', 'mp_action_add_mlnglst'));
-		add_action('mp_action_delete_mlnglst', 		array('MailPress_mailinglist', 'mp_action_delete_mlnglst'));
-		// for ajax
-		add_action('mp_action_add_mailinglist', 		array('MailPress_mailinglist', 'mp_action_add_mailinglist'));
 	}
 
 //// Taxonomy ////

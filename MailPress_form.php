@@ -25,27 +25,16 @@ class MailPress_form
 		add_action('mp_action_2ahctpac',	array('MailPress_form', 'mp_action_captcha_gd2'));
 		add_action('mp_form_purge', 		array('MailPress_form', 'do_purge'));
 
-// for wp admin
-		if (is_admin())
-		{
-		// for admin plugin pages
-			define ('MailPress_page_forms',	'mailpress_forms');
-			define ('MailPress_page_fields',	MailPress_page_forms . '&file=fields');
-			define ('MailPress_page_templates',	MailPress_page_forms . '&file=templates');
-		// for admin plugin urls
-			$file = 'admin.php';
-			define ('MailPress_forms',  	$file . '?page=' . MailPress_page_forms);
-			define ('MailPress_fields', 	$file . '?page=' . MailPress_page_fields);
-			define ('MailPress_templates',$file . '?page=' . MailPress_page_templates);
-		// install
-			register_activation_hook(MP_FOLDER . '/MailPress_form.php', 	array('MailPress_form', 'install'));
-			register_deactivation_hook(MP_FOLDER . '/MailPress_form.php', 	array('MailPress_form', 'uninstall'));
-		// for role & capabilities
-			add_filter('MailPress_capabilities', 		array('MailPress_form', 'capabilities'), 1, 1);
-		// for load admin page
-			add_action('MailPress_load_admin_page', 		array('MailPress_form', 'load_admin_page'), 10, 1);
-		}
-		// for ajax
+// for admin plugin pages
+		define ('MailPress_page_forms',	'mailpress_forms');
+		define ('MailPress_page_fields',	MailPress_page_forms . '&file=fields');
+		define ('MailPress_page_templates',	MailPress_page_forms . '&file=templates');
+// for admin plugin urls
+		$file = 'admin.php';
+		define ('MailPress_forms',  	$file . '?page=' . MailPress_page_forms);
+		define ('MailPress_fields', 	$file . '?page=' . MailPress_page_fields);
+		define ('MailPress_templates',$file . '?page=' . MailPress_page_templates);
+// for ajax
 		add_action('mp_action_add_form', 			array('MailPress_form', 'mp_action_add_form'));
 		add_action('mp_action_delete_form', 		array('MailPress_form', 'mp_action_delete_form'));
 		add_action('mp_action_dim_form', 			array('MailPress_form', 'mp_action_dim_form'));
@@ -54,6 +43,18 @@ class MailPress_form
 		add_action('mp_action_dim_field', 			array('MailPress_form', 'mp_action_dim_field'));
 
 		add_action('mp_action_ifview', 			array('MailPress_form', 'mp_action_ifview'));
+
+// for wp admin
+		if (is_admin())
+		{
+		// install
+			register_activation_hook(MP_FOLDER . '/MailPress_form.php', 	array('MailPress_form', 'install'));
+			register_deactivation_hook(MP_FOLDER . '/MailPress_form.php', 	array('MailPress_form', 'uninstall'));
+		// for role & capabilities
+			add_filter('MailPress_capabilities', 		array('MailPress_form', 'capabilities'), 1, 1);
+		// for load admin page
+			add_action('MailPress_load_admin_page', 		array('MailPress_form', 'load_admin_page'), 10, 1);
+		}
 	}
 
 ////  Shortcode  ////
