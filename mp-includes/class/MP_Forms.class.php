@@ -175,7 +175,6 @@ class MP_Forms
 
 		$processed = $on_error = false;
 		$submitted = ((isset($_POST[self::prefix][$id])));
-
 		foreach($fields as $k => $field) 
 		{
 			$field =  MP_Forms_fields::get($field->id);
@@ -183,8 +182,11 @@ class MP_Forms
 			if (isset($fields[$k]->submitted['on_error'])) $on_error = true;
 		}
 
-		if (!$on_error)	$processed = self::process($form, $fields, $form_templates);
-		else			unset($form->settings['options']['reset']);
+		if ($submitted)
+		{
+			if (!$on_error)	$processed = self::process($form, $fields, $form_templates);
+			else			unset($form->settings['options']['reset']);
+		}
 
 		if ($processed && isset($form->settings['options']['reset'])) unset($_POST[self::prefix][$id]);
 
