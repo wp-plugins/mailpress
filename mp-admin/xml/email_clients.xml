@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<emailclients>
+	 <emailclient>
+		<name><![CDATA[Hotmail/Windows live]]></name>
+		<link><![CDATA[http://mail.live.com]]></link>
+		<icon><![CDATA[/mc/win.png]]></icon>
+		<pattern><![CDATA[#/mail.live.com/#i]]></pattern>
+	 </emailclient>
+	 <emailclient>
+		<name><![CDATA[Gmail]]></name>
+		<link><![CDATA[http://mail.google.com]]></link>
+		<icon><![CDATA[/mc/gmail.png]]></icon>
+		<pattern><![CDATA[#/mail.google.com/mail/#i]]></pattern>
+	 </emailclient>
+</emailclients>

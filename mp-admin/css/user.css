@@ -1,0 +1,44 @@
+td.avatar {
+	text-align:center;
+	vertical-align:middle;
+}
+.form-table th.h1em, .form-table td.h1em {
+	height:1em;
+}
+.checklist {
+	vertical-align:top;
+}
+
+/* custom fields */
+
+#side-sortables #mp_usercustom #postcustomstuff td.left input, #side-sortables #pagecustomdiv #postcustomstuff td.left input {
+	margin:3px 3px 0;
+}
+#side-sortables #mp_usercustom #postcustomstuff #the-list textarea {
+	height:85px;
+	margin:3px;
+}
+#side-sortables #mp_usercustom #postcustomstuff .submit, #side-sortables #pagecustomdiv #postcustomstuff .submit {
+	padding:0 5px;
+}
+#mp_usercustom #postcustomstuff .submit, #pagecustomdiv #postcustomstuff .submit {
+	border:0 none;
+	float:none;
+	padding:5px 8px;
+}
+#postcustomstuff .updateusermeta, #postcustomstuff .deleteusermeta {
+	margin:auto;
+}
+#postcustomstuff #newmeta .submit {
+	padding:0 8px;
+}
+#tracking_mp_u007 td{
+	font-size:11px;
+}
+#tracking_mp_u007 th{
+	width:75px;
+}
+#tracking_mp_u007 td.number{
+	font-weight:bold;
+	text-align:right;
+}
