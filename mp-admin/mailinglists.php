@@ -21,17 +21,15 @@ class MP_AdminPage extends MP_Admin_page_list
 		if ( isset($_GET['deleteit']) )   $action = 'bulk-delete';
 		if (!isset($action)) return;
 
-		$url_parms = self::get_url_parms(array('s', 'apage'));
+		$url_parms = self::get_url_parms(array('s', 'apage', 'id'));
 
 		self::require_class('Mailinglists');
 
 		switch($action) 
 		{
 			case 'add':
-				$_POST['slug'] = MP_Mailinglists::add_slug( $_POST['slug'], $_POST['name'] );
-
-				$ret = wp_insert_term($_POST['name'], self::taxonomy, $_POST);
-				$url_parms['message'] = ( $ret && !is_wp_error( $ret ) ) ? 1 : 4;
+				$e = MP_Mailinglists::insert($_POST);
+				$url_parms['message'] = ( $e && !is_wp_error( $e ) ) ? 1 : 4;
 				unset($url_parms['s']);
 				self::mp_redirect( self::url(MailPress_mailinglists, $url_parms) );
 			break;
@@ -42,6 +40,7 @@ class MP_AdminPage extends MP_Admin_page_list
 					wp_die(sprintf(__("Can&#8217;t delete the <strong>%s</strong> mailing list: this is the default one",'MailPress'), MP_Mailinglists::get_name($id)));
 
 				MP_Mailinglists::delete($id);
+				unset($url_parms['id']);
 
 				$url_parms['message'] = 2;
 				self::mp_redirect( self::url(MailPress_mailinglists, $url_parms) );
@@ -64,11 +63,10 @@ class MP_AdminPage extends MP_Admin_page_list
 				unset($_GET['action']);
 				if (!isset($_POST['cancel'])) 
 				{
-					$_POST['slug'] = MP_Mailinglists::add_slug( $_POST['slug'], $_POST['name'] );
-
-					$e = wp_update_term($_POST['id'], self::taxonomy, $_POST);
+					$e = MP_Mailinglists::insert($_POST);
 					$url_parms['message'] = ( !is_wp_error($e) ) ? 3 : 5 ;
 				}
+				unset($url_parms['id']);
 				self::mp_redirect( self::url(MailPress_mailinglists, $url_parms) );
 			break;
 

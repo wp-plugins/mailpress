@@ -21,26 +21,22 @@ class MP_AdminPage extends MP_Admin_page_list
 		if ( isset($_GET['deleteit']) )   $action = 'bulk-delete';
 		if (!isset($action)) return;
 
-		$url_parms = self::get_url_parms(array('s', 'apage'));
+		$url_parms = self::get_url_parms(array('s', 'apage', 'id'));
 
 		self::require_class('Autoresponders');
 
 		switch($action) 
 		{
 			case 'add':
-				$_POST['slug'] 		= MP_Autoresponders::add_slug($_POST['slug'], $_POST['name']);
-				$_POST['description'] 	= mysql_real_escape_string(serialize($_POST['description']));
-
-				$ret = wp_insert_term($_POST['name'], self::taxonomy, $_POST);
-				$url_parms['message'] = ( $ret && !is_wp_error( $ret ) ) ? 1 : 4;
+				$e = MP_Autoresponders::insert($_POST);
+				$url_parms['message'] = ( $e && !is_wp_error( $e ) ) ? 1 : 4;
 				unset($url_parms['s']);
 				self::mp_redirect( self::url(MailPress_autoresponders, $url_parms) );
 			break;
 
 			case 'delete':
-				$id = $_GET['id'];
-
-				MP_Autoresponders::delete($id);
+				MP_Autoresponders::delete($url_parms['id']);
+				unset($url_parms['id']);
 
 				$url_parms['message'] = 2;
 				self::mp_redirect( self::url(MailPress_autoresponders, $url_parms) );
@@ -60,12 +56,10 @@ class MP_AdminPage extends MP_Admin_page_list
 				unset($_GET['action']);
 				if (!isset($_POST['cancel'])) 
 				{
-					$_POST['slug'] 		= MP_Autoresponders::add_slug($_POST['slug'], $_POST['name']);
-					$_POST['description'] 	= mysql_real_escape_string(serialize($_POST['description']));
-
-					$e = wp_update_term($_POST['id'], self::taxonomy, $_POST);
+					$e = MP_Autoresponders::insert($_POST);
 					$url_parms['message'] = ( !is_wp_error($e) ) ? 3 : 5 ;
 				}
+				unset($url_parms['id']);
 				self::mp_redirect( self::url(MailPress_autoresponders, $url_parms) );
 			break;
 
@@ -94,7 +88,7 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		wp_register_script( 'mp-ajax-response',	'/' . MP_PATH . 'mp-includes/js/mp_ajax_response.js', array('jquery'), false, 1);
 		wp_localize_script( 'mp-ajax-response', 	'wpAjax', array(
-			'noPerm' => __('Email was not sent AND/OR Update database failed', 'MailPress'), 
+			'noPerm' => __('An unidentified error has occurred.'), 
 			'broken' => __('An unidentified error has occurred.'), 
 			'l10n_print_after' => 'try{convertEntities(wpAjax);}catch(e){};' 
 		));

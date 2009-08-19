@@ -240,7 +240,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 ?>
 									<div id='div_form_toemail'>
 										<label for='form_toemail'><small><?php _e('Email','MailPress'); ?></small></label>
-										<input type="text" id='form_toemail' name='settings[recipient][toemail]' value="<?php if (isset($form->settings['recipient']['toemail'])) echo $form->settings['recipient']['toemail']; ?>" size="40" style='width:auto;' />
+										<input type="text" id='form_toemail' name='settings[recipient][toemail]' value="<?php if (isset($form->settings['recipient']['toemail'])) echo $form->settings['recipient']['toemail']; ?>" size="40" style='width:auto;' aria-required='true' class='form-required'/>
 									</div>
 									<label for='form_toname'><small><?php _e('Name','MailPress'); ?></small></label>
 									<input type="text" id='form_toname' name='settings[recipient][toname]' value="<?php if (isset($form->settings['recipient']['toname'])) echo self::input_text($form->settings['recipient']['toname']); ?>" size="40" style='width:auto;' />

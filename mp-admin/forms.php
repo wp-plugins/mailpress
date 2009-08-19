@@ -26,9 +26,9 @@ class MP_AdminPage extends MP_Admin_page_list
 		switch($action) 
 		{
 			case 'add':
-				$ret = MP_Forms::insert($_POST);
+				$e = MP_Forms::insert($_POST);
 
-				$url_parms['message'] = ( $ret ) ? 1 : 4;
+				$url_parms['message'] = ( $e ) ? 1 : 4;
 				unset($url_parms['s']);
 				self::mp_redirect( self::url(MailPress_forms, $url_parms) );
 			break;
@@ -46,7 +46,6 @@ class MP_AdminPage extends MP_Admin_page_list
 				{
 					MP_Forms::delete($id);
 				}
-				unset($url_parms['id']);
 
 				$url_parms['message'] = ( count($_GET['delete']) > 1) ? 6 : 2;
 				self::mp_redirect( self::url(MailPress_forms, $url_parms) );
@@ -62,6 +61,11 @@ class MP_AdminPage extends MP_Admin_page_list
 				}
 				else unset($url_parms['id']);
 
+				self::mp_redirect( self::url(MailPress_forms, $url_parms) );
+			break;
+
+			case 'duplicate' :
+				MP_Forms::duplicate($url_parms['id']);
 				self::mp_redirect( self::url(MailPress_forms, $url_parms) );
 			break;
 
@@ -91,7 +95,7 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		wp_register_script( 'mp-ajax-response',	'/' . MP_PATH . 'mp-includes/js/mp_ajax_response.js', array('jquery'), false, 1);
 		wp_localize_script( 'mp-ajax-response', 	'wpAjax', array(
-			'noPerm' => __('Email was not sent AND/OR Update database failed', 'MailPress'), 
+			'noPerm' => __('An unidentified error has occurred.'), 
 			'broken' => __('An unidentified error has occurred.'), 
 			'l10n_print_after' => 'try{convertEntities(wpAjax);}catch(e){};' 
 		));
@@ -101,8 +105,11 @@ class MP_AdminPage extends MP_Admin_page_list
 			'url' => MP_Action_url
 		));
 
+		wp_register_script( 'mp-thickbox', 		'/' . MP_PATH . 'mp-includes/js/mp_thickbox.js', array('thickbox'), false, 1);
+
 		wp_register_script( 'mp-taxonomy', 		'/' . MP_PATH . 'mp-includes/js/mp_taxonomy.js', array('mp-lists'), false, 1);
-		wp_localize_script( 'mp-taxonomy', 		'MP_AdminPageL10n', array(	
+		wp_localize_script( 'mp-taxonomy', 		'MP_AdminPageL10n', array(
+			'errmess' => __('Enter a valid email !', 'MailPress'), 
 			'pending' => __('%i% pending'), 
 			'screen' => self::screen,
 			'list_id' => self::list_id,
@@ -111,14 +118,7 @@ class MP_AdminPage extends MP_Admin_page_list
 			'l10n_print_after' => 'try{convertEntities(MP_AdminPageL10n);}catch(e){};' 
 		));
 
-		wp_register_script( 'mp-thickbox', 		'/' . MP_PATH . 'mp-includes/js/mp_thickbox.js', array('thickbox'), false, 1);
-
 		wp_register_script( self::screen, 		'/' . MP_PATH . 'mp-admin/js/forms.js', array('mp-taxonomy', 'mp-thickbox', 'jquery-ui-tabs'), false, 1);
-		wp_localize_script( self::screen, 'MP_AdminPageL10n', array( 	
-			'errmess' => __('Enter a valid email !', 'MailPress'), 
-			'screen' => self::screen, 
-			'l10n_print_after' => 'try{convertEntities(MP_AdminPageL10n);}catch(e){};' 
-		) );
 
 		$scripts[] = self::screen;
 		parent::print_scripts($scripts);

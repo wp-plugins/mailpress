@@ -26,9 +26,9 @@ class MP_AdminPage extends MP_Admin_page_list
 		switch($action) 
 		{
 			case 'add':
-				$ret = MP_Forms_fields::insert($_POST);
+				$e = MP_Forms_fields::insert($_POST);
 
-				$url_parms['message'] = ( $ret && !is_wp_error( $ret ) ) ? 1 : 4;
+				$url_parms['message'] = ( $e  ) ? 1 : 4;
 				unset($url_parms['s']);
 				self::mp_redirect( self::url(MailPress_fields, $url_parms) );
 			break;
@@ -65,6 +65,11 @@ class MP_AdminPage extends MP_Admin_page_list
 				self::mp_redirect( self::url(MailPress_fields, $url_parms) );
 			break;
 
+			case 'duplicate' :
+				MP_Forms_fields::duplicate($url_parms['id'], $url_parms['form_id']);
+				self::mp_redirect( self::url(MailPress_fields, $url_parms) );
+			break;
+
 			default:
 				if ( !empty($_GET['_wp_http_referer']) )
 					self::mp_redirect(remove_query_arg(array('_wp_http_referer', '_wpnonce'), stripslashes($_SERVER['REQUEST_URI'])));
@@ -98,7 +103,7 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		wp_register_script( 'mp-ajax-response',	'/' . MP_PATH . 'mp-includes/js/mp_ajax_response.js', array('jquery'), false, 1);
 		wp_localize_script( 'mp-ajax-response', 	'wpAjax', array(
-			'noPerm' => __('Email was not sent AND/OR Update database failed', 'MailPress'), 
+			'noPerm' => __('An unidentified error has occurred.'), 
 			'broken' => __('An unidentified error has occurred.'), 
 			'l10n_print_after' => 'try{convertEntities(wpAjax);}catch(e){};' 
 		));
@@ -107,6 +112,8 @@ class MP_AdminPage extends MP_Admin_page_list
 		wp_localize_script( 'mp-lists', 		'wpListL10n', array( 
 			'url' => MP_Action_url
 		));
+
+		wp_register_script( 'mp-thickbox', 		'/' . MP_PATH . 'mp-includes/js/mp_thickbox.js', array('thickbox'), false, 1);
 
 		wp_register_script( 'mp-taxonomy', 		'/' . MP_PATH . 'mp-includes/js/mp_taxonomy.js', array('mp-lists'), false, 1);
 		wp_localize_script( 'mp-taxonomy', 		'MP_AdminPageL10n', array(	
@@ -117,8 +124,6 @@ class MP_AdminPage extends MP_Admin_page_list
 			'tr_prefix_id' => self::tr_prefix_id,
 			'l10n_print_after' => 'try{convertEntities(MP_AdminPageL10n);}catch(e){};' 
 		));
-
-		wp_register_script( 'mp-thickbox', 		'/' . MP_PATH . 'mp-includes/js/mp_thickbox.js', array('thickbox'), false, 1);
 
 		wp_register_script( self::screen, 		'/' . MP_PATH . 'mp-admin/js/form_fields.js', array('mp-taxonomy', 'mp-thickbox', 'jquery-ui-tabs'), false, 1);
 

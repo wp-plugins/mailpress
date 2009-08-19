@@ -64,13 +64,10 @@ class MailPress_autoresponder
 			add_filter('MailPress_capabilities', 		array('MailPress_autoresponder', 'capabilities'), 1, 1);
 		// for settings
 			add_action('MailPress_settings_logs', 		array('MailPress_autoresponder', 'settings_logs'));
-
 		// for load admin page
 			add_action('MailPress_load_admin_page', 		array('MailPress_autoresponder', 'load_admin_page'), 10, 1);
-
 		// for mails list
 			add_action('MailPress_get_icon_mails', 		array('MailPress_autoresponder', 'get_icon_mails'), 8, 1);
-
 		// for meta box in write page
 			add_action('MailPress_redirect', 			array('MailPress_autoresponder', 'redirect'), 8, 1);
 			add_filter('MailPress_styles', 			array('MailPress_autoresponder', 'styles'), 8, 2);
@@ -343,7 +340,7 @@ class MailPress_autoresponder
 		if ($page != MailPress_page_autoresponders) return;
 		include (MP_TMP . 'mp-admin/autoresponders.php');
 	}
-	//¤ for ajax
+//¤ for ajax
 	public static function mp_action_add_atrspndr() 
 	{
 		if (!current_user_can('MailPress_manage_autoresponders')) die('-1');

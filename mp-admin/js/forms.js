@@ -3,30 +3,19 @@
 var mp_forms = {
 
 	control : function() {
-		var err = 0;
+		var err = jQuery('div#div_form_toemail').hasClass('form-invalid');
 
-		// recipient email
-		jQuery('div#div_form_toemail').removeClass('form-invalid');
-
-		if (mp_forms.is_empty(jQuery('#form_toemail').val()))
+		if (!mp_forms.is_email(jQuery('#form_toemail').val()))
 		{
 			jQuery('div#div_form_toemail').addClass('form-invalid');
-			jQuery("#form_settings").tabs( 'select' , 3 );
 			err++;
 		}
-		else
-		{
-			if (!mp_forms.is_email(jQuery('#form_toemail').val()))
-			{
-				jQuery('div#div_form_toemail').addClass('form-invalid');
-				jQuery("#form_settings").tabs( 'select' , 3 );
-				err++;
-			}
-		}
-		if ( err == 0 )	return true;
 
-		alert(MP_AdminPageL10n.errmess);
-		return false;
+		if (err) 
+		{
+			jQuery("#form_settings").tabs( 'select' , 3 );
+			alert(MP_AdminPageL10n.errmess);
+		}
 	},
 
 	is_empty : function(t) { return (t.length == 0); },
@@ -55,7 +44,7 @@ var mp_forms = {
 		 });
 		// control form
 		jQuery('form#add').submit( function() {
-			return mp_forms.control();
+			mp_forms.control();
 		});
 	}
 }
