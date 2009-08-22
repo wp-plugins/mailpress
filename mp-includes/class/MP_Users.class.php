@@ -222,10 +222,14 @@ class MP_Users
 			case 'waiting':
 					return self::deactivate($id);
 			break;
+			case 'bounced':
+					return self::bounced($id);
+			break;
 			case 'delete':
 					return self::delete($id);
 			break;
 		}
+		wp_cache_delete($id, 'mp_user');
 		return true;
 	}
 
@@ -269,16 +273,40 @@ class MP_Users
 		$mp_user = $wpdb->get_row( $query );
 		$now	  = date('Y-m-d H:i:s');
 
-		if ( $mp_user && 'active' == $mp_user->status )
+		if ( $mp_user && in_array($mp_user->status, array('active', 'bounced')))
 		{
-			MailPress::update_stats('u', 'active', -1);
-			if (self::has_subscribed_to_comments($id)) MailPress::update_stats('u', 'comment', 1);
+			if ('active' == $mp_user->status)
+			{
+				MailPress::update_stats('u', 'active', -1);
+				if (self::has_subscribed_to_comments($id)) MailPress::update_stats('u', 'comment', 1);
+			}
 
 			$userid 	= MailPress::get_wp_user_id();
 			$ip		= $_SERVER['REMOTE_ADDR'];
 			$agent	= trim(strip_tags($_SERVER['HTTP_USER_AGENT']));
 
 			$query = "UPDATE $wpdb->mp_users SET status = 'waiting', laststatus = '$now', laststatus_IP = '$ip', laststatus_agent = '$agent', laststatus_user_id = $userid WHERE id='$id';";
+			$update = $wpdb->query( $query );
+
+			return ($update) ? $now : false;
+		}
+		return true;
+	}
+
+	public static function bounced($id) 
+	{
+		global $wpdb;
+		
+		$query  = "SELECT * FROM $wpdb->mp_users WHERE id='$id';";
+		$mp_user = $wpdb->get_row( $query );
+		$now	  = date('Y-m-d H:i:s');
+
+		if ( $mp_user )
+		{
+			MailPress::update_stats('u', 'active', -1);
+			$userid = MailPress::get_wp_user_id();
+
+			$query  = "UPDATE $wpdb->mp_users SET status = 'bounced', laststatus = '$now', laststatus_user_id = $userid WHERE id='$id';";
 			$update = $wpdb->query( $query );
 
 			return ($update) ? $now : false;

@@ -14,7 +14,7 @@ class MailPress_filter_img
 {
 	function __construct()
 	{
-// for filtering img html tag
+// prepare mail
 		add_filter('MailPress_img_mail_keepurl', 		array('MailPress_filter_img', 'img_mail_keepurl'), 8, 1);
 		add_filter('MailPress_img_mail', 			array('MailPress_filter_img', 'img_mail'), 8, 1);
 
@@ -30,11 +30,9 @@ class MailPress_filter_img
 		}
 	}
 
-////  Filtering img html tag  ////
-
+// prepare mail
 	public static function img_mail_keepurl($bool)
 	{
-// defaults
 		$filter_img	= get_option('MailPress_filter_img');
 
 		if (isset($filter_img['keepurl'])) return true;
@@ -45,8 +43,6 @@ class MailPress_filter_img
 	{
 		$wstyle 	= $inline_style = $default_style = array();
 		$wattr 	= $inline_attr  = $default_attr  = array();
-
-// defaults
 
 		$filter_img	= get_option('MailPress_filter_img');
 
@@ -61,8 +57,6 @@ class MailPress_filter_img
 		 	$x = self::retrieve_styles(stripslashes($filter_img['extra_style']));
 			foreach($x as $k => $v) $default_style[$k] = $v;
 		}
-
-// inline
 
 		$x 		= self::retrieve_attributes($img);
 		foreach($x as $k => $v)

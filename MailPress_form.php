@@ -18,6 +18,7 @@ class MailPress_form
 // for mysql
 		$wpdb->mp_forms  = $wpdb->prefix . 'mailpress_forms';
 		$wpdb->mp_fields = $wpdb->prefix . 'mailpress_formfields';
+
 // for shortcode
 		add_shortcode('mailpress_form', 	array('MailPress_form', 'shortcode'));
 // for field_type captcha_gd

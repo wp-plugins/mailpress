@@ -127,7 +127,7 @@ class MP_Comment
 
 		$comment	= $wpdb->get_row("SELECT * FROM $wpdb->comments WHERE comment_ID = $id LIMIT 1");
 
-        if (!$comment) return false;
+		if (!$comment) return false;
         
 		if ('1' != $comment->comment_approved) return true;
 
@@ -137,7 +137,7 @@ class MP_Comment
 
 		$mail->Template	= 'comments';
 
-		$mail->recipients_query = "SELECT c.email, c.name, c.confkey from $wpdb->comments a, $wpdb->postmeta b, $wpdb->mp_users c WHERE a.comment_ID = $id AND a.comment_post_ID  = b.post_id AND b.meta_value = c.id AND b.meta_key = '_MailPress_subscribe_to_comments_' AND a.comment_author_email <> c.email" ;
+		$mail->recipients_query = "SELECT c.id, c.email, c.name, c.status, c.confkey from $wpdb->comments a, $wpdb->postmeta b, $wpdb->mp_users c WHERE a.comment_ID = $id AND a.comment_post_ID  = b.post_id AND b.meta_value = c.id AND b.meta_key = '_MailPress_subscribe_to_comments_' AND a.comment_author_email <> c.email AND c.status IN ('waiting', 'active') ;";
 
 		$mail->the_title	= apply_filters('the_title', $post->post_title );
 

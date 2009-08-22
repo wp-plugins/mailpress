@@ -73,3 +73,6 @@ a.delete:hover {
 	border-bottom-color:#FF0000;
 	color:#FFFFFF;
 }
+img.bounced {
+	float:right;
+}

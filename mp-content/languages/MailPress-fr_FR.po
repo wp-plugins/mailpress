@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-08-17 02:55+0100\n"
+"PO-Revision-Date: 2009-08-22 21:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -5555,7 +5555,73 @@ msgid "disabled"
 msgstr "disabled"
 
 # C:\wgettext\mailpress_mailing_lists\mp-admin\edit-mailinglist-form.php:33
-#, fuzzy
 msgid "The label is used to identify the form in the list"
-msgstr " Le nom est utilis&eacute; pour identifier le formulaire dans la liste."
+msgstr "Le nom est utilis&eacute; pour identifier le formulaire dans la liste."
+
+# C:\wgettext\mailpress\MailPress_bounce_handling.php:295
+# C:\wgettext\mailpress\MailPress_bounce_handling.php:305
+# C:\wgettext\mailpress\MailPress_bounce_handling.php:352
+# C:\wgettext\mailpress\MailPress_bounce_handling.php:362
+msgid "Bounces"
+msgstr "Rejets"
+
+# C:\wgettext\mailpress\MailPress_bounce_handling.php:305
+msgid "Bounces log"
+msgstr "Log rejets"
+
+msgid "Number of Bounces log files : "
+msgstr "Nombre de fichiers log Rejets : "
+
+# C:\wgettext\mailpress\MailPress_bounce_handling.php:312
+msgid "Bounce rate"
+msgstr "Taux de rejet"
+
+# C:\wgettext\mailpress\MailPress_bounce_handling.php:341
+msgid "Bounced"
+msgstr "Rejet&eacute;"
+
+#, php-format
+msgid ""
+"You are about to unbounce this MailPress user '%s'\n"
+"  'Cancel' to stop, 'OK' to unbounce."
+msgstr ""
+"Vous allez accepter cet abonn&eacute;  '%s'\n"
+"  'Annuler' pour abandonner, 'OK' pour l'accepter."
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\time\settings.xml:55
+msgid "Unbounce"
+msgstr "Accepter"
+
+#, php-format
+msgid "Unbounce \"%1$s\""
+msgstr "Accepter \"%1$s\""
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:304
+#, php-format
+msgid "%s subscriber unbounced"
+msgstr "%s abonn&eacute; accept&eacute;"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:304
+#, php-format
+msgid "%s subscribers unbounced"
+msgstr "%s abonn&eacute;s accept&eacute;s"
+
+# C:\wgettext\mailpress\mp-admin\includes\users.php:72
+#, php-format
+msgid "Bounced (%s)"
+msgstr "Rejet&eacute; (%s)"
+
+# C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:19
+msgid "Bounce domain"
+msgstr "Domaine rejet"
+
+# C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:25
+msgid "Max bounces per user"
+msgstr "Rejets max par abonn&eacute;"
+
+msgid "POP3 Server"
+msgstr "Serveur POP"
+
+msgid "'Bounces' settings saved"
+msgstr "R&eacute;glages &#8220;Rejets&#8221; enregistr&eacute;s"
 

@@ -83,7 +83,7 @@ h3.mp_hndle  {
 	-moz-border-radius-topleft:6px;	
 	-moz-border-radius-topright:6px;
 }
-#the-user-list .unapproved, #the-mail-list .draft, .bkgndc, .settings_html textarea, div.field_type_settings ul.ui-tabs-nav li.ui-state-default, div#form_settings ul.ui-tabs-nav li.ui-state-default {
+#the-user-list .unapproved, #the-user-list .bounced, #the-mail-list .draft, .bkgndc, .settings_html textarea, div.field_type_settings ul.ui-tabs-nav li.ui-state-default, div#form_settings ul.ui-tabs-nav li.ui-state-default {
 	background-color:#EDFBFC;
 }
 .bd1sc, .settings_form_tabs, div.field_type_settings ul.ui-tabs-nav li,  div#form_settings ul.ui-tabs-nav li {

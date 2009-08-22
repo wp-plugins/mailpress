@@ -43,30 +43,32 @@ class MailPress extends MP_abstract
 		add_action('delete_post', 	array('MailPress', 'delete_stats_c'));
 // for shutdown
 		add_action('shutdown', 		array('MailPress', 'shutdown'));
+
+// for admin plugin pages
+		define ('MailPress_page_mails', 	'mailpress_mails');
+		define ('MailPress_page_write', 	'mailpress_write');
+		define ('MailPress_page_edit', 	MailPress_page_mails . '&file=write');
+		define ('MailPress_page_revision', 	MailPress_page_mails . '&file=revision');
+		define ('MailPress_page_mail', 	MailPress_page_mails . '&file=mail');
+		define ('MailPress_page_themes', 	'mailpress_themes');
+		define ('MailPress_page_settings', 	'mailpress_settings');
+		define ('MailPress_page_users', 	'mailpress_users');
+		define ('MailPress_page_user', 	MailPress_page_users . '&file=uzer');
+// for admin plugin urls
+		$file = 'admin.php';
+		define ('MailPress_mails', 		$file . '?page=' 	. MailPress_page_mails);
+		define ('MailPress_write', 		$file . '?page=' 	. MailPress_page_write);
+		define ('MailPress_edit', 		$file . '?page=' 	. MailPress_page_edit);
+		define ('MailPress_revision', 	$file . '?page=' 	. MailPress_page_revision);
+		define ('MailPress_mail', 		$file . '?page=' 	. MailPress_page_mail);
+		define ('MailPress_themes', 		$file . '?page=' 	. MailPress_page_themes);
+		define ('MailPress_settings', 	'options-general.php' . '?page=' 	. MailPress_page_settings);
+		define ('MailPress_users', 		$file . '?page=' 	. MailPress_page_users);
+		define ('MailPress_user', 		$file . '?page=' 	. MailPress_page_user);
+
 // for wp admin
 		if (is_admin())
 		{
-		// for admin plugin pages
-			define ('MailPress_page_mails', 	'mailpress_mails');
-			define ('MailPress_page_write', 	'mailpress_write');
-			define ('MailPress_page_edit', 	MailPress_page_mails . '&file=write');
-			define ('MailPress_page_revision', 	MailPress_page_mails . '&file=revision');
-			define ('MailPress_page_mail', 	MailPress_page_mails . '&file=mail');
-			define ('MailPress_page_themes', 	'mailpress_themes');
-			define ('MailPress_page_settings', 	'mailpress_settings');
-			define ('MailPress_page_users', 	'mailpress_users');
-			define ('MailPress_page_user', 	MailPress_page_users . '&file=uzer');
-		// for admin plugin urls
-			$file = 'admin.php';
-			define ('MailPress_mails', 		$file . '?page=' 	. MailPress_page_mails);
-			define ('MailPress_write', 		$file . '?page=' 	. MailPress_page_write);
-			define ('MailPress_edit', 		$file . '?page=' 	. MailPress_page_edit);
-			define ('MailPress_revision', 	$file . '?page=' 	. MailPress_page_revision);
-			define ('MailPress_mail', 		$file . '?page=' 	. MailPress_page_mail);
-			define ('MailPress_themes', 		$file . '?page=' 	. MailPress_page_themes);
-			define ('MailPress_settings', 	'options-general.php' . '?page=' 	. MailPress_page_settings);
-			define ('MailPress_users', 		$file . '?page=' 	. MailPress_page_users);
-			define ('MailPress_user', 		$file . '?page=' 	. MailPress_page_user);
 		// for contextual help
 			define ('MailPress_help_url', 	'http://www.mailpress.org');
 		// for install

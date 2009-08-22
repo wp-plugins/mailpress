@@ -64,7 +64,7 @@ $batch_send = get_option('MailPress_batch_send');
 									</label>
 								</td>
 								<td class='other pr10 toggl2<?php if ('other' != $batch_send['batch_mode']) echo ' hide'; ?>'>
-									<?php _e('Using', 'MailPress'); ?> "<?php echo  MP_PATH . 'mp-includes/cron.php'; ?>"
+									<?php _e('Using', 'MailPress'); ?> "<?php echo  MP_PATH . 'mp-content/mp_batch_send/cron.php'; ?>"
 								</td>
 							</tr>
 						</table>

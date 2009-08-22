@@ -36,6 +36,14 @@ class MP_AdminPage extends MP_Admin_page
 				MP_Users::set_status( $id, 'waiting' );
 				self::mp_redirect($list_url);
 			break;
+			case 'unbounce':
+				$id = $_GET['id'];
+				self::require_class('Users');
+				MP_Users::set_status( $id, 'waiting' );
+				self::require_class('Usermeta');
+				MP_Usermeta::delete($id, '_MailPress_bounce_handling');
+				self::mp_redirect($list_url);
+			break;
 			default :
 				do_action('MailPress_redirect', self::screen);
 			break;
@@ -59,7 +67,7 @@ class MP_AdminPage extends MP_Admin_page
 
 	public static function print_styles($styles = array()) 
 	{
-		wp_register_style (self::screen, 	'/' . MP_PATH . 'mp-admin/css/user.css' );
+		wp_register_style (self::screen, 	'/' . MP_PATH . 'mp-admin/css/user.css', 	array('thickbox') );
 
 		$styles[] = self::screen;
 		parent::print_styles($styles);
@@ -114,6 +122,9 @@ class MP_AdminPage extends MP_Admin_page
 		));
 		$deps[] = 'mp-lists';
 
+		wp_register_script( 'mp-thickbox', 		'/' . MP_PATH . 'mp-includes/js/mp_thickbox.js', array('thickbox'), false, 1);
+		$deps[] = 'mp-thickbox';
+
 		wp_register_script( self::screen, 		'/' . MP_PATH . 'mp-admin/js/user.js', $deps, false, 1);
 		wp_localize_script( self::screen, 		'MP_AdminPageL10n',  array(
 			'screen' => self::screen
@@ -166,11 +177,19 @@ class MP_AdminPage extends MP_Admin_page
 	public static function meta_box_submit($mp_user) 
 	{
 		$url_parms 	= self::get_url_parms();
-		if (current_user_can('MailPress_delete_users')) $delete_url = clean_url(self::url(MailPress_user  ."&amp;action=delete&amp;id=$mp_user->id", $url_parms));
+		if (current_user_can('MailPress_delete_users')) 	$delete_url =   clean_url(self::url(MailPress_user . "&amp;action=delete&amp;id=$mp_user->id",   $url_parms));
+		if ('bounced' == $mp_user->status)				$unbounce_url = clean_url(self::url(MailPress_user . "&amp;action=unbounce&amp;id=$mp_user->id", $url_parms));
 ?>
 <div class="submitbox" id="submitpost">
 	<div id="minor-publishing">
 		<div id="misc-publishing-actions">
+			<div id="unbounce-action" style='padding-left:6px;'>
+<?php 	if (isset($unbounce_url)) : ?>
+				<a class='submitunbounce' style='padding:1px 2px;' href='<?php echo $unbounce_url ?>' onclick="return (confirm('<?php echo(js_escape(sprintf( __("You are about to unbounce this MailPress user '%s'\n  'Cancel' to stop, 'OK' to unbounce.", 'MailPress'), $mp_user->id ))); ?>'));">
+					<?php _e('Unbounce', 'MailPress'); ?>
+				</a>
+<?php		endif; ?>
+			</div>
 			<br /><br />
 		</div>
 		<div id="minor-publishing-actions">
@@ -180,7 +199,7 @@ class MP_AdminPage extends MP_Admin_page
 	<div id="major-publishing-actions">
 		<div id="delete-action">
 <?php 	if ($delete_url) : ?>
-			<a class='submitdelete' href='<?php echo $delete_url ?>' onclick="if (confirm('<?php echo(js_escape(sprintf( __("You are about to delete this MailPress user '%s'\n  'Cancel' to stop, 'OK' to delete.", 'MailPress'), $mp_user->id ))); ?>')) return true; return false;">
+			<a class='submitdelete' href='<?php echo $delete_url ?>' onclick="return (confirm('<?php echo(js_escape(sprintf( __("You are about to delete this MailPress user '%s'\n  'Cancel' to stop, 'OK' to delete.", 'MailPress'), $mp_user->id ))); ?>'));">
 				<?php _e('Delete', 'MailPress'); ?>
 			</a>
 <?php		endif; ?>

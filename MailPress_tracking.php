@@ -16,27 +16,31 @@ class MailPress_tracking
 	{
 		define ('MailPress_tracking_openedmail', 	'_MailPress_mail_opened');
 
+		add_action('init',  					array('MailPress_tracking', 'init'), 100);
+
 		global $wpdb;
 // for mysql
 		$wpdb->mp_tracks = $wpdb->prefix . 'mailpress_tracks';
-// for plugin
-		add_filter('MailPress_mail',				array('MailPress_tracking', 'mail'), 8, 1);
-		add_action('mp_action_tracking', 			array('MailPress_tracking', 'tracking'), 8, 1);
 // for referential integrity
 		add_action('MailPress_delete_mail',  		array('MailPress_tracking', 'delete_mail'), 1, 1);
 		add_action('MailPress_delete_user',  		array('MailPress_tracking', 'delete_user'), 1, 1);
 
+// prepare mail
+		add_filter('MailPress_is_tracking',  		array('MailPress_tracking', 'is_tracking'), 1, 1);
+		add_filter('MailPress_mail',				array('MailPress_tracking', 'mail'), 8, 1);
+// process link
+		add_action('mp_action_tracking', 			array('MailPress_tracking', 'tracking'), 8, 1);
+
+// for admin plugin pages
+		define ('MailPress_page_tracking', MailPress_page_mails . '&file=tracking');
+// for admin plugin urls
+		$file = 'admin.php';
+		define ('MailPress_tracking', 	$file . '?page=' 	. MailPress_page_tracking);
+
 		if (is_admin())
 		{
-		// for admin plugin pages
-			define ('MailPress_page_tracking', MailPress_page_mails . '&file=tracking');
-		// for admin plugin urls
-			$file = 'admin.php';
-			define ('MailPress_tracking', 	$file . '?page=' 	. MailPress_page_tracking);
 		// install
 			register_activation_hook(MP_FOLDER . '/MailPress_tracking.php', 	array('MailPress_tracking', 'install'));
-		// for init
-			add_action('init', 				array('MailPress_tracking', 'init'));
 		// for link on plugin page
 			add_filter('plugin_action_links', 		array('MailPress_tracking', 'plugin_action_links'), 10, 2 );
 		// for role & capabilities
@@ -45,76 +49,48 @@ class MailPress_tracking
 			add_action('MailPress_settings_update', 	array('MailPress_tracking', 'settings_update'));
 			add_action('MailPress_settings_tab', 	array('MailPress_tracking', 'settings_tab'), 8, 1);
 			add_action('MailPress_settings_div', 	array('MailPress_tracking', 'settings_div'));
-
-			add_filter('MailPress_is_tracking',  	array('MailPress_tracking', 'is_tracking'), 1, 1);
-
 		// for load admin page
 			add_action('MailPress_load_admin_page', 	array('MailPress_tracking', 'load_admin_page'), 10, 1);
 		}
 	}
 
-// for plugin
+	public static function init()
+	{
+	// for mails list
+		if ( current_user_can('MailPress_tracking_mails') )
+		{
+			add_filter('MailPress_columns_mails', 		array('MailPress_tracking', 'columns_mails'), 8, 1);
+			add_action('MailPress_get_row_mails',  		array('MailPress_tracking', 'get_row_mails'), 1, 3);
+		}
+	// for user page
+		if ( current_user_can('MailPress_tracking_users') )
+			add_action('MailPress_add_meta_boxes_user',  	array('MailPress_tracking', 'meta_boxes_user'), 1, 2); 
+	}
+
+// for referential integrity
+	public static function delete_mail($mail_id)
+	{
+		global $wpdb;
+		$query = "DELETE FROM $wpdb->mp_tracks WHERE mail_id = $mail_id; ";
+		$wpdb->query($query);
+		$query = "DELETE FROM $wpdb->mp_usermeta WHERE meta_key = '_MailPress_mail_sent' AND meta_value = $mail_id;";
+		$wpdb->query($query);
+	}
+
+	public static function delete_user($mp_user_id)
+	{
+		global $wpdb;
+		$query = "DELETE FROM $wpdb->mp_tracks WHERE user_id = $mp_user_id; ";
+		$wpdb->query($query);
+	}
+
+
+// prepare mail
 	public static function is_tracking($x)
 	{
 		return true;
 	}
 
-
-// we got one !
-	public static function tracking($meta)
-	{
-		switch ($_GET['tg'])
-		{
-			case ('l') :
-				self::save($meta);
-			break;
-			case ('o') :
-				self::save($meta);
-			break;
-			default :
-				$meta->meta_value = '404';
-				self::save($meta);
-			break;
-		}
-	}
-
-// save tracking
-	public static function save($meta)
-	{
-		global $wpdb;
-
-		$now	  	= date('Y-m-d H:i:s');
-
-		MailPress::require_class('Users');
-		$mp_user_id = MP_Users::get_id($_GET['us']);
-
-		$context 	= ('h' == $_GET['co']) ? 'html' : 'plaintext';
-
-		$mail_id	= $meta->mail_id;
-		$mmeta_id	= $meta->mmeta_id;
-		$track	= mysql_real_escape_string($meta->meta_value);
-
-		$ip		= mysql_real_escape_string(trim($_SERVER['REMOTE_ADDR']));
-		$agent	= mysql_real_escape_string(trim($_SERVER['HTTP_USER_AGENT']));
-		$referrer   = (isset($_SERVER['HTTP_REFERER'])) ? mysql_real_escape_string(trim($_SERVER['HTTP_REFERER'])) : '';
-
-		$open_mmeta_id 	= (MailPress_tracking_openedmail == $meta->meta_value) ? $mmeta_id : self::get_mmid($mail_id, MailPress_tracking_openedmail, MailPress_tracking_openedmail);
-		$query 		= "SELECT count(*) FROM $wpdb->mp_tracks WHERE user_id = $mp_user_id AND mail_id = $mail_id AND mmeta_id = $open_mmeta_id ;";
-		$opened_mail	= $wpdb->get_var($query);
-
-		if ((MailPress_tracking_openedmail == $meta->meta_value) && ($opened_mail)) return;
-
-		$query = "INSERT INTO $wpdb->mp_tracks (user_id, mail_id, mmeta_id, track, context, ip, agent, referrer, tmstp) VALUES ($mp_user_id, $mail_id, $mmeta_id, '$track', '$context', '$ip', '$agent', '$referrer', '$now');";
-		$wpdb->query( $query );
-
-		if (MailPress_tracking_openedmail == $meta->meta_value) $opened_mail = true;
-		if ($opened_mail) return;
-
-		$query = "INSERT INTO $wpdb->mp_tracks (user_id, mail_id, mmeta_id, track, context, ip, agent, referrer, tmstp) VALUES ($mp_user_id, $mail_id, $open_mmeta_id, '" . MailPress_tracking_openedmail . "', '$context', '$ip', '$agent', '$referrer', '$now');";
-		$wpdb->query( $query );
-	}
-
-// prepare mail for tracking
 	public static function mail($mail)
 	{
 		foreach($mail->recipients as $k => $v)
@@ -184,7 +160,58 @@ class MailPress_tracking
 		return MP_Mailmeta::add( $mail_id, $meta_key, $meta_value);
 	}
 
+// process link
+	public static function tracking($meta)
+	{
+		switch ($_GET['tg'])
+		{
+			case ('l') :
+				self::save($meta);
+			break;
+			case ('o') :
+				self::save($meta);
+			break;
+			default :
+				$meta->meta_value = '404';
+				self::save($meta);
+			break;
+		}
+	}
 
+	public static function save($meta)
+	{
+		global $wpdb;
+
+		$now	  	= date('Y-m-d H:i:s');
+
+		MailPress::require_class('Users');
+		$mp_user_id = MP_Users::get_id($_GET['us']);
+
+		$context 	= ('h' == $_GET['co']) ? 'html' : 'plaintext';
+
+		$mail_id	= $meta->mail_id;
+		$mmeta_id	= $meta->mmeta_id;
+		$track	= mysql_real_escape_string($meta->meta_value);
+
+		$ip		= mysql_real_escape_string(trim($_SERVER['REMOTE_ADDR']));
+		$agent	= mysql_real_escape_string(trim($_SERVER['HTTP_USER_AGENT']));
+		$referrer   = (isset($_SERVER['HTTP_REFERER'])) ? mysql_real_escape_string(trim($_SERVER['HTTP_REFERER'])) : '';
+
+		$open_mmeta_id 	= (MailPress_tracking_openedmail == $meta->meta_value) ? $mmeta_id : self::get_mmid($mail_id, MailPress_tracking_openedmail, MailPress_tracking_openedmail);
+		$query 		= "SELECT count(*) FROM $wpdb->mp_tracks WHERE user_id = $mp_user_id AND mail_id = $mail_id AND mmeta_id = $open_mmeta_id ;";
+		$opened_mail	= $wpdb->get_var($query);
+
+		if ((MailPress_tracking_openedmail == $meta->meta_value) && ($opened_mail)) return;
+
+		$query = "INSERT INTO $wpdb->mp_tracks (user_id, mail_id, mmeta_id, track, context, ip, agent, referrer, tmstp) VALUES ($mp_user_id, $mail_id, $mmeta_id, '$track', '$context', '$ip', '$agent', '$referrer', '$now');";
+		$wpdb->query( $query );
+
+		if (MailPress_tracking_openedmail == $meta->meta_value) $opened_mail = true;
+		if ($opened_mail) return;
+
+		$query = "INSERT INTO $wpdb->mp_tracks (user_id, mail_id, mmeta_id, track, context, ip, agent, referrer, tmstp) VALUES ($mp_user_id, $mail_id, $open_mmeta_id, '" . MailPress_tracking_openedmail . "', '$context', '$ip', '$agent', '$referrer', '$now');";
+		$wpdb->query( $query );
+	}
 
 ////  ADMIN  ////
 ////  ADMIN  ////
@@ -197,20 +224,6 @@ class MailPress_tracking
 		include ( MP_TMP . 'mp-admin/includes/install/tracking.php');
 	}
 	
-// for init
-	public static function init() 
-	{
-	// for mails list
-		if ( current_user_can('MailPress_tracking_mails') )
-		{
-			add_filter('MailPress_columns_mails', 		array('MailPress_tracking', 'columns_mails'), 8, 1);
-			add_action('MailPress_get_row_mails',  		array('MailPress_tracking', 'get_row_mails'), 1, 3);
-		}
-	// for user page
-		if ( current_user_can('MailPress_tracking_users') )
-			add_action('MailPress_add_meta_boxes_user',  	array('MailPress_tracking', 'meta_boxes_user'), 1, 2); 
-	}
-
 // for link on plugin page
 	public static function plugin_action_links($links, $file)
 	{
@@ -272,10 +285,10 @@ class MailPress_tracking
 		switch ($column_name)
 		{
 			case 'tracking_openrate' :
-                if (MailPress::is_email($mail->toemail)) $total = 1;
-                elseif(is_serialized($mail->toemail)) $total = count(unserialize($mail->toemail));
-                else return;
-				//$total = (MailPress::is_email($mail->toemail)) ? 1 : count(unserialize($mail->toemail));
+				if (MailPress::is_email($mail->toemail)) $total = 1;
+				elseif (is_serialized($mail->toemail)) $total = count(unserialize($mail->toemail));
+				else return;
+
 				$query = "SELECT DISTINCT user_id FROM $wpdb->mp_tracks WHERE mail_id = " . $mail->id . " AND track = '" . MailPress_tracking_openedmail . "' ;";
 				$result = $wpdb->get_results($query);
 				if ($result) if ($total > 0) printf("%01.2f %%", 100 * count($result)/$total );
@@ -300,23 +313,6 @@ class MailPress_tracking
 			add_meta_box($k . 'div', $tracking_reports['user'][$k]['title'] , "meta_box_tracking_mp_$k", $mp_screen, 'normal', 'low');
 			include(MP_TMP . "mp-admin/includes/options/tracking/$k/$k.php");
 		}
-	}
-
-// for referential integrity
-	public static function delete_mail($mail_id)
-	{
-		global $wpdb;
-		$query = "DELETE FROM $wpdb->mp_tracks WHERE mail_id = $mail_id; ";
-		$wpdb->query($query);
-		$query = "DELETE FROM $wpdb->mp_usermeta WHERE meta_key = '_MailPress_mail_sent' AND meta_value = $mail_id;";
-		$wpdb->query($query);
-	}
-
-	public static function delete_user($mp_user_id)
-	{
-		global $wpdb;
-		$query = "DELETE FROM $wpdb->mp_tracks WHERE user_id = $mp_user_id; ";
-		$wpdb->query($query);
 	}
 
 // for reports
@@ -452,8 +448,6 @@ class MailPress_tracking
 		$display_title = (strlen($display_title) > 20) ? substr($display_title, 0, 18) . '...' : $display_title;
 		return "<a href='$track' title='$title'>$display_title</a>";
 	}
-
-
 }
 
 $MailPress_tracking = new MailPress_tracking();

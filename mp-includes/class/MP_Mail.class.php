@@ -151,6 +151,7 @@ class MP_Mail
 				$this->row->html 		= str_replace($k, $v, $this->row->html, $ch);
 			}
 
+			if (isset($this->row->replacements[$toemail]['{{_user_id}}'])) $this->row->mp_user_id = $this->row->replacements[$toemail]['{{_user_id}}'];
 			MP_Mailmeta::delete_by_id($this->mail->mmid);
 			unset($this->row->replacements, $this->row->recipients, $this->mail->replacements, $this->mail->mmid);
 		}
@@ -447,6 +448,7 @@ class MP_Mail
 
 		$replacements ['{{toemail}}']	= $mp_user->email;
 		$replacements ['{{toname}}']	= $mp_user->name;
+		$replacements ['{{_user_id}}']= $mp_user->id;
 	//¤ always last ¤//
 		$replacements ['{{_confkey}}']= $mp_user->confkey;
 		return $replacements;
@@ -817,6 +819,9 @@ class MP_Mail
 	//¤ subject ¤//
 		$this->row->subject 	= html_entity_decode($this->row->subject, ENT_QUOTES, get_option('blog_charset'));
 		$this->message->setSubject($this->row->subject);
+
+	//¤ filter headers ¤//
+		$this->message	= apply_filters('MailPress_swift_message_headers', $this->message, $this->row);
 
 	//¤ html ¤//
 		if ($this->row->html)

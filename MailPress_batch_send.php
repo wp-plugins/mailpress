@@ -12,28 +12,28 @@ Author URI: http://www.mailpress.org
 
 class MailPress_batch_send
 {
-
 	const metakey = '_MailPress_batch_send';
 
 	function __construct()
 	{
-
-// for batch mode
-		$batch_send_config = get_option('MailPress_batch_send');
-		if ('wpcron' == $batch_send_config['batch_mode'])	add_action('MailPress_schedule_batch_send', 	array('MailPress_batch_send', 'schedule'));
-
-// for batch processing
+// prepare mail
 		add_filter('MailPress_status_mail', 		array('MailPress_batch_send', 'status_mail'), 8, 1);
-
+// batch processing
 		add_filter('MailPress_swift_send', 			array('MailPress_batch_send', 'swift_send'), 8, 1);
-
+// for batch mode
 		add_action('mp_action_batchsend', 			array(&$this, 'process'));
 		add_action('mp_process_batch_send', 		array(&$this, 'process')); 
+		$batch_send_config = get_option('MailPress_batch_send');
+		if ('wpcron' == $batch_send_config['batch_mode'])	
+		 add_action('MailPress_schedule_batch_send', 	array('MailPress_batch_send', 'schedule'));
+// for to mails column
+		add_filter('MailPress_to_mails_column', 		array('MailPress_batch_send', 'to_mails_column'), 8, 2);
 
 		if (is_admin())
 		{
 		// for install
-			add_action('activate_' . MP_FOLDER . '/MailPress_batch_send.php', 	array('MailPress_batch_send', 'install'));
+			register_activation_hook(MP_FOLDER . '/MailPress_batch_send.php', 	array('MailPress_batch_send', 'install'));
+			register_deactivation_hook(MP_FOLDER . '/MailPress_batch_send.php',	array('MailPress_batch_send', 'uninstall'));
 		// for link on plugin page
 			add_filter('plugin_action_links', 		array('MailPress_batch_send', 'plugin_action_links'), 10, 2 );
 		// for settings
@@ -43,30 +43,26 @@ class MailPress_batch_send
 			add_action('MailPress_settings_div', 	array('MailPress_batch_send', 'settings_div'));
 			add_action('MailPress_settings_logs', 	array('MailPress_batch_send', 'settings_logs'), 8, 1);
 
-		// for to mails column
 			//add_filter('screen_options', 		array('MailPress_batch_send', 'screen_options'), 8, 2);
-			add_filter('MailPress_to_mails_column', 	array('MailPress_batch_send', 'to_mails_column'), 8, 2);
 		}
 	}
 
-// for batch mode
+// prepare mail
+	public static function status_mail($x = false)
+	{
+		return 'unsent';
+	}
 
+// for batch mode
 	public static function schedule()
 	{
 		$batch_send_config = get_option('MailPress_batch_send');
 		if (!$batch_send_config) return;
+		if ('wpcron' != $batch_send_config['batch_mode']) return;
 
-		if ('wpcron' == $batch_send_config['batch_mode']) 
-			if (!wp_next_scheduled( 'mp_process_batch_send' )) 
-			if (!wp_next_scheduled( 'mp_action_batchsend' ))
-				wp_schedule_single_event(time()+$batch_send_config['every'], 'mp_process_batch_send');
-	}
-
-// for batch processing
-
-	public static function status_mail($x = false)
-	{
-		return 'unsent';
+		if (!wp_next_scheduled( 'mp_process_batch_send' )) 
+		if (!wp_next_scheduled( 'mp_action_batchsend' ))
+			wp_schedule_single_event(time()+$batch_send_config['every'], 'mp_process_batch_send');
 	}
 
 	public static function process()
@@ -193,9 +189,9 @@ class MailPress_batch_send
 	public static function batch($mail, $mailmetas)
 	{
 		$rc = true;
-// MP_Log
-MailPress::require_class('Log');
-$trace = new MP_Log('mp_process_batch_send', ABSPATH . MP_PATH, __CLASS__, false, 'batch_send');
+
+		MailPress::require_class('Log');
+		$trace = new MP_Log('mp_process_batch_send', ABSPATH . MP_PATH, __CLASS__, false, 'batch_send');
 
 		$batch_report['header'] = 'Batch Report mail #' . $mail->id . '            count : ' . $mailmetas['count'] . '  per_pass : ' . $mailmetas['per_pass'] . '  max_try : ' . $mailmetas['max_try'];
 		$batch_report['start']  = $mailmetas;
@@ -320,8 +316,8 @@ $trace = new MP_Log('mp_process_batch_send', ABSPATH . MP_PATH, __CLASS__, false
 
 		$batch_report['end']  = $mailmetas;
 		self::batch_report($batch_report, $trace);
-// MP_Log
-$trace->end($rc);
+
+		$trace->end($rc);
 	}
 
 	public static function swift_send($_this)
@@ -344,14 +340,15 @@ $trace->end($rc);
 
 	public static function alldone()
 	{
-// MP_Log
-MailPress::require_class('Log');
-$trace = new MP_Log('mp_process_batch_send', ABSPATH . MP_PATH, __CLASS__, false, 'batch_send');
+
+		MailPress::require_class('Log');
+		$trace = new MP_Log('mp_process_batch_send', ABSPATH . MP_PATH, __CLASS__, false, 'batch_send');
+
 		$batch_report['header2'] = 'Batch Report';
 		$batch_report['alldone']  = true;
 		self::batch_report($batch_report, $trace);
-// MP_Log
-$trace->end(true);
+
+		$trace->end(true);
 	}
 
 	public static function batch_report($batch_report, $trace, $zz = 12)
@@ -421,8 +418,14 @@ $trace->end(true);
 // for install
 	public static function install() 
 	{
-		include ( MP_TMP . 'mp-admin/includes/install/batch_send.php');
 		self::schedule();
+		include ( MP_TMP . 'mp-admin/includes/install/batch_send.php');
+	}
+
+	public static function uninstall() 
+	{
+		wp_clear_scheduled_hook('mp_action_batchsend');
+		wp_clear_scheduled_hook('mp_process_batch_send');
 	}
 
 // for link on plugin page
@@ -490,7 +493,7 @@ $trace->end(true);
 		MP_AdminPage::logs_sub_form('batch_send', $logs, __('Batch', 'MailPress'), __('Batch log', 'MailPress'), __('(for <b>ALL</b> mails send through MailPress)', 'MailPress'), __('Number of Batch log files : ', 'MailPress'));
 	}
 
-// for to mails column
+// for mails list
 	public static function screen_options($result, $screen)
 	{
 		if ($screen != MailPress_page_mails) return $result;

@@ -12,34 +12,40 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		if (!isset($_GET['delete_users'])) return;		// MANAGING CHECKBOX REQUESTS
 
-		$deleted = $activated = $deactivated = 0;
+		$deleted = $activated = $deactivated = $unbounced = 0;
 
 		$url_parms 	= self::get_url_parms();
+
+		self::require_class('Users');
 
 		foreach ($_GET['delete_users'] as $id)
 		{ 							
 			switch (true)
 			{
 				case ( isset( $_GET['deleteit'] )) :
-					self::require_class('Users');
 					MP_Users::set_status($id, 'delete');
 					$deleted++;
 				break;
 				case (isset( $_GET['activateit'] )) :
-					self::require_class('Users');
 					MP_Users::set_status($id, 'active');
 					$activated++;
 				break;
 				case (isset( $_GET['deactivateit'] )) :
-					self::require_class('Users');
 					MP_Users::set_status($id, 'waiting');
 					$deactivated++;
+				break;
+				case (isset( $_GET['unbounceit'] )) :
+					MP_Users::set_status( $id, 'waiting' );
+					self::require_class('Usermeta');
+					MP_Usermeta::delete($id, '_MailPress_bounce_handling');
+					$unbounced++;
 				break;
 			}
 		}
 		if ($deleted) 	$url_parms['deleted'] 	= $deleted;
 		if ($activated) 	$url_parms['activated'] = $activated;
 		if ($deactivated) $url_parms['deactivated'] = $deactivated;
+		if ($unbounced)   $url_parms['unbounced'] = $unbounced;
 		self::mp_redirect( self::url(MailPress_users, $url_parms) );
 	}
 
@@ -184,6 +190,15 @@ class MP_AdminPage extends MP_Admin_page_list
 		$actions['write']     = "<a href='$write_url' title='" . sprintf( __('Write to "%1$s"', 'MailPress'), $user->email ) . "'>" . __('Write', 'MailPress') . '</a>';
 		$actions['approve']   = "<a href='$activate_url' 	class='dim:the-user-list:user-$id:unapproved:e7e7d3:e7e7d3:?mode=" . $url_parms['mode'] . "' title='" . sprintf( __('Activate "%1$s"', 'MailPress'), $user->email ) . "'>" . __( 'Activate', 'MailPress' ) 	 . '</a>';
 		$actions['unapprove'] = "<a href='$deactivate_url' 	class='dim:the-user-list:user-$id:unapproved:e7e7d3:e7e7d3:?mode=" . $url_parms['mode'] . "' title='" . sprintf( __('Deactivate "%1$s"', 'MailPress'), $user->email ) . "'>" . __( 'Deactivate', 'MailPress' ) . '</a>';
+
+		if ('bounced' == $user->status)
+		{
+			unset($actions['write'], $actions['approve'], $actions['unapprove']);
+			$args['action'] = 'unbounce';
+			$unbounce_url   =	clean_url(self::url( MailPress_user, array_merge($args, $url_parms) ));
+			$actions['unbounce'] = "<a href='$unbounce_url' title='" . sprintf( __('Unbounce "%1$s"', 'MailPress'), $user->email ) . "'>" . __('Unbounce', 'MailPress') . '</a>';
+		}
+
 		$actions['delete']    = "<a href='$delete_url' 		class='delete:the-user-list:user-$id submitdelete' title='" . __('Delete this user', 'MailPress' ) . "'>" . __('Delete', 'MailPress') . '</a>';
 
 		if (!current_user_can('MailPress_delete_users')) unset($actions['delete']);
@@ -204,7 +219,10 @@ class MP_AdminPage extends MP_Admin_page_list
 
 // table row 
 //	class
-		$row_class = ('waiting' == $the_user_status) ? 'unapproved' : '';
+		$row_class = '';
+		if ('waiting' == $the_user_status) $row_class = 'unapproved';
+		if ('bounced' == $the_user_status) $row_class = 'bounced';
+
 // 	checkbox
 		$disabled = (!current_user_can('MailPress_delete_users')) ? " disabled='disabled'" : '';
 // 	email
@@ -224,6 +242,7 @@ class MP_AdminPage extends MP_Admin_page_list
 			$class = "class='$column_name column-$column_name'";
 
 			$style = '';
+			if ('bounced' == $user->status) 		$style .= 'font-style:italic;';
 			if ( in_array($column_name, $hidden) )	$style .= 'display:none;';
 			$style = ' style="' . $style . '"';
 
@@ -245,6 +264,7 @@ class MP_AdminPage extends MP_Admin_page_list
 					$attributes = 'class="username column-username"' . $style;
 ?>
 		<td  <?php echo $attributes ?>>
+<?php	do_action('MailPress_get_icon_users', $mp_user); ?>
 <?php if (('detail' == $url_parms['mode']) && (get_option('show_avatars'))) echo get_avatar( $user->email, 32 ); else self::flag_IP() ?>
 					<strong>
 						<a class='row-title' href='<?php echo $edit_url; ?>' title='<?php printf( __('Edit "%1$s"', 'MailPress') ,$user->email ); ?>'>

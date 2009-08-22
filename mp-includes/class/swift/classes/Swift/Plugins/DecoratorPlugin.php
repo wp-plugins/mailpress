@@ -36,7 +36,15 @@ class Swift_Plugins_DecoratorPlugin
 
   /** The replacement map */
   private $_replacements;
-  
+
+
+
+  /** ReturnPath as it was before replacements */
+  private $_originalReturnPath;
+  /** end mod for return path */
+
+
+
   /** The body as it was before replacements */
   private $_orginalBody;
 
@@ -94,9 +102,28 @@ class Swift_Plugins_DecoratorPlugin
     $address = array_shift($to);
     if ($replacements = $this->getReplacementsFor($address))
     {
-      $body = $message->getBody();
       $search = array_keys($replacements);
       $replace = array_values($replacements);
+
+
+
+
+      if ($ReturnPath = $message->getReturnPath())
+	{
+        $ReturnPathReplaced = str_replace(
+          $search, $replace, $ReturnPath
+          );
+        if ($ReturnPath != $ReturnPathReplaced)
+        {
+	      $this->_originalReturnPath = $ReturnPath;
+	      $message->setReturnPath($ReturnPathReplaced);
+        }
+      }
+
+
+
+
+      $body = $message->getBody();
       $bodyReplaced = str_replace(
         $search, $replace, $body
         );
@@ -181,6 +208,21 @@ class Swift_Plugins_DecoratorPlugin
   {
     if ($this->_lastMessage === $message)
     {
+
+
+
+
+      if (isset($this->_originalReturnPath))
+      {
+        $message->setReturnPath($this->_originalReturnPath);
+        $this->_originalReturnPath = null;
+      }
+
+
+
+
+
+
       if (isset($this->_originalBody))
       {
         $message->setBody($this->_originalBody);

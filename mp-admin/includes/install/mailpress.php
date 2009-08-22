@@ -25,7 +25,7 @@
 									id 				bigint(20) 				UNSIGNED NOT NULL AUTO_INCREMENT, 
 									email 			varchar(100) 			NOT NULL, 
 									name	 			varchar(100) 			NOT NULL, 
-									status 			enum('waiting', 'active')	NOT NULL, 
+									status 			enum('waiting', 'active', 'bounced')	NOT NULL, 
 									confkey 			varchar(100)			NOT NULL, 
 									created			timestamp 				NOT NULL default '0000-00-00 00:00:00',
 									created_IP 			varchar(100) 			NOT NULL default '',
