@@ -119,7 +119,8 @@ class MailPress_bounce_handling
 				{
 					$pop3->get_headers_deep($message_id);
 
-					if (!isset($pop3->headers['Return-Path']) || !is_array($pop3->headers['Return-Path'])) continue;
+					if (!isset($pop3->headers['Return-Path'])) continue;
+ 					if (!is_array($pop3->headers['Return-Path'])) $pop3->headers['Return-Path'] = array($pop3->headers['Return-Path']);
 
 					foreach($pop3->headers['Return-Path'] as $ReturnPath)
 					{
