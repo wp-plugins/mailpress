@@ -22,10 +22,13 @@ class MailPress_batch_send
 		add_filter('MailPress_swift_send', 			array('MailPress_batch_send', 'swift_send'), 8, 1);
 // for batch mode
 		add_action('mp_action_batchsend', 			array(&$this, 'process'));
-		add_action('mp_process_batch_send', 		array(&$this, 'process')); 
+		add_action('mp_process_batch_send', 		array(&$this, 'process'));
+
 		$batch_send_config = get_option('MailPress_batch_send');
-		if ('wpcron' == $batch_send_config['batch_mode'])	
-		 add_action('MailPress_schedule_batch_send', 	array('MailPress_batch_send', 'schedule'));
+		if ('wpcron' == $batch_send_config['batch_mode'])
+		{	
+			add_action('MailPress_schedule_batch_send', 	array('MailPress_batch_send', 'schedule'));
+		}
 // for to mails column
 		add_filter('MailPress_to_mails_column', 		array('MailPress_batch_send', 'to_mails_column'), 8, 2);
 
@@ -43,7 +46,12 @@ class MailPress_batch_send
 			add_action('MailPress_settings_div', 	array('MailPress_batch_send', 'settings_div'));
 			add_action('MailPress_settings_logs', 	array('MailPress_batch_send', 'settings_logs'), 8, 1);
 
-			//add_filter('screen_options', 		array('MailPress_batch_send', 'screen_options'), 8, 2);
+			if ('wpcron' == $batch_send_config['batch_mode'])
+			{	
+			// for autorefresh
+				add_filter('MailPress_autorefresh_js',	array('MailPress_batch_send', 'autorefresh_js'), 8, 1);
+				add_filter('MailPress_autorefresh_every', array('MailPress_batch_send', 'autorefresh_every'), 8, 1);
+			}
 		}
 	}
 
@@ -57,8 +65,6 @@ class MailPress_batch_send
 	public static function schedule()
 	{
 		$batch_send_config = get_option('MailPress_batch_send');
-		if (!$batch_send_config) return;
-		if ('wpcron' != $batch_send_config['batch_mode']) return;
 
 		if (!wp_next_scheduled( 'mp_process_batch_send' )) 
 		if (!wp_next_scheduled( 'mp_action_batchsend' ))
@@ -129,7 +135,7 @@ class MailPress_batch_send
 				}		
 			}
 		}
-		if (!$done) self::schedule();
+		if (!$done) do_action('MailPress_schedule_batch_send');
 	}
 
 	public static function update_mail($id, $failed)
@@ -418,7 +424,7 @@ class MailPress_batch_send
 // for install
 	public static function install() 
 	{
-		self::schedule();
+		do_action('MailPress_schedule_batch_send');
 		include ( MP_TMP . 'mp-admin/includes/install/batch_send.php');
 	}
 
@@ -437,38 +443,10 @@ class MailPress_batch_send
 // for settings
 	public static function scripts($scripts, $screen) 
 	{
-		switch ($screen)
-		{
-			case MailPress_page_settings : 
-				wp_register_script( 'mp-batchsend', 	'/' . MP_PATH . 'mp-admin/js/settings_batch_send.js', array(), false, 1);
-				$scripts[] = 'mp-batchsend';
-			break;
-			case MailPress_page_mails :
-				$batch_send_config = get_option('MailPress_batch_send');
-				if ('wpcron' != $batch_send_config['batch_mode']) return $scripts;
+		if ($screen != MailPress_page_settings) return $scripts;
 
-				$checked = (isset($_GET['autorefresh'])) ?  " checked='checked'" : '';
-				$time    = (isset($_GET['autorefresh'])) ?  $_GET['autorefresh'] : $batch_send_config['every'];
-				$time    = (is_numeric($time) && ($time > $batch_send_config['every'])) ? $time : $batch_send_config['every'];
-				$time    = "<input type='text' value='$time' maxlength='3' id='MP_Refresh_every' class='screen-per-page'/>";
-				$option  = '<h5>' . __('Auto refresh for WP_Cron', 'MailPress') . '</h5>';
-				$option .= "<div><input id='MP_Refresh' type='checkbox'$checked style='margin:0 5px 0 2px;' /><span class='MP_Refresh'>" . sprintf(__('%1$s Autorefresh %2$s every %3$s sec', 'MailPress'), "<label for='MP_Refresh' style='vertical-align:inherit;'>", '</label>', $time) . "</span></div>";
-
-
-				wp_register_script( 'mp-refresh', 	'/' . MP_PATH . 'mp-includes/js/mp_refresh.js', array('schedule'), false, 1);
-				wp_localize_script( 'mp-refresh', 	'adminMpRefreshL10n', array(
-					'screen' 	=> $screen,
-					'every' 	=> $batch_send_config['every'],
-
-					'message' 	=> __('Autorefresh in %i% sec', 'MailPress'), 
-
-					'option'	=> $option,
-					'l10n_print_after' => 'try{convertEntities(adminmailsL10n);}catch(e){};'
-				) );
-
-				$scripts[] = 'mp-refresh';
-			break;
-		}
+		wp_register_script( 'mp-batchsend', 	'/' . MP_PATH . 'mp-admin/js/settings_batch_send.js', array(), false, 1);
+		$scripts[] = 'mp-batchsend';
 		return $scripts;
 	}
 
@@ -494,25 +472,6 @@ class MailPress_batch_send
 	}
 
 // for mails list
-	public static function screen_options($result, $screen)
-	{
-		if ($screen != MailPress_page_mails) return $result;
-
-		$batch_send_config = get_option('MailPress_batch_send');
-
-		if ('wpcron' != $batch_send_config['batch_mode']) return $result;
-
-		$checked = (isset($_GET['autorefresh'])) ?  " checked='checked'" : '';
-		$time    = (isset($_GET['autorefresh'])) ?  $_GET['autorefresh'] : $batch_send_config['every'];
-		$time    = (is_numeric($time) && ($time > $batch_send_config['every'])) ? $time : $batch_send_config['every'];
-
-		$time = "<input type='text' value='$time' maxlength='3' id='MailPress_batch_send_every' class='screen-per-page'/>";
-		$result .= '<h5>' . __('Auto refresh for MailPress batch send', 'MailPress') . '</h5>';
-
-		$result .= "<div><label for='MailPress_batch_send'><input id='MailPress_batch_send' type='checkbox'$checked style='margin:0 5px 0 2px;' /><span class='MailPress_batch_send'>" . sprintf(__('Autorefresh every %1$s sec', 'MailPress'), $time) . "</span></label></div>";
-		return $result;
-	}
-
 	public static function to_mails_column($to, $mail)
 	{
 		if (self::status_mail() != $mail->status) return $to;
@@ -523,6 +482,38 @@ class MailPress_batch_send
 		if (!$mailmetas) return __('Pending...', 'MailPress');
 
 		return sprintf( __ngettext( _c('%1$s on %2$s sent| Singular', 'MailPress'), _c('%1$s on %2$s sent| Plural', 'MailPress'), $mailmetas['sent'] ), $mailmetas['sent'], $mailmetas['count'] );
+	}
+
+	public static function autorefresh_js($scripts)
+	{
+		$batch_send_config = get_option('MailPress_batch_send');
+		$every   = apply_filters('MailPress_autorefresh_every', $batch_send_config['every']);
+
+		$checked = (isset($_GET['autorefresh'])) ?  " checked='checked'" : '';
+		$time    = (isset($_GET['autorefresh'])) ?  $_GET['autorefresh'] : $every;
+		$time    = (is_numeric($time) && ($time > $every)) ? $time : $every;
+		$time    = "<input type='text' value='$time' maxlength='3' id='MP_Refresh_every' class='screen-per-page'/>";
+		$option  = '<h5>' . __('Auto refresh for WP_Cron', 'MailPress') . '</h5>';
+		$option .= "<div><input id='MP_Refresh' type='checkbox'$checked style='margin:0 5px 0 2px;' /><span class='MP_Refresh'>" . sprintf(__('%1$s Autorefresh %2$s every %3$s sec', 'MailPress'), "<label for='MP_Refresh' style='vertical-align:inherit;'>", '</label>', $time) . "</span></div>";
+
+		wp_register_script( 'mp-refresh', 	'/' . MP_PATH . 'mp-includes/js/mp_refresh.js', array('schedule'), false, 1);
+		wp_localize_script( 'mp-refresh', 	'adminMpRefreshL10n', array(
+				'screen' 	=> $screen,
+				'every' 	=> $every,
+
+				'message' 	=> __('Autorefresh in %i% sec', 'MailPress'), 
+
+				'option'	=> $option,
+				'l10n_print_after' => 'try{convertEntities(adminmailsL10n);}catch(e){};'
+		) );
+		$scripts[] = 'mp-refresh';
+		return $scripts;
+	}
+
+	public static function autorefresh_every($every)
+	{
+		$batch_send_config = get_option('MailPress_batch_send');
+		return ($every < $batch_send_config['every']) ? $every : $batch_send_config['every'];
 	}
 }
 

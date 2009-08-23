@@ -13,7 +13,7 @@ var mp_refresh = {
 		mp_refresh.message = m1.replace(mp_refresh.reg, adminMpRefreshL10n.message.replace(mp_refresh.reg, "<span id='mp_refresh_chrono'>%i%</span>"));
 
 		adminMpRefreshL10n.option = adminMpRefreshL10n.option.replace(/\&gt;/g,'>').replace(/\&lt;/g,'<');
-		jQuery('#screen-options-wrap').append(adminMpRefreshL10n.option);
+		jQuery('div.metabox-prefs').append(adminMpRefreshL10n.option);
 
 		if (jQuery('#MP_Refresh').is(':checked')) mp_refresh.start();
 

@@ -31,11 +31,13 @@ class MP_AdminPage extends MP_Admin_page
 	public static function print_scripts() 
 	{
 		$batch_send_config = get_option('MailPress_batch_send');
-		if ('wpcron' != $batch_send_config['batch_mode']) return;
+		$bounce_handling_config = get_option('MailPress_bounce_handling');
+		if (('wpcron' != $batch_send_config['batch_mode']) || ('wpcron' != $bounce_handling_config['batch_mode'])) return;
+		$every   = apply_filters('MailPress_autorefresh_every', $batch_send_config['every']);
 
 		$checked = (isset($_GET['autorefresh'])) ?  " checked='checked'" : '';
-		$time    = (isset($_GET['autorefresh'])) ?  $_GET['autorefresh'] : $batch_send_config['every'];
-		$time    = (is_numeric($time) && ($time > $batch_send_config['every'])) ? $time : $batch_send_config['every'];
+		$time    = (isset($_GET['autorefresh'])) ?  $_GET['autorefresh'] : $every;
+		$time    = (is_numeric($time) && ($time > $every)) ? $time : $every;
 		$time    = "<input type='text' value='$time' maxlength='3' id='MP_Refresh_every' class='screen-per-page'/>";
 		$option  = '<h5>' . __('Auto refresh for Auto scrolling', 'MailPress') . '</h5>';
 		$option .= "<div><input id='MP_Refresh' type='checkbox'$checked style='margin:0 5px 0 2px;' /><span class='MP_Refresh'>" . sprintf(__('%1$s Autorefresh %2$s every %3$s sec', 'MailPress'), "<label for='MP_Refresh' style='vertical-align:inherit;'>", '</label>', $time) . "</span></div>";
@@ -48,7 +50,7 @@ class MP_AdminPage extends MP_Admin_page
 			'iframe'	=> 'mp',
 			'src'		=> $view_url,
 			'screen' 	=> self::screen,
-			'every' 	=> $batch_send_config['every'],
+			'every' 	=> $every,
 			'message' 	=> __('Autorefresh in %i% sec', 'MailPress'), 
 			'option'	=> $option,
 			'url' 	=> MP_Action_url,

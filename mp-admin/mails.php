@@ -52,6 +52,8 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function print_scripts() 
 	{
+		if (has_filter('MailPress_autorefresh_js')) $scripts = apply_filters('MailPress_autorefresh_js', array());
+
 		wp_register_script( 'mp-ajax-response', 	'/' . MP_PATH . 'mp-includes/js/mp_ajax_response.js', array('jquery'), false, 1);
 		wp_localize_script( 'mp-ajax-response', 		'wpAjax', array( 
 			'noPerm' => __('Email was not sent AND/OR Update database failed', 'MailPress'), 

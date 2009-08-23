@@ -12,9 +12,9 @@ Author URI: http://www.mailpress.org
 
 class MailPress_bounce_handling
 {
-	const prefix = 'mp_bounce_';
-
 	const metakey = '_MailPress_bounce_handling';
+
+	const prefix = 'mp_bounce_';
 	const bt = 100;
 
 	function __construct()
@@ -30,6 +30,12 @@ class MailPress_bounce_handling
 // view bounce
 		add_action('mp_action_view_bounce', 		array('MailPress_bounce_handling', 'mp_action_view_bounce')); 
 
+		$bounce_handling_config = get_option('MailPress_bounce_handling');
+		if ('wpcron' == $bounce_handling_config['batch_mode'])
+		{	
+			add_action('MailPress_schedule_bounce_handling', 	array('MailPress_bounce_handling', 'schedule'));
+		}
+
 		if (is_admin())
 		{
 		// for install
@@ -43,6 +49,13 @@ class MailPress_bounce_handling
 			add_action('MailPress_settings_tab', 	array('MailPress_bounce_handling', 'settings_tab'), 8, 1);
 			add_action('MailPress_settings_div', 	array('MailPress_bounce_handling', 'settings_div'));
 			add_action('MailPress_settings_logs', 	array('MailPress_bounce_handling', 'settings_logs'), 8, 1);
+
+			if ('wpcron' == $bounce_handling_config['batch_mode'])
+			{	
+			// for autorefresh
+				add_filter('MailPress_autorefresh_js',	array('MailPress_bounce_handling', 'autorefresh_js'), 8, 1);
+				add_filter('MailPress_autorefresh_every', array('MailPress_bounce_handling', 'autorefresh_every'), 8, 1);
+			}
 
 		// for users list
 			add_action('MailPress_get_icon_users', 	array('MailPress_bounce_handling', 'get_icon_users'), 8, 1);
@@ -68,8 +81,6 @@ class MailPress_bounce_handling
 	public static function schedule()
 	{
 		$bounce_handling_config = get_option('MailPress_bounce_handling');
-		if (!$bounce_handling_config) return;
-		if ('wpcron' != $bounce_handling_config['batch_mode']) return;
 
 		if (!wp_next_scheduled( 'mp_process_bounce_handling' )) 
 			wp_schedule_single_event(time()+$bounce_handling_config['every'], 'mp_process_bounce_handling');
@@ -221,7 +232,7 @@ class MailPress_bounce_handling
 		$trace->log('!' . str_repeat( '-', self::bt) . '!');
 		$trace->end($return);
 
-		self::schedule();
+		do_action('MailPress_schedule_bounce_handling');
 	}
 
 ////  ADMIN  ////
@@ -232,7 +243,7 @@ class MailPress_bounce_handling
 // install
 	public static function install() 
 	{
-		self::schedule();
+		do_action('MailPress_schedule_bounce_handling');
 		include ( MP_TMP . 'mp-admin/includes/install/bounce_handling.php');
 	}
 
@@ -250,37 +261,10 @@ class MailPress_bounce_handling
 // for settings
 	public static function scripts($scripts, $screen) 
 	{
-		switch ($screen)
-		{
-			case MailPress_page_settings : 
-				wp_register_script( 'mp-bounce-handling', 	'/' . MP_PATH . 'mp-admin/js/settings_bounce_handling.js', array(), false, 1);
-				$scripts[] = 'mp-bounce-handling';
-			break;
-			case MailPress_page_mails :
-				$bounce_handling_config = get_option('MailPress_bounce_handling');
-				if ('wpcron' != $bounce_handling_config['batch_mode']) return $scripts;
+		if ($screen != MailPress_page_settings) return $scripts;
 
-				$checked = (isset($_GET['autorefresh'])) ?  " checked='checked'" : '';
-				$time    = (isset($_GET['autorefresh'])) ?  $_GET['autorefresh'] : $bounce_handling_config['every'];
-				$time    = (is_numeric($time) && ($time > $bounce_handling_config['every'])) ? $time : $bounce_handling_config['every'];
-				$time    = "<input type='text' value='$time' maxlength='3' id='MP_Refresh_every' class='screen-per-page'/>";
-				$option  = '<h5>' . __('Auto refresh for WP_Cron', 'MailPress') . '</h5>';
-				$option .= "<div><input id='MP_Refresh' type='checkbox'$checked style='margin:0 5px 0 2px;' /><span class='MP_Refresh'>" . sprintf(__('%1$s Autorefresh %2$s every %3$s sec', 'MailPress'), "<label for='MP_Refresh' style='vertical-align:inherit;'>", '</label>', $time) . "</span></div>";
-
-				wp_register_script( 'mp-refresh', 	'/' . MP_PATH . 'mp-includes/js/mp_refresh.js', array('schedule'), false, 1);
-				wp_localize_script( 'mp-refresh', 	'adminMpRefreshL10n', array(
-					'screen' 	=> $screen,
-					'every' 	=> $bounce_handling_config['every'],
-
-					'message' 	=> __('Autorefresh in %i% sec', 'MailPress'), 
-
-					'option'	=> $option,
-					'l10n_print_after' => 'try{convertEntities(adminmailsL10n);}catch(e){};'
-				) );
-
-				$scripts[] = 'mp-refresh';
-			break;
-		}
+		wp_register_script( 'mp-bounce-handling', 	'/' . MP_PATH . 'mp-admin/js/settings_bounce_handling.js', array(), false, 1);
+		$scripts[] = 'mp-bounce-handling';
 		return $scripts;
 	}
 
@@ -390,6 +374,38 @@ class MailPress_bounce_handling
 		$x->plaintext = htmlspecialchars($usermeta['bounces'][$mail_id][$bounce_id]['message']);
 
 		include(MP_TMP . 'mp-includes/html/plaintext.php');
+	}
+
+	public static function autorefresh_js($scripts)
+	{
+		$bounce_handling_config = get_option('MailPress_bounce_handling');
+		$every   = apply_filters('MailPress_autorefresh_every', $bounce_handling_config['every']);
+
+		$checked = (isset($_GET['autorefresh'])) ?  " checked='checked'" : '';
+		$time    = (isset($_GET['autorefresh'])) ?  $_GET['autorefresh'] : $every;
+		$time    = (is_numeric($time) && ($time > $every)) ? $time : $every;
+		$time    = "<input type='text' value='$time' maxlength='3' id='MP_Refresh_every' class='screen-per-page'/>";
+		$option  = '<h5>' . __('Auto refresh for WP_Cron', 'MailPress') . '</h5>';
+		$option .= "<div><input id='MP_Refresh' type='checkbox'$checked style='margin:0 5px 0 2px;' /><span class='MP_Refresh'>" . sprintf(__('%1$s Autorefresh %2$s every %3$s sec', 'MailPress'), "<label for='MP_Refresh' style='vertical-align:inherit;'>", '</label>', $time) . "</span></div>";
+
+		wp_register_script( 'mp-refresh', 	'/' . MP_PATH . 'mp-includes/js/mp_refresh.js', array('schedule'), false, 1);
+		wp_localize_script( 'mp-refresh', 	'adminMpRefreshL10n', array(
+				'screen' 	=> $screen,
+				'every' 	=> $every,
+
+				'message' 	=> __('Autorefresh in %i% sec', 'MailPress'), 
+
+				'option'	=> $option,
+				'l10n_print_after' => 'try{convertEntities(adminmailsL10n);}catch(e){};'
+		) );
+		$scripts[] = 'mp-refresh';
+		return $scripts;
+	}
+
+	public static function autorefresh_every($every)
+	{
+		$bounce_handling_config = get_option('MailPress_bounce_handling');
+		return ($every < $bounce_handling_config['every']) ? $every : $bounce_handling_config['every'];
 	}
 }
 
