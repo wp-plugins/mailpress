@@ -181,11 +181,13 @@ class MP_AdminPage extends MP_Admin_page
 			$wp_user 		= get_userdata($author);
 		}
 //	subject
+		self::require_class('Mailmeta');
+		$metas = MP_Mailmeta::get( $id, '_MailPress_replacements');
 		$subject_display = $mail->subject;
+		if ($metas) foreach($metas as $k => $v) $subject_display = str_replace($k, $v, $subject_display);
 		if ( strlen($subject_display) > 40 )	$subject_display = substr($subject_display, 0, 39) . '...';
 //	attachements
 		$attach = false;
-		self::require_class('Mailmeta');
 		$metas = MP_Mailmeta::has( $id, '_MailPress_attached_file');
 		if ($metas)
 		{

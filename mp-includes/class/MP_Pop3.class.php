@@ -50,7 +50,7 @@ class MP_Pop3
 	function connect()
 	{
 	// fsockopen 
-		$this->pop3 = fsockopen($this->server, $this->port, $errno, $errstr, 2);
+		$this->pop3 = fsockopen($this->server, $this->port, $errno, $errstr);
 		if ($errno) 
 		{
 			if ($this->trace)
