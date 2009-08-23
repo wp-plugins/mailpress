@@ -163,11 +163,9 @@ if ($users) {
 	
 		<div class='tablenav'>
 			<div class='alignleft actions'>
-				<?php if ((isset($url_parms['status'])) && ( 'bounced' != $url_parms['status'] )) : ?>
-				<?php if ((isset($url_parms['status'])) && ( 'active' != $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Activate','MailPress'); ?>' 	name='activateit'	  class='button-secondary action' /><?php endif; ?>
-				<?php if ((isset($url_parms['status'])) && ( 'waiting' != $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Deactivate','MailPress'); ?>' 	name='deactivateit' class='button-secondary action' /><?php endif; ?>
-				<?php else : ?><input type='submit' value='<?php _e('Unbounce','MailPress'); ?>' 	name='unbounceit' class='button-secondary action' />
-				<?php endif; ?>
+				<?php if ((isset($url_parms['status'])) && ( 'bounced' == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Unbounce','MailPress'); ?>' 	name='unbounceit'   class='button-secondary action' /><?php endif; ?>
+				<?php if ((isset($url_parms['status'])) && ( 'waiting' == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Activate','MailPress'); ?>' 	name='activateit'	  class='button-secondary action' /><?php endif; ?>
+				<?php if ((isset($url_parms['status'])) && ( 'active'  == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Deactivate','MailPress'); ?>' 	name='deactivateit' class='button-secondary action' /><?php endif; ?>
 				<?php if (current_user_can('MailPress_delete_users')) : ?><input type='submit' value='<?php _e('Delete','MailPress'); ?>' 	name='deleteit'     class='button-secondary delete action' /><?php endif; ?>
 <?php do_action('MailPress_restrict_users',$url_parms); ?>
 			</div>
@@ -204,12 +202,9 @@ if ($users) {
 		<div class='tablenav'>
 <?php if ( $page_links ) echo "\n<div class='tablenav-pages'>$page_links</div>\n"; ?>
 			<div class='alignleft actions'>
-				<?php if ((isset($url_parms['status'])) && ( 'bounced' != $url_parms['status'] )) : ?>
-				<?php if ((isset($url_parms['status'])) && ( 'active' != $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Activate','MailPress'); ?>' 	name='activateit'	  class='button-secondary' /><?php endif; ?>
-				<?php if ((isset($url_parms['status'])) && ( 'waiting' != $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Deactivate','MailPress'); ?>' 	name='deactivateit' class='button-secondary' /><?php endif; ?>
-				<?php else : ?><input type='submit' value='<?php _e('Unbounce','MailPress'); ?>' 	name='unbounceit' class='button-secondary action' />
-				<?php endif; ?>
-
+				<?php if ((isset($url_parms['status'])) && ( 'bounced' == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Unbounce','MailPress'); ?>' 	name='unbounceit'   class='button-secondary action' /><?php endif; ?>
+				<?php if ((isset($url_parms['status'])) && ( 'waiting' == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Activate','MailPress'); ?>' 	name='activateit'	  class='button-secondary action' /><?php endif; ?>
+				<?php if ((isset($url_parms['status'])) && ( 'active'  == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Deactivate','MailPress'); ?>' 	name='deactivateit' class='button-secondary action' /><?php endif; ?>
 				<?php if (current_user_can('MailPress_delete_users')) : ?><input type='submit' value='<?php _e('Delete','MailPress'); ?>' 	name='deleteit'     class='button-secondary delete action' /><?php endif; ?>
 			</div>
 		</div>
