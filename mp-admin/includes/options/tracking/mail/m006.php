@@ -42,7 +42,7 @@ class MP_Tracking_module_m006 extends MP_Tracking_module_abstract
 		$scripts[] = 'mp-gmap2';
 
 	// markerclusterer
-		wp_register_script( 'mp-markerclusterer',	'/' . MP_PATH . 'mp-includes/js/markerclusterer/markerclusterer.js', false, false, 1);
+		wp_register_script( 'mp-markerclusterer',	'/' . MP_PATH . 'mp-includes/js/markerclusterer/markerclusterer_packed.js', false, false, 1);
 		$scripts[] = 'mp-markerclusterer';
 
 		return $scripts;
