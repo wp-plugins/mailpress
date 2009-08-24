@@ -65,6 +65,8 @@ class MailPress extends MP_abstract
 		define ('MailPress_settings', 	'options-general.php' . '?page=' 	. MailPress_page_settings);
 		define ('MailPress_users', 		$file . '?page=' 	. MailPress_page_users);
 		define ('MailPress_user', 		$file . '?page=' 	. MailPress_page_user);
+//¤ ajax ¤//
+		add_action('mp_action_mp_meta_box_post', 	array('MP_Newsletter', 'mp_action_mp_meta_box_post'));
 
 // for wp admin
 		if (is_admin())
@@ -85,8 +87,6 @@ class MailPress extends MP_abstract
 
 		// for meta box in write post
 			add_action('do_meta_boxes', 		array('MailPress', 'meta_boxes'), 8, 3);
-			//¤ ajax ¤//
-			add_action('mp_action_mp_meta_box_post', 	array('MP_Newsletter', 'mp_action_mp_meta_box_post'));
 		}
 		do_action('MailPress_init');
 	}
