@@ -1,11 +1,8 @@
 // tracking
 
 var mp_tracking = {
-	point : null, 
-	zoomlevel : 6, 
-	maptype : G_NORMAL_MAP, 
 
-	init : function(div) {
+	init : function() {
 		// close postboxes that should be closed
 		jQuery('.if-js-closed').removeClass('if-js-closed').addClass('closed');
 
@@ -13,28 +10,16 @@ var mp_tracking = {
 		postboxes.add_postbox_toggles(MP_AdminPageL10n.screen);
 
 		// ip info
-		if (GBrowserIsCompatible()) mp_tracking.gmap(div);
+		if (GBrowserIsCompatible()) mp_tracking.gmap();
 	},
 
-	gmap : function(div) {
+	gmap : function() {
 		if(typeof(m006) == "undefined") return;
 
-		var map = new GMap2(document.getElementById(div));
+		var map = new mp_gmap2(m006_user_settings);
+		var icon = new GIcon(G_DEFAULT_ICON, mp_gmapL10n.url+'map_icon'+mp_gmapL10n.color+'.png');
 
-		map.addControl(new OwnZoomIn());
-		map.addControl(new OwnZoomOut());
-		map.addControl(new OwnChangeMapType());
-		map.addControl(new OwnCenter());
-		OwnWheelZoom(map, div); 
-
-		var mp_info = m006[0];
-		var lat = parseFloat(mp_info['lat']);
-		var lng = parseFloat(mp_info['lng']);
-		var tooltip = mp_info['ip'];
-		mp_tracking.point  = new GLatLng(lat, lng);
-
-		map.setCenter( mp_tracking.point, mp_tracking.zoomlevel, mp_tracking.maptype);
-		map._thisCenter = mp_tracking.point;
+		var markers = [];
 
 		for (var i in m006)
 		{
@@ -43,11 +28,19 @@ var mp_tracking = {
 			lat = parseFloat(mp_info['lat']);
 			lng = parseFloat(mp_info['lng']);
 			tooltip = mp_info['ip'];
-			icon	= new GIcon(G_DEFAULT_ICON, mp_gmapL10n.url+'map_icon'+mp_gmapL10n.color+'.png');
 
 			var marker = new GMarker(new GLatLng(lat, lng), {icon:icon, title:tooltip, draggable:false});
-			map.addOverlay(marker);
+			markers.push(marker);
+		}
+		if (markers.length > 100)
+		{
+			var markerCluster = new MarkerClusterer(map.map, markers);
+			return;
+		}
+		for (var i in markers)
+		{
+			map.map.addOverlay(markers[i]);
 		}
 	}
 }
-jQuery(document).ready( function() { mp_tracking.init('ip_info_div'); });
+jQuery(document).ready( function() { mp_tracking.init(); });

@@ -498,7 +498,6 @@ class MailPress_batch_send
 
 		wp_register_script( 'mp-refresh', 	'/' . MP_PATH . 'mp-includes/js/mp_refresh.js', array('schedule'), false, 1);
 		wp_localize_script( 'mp-refresh', 	'adminMpRefreshL10n', array(
-				'screen' 	=> $screen,
 				'every' 	=> $every,
 
 				'message' 	=> __('Autorefresh in %i% sec', 'MailPress'), 

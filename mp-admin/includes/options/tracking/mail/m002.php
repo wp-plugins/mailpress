@@ -1,8 +1,17 @@
 <?php
-/*
-m002 last 10 users
-*/
-	function meta_box_tracking_mp_m002($mail)
+MailPress::require_class('Tracking_module_abstract');
+class MP_Tracking_module_m002 extends MP_Tracking_module_abstract
+{
+	var $module = 'm002';
+
+	function __construct()
+	{
+		$this->type  = basename(dirname(__FILE__));
+		$this->title = __('Last 10 users','MailPress');
+		parent::__construct();
+	}
+
+	function meta_box($mail)
 	{
 		global $wpdb;
 		$query = "SELECT DISTINCT DATE(tmstp) as tmstp, user_id FROM $wpdb->mp_tracks WHERE mail_id = " . $mail->id . " ORDER BY 1 DESC LIMIT 10;";
@@ -14,4 +23,6 @@ m002 last 10 users
 			echo $track->tmstp . ' ' . $mp_user->email . '<br />';
 		} 
 	}
+}
+$MP_Tracking_module_m002 = new MP_Tracking_module_m002();
 ?>

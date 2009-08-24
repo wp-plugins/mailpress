@@ -57,6 +57,12 @@ class MP_AdminPage extends MP_Admin_page
 		global $mp_general;
 		if (!isset($mp_general['gmapkey']) || empty($mp_general['gmapkey'])) return;
 		echo "xmlns:v=\"urn:schemas-microsoft-com:vml\"";
+
+		if (class_exists('MailPress_tracking'))
+		{
+			MailPress::require_class('Tracking_modules');
+			$MP_Tracking_modules = new MP_Tracking_modules('user');
+		}
 	}
 
 ////  Title  ////
@@ -77,36 +83,29 @@ class MP_AdminPage extends MP_Admin_page
 
 	public static function print_scripts() 
 	{
-		$deps[] 	= 'jquery-ui-tabs';
-		$deps[] 	= 'postbox';
-
 		global $mp_general;
-
 		if (isset($mp_general['gmapkey']) && !empty($mp_general['gmapkey']))
 		{
-			wp_register_script( 'google-map',	'http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=' . $mp_general['gmapkey'], array(), false, 1);
+		// google map
+			wp_register_script( 'google-map',	'http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=' . $mp_general['gmapkey'], false, false, 1);
 
 			$color 	= ('fresh' == get_user_option('admin_color')) ? '' : '_b';
 			$pathimg 	= MP_TMP . 'mp-admin/images/map_control' . $color . '.png';
 			$color 	= (is_file($pathimg)) ? $color : '';
 
-			wp_register_script( 'mp-gmap',	'/' . MP_PATH . 'mp-includes/js/mp_gmap.js', array('google-map', 'postbox'), false, 1);
-			wp_localize_script( 'mp-gmap', 	'mp_gmapL10n', array(	
-				'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/', 
-				'color'	=> $color, 
-				'zoomwide'	=> js_escape(__('zoom -', 'MailPress')), 
-				'zoomtight'	=> js_escape(__('zoom +', 'MailPress')), 
-				'center'	=> js_escape(__('center', 'MailPress')), 
+		// mp-gmap2
+			wp_register_script( 'mp-gmap2',	'/' . MP_PATH . 'mp-includes/js/mp_gmap2.js', array('google-map', 'schedule'), false, 1);
+			wp_localize_script( 'mp-gmap2', 	'mp_gmapL10n', array(
+				'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/',
+				'ajaxurl'	=> MP_Action_url,
+				'color'	=> $color,
+				'zoomwide'	=> js_escape(__('zoom -', 'MailPress')),
+				'zoomtight'	=> js_escape(__('zoom +', 'MailPress')),
+				'center'	=> js_escape(__('center', 'MailPress')),
 				'changemap'	=> js_escape(__('change map', 'MailPress'))
 			));
-			$deps[] = 'mp-gmap';
 
-			$tracking = get_option('MailPress_tracking');
-			if (class_exists('MailPress_tracking') && isset($tracking['u006']))
-			{
-				wp_register_script( 'mp-tracking-u006', 		'/' . MP_PATH . 'mp-admin/js/user_tracking_006.js', array(), false, 1);
-				$deps[] = 'mp-tracking-u006';
-			}
+			$deps[] = 'mp-gmap2';
 		}
 
 		wp_register_script( 'mp-ajax-response', 	'/' . MP_PATH . 'mp-includes/js/mp_ajax_response.js', array('jquery'), false, 1);
@@ -115,12 +114,14 @@ class MP_AdminPage extends MP_Admin_page
 			'broken' => __('An unidentified error has occurred.'), 
 			'l10n_print_after' => 'try{convertEntities(wpAjax);}catch(e){};' 
 		));
+		$deps[] = 'jquery-ui-tabs';
 
 		wp_register_script( 'mp-lists', 		'/' . MP_PATH . 'mp-includes/js/mp_lists.js', array('mp-ajax-response'), false, 1);
 		wp_localize_script( 'mp-lists', 		'wpListL10n', array(
 			'url' => MP_Action_url
 		));
 		$deps[] = 'mp-lists';
+		$deps[] = 'postbox';
 
 		wp_register_script( 'mp-thickbox', 		'/' . MP_PATH . 'mp-includes/js/mp_thickbox.js', array('thickbox'), false, 1);
 		$deps[] = 'mp-thickbox';
@@ -438,31 +439,49 @@ class MP_AdminPage extends MP_Admin_page
 /**/
 	public static function meta_box_IP_info($mp_user)
 	{
-		global $mp_general;
 
+	// meta_box_IP_info_user_settings
+		$u['meta_box_IP_info_user_settings'] = get_user_option('_MailPress_meta_box_IP_info');
+		if (!$u['meta_box_IP_info_user_settings']) $u['meta_box_IP_info_user_settings'] = array('center_lat' => 48.8352, 'center_lng' => 2.4718, 'zoomlevel' => 3, 'maptype' => 'NORMAL');
+		$u['meta_box_IP_info_user_settings']['prefix'] = 'meta_box_IP_info';
+?>
+<script type='text/javascript'>
+/* <![CDATA[ */
+<?php
+		$eol = "";
+		foreach ( $u as $var => $val ) {
+			echo "var $var = " . MP_AdminPage::print_scripts_l10n_val($val);
+			$eol = ",\n\t\t";
+		}
+		echo ";\n";
+
+	// meta_box_IP_info
 		$ip = ( '' == $mp_user->laststatus_IP) ? $mp_user->created_IP : $mp_user->laststatus_IP;
-
 		self::require_class('Ip');
-
 		$x  = MP_Ip::get_all($ip);
 
-		if (isset($mp_general['gmapkey']) && !empty($mp_general['gmapkey']))
+		if (isset($x['geo']))
 		{
-			if (isset($x['geo']))
+			$m['meta_box_IP_info'] = $x['geo'];
+			$eol = "";
+			foreach ( $m as $var => $val ) {
+				echo "var $var = " . self::print_scripts_l10n_val($val);
+				$eol = ", \n\t\t";
+			}
+			echo ";\n";	
+?>
+/* ]]> */
+</script>
+		<div id='meta_box_IP_info_map'></div>
+<?php 		foreach($u['meta_box_IP_info_user_settings'] as $k => $v)
 			{
-				$x['geo']['div'] = 'IP_info_gmap';
-				$m['meta_box_IP_info'] = $x['geo'];
-				echo "\n<script type='text/javascript'>\n/* <![CDATA[ */\n";
-				$eol = "";
-				foreach ( $m as $var => $val ) {
-					echo "var $var = " . self::print_scripts_l10n_val($val);
-					$eol = ", \n\t\t";
-				}
-				echo ";\n";	
-				echo "/* ]]> */\n</script>";
-				echo "<br /><div id='" . $x['geo']['div'] . "' style='overflow:hidden;'></div>\n";
+	                if ('prefix' == $k) continue;
+?>
+		<input type='hidden' id='meta_box_IP_info_<?php echo $k; ?>' value="<?php echo $v; ?>" />
+<?php
 			}
 		}
+
 		if (isset($x['html']))
 		{
 			echo $x['html'];

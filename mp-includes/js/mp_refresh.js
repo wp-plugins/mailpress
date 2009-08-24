@@ -51,7 +51,7 @@ var mp_refresh = {
 		time--;
 		if (time == 0)
 		{
-			mp_refresh.refresh(); //window.location='admin.php?page='+adminMpRefreshL10n.screen+'&autorefresh='+mp_refresh.get_time();
+			mp_refresh.refresh();
 			mp_refresh.stop();
 		}
 		if (time < 0) return;

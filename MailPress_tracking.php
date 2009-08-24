@@ -304,15 +304,7 @@ class MailPress_tracking
 // for user page
 	public static function meta_boxes_user($mp_user_id, $mp_screen)
 	{
-		$tracking = get_option('MailPress_tracking');
-		if (!is_array($tracking)) return;
-		include (MP_TMP . 'mp-admin/includes/options/tracking/reports.php');
-		foreach($tracking as $k => $v)
-		{
-			if (!isset($tracking_reports['user'][$k])) continue;
-			add_meta_box($k . 'div', $tracking_reports['user'][$k]['title'] , "meta_box_tracking_mp_$k", $mp_screen, 'normal', 'low');
-			include(MP_TMP . "mp-admin/includes/options/tracking/$k/$k.php");
-		}
+		do_action('MailPress_tracking_add_meta_box', $mp_screen);
 	}
 
 // for reports

@@ -1,11 +1,8 @@
 // user
 
 var mp_user = {
-	point : null, 
-	zoomlevel : 6, 
-	maptype : G_NORMAL_MAP, 
 
-	init : function(div) {
+	init : function() {
 		// close postboxes that should be closed
 		jQuery('.if-js-closed').removeClass('if-js-closed').addClass('closed');
 
@@ -24,34 +21,23 @@ var mp_user = {
 		});
 
 		// mailinglist tabs
-		var mailinglistTabs =jQuery('#user-tabs').tabs();
+		jQuery('#user-tabs').tabs();
 
 		// ip info
-		if (GBrowserIsCompatible()) mp_user.gmap(div);
+		if (GBrowserIsCompatible()) mp_user.gmap();
 	},
 
-	gmap : function(div) {
+	gmap : function() {
 		if(typeof(meta_box_IP_info) == "undefined") return;
 
-		mp_user.point  = new GLatLng(parseFloat(meta_box_IP_info.lat), parseFloat(meta_box_IP_info.lng)); 
-		var size = new GSize(267, 250);
-		var map = new GMap2(document.getElementById(meta_box_IP_info.div), {size:size});
+		var map = new mp_gmap2(meta_box_IP_info_user_settings);
+		var icon = new GIcon(G_DEFAULT_ICON, mp_gmapL10n.url+'map_icon'+mp_gmapL10n.color+'.png');
 
-		map.addControl(new OwnZoomIn());
-		map.addControl(new OwnZoomOut());
-		map.addControl(new OwnChangeMapType());
-		map.addControl(new OwnCenter());
-		OwnWheelZoom(map, div); 
-
-		map.setCenter(mp_user.point, mp_user.zoomlevel, mp_user.maptype);
-		map._thisCenter = mp_user.point;
-
+		map.map.mp_center = new GLatLng(parseFloat(meta_box_IP_info.lat), parseFloat(meta_box_IP_info.lng)); 
 		tooltip = 'lat : '+meta_box_IP_info.lat+' lng : '+meta_box_IP_info.lng;
 
-		icon	= new GIcon(G_DEFAULT_ICON, mp_gmapL10n.url+'map_icon'+mp_gmapL10n.color+'.png');
-		var marker = new GMarker(mp_user.point, {icon:icon, title:tooltip, draggable:false});
-		
-		map.addOverlay(marker);
+		var marker = new GMarker(map.map.mp_center, {icon:icon, title:tooltip, draggable:false});
+		map.map.addOverlay(marker);
 	}
 }
-jQuery(document).ready( function() { mp_user.init('IP_info_gmap'); });
+jQuery(document).ready( function() { mp_user.init(); });

@@ -1,11 +1,20 @@
 <?php
-/*
-m007 opened/clicked/day
-*/
-	function meta_box_tracking_mp_m007($mail)
+MailPress::require_class('Tracking_module_abstract');
+class MP_Tracking_module_u007 extends MP_Tracking_module_abstract
+{
+	var $module = 'u007';
+
+	function __construct()
+	{
+		$this->type  = basename(dirname(__FILE__));
+		$this->title = __('Opened, Clicks/day','MailPress');
+		parent::__construct();
+	}
+
+	function meta_box($mp_user)
 	{
 		global $wpdb;
-		$query = "SELECT DATE(tmstp) as tmstp, track, count(*) as count FROM $wpdb->mp_tracks WHERE mail_id = " . $mail->id . " GROUP BY 1, 2 ORDER BY 1, 2 DESC ;";
+		$query = "SELECT DATE(tmstp) as tmstp, track, count(*) as count FROM $wpdb->mp_tracks WHERE user_id = $mp_user->id GROUP BY 1, 2 ORDER BY 1, 2 DESC ;";
 		$tracks = $wpdb->get_results($query);
 		if ($tracks)
 		{
@@ -16,7 +25,7 @@ m007 opened/clicked/day
 				else									$x[$track->tmstp]['c'] = $track->count;
 			}
 ?>
-<table id='tracking_mp_m007'>
+<table id='tracking_mp_u007'>
 	<thead>
 		<tr>
 			<th></th>
@@ -39,4 +48,6 @@ m007 opened/clicked/day
 <?php
 		}
 	}
+}
+$MP_Tracking_module_u007 = new MP_Tracking_module_u007();
 ?>

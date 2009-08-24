@@ -14,6 +14,7 @@ abstract class MP_Options
 	{
    		if ($file{0} == '.') return;
 		if (isset($this->deep))
+		{
 			if (is_dir("$root/$file"))
 			{
 				$root .= "/$file";
@@ -22,6 +23,9 @@ abstract class MP_Options
 				@closedir($dir);
 				return;
 			}
+		}
+		elseif ( isset($this->includes) && !isset($this->includes[substr($file, 0, -4)]) ) return;
+
 		$this->load_file("$root/$file");
 	}
 

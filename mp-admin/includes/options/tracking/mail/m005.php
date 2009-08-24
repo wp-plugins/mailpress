@@ -1,8 +1,17 @@
 <?php
-/*
-m005
-*/
-	function meta_box_tracking_mp_m005($mail)
+MailPress::require_class('Tracking_module_abstract');
+class MP_Tracking_module_m005 extends MP_Tracking_module_abstract
+{
+	var $module = 'm005';
+
+	function __construct()
+	{
+		$this->type  = basename(dirname(__FILE__));
+		$this->title = __('System info','MailPress');
+		parent::__construct();
+	}
+
+	function meta_box($mail)
 	{
 		global $wpdb;
 
@@ -40,4 +49,6 @@ m005
 			}
 		}
 	}
+}
+$MP_Tracking_module_m005 = new MP_Tracking_module_m005();
 ?>

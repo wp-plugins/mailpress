@@ -778,6 +778,14 @@ class MP_Actions
 		fpassthru($fdl);
 		MailPress::mp_die();
 	}
+
+
+	public static function map_settings()
+	{
+		global $user_ID;
+		update_usermeta( $user_ID, '_MailPress_' . $_POST['prefix'], $_POST['settings'] );
+		MailPress::mp_die();
+	}
 }
 $MP_Actions = new MP_Actions();
 ?>

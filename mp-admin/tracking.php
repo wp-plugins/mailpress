@@ -13,6 +13,9 @@ class MP_AdminPage extends MP_Admin_page
 		global $mp_general;
 		if (!isset($mp_general['gmapkey']) || empty($mp_general['gmapkey'])) return;
 		echo "xmlns:v=\"urn:schemas-microsoft-com:vml\"";
+
+		MailPress::require_class('Tracking_modules');
+		$MP_Tracking_modules = new MP_Tracking_modules('mail');
 	}
 
 ////  Title  ////
@@ -38,38 +41,31 @@ class MP_AdminPage extends MP_Admin_page
 
 	public static function print_scripts() 
 	{
-		global $mp_general;
-
-		if (isset($mp_general['gmapkey']) && !empty($mp_general['gmapkey']))
-		{
-			wp_register_script( 'google-map',	'http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=' . $mp_general['gmapkey'], array(), false, 1);
-
-			$color 	= ('fresh' == get_user_option('admin_color')) ? '' : '_b';
-			$pathimg 	= MP_TMP . 'mp-admin/images/map_control' . $color . '.png';
-			$color 	= (is_file($pathimg)) ? $color : '';
-
-			wp_register_script( 'mp-gmap',	'/' . MP_PATH . 'mp-includes/js/mp_gmap.js', array('google-map', 'postbox'), false, 1);
-			wp_localize_script( 'mp-gmap', 	'mp_gmapL10n', array(	
-				'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/', 
-				'color'	=> $color, 
-				'zoomwide'	=> js_escape(__('zoom -', 'MailPress')), 
-				'zoomtight'	=> js_escape(__('zoom +', 'MailPress')), 
-				'center'	=> js_escape(__('center', 'MailPress')), 
-				'changemap'	=> js_escape(__('change map', 'MailPress'))
-			));
-
-			$deps[] = 'mp-gmap';
-		}
-
 		wp_register_script( 'mp-thickbox', 		'/' . MP_PATH . 'mp-includes/js/mp_thickbox.js', array('thickbox'), false, 1);
-		$deps[] = 'mp-thickbox';
 
-		wp_register_script( self::screen, 		'/' . MP_PATH . 'mp-admin/js/tracking.js', $deps, false, 1);
+		$every   = 30;
+		$checked = (isset($_GET['autorefresh'])) ?  " checked='checked'" : '';
+		$time    = (isset($_GET['autorefresh'])) ?  $_GET['autorefresh'] : $every;
+		$time    = (is_numeric($time) && ($time > $every)) ? $time : $every;
+		$time    = "<input type='text' value='$time' maxlength='3' id='MP_Refresh_every' class='screen-per-page'/>";
+		$option  = '<h5>' . __('Auto refresh', 'MailPress') . '</h5>';
+		$option .= "<div><input id='MP_Refresh' type='checkbox'$checked style='margin:0 5px 0 2px;' /><span class='MP_Refresh'>" . sprintf(__('%1$s Autorefresh %2$s every %3$s sec', 'MailPress'), "<label for='MP_Refresh' style='vertical-align:inherit;'>", '</label>', $time) . "</span></div>";
+
+		wp_register_script( 'mp-refresh', 	'/' . MP_PATH . 'mp-includes/js/mp_refresh.js', array('schedule'), false, 1);
+		wp_localize_script( 'mp-refresh', 	'adminMpRefreshL10n', array(
+				'every' 	=> $every,
+				'message' 	=> __('Autorefresh in %i% sec', 'MailPress'), 
+				'option'	=> $option,
+				'l10n_print_after' => 'try{convertEntities(adminmailsL10n);}catch(e){};'
+		) );
+
+		wp_register_script( self::screen, 		'/' . MP_PATH . 'mp-admin/js/tracking.js', array('mp-thickbox', 'mp-refresh', 'postbox'), false, 1);
 		wp_localize_script( self::screen, 		'MP_AdminPageL10n',  array(
 			'screen' => self::screen
 		));
 
 		$scripts[] = self::screen;
+
 		parent::print_scripts($scripts);
 	}
 
@@ -77,21 +73,7 @@ class MP_AdminPage extends MP_Admin_page
 
 	public static function screen_meta() 
 	{
-		self::require_class('Mails');
-		$mail = MP_Mails::get($_GET['id']);
-		$tracking = get_option('MailPress_tracking');
-		if (!is_array($tracking)) return;
-		include (MP_TMP . 'mp-admin/includes/options/tracking/reports.php');
-		if ($tracking)
-		{
-			foreach($tracking as $k => $v)
-			{
-				if (!isset($tracking_reports['mail'][$k])) continue;
-				include(MP_TMP . "mp-admin/includes/options/tracking/$k/$k.php");
-				add_meta_box('tracking'.$k.'div', $tracking_reports['mail'][$k]['title'] , "meta_box_tracking_mp_$k", 	self::screen, 'normal', '');
-			}
-		}
-
+		do_action('MailPress_tracking_add_meta_box', self::screen);
 		parent::screen_meta();
 	}
 

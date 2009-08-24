@@ -1,6 +1,13 @@
 <?php
 $tracking = get_option('MailPress_tracking');
-include(MP_TMP . 'mp-admin/includes/options/tracking/reports.php');
+
+MailPress::require_class('Tracking_modules');
+foreach(array('mail', 'user') as $folder)
+{
+	$MP_Tracking_modules = new MP_Tracking_modules($folder, array());
+	$tracking_reports[$folder] = $MP_Tracking_modules->get_all($folder);
+}
+
 global $mp_general;
 if (!isset($mp_general['gmapkey']) || empty($mp_general['gmapkey'])) unset($tracking_reports['user']['u006'], $tracking_reports['mail']['m006']);
 ?>

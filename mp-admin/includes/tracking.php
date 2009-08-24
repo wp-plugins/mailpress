@@ -3,6 +3,7 @@ global $title, $mp_mail;
 ?>
 <div class="wrap">
 	<div class="icon32" id="icon-mailpress-mails"><br /></div>
+	<div id='mp_message'></div>
 	<h2><?php echo wp_specialchars( $title ); ?></h2>
 <?php if (isset($message)) self::message($message); ?>
 	<table class='widefat'>

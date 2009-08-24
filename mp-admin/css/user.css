@@ -32,6 +32,15 @@ td.avatar {
 #postcustomstuff #newmeta .submit {
 	padding:0 8px;
 }
+
+/* IP_info */
+
+div#IP_info div.inside div#meta_box_IP_info_map {
+	width:auto;
+	height:250px;
+	overflow:hidden;
+}
+
 #tracking_mp_u007 td{
 	font-size:11px;
 }

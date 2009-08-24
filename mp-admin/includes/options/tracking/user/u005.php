@@ -1,8 +1,17 @@
 <?php
-/*
-u005
-*/
-	function meta_box_tracking_mp_u005($mp_user)
+MailPress::require_class('Tracking_module_abstract');
+class MP_Tracking_module_u005 extends MP_Tracking_module_abstract
+{
+	var $module = 'u005';
+
+	function __construct()
+	{
+		$this->type  = basename(dirname(__FILE__));
+		$this->title = __('System info','MailPress');
+		parent::__construct();
+	}
+
+	function meta_box($mp_user)
 	{
 		global $wpdb;
 
@@ -27,4 +36,6 @@ u005
 		$tracks = $wpdb->get_results($query);
 		if ($tracks) foreach($tracks as $track) {echo MailPress_tracking::get_os($track->agent) . ' ' . MailPress_tracking::get_browser($track->agent) . '&nbsp;&nbsp;&nbsp;@&nbsp;' . $track->ip . '<br />'; }
 	}
+}
+$MP_Tracking_module_u005 = new MP_Tracking_module_u005();
 ?>

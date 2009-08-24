@@ -1,8 +1,17 @@
 <?php
-/*
-u002 last 10 mails
-*/
-	function meta_box_tracking_mp_u002($mp_user)
+MailPress::require_class('Tracking_module_abstract');
+class MP_Tracking_module_u002 extends MP_Tracking_module_abstract
+{
+	var $module = 'u002';
+
+	function __construct()
+	{
+		$this->type  = basename(dirname(__FILE__));
+		$this->title = __('Last 10 mails','MailPress');
+		parent::__construct();
+	}
+
+	function meta_box($mp_user)
 	{
 		global $wpdb;
 		$query = "SELECT * FROM $wpdb->mp_usermeta WHERE user_id = " . $mp_user->id . " AND meta_key = '_MailPress_mail_sent' ORDER BY umeta_id DESC LIMIT 10;";
@@ -14,4 +23,6 @@ u002 last 10 mails
 			echo '(' . $track->meta_value . ') ' . $subject . '<br />';
 		} 
 	}
+}
+$MP_Tracking_module_u002 = new MP_Tracking_module_u002();
 ?>

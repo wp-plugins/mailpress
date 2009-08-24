@@ -1,8 +1,17 @@
 <?php
-/*
-m001 last 10 actions
-*/
-	function meta_box_tracking_mp_m001($mail)
+MailPress::require_class('Tracking_module_abstract');
+class MP_Tracking_module_m001 extends MP_Tracking_module_abstract
+{
+	var $module = 'm001';
+
+	function __construct()
+	{
+		$this->type  = basename(dirname(__FILE__));
+		$this->title = __('Last 10 actions','MailPress');
+		parent::__construct();
+	}
+
+	function meta_box($mail)
 	{
 		global $wpdb;
 		$query = "SELECT * FROM $wpdb->mp_tracks WHERE mail_id = " . $mail->id . " ORDER BY tmstp DESC LIMIT 10;";
@@ -16,4 +25,6 @@ foreach($tracks as $track) echo '<tr><td>' . $track->tmstp . '</td><td>&nbsp;' .
 			echo '</table>';
 		}
 	}
+}
+$MP_Tracking_module_m001 = new MP_Tracking_module_m001();
 ?>
