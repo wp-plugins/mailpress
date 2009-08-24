@@ -91,6 +91,10 @@ class MailPress_bounce_handling
 		$bounce_handling = get_option('MailPress_bounce_handling');
 		if (!$bounce_handling) return;
 
+		$domain 	= preg_quote($bounce_handling['domain']);
+		$prefix	= preg_quote(self::prefix);
+		$user_mask	= preg_quote('{{_user_id}}');
+
 		MailPress::no_abort_limit();
 
 		$return = true;
@@ -124,17 +128,35 @@ class MailPress_bounce_handling
 
 					foreach($pop3->headers['Return-Path'] as $ReturnPath)
 					{
-			   			$pattern = self::prefix . '[0-9]*_[0-9]*@' . $bounce_handling['domain'];
-						if (!ereg($pattern, $ReturnPath)) continue;
-						$pattern = '/' . self::prefix . '([0-9]*)_([0-9]*)@' . $bounce_handling['domain'] . '/';
-						preg_match_all($pattern, $ReturnPath, $matches, PREG_SET_ORDER);
-						if (empty($matches)) continue;
-
-				            $mail_id 	= $matches[0][1];
-				            $mp_user_id = $matches[0][2];
-
+			   			$pattern = $prefix . "[0-9]*_[0-9]*@$domain";
+						if (ereg($pattern, $ReturnPath))
+						{
+							$pattern = "/$prefix([0-9]*)_([0-9]*)@$domain/";
+							preg_match_all($pattern, $ReturnPath, $matches, PREG_SET_ORDER);
+							if (empty($matches)) continue;
+					            $mail_id 	= $matches[0][1];
+					            $mp_user_id = $matches[0][2];
+						}
+						else
+						{
+				   			$pattern = $prefix . "[0-9]*_$user_mask@$domain";
+							if (!ereg($pattern, $ReturnPath)) continue;
+							$pattern = "/$prefix([0-9]*)_$user_mask@$domain/";
+							preg_match_all($pattern, $ReturnPath, $matches, PREG_SET_ORDER);
+							if (empty($matches)) continue;
+					            $mail_id 	= $matches[0][1];
+							MailPress::require_class('Mails');
+							if ($mail = MP_Mails::get($mail_id))
+							{
+								if (!MailPress::is_email($mail->toemail)) continue;
+								MailPress::require_class('Users');
+								$mp_user_id = MP_Users::get_id_by_email($mail->toemail);
+								if (!$mp_user_id) continue;
+							}
+							else continue;
+						}
 						$trace->log('!' . str_repeat( '-', self::bt) . '!');
-						$bm = '            ! id         ! bounces   !';
+						$bm = '            ! id         ! bounces   ! ' . $matches[0][0];
 						$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
 
 						$user_logmess = $mail_logmess = '';
@@ -189,12 +211,18 @@ class MailPress_bounce_handling
 						if (!$done)
 						{
 							MailPress::require_class('Mails');
-							if (MP_Mails::get($mail_id))
+							if ($mail = MP_Mails::get($mail_id))
 							{
 								MailPress::require_class('Mailmeta');
+        
 								$mailmeta       = MP_Mailmeta::get($mail_id, self::metakey);
 								if ($mailmeta) 	MP_Mailmeta::update($mail_id, self::metakey, $mailmeta++ );
 								else 			MP_Mailmeta::add($mail_id, self::metakey, $mailmeta = 1);
+		
+								$metas = MP_Mailmeta::get( $mail_id, '_MailPress_replacements');
+								$mail_logmess = $mail->subject;
+								if ($metas) foreach($metas as $k => $v) $mail_logmess = str_replace($k, $v, $mail_logmess);
+								if ( strlen($mail_logmess) > 50 )	$mail_logmess = substr($mail_logmess, 0, 49) . '...';
 							}
 							else { $mail_logmess = '** WARNING ** mail not in database'; $mailmeta = ' '; }
 						}
