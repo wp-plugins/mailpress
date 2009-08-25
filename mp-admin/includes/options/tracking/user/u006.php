@@ -30,22 +30,12 @@ class MP_Tracking_module_u006 extends MP_Tracking_module_abstract
 		$u['u006_user_settings'] = get_user_option('_MailPress_' . self::prefix);
 		if (!$u['u006_user_settings']) $u['u006_user_settings'] = array('center_lat' => 48.8352, 'center_lng' => 2.4718, 'zoomlevel' => 3, 'maptype' => 'NORMAL');
 		$u['u006_user_settings']['prefix'] = self::prefix;
-?>
-<script type='text/javascript'>
-/* <![CDATA[ */
-<?php
-		$eol = "";
-		foreach ( $u as $var => $val ) {
-			echo "var $var = " . MP_AdminPage::print_scripts_l10n_val($val);
-			$eol = ",\n\t\t";
-		}
-		echo ";\n";
 
 	// u006
 		global $wpdb;
 		$m = array();
 
-		$query = "SELECT DISTINCT ip FROM $wpdb->mp_tracks WHERE user_id = " . $mp_user->id . " LIMIT 10;";
+		$query = "SELECT DISTINCT ip FROM $wpdb->mp_tracks WHERE user_id = " . $mp_user->id ;
 		$tracks = $wpdb->get_results($query);
 
 		if ($tracks)
@@ -61,6 +51,16 @@ class MP_Tracking_module_u006 extends MP_Tracking_module_abstract
 				}
 			}
 		}
+?>
+<script type='text/javascript'>
+/* <![CDATA[ */
+<?php
+		$eol = "";
+		foreach ( $u as $var => $val ) {
+			echo "var $var = " . MP_AdminPage::print_scripts_l10n_val($val);
+			$eol = ",\n\t\t";
+		}
+		echo ";\n";
 
 		$eol = "";
 		foreach ( $m as $var => $val ) {
@@ -72,7 +72,8 @@ class MP_Tracking_module_u006 extends MP_Tracking_module_abstract
 /* ]]> */
 </script>
 		<div id='<?php echo self::prefix; ?>_map' style='height:300px;width:auto;padding:0;margin:0;'></div>
-<?php 	foreach($u['u006_user_settings'] as $k => $v) 
+<?php 	
+		foreach($u['u006_user_settings'] as $k => $v) 
 		{
                 if ('prefix' == $k) continue;
 ?>

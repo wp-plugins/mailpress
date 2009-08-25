@@ -69,7 +69,7 @@ class MailPress_autoresponder
 		// for mails list
 			add_action('MailPress_get_icon_mails', 		array('MailPress_autoresponder', 'get_icon_mails'), 8, 1);
 		// for meta box in write page
-			add_action('MailPress_redirect', 			array('MailPress_autoresponder', 'redirect'), 8, 1);
+			//add_action('MailPress_redirect', 			array('MailPress_autoresponder', 'redirect'), 8, 1);
 			add_filter('MailPress_styles', 			array('MailPress_autoresponder', 'styles'), 8, 2);
 			add_filter('MailPress_scripts', 			array('MailPress_autoresponder', 'scripts'), 8, 2);
 			add_action('MailPress_add_meta_boxes_write',	array('MailPress_autoresponder', 'meta_boxes_write'), 8, 2);
