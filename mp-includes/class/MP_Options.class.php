@@ -32,9 +32,9 @@ abstract class MP_Options
 	function load_file($file)
 	{
 		if (substr($file, -4) != '.php') return;
-//if (MailPress::debug) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤ loading " . basename($file) . " ..." ); }
+//if (defined('MP_SCRIPT_DEBUG')) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤ loading " . basename($file) . " ..." ); }
 		require_once($file);
-//if (MailPress::debug) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤¤ loaded " . basename($file) ); }
+//if (defined('MP_SCRIPT_DEBUG')) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤¤ loaded " . basename($file) ); }
 	}
 }
 ?>

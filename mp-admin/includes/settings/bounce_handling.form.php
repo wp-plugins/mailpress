@@ -16,9 +16,10 @@ $bounce_handling = get_option('MailPress_bounce_handling');
 			<input type='hidden' name='formname' value='bounce_handling.form' />
 			<table class='form-table'>
 				<tr valign='top'>
-					<th scope='row'><?php _e('Bounce domain', 'MailPress'); ?></th>
+					<th scope='row'><?php _e('Return-Path', 'MailPress'); ?></th>
 					<td class='field'>
-						@<input type='text' size='25' name='bounce_handling[domain]' value="<?php if (isset($bounce_handling['domain'])) echo $bounce_handling['domain']; ?>" />
+						<input type='text' size='25' name='bounce_handling[Return-Path]' value="<?php if (isset($bounce_handling['Return-Path'])) echo $bounce_handling['Return-Path']; ?>" />
+						<br /><?php printf(__('generated Return-Path will be %1$s', 'MailPress'), (!isset($bounce_handling['Return-Path'])) ?  __('start_of_mail<i>+mail_id</i>+<i>mp_user_id</i>@mydomain.com', 'MailPress') : substr($bounce_handling['Return-Path'], 0, strpos($bounce_handling['Return-Path'], '@')) . '<i>+mail_id</i>+<i>mp_user_id</i>@' . substr($bounce_handling['Return-Path'], strpos($bounce_handling['Return-Path'], '@') + 1) ); ?>
 					</td>
 				</tr>
 				<tr valign='top'>

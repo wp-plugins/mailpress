@@ -11,9 +11,9 @@ class MP_Forms_templates
 		if ($dir) 
 			while (($file = readdir($dir)) !== false) if (($file{0} != '.') && (substr($file, -4) == '.xml')) 
 			{
-//if (MailPress::debug) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤ loading $file ..." ); }
+//if (defined('MP_SCRIPT_DEBUG')) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤ loading $file ..." ); }
 				$f = file_get_contents("$root/$file");
-//if (MailPress::debug) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤¤ loaded $file" ); }
+//if (defined('MP_SCRIPT_DEBUG')) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤¤ loaded $file" ); }
 				if (simplexml_load_string($f))
 				{
 					MailPress::require_class('Xml');

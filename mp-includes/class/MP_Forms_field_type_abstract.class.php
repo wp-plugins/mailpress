@@ -49,7 +49,7 @@ abstract class MP_Forms_field_type_abstract
 
 		$this->attributes_filter_css();
 
-		//if (MailPress::debug) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤ field_type " . $this->field->id . " ... " . $this->field->type ); } 
+		//if (defined('MP_SCRIPT_DEBUG')) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤ field_type " . $this->field->id . " ... " . $this->field->type ); } 
 	}
 
 	function attributes_filter_css() 

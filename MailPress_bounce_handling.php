@@ -14,7 +14,6 @@ class MailPress_bounce_handling
 {
 	const metakey = '_MailPress_bounce_handling';
 
-	const prefix = 'mp_bounce_';
 	const bt = 100;
 
 	function __construct()
@@ -69,7 +68,10 @@ class MailPress_bounce_handling
 	{
 		$bounce_handling = get_option('MailPress_bounce_handling');
 
-		$ReturnPath = self::prefix . $row->id . '_{{_user_id}}@' . $bounce_handling['domain'];
+		$prefix = substr($bounce_handling['Return-Path'], 0, strpos($bounce_handling['Return-Path'], '@'));
+		$domain = substr($bounce_handling['Return-Path'], strpos($bounce_handling['Return-Path'], '@') + 1 );
+
+		$ReturnPath = $prefix . '+' . $row->id . '+' . '{{_user_id}}' . '@' . $domain;
 		if (isset($row->mp_user_id)) $ReturnPath = str_replace('{{_user_id}}', $row->mp_user_id, $ReturnPath);
 
 		$message->setReturnPath($ReturnPath);
@@ -91,8 +93,9 @@ class MailPress_bounce_handling
 		$bounce_handling = get_option('MailPress_bounce_handling');
 		if (!$bounce_handling) return;
 
-		$domain 	= preg_quote($bounce_handling['domain']);
-		$prefix	= preg_quote(self::prefix);
+		$prefix = preg_quote(substr($bounce_handling['Return-Path'], 0, strpos($bounce_handling['Return-Path'], '@')) . '+');
+		$domain = preg_quote(substr($bounce_handling['Return-Path'], strpos($bounce_handling['Return-Path'], '@') + 1 ));
+
 		$user_mask	= preg_quote('{{_user_id}}');
 
 		MailPress::no_abort_limit();
@@ -123,15 +126,26 @@ class MailPress_bounce_handling
 				{
 					$pop3->get_headers_deep($message_id);
 
-					if (!isset($pop3->headers['Return-Path'])) continue;
- 					if (!is_array($pop3->headers['Return-Path'])) $pop3->headers['Return-Path'] = array($pop3->headers['Return-Path']);
+					$_emails = array();
 
-					foreach($pop3->headers['Return-Path'] as $ReturnPath)
+					if (isset($pop3->headers['Return-Path']))
 					{
-			   			$pattern = $prefix . "[0-9]*_[0-9]*@$domain";
+						if (!is_array($pop3->headers['Return-Path'])) 	$_emails[] = $pop3->headers['Return-Path'];
+						else foreach($pop3->headers['Return-Path'] as $ReturnPath) $_emails[] = $ReturnPath;
+					}
+
+					if (isset($pop3->headers['To']))
+					{
+						if (!is_array($pop3->headers['To'])) 	$_emails[] = $pop3->headers['To'];
+						else foreach($pop3->headers['To'] as $To) $_emails[] = $To;
+					}
+
+					foreach($_emails as $ReturnPath)
+					{
+			   			$pattern = $prefix . "[0-9]*\+[0-9]*@$domain";
 						if (ereg($pattern, $ReturnPath))
 						{
-							$pattern = "/$prefix([0-9]*)_([0-9]*)@$domain/";
+							$pattern = "/$prefix([0-9]*)\+([0-9]*)@$domain/";
 							preg_match_all($pattern, $ReturnPath, $matches, PREG_SET_ORDER);
 							if (empty($matches)) continue;
 					            $mail_id 	= $matches[0][1];
@@ -139,9 +153,9 @@ class MailPress_bounce_handling
 						}
 						else
 						{
-				   			$pattern = $prefix . "[0-9]*_$user_mask@$domain";
+				   			$pattern = $prefix . "[0-9]*\+$user_mask@$domain";
 							if (!ereg($pattern, $ReturnPath)) continue;
-							$pattern = "/$prefix([0-9]*)_$user_mask@$domain/";
+							$pattern = "/$prefix([0-9]*)\+$user_mask@$domain/";
 							preg_match_all($pattern, $ReturnPath, $matches, PREG_SET_ORDER);
 							if (empty($matches)) continue;
 					            $mail_id 	= $matches[0][1];
@@ -233,6 +247,8 @@ class MailPress_bounce_handling
 						$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
 
 						$trace->log('!' . str_repeat( '-', self::bt) . '!');
+
+						continue 2;
 					}
 				}
 			}

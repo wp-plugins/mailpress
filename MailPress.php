@@ -9,6 +9,7 @@ Tested up to: 2.8
 Version: 4.0
 Author URI: http://www.mailpress.org
 */
+//define ('MP_SCRIPT_DEBUG', true);
 
 define ('MP_FOLDER', 	basename(dirname(__FILE__)));
 define ('MP_PATH', 	PLUGINDIR . '/' . MP_FOLDER . '/' );
@@ -19,11 +20,9 @@ require_once(MP_TMP . 'mp-includes/class/MP_abstract.class.php');
 
 class MailPress extends MP_abstract
 {
-	const debug = false;
-
 	function __construct() 
 	{
-		if (self::debug) { self::require_class('Log'); global $mp_debug_log; $mp_debug_log = new MP_Log('debug', ABSPATH . MP_PATH, MP_FOLDER, false, 'general'); }
+		if (defined('MP_SCRIPT_DEBUG')) { self::require_class('Log'); global $mp_debug_log; $mp_debug_log = new MP_Log('debug', ABSPATH . MP_PATH, MP_FOLDER, false, 'general'); }
 
 		global $wpdb;
 // for mysql
@@ -180,7 +179,7 @@ class MailPress extends MP_abstract
 				update_option ('MailPress_general', $mp_general);
 			}
 		}
-		if (self::debug) { global $mp_debug_log; $mp_debug_log->end(true); }
+		if (defined('MP_SCRIPT_DEBUG')) { global $mp_debug_log; $mp_debug_log->end(true); }
 	}
 
 	public static function no_abort_limit()

@@ -41,16 +41,16 @@ abstract class MP_abstract
 
 	public static function mp_die($r = true)
 	{
-		if (MailPress::debug) { global $mp_debug_log; if ($r !== false) $mp_debug_log->log(" ******* Dying : >> $r << "); $mp_debug_log->end(true); }
+		if (defined('MP_SCRIPT_DEBUG')) { global $mp_debug_log; if ($r !== false) $mp_debug_log->log(" ******* Dying : >> $r << "); $mp_debug_log->end(true); }
 		die($r);
 	}
 
 	public static function require_class($classname, $fullpath = MP_TMP)
 	{
 		if (class_exists('MP_' . $classname)) return;
-//if (MailPress::debug) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤ loading MP_$classname.class.php ..." ); }
+//if (defined('MP_SCRIPT_DEBUG')) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤ loading MP_$classname.class.php ..." ); }
 		require_once($fullpath . "mp-includes/class/MP_$classname.class.php");
-//if (MailPress::debug) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤¤ MP_$classname.class.php loaded " ); }
+//if (defined('MP_SCRIPT_DEBUG')) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤¤ MP_$classname.class.php loaded " ); }
 	}
 
 	public static function url($url, $url_parms = array(), $wpnonce = false)
