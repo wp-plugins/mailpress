@@ -167,7 +167,6 @@ class MP_AdminPage extends MP_Admin_page
 		$metas = MP_Mailmeta::get( $id, '_MailPress_replacements');
 		$subject_display = $mail->subject;
 		if ($metas) foreach($metas as $k => $v) $subject_display = str_replace($k, $v, $subject_display);
-		if ( strlen($subject_display) > 40 )	$subject_display = substr($subject_display, 0, 39) . '...';
 //	attachements
 		$attach = false;
 		$metas = MP_Mailmeta::has( $id, '_MailPress_attached_file');
@@ -212,8 +211,8 @@ class MP_AdminPage extends MP_Admin_page
 			do_action('MailPress_get_icon_mails', $id);
 ?>
 			<strong>
-				<a class='row-title thickbox' href='<?php echo $view_url; ?>' title='<?php printf( __('View "%1$s"', 'MailPress') , ( '' == $mail->subject) ? __('(no subject)', 'MailPress') : htmlspecialchars($mail->subject, ENT_QUOTES) ); ?>'>
-					<?php echo ( '' == $subject_display) ? __('(no subject)', 'MailPress') : $subject_display; ?>
+				<a class='row-title thickbox' href='<?php echo $view_url; ?>' title='<?php printf( __('View "%1$s"', 'MailPress') , ( '' == $subject_display) ? __('(no subject)', 'MailPress') : htmlspecialchars($subject_display, ENT_QUOTES) ); ?>'>
+					<?php echo ( '' == $subject_display) ? __('(no subject)', 'MailPress') : (( strlen($subject_display) > 40 ) ? $subject_display = substr($subject_display, 0, 39) . '...' : $subject_display); ?>
 				</a>
 			</strong>
 		</td>
