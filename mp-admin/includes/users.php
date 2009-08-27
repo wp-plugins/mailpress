@@ -67,9 +67,7 @@ $stati = array(	'active' => __('Active','MailPress'),
 
 if (class_exists('MailPress_bounce_handling'))
 {
-	global $wpdb;
-	$bounced = $wpdb->get_var( $wpdb->prepare( "SELECT count(*)FROM $wpdb->mp_usermeta WHERE meta_key = %s ", '_MailPress_bounce_handling' ) );
-	if ($bounced) $stati['bounced'] = sprintf(__('Bounced (%s)','MailPress'), $bounced);
+	if ($num_users->bounced) $stati['bounced'] = sprintf(__('Bounced (%s)','MailPress'), $num_users->bounced);
 }
 
 $class		= ( empty($url_parms['status']) ) ? ' class="current"' : '';

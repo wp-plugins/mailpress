@@ -368,7 +368,7 @@ class MP_AdminPage extends MP_Admin_page_list
 	public static function count() 
 	{
 		global $wpdb;
-		$stats = array('waiting' => 0, 'active' => 0);
+		$stats = array('waiting' => 0, 'active' => 0, 'bounced' => 0);
 
 		$query = "SELECT status, COUNT( * ) AS count FROM $wpdb->mp_users GROUP BY status";
 		$counts = $wpdb->get_results( $query );
