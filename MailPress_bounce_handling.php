@@ -222,6 +222,7 @@ class MailPress_bounce_handling
 						$bm .= " $user_logmess";
 						$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
 
+						$mailmeta = '';
 						if (!$done)
 						{
 							MailPress::require_class('Mails');
@@ -238,7 +239,7 @@ class MailPress_bounce_handling
 								if ($metas) foreach($metas as $k => $v) $mail_logmess = str_replace($k, $v, $mail_logmess);
 								if ( strlen($mail_logmess) > 50 )	$mail_logmess = substr($mail_logmess, 0, 49) . '...';
 							}
-							else { $mail_logmess = '** WARNING ** mail not in database'; $mailmeta = ' '; }
+							else $mail_logmess = '** WARNING ** mail not in database';
 						}
 						$bm  = ' mail       ! ';
 						$bm .= str_repeat(' ', 10 - strlen($mail_id) )  . $mail_id . ' !';
