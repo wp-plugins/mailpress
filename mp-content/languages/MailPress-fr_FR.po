@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-08-22 21:41+0100\n"
+"PO-Revision-Date: 2009-08-27 12:06+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -5624,4 +5624,21 @@ msgstr "Serveur POP"
 
 msgid "'Bounces' settings saved"
 msgstr "R&eacute;glages &#8220;Rejets&#8221; enregistr&eacute;s"
+
+# C:\wgettext\mailpress\mailpress_batch_send\MailPress_batch_send.php:487
+msgid "Auto refresh"
+msgstr "Auto rafraichissement"
+
+# C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:19
+msgid "Return-Path"
+msgstr "Return-Path"
+
+# C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:22
+#, php-format
+msgid "generated Return-Path will be %1$s"
+msgstr "Le Return-Path g&eacute;n&eacute;r&eacute; sera : \" %1$s"
+
+# C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:22
+msgid "start_of_email<i>+mail_id</i>+<i>mp_user_id</i>@mydomain.com"
+msgstr "d&eacute;but_de_l'email<i>+mail_id</i>+<i>mp_user_id</i>@mondomaine.com"
 

@@ -19,7 +19,7 @@ $bounce_handling = get_option('MailPress_bounce_handling');
 					<th scope='row'><?php _e('Return-Path', 'MailPress'); ?></th>
 					<td class='field'>
 						<input type='text' size='25' name='bounce_handling[Return-Path]' value="<?php if (isset($bounce_handling['Return-Path'])) echo $bounce_handling['Return-Path']; ?>" />
-						<br /><?php printf(__('generated Return-Path will be %1$s', 'MailPress'), (!isset($bounce_handling['Return-Path'])) ?  __('start_of_mail<i>+mail_id</i>+<i>mp_user_id</i>@mydomain.com', 'MailPress') : substr($bounce_handling['Return-Path'], 0, strpos($bounce_handling['Return-Path'], '@')) . '<i>+mail_id</i>+<i>mp_user_id</i>@' . substr($bounce_handling['Return-Path'], strpos($bounce_handling['Return-Path'], '@') + 1) ); ?>
+						<br /><?php printf(__('generated Return-Path will be %1$s', 'MailPress'), (!isset($bounce_handling['Return-Path'])) ?  __('start_of_email<i>+mail_id</i>+<i>mp_user_id</i>@mydomain.com', 'MailPress') : substr($bounce_handling['Return-Path'], 0, strpos($bounce_handling['Return-Path'], '@')) . '<i>+mail_id</i>+<i>mp_user_id</i>@' . substr($bounce_handling['Return-Path'], strpos($bounce_handling['Return-Path'], '@') + 1) ); ?>
 					</td>
 				</tr>
 				<tr valign='top'>
