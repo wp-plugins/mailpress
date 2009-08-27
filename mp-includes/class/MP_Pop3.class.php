@@ -103,10 +103,8 @@ class MP_Pop3
 	{
 		$this->message = $string = '';
 
-		$response = $this->get_response("RETR $id ");
+		$response = $this->get_response('RETR ' . $id);
 		if (!$response) return false;
-
-//		if ($string = $this->fetch()) do { $string .= $this->fetch(); } while(".\r\n" != substr($string, -3 ));
 
 		$f = $this->fetch();
 		while ( !ereg("^\.\r\n", $f))
