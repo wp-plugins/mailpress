@@ -29,7 +29,7 @@ class MailPress_newsletter_categories
 	{
 		if ( function_exists( 'create_initial_taxonomies' ) ) create_initial_taxonomies();
 
-		add_action('publish_post', 	array(&$this, 'have_post'), 8, 1);
+		add_action('publish_post', 	array('MailPress_newsletter_categories', 'have_post'), 8, 1);
 
 		$daily_value 	 	= date('Ymd');
 		$d  				= date('Ymd', mktime(0, 0, 0, date('m'), date('d') - 1, date('Y')));
