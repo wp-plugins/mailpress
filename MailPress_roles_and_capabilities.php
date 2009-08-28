@@ -1,4 +1,6 @@
 <?php
+if (class_exists('MailPress'))
+{
 /*
 Plugin Name: MailPress_roles_and_capabilities
 Plugin URI: http://www.mailpress.org
@@ -122,4 +124,5 @@ class MailPress_roles_and_capabilities
 }
 
 $MailPress_roles_and_capabilities = new MailPress_roles_and_capabilities();
+}
 ?>

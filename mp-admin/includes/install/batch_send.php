@@ -33,7 +33,7 @@
 									UNIQUE KEY id (id)
 								    ) $charset_collate;";
 
-		require_once(ABSPATH . 'wp-admin/upgrade-functions.php');
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
   		dbDelta($sql);
 
 		$query = "UPDATE $wpdb->mp_mailmeta SET meta_key = '" . self::metakey . "' WHERE meta_key = 'batch_send';";

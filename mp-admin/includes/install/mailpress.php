@@ -41,7 +41,7 @@
 									UNIQUE KEY id (id)
 								    ) $charset_collate;";
 
-		require_once(ABSPATH . 'wp-admin/upgrade-functions.php');
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
   		dbDelta($sql);
 
   		$sql = "CREATE TABLE $wpdb->mp_stats (
@@ -52,7 +52,7 @@
 									PRIMARY KEY(sdate, stype, slib)
 								    ) $charset_collate;";
 
-		require_once(ABSPATH . 'wp-admin/upgrade-functions.php');
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
   		dbDelta($sql);
 
   		$sql = "CREATE TABLE $wpdb->mp_mails (
@@ -78,7 +78,7 @@
 									UNIQUE KEY id (id)
 								    ) $charset_collate;";
 
-		require_once(ABSPATH . 'wp-admin/upgrade-functions.php');
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
   		dbDelta($sql);
 
   		$sql = "CREATE TABLE $wpdb->mp_usermeta (
@@ -91,7 +91,7 @@
 									KEY meta_key (meta_key)
 								     ) $charset_collate;";
 
-		require_once(ABSPATH . 'wp-admin/upgrade-functions.php');
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
   		dbDelta($sql);
 
   		$sql = "CREATE TABLE $wpdb->mp_mailmeta (
@@ -104,7 +104,7 @@
 									KEY meta_key (meta_key)
 								     ) $charset_collate;";
 
-		require_once(ABSPATH . 'wp-admin/upgrade-functions.php');
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
   		dbDelta($sql);
 
 //
