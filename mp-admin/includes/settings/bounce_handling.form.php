@@ -8,6 +8,10 @@ $xevery = array (	30 	=> sprintf(__('%1$s seconds', 'MailPress'), '30'),
 			1800 	=> sprintf(__('%1$s minutes', 'MailPress'), '30'), 
 			3600 	=> sprintf(__('%1$s hour', 	'MailPress'), '') ); 
 
+$xmailboxstatus = array(	0	=>	__('no changes', 'MailPress'),
+					1	=>	__('mark as read', 'MailPress'),
+					2	=>	__('delete', 'MailPress') );
+
 $bounce_handling = get_option('MailPress_bounce_handling');
 ?>
 <div id='fragment-MailPress_bounce_handling'>
@@ -87,6 +91,14 @@ $bounce_handling = get_option('MailPress_bounce_handling');
 					<th><?php _e('Password','MailPress'); ?></th>
 					<td colspan='2'>
 						<input type='password' size='25' name='bounce_handling[password]' value="<?php if (isset($bounce_handling['password'])) echo $bounce_handling['password']; ?>" />
+					</td>
+				</tr>
+				<tr valign='top'>
+					<th scope='row'><?php _e('Bounce in mailbox', 'MailPress'); ?></th>
+					<td class='field'>
+						<select name='bounce_handling[mailbox_status]'>
+<?php MP_AdminPage::select_option($xmailboxstatus, ( (isset($bounce_handling['mailbox_status'])) ? $bounce_handling['mailbox_status'] : 2 ) );?>
+						</select>
 					</td>
 				</tr>
 			</table>

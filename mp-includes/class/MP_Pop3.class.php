@@ -14,6 +14,23 @@ class MP_Pop3
 		$this->trace	= $trace;
 	}
 
+	function fetch() { return fgets( $this->pop3, 1024 ); }
+
+	function fetch_all()
+	{
+		$response = $f = '';
+
+		$f = $this->fetch();
+		while ( !ereg("^\.\r\n", $f))
+		{
+			if ( $f[0] == '.' ) $f = substr($f,1);
+			$response .= $f;
+			$f = $this->fetch();
+	            if (empty($f)) break;
+		}
+		return $response;
+	}
+
 	function get_response($cmd = false)
 	{
 		if ($cmd)
@@ -32,8 +49,7 @@ class MP_Pop3
 
 		if ($this->trace)
 		{
-			$bm = " response   ! " . str_replace("\r\n", '', $response); //substr($response, 0, -3);
-	
+			$bm = " response   ! " . str_replace("\r\n", '', $response);
 			$this->trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
 		}
 
@@ -44,8 +60,6 @@ class MP_Pop3
 		$this->trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
 		return false;
 	}
-
-	function fetch() { return fgets( $this->pop3, 1024 ); }
 
 	function connect()
 	{
@@ -74,18 +88,6 @@ class MP_Pop3
 		return true;
 	}
 
-	function disconnect()
-	{
-		$response = $this->get_response('QUIT');
-		fclose($this->pop3);
-		if ($this->trace)
-		{
-			$bm = "disconnected!";
-			$this->trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-		}
-		return true;
-	}
-
 	function get_list()
 	{
 		$this->messages = array();
@@ -99,39 +101,23 @@ class MP_Pop3
 		return true;
 	}
 
-	function get_message($id)
-	{
-		$this->message = $string = '';
-
-		$response = $this->get_response('RETR ' . $id);
-		if (!$response) return false;
-
-		$f = $this->fetch();
-		while ( !ereg("^\.\r\n", $f))
-		{
-			if ( $f[0] == '.' ) $f = substr($f,1);
-			$string .= $f;
-			$f = $this->fetch();
-	            if (empty($f)) break;
-		}
-
-		$this->message = $string;
-	}
-
 	function get_headers($id)
 	{
 		$this->headers = array();
 		$response = $this->get_response("TOP $id 0");
 		if (!$response) return false;
 
-		if ($string = $this->fetch()) do { $string .= $this->fetch(); } while(".\r\n" != substr($string, -3 ));
-		$this->extract_headers($string);
+		$this->message = $this->fetch_all();
+		$this->extract_headers($this->message);
 	}
 
 	function get_headers_deep($id)
 	{
 		$this->headers = array();
-		$this->get_message($id);
+		$response = $this->get_response("TOP $id 1000");
+		if (!$response) return false;
+
+		$this->message = $this->fetch_all();
 		$this->extract_headers($this->message);
 	}
 
@@ -153,10 +139,30 @@ class MP_Pop3
 		}
 	}
 
+	function get_message($id)
+	{
+		$response = $this->get_response('RETR ' . $id);
+		if (!$response) return false;
+
+		$this->message = $this->fetch_all();
+	}
+
 	function delete($id)
 	{
 		$response = $this->get_response('DELE ' . $id);
-		$this->get_response();
+		if (!$response) return false;
+	}
+
+	function disconnect()
+	{
+		$response = $this->get_response('QUIT');
+		fclose($this->pop3);
+		if ($this->trace)
+		{
+			$bm = "disconnected!";
+			$this->trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
+		}
+		return true;
 	}
 }
 ?>
