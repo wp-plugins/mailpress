@@ -17,9 +17,8 @@ class MailPress_batch_send
 	function __construct()
 	{
 // prepare mail
-		add_filter('MailPress_status_mail', 		array('MailPress_batch_send', 'status_mail'), 8, 1);
-// batch processing
-		add_filter('MailPress_swift_send', 			array('MailPress_batch_send', 'swift_send'), 8, 1);
+		add_filter('MailPress_status_mail', 		array('MailPress_batch_send', 'status_mail'));
+
 // for batch mode
 		add_action('mp_action_batchsend', 			array(&$this, 'process'));
 		add_action('mp_process_batch_send', 		array(&$this, 'process'));
@@ -56,12 +55,21 @@ class MailPress_batch_send
 	}
 
 // prepare mail
-	public static function status_mail($x = false)
+	public static function status_mail()
 	{
 		return 'unsent';
 	}
 
-// for batch mode
+// process
+	public static function process()
+	{
+		MailPress::no_abort_limit();
+
+		MailPress::require_class('Batch');
+		$MP_Batch = new MP_Batch();
+	}
+
+// schedule
 	public static function schedule()
 	{
 		$batch_send_config = get_option('MailPress_batch_send');
@@ -69,351 +77,6 @@ class MailPress_batch_send
 		if (!wp_next_scheduled( 'mp_process_batch_send' )) 
 		if (!wp_next_scheduled( 'mp_action_batchsend' ))
 			wp_schedule_single_event(time()+$batch_send_config['every'], 'mp_process_batch_send');
-	}
-
-	public static function process()
-	{
-		MailPress::no_abort_limit();
-
-		self::update_batch_env();
-
-		extract(self::select_mail());
-
-		if ($send) 	self::batch($mail, $mailmetas);
-		else		self::alldone();
-
-		self::update_batch_env(!$send);
-	}
-
-	public static function update_batch_env($done=true)
-	{
-		global $wpdb;
-		$status 			= self::status_mail();
-		$batch_send_config 	= get_option('MailPress_batch_send');
-		
-		$query = "SELECT id, toemail FROM $wpdb->mp_mails WHERE status = '$status' ;";
-		$mails = $wpdb->get_results($query);
-
-		if ($mails)
-		{
-			foreach ($mails as $mail)
-			{
-				MailPress::require_class('Mailmeta');
-				$mailmetas 		= MP_Mailmeta::get( $mail->id , self::metakey);
-				if ($mailmetas)
-				{
-					switch (true)
-					{
-						case ($mailmetas['try'] == $mailmetas['max_try'] ) :
-							self::update_mail($mail->id, count($mailmetas['failed']));
-						break;
-						case ($mailmetas['sent'] == $mailmetas['count']) :
-							self::update_mail($mail->id, count($mailmetas['failed']));
-						break;
-					}
-				}
-				else
-				{
-					$mailmetas['per_pass'] 	= $batch_send_config['per_pass'];
-					$mailmetas['max_try']	= $batch_send_config['max_retry'] + 1;
-					$mailmetas['try'] 	= 0;
-					$mailmetas['pass'] 	= 0;
-
-					$mailmetas['processed'] = 0;
-
-					if (is_serialized ($mail->toemail))
-					{
-						$u = unserialize($mail->toemail);
-						$mailmetas['count'] = count($u);
-					}
-					else
-						$mailmetas['count'] = 1;
-
-					$mailmetas['sent'] 	= 0;
-					$mailmetas['failed'] 	= array();
-					MP_Mailmeta::update( $mail->id, self::metakey, $mailmetas );
-				}		
-			}
-		}
-		if (!$done) do_action('MailPress_schedule_batch_send');
-	}
-
-	public static function update_mail($id, $failed)
-	{
-		global $wpdb;
-				
-		$query = "UPDATE $wpdb->mp_mails SET status = 'sent' WHERE id = $id";
-		$x = $wpdb->query( $query );
-		if (!$failed)
-		{
-			MailPress::require_class('Mailmeta');
-			MP_Mailmeta::delete( $id , self::metakey);
-		}
-	}
-
-	public static function select_mail()
-	{
-		global $wpdb;
-
-		$send = $mail = $mailmetas = false;
-		$current_mail = '';
-
-		$status 			= self::status_mail();
-
-		$query = "SELECT * FROM $wpdb->mp_mails WHERE status = '$status' ;";
-		$mails = $wpdb->get_results($query);
-
-		if ($mails)
-		{
-			foreach ($mails as $mail)
-			{
-				MailPress::require_class('Mailmeta');
-				$mailmetas 		= MP_Mailmeta::get( $mail->id , self::metakey);
-
-				if ($mailmetas['count'] == $mailmetas['sent']) continue;
-
-				$send = true;
-
-				if (empty($current_mail))
-				{
-					$current_mail 	= $mail;
-					$current_mailmetas= $mailmetas;
-				}
-
-				if ($mailmetas['try'] < $current_mailmetas['try'])
-				{
-					$current_mail 	= $mail;
-					$current_mailmetas= $mailmetas;
-				}
-			}
-			$mail 	= $current_mail;
-			$mailmetas	= $current_mailmetas;
-		}
-		return array('mail' => $mail, 'mailmetas' => $mailmetas, 'send' => $send);
-	}
-
-	public static function batch($mail, $mailmetas)
-	{
-		$rc = true;
-
-		MailPress::require_class('Log');
-		$trace = new MP_Log('mp_process_batch_send', ABSPATH . MP_PATH, __CLASS__, false, 'batch_send');
-
-		$batch_report['header'] = 'Batch Report mail #' . $mail->id . '            count : ' . $mailmetas['count'] . '  per_pass : ' . $mailmetas['per_pass'] . '  max_try : ' . $mailmetas['max_try'];
-		$batch_report['start']  = $mailmetas;
-
-		$recipients = unserialize($mail->toemail);
-
-		if ($mailmetas['sent'] != $mailmetas['count'])
-		{
-			if (0 == $mailmetas['try'])
-			{
-				$offset 	= $mailmetas['pass'] * $mailmetas['per_pass'];
-				$length 	= $mailmetas['per_pass'];
-
-				$toemail 	= array_slice($recipients, $offset, $length, true);
-				$mailmetas['processed'] += count($toemail);
-			}
-			else
-			{
-				$offset 	= (isset($mailmetas['offset'])) ? $mailmetas['offset'] : 0;
-				$length 	= $mailmetas['per_pass'];
-
-				$j = 0;
-				$i = 0;
-
-				if (count($mailmetas['failed']) > 0)
-				{
-					foreach ($mailmetas['failed'] as $k => $v)
-					{
-						$i++;
-						if ($i < $offset) continue;
-						if ($j < $length)
-						{
-							$toemail[$k] = $recipients [$k];
-							$j++;
-						}
-						else break;
-					}
-				}
-				else	$toemail 	= array_slice($recipients, $offset, $length, true);
-
-				$mailmetas['processed'] = $mailmetas['sent'] + $offset + count($toemail);
-			}
-
-			if (0 == count($toemail))
-			{
-				$mailmetas['try']++;
-				$mailmetas['processed'] = 0;
-				$mailmetas['pass'] = 0;
-				$mailmetas['offset'] = 0;
-
-				$batch_report['processing']  = array_merge($mailmetas, array('offset'=>$offset, 'length'=>$length, ">> WARNING >>" => 'No more recipient' ) );
-			}
-			else
-			{
-				$batch_report['processing']  = array_merge($mailmetas, array('offset'=>$offset, 'length'=>$length) );
-
-// instaure the context
-				MailPress::require_class('Mail');
-				$_this = new MP_Mail(__CLASS__);
-
-				$_this->trace 				= $trace;
-
-				$_this->mail 				= new stdClass();
-				$_this->mail->swift_batchSend 	= true;
-				$_this->mail->mailpress_batch_send 	= true;
-
-				$_this->row 				=  new stdClass();
-				$_this->row 				= $mail;
-				$_this->args 				= new stdClass();
-
-				$_this->args->replacements 		= $toemail;
-				$_this->get_old_recipients();
-
-				MailPress::require_class('Mailmeta');
-				$m = MP_Mailmeta::get($_this->row->id, '_MailPress_replacements');
-				if (!is_array($m)) $m = array();
-				$_this->mail->replacements = $m;
-
-
-				$swiftfailed = $_this->swift_processing(); // will activate swift_send function
-
-
-				$rc = true;
-				if (!is_array($swiftfailed))
-				{
-					$rc = $swiftfailed;
-					$swiftfailed = array();
-				}
-
-				if ($rc)
-				{
-					$failed = $successfull = array();
-					$failed = array_flip($swiftfailed);
-					$successfull = array_diff_key($toemail, $failed);
-
-					foreach ($successfull as $k => $v) 
-					{
-						unset($mailmetas['failed'][$k]);
-						$mailmetas['sent']++ ;
-					}
-					foreach ($failed as $k => $v) 
-					{
-						if (!isset($mailmetas['failed'][$k])) $mailmetas['failed'][$k] = null;
-						if (0 != $mailmetas['try']) $mailmetas['offset']++;
-					}
-				}
-			}
-			$mailmetas['pass']++;
-			if ($mailmetas['processed'] >= $mailmetas['count']) 
-			{
-				$mailmetas['try']++;
-				$mailmetas['processed'] = 0;
-				$mailmetas['pass'] = 0;
-				$mailmetas['offset'] = 0;
-			}
-		}
-
-		if ($mailmetas['sent'] == $mailmetas['count']) $mailmetas['try'] = $mailmetas['max_try'];
-
-		MailPress::require_class('Mailmeta');
-		MP_Mailmeta::update( $mail->id, self::metakey, $mailmetas );
-
-		$batch_report['end']  = $mailmetas;
-		self::batch_report($batch_report, $trace);
-
-		$trace->end($rc);
-	}
-
-	public static function swift_send($_this)
-	{
-		if ($_this->mail->mailpress_batch_send)
-		{
-			$_this->mysql_disconnect('MailPress_batch_send');
-
-			$_this->swift->registerPlugin(new Swift_Plugins_DecoratorPlugin($_this->row->replacements));
-			if (!$_this->swift->batchSend($_this->message, $failures))
-			{
-				$_this->mysql_connect('MailPress_batch_send 2');
-				return false;
-			}
-			$_this->mysql_connect('MailPress_batch_send');
-			return $failures;
-		}
-		return true;
-	}
-
-	public static function alldone()
-	{
-
-		MailPress::require_class('Log');
-		$trace = new MP_Log('mp_process_batch_send', ABSPATH . MP_PATH, __CLASS__, false, 'batch_send');
-
-		$batch_report['header2'] = 'Batch Report';
-		$batch_report['alldone']  = true;
-		self::batch_report($batch_report, $trace);
-
-		$trace->end(true);
-	}
-
-	public static function batch_report($batch_report, $trace, $zz = 12)
-	{
-		$order = array( 'sent', 'failed', 'processed', 'try', 'pass', 'offset', 'length');
-		$unsets = array(  'count', 'per_pass', 'max_try' );
-		$t = (count($order) + 1) * ($zz + 1) -1;
-
-		foreach($batch_report as $k => $v)
-		{
-			switch ($k)
-			{
-				case 'header' :
-					$trace->log('!' . str_repeat( '-', $t) . '!');
-					$l = strlen($v);
-					$trace->log('!' . str_repeat( ' ', 5) . $v . str_repeat( ' ', $t - 5 - $l) . '!');
-					$trace->log('!' . str_repeat( '-', $t) . '!');
-					$s = '!            !';
-					foreach($order as $o)
-					{
-						$l = strlen($o);
-						$s .= " $o" . str_repeat( ' ', $zz - $l -1) . '!';
-					}
-					$trace->log($s);
-					$trace->log('!' . str_repeat( '-', $t) . '!');
-				break;
-				case 'header2' :
-					$t = 103;
-					$trace->log('!' . str_repeat( '-', $t) . '!');
-					$l = strlen($v);
-					$trace->log('!' . str_repeat( ' ', 5) . $v . str_repeat( ' ', $t - 5 - $l) . '!');
-					$trace->log('!' . str_repeat( '-', $t) . '!');
-				break;
-				case 'alldone' :
-					$t = 103;
-					$v = ' *** all done ***       *** all done ***       *** all done *** '; 
-					$l = strlen($v);
-					$trace->log('!' . str_repeat( ' ', 10) . $v . str_repeat( ' ', $t -10 - $l) . '!');
-					$trace->log('!' . str_repeat( '-', $t) . '!');
-					$trace->log('!' . str_repeat( ' ', 15) . $v . str_repeat( ' ', $t -15 - $l) . '!');
-					$trace->log('!' . str_repeat( '-', $t) . '!');
-					$trace->log('!' . str_repeat( ' ', 20) . $v . str_repeat( ' ', $t -20 - $l) . '!');
-				break;
-				default :
-						foreach ($unsets as $unset) unset($v[$unset]);
-						$c = 0;
-						$l = strlen($k);
-						$s = "! $k" . str_repeat( ' ', $zz - $l -1) . '!';
-						foreach($order as $o)
-						{
-							if (isset($v[$o])) { if (is_array($v[$o])) $v[$o] = count($v[$o]); $l = strlen($v[$o]); $s .= str_repeat( ' ', $zz - $l -1) . $v[$o] .  ' !'; unset($v[$o]); $c++;}
-						}
-						if ($c < count($order)) do { $s.= str_repeat( ' ', $zz) . '!'; $c++;} while($c <  count($order));
-						$trace->log($s);
-						if (!empty($v)) foreach($v as $a => $b) $trace->log("$a $b");
-				break;
-			}
-		}
-		$trace->log('!' . str_repeat( '-', $t) . '!');
 	}
 
 ////  ADMIN  ////
@@ -474,14 +137,19 @@ class MailPress_batch_send
 // for mails list
 	public static function to_mails_column($to, $mail)
 	{
-		if (self::status_mail() != $mail->status) return $to;
-
 		MailPress::require_class('Mailmeta');
-		$mailmetas = MP_Mailmeta::get( $mail->id , self::metakey);
+		$mailmeta = MP_Mailmeta::get( $mail->id , self::metakey);
 
-		if (!$mailmetas) return __('Pending...', 'MailPress');
+		if ($mailmeta)
+		{
+			if ($mailmeta['sent'] != $mailmeta['count']) return sprintf( __ngettext( _c('%1$s on %2$s sent| Singular', 'MailPress'), _c('%1$s on %2$s sent| Plural', 'MailPress'), $mailmeta['sent'] ), $mailmeta['sent'], $mailmeta['count'] );
+		}
+		else
+		{
+			if (self::status_mail() == $mail->status) return __('Pending...', 'MailPress');
+		}
 
-		return sprintf( __ngettext( _c('%1$s on %2$s sent| Singular', 'MailPress'), _c('%1$s on %2$s sent| Plural', 'MailPress'), $mailmetas['sent'] ), $mailmetas['sent'], $mailmetas['count'] );
+		return $to;
 	}
 
 	public static function autorefresh_js($scripts)

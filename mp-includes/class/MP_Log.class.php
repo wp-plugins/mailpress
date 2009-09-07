@@ -6,8 +6,6 @@ class MP_Log extends MP_abstract
 
 	function MP_Log($name, $path, $plug = '', $force = false, $option_name = 'general' )
 	{
-		$this->data = "\n";
-
 		$this->errors 	= array (	1 	=> 'E_ERROR', 
 							2 	=> 'E_WARNING', 
 							4 	=> 'E_PARSE', 
@@ -59,6 +57,11 @@ class MP_Log extends MP_abstract
 		if (self::noMP_Log == $this->level) return;
 		if ( 0  != $this->level) set_error_handler(array(&$this, 'logError'), $this->level);
 
+		$this->start($force);
+	}
+
+	function start($force = false)
+	{
 		$plugin_version = '';
 		if ( function_exists( 'get_plugin_data' ) )
 		{
@@ -67,12 +70,12 @@ class MP_Log extends MP_abstract
 			$plugin_version = "($plugin_version) ";
 		}
 
+		$this->data = "\n";
+
 		if ($force) 	
 $this->log (" **** Start logging $plugin_version**** $this->plug *** $this->name *** log forced");
 		else
 $this->log (" **** Start logging $plugin_version**** $this->name *** level : $this->level");
-
-
 
 // purge log
 		$now = date('Ymd');
@@ -87,6 +90,13 @@ $this->log (" **** Start logging $plugin_version**** $this->name *** level : $th
 			update_option ('MailPress_logs', $logs);
 		}
 
+		ob_start();
+	}
+
+	function restart()
+	{
+		$this->stop();
+		$this->data = "";
 		ob_start();
 	}
 
@@ -105,6 +115,19 @@ $this->log (" **** Start logging $plugin_version**** $this->name *** level : $th
 $this->log ("PHP [" . $this->errors[$error_level] . "] $error_level : $error_message in $error_file at line $error_line $y", $error_level);
 	}
 
+	function stop()
+	{
+			if (self::noMP_Log == $this->level) return;
+			if (0   != $this->level) restore_error_handler();
+
+			$log = ob_get_contents();
+		ob_end_clean();
+		if (!empty($log)) $this->log($log);
+		$this->fh = fopen($this->file , 'a+');
+		fputs($this->fh, $this->data); 
+		fclose($this->fh); 
+	}
+
 	function end($y=true)
 	{
 			if (self::noMP_Log == $this->level) return;
@@ -119,6 +142,7 @@ $this->log (" **** End logging   **** $this->plug *** $this->name *** level : $t
 		$this->fh = fopen($this->file , 'a+');
 		fputs($this->fh, $this->data); 
 		fclose($this->fh); 
+
 // mem'ries ...
 		$xs = array( 	'this->data', 'this->errors', 'this->name', 'this->path', 'this->plug', 'this->ftmplt', 'this->level', 'this->levels', 'this->lastpurge', 'this->lognbr');
 		foreach ($xs as $x) if (isset($$x)) unset($$x);
