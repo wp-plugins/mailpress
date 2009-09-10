@@ -68,6 +68,8 @@ class MailPress_bounce_handling
 	{
 		$bounce_handling = get_option('MailPress_bounce_handling');
 
+		if (!MailPress::is_email($bounce_handling['Return-Path'])) return $message;
+
 		$prefix = substr($bounce_handling['Return-Path'], 0, strpos($bounce_handling['Return-Path'], '@'));
 		$domain = substr($bounce_handling['Return-Path'], strpos($bounce_handling['Return-Path'], '@') + 1 );
 
