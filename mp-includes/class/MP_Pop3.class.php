@@ -65,10 +65,12 @@ class MP_Pop3
 	{
 	// fsockopen 
 		$this->pop3 = fsockopen($this->server, $this->port, $errno, $errstr);
-		if ($errno) 
+
+		if (false === $this->pop3) 
 		{
 			if ($this->trace)
 			{
+				if (empty($errstr)) { $errno = '*'; $errstr = 'Unable to connect to ' . $this->server .  ':' . $this->port; }
 				$bm = "*** ERROR **! $errno $errstr";
 				$this->trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
 				$bm = " end        ! Abort";
@@ -76,6 +78,7 @@ class MP_Pop3
 			}
 			return false;
 		}
+
 		$response = $this->get_response();
 		if (!$response) return false;
 	// USER 

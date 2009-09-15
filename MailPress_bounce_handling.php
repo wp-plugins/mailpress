@@ -20,20 +20,20 @@ class MailPress_bounce_handling
 	{
 // prepare mail
 		add_filter('MailPress_swift_message_headers',  	array('MailPress_bounce_handling', 'swift_message_headers'), 8, 2);
+
 // for batch mode
 		add_action('mp_process_bounce_handling', 		array('MailPress_bounce_handling', 'process'));
-		$bounce_handling_config = get_option('MailPress_bounce_handling');
-// for mails list
-		add_filter('MailPress_columns_mails', 		array('MailPress_bounce_handling', 'columns_mails'), 10, 1);
-		add_action('MailPress_get_row_mails',  		array('MailPress_bounce_handling', 'get_row_mails'), 10, 3);
-// view bounce
-		add_action('mp_action_view_bounce', 		array('MailPress_bounce_handling', 'mp_action_view_bounce')); 
 
 		$bounce_handling_config = get_option('MailPress_bounce_handling');
 		if ('wpcron' == $bounce_handling_config['batch_mode'])
 		{	
 			add_action('MailPress_schedule_bounce_handling', 	array('MailPress_bounce_handling', 'schedule'));
 		}
+// for mails list
+		add_filter('MailPress_columns_mails', 		array('MailPress_bounce_handling', 'columns_mails'), 10, 1);
+		add_action('MailPress_get_row_mails',  		array('MailPress_bounce_handling', 'get_row_mails'), 10, 3);
+// view bounce
+		add_action('mp_action_view_bounce', 		array('MailPress_bounce_handling', 'mp_action_view_bounce')); 
 
 		if (is_admin())
 		{
@@ -81,7 +81,16 @@ class MailPress_bounce_handling
 		return $message;
 	}
 
-// for batch mode
+// process
+	public static function process()
+	{
+		MailPress::no_abort_limit();
+
+		MailPress::require_class('Bounce');
+		$MP_Bounce = new MP_Bounce();
+	}
+
+// schedule
 	public static function schedule()
 	{
 		$bounce_handling_config = get_option('MailPress_bounce_handling');
@@ -90,234 +99,7 @@ class MailPress_bounce_handling
 			wp_schedule_single_event(time()+$bounce_handling_config['every'], 'mp_process_bounce_handling');
 	}
 
-	public static function process()
-	{
-		$bounce_handling = get_option('MailPress_bounce_handling');
-		if (!$bounce_handling) return;
 
-		$xmailboxstatus = array(	0	=>	'no changes',
-							1	=>	'mark as read',
-							2	=>	'delete' );
-
-		MailPress::no_abort_limit();
-
-		$return = true;
-
-		MailPress::require_class('Log');
-		$trace = new MP_Log('mp_process_bounce_handling', ABSPATH . MP_PATH, __CLASS__, false, 'bounce_handling');
-
-		$trace->log('!' . str_repeat( '-', self::bt) . '!');
-		$bm = "Bounce Handling Report (Bounce in mailbox : " . $xmailboxstatus[$bounce_handling['mailbox_status']] . ")";
-		$trace->log('!' . str_repeat( ' ', 5) . $bm . str_repeat( ' ', self::bt - 5 - strlen($bm)) . '!');
-		$trace->log('!' . str_repeat( '-', self::bt) . '!');
-		$bm = " start      !";
-		$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-
-		MailPress::require_class('Pop3');
-		$pop3 = new MP_Pop3($bounce_handling['server'], $bounce_handling['port'], $bounce_handling['username'], $bounce_handling['password'], $trace);
-
-		$bm = ' connecting ! ' . $bounce_handling['server'] . ':' . $bounce_handling['port'];
-		$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-
-		if ($pop3->connect())
-		{
-			if ($pop3->get_list())
-			{
-				foreach($pop3->messages as $message_id)
-				{
-					$pop3->get_headers_deep($message_id);
-					if (!list($mail_id, $mp_user_id, $bounce_email) = self::is_bounce($pop3, $message_id, $bounce_handling)) continue;
-
-					$trace->log('!' . str_repeat( '-', self::bt) . '!');
-					$bm = '            ! id         ! bounces   ! ' . $bounce_email;
-					$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-
-					$user_logmess = $mail_logmess = '';
-
-					$done = false;
-					MailPress::require_class('Users');
-					if ($mp_user = MP_Users::get($mp_user_id))
-					{
-						$bounce = array( 'message' => $pop3->message );
-
-						MailPress::require_class('Usermeta');
-						$usermeta = MP_Usermeta::get($mp_user_id, self::metakey);
-						if ($usermeta) 
-						{
-							if (isset($usermeta['bounces'][$mail_id])) 	$done = true;
-							else 								$usermeta['bounce']++;
-
-							$already_stored = false;
-							if ( isset($usermeta['bounces'][$mail_id]) )
-							{
-								foreach($usermeta['bounces'][$mail_id] as $bounces)
-								{
-									if ($bounces['message'] == $bounce['message'])
-									{
-										$already_stored = true;
-										break;
-									}
-								}
-							}
-							if (!$already_stored) $usermeta['bounces'][$mail_id][] = $bounce;
-
-							MP_Usermeta::update($mp_user_id, self::metakey, $usermeta);
-						}
-						else
-						{
-							$usermeta['bounce'] = 1;
-							$usermeta['bounces'][$mail_id][] = $bounce;	
-							MP_Usermeta::add($mp_user_id, self::metakey, $usermeta);
-						}
-
-						switch (true)
-						{
-							case $done :
-								$user_logmess = '-- notice -- bounce previously processed';
-							break;
-							case ('bounced' == $mp_user->status) :
-								$user_logmess = ' <' . $mp_user->email . '> already ** BOUNCED **';
-							break;
-							case ($usermeta['bounce'] >= $bounce_handling['max_bounces']) :
-								MP_Users::set_status($mp_user_id, 'bounced');
-								$user_logmess = '** BOUNCED ** <' . $mp_user->email . '>';
-							break;
-							default :
-								$user_logmess = 'new bounce for <' . $mp_user->email . '>';
-							break;
-						}
-					}
-					else { $user_logmess = '** WARNING ** user not in database'; $usermeta['bounce'] = '';}
-
-					$bm  = ' user       ! ';
-					$bm .= str_repeat(' ', 10 - strlen($mp_user_id) ) . $mp_user_id . ' !';
-					$bm .= str_repeat(' ', 10 - strlen($usermeta['bounce']) ) . $usermeta['bounce'] . ' !';
-					$bm .= " $user_logmess";
-					$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-
-					$mailmeta = '';
-					if (!$done)
-					{
-						MailPress::require_class('Mails');
-						if ($mail = MP_Mails::get($mail_id))
-						{
-							MailPress::require_class('Mailmeta');
-       
-							$mailmeta       = MP_Mailmeta::get($mail_id, self::metakey);
-							if ($mailmeta) 	MP_Mailmeta::update($mail_id, self::metakey, $mailmeta++ );
-							else 			MP_Mailmeta::add($mail_id, self::metakey, $mailmeta = 1);
-		
-							$metas = MP_Mailmeta::get( $mail_id, '_MailPress_replacements');
-							$mail_logmess = $mail->subject;
-							if ($metas) foreach($metas as $k => $v) $mail_logmess = str_replace($k, $v, $mail_logmess);
-							if ( strlen($mail_logmess) > 50 )	$mail_logmess = substr($mail_logmess, 0, 49) . '...';
-						}
-						else $mail_logmess = '** WARNING ** mail not in database';
-					}
-					$bm  = ' mail       ! ';
-					$bm .= str_repeat(' ', 10 - strlen($mail_id) )  . $mail_id . ' !';
-					$bm .= str_repeat(' ', 10 - strlen($mailmeta) ) . $mailmeta . ' !';
-					$bm .= " $mail_logmess";
-					$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-
-					$trace->log('!' . str_repeat( '-', self::bt) . '!');
-				}
-			}
-			else
-			{
-				$v = ' *** all done ***       *** all done ***       *** all done *** '; 
-				$trace->log('!' . str_repeat( '-', self::bt) . '!');
-				$trace->log('!' . str_repeat( ' ', 10) . $v . str_repeat( ' ', self::bt -10 - strlen($v)) . '!');
-				$trace->log('!' . str_repeat( '-', self::bt) . '!');
-				$trace->log('!' . str_repeat( ' ', 15) . $v . str_repeat( ' ', self::bt -15 - strlen($v)) . '!');
-				$trace->log('!' . str_repeat( '-', self::bt) . '!');
-				$trace->log('!' . str_repeat( ' ', 20) . $v . str_repeat( ' ', self::bt -20 - strlen($v)) . '!');
-				$trace->log('!' . str_repeat( '-', self::bt) . '!');
-				$return = false;
-			}
-		}
-		else $return = false;
-
-		if (!$pop3->disconnect()) $return = false;
-
-		if ($return)
-		{
-			$bm = " end        !";
-			$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-		}
-		$trace->log('!' . str_repeat( '-', self::bt) . '!');
-		$trace->end($return);
-
-		do_action('MailPress_schedule_bounce_handling');
-	}
-
-	public static function is_bounce($pop3, $message_id, $bounce_handling)
-	{
-		$prefix 	= preg_quote(substr($bounce_handling['Return-Path'], 0, strpos($bounce_handling['Return-Path'], '@')) . '+');
-		$domain 	= preg_quote(substr($bounce_handling['Return-Path'], strpos($bounce_handling['Return-Path'], '@') + 1 ));
-
-		$user_mask	= preg_quote('{{_user_id}}');
-
-		$_emails = array();
-
-		if (isset($pop3->headers['Return-Path']))
-		{
-			if (!is_array($pop3->headers['Return-Path'])) 	$_emails[] = $pop3->headers['Return-Path'];
-			else foreach($pop3->headers['Return-Path'] as $ReturnPath) $_emails[] = $ReturnPath;
-		}
-
-		if (isset($pop3->headers['To']))
-		{
-			if (!is_array($pop3->headers['To'])) 	$_emails[] = $pop3->headers['To'];
-			else foreach($pop3->headers['To'] as $To) $_emails[] = $To;
-		}
-
-		foreach($_emails as $ReturnPath)
-		{
-			$pattern = $prefix . "[0-9]*\+[0-9]*@$domain";
-			if (ereg($pattern, $ReturnPath))
-			{
-				$pattern = "/$prefix([0-9]*)\+([0-9]*)@$domain/";
-				preg_match_all($pattern, $ReturnPath, $matches, PREG_SET_ORDER);
-				if (empty($matches)) continue;
-				$mail_id    = $matches[0][1];
-				$mp_user_id = $matches[0][2];
-			}
-			else
-			{
-				$pattern = $prefix . "[0-9]*\+$user_mask@$domain";
-				if (!ereg($pattern, $ReturnPath)) continue;
-				$pattern = "/$prefix([0-9]*)\+$user_mask@$domain/";
-				preg_match_all($pattern, $ReturnPath, $matches, PREG_SET_ORDER);
-				if (empty($matches)) continue;
-		        	$mail_id = $matches[0][1];
-				MailPress::require_class('Mails');
-				if ($mail = MP_Mails::get($mail_id))
-				{
-					if (!MailPress::is_email($mail->toemail)) continue;
-					MailPress::require_class('Users');
-					$mp_user_id = MP_Users::get_id_by_email($mail->toemail);
-					if (!$mp_user_id) continue;
-				}
-				else continue;
-			}
-
-			switch ($bounce_handling['mailbox_status'])
-			{
-				case 1 :
-					$pop3->get_message($message_id);
-				break;
-				case 2 :
-					$pop3->delete($message_id);
-				break;
-				default :
-				break;
-			}
-			return array($mail_id, $mp_user_id, $matches[0][0]);
-			break;
-		}
-		return false;
-	}
 
 ////  ADMIN  ////
 ////  ADMIN  ////

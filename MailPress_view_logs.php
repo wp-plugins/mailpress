@@ -35,7 +35,7 @@ class MailPress_view_logs
 	{
 		$capabilities['MailPress_view_logs'] = array(	'name'	=> __('Logs', 'MailPress'),
 										'group'	=> 'admin',
-										'menu'	=> 99,
+										'menu'	=> 98,
 
 										'parent'	=> false,
 										'page_title'=> __('MailPress View logs', 'MailPress'),

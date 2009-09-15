@@ -97,6 +97,7 @@ class MP_Batch
 			$swiftfailed = $this->send();
 
 	// results
+			$this->trace->restart();
 			switch (true)
 			{
 				case (is_array($swiftfailed)) : 
