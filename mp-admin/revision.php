@@ -5,6 +5,7 @@ class MP_AdminPage extends MP_Admin_page
 {
 	const screen 	= 'mailpress_revision';
 	const capability 	= 'MailPress_edit_mails';
+	const help_url	= false;
 
 ////  Redirect  ////
 

@@ -5,6 +5,7 @@ class MP_AdminPage extends MP_Admin_page_list
 {
 	const screen 	= 'MailPress_page_form_fields';
 	const capability 	= 'MailPress_manage_forms';
+	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Add_ons:Form:Form_fields';
 
 	const add_form_id = 'add';
 	const list_id 	= 'the-list';

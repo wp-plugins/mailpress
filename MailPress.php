@@ -71,7 +71,7 @@ class MailPress extends MP_abstract
 		if (is_admin())
 		{
 		// for contextual help
-			define ('MailPress_help_url', 	'http://www.mailpress.org');
+			define ('MailPress_help_url', 	'http://www.mailpress.org/wiki');
 		// for install
 			register_activation_hook(MP_FOLDER . '/MailPress.php', array('MailPress', 'install'));
 		// for link on plugin page
@@ -113,18 +113,18 @@ class MailPress extends MP_abstract
 
 	// for newsletters
 		self::require_class('Newsletter');
-		// for post published
-			add_action('publish_post', 			array('MP_Newsletter', 'have_post'), 8, 1);
-		// for mailpress shutdown
-			add_action('mp_build_newsletters', 		array('MP_Newsletter', 'process'));
-			add_action('mp_process_newsletters', 	array('MP_Newsletter', 'process'));
-		// for shortcode
-			add_filter('MailPress_form_defaults', 	array('MP_Newsletter', 'form_defaults'), 8, 1);
-			add_filter('MailPress_form_options', 	array('MP_Newsletter', 'form_options'), 8, 1);
-			add_filter('MailPress_form_submit', 	array('MP_Newsletter', 'form_submit'), 8, 2);
-			add_action('MailPress_form', 		  	array('MP_Newsletter', 'form'), 1, 2); 
+	// for post published
+		add_action('publish_post', 			array('MP_Newsletter', 'have_post'), 8, 1);
+	// for mailpress shutdown
+		add_action('mp_build_newsletters', 		array('MP_Newsletter', 'process'));
+		add_action('mp_process_newsletters', 	array('MP_Newsletter', 'process'));
+	// for shortcode
+		add_filter('MailPress_form_defaults', 	array('MP_Newsletter', 'form_defaults'), 8, 1);
+		add_filter('MailPress_form_options', 	array('MP_Newsletter', 'form_options'), 8, 1);
+		add_filter('MailPress_form_submit', 	array('MP_Newsletter', 'form_submit'), 8, 2);
+		add_action('MailPress_form', 		  	array('MP_Newsletter', 'form'), 1, 2); 
 
-			MP_Newsletter::register_newsletters();
+		MP_Newsletter::register_newsletters();
 	}
 
 ////  Shortcode  ////

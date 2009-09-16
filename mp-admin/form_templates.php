@@ -5,6 +5,7 @@ class MP_AdminPage extends MP_Admin_page
 {
 	const screen 	= 'MailPress_page_templates';
 	const capability 	= 'MailPress_manage_forms';
+	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Add_ons:Form:Form_Templates';
 
 ////  Redirect  ////
 

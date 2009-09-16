@@ -5,6 +5,7 @@ class MP_AdminPage extends MP_Admin_page
 {
 	const screen 	= MailPress_page_settings;
 	const capability 	= 'MailPress_manage_options';
+	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Manual:MailPress:Settings';
 
 ////  Styles  ////
 

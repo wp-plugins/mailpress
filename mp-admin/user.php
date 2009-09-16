@@ -5,6 +5,7 @@ class MP_AdminPage extends MP_Admin_page
 {
 	const screen 	= 'mailpress_user';
 	const capability 	= 'MailPress_edit_users';
+	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Help:Admin:User';
 
 ////  Redirect  ////
 

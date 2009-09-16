@@ -5,6 +5,7 @@ class MP_AdminPage extends MP_Admin_page
 {
 	const screen 	= MailPress_page_themes;
 	const capability 	= 'MailPress_switch_themes';
+	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Manual:MailPress:Configuring:Themes';
 
 ////  Redirect  ////
 

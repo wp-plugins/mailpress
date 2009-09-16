@@ -5,6 +5,7 @@ class MP_AdminPage extends MP_Admin_page_list
 {
 	const screen 	= MailPress_page_import;
 	const capability 	= 'MailPress_import';
+	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Add_ons:Import';
 
 ////  Columns  ////
 
