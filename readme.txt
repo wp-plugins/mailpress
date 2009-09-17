@@ -1,28 +1,23 @@
 === MailPress ===
 Contributors: andre renaut
-Donate link: http://www.mailpress.org
+Donate link: http://www.mailpress.org/wiki
 Tags: mail, mails, comments, comment, subscribe, newsletters, newsletter, Wordpress, Plugin, swiftmailer, post, posts, smtp, sendmail, phpmail, notification, notifications
 Requires at least: 2.8
 Tested up to: 2.8
-Stable tag: 3.0.2
+Stable tag: 4.0
 
 The WordPress mailing platform
 
 == Description ==
 
-This is a BETA version of MailPress 4.0
+This is the official version of MailPress 4.0
 
-So many changes, i cannot list them all, the doc is currently re written.
-
-	* Code has been deeeeeply and completely reviewed, 
-
-	* name field available
-
-	* less ressources needed if not activated (till 3.0.2 MailPress was loading everything before doing something)
-	* new swiftmailer 4.0.3 (needs php 5.3 but tested with 5.2.5 locally without bugs)
-	* new api's for mailpress, ip, newsletter, import
-	* optimized size for toemail field for multi recipients mails.
-	* some add ons are integrated to MailPress
+* Code has been deeeeeply and completely reviewed, 
+* name field available
+* new swiftmailer 4.0.3 (needs php 5.3 but tested with 5.2.5 locally without bugs)
+* new api's for mailpress, ip, newsletter, import
+* optimized size for toemail field for multi recipients mails.
+* some previous add ons are integrated to MailPress 4.0
 
 == Installation ==
 
@@ -51,14 +46,14 @@ Do not use WordPress automatic upgrade : you will loose the content of mailpress
 MailPress themes and templates do not need to be changed if customized in a previous MailPress release. 
 
 Please report any bug in the mailpress google group http://groups.google.com/group/mailpress
-starting your subject title with : "(MailPress 4)".
+starting your subject title with : "(MailPress 4.0)".
 
 Thank you
 
 
 == Frequently Asked Questions ==
 
-* ?
+* see wiki page http://www.mailpress.org/wiki
 
 == Screenshots ==
 
@@ -66,10 +61,10 @@ Thank you
 
 == Changelog ==
 
-** 4.0 ** one day !
+** 4.0 ** 17/09/2009
 
 == Next features ==
 
-** a new doc !
+** available, new wiki ! http://www.mailpress.org/wiki
 
 Please donate !
