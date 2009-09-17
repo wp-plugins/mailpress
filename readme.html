@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>MailPress &rsaquo; ReadMe</title>
+	<link rel="stylesheet" href="mp-admin/css/readme.css" type="text/css" />
+</head>
+<body>
+<h1 id="logo" style="text-align: center">
+	<img alt="MailPress" src="mp-admin/images/logo_lmailpress_admin.png" />
+	<br /> Version 4.0
+</h1>
+<p style="text-align: center">the WordPress mailing platform</p>
+
+<h1>First Things First</h1>
+<p>Welcome. MailPress is a very special project to me and I'm proud to be a part of it ;-). Lot of hours have gone into MailPress, and I am dedicated to making it better every day. Thank you for making it part of your world.</p>
+<p style="text-align: right;">&#8212; Andr&eacute; Renaut</p>
+
+<h1>System requirements</h1>
+<ul>
+	<li>PHP version <strong>5.2</strong> or higher.</li>
+	<li>MySQL version <strong>5.0</strong> or higher.</li>
+</ul>
+<p>MailPress 4.0 is using <a href="http://www.swiftmailer.org/">swiftmailer 4.0.3</a>. If you would like to support MailPress, please consider <a href="http://www.mailpress.org/wiki">donating</a>.</p>
+
+<h1>Installation</h1>
+<ol>
+	<li> Make sure you have already installed WordPress 2.8 or above.</li>
+	<li> Unzip the MailPress package.</li>
+	<li> Upload the <code>mailpress</code> folder into <code>wp-content/plugins</code>.</li>
+	<li> Make sure the <code>wp-content/plugins/mailpress/tmp</code> folder is writable.</li>
+	<li> Log in to your WordPress admin and point your browser to "Plugins > installed" page.</li>
+	<li> Activate MailPress plugin first.</li>
+	<li> Point your browser to "Settings > MailPress", fill and save the settings for each tab.</li>
+	<li> Activate MailPress add ons if required and update the settings if necessary.</li>
+	<li> Once everything is installed, use the Test tab in "Settings > MailPress" to validate your settings.</li>
+</ol>
+
+<h1>Upgrading</h1>
+<p>Do not use WordPress automatic upgrade : you will loose the content of <code>mailpress/mp-content</code> and <code>mailpress/tmp</code> folders !</p>
+<ol>
+	<li> Deactivate all add ons.</li>
+	<li> Deactivate MailPress.</li>
+	<li> Delete all add ons folders</li>
+	<li> Move <code>mailpress/mp-includes/languages</code> to <code>mailpress/mp-content/languages</code></li>
+	<li> Delete <code>mailpress/mp-admin</code>, <code>mailpress/mp-includes</code>, <code>mailpress/xtras</code> folders.</li>
+	<li> Follow installation procedure</li>
+    <li> If you implemented page or category template, upgrade from <code>mailpress/mp-content/xtras</code> folder.
+</li>
+
+</ol>
+<p>MailPress themes and templates do not need to be changed if customized in a previous MailPress release. </p>
+
+<h1>Upgrading from another system</h1>
+<p>MailPress can import the emails stored in another system. First you need to get MailPress installed and working as described above. To finally import your emails into MailPress, you will need to use the <code>mailpress_import</code> api and addon.<br />You have developped your own importer and you think it can be useful to the MailPress community, let us know.</p>
+
+<h1>Resources</h1>
+<p>If you have any questions that aren't addressed in this document, please take advantage of MailPress numerous online resources:</p>
+<dl>
+	<dt><a href="readme.txt">Readme.txt</a></dt>
+		<dd>Read the <code>readme.txt</code> of MailPress</dd>
+	<dt><a href="http://www.mailpress.org/wiki">Plugin wiki</a></dt>
+		<dd>Bookmark and check often.</dd>
+	<dt><a href="http://groups.google.com/group/mailpress">MailPress google group </a></dt>
+		<dd>The MailPress google group. See the <a href="http://groups.google.com/group/mailpress/web/welcome-page">Welcome page</a>.</dd>
+</dl>
+
+<h1>Mailing lists</h1>
+<p>Need to organize the emails inserted into MailPress and/or let your users to choose which mailing lists they subscribe to, based on WordPress taxonomy concept (post categories, link categories, tags) : <a href='http://www.mailpress.org/wiki/index.php?title=Add_ons:Mailinglist'><code>MailPress_mailinglist</code></a>.</p>
+
+<h1>Batch mode</h1>
+<p>Your website becomes more and more successfull, you have now plenty of subscribers, processing a large number of recipients becomes an issue ! , use the <a href='http://www.mailpress.org/wiki/index.php?title=Add_ons:Batch_send '><code>MailPress_batch_send</code></a> addon.</p>
+
+<h1>Bounce handling</h1>
+<p>Process your mail bounces with <a href="http://www.mailpress.org/wiki/index.php?title=Add_ons:Bounces"><code>MailPress_bounce_handing</code></a> addon.</p>
+
+<h1>Tracking</h1>
+<p>Track your mails will report opening rate, clicks generated as well as locations of your readers using the MailPress Ip api. Activate <a href='http://www.mailpress.org/wiki/index.php?title=Add_ons:Tracking'><code>MailPress_tracking</code></a> addon.</p>
+
+<h1>Synchronize with WordPress</h1>
+<p>You want to synchronize MailPress with your WordPress registered users, <a href='http://www.mailpress.org/wiki/index.php?title=Add_ons:Sync_wordpress_user'><code>MailPress_sync_wordpress_user</code></a> add on is made for you.</p>
+
+<h1>User Roles</h1>
+<p>If you need to set Capabilities in MailPress, use the <a href='http://www.mailpress.org/wiki/index.php?title=Add_ons:Roles_and_capabilities'><code>MailPress_roles_and_capabilities</code></a> addon. You can read more about <a href="http://codex.wordpress.org/Roles_and_Capabilities">Roles and Capabilities</a> on the Codex.</p>
+
+<h1>SMTP, Sendmail, PHP mail()</h1>
+<p>Natively, MailPress support SMTP connections to your mail server, however you can switch to Sendmail <a href='http://www.mailpress.org/wiki/index.php?title=Add_ons:Sendmail'><code>MailPress_connection_sendmail</code></a> or native php mail() <a href='http://www.mailpress.org/wiki/index.php?title=Add_ons:Phpmail'><code>MailPress_connection_phpmail</code></a>.</p>
+
+<h1>Need more addons ?</h1>
+<ul>
+	<li> for MailPress mail pages : 
+		<ul>
+			<li><code>MailPress_upload_media</code>, </li>
+		</ul>
+	</li>
+	<li> for MailPress user pages : 
+		<ul>
+			<li><code>MailPress_bulk_import</code>, </li>
+		</ul>
+	</li>
+	<li> miscellaneous : 
+		<ul>
+			<li><code>MailPress_autoresponder</code>, </li>
+			<li><code>MailPress_filter_img</code>, </li>
+			<li><code>MailPress_newsletter_categories</code>, </li>
+			<li><code>MailPress_reset</code> </li>
+		</ul>
+	</li>
+</ul>
+
+<h1> Final notes</h1>
+<ul>
+	<li>If you have any suggestions, ideas, comments, or if you (gasp!) found a bug, join the MailPress community in the <a href="http://groups.google.com/group/mailpress">MailPress google group</a>.</li>
+	<li>WordPress now has a robust plugin API that makes extending MailPress code easy. If you are a developer interested in utilizing this see the <a href="http://codex.wordpress.org/Plugin_API">plugin documentation</a> in the Codex. In most all cases you shouldn't modify any of the core code.</li>
+</ul>
+
+<h1>Share the Love</h1>
+<p>MailPress has no multi-million euro marketing campaign or celebrity sponsors, but do have something even better&#8212;you. If you enjoy MailPress please consider telling a friend, setting it up for someone less knowledgable than yourself, or writing a post on MailPress.</p>
+
+
+</body>
+</html>

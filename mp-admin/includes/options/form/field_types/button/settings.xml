@@ -1,0 +1,63 @@
+<?php ob_start(); /* button */ ?>
+<?xml version="1.0" ?>
+<settings>
+	<attributes>
+		<items>
+			<type>
+				<radio>
+					<text>type=</text>
+					<values><![CDATA[<?php echo serialize(array('submit' => '"submit"', 'reset' => '"reset"', 'button' => '"button"')); ?>]]></values>
+					<disabled><![CDATA[<?php echo serialize(array()); ?>]]></disabled>
+					<default>submit</default>
+				</radio>
+			</type>
+		</items>
+		<items>
+			<value><text></text></value>
+		</items>
+		<items>
+			<class><text></text></class>
+		</items>
+		<items>
+			<style><text></text></style>
+		</items>
+		<items>
+			<is>
+				<is>
+					<values><![CDATA[<?php echo serialize(array('disabled')); ?>]]></values>
+					<disabled><![CDATA[<?php echo serialize(array()); ?>]]></disabled>
+				</is>
+			</is>
+		</items>
+		<items>
+			<misc><misc><![CDATA[<?php _e("other attributes except 'name' & 'id'", 'MailPress'); ?>]]></misc></misc>
+		</items>
+	</attributes>
+<?php if ($this->field->form_incopy) : ?>
+	<options>
+		<items>
+			<incopy>
+				<checkbox>
+					<text><![CDATA[<?php _e('In copy', 'MailPress'); ?>]]></text>
+					<value>1</value>
+					<disabled>0</disabled>
+				</checkbox>
+			</incopy>
+		</items>
+	</options>
+<?php endif; ?>
+<?php if ($protected) : ?>
+	<hiddens>
+		<options>
+			<protected></protected>
+		</options>
+	</hiddens>
+<?php endif; ?>
+	<tabs>
+		<attributes><![CDATA[<?php _e('Attributes', 'MailPress'); ?>]]></attributes>
+<?php if ($this->field->form_incopy) : ?>
+		<options><![CDATA[<?php _e('Options', 'MailPress'); ?>]]></options>
+<?php endif; ?>
+	</tabs>
+</settings>
+<?php $xml = ob_get_contents(); ob_end_clean(); return trim($xml); ?>
