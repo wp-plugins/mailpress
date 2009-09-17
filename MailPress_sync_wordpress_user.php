@@ -415,7 +415,7 @@ class MailPress_sync_wordpress_user
 							<input style='padding:3px;margin:0 10px 0 0;width:170px;' type='text' disabled='disabled' value="<?php if (isset($wp_user->first_name)) echo $wp_user->first_name; ?>" />
 						</td>
 						<td style='border-bottom:none;line-height:0.8em;padding:0px;' class='side-info-hide'>
-							<input style='padding:3px;margin:0 10px 0 0;width:170px;' type='text' disabled='disabled' value="<?php if (isset($wp_user->ast_name)) echo $wp_user->last_name; ?>" />
+							<input style='padding:3px;margin:0 10px 0 0;width:170px;' type='text' disabled='disabled' value="<?php if (isset($wp_user->last_name)) echo $wp_user->last_name; ?>" />
 						</td>
 						<td style='border-bottom:none;line-height:0.8em;padding:0px;'>
 							<input style='padding:3px;margin:0 10px 0 0;width:170px;' type='text' disabled='disabled' value="<?php if (isset($wp_user->nickname)) echo $wp_user->nickname; ?>" />
