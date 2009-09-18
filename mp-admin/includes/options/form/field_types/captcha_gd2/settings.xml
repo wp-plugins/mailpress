@@ -1,5 +1,4 @@
-<?php ob_start(); /* captcha_gd2 */ ?>
-<?xml version="1.0" ?>
+<?php /* captcha_gd2 */ ?>
 <settings>
 	<attributes>
 		<items>
@@ -98,4 +97,3 @@
 		<captcha><![CDATA[<?php _e('Captcha', 'MailPress'); ?>]]></captcha>
 	</tabs>
 </settings>
-<?php $xml = ob_get_contents(); ob_end_clean(); return trim($xml); ?>

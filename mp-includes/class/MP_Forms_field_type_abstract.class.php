@@ -102,7 +102,12 @@ abstract class MP_Forms_field_type_abstract
 		$protected = ( isset($this->field->settings['options']['protected']) && $this->field->settings['options']['protected'] );
 		$has_controls = $has_controls_checked = false;
 		if (method_exists($this, 'build_settings_form')) return $this->build_settings_form();
-		$xml = include($this->settings);
+
+		ob_start();
+			include($this->settings);
+			$xml = trim(ob_get_contents());
+		ob_end_clean();
+        $xml = '<?xml version="1.0" ?>' . $xml;
 
 		$xml = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
 		foreach ($xml->tabs->children() as $child) $tabs[$child->getName()] = (string) $child;

@@ -1,9 +1,8 @@
-<?php ob_start(); /* date */ ?>
-<?php
+<?php /* date */ 
+
 $xformat_time[0] = __('22:10', 'MailPress');
 $xformat_time[1] = __('10:10 am/pm', 'MailPress');
 ?>
-<?xml version="1.0" ?>
 <settings>
 	<attributes>
 		<items>
@@ -97,4 +96,3 @@ $xformat_time[1] = __('10:10 am/pm', 'MailPress');
 		<options><![CDATA[<?php _e('Options', 'MailPress'); ?>]]></options>
 	</tabs>
 </settings>
-<?php $xml = ob_get_contents(); ob_end_clean(); return trim($xml); ?>

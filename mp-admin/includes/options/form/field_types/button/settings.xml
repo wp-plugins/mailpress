@@ -1,5 +1,4 @@
-<?php ob_start(); /* button */ ?>
-<?xml version="1.0" ?>
+<?php /* button */ ?>
 <settings>
 	<attributes>
 		<items>
@@ -60,4 +59,3 @@
 <?php endif; ?>
 	</tabs>
 </settings>
-<?php $xml = ob_get_contents(); ob_end_clean(); return trim($xml); ?>

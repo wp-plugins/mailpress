@@ -1,5 +1,4 @@
-<?php ob_start(); /* geotag */ ?>
-<?php 
+<?php /* geotag */ 
 global $mp_general;
 if (!isset($mp_general['gmapkey']) || empty($mp_general['gmapkey'])) return;
 
@@ -14,7 +13,6 @@ $ip = $_SERVER['REMOTE_ADDR'];
 $xlatlng = MP_Ip::get_latlng($ip);
 if (!$xlatlng || !isset($xlatlng['lat'])) $xlatlng = array('lat' => 48.8352, 'lng' => 2.4718);
 ?>
-<?xml version="1.0" ?>
 <settings>
 	<attributes>
 		<items>
@@ -250,4 +248,3 @@ if (!$xlatlng || !isset($xlatlng['lat'])) $xlatlng = array('lat' => 48.8352, 'ln
 		<googlemap><![CDATA[<?php _e('GMap', 'MailPress'); ?>]]></googlemap>
 	</tabs>
 </settings>
-<?php $xml = ob_get_contents(); ob_end_clean(); return trim($xml); ?>

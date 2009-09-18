@@ -1,5 +1,5 @@
-<?php ob_start(); /* captcha_gd1 */ ?>
-<?php
+<?php /* captcha_gd1 */
+
 $root = dirname(__FILE__) . '/captcha/cfg/';
 $xform_img_style['random'] = __('random choice', 'MailPress');
 if (is_dir($root)) 
@@ -9,7 +9,6 @@ if (is_dir($root))
 	@closedir($dir);
 }
 ?>
-<?xml version="1.0" ?>
 <settings>
 	<attributes>
 		<items>
@@ -120,4 +119,3 @@ if (is_dir($root))
 		<captcha><![CDATA[<?php _e('Captcha', 'MailPress'); ?>]]></captcha>
 	</tabs>
 </settings>
-<?php $xml = ob_get_contents(); ob_end_clean(); return trim($xml); ?>

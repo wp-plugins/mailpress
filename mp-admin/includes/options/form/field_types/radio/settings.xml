@@ -1,5 +1,4 @@
-<?php ob_start(); /* radio */ ?>
-<?xml version="1.0" ?>
+<?php /* radio */ ?>
 <settings>
 	<attributes>
 		<items>
@@ -79,4 +78,3 @@
 <?php endif; ?>
 	</tabs>
 </settings>
-<?php $xml = ob_get_contents(); ob_end_clean(); return trim($xml); ?>

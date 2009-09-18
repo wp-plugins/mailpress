@@ -1,6 +1,4 @@
 <?php $visitor_name = ( isset($this->field->settings['options']['visitor_name']) ); /* text */ ?>
-<?php ob_start(); ?>
-<?xml version="1.0" ?>
 <settings>
 	<attributes>
 		<items>
@@ -110,4 +108,3 @@
 <?php endif; ?>
 	</tabs>
 </settings>
-<?php $xml = ob_get_contents(); ob_end_clean(); return trim($xml); ?>

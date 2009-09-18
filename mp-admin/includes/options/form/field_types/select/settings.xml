@@ -1,5 +1,4 @@
-<?php ob_start(); /* select */ ?>
-<?xml version="1.0" ?>
+<?php /* select */ ?>
 <settings>
 	<attributes>
 		<items>
@@ -76,4 +75,3 @@
 		<options><![CDATA[<?php _e('Options', 'MailPress'); ?>]]></options>
 	</tabs>
 </settings>
-<?php $xml = ob_get_contents(); ob_end_clean(); return trim($xml); ?>

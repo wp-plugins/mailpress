@@ -1,6 +1,4 @@
 <?php $visitor_mail = ( isset($this->field->settings['options']['visitor_mail']) ); /* checkbox */ ?>
-<?php ob_start(); ?>
-<?xml version="1.0" ?>
 <settings>
 	<attributes>
 		<items>
@@ -65,4 +63,3 @@
 <?php endif; ?>
 	</tabs>
 </settings>
-<?php $xml = ob_get_contents(); ob_end_clean(); return trim($xml); ?>

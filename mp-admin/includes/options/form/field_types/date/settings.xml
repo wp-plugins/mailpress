@@ -1,5 +1,5 @@
-<?php ob_start(); /* date */ ?>
-<?php
+<?php /* date */ 
+
 $xformat_month['n'] = __('numbers', 'MailPress');
 $xformat_month['s'] = __('short text', 'MailPress');
 $xformat_month['f'] = __('full text', 'MailPress');
@@ -8,7 +8,6 @@ $xformat_date['ymd'] = __('y m d', 'MailPress');
 $xformat_date['dmy'] = __('d m y', 'MailPress');
 $xformat_date['mdy'] = __('m d y', 'MailPress');
 ?>
-<?xml version="1.0" ?>
 <settings>
 	<attributes>
 		<items>
@@ -141,4 +140,3 @@ $xformat_date['mdy'] = __('m d y', 'MailPress');
 		<options><![CDATA[<?php _e('Options', 'MailPress'); ?>]]></options>
 	</tabs>
 </settings>
-<?php $xml = ob_get_contents(); ob_end_clean(); return trim($xml); ?>
