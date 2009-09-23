@@ -4,7 +4,7 @@ MailPress::require_class('Admin_page');
 class MP_AdminPage extends MP_Admin_page
 {
 	const screen 	= 'mailpress_mail';
-	const capability 	= 'MailPress_tracking_mails';
+	const capability 	= 'MailPress_edit_mails';
 	const help_url	= false;
 
 ////  Redirect  ////
