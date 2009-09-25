@@ -4,7 +4,7 @@ class MP_Log extends MP_abstract
 {
 	const noMP_Log	= 123456789;
 
-	function MP_Log($name, $path, $plug = '', $force = false, $option_name = 'general' )
+	function __construct($name, $path, $plug = '', $force = false, $option_name = 'general' )
 	{
 		$this->errors 	= array (	1 	=> 'E_ERROR', 
 							2 	=> 'E_WARNING', 
@@ -152,8 +152,11 @@ $this->log (" **** End logging   **** $this->plug *** $this->name *** level : $t
 	{
 		$xs = array();
 		$l = opendir($this->path);
-		if ($l) while ( ($file = readdir($l)) !== false ) if ( ($file[0] != '.') && (strstr($file, $this->ftmplt)) ) $xs[] = $file;
-		@closedir($l);
+		if ($l) 
+		{
+			while ( ($file = readdir($l)) !== false ) if (strstr($file, $this->ftmplt) !== false ) $xs[] = $file;
+			@closedir($l);
+		}
 
 		if (count($xs) > $this->lognbr)
 		{

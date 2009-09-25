@@ -1,7 +1,7 @@
 <?php
 class MP_Themes
 {
-	function MP_Themes() 
+	function __construct() 
 	{
 		$this->themes  			= $this->get_themes();
 		$this->current_theme 		= $this->get_current_theme();
