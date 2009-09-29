@@ -126,7 +126,7 @@ class MailPress_newsletter_categories
 	{
 		if (get_post_meta($post_id, '_MailPress_prior_to_install')) return true;
 
-		global $mp_registered_newsletters, $mp_general;
+		global $mp_registered_newsletters, $mp_subscriptions;
 
 		$args = array('hierarchical' => false, 'depth'=>false, 'echo'=>false, 'get'=>'all');
 		$categories = get_categories($args);
@@ -143,7 +143,7 @@ class MailPress_newsletter_categories
 			$newsletter_id 	= 'post_category_' . $id;
 			$post_meta 		= '_MailPress_published_category_' . $id;
 
-			if (isset($mp_general['newsletters'][$newsletter_id]))
+			if (isset($mp_subscriptions['newsletters'][$newsletter_id]))
 			{
 				if (!get_post_meta($post_id, $post_meta, true))	
 				{
