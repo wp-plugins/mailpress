@@ -196,7 +196,7 @@ class MP_import_csv extends MP_Import_importer_abstract
 		
 		if (!empty($_POST['mailinglist']))
 		{
-			$mailinglist_ID = str_replace('MailPress_mailing_list~', '', $_POST['mailinglist'], $mailinglist_ok);
+			$mailinglist_ID = str_replace('MailPress_mailinglist~', '', $_POST['mailinglist'], $mailinglist_ok);
 
 			MP_AdminPage::require_class('Mailinglists');
 			$mailinglist_name = MP_Mailinglists::get_name($mailinglist_ID);
