@@ -6,7 +6,7 @@ Plugin Name: MailPress_connection_sendmail
 Plugin URI: http://www.mailpress.org
 Description: This is just an addon for MailPress to replace default SMTP connection by SendMail connection.
 Author: Andre Renaut
-Version: 4.0
+Version: 4.0.1
 Author URI: http://www.mailpress.org
 */
 

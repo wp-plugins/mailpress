@@ -6,7 +6,7 @@ Plugin Name: MailPress_bulk_import
 Plugin URI: http://www.mailpress.org
 Description: This is just an addon for MailPress to import users
 Author: Daniel Caleb & Andre Renaut
-Version: 4.0
+Version: 4.0.1
 Author URI: http://www.mailpress.org http://galerie-eigenheim.de
 */
 

@@ -29,7 +29,7 @@ class MP_Forms_field_type_captcha_gd1 extends MP_Forms_field_type_abstract
 		}
 		else
 		{
-			session_start();
+			@session_start();
 			include($_SESSION['cryptogra']['settings']);
 			$code = ($difuplow) ? $value : strtoupper($value);
 

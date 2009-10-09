@@ -1,6 +1,5 @@
 <?php
-include(MP_TMP . 'mp-admin/includes/options/autoresponders.php');
-self::require_class('Autoresponders');
+$mp_autoresponder_registered_events = MP_Autoresponders_events::get_all();
 
 global $action;
 
@@ -149,7 +148,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 						<div class="form-field" style='margin:0;padding:0;'>
 							<label for='autoresponder_event'><?php _e('Event','MailPress') ?></label>
 							<select id='autoresponder_event' name='description[event]'>
-<?php self::select_option($mp_autoresponders_by_id, (isset($autoresponder->description['event'])) ? $autoresponder->description['event'] : '' ); ?>
+<?php self::select_option($mp_autoresponder_registered_events, (isset($autoresponder->description['event'])) ? $autoresponder->description['event'] : '' ); ?>
 							</select>
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>

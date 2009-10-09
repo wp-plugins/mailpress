@@ -170,8 +170,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function get_row( $autoresponder, $url_parms ) 
 	{
-		self::require_class('Autoresponders');
-		include(MP_TMP . 'mp-admin/includes/options/autoresponders.php');
+		$mp_autoresponder_registered_events = MP_Autoresponders_events::get_all();
 
 		static $row_class = '';
 
@@ -227,7 +226,7 @@ class MP_AdminPage extends MP_Admin_page_list
 					$out .= "<td $attributes>" . stripslashes($autoresponder->description['desc']) . "</td>";
 				break;
 				case 'event':
-					$out .= "<td $attributes>" . $mp_autoresponder_registered_events[$autoresponder->description['event']]['desc'] . "</td>";
+					$out .= "<td $attributes>" . $mp_autoresponder_registered_events[$autoresponder->description['event']] . "</td>";
 				break;
 			}
 		}

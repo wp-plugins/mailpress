@@ -6,7 +6,7 @@ Plugin Name: MailPress_autoresponder
 Plugin URI: http://www.mailpress.org
 Description: This is just an addon for MailPress to manage autoresponders (based on wp-cron)
 Author: Andre Renaut
-Version: 4.0
+Version: 4.0.1
 Author URI: http://www.mailpress.org
 */
 
@@ -22,23 +22,7 @@ class MailPress_autoresponder
 		register_taxonomy(self::taxonomy, 'MailPress_autoresponder', array('update_count_callback' => array('MailPress_autoresponder', 'update_count_callback')));
 
 		MailPress::require_class('Autoresponders');
-
-// for tracking events to autorespond to
-		include(MP_TMP . 'mp-admin/includes/options/autoresponders.php');
-		$x = array();
-		$autoresponders = MP_Autoresponders::get_all();
-		foreach( $autoresponders as $autoresponder )
-		{
-			if (!isset($autoresponder->description['active'])) continue;
-			$id = $autoresponder->description['event'];
-			if (isset($mp_autoresponder_registered_events[$id]))
-			{
-				$event 	= $mp_autoresponder_registered_events[$id]['event'];
-				$callback 	= $mp_autoresponder_registered_events[$id]['callback'];
-				$x[$event] 	= $callback;
-			}
-		}
-		foreach($x as $e => $c) add_action($e, $c, 8, 2);  		// 2 arguments : mp_user_id, event
+		MailPress::require_class('Autoresponders_events');
 
 // for autoresponder
 		add_action('mp_autoresponder_process', 			array('MailPress_autoresponder', 'process'));
@@ -83,57 +67,6 @@ class MailPress_autoresponder
 		return 0;
 	}
 
-
-//// Tracking events to autorespond to  ////
-
-	public static function start_user_autoresponder($mp_user_id, $event)
-	{
-		$x = array();
-		include(MP_TMP . 'mp-admin/includes/options/autoresponders.php');
-		MailPress::require_class('Autoresponders');
-
-		$autoresponders = MP_Autoresponders::get_all();
-
-		foreach( $autoresponders as $autoresponder )
-		{
-			if (!isset($autoresponder->description['active'])) continue;
-			foreach($mp_autoresponders_by_event[$event] as $k => $v)
-			{
-				if ($k != $autoresponder->description['event']) continue;
-				$_mails = MP_Autoresponders::get_term_objects($autoresponder->term_id);
-
-				if (isset($_mails[0]))
-				{
-					$term_id = $autoresponder->term_id;
-
-					$time = time();
-					$schedule = self::schedule($time, $_mails[0]['schedule']);
-					MailPress::require_class('Usermeta');
-					$umeta_id = MP_Usermeta::add($mp_user_id, '_MailPress_autoresponder_' . $term_id, $time);
-
-					wp_schedule_single_event($schedule, 'mp_process_autoresponder', 	array('args' => array('umeta_id' => $umeta_id, 'mail_order'=> 0 )));
-
-					MailPress::require_class('Log');
-					$trace = new MP_Log('MP_Autoresponder_' . $term_id, ABSPATH . MP_PATH, 'autoresponder', false, 'autoresponder');
-
-					$trace->log('!' . str_repeat( '-', self::bt) . '!');
-					$bm = "Batch Report autoresponder #$term_id            umeta_id : $umeta_id  mail_order : 0";
-					$trace->log('!' . str_repeat( ' ', 5) . $bm . str_repeat( ' ', self::bt - 5 - strlen($bm)) . '!');
-					$trace->log('!' . str_repeat( '-', self::bt) . '!');
-					$bm = " mp_user    ! $mp_user_id";
-					$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-					$bm = " event      ! $event";
-					$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-					$bm = " 1st sched. ! " . date('Y-m-d H:i:s', $schedule);
-					$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-					$trace->log('!' . str_repeat( '-', self::bt) . '!');
-
-					$trace->end(true);
-				}
-			}
-		}
-	}
-
 ////  Autoresponder  ////
 
 	public static function process($args)
@@ -144,140 +77,12 @@ class MailPress_autoresponder
 
 		MailPress::require_class('Usermeta');
 		$meta = MP_Usermeta::get_by_id($umeta_id);
-		$term_id 	= (!$meta) ? 'unknown' : str_replace('_MailPress_autoresponder_', '', $meta->meta_key);
-
-		MailPress::require_class('Log');
-		$trace = new MP_Log('MP_Autoresponder_' . $term_id, ABSPATH . MP_PATH, 'autoresponder', false, 'autoresponder');
-
-		$trace->log('!' . str_repeat( '-', self::bt) . '!');
-		$bm = "Batch Report autoresponder #$term_id            umeta_id : $umeta_id  mail_order : $mail_order";
-		$trace->log('!' . str_repeat( ' ', 5) . $bm . str_repeat( ' ', self::bt - 5 - strlen($bm)) . '!');
-		$trace->log('!' . str_repeat( '-', self::bt) . '!');
-		$bm = " start      !";
-		$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-
-		$trace->end(self::send($args, $trace));
-	}
-
-	public static function send($args, $trace)
-	{
-		MailPress::no_abort_limit();
-
-		extract($args);		// $umeta_id, $mail_order
-
-		MailPress::require_class('Usermeta');
-		$meta = MP_Usermeta::get_by_id($umeta_id);
-		if (!$meta)
-		{
-			$bm = "** WARNING *! ** Unable to read table usermeta for id : $umeta_id **";
-			$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-			$bm = " end        ! Abort";
-			$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-			$trace->log('!' . str_repeat( '-', self::bt) . '!');
-			return false;
-		}
-
-		$mp_user_id = $meta->user_id;
-		$term_id 	= str_replace('_MailPress_autoresponder_', '', $meta->meta_key);
-		$time		= $meta->meta_value;
-
-//		$trace->log("***                  *** autoresponder_id : $term_id, mp_user_id : $mp_user_id");
-
-		MailPress::require_class('Autoresponders');
+		$term_id 	= (!$meta) ? false : str_replace('_MailPress_autoresponder_', '', $meta->meta_key);
+		if (!$term_id) return;
+		
 		$autoresponder = MP_Autoresponders::get($term_id);
-		if (!isset($autoresponder->description['active']))
-		{
-			$bm = "** WARNING *! ** Autoresponder :  $term_id is inactive **";
-			$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-			$bm = " end        ! Abort";
-			$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-			$trace->log('!' . str_repeat( '-', self::bt) . '!');
-			return false;
-		}
 
-		MailPress::require_class('Users');
-		$mp_user = MP_Users::get($mp_user_id);
-		if (!$mp_user)
-		{
-			$bm = "** WARNING *! ** mp_user_id : $mp_user_id is not found **";
-			$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-			$bm = " end        ! Abort";
-			$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-			$trace->log('!' . str_repeat( '-', self::bt) . '!');
-			return false;
-		}
-
-		$_mails = MP_Autoresponders::get_term_objects($term_id);
-		if (!$_mails)
-		{
-			$bm = "** WARNING *! ** Autoresponder :  $term_id has no mails **";
-			$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-			$bm = " end        ! Abort";
-			$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-			$trace->log('!' . str_repeat( '-', self::bt) . '!');
-			return false;
-		}
-		if (!isset($_mails[$mail_order]))
-		{
-			$bm = "** WARNING *! ** mail_order : $mail_order NOT in mails to be processed **";
-			$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-			$bm = " end        ! Abort";
-			$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-			$trace->log('!' . str_repeat( '-', self::bt) . '!');
-			return false;
-		}
-
-		$_mail = $_mails[$mail_order];
-
-		MailPress::require_class('Mails');
-		$draft = MP_Mails::get($_mail['mail_id']);
-		if (!$draft)
-		{
-			$bm = " processing ! mail_id : " . $_mail['mail_id'] . " NOT in mail table, skip to next mail/schedule if any";
-			$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-		}
-
-		if (!MP_Mails::send_draft($_mail['mail_id'], false, $mp_user->email, $mp_user->name))
-		{
-			$bm = " processing ! Sending mail_id : " . $_mail['mail_id'] . " failed, skip to next mail/schedule if any";
-			$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-		}
-		else
-		{
-			$bm = " processing ! Sending mail_id : " . $_mail['mail_id'] . " successfull ";
-			$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-		}
-
-		$mail_order++;
-		if (!isset($_mails[$mail_order]))
-		{
-			$bm = " end        ! last mail processed";
-			$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-			$trace->log('!' . str_repeat( '-', self::bt) . '!');
-			return true;
-		}
-
-		$schedule = self::schedule($time, $_mails[$mail_order]['schedule']);
-		wp_schedule_single_event($schedule, 'mp_process_autoresponder', array('args' => array('umeta_id' => $umeta_id, 'mail_order'=> $mail_order)));
-
-		$bm = " end        !  next mail to be processed : $mail_order scheduled on : " . date('Y-m-d H:i:s', $schedule);
-		$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
-		$trace->log('!' . str_repeat( '-', self::bt) . '!');
-
-		return true;
-	}
-
-	public static function schedule($time, $schedule)
-	{
-		$Y = date('Y', $time);
-		$M = date('n', $time) + substr($schedule, 0, 2);
-		$D = date('j', $time) + substr($schedule, 2, 2);
-		$H = date('G', $time) + substr($schedule, 4, 2);
-		$Mn =  date('i', $time);
-		$S =  date('s', $time);
-		$U =  date('u', $time);
-
-		return mktime($H, $Mn, $S, $M, $D, $Y);
+		do_action('mp_process_autoresponder_' . $autoresponder->description['event'], $args);
 	}
 
 ////  ADMIN  ////

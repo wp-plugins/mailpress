@@ -376,7 +376,7 @@ class MP_Mail
 		global $wpdb;
 		$mp_users = $wpdb->get_results( $query );
 
-        $this->row->recipients = array();
+		$this->row->recipients = array();
 		if ($mp_users)
 		{
 			foreach ($mp_users as $mp_user)
@@ -469,7 +469,7 @@ class MP_Mail
 		}
 	}
 
- //¤ subject, plaintext, html ¤//
+ //¤ plaintext, html ¤//
 
 	function build_mail_content($type, $filter=false)
 	{
@@ -519,7 +519,8 @@ class MP_Mail
 		}
 
 		$fname = $this->build->dir . $template_file;
-		if (is_file($fname))	$content = file_get_contents($fname);
+
+		if (is_file($fname))	$content = '<?php $this->load_template("' . $fname . '"); ?>';
 		else
 		{
 			if ($this->build->plaintext)
@@ -545,7 +546,7 @@ class MP_Mail
 					}
 				}
 				$fname = $this->build->dir . $template_file;
-				$content = (is_file($fname)) ? file_get_contents($fname) : $content_default;
+				$content = (is_file($fname)) ? '<?php $this->load_template("' . $fname . '"); ?>' : $content_default;
 			}
 			else
 			{

@@ -80,6 +80,21 @@ class MP_Autoresponders
 		return $terms;
 	}
 
+	public static function get_from_event($event)
+	{
+		$defaults = array('hide_empty' => 0, 'hierarchical' => 0, 'child_of' => '0', 'parent' => '');
+		$terms = get_terms(self::taxonomy, $defaults);
+		if (empty($terms)) return array();
+		foreach ($terms as $k => $term)
+		{
+			$terms[$k]->slug = self::remove_slug($term->slug);
+			if (!is_array($term->description)) $terms[$k]->description = unserialize($term->description);
+			if (isset($term->description['active']) && ($event == $term->description['event'])) continue;
+			unset($terms[$k]);
+		}
+		return $terms;
+	}
+
 ////  Object  ////
 
 	public static function get_object_terms( $object_id = 0, $args = array() )

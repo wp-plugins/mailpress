@@ -172,6 +172,15 @@ class MP_Bounce
 	{
 		$this->pop3->get_headers_deep($message_id);
 
+		if (isset($this->pop3->headers['To']))
+		{
+			if (is_array($this->pop3->headers['To']))
+			{ 
+				foreach($this->pop3->headers['To'] as $To) if (strpos ($To, $this->bounce_handling_config['Return-Path']) !== false) return false;
+			}
+			else if (strpos ( $this->pop3->headers['To'], $this->bounce_handling_config['Return-Path'] ) !== false) return false;
+		}
+
 		$prefix 	= preg_quote(substr($this->bounce_handling_config['Return-Path'], 0, strpos($this->bounce_handling_config['Return-Path'], '@')) . '+');
 		$domain 	= preg_quote(substr($this->bounce_handling_config['Return-Path'], strpos($this->bounce_handling_config['Return-Path'], '@') + 1 ));
 

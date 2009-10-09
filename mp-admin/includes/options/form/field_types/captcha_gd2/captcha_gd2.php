@@ -29,7 +29,7 @@ class MP_Forms_field_type_captcha_gd2 extends MP_Forms_field_type_abstract
 		}
 		else
 		{
-			session_start();
+			@session_start();
 
 			if ((!$_SESSION['mp_googlelike']) || (strtolower($_SESSION['mp_googlelike']) != strtolower($value)))
 			{

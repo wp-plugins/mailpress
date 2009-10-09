@@ -6,7 +6,7 @@ Description: The WordPress mailing platform.
 Author: Andre Renaut
 Requires at least: 2.8
 Tested up to: 2.8
-Version: 4.0
+Version: 4.0.1
 Author URI: http://www.mailpress.org
 */
 //define ('MP_SCRIPT_DEBUG', true);

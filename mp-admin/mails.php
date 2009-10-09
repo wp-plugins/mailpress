@@ -106,7 +106,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		{
 			$s = trim($wpdb->escape($url_parms['s']));
 			if (!empty($where)) $where = $where . ' AND ';
-			if ($s) $where .= " ((theme LIKE '%$s%') OR (themedir LIKE '%$s%') OR (template LIKE '%$s%') OR (toemail LIKE '%$s%') OR (subject LIKE '%$s%') OR (html LIKE '%$s%') OR (plaintext LIKE '%$s%') OR (created like '%$s%') OR (sent like '%$s%')) "; 
+			if ($s) $where .= " ((theme LIKE '%$s%') OR (themedir LIKE '%$s%') OR (template LIKE '%$s%') OR (toemail LIKE '%$s%') OR (toname LIKE '%$s%') OR (subject LIKE '%$s%') OR (html LIKE '%$s%') OR (plaintext LIKE '%$s%') OR (created like '%$s%') OR (sent like '%$s%')) "; 
 		}
 		if (isset($url_parms['status']) && !empty($url_parms['status']))
 		{

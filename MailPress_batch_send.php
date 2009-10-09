@@ -6,7 +6,7 @@ Plugin Name: MailPress_batch_send
 Plugin URI: http://www.mailpress.org
 Description: This is just an addon for MailPress to send mail in batch mode.
 Author: Andre Renaut
-Version: 4.0
+Version: 4.0.1
 Author URI: http://www.mailpress.org
 */
 
