@@ -63,6 +63,29 @@ Thank you
 
 ** 4.0 ** 17/09/2009
 
+** 4.0.1 ** 09/10/2009
+
+fixes several bugs since Oct 17, 2009 :
+
+* form add on : (bug fix) field types settings, structure of xml file changed
+* form add on : (bug fix) for captcha field types instead of session_start, now have @session_start 
+
+* newsletter_categories add on : (bug fix) in have_post function, change $mp_general by $mp_subscriptions
+
+* import add on : (bug fix) mailing list support in csv import.
+* import add on : (bug fix) wrong csv parsing when email has digit 0 (zero) in it
+
+* autoresponder add on : changed architecture to 'options' architecture
+
+* Bounce class : (bug fix) if return path email is recipient email, not a bounce.
+* Log class : minor updates
+* Mail class : (bug fix) instead of file_get_contents now use $this->load_template to load template files => better logging when errors
+* Themes class : minor updates
+
+* mp-admin/mail.php : (bug fix) name of capability changed (previously referring to a tracking one)
+* mp-admin/mails.php : (bug fix) subscriber name now included in search.
+* mp-admin/user.php : (bug fix) wrong html generated in IP info meta box when ip informations not found.
+
 == Next features ==
 
 ** available, new wiki ! http://www.mailpress.org/wiki
