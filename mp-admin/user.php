@@ -455,14 +455,22 @@ class MP_AdminPage extends MP_Admin_page
 			$eol = ",\n\t\t";
 		}
 		echo ";\n";
-
+?>
+/* ]]> */
+</script>
+<?php
 	// meta_box_IP_info
+		$x = false;
 		$ip = ( '' == $mp_user->laststatus_IP) ? $mp_user->created_IP : $mp_user->laststatus_IP;
 		self::require_class('Ip');
 		$x  = MP_Ip::get_all($ip);
 
 		if (isset($x['geo']))
 		{
+?>
+<script type='text/javascript'>
+/* <![CDATA[ */
+<?php
 			$m['meta_box_IP_info'] = $x['geo'];
 			$eol = "";
 			foreach ( $m as $var => $val ) {
