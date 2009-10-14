@@ -1,7 +1,7 @@
 === MailPress ===
 Contributors: andre renaut
 Donate link: http://www.mailpress.org/wiki
-Tags: mail, mails, comments, comment, subscribe, newsletters, newsletter, Wordpress, Plugin, swiftmailer, post, posts, smtp, sendmail, phpmail, notification, notifications
+Tags: mail, mails, comments, comment, subscribe, newsletters, newsletter, Wordpress, Plugin, swiftmailer, post, posts, smtp, sendmail, phpmail, notification, notifications, mail, mails
 Requires at least: 2.8
 Tested up to: 2.8
 Stable tag: 4.0.1
@@ -10,12 +10,13 @@ The WordPress mailing platform
 
 == Description ==
 
-This is the official version of MailPress 4.0
+**Allows you** to send beautiful and styled html and plain text mails based on dedicated themes and templates.
 
+Since last 3.0 version, 
 * Code has been deeeeeply and completely reviewed, 
 * name field available
 * new swiftmailer 4.0.3 (needs php 5.3 but tested with 5.2.5 locally without bugs)
-* new api's for mailpress, ip, newsletter, import
+* new api's for mailpress mails, ip, newsletter, import, autoresponder
 * optimized size for toemail field for multi recipients mails.
 * some previous add ons are integrated to MailPress 4.0
 
