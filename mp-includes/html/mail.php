@@ -1,8 +1,8 @@
 <?php include('header.php'); ?>
 <style type="text/css">* html { overflow-x: hidden; }</style>
 <?php
-wp_admin_css_color('classic', __('Classic'), admin_url("css/colors_classic.css"), array('#07273E', '#14568A', '#D54E21', '#2683AE'));
-wp_admin_css_color('fresh', __('Fresh'), admin_url("css/colors_fresh.css"), array('#464646', '#CEE1EF', '#D54E21', '#2683AE'));
+wp_admin_css_color('classic', __('Classic'), admin_url("css/colors-classic.css"), array('#07273E', '#14568A', '#D54E21', '#2683AE'));
+wp_admin_css_color('fresh', __('Fresh'), admin_url("css/colors-fresh.css"), array('#464646', '#CEE1EF', '#D54E21', '#2683AE'));
 
 wp_admin_css( 'css/global' );
 wp_admin_css();
