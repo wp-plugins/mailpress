@@ -196,7 +196,7 @@ class MP_AdminPage extends MP_Admin_page
 
 				'button_height'			=> '24', 
 				'button_width'			=> '132', 
-				'button_image_url'		=> get_option('siteurl') . '/' . MP_PATH . 'mp-admin/images/upload.png', 
+				'button_image_url'		=> get_option('siteurl') . '/' . MP_PATH . 'mp-includes/images/upload.png', 
 				'button_placeholder_id'		=> 'flash-browse-button', 
 
 				'upload_url' 			=> MP_Action_url, 

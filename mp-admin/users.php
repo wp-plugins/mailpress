@@ -361,7 +361,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function get_flag_IP() {
 		global $mp_user;
-		return ('ZZ' == $mp_user->created_country) ? '' : "<img class='flag' alt='" . strtolower($mp_user->created_country) . "' src='" . get_option('siteurl') . '/' . MP_PATH . 'mp-admin/images/flag/' . strtolower($mp_user->created_country) . ".gif' />\n";
+		return (('ZZ' == $mp_user->created_country) || empty($mp_user->created_country)) ? '' : "<img class='flag' alt='" . strtolower($mp_user->created_country) . "' src='" . get_option('siteurl') . '/' . MP_PATH . 'mp-admin/images/flag/' . strtolower($mp_user->created_country) . ".gif' />\n";
 	}
 
 //// Body ////
