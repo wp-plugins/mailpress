@@ -39,3 +39,7 @@ switch($action)
 		</div>
 	</form>
 </div>
+<?php
+    break;
+}
+?>
