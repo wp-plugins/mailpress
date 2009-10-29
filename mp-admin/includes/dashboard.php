@@ -76,7 +76,7 @@ function mp_map() {
 	$_size = mp_dashboard_widget_size('440x200');
 ?>
 <div style='text-align:center;'>
-<img src="http://chart.apis.google.com/chart?chs=<?php echo $_size; ?><?php if ('' == $chdW) echo '&amp;chd=s:_'; else echo '&amp;chd=t:' . $chdW; ?>&amp;chco=ffffff,B5F8C2,294D30<?php if ('' != $chldW) echo '&amp;chld=' . $chldW; ?>&amp;chf=bg,s,EAF7FE&amp;cht=t&amp;chtm=<?php echo $options['code']; ?>" alt="<?php echo $options['title']; ?>" />
+<img style='width:100%;' src="http://chart.apis.google.com/chart?chs=<?php echo $_size; ?><?php if ('' == $chdW) echo '&amp;chd=s:_'; else echo '&amp;chd=t:' . $chdW; ?>&amp;chco=ffffff,B5F8C2,294D30<?php if ('' != $chldW) echo '&amp;chld=' . $chldW; ?>&amp;chf=bg,s,EAF7FE&amp;cht=t&amp;chtm=<?php echo $options['code']; ?>" alt="<?php echo $options['title']; ?>" />
 </div>
 <?php
 }
@@ -352,7 +352,7 @@ function mp_subscribers_activity() {
 		$_size = mp_dashboard_widget_size('395x230');
 ?>
 <div style='text-align:center;'>
-<img src="http://chart.apis.google.com/chart?cht=lc&amp;chs=<?php echo $_size; ?>&amp;chd=t:<?php echo $chdS['wait']; ?>|<?php echo $chdS['comm']; ?>|<?php echo $chdS['blog']; ?>|<?php echo $chdS['fake']; ?>&amp;chco=224499,FF0000,80C65A,000000&amp;chm=b,224499,0,1,0|b,FF0000,1,2,0|b,80C65A,2,3,0&amp;chds=0,<?php echo $chxlS1; ?>&amp;chxt=x,y,x,x&amp;chxl=0:<?php echo $chxlS0; ?>|1:||<?php echo $chxlS1; ?>|2:<?php echo $chxlS2; ?>|3:<?php echo $chxlS3; ?>" alt="<?php _e( 'Subscribers - Activity', 'MailPress' ); ?>" />
+<img style='width:100%;' src="http://chart.apis.google.com/chart?cht=lc&amp;chs=<?php echo $_size; ?>&amp;chd=t:<?php echo $chdS['wait']; ?>|<?php echo $chdS['comm']; ?>|<?php echo $chdS['blog']; ?>|<?php echo $chdS['fake']; ?>&amp;chco=224499,FF0000,80C65A,000000&amp;chm=b,224499,0,1,0|b,FF0000,1,2,0|b,80C65A,2,3,0&amp;chds=0,<?php echo $chxlS1; ?>&amp;chxt=x,y,x,x&amp;chxl=0:<?php echo $chxlS0; ?>|1:||<?php echo $chxlS1; ?>|2:<?php echo $chxlS2; ?>|3:<?php echo $chxlS3; ?>" alt="<?php _e( 'Subscribers - Activity', 'MailPress' ); ?>" />
 <br /><small><span style='background:#224499;margin:0 20px 0 20px;'>&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;<?php _e('waiting','MailPress'); ?>&nbsp;<span style='background:#FF0000;margin:0 20px;'>&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;<?php _e('comment','MailPress'); ?>&nbsp;<span style='background:#80C65A;margin:0 20px;'>&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;<?php _e('blog &amp; comment','MailPress'); ?></small>
 </div>
 <?php
@@ -404,7 +404,7 @@ function mp_mails_activity() {
 		$_size = mp_dashboard_widget_size('396x180');
 ?>
 <div style='text-align:center;'>
-<img src="http://chart.apis.google.com/chart?cht=p3&amp;chs=<?php echo $_size; ?>&amp;chco=0000ff&amp;chd=t:<?php echo $chdMA; ?>&amp;chl=<?php echo $chlMA; ?>" alt="<?php _e( 'Mails - Activity', 'MailPress' ); ?>" />
+<img style='width:100%;' src="http://chart.apis.google.com/chart?cht=p3&amp;chs=<?php echo $_size; ?>&amp;chco=0000ff&amp;chd=t:<?php echo $chdMA; ?>&amp;chl=<?php echo $chlMA; ?>" alt="<?php _e( 'Mails - Activity', 'MailPress' ); ?>" />
 </div>
 <?php
 	}
@@ -550,7 +550,7 @@ function mp_comment_subscribers_per_post() {
 		$_size = mp_dashboard_widget_size('395x230');
 ?>
 <div style='text-align:center;'>
-<img src="http://chart.apis.google.com/chart?cht=lc&amp;chs=<?php echo $_size; ?>&amp;chdlp=b&amp;chd=t:<?php echo $v; ?>&amp;chdl=<?php echo $p; ?>&amp;chco=<?php echo $c; ?>&amp;chds=0,<?php echo $chxlS1; ?>&amp;chxt=x,y,x,x&amp;chxl=0:<?php echo $chxlS0; ?>|1:||<?php echo $chxlS1; ?>|2:<?php echo $chxlS2; ?>|3:<?php echo $chxlS3; ?>" alt="<?php _e( 'Comments subscribers per post', 'MailPress' ); ?>" />
+<img style='width:100%;' src="http://chart.apis.google.com/chart?cht=lc&amp;chs=<?php echo $_size; ?>&amp;chdlp=b&amp;chd=t:<?php echo $v; ?>&amp;chdl=<?php echo $p; ?>&amp;chco=<?php echo $c; ?>&amp;chds=0,<?php echo $chxlS1; ?>&amp;chxt=x,y,x,x&amp;chxl=0:<?php echo $chxlS0; ?>|1:||<?php echo $chxlS1; ?>|2:<?php echo $chxlS2; ?>|3:<?php echo $chxlS3; ?>" alt="<?php _e( 'Comments subscribers per post', 'MailPress' ); ?>" />
 </div>
 <?php
 	}
