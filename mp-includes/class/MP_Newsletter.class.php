@@ -108,7 +108,8 @@ class MP_Newsletter
 	public static function mailinglists( $draft_dest = array() ) 
 	{
 		global $mp_registered_newsletters;
-		foreach ($mp_registered_newsletters as $k => $v) $draft_dest["MailPress_newsletter~$k"] = $v['desc'];
+		$subscriptions = get_option('MailPress_subscriptions');
+		foreach ($mp_registered_newsletters as $k => $v) if (isset($subscriptions['default_newsletters'][$k])) $draft_dest["MailPress_newsletter~$k"] = $v['desc'];
 		return $draft_dest;
 	}
 
