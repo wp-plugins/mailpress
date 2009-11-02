@@ -202,7 +202,7 @@ $draft_dest = MP_Users::get_mailinglists();
 									<?php _e('OR all', 'MailPress'); ?>
 									&nbsp;&nbsp;
 									<select name='to_list' id='to_list'  class='<?php echo $class; ?>'>
-<?php self::select_option($draft_dest, (isset($draft->to_list)) ? $draft->to_list : '') ?>
+<?php self::select_optgroup($draft_dest, (isset($draft->to_list)) ? $draft->to_list : '') ?>
 									</select>
 								</td>
 							</tr>

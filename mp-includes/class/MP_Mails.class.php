@@ -154,7 +154,6 @@ class MP_Mails
 	{
 		global $wpdb;
 
-		$query = false;
 		switch ($draft_toemail)
 		{
 			case '1' :
@@ -172,7 +171,7 @@ class MP_Mails
 				$query  = "SELECT id, email, name, status, confkey FROM $wpdb->mp_users ;";
 			break;
 			default :
-				if (has_filter('MailPress_query_mailinglist')) $query = apply_filters('MailPress_query_mailinglist', $draft_toemail);
+				$query = apply_filters('MailPress_query_mailinglist', false, $draft_toemail);
 			break;
 		}
 		return $query;

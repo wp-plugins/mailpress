@@ -554,6 +554,45 @@ var draft_id = <?php echo $draft_id; ?>;
 	return $r;
 	}
 
+	public static function select_optgroup($list, $selected, $echo = true)
+	{
+		foreach( $list as $value => $label )
+		{
+			$_selected = (!is_array($selected)) ? $selected : ( (in_array($value, $selected)) ? $value : null );
+			$list[$value] = "<option " . self::selected( (string) $value, (string) $_selected, false, false ) . " value=\"$value\">$label</option>";
+		}
+
+		$numeric_done = $mailinglist_done = $newsletter_done = false;
+
+		foreach( $list as $value => $html )
+		{
+			if (empty($value)) continue;
+			switch (true)
+			{
+				case (is_numeric($value)) :
+					if ($numeric_done) continue;
+					$list[$value] = '<optgroup label=\'' . __('Subscribers', 'MailPress') . '\'>' . $html;
+					$numeric_done = true;
+				break;
+				case (strpos($value, 'MailPress_mailinglist~') !== false) :
+					if ($mailinglist_done) continue;
+					$list[$value] = '</optgroup><optgroup label=\'' . __('Mailinglists', 'MailPress') . '\'>' . $html;
+					$mailinglist_done = true;
+				break;
+				case (strpos($value, 'MailPress_newsletter~') !== false) :
+					if ($newsletter_done) continue;
+					$list[$value] = '</optgroup><optgroup label=\'' . __('Newsletters', 'MailPress') . '\'>' . $html;
+					$newsletter_done = true;
+				break;
+			}
+		}
+
+		$x = implode('', $list) . '</optgroup>';
+
+		if (!$echo) return "\n$x\n";
+		echo "\n$x\n";
+	}
+
 ////  Body  ////
 
 	public static function body()

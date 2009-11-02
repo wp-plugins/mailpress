@@ -356,10 +356,10 @@ class MP_Users
 	public static function get_mailinglists()
 	{
 		$draft_dest = array (	''  => '&nbsp;', 
-						'1' => __('active blog', 'MailPress'), 
-						'2' => __('active comments', 'MailPress'), 
-						'3' => __('active blog + comments', 'MailPress'), 
-						'4' => __('active + not active', 'MailPress') 
+						'1' => __('to blog', 'MailPress'), 
+						'2' => __('to comments', 'MailPress'), 
+						'3' => __('to blog & comments', 'MailPress'), 
+						'4' => __('all (active + waiting)', 'MailPress') 
 					  );
 		return apply_filters('MailPress_mailinglists', $draft_dest);
 	}

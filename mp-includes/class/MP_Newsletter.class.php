@@ -99,6 +99,33 @@ class MP_Newsletter
 				$mp_registered_newsletters[$k]['in'] = (isset($mp_subscriptions['default_newsletters'][$k])) ? false : true; 
 			}
 		}
+
+// for sending mails
+		add_filter('MailPress_mailinglists', 	array('MP_Newsletter', 'mailinglists'), 8, 1);
+		add_filter('MailPress_query_mailinglist', array('MP_Newsletter', 'query_mailinglist'), 8, 2);
+	}
+
+	public static function mailinglists( $draft_dest = array() ) 
+	{
+		global $mp_registered_newsletters;
+		foreach ($mp_registered_newsletters as $k => $v) $draft_dest["MailPress_newsletter~$k"] = $v['desc'];
+		return $draft_dest;
+	}
+
+	public static function query_mailinglist( $query, $draft_toemail ) 
+	{
+		if ($query) return $query;
+
+		$id = str_replace('MailPress_newsletter~', '', $draft_toemail, $count);
+		if (0 == $count) return $query;
+		if (empty($id)) return $query;
+
+		global $mp_registered_newsletters;
+		if (!isset($mp_registered_newsletters[$id])) return $query;
+
+		$in 	= ($mp_registered_newsletters[$id]['in']) ? '' : 'NOT';
+
+		return self::get_query_newsletter($id, $in);
 	}
 
 	public static function get_defaults()

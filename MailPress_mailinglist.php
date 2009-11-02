@@ -21,7 +21,7 @@ class MailPress_mailinglist
 
 // for sending mails
 		add_filter('MailPress_mailinglists', 	array('MailPress_mailinglist', 'mailinglists'), 8, 1);
-		add_filter('MailPress_query_mailinglist', array('MailPress_mailinglist', 'query_mailinglist'), 8, 1);
+		add_filter('MailPress_query_mailinglist', array('MailPress_mailinglist', 'query_mailinglist'), 8, 2);
 // for shortcode
 		add_filter('MailPress_form_defaults', 	array('MailPress_mailinglist', 'form_defaults'), 8, 1);
 		add_filter('MailPress_form_options', 	array('MailPress_mailinglist', 'form_options'), 8, 1);
@@ -98,21 +98,23 @@ class MailPress_mailinglist
 		return $draft_dest;
 	}
 
-	public static function query_mailinglist( $draft_toemail ) 
+	public static function query_mailinglist( $query, $draft_toemail ) 
 	{
+		if ($query) return $query;
+
+		$id = str_replace('MailPress_mailinglist~', '', $draft_toemail, $count);
+		if (0 == $count) return $query;
+		if (empty($id))  return $query;
+
 		MailPress::require_class('Mailinglists');
 
-		$x = str_replace('MailPress_mailinglist~', '', $draft_toemail, $count);
-		if (0 == $count) return false;
-		if (empty($x)) return false;
+		$children = MP_Mailinglists::get_children($id, ', ', '');
+		$ids = ('' == $children) ? ' = ' . $id : ' IN (' . $id . $children . ') ';
 
-		$y = MP_Mailinglists::get_children($x, ', ', '');
-		$x = ('' == $y) ? ' = ' . $x : ' IN (' . $x . $y . ') ';
-
-		if (empty($x)) return false;
+		if (empty($ids)) return $query;
 
 		global $wpdb;
-		$query = "SELECT DISTINCT c.id, c.email, c.name, c.status, c.confkey FROM $wpdb->term_taxonomy a, $wpdb->term_relationships b, $wpdb->mp_users c WHERE a.taxonomy = '" . self::taxonomy . "' AND  a.term_taxonomy_id = b.term_taxonomy_id AND a.term_id $x AND c.id = b.object_id AND c.status = 'active' ";
+		$query = "SELECT DISTINCT c.id, c.email, c.name, c.status, c.confkey FROM $wpdb->term_taxonomy a, $wpdb->term_relationships b, $wpdb->mp_users c WHERE a.taxonomy = '" . self::taxonomy . "' AND  a.term_taxonomy_id = b.term_taxonomy_id AND a.term_id $ids AND c.id = b.object_id AND c.status = 'active' ";
 
 		return $query;
 	}

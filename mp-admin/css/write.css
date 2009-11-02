@@ -132,3 +132,7 @@ background:transparent url(../images/space.png) repeat;
 #postcustomstuff #newmeta .submit {
 	padding:0 8px;
 }
+
+#to_list optgroup option {
+	padding-left:15px;
+}

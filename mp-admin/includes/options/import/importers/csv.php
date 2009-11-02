@@ -98,10 +98,7 @@ class MP_import_csv extends MP_Import_importer_abstract
 	function fileform() 
 	{
 		if (class_exists('MailPress_mailinglist'))
-		{
-			$draft_dest = $x = array ('' => '');
-			$draft_dest = apply_filters('MailPress_mailinglists', $draft_dest);
-		}
+			$draft_dest = MailPress_mailinglist::mailinglists(array ('' => ''));
 ?>
 	<form action="<?php echo MailPress_import; ?>&amp;mp_import=csv&amp;step=2&amp;id=<?php echo $this->id; ?>" method="post">
 <?php if (class_exists('MailPress_mailinglist')) : ?>
