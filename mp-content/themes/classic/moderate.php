@@ -8,7 +8,7 @@ Template Name: moderate
 <?php echo mysql2date('F j, Y', current_time('mysql')); ?>
 								</h2>
 								<h3 style="color:#342;border-bottom:1px dotted #EEEEEE;font-family:'Times New Roman',Times,serif;margin-top:0;">
-<?php printf( __('New comment on your post #%1$s "%2$s"'), $this->args->c->post_ID , $this->args->p->title  ); ?>
+<?php printf( __('New comment on post #%1$s "%2$s"'), $this->args->c->post_ID , '{{the_title}}' ); ?>
 								</h3>
 								<div style="-x-system-font:none;font-family:'Lucida Grande','Lucida Sans Unicode',Verdana,sans-serif;font-size:90%;font-size-adjust:none;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:-1px;line-height:175%;">
 									<p>

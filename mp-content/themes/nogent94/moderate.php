@@ -10,7 +10,7 @@ Template Name: moderate
 						<td style='float:left;margin:0 45px;padding:0;width:auto;text-align:left;color:#333333;font-family:Verdana,Sans-Serif;'>
 							<div style='margin:0pt 0pt 40px;text-align:justify;'>
 								<h2 style='margin:30px 0pt 0pt;text-decoration:none;color:#333333;font-size:1.1em;font-family:Verdana,Sans-Serif;font-weight:bold;'>
-<?php printf( __('New comment on your post #%1$s "%2$s"'), $this->args->c->post_ID , $this->args->p->title  ); ?>
+<?php printf( __('New comment on post #%1$s "%2$s"'), $this->args->c->post_ID , '{{the_title}}' ); ?>
 								</h2>
 <!--
 								<small style='color:#777;font-family:Arial,Sans-Serif;font-size:0.7em;line-height:1.5em;'>
