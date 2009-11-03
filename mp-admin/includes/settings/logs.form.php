@@ -1,5 +1,5 @@
 <?php
-$logs	 	= get_option('MailPress_logs');
+if (!isset($_POST['formname']) || ('logs.form' != $_POST['formname'])) $logs = get_option('MailPress_logs');
 ?>
 <div>
 	<form name='logs.form' action='' method='post'  class='mp_settings'>

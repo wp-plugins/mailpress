@@ -4,17 +4,6 @@ $mp_general['tab']= $mp_tab = '0';
 
 $mp_general		= $_POST['general'];
 
-switch ($mp_general['subscription_mngt'])
-{
-	case 'ajax' :
-			$mp_general['id'] = '';
-		break;
-		default :
-			$mp_general['id'] = $_POST[$mp_general['subscription_mngt']];
-			if ('cat' == $mp_general['subscription_mngt']) $cvalue = $mp_general['id']; else $pvalue = $mp_general['id'];
-		break;
-}
-
 switch (true)
 {
 	case ( !MP_AdminPage::is_email($mp_general['fromemail']) ) :
@@ -25,11 +14,8 @@ switch (true)
 		$fromnameclass = true;
 		MP_AdminPage::message(__('field should be a name', 'MailPress'), false);
 	break;
-	case ( !isset($mp_general['subscription_mngt']) ) :
-		$subscription_mngtclass = 'true';
-	break;
 	case (('ajax' != $mp_general['subscription_mngt']) && ( !is_numeric($mp_general['id']))) :
-		('cat' == $mp_general['subscription_mngt']) ? $cclass = true: $pclass = true;
+		$idclass = true;
 		MP_AdminPage::message(__('field should be numeric', 'MailPress'), false);
 	break;
 	default :
@@ -44,7 +30,8 @@ switch (true)
 			$default_mailinglist 	= $_POST['default_mailinglist'];
 			if (!add_option ('MailPress_default_mailinglist', $default_mailinglist )) update_option ('MailPress_default_mailinglist', $default_mailinglist);
 		}
-	
+
+		if ('ajax' == $mp_general['subscription_mngt']) $mp_general['id'] = '';
 		if (!add_option ('MailPress_general', $mp_general, 'MailPress - general settings' )) update_option ('MailPress_general', $mp_general);
 		MP_AdminPage::message(__('General settings saved','MailPress'));
 	break;

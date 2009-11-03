@@ -1,6 +1,5 @@
 <?php
-
-$test	= get_option('MailPress_test');
+if (!isset($_POST['formname']) || ('test.form' != $_POST['formname'])) $test = get_option('MailPress_test');
 
 MP_AdminPage::require_class('Themes');
 $th = new MP_Themes();

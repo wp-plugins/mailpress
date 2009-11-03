@@ -1,5 +1,6 @@
 <?php
-$subscriptions 	= get_option('MailPress_subscriptions');
+if (!isset($_POST['formname']) || ('subscriptions.form' != $_POST['formname'])) $subscriptions = get_option('MailPress_subscriptions');
+
 if (!isset($subscriptions['default_newsletters'])) $subscriptions['default_newsletters'] = array();
 ?>
 <div>

@@ -6,7 +6,8 @@ $xport = array (	'25'		=> __('Default SMTP Port','MailPress'),
 			'465'		=> __('Use for SSL/TLS/GMAIL','MailPress'),
 			'custom'	=> __('Custom Port: (Use Box)','MailPress')); 
 
-$smtp_config 	= get_option('MailPress_smtp_config');
+if (!isset($_POST['formname']) || ('smtp.form' != $_POST['formname'])) $smtp_config = get_option('MailPress_smtp_config');
+
 $smtp_config['customport']='';
 if (!in_array($smtp_config['port'], array(25, 465))) 
 {

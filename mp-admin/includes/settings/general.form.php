@@ -1,14 +1,14 @@
 <?php
-$mp_general		= get_option('MailPress_general');
-$mp_tab 		= (isset($mp_general['tab'])) ? $mp_general['tab'] : '0';
+$subscription_mngt = array ('ajax' => __('Default', 'MailPress'), 'page_id' => __('Page template', 'MailPress'), 'cat' => __('Category template', 'MailPress'));
 
-$cvalue = $pvalue = '' ;
-if ($mp_general)
+if (!isset($_POST['formname']) || ('general.form' != $_POST['formname'])) $mp_general = get_option('MailPress_general');	
+
+if (!isset($mp_general['subscription_mngt']))
 {
-	$mp_general[ $mp_general['subscription_mngt'] ] = ('ajax' == $mp_general['subscription_mngt']) ? '' : $mp_general['id'] ;
-	if ('cat' == $mp_general['subscription_mngt']) $cvalue = $mp_general['id']; else $pvalue = $mp_general['id'];
+	$mp_general['subscription_mngt'] = 'ajax';
+	$mp_general['id'] = '';
 }
-if (!isset($mp_general['subscription_mngt'])) $mp_general['subscription_mngt'] = 'ajax';
+
 ?>
 <div>
 	<form name='general.form' action='' method='post'  class='mp_settings'>
@@ -46,45 +46,29 @@ if (!isset($mp_general['subscription_mngt'])) $mp_general['subscription_mngt'] =
 				<th style='padding:0;'><strong><?php _e('Forms', 'MailPress'); ?></strong></th>
 				<td style='padding:0;' colspan='4'></td>
 			</tr>
+
 			<tr valign='top'>
 				<th scope='row'><?php _e(' Manage subscriptions from', 'MailPress'); ?></th>
 				<td style='padding:0;'>
-					<table class='subscriptions' cellspacing='0'>
-						<tr><td colspan='3'></td></tr>
-						<tr<?php if (isset($subscription_mngtclass)) echo " class='$form_invalid'"; ?>>
-							<td class='pr10 w30'>
-								<input value='ajax' 	id='ajax'   name='general[subscription_mngt]' class='subscription_mngt tog' type='radio' <?php checked('ajax', $mp_general['subscription_mngt']); ?> />
-								&nbsp;&nbsp;
-								<label for='ajax'><?php _e('Default', 'MailPress'); ?></label>
-							</td>
-							<td class='pr10 w30'>
-								<input value='page_id' id='pageid'	name='general[subscription_mngt]' class='subscription_mngt tog' type='radio' <?php checked('page_id', $mp_general['subscription_mngt']); ?> />
-								&nbsp;&nbsp;
-								<label for='pageid'><?php _e('Page template', 'MailPress'); ?></label>
-							</td>
-							<td class='pr10 w30'>
-								<input value='cat'	id='catid' 	name='general[subscription_mngt]' class='subscription_mngt tog' type='radio' <?php checked('cat', $mp_general['subscription_mngt']); ?> />
-								&nbsp;&nbsp;
-								<label for='catid'><?php _e('Category template', 'MailPress'); ?></label>
-							</td>
-						</tr>
+					<table>
 						<tr>
-							<td></td>
-							<td class='pr10 page_id toggle<?php if ('page_id' != $mp_general['subscription_mngt']) echo ' hide'; if (isset($pclass)) echo " $form_invalid"; ?>'>
-								<?php _e("Page id", 'MailPress'); ?>
-								&nbsp;&nbsp;
-								<input type='text' size='4' name='page_id' id='page_id' value='<?php echo $pvalue; ?>' />
+							<td>
+								<select name='general[subscription_mngt]' class='subscription_mngt'>
+<?php MP_AdminPage::select_option($subscription_mngt, $mp_general['subscription_mngt']);?>
+								</select>
 							</td>
-							<td class='pr10 cat toggle<?php if ('cat' != $mp_general['subscription_mngt']) echo ' hide'; if (isset($cclass)) echo " $form_invalid"; ?>'>
-								<?php _e("Category id", 'MailPress'); ?>
-								&nbsp;&nbsp;
-								<input type='text' size='4' name='cat' id='cat' value='<?php echo $cvalue; ?>' />
+							<td class='mngt_id<?php if (isset($idclass)) echo " $form_invalid"; ?>'<?php if ('ajax' == $mp_general['subscription_mngt']) echo " style='display:none;'"; ?>>
+								<input type='text' size='4' name='general[id]'  value='<?php echo $mp_general['id']; ?>' />
+								<span class='page_id toggle'<?php if ('page_id' != $mp_general['subscription_mngt']) echo " style='display:none;'"; ?>><?php _e("Page id", 'MailPress'); ?></span>
+								<span class='cat     toggle'<?php if ('cat'     != $mp_general['subscription_mngt']) echo " style='display:none;'"; ?>><?php _e("Category id", 'MailPress'); ?></span>
 							</td>
 						</tr>
 					</table>
 				</td>
 			</tr>
+
 <?php	do_action('MailPress_settings_general_forms'); ?>
+
 			<tr valign='top' class='mp_sep' >
 				<th scope='row'><?php _e('View mail', 'MailPress'); ?></th>
 				<td>

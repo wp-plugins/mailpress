@@ -23,10 +23,19 @@ var mp_settings = {
 			if (!this.checked) jQuery('#default_'+this.id).removeAttr('checked'); 
 			jQuery('#span_default_'+this.id).toggle(); 
 		});
-		jQuery('.subscription_mngt').click( function() {
+		jQuery('.subscription_mngt').change( function() {
 			var a = jQuery(this); 
-			jQuery('.toggle').fadeTo(0,0); 
-			jQuery( '.' + a.val()).fadeTo(0,1); 
+			switch (a.val())
+			{
+				case 'ajax' :
+					jQuery('.mngt_id').hide();
+				break;
+				default :
+					jQuery('.toggle').hide();
+					jQuery('.' + a.val()).show();
+					jQuery('.mngt_id').show();
+				break;
+			}
 		}); 
 	}
 }
