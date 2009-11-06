@@ -142,7 +142,7 @@ class MailPress_batch_send
 
 		if ($mailmeta)
 		{
-			if ($mailmeta['sent'] != $mailmeta['count']) return sprintf( __ngettext( _c('%1$s on %2$s sent| Singular', 'MailPress'), _c('%1$s on %2$s sent| Plural', 'MailPress'), $mailmeta['sent'] ), $mailmeta['sent'], $mailmeta['count'] );
+			if ($mailmeta['sent'] != $mailmeta['count']) return sprintf( __ngettext( _c('%1$s of %2$s sent| Singular', 'MailPress'), _c('%1$s of %2$s sent| Plural', 'MailPress'), $mailmeta['sent'] ), $mailmeta['sent'], $mailmeta['count'] );
 		}
 		else
 		{
