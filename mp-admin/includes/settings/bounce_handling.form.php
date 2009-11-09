@@ -1,4 +1,5 @@
 <?php
+
 $xevery = array (	30 	=> sprintf(__('%1$s seconds', 'MailPress'), '30'), 
 			45 	=> sprintf(__('%1$s seconds', 'MailPress'), '45'), 
 			60 	=> sprintf(__('%1$s minute' , 'MailPress') , ''), 
@@ -63,7 +64,7 @@ $bounce_handling = get_option('MailPress_bounce_handling');
 									</label>
 								</td>
 								<td class='other pr10 toggl2<?php if ('other' != $bounce_handling['batch_mode']) echo ' hide'; ?>'>
-									<?php _e('Using', 'MailPress'); ?> "<?php echo  MP_PATH . 'mp-content/mp_bounce_handling/cron.php'; ?>"
+									<?php printf(__('see sample in "%1$s"', 'MailPress'), MP_PATH . 'mp-content/mp_bounce_handling'); ?>
 								</td>
 							</tr>
 						</table>
