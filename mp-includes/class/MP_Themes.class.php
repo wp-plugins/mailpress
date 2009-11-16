@@ -94,8 +94,8 @@ class MP_Themes
 
 	function get_broken_themes() 
 	{
-		global $wp_broken_themes;
-		return $wp_broken_themes;
+		global $mp_broken_themes;
+		return $mp_broken_themes;
 	}
 
 	function get_page_templates() 
@@ -170,7 +170,7 @@ class MP_Themes
 			$stylesheet_uri = "$stylesheet_dir_uri/{$wp_locale->text_direction}.css";
 		else
 			$stylesheet_uri = '';
-		return apply_filters('$this->locale_stylesheet_uri', $stylesheet_uri, $stylesheet_dir_uri);
+		return apply_filters('MailPress_locale_stylesheet_uri', $stylesheet_uri, $stylesheet_dir_uri);
 	}
 
 	function get_template() 
@@ -259,13 +259,13 @@ class MP_Themes
 
 	function get_themes() 
 	{
-		global $wp_themes, $wp_broken_themes;
+		global $mp_themes, $mp_broken_themes;
 
-//	if ( isset($wp_themes) )
-//		return $wp_themes;
+//	if ( isset($mp_themes) )
+//		return $mp_themes;
 
 		$themes = array();
-		$wp_broken_themes = array();
+		$mp_broken_themes = array();
 		$theme_loc = $theme_root = $this->get_theme_root();
 		if ( '/' != ABSPATH ) // don't want to replace all forward slashes, see Trac #4541
 			$theme_loc = str_replace(ABSPATH, '', $theme_root);
@@ -310,7 +310,7 @@ class MP_Themes
 						}
 					}
 					@closedir($theme_subdir);
-					$wp_broken_themes[$theme_dir] = array('Name' => $theme_dir, 'Title' => $theme_dir, 'Description' => __('Stylesheet is missing.'), 'Folder' => basename($subdir));
+					$mp_broken_themes[$theme_dir] = array('Name' => $theme_dir, 'Title' => $theme_dir, 'Description' => __('Stylesheet is missing.'), 'Folder' => basename($subdir));
 				}
 			}
 		}
@@ -324,7 +324,7 @@ class MP_Themes
 
 		foreach ( (array) $theme_files as $theme_file ) {
 			if ( !is_readable("$theme_root/$theme_file") ) {
-				$wp_broken_themes[$theme_file] = array('Name' => $theme_file, 'Title' => $theme_file, 'Description' => __('File not readable.'), 'Folder' => basename($theme_root));
+				$mp_broken_themes[$theme_file] = array('Name' => $theme_file, 'Title' => $theme_file, 'Description' => __('File not readable.'), 'Folder' => basename($theme_root));
 				continue;
 			}
 
@@ -365,7 +365,7 @@ class MP_Themes
 				if ( file_exists("$theme_root/$parent_dir/$template/index.php") ) {
 					$template = "$parent_dir/$template";
 				} else {
-					$wp_broken_themes[$name] = array('Name' => $name, 'Title' => $title, 'Description' => __('Template is missing.'), 'Folder' => basename($template));
+					$mp_broken_themes[$name] = array('Name' => $name, 'Title' => $title, 'Description' => __('Template is missing.'), 'Folder' => basename($template));
 					continue;
 				}
 			}
@@ -444,7 +444,7 @@ class MP_Themes
 			}
 		}
 	
-		$wp_themes = $themes;
+		$mp_themes = $themes;
 
 		return $themes;
 	}
@@ -501,7 +501,7 @@ class MP_Themes
 		update_option('MailPress_stylesheet', $stylesheet);
 		delete_option('MailPress_current_theme');
 		$theme = $this->current_theme;
-		do_action('$this->switch_theme', $theme);
+		do_action('MailPress_switch_theme', $theme);
 	}
 
 	function validate_current_theme() 
