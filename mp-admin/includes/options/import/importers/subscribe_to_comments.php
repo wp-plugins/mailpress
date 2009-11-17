@@ -5,8 +5,8 @@ class MP_import_subscribe_to_comments extends MP_Import_importer_abstract
 	function __construct() 
 	{
 		$this->importer 		= 'subscribe_to_comments';
-		$this->description	= __('Import data from <strong>subscribe to comments</strong> plugin.', 'MailPress');
-		$this->header 		= __('Import from Subscribe to comments', 'MailPress');
+		$this->description	= __('Import data from <strong>subscribe to comments</strong> plugin.', MP_TXTDOM);
+		$this->header 		= __('Import from Subscribe to comments', MP_TXTDOM);
 		$this->callback 		= array (&$this, 'dispatch');
 		parent::__construct();
 
@@ -48,7 +48,7 @@ class MP_import_subscribe_to_comments extends MP_Import_importer_abstract
 				$import = $this->import();
 				$this->end_trace($import);
 				if ($import)
-					$this->success('<p>' . __("<b>Data imported</b>", 'MailPress') . '</p>');
+					$this->success('<p>' . __("<b>Data imported</b>", MP_TXTDOM) . '</p>');
 				else 
 					$this->error();
 			break;
@@ -61,39 +61,39 @@ class MP_import_subscribe_to_comments extends MP_Import_importer_abstract
 	function greet() {
 		$x = "<div style='text-align:center;'>\n";
 		$x .= "<br />\n";
-		$x .= __('First Things First', 'MailPress');
+		$x .= __('First Things First', MP_TXTDOM);
 		$x .= "<br />\n";		$x .= "<br />\n";
-		$x .= __("Before importing your 'Subscribe to comments' datas : ", 'MailPress');
+		$x .= __("Before importing your 'Subscribe to comments' datas : ", MP_TXTDOM);
 		$x .= "<br />\n";		$x .= "<br />\n";
 		$x .= "<span style='color:red;font-weight:bold;'>";
-		$x .= __('SAVE YOUR DATABASE', 'MailPress');
+		$x .= __('SAVE YOUR DATABASE', MP_TXTDOM);
 		$x .= "</span>\n";
 		$x .= "<br />\n";		$x .= "<br />\n";
-		$x .= __('and make sure you can restore it !', 'MailPress');
+		$x .= __('and make sure you can restore it !', MP_TXTDOM);
 		$x .= "<br />\n";		$x .= "<br />\n";
 		$x .= "</div>\n";
 ?>
 <?php MP_AdminPage::message($x, false); ?>
 <br />
 <div>
-	<?php _e('Howdy! Ready to import your <b>Subscribe to comments</b> data into <b>MailPress</b> ...', 'MailPress'); ?>
+	<?php _e('Howdy! Ready to import your <b>Subscribe to comments</b> data into <b>MailPress</b> ...', MP_TXTDOM); ?>
 
-	<p><?php _e('<b>Subscribe to comments</b> data are stored into the following table :', 'MailPress'); ?></p>
+	<p><?php _e('<b>Subscribe to comments</b> data are stored into the following table :', MP_TXTDOM); ?></p>
 	<ol>
 		<li>comments
 			<p>
-				<?php _e('In this table, subscribers can subscribe to posts comments.', 'MailPress'); ?>
+				<?php _e('In this table, subscribers can subscribe to posts comments.', MP_TXTDOM); ?>
 				<br />
-				<?php _e('You will be able to convert these subscriptions to MailPress.', 'MailPress'); ?>
+				<?php _e('You will be able to convert these subscriptions to MailPress.', MP_TXTDOM); ?>
 			</p>
 		</li>
 	</ol>
 	<br />
-	<p><?php _e('Note : If a subscriber already exists in MailPress, only the subscriptions to comments are added.', 'MailPress'); ?></p>
+	<p><?php _e('Note : If a subscriber already exists in MailPress, only the subscriptions to comments are added.', MP_TXTDOM); ?></p>
 
 	<form method='post' action='<?php echo MailPress_import; ?>&amp;mp_import=subscribe_to_comments&amp;step=1'>
 		<p class='submit'>
-			<input class='button-primary' type='submit' name='Submit' value='<?php  _e('Continue', 'MailPress'); ?>' />
+			<input class='button-primary' type='submit' name='Submit' value='<?php  _e('Continue', MP_TXTDOM); ?>' />
 		</p>
 	</form>
 </div>
@@ -119,12 +119,12 @@ class MP_import_subscribe_to_comments extends MP_Import_importer_abstract
 
 	 	$this->step1  = "<style type='text/css'> .general th {font-weight:bold;width:auto;} .general td, .general th {border:solid 1px #555;margin:0;padding:5px;vertical-align:top;} </style>";
 	 	$this->step1 .= "<div>\n";
-	 	$this->step1 .= "<h3>" . __('Data Analysis', 'MailPress') . "</h3>\n";
+	 	$this->step1 .= "<h3>" . __('Data Analysis', MP_TXTDOM) . "</h3>\n";
 	 	$this->step1 .= "<table class='form-table'>\n";
 	 	$this->step1 .= "<tr>\n";
 	 	$this->step1 .= "<th scope='row'>" . $this->column_name . "</th>\n";
 	 	$this->step1 .= "<td>\n";
-	 	$this->step1 .= "<p>" . sprintf(__('*** ERROR *** Column not detected in %1$s', 'MailPress'), $wpdb->comments) . "</p>\n";
+	 	$this->step1 .= "<p>" . sprintf(__('*** ERROR *** Column not detected in %1$s', MP_TXTDOM), $wpdb->comments) . "</p>\n";
 	 	$this->step1 .= "</td>\n";
 	 	$this->step1 .= "</tr>\n";
 	 	$this->step1 .= "</table>\n";
@@ -145,7 +145,7 @@ class MP_import_subscribe_to_comments extends MP_Import_importer_abstract
 		if ( $subs )
 		{
 		 	$head1  = "<style type='text/css'> .general th {font-weight:bold;width:auto;} .general td, .general th {border:solid 1px #555;margin:0;padding:5px;vertical-align:top;} </style>";
-		 	$head1 .= "<h3>" . __('Data Analysis', 'MailPress') . "</h3>\n";
+		 	$head1 .= "<h3>" . __('Data Analysis', MP_TXTDOM) . "</h3>\n";
 		 	$head1 .= "<form action='" . MailPress_import . "&amp;mp_import=subscribe_to_comments&amp;step=2' method='post'><table class='form-table'>\n";
 
 		 	$foot1 = "</table>\n";
@@ -159,7 +159,7 @@ class MP_import_subscribe_to_comments extends MP_Import_importer_abstract
 		else
 		{ 	
 		 	$head1  = "<style type='text/css'> .general th {font-weight:bold;width:auto;} .general td, .general th {border:solid 1px #555;margin:0;padding:5px;vertical-align:top;} </style>";
-		 	$head1 .= "<h3>" . __('Data Analysis', 'MailPress') . "</h3>\n";
+		 	$head1 .= "<h3>" . __('Data Analysis', MP_TXTDOM) . "</h3>\n";
 			$head1 = "<table class='form-table'>\n";
 
 		 	$foot1 = "</table>\n";
@@ -172,7 +172,7 @@ class MP_import_subscribe_to_comments extends MP_Import_importer_abstract
 			$this->step1 .= "<tr>\n";
 			$this->step1 .= "<th scope='row'>" . $wpdb->comments . "</th>\n";
 			$this->step1 .= "<td>\n";
-			$this->step1 .= "<p>" .  sprintf(__('%1$s subscriber(s) found', 'MailPress'), count($subs) ) . "</p>\n";
+			$this->step1 .= "<p>" .  sprintf(__('%1$s subscriber(s) found', MP_TXTDOM), count($subs) ) . "</p>\n";
 			$this->step1 .= "</td>\n";
 			$this->step1 .= "</tr>\n";
 		}
@@ -183,7 +183,7 @@ class MP_import_subscribe_to_comments extends MP_Import_importer_abstract
 			$this->step1 .= "<tr>\n";
 			$this->step1 .= "<th scope='row'>" . $wpdb->comments . "</th>\n";
 			$this->step1 .= "<td>\n";
-			$this->step1 .= "<p>" .  __('no data', 'MailPress') . "</p>\n";
+			$this->step1 .= "<p>" .  __('no data', MP_TXTDOM) . "</p>\n";
 			$this->step1 .= "</td>\n";
 			$this->step1 .= "</tr>\n";
 		}

@@ -15,7 +15,7 @@ class MP_AdminPage extends MP_Admin_page
 
 ////  Title  ////
 
-	public static function title() { global $title; $title = __('View Log','MailPress'); }
+	public static function title() { global $title; $title = __('View Log', MP_TXTDOM); }
 
 ////  Styles  ////
 
@@ -40,8 +40,8 @@ class MP_AdminPage extends MP_Admin_page
 		$time    = (isset($_GET['autorefresh'])) ?  $_GET['autorefresh'] : $every;
 		$time    = (is_numeric($time) && ($time > $every)) ? $time : $every;
 		$time    = "<input type='text' value='$time' maxlength='3' id='MP_Refresh_every' class='screen-per-page'/>";
-		$option  = '<h5>' . __('Auto refresh for Auto scrolling', 'MailPress') . '</h5>';
-		$option .= "<div><input id='MP_Refresh' type='checkbox'$checked style='margin:0 5px 0 2px;' /><span class='MP_Refresh'>" . sprintf(__('%1$s Autorefresh %2$s every %3$s sec', 'MailPress'), "<label for='MP_Refresh' style='vertical-align:inherit;'>", '</label>', $time) . "</span></div>";
+		$option  = '<h5>' . __('Auto refresh for Auto scrolling', MP_TXTDOM) . '</h5>';
+		$option .= "<div><input id='MP_Refresh' type='checkbox'$checked style='margin:0 5px 0 2px;' /><span class='MP_Refresh'>" . sprintf(__('%1$s Autorefresh %2$s every %3$s sec', MP_TXTDOM), "<label for='MP_Refresh' style='vertical-align:inherit;'>", '</label>', $time) . "</span></div>";
 
 		$f = $_GET['id'];
 		$view_url 	=  get_option('siteurl') . '/' . self::get_path() . '/' . $f;
@@ -52,7 +52,7 @@ class MP_AdminPage extends MP_Admin_page
 			'src'		=> $view_url,
 			'screen' 	=> self::screen,
 			'every' 	=> $every,
-			'message' 	=> __('Autorefresh in %i% sec', 'MailPress'), 
+			'message' 	=> __('Autorefresh in %i% sec', MP_TXTDOM), 
 			'option'	=> $option,
 			'url' 	=> MP_Action_url,
 			'l10n_print_after' => 'try{convertEntities(adminmailsL10n);}catch(e){};'

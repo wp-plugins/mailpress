@@ -8,7 +8,7 @@ class MP_Forms_field_type_file extends MP_Forms_field_type_abstract
 
 	function __construct()
 	{
-		$this->description = __('File select', 'MailPress');
+		$this->description = __('File select', MP_TXTDOM);
 		$this->settings	 = dirname(__FILE__) . '/settings.xml';
 		parent::__construct();
 	}
@@ -30,7 +30,7 @@ class MP_Forms_field_type_file extends MP_Forms_field_type_abstract
 				return $field;
 			}
 			$field->submitted['value'] = false;
-			$field->submitted['text']  = __('no file', 'MailPress');
+			$field->submitted['text']  = __('no file', MP_TXTDOM);
 			return $field;
 		}
 		$field->submitted['file'] = $name;
@@ -43,8 +43,8 @@ class MP_Forms_field_type_file extends MP_Forms_field_type_abstract
 		foreach($field->submitted['value'] as $attribute => $v)
 		{
 			$i++;
-			if ($i == 1) 	$field->submitted['text'] .= "$attribute : " . ( (!empty($v)) ? "$v " : '<small>[<i>' . __('empty', 'MailPress') . '</i>]</small>' ) . ( (count($field->submitted['value']) > 1)   ? ', ' : '' );
-			else			$field->submitted['text'] .= "$attribute : " . ( (!empty($v)) ? "$v " : '<small>[<i>' . __('empty', 'MailPress') . '</i>]</small>' ) . ( (count($field->submitted['value']) != $i) ? ', ' : '' );
+			if ($i == 1) 	$field->submitted['text'] .= "$attribute : " . ( (!empty($v)) ? "$v " : '<small>[<i>' . __('empty', MP_TXTDOM) . '</i>]</small>' ) . ( (count($field->submitted['value']) > 1)   ? ', ' : '' );
+			else			$field->submitted['text'] .= "$attribute : " . ( (!empty($v)) ? "$v " : '<small>[<i>' . __('empty', MP_TXTDOM) . '</i>]</small>' ) . ( (count($field->submitted['value']) != $i) ? ', ' : '' );
 		}
 		return $field;
 	}

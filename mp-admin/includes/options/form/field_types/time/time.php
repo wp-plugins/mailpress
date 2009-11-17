@@ -9,7 +9,7 @@ class MP_Forms_field_type_time extends MP_Forms_field_type_abstract
 
 	function __construct()
 	{
-		$this->description = __('Time', 'MailPress');
+		$this->description = __('Time', MP_TXTDOM);
 		$this->settings	 = dirname(__FILE__) . '/settings.xml';
 		parent::__construct();
 	}
@@ -63,13 +63,13 @@ class MP_Forms_field_type_time extends MP_Forms_field_type_abstract
 		$this->field->settings['options']['value'] = $_POST[$this->prefix][$this->field->form_id][$this->field->id];
 
 		$html = MP_Forms_field_type_select::no_reset( $this->field->settings['options']['tag_content_h'], $this->field->settings['options']['value']['h'] );
-		$this->field->settings['options']['tag_content_h'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', 'MailPress') ) . ' -->';
+		$this->field->settings['options']['tag_content_h'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', MP_TXTDOM) ) . ' -->';
 		$html = MP_Forms_field_type_select::no_reset( $this->field->settings['options']['tag_content_mn'], $this->field->settings['options']['value']['mn'] );
-		$this->field->settings['options']['tag_content_mn'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', 'MailPress') ) . ' -->';
+		$this->field->settings['options']['tag_content_mn'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', MP_TXTDOM) ) . ' -->';
 		if (isset($this->field->settings['options']['form_timezones']))
 		{	
 			$html = MP_Forms_field_type_select::no_reset( $this->field->settings['options']['tag_content_tz'], $this->field->settings['options']['value']['tz'] );
-			$this->field->settings['options']['tag_content_tz'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', 'MailPress') ) . ' -->';
+			$this->field->settings['options']['tag_content_tz'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', MP_TXTDOM) ) . ' -->';
 		}
 
 		$this->attributes_filter_css();
@@ -114,13 +114,13 @@ class MP_Forms_field_type_time extends MP_Forms_field_type_abstract
 			if (date('G') < 12) $this->field->settings['attributes']['checked'] = 'checked';
 			$tag_am = parent::build_tag();
 			$id_am  = $this->get_id($this->field);
-			$text_am= __('am', 'MailPress');
+			$text_am= __('am', MP_TXTDOM);
 
 			$this->field->settings['attributes']['value'] = 'pm';
 			if (date('G') >= 12) $this->field->settings['attributes']['checked'] = 'checked';
 			$tag_pm = parent::build_tag();
 			$id_pm  = $this->get_id($this->field);
-			$text_pm= __('pm', 'MailPress');
+			$text_pm= __('pm', MP_TXTDOM);
 
 			$this->field_not_input = true;
 		}

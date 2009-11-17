@@ -45,7 +45,8 @@ span.xml-entity {
 }
 
 span.xml-error {
-  color: #F00;
+  color: #FFF;
+  background-color: #F00;
 }
 
 span.xml-text {

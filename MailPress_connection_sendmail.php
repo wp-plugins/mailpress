@@ -6,7 +6,7 @@ Plugin Name: MailPress_connection_sendmail
 Plugin URI: http://www.mailpress.org
 Description: This is just an addon for MailPress to replace default SMTP connection by SendMail connection.
 Author: Andre Renaut
-Version: 4.0.1
+Version: 4.0.2
 Author URI: http://www.mailpress.org
 */
 
@@ -15,20 +15,20 @@ class MailPress_connection_sendmail
 	function __construct()
 	{
 // for connection type & settings
-		add_filter('MailPress_Swift_Connection_type', 		array('MailPress_connection_sendmail', 'Swift_Connection_type'), 8, 1);
+		add_filter('MailPress_Swift_Connection_type', 		array(__CLASS__, 'Swift_Connection_type'), 8, 1);
 
 // for connection 
-		add_filter('MailPress_Swift_Connection_SENDMAIL', 	array('MailPress_connection_sendmail', 'connect'), 8, 2);
+		add_filter('MailPress_Swift_Connection_SENDMAIL', 	array(__CLASS__, 'connect'), 8, 2);
 
 // for wp admin
 		if (is_admin())
 		{
 		// for link on plugin page
-			add_filter('plugin_action_links', 			array('MailPress_connection_sendmail', 'plugin_action_links'), 10, 2 );
+			add_filter('plugin_action_links', 			array(__CLASS__, 'plugin_action_links'), 10, 2 );
 		// for settings
-			add_filter('MailPress_scripts', 			array('MailPress_connection_sendmail', 'scripts'), 8, 2);
-			add_action('MailPress_settings_update', 		array('MailPress_connection_sendmail', 'settings_update'));
-			add_filter('MailPress_Swift_Connection_settings', 	array('MailPress_connection_sendmail', 'settings_div'), 8, 1);
+			add_filter('MailPress_scripts', 			array(__CLASS__, 'scripts'), 8, 2);
+			add_action('MailPress_settings_update', 		array(__CLASS__, 'settings_update'));
+			add_filter('MailPress_Swift_Connection_settings', 	array(__CLASS__, 'settings_div'), 8, 1);
 		}
 	}
 

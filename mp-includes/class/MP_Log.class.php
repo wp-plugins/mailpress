@@ -77,6 +77,11 @@ $this->log (" **** Start logging $plugin_version**** $this->plug *** $this->name
 		else
 $this->log (" **** Start logging $plugin_version**** $this->name *** level : $this->level");
 
+
+//		if (defined('MP_SCRIPT_DEBUG')) $this->data .= date('Y-m-d H:i:s u') . " -- Memory      : " . number_format(memory_get_usage(), 0, '.', ',')      . " bytes \n";
+//		if (defined('MP_SCRIPT_DEBUG')) $this->data .= date('Y-m-d H:i:s u') . " -- Peak Memory : " . number_format(memory_get_peak_usage(), 0, '.', ',') . " bytes \n";
+
+
 // purge log
 		$now = date('Ymd');
 		$this->lastpurge 	= (isset($this->log_options['lastpurge'])) ? $this->log_options['lastpurge'] 		: $now;
@@ -123,6 +128,10 @@ $this->log ("PHP [" . $this->errors[$error_level] . "] $error_level : $error_mes
 			$log = ob_get_contents();
 		ob_end_clean();
 		if (!empty($log)) $this->log($log);
+
+//		if (defined('MP_SCRIPT_DEBUG')) $this->data .= date('Y-m-d H:i:s u') . " -- Memory      : " . number_format(memory_get_usage(), 0, '.', ',')      . " bytes \n";
+//		if (defined('MP_SCRIPT_DEBUG')) $this->data .= date('Y-m-d H:i:s u') . " -- Peak Memory : " . number_format(memory_get_peak_usage(), 0, '.', ',') . " bytes \n";
+
 		$this->fh = fopen($this->file , 'a+');
 		fputs($this->fh, $this->data); 
 		fclose($this->fh); 
@@ -136,6 +145,10 @@ $this->log ("PHP [" . $this->errors[$error_level] . "] $error_level : $error_mes
 			$log = ob_get_contents();
 		ob_end_clean();
 		if (!empty($log)) $this->log($log);
+
+//		if (defined('MP_SCRIPT_DEBUG')) $this->data .= date('Y-m-d H:i:s u') . " -- Memory      : " . number_format(memory_get_usage(), 0, '.', ',')      . " bytes \n";
+//		if (defined('MP_SCRIPT_DEBUG')) $this->data .= date('Y-m-d H:i:s u') . " -- Peak Memory : " . number_format(memory_get_peak_usage(), 0, '.', ',') . " bytes \n";
+
 		$y = ($y) ? "TRUE" : "FALSE";
 $this->log("LOG ended with status  : " . $y );
 $this->log (" **** End logging   **** $this->plug *** $this->name *** level : $this->level");

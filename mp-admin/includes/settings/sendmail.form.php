@@ -6,13 +6,13 @@ $connection_sendmail = get_option('MailPress_connection_sendmail');
 		<input type='hidden' name='formname' value='connection_sendmail.form' />
 		<table class='form-table'>
 			<tr valign='top'>
-				<th scope='row'><?php _e('Connect','MailPress'); ?></th>
+				<th scope='row'><?php _e('Connect', MP_TXTDOM); ?></th>
 				<td class='field'>
 					<input name='connection_sendmail[cmd]' type='radio'<?php checked($connection_sendmail['cmd'],'std'); ?>  value='std' class='connection_sendmail' />
-					<?php _e("using '/usr/sbin/sendmail -bs'",'MailPress'); ?>
+					<?php _e("using '/usr/sbin/sendmail -bs'", MP_TXTDOM); ?>
 					<br />
 					<input name='connection_sendmail[cmd]' id='sendmail-custom' type='radio'<?php checked($connection_sendmail['cmd'],'custom'); ?>  value='custom' class='connection_sendmail' />
-					<?php _e('using a custom command','MailPress'); ?>
+					<?php _e('using a custom command', MP_TXTDOM); ?>
 					&nbsp;&nbsp;
 					<span id='sendmail-custom-cmd' <?php if ('custom' != $connection_sendmail['cmd']) echo " style='display:none;'"; ?>>
 						<input type='text' size='40' name='connection_sendmail[custom]' value="<?php echo $connection_sendmail['custom']; ?>" />					

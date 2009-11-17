@@ -10,7 +10,7 @@ if (!isset($filter_img['extra_style'])) $filter_img['extra_style'] = '';
 		<input type='hidden' name='formname' value='filter_img.form' />
 		<table class='form-table'>
 			<tr valign='top'>
-				<th scope='row'><?php _e('&lt;img&gt; defaults','MailPress'); ?></th>
+				<th scope='row'><?php _e('&lt;img&gt; defaults', MP_TXTDOM); ?></th>
 				<td class='field'>
 					<table>
 						<tr>
@@ -27,7 +27,7 @@ if (!isset($filter_img['extra_style'])) $filter_img['extra_style'] = '';
 							</td>
 						</tr>
 						<tr>
-							<td class='nobd'><?php _e('style=','MailPress'); ?></td>
+							<td class='nobd'><?php _e('style=', MP_TXTDOM); ?></td>
 							<td class='nobd'>
 								<textarea rows='3' cols='61' name='filter_img[extra_style]'  style='font-family:Courier, "Courier New", monospace;'><?php echo htmlspecialchars(stripslashes($filter_img['extra_style']),ENT_QUOTES);?></textarea>
 							</td>
@@ -36,7 +36,7 @@ if (!isset($filter_img['extra_style'])) $filter_img['extra_style'] = '';
 				</td>
 			</tr>
 			<tr>
-				<th scope='row'><?php _e('Enter full &lt;img&gt; html tag','MailPress'); ?></th>
+				<th scope='row'><?php _e('Enter full &lt;img&gt; html tag', MP_TXTDOM); ?></th>
 				<td>
 					<textarea rows='5' cols='72' name='filter_img[img]'  style='font-family:Courier, "Courier New", monospace;'><?php echo MP_AdminPage::input_text($filter_img['img']); ?></textarea>
 				</td>
@@ -46,7 +46,7 @@ if (!empty($filter_img['img']))
 {
 ?>
 			<tr>
-				<th scope='row'><?php _e('Filter result','MailPress'); ?></th>
+				<th scope='row'><?php _e('Filter result', MP_TXTDOM); ?></th>
 				<td style='font-family:Courier, "Courier New", monospace;'>
 					<div class='filter-img bkgndc bd1sc'>
 <?php 
@@ -64,10 +64,10 @@ if (!empty($filter_img['img']))
 			</tr>
 <?php } ?>
 			<tr valign='top'>
-				<th scope='row'><?php _e('Keep url','MailPress'); ?></th>
+				<th scope='row'><?php _e('Keep url', MP_TXTDOM); ?></th>
 				<td class='field'>
 					<input name='filter_img[keepurl]' type='checkbox'<?php if (isset($filter_img['keepurl'])) checked($filter_img['keepurl'],'on'); ?>  id='attach-none' value='on' style='margin-right:10px;' />
-					<label for='attach-none'><?php printf(__('NO mail attachements with site images when full url (<i>&lt;img src="<b>%1$s/...</b>"</i>) is provided.','MailPress'),get_option('siteurl')); ?></label>
+					<label for='attach-none'><?php printf(__('NO mail attachements with site images when full url (<i>&lt;img src="<b>%1$s/...</b>"</i>) is provided.', MP_TXTDOM),get_option('siteurl')); ?></label>
 				</td>
 			</tr>
 		</table>

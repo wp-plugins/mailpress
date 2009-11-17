@@ -4,15 +4,15 @@ self::require_class('Mailinglists');
 global $action;
 
 $url_parms = self::get_url_parms();
-$h2 = __('Mailing lists','MailPress'); 
+$h2 = __('Mailing lists', MP_TXTDOM); 
 
 wp_reset_vars(array('action'));
 if ('edit' == $action) 
 {
-	$h3 = __('Update the mailing list','MailPress');
+	$h3 = __('Update the mailing list', MP_TXTDOM);
 	$action = 'edited';
 	$disabled = " disabled='disabled'";
-	$cancel = "<input type='submit' class='button' name='cancel' value=\"" . __('Cancel','MailPress') . "\" />\n";
+	$cancel = "<input type='submit' class='button' name='cancel' value=\"" . __('Cancel', MP_TXTDOM) . "\" />\n";
 	
 	$id = (int) $_GET['id'];
 	$mailinglist = MP_Mailinglists::get( $id, OBJECT, 'edit' );
@@ -23,7 +23,7 @@ if ('edit' == $action)
 else 
 {
 	$customfield = array();
-	$h3 = __('Add a mailing list','MailPress');
+	$h3 = __('Add a mailing list', MP_TXTDOM);
 	$action = self::add_form_id;
 	$hidden = '';
 	$disabled = '';
@@ -34,12 +34,12 @@ else
 // MANAGING MESSAGE
 //
 
-$messages[1] = __('Mailinglist added.','MailPress');
-$messages[2] = __('Mailinglist deleted.','MailPress');
-$messages[3] = __('Mailinglist updated.','MailPress');
-$messages[4] = __('Mailinglist not added.','MailPress');
-$messages[5] = __('Mailinglist not updated.','MailPress');
-$messages[6] = __('Mailinglists deleted.','MailPress');
+$messages[1] = __('Mailinglist added.', MP_TXTDOM);
+$messages[2] = __('Mailinglist deleted.', MP_TXTDOM);
+$messages[3] = __('Mailinglist updated.', MP_TXTDOM);
+$messages[4] = __('Mailinglist not added.', MP_TXTDOM);
+$messages[5] = __('Mailinglist not updated.', MP_TXTDOM);
+$messages[6] = __('Mailinglists deleted.', MP_TXTDOM);
 
 if (isset($_GET['message']))
 {
@@ -71,7 +71,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 		<p class='search-box'>
 			<input type='hidden' name='page' value='<?php echo MailPress_page_mailinglists; ?>' />
 			<input type='text' id='post-search-input' name='s' value='<?php if (isset($url_parms['s'])) echo $url_parms['s']; ?>' class="search-input"  />
-			<input type='submit' value="<?php _e( 'Search Mailinglists','MailPress' ); ?>" class='button' />
+			<input type='submit' value="<?php _e( 'Search Mailinglists', MP_TXTDOM ); ?>" class='button' />
 		</p>
 	</form>
 	<br class='clear' />
@@ -83,7 +83,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 					<div class='tablenav'>
 <?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>"; ?>
 						<div class='alignleft actions'>
-							<input type='submit' value="<?php _e('Delete','MailPress'); ?>" name='deleteit' class='button-secondary delete action' />
+							<input type='submit' value="<?php _e('Delete', MP_TXTDOM); ?>" name='deleteit' class='button-secondary delete action' />
 							<input type='hidden' name='page' value='<?php echo MailPress_page_mailinglists; ?>' />
 						</div>
 						<br class='clear' />
@@ -107,14 +107,14 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 					<div class='tablenav'>
 <?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>\n"; ?>
 						<div class='alignleft actions'>
-							<input type='submit' value="<?php _e('Delete','MailPress'); ?>" name='deleteit' class='button-secondary delete' />
+							<input type='submit' value="<?php _e('Delete', MP_TXTDOM); ?>" name='deleteit' class='button-secondary delete' />
 						</div>
 						<br class='clear' />
 					</div>
 					<br class='clear' />
 				</form>
 				<div class="form-wrap">
-					<p><?php printf(__('<strong>Note:</strong><br />Deleting a mailing list does not delete the MailPress users in that mailing list. Instead, MailPress users that were only assigned to the deleted mailing list are set to the mailing list <strong>%s</strong>.','MailPress'), MP_Mailinglists::get_name(get_option('MailPress_default_mailinglist'))) ?></p>
+					<p><?php printf(__('<strong>Note:</strong><br />Deleting a mailing list does not delete the MailPress users in that mailing list. Instead, MailPress users that were only assigned to the deleted mailing list are set to the mailing list <strong>%s</strong>.', MP_TXTDOM), MP_Mailinglists::get_name(get_option('MailPress_default_mailinglist'))) ?></p>
 				</div>
 			</div>
 		</div><!-- /col-right -->
@@ -130,24 +130,24 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 						<?php echo $hidden; ?>
 						<?php wp_nonce_field('update-' . self::tr_prefix_id); ?>
 						<div class="form-field form-required" style='margin:0;padding:0;'>
-							<label for='mailinglist_name'><?php _e('Name','MailPress'); ?></label>
+							<label for='mailinglist_name'><?php _e('Name', MP_TXTDOM); ?></label>
 							<input name='name' id='mailinglist_name' type='text'<?php echo $disabled; ?> value="<?php if (isset($mailinglist->name)) echo attribute_escape($mailinglist->name); ?>" size='40' aria-required='true' />
-							<p><?php _e('The name is used to identify the mailinglist almost everywhere.','MailPress'); ?></p>
+							<p><?php _e('The name is used to identify the mailinglist almost everywhere.', MP_TXTDOM); ?></p>
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>
-							<label for='mailinglist_slug'><?php _e('Slug','MailPress') ?></label>
+							<label for='mailinglist_slug'><?php _e('Slug', MP_TXTDOM) ?></label>
 							<input name='slug' id='mailinglist_slug' type='text' value="<?php if (isset($mailinglist->slug)) echo attribute_escape($mailinglist->slug); ?>" size='40' />
-							<p><?php _e('The &#8220;slug&#8221; is a unique id for the mailing list (not so friendly !). In case of conflict, new mailing list is not created or when updating, slug might be regenerated. It is usually all lowercase and contains only letters, numbers, and hyphens. It is never displayed.','MailPress'); ?></p>
+							<p><?php _e('The &#8220;slug&#8221; is a unique id for the mailing list (not so friendly !). In case of conflict, new mailing list is not created or when updating, slug might be regenerated. It is usually all lowercase and contains only letters, numbers, and hyphens. It is never displayed.', MP_TXTDOM); ?></p>
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>
-							<label for='mailinglist_parent'><?php _e('Mailing list Parent','MailPress') ?></label>
-							<?php MP_Mailinglists::dropdown(array('hide_empty' => 0, 'name' => 'parent', 'orderby' => 'name', 'htmlid' => 'mailinglist_parent', 'selected' => (isset($mailinglist->parent)) ? $mailinglist->parent : '', 'hierarchical' => true, 'show_option_none' => __('None','MailPress'))); ?>
-							<p><?php _e("Mailing list can have a hierarchy. You might have a Rock'n roll mailing list, and under that have children mailing lists for Elvis and The Beatles. Totally optional !",'MailPress'); ?></p>
+							<label for='mailinglist_parent'><?php _e('Mailing list Parent', MP_TXTDOM) ?></label>
+							<?php MP_Mailinglists::dropdown(array('hide_empty' => 0, 'name' => 'parent', 'orderby' => 'name', 'htmlid' => 'mailinglist_parent', 'selected' => (isset($mailinglist->parent)) ? $mailinglist->parent : '', 'hierarchical' => true, 'show_option_none' => __('None', MP_TXTDOM))); ?>
+							<p><?php _e("Mailing list can have a hierarchy. You might have a Rock'n roll mailing list, and under that have children mailing lists for Elvis and The Beatles. Totally optional !", MP_TXTDOM); ?></p>
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>
-							<label for='mailinglist_description'><?php _e('Description','MailPress') ?></label>
+							<label for='mailinglist_description'><?php _e('Description', MP_TXTDOM) ?></label>
 							<textarea name='description' id='mailinglist_description' rows='5' cols='50' style='width: 97%;'><?php if (isset($mailinglist->description)) echo htmlentities(stripslashes($mailinglist->description),ENT_QUOTES); ?></textarea>
-							<p><?php _e('The description is not prominent by default.','MailPress'); ?></p>
+							<p><?php _e('The description is not prominent by default.', MP_TXTDOM); ?></p>
 						</div>
 						<p class='submit'>
 							<input type='submit' class='button' name='submit' id='mailinglist_submit' value="<?php echo $h3; ?>" />

@@ -10,5 +10,5 @@ $connection_sendmail	= $_POST['connection_sendmail'];
 if (!add_option ('MailPress_connection_sendmail', $connection_sendmail, 'MailPress - connection_sendmail config' )) update_option ('MailPress_connection_sendmail', $connection_sendmail);
 if (!add_option ('MailPress_general', $mp_general, 'MailPress - general settings' )) update_option ('MailPress_general', $mp_general);
 
-MP_AdminPage::message(__("'SENDMAIL' settings saved", 'MailPress'));
+MP_AdminPage::message(__("'SENDMAIL' settings saved", MP_TXTDOM));
 ?>

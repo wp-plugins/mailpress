@@ -51,7 +51,7 @@ class MP_AdminPage extends MP_Admin_page_list
 	public static function get_columns() 
 	{
 		$columns = array(	'cb'		=> "<input type='checkbox' />", 
-					'name'	=> __('Name', 'MailPress'));
+					'name'	=> __('Name', MP_TXTDOM));
 		return $columns;
 	}
 
@@ -107,8 +107,8 @@ class MP_AdminPage extends MP_Admin_page_list
 		$f 		= substr($file, strpos($file, str_replace( ABSPATH, '', WP_CONTENT_DIR )));
 		$view_url 	= clean_url(MailPress_view_log . "&id=$f");
 		$browse_url = '../' . self::get_path() . '/' . $f;
-		$actions['view']   = "<a href='$view_url' title='" . sprintf( __('View "%1$s"', 'MailPress') , $file ) . "'>"	. __('View', 'MailPress') . '</a>';
-		$actions['browse'] = "<a href='$browse_url' target='_blank' title='" . sprintf( __('Browse "%1$s"', 'MailPress') , $file ) . "'>"	. __('Browse', 'MailPress') . '</a>';
+		$actions['view']   = "<a href='$view_url' title='" . sprintf( __('View "%1$s"', MP_TXTDOM) , $file ) . "'>"	. __('View', MP_TXTDOM) . '</a>';
+		$actions['browse'] = "<a href='$browse_url' target='_blank' title='" . sprintf( __('Browse "%1$s"', MP_TXTDOM) , $file ) . "'>"	. __('Browse', MP_TXTDOM) . '</a>';
 
 		$row_class = (" class='alternate'" == $row_class) ? '' : " class='alternate'";
 		$attributes = "class='post-title column-title'";
@@ -120,7 +120,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		<td  <?php echo $attributes ?>>
 			<span style='display:block;'>
 				<strong style='display:inline;'>
-					<a class='row-title'href='<?php echo $view_url; ?>' title='<?php printf( __('View "%1$s"', 'MailPress') , $file ); ?>'>
+					<a class='row-title'href='<?php echo $view_url; ?>' title='<?php printf( __('View "%1$s"', MP_TXTDOM) , $file ); ?>'>
 						<?php echo $file; ?>
 					</a>
 				</strong>

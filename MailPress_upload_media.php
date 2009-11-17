@@ -6,7 +6,7 @@ Plugin Name: MailPress_upload_media
 Plugin URI: http://www.mailpress.org
 Description: This is just an addon for MailPress to allow upload media button on MailPress Write
 Author: Andre Renaut
-Version: 4.0.1
+Version: 4.0.2
 Author URI: http://www.mailpress.org
 */
 
@@ -14,8 +14,8 @@ class MailPress_upload_media
 {
 	function __construct()
 	{
-		add_filter('MailPress_scripts', 		array('MailPress_upload_media', 'scripts'), 8, 2);
-		add_filter('MailPress_upload_media', 	array('MailPress_upload_media', 'upload_media'), 8, 1);
+		add_filter('MailPress_scripts', 		array(__CLASS__, 'scripts'), 8, 2);
+		add_filter('MailPress_upload_media', 	array(__CLASS__, 'upload_media'), 8, 1);
 	}
 
 	public static function scripts($scripts, $screen) 

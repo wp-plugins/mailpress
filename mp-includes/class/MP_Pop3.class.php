@@ -1,7 +1,7 @@
 <?php
 class MP_Pop3
 {
-	const bt = 100;
+	const bt = 132;
 
 	var $pop3 = null;
 

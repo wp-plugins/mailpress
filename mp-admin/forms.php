@@ -79,7 +79,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 ////  Title  ////
 
-	public static function title() { if (isset($_GET['id'])) { global $title; $title = __('Edit Form', 'MailPress'); } }
+	public static function title() { if (isset($_GET['id'])) { global $title; $title = __('Edit Form', MP_TXTDOM); } }
 
 ////  Styles  ////
 
@@ -110,7 +110,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 		wp_register_script( 'mp-taxonomy', 		'/' . MP_PATH . 'mp-includes/js/mp_taxonomy.js', array('mp-lists'), false, 1);
 		wp_localize_script( 'mp-taxonomy', 		'MP_AdminPageL10n', array(
-			'errmess' => __('Enter a valid email !', 'MailPress'), 
+			'errmess' => __('Enter a valid email !', MP_TXTDOM), 
 			'pending' => __('%i% pending'), 
 			'screen' => self::screen,
 			'list_id' => self::list_id,
@@ -130,10 +130,10 @@ class MP_AdminPage extends MP_Admin_page_list
 	public static function get_columns() 
 	{
 		$columns = array(	'cb'			=> '<input type="checkbox" />',
-					'name'		=> __('Label', 'MailPress'),
-					'template'		=> __('Template', 'MailPress'),
-					'recipient'		=> __('Recipient', 'MailPress'),
-					'confirm' 		=> __('Copy', 'MailPress'));
+					'name'		=> __('Label', MP_TXTDOM),
+					'template'		=> __('Template', MP_TXTDOM),
+					'recipient'		=> __('Recipient', MP_TXTDOM),
+					'confirm' 		=> __('Copy', MP_TXTDOM));
 		return $columns;
 	}
 
@@ -195,11 +195,11 @@ class MP_AdminPage extends MP_Admin_page_list
 // actions
 		$actions = array();
 		$actions['edit'] = '<a href="' . $edit_url . '">' . __('Edit') . '</a>';
-		$actions['edit_templates'] = '<a href="' . $edit_templates_url . '">' . __('Templates', 'MailPress') . '</a>';
-		$actions['edit_fields'] = '<a href="' . $edit_fields_url . '">' . __('Fields', 'MailPress') . '</a>';
-		$actions['duplicate'] = "<a class='dim:" . self::list_id . ":" . self::tr_prefix_id . "-" . $form->id . ":unapproved:e7e7d3:e7e7d3' href='$duplicate_url'>" . __('Duplicate', 'MailPress') . "</a>";
+		$actions['edit_templates'] = '<a href="' . $edit_templates_url . '">' . __('Templates', MP_TXTDOM) . '</a>';
+		$actions['edit_fields'] = '<a href="' . $edit_fields_url . '">' . __('Fields', MP_TXTDOM) . '</a>';
+		$actions['duplicate'] = "<a class='dim:" . self::list_id . ":" . self::tr_prefix_id . "-" . $form->id . ":unapproved:e7e7d3:e7e7d3' href='$duplicate_url'>" . __('Duplicate', MP_TXTDOM) . "</a>";
 		$actions['delete'] = "<a class='delete:" . self::list_id . ":" . self::tr_prefix_id . "-" . $form->id . " submitdelete' href='$delete_url'>" . __('Delete') . "</a>";
-		$actions['view'] = "<a class='thickbox' href='$view_url' title=\"" . sprintf(__('Form preview #%1$s (%2$s)', 'MailPress'), $form->id, stripslashes($form->label)) . "\" >" . __('Preview', 'MailPress') . "</a>";
+		$actions['view'] = "<a class='thickbox' href='$view_url' title=\"" . sprintf(__('Form preview #%1$s (%2$s)', MP_TXTDOM), $form->id, stripslashes($form->label)) . "\" >" . __('Preview', MP_TXTDOM) . "</a>";
 
 		$row_class = 'alternate' == $row_class ? '' : 'alternate';
 
@@ -247,13 +247,13 @@ class MP_AdminPage extends MP_Admin_page_list
 					switch ($mail)
 					{
 						case 1 :
-							$out .= __('t.b.c.', 'MailPress');
+							$out .= __('t.b.c.', MP_TXTDOM);
 						break;
 						case 2 :
-							$out .= __('yes', 'MailPress');
+							$out .= __('yes', MP_TXTDOM);
 						break;
 						default :
-							$out .= __('no', 'MailPress');
+							$out .= __('no', MP_TXTDOM);
 						break;
 					}
 	 				$out .= "</td>\n";

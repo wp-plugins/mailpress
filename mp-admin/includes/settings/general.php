@@ -8,15 +8,15 @@ switch (true)
 {
 	case ( !MP_AdminPage::is_email($mp_general['fromemail']) ) :
 		$fromemailclass = true;
-		MP_AdminPage::message(__('field should be an email', 'MailPress'), false);
+		MP_AdminPage::message(__('field should be an email', MP_TXTDOM), false);
 	break;
 	case ( empty($mp_general['fromname']) ) :
 		$fromnameclass = true;
-		MP_AdminPage::message(__('field should be a name', 'MailPress'), false);
+		MP_AdminPage::message(__('field should be a name', MP_TXTDOM), false);
 	break;
 	case (('ajax' != $mp_general['subscription_mngt']) && ( !is_numeric($mp_general['id']))) :
 		$idclass = true;
-		MP_AdminPage::message(__('field should be numeric', 'MailPress'), false);
+		MP_AdminPage::message(__('field should be numeric', MP_TXTDOM), false);
 	break;
 	default :
 		if (isset($_POST['sync_wordpress_user_on']))	// so we don't delete settings if addon deactivated !
@@ -33,7 +33,7 @@ switch (true)
 
 		if ('ajax' == $mp_general['subscription_mngt']) $mp_general['id'] = '';
 		if (!add_option ('MailPress_general', $mp_general, 'MailPress - general settings' )) update_option ('MailPress_general', $mp_general);
-		MP_AdminPage::message(__('General settings saved','MailPress'));
+		MP_AdminPage::message(__('General settings saved', MP_TXTDOM));
 	break;
 }
 ?>

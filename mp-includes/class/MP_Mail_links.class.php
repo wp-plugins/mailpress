@@ -3,15 +3,15 @@ class MP_Mail_links
 {
 	public static function process() 
 	{
-		$errs[1] = __('unknown user', 'MailPress');
-		$errs[2] = __('unknown user', 'MailPress');
-		$errs[3] = __('cannot activate user', 'MailPress');
-		$errs[4] = __('user already active', 'MailPress');
-		$errs[5] = __('unknown user', 'MailPress');
-		$errs[6] = __('user not a recipient', 'MailPress');
-		$errs[7] = __('user not a recipient', 'MailPress');
-		$errs[8] = __('unknown mail', 'MailPress');
-		$errs[9] = __('unknown user', 'MailPress');
+		$errs[1] = __('unknown user', MP_TXTDOM);
+		$errs[2] = __('unknown user', MP_TXTDOM);
+		$errs[3] = __('cannot activate user', MP_TXTDOM);
+		$errs[4] = __('user already active', MP_TXTDOM);
+		$errs[5] = __('unknown user', MP_TXTDOM);
+		$errs[6] = __('user not a recipient', MP_TXTDOM);
+		$errs[7] = __('user not a recipient', MP_TXTDOM);
+		$errs[8] = __('unknown mail', MP_TXTDOM);
+		$errs[9] = __('unknown user', MP_TXTDOM);
 
 		switch (true)
 		{
@@ -34,8 +34,8 @@ class MP_Mail_links
 
 		if (is_numeric($results))
 		{
-			$content  = '<p>' . sprintf(__('<p> ERROR # %1$s (%2$s) !</p>', 'MailPress'), $results, $errs[$results]) . "</p>\n";
-			$content .= '<p>' . __('Check you are using the appropriate link.', 'MailPress') . "</p>\n";
+			$content  = '<p>' . sprintf(__('<p> ERROR # %1$s (%2$s) !</p>', MP_TXTDOM), $results, $errs[$results]) . "</p>\n";
+			$content .= '<p>' . __('Check you are using the appropriate link.', MP_TXTDOM) . "</p>\n";
 			$content .= "<br />\n";
 
 			return array('title' => '', 'content' => $content);
@@ -46,6 +46,7 @@ class MP_Mail_links
 	
 	public static function del($mp_confkey)
 	{
+        $ok = false;
 		global $mp_subscriptions;
 		if (isset($mp_subscriptions['subcomment'])) 
 			MailPress::require_class('Comment');
@@ -57,12 +58,20 @@ class MP_Mail_links
 		$mp_user = MP_Users::get($mp_user_id);
 		$active = ('active' == $mp_user->status) ? true : false;
 
-		$title    =  sprintf(__('Manage Subscription (%1$s)','MailPress'), $mp_user->email);
+		$title    =  sprintf(__('Manage Subscription (%1$s)', MP_TXTDOM), $mp_user->email);
 		$content = '';
+
+		if ('unsubscribed' == $mp_user->status)
+		{
+			$content .= '<br /><br />';
+			$content .= __('Your email has been unsubscribed, ask the administrator ...', MP_TXTDOM);
+			$content .= '<br /><br />';
+			return array('title' => $title, 'content' => $content);
+		}
 
 		if (isset($_POST['cancel']))
 		{
-			$content .= '<p>' . __('Cancelled action', 'MailPress') ."</p>\n";
+			$content .= '<p>' . __('Cancelled action', MP_TXTDOM) ."</p>\n";
 			$content .= "<br />\n";
 			return array('title' => $title, 'content' => $content);
 		}
@@ -82,7 +91,7 @@ class MP_Mail_links
 				MP_Newsletter::update_checklist($mp_user_id);
 				if (class_exists('MailPress_mailinglist')) MailPress_mailinglist::update_checklist($mp_user_id);
 			}
-			$content .= "<div id='moderated' class='updated fade'><p>" . __('Subscriptions saved', 'MailPress') . "</p></div>\n";
+			$content .= "<div id='moderated' class='updated fade'><p>" . __('Subscriptions saved', MP_TXTDOM) . "</p></div>\n";
 		}
 
 		$checklist_comments = $checklist_mailinglists = $checklist_newsletters = false;
@@ -98,7 +107,7 @@ class MP_Mail_links
 		
 		$content .= "<form action='' method='post'>\n";
 
-		$content .= "<h3>" . __('Name', 'MailPress') . "</h3>\n";
+		$content .= "<h3>" . __('Name', MP_TXTDOM) . "</h3>\n";
 		$content .= "<input name='mp_user_name' type='text' value=\"" . MailPress::input_text($mp_user->name) . "\" size='30' />\n";
 
 		if ($checklist_comments) 	
@@ -111,33 +120,33 @@ class MP_Mail_links
 		if ($checklist_newsletters) 	
 		{
 			$ok = true;
-			$content .= "<h3>" . __('Newsletters', 'MailPress') . "</h3>\n";
+			$content .= "<h3>" . __('Newsletters', MP_TXTDOM) . "</h3>\n";
 			$content .= $checklist_newsletters ;
 		}
 
 		if ($checklist_mailinglists)
 		{
 			$ok = true;
-			$content .= "<h3>" . __('Mailing lists', 'MailPress') . "</h3>\n";
+			$content .= "<h3>" . __('Mailing lists', MP_TXTDOM) . "</h3>\n";
 			$content .= $checklist_mailinglists ;
 		}
 
 		if ($ok)
 		{
 			$content .= "	<input type='hidden'                name='status' value='" . MP_Users::get_status($mp_user_id) . "' />\n";
-			$content .= "	<br /><p><input class='button' type='submit' name='delconf' value='" . __('OK', 'MailPress') . "' />\n";
-			$content .= "	<input class='button' type='submit' name='cancel'  value='" . __('Cancel', 'MailPress') . "' /></p>\n";
+			$content .= "	<br /><p><input class='button' type='submit' name='delconf' value='" . __('OK', MP_TXTDOM) . "' />\n";
+			$content .= "	<input class='button' type='submit' name='cancel'  value='" . __('Cancel', MP_TXTDOM) . "' /></p>\n";
 		}
 		else
 		{
 			$content .= '<br /><br />';
-			if ($active) 	$content .= __('Nothing to subscribe for ...', 'MailPress');
-			else			$content .= __('Your email has been deactivated, ask the administrator ...', 'MailPress');
+			if ($active) 	$content .= __('Nothing to subscribe for ...', MP_TXTDOM);
+			else			$content .= __('Your email has been deactivated, ask the administrator ...', MP_TXTDOM);
 			$content .= '<br /><br />';
 		}
 		$content .= "</form>\n";
 		$content .= "<br />\n";
-		$content .= "<h3><a href='" . MP_Users::get_delall_url($mp_confkey) . "'>" . __('Delete Subscription', 'MailPress') . "</a></h3>\n";
+		$content .= "<h3><a href='" . MP_Users::get_delall_url($mp_confkey) . "'>" . __('Delete Subscription', MP_TXTDOM) . "</a></h3>\n";
 		$content .= "<br />\n";
 		return array('title' => $title, 'content' => $content);
 	}
@@ -150,31 +159,31 @@ class MP_Mail_links
 
 		$email 	= MP_Users::get_email($mp_user_id);
 
-		$title = __('Delete Subscription', 'MailPress');
+		$title = __('Unsubscribe', MP_TXTDOM);
 		$content = '';
 
 		if (isset($_POST['delconf'])) 
 		{
-			if (MP_Users::set_status($mp_user_id, 'delete'))
+			if (MP_Users::set_status($mp_user_id, 'unsubscribed'))
 			{
-				$content .= sprintf(__('<p>We confirm that the email adress <b>%1$s</b> has been removed from the database.</p>', 'MailPress'), $email);
+				$content .= sprintf(__('<p>We confirm that the email adress <b>%1$s</b> has been unsubscribed.</p>', MP_TXTDOM), $email);
 				$content .= "<br />\n";
 				return array('title' => $title, 'content' => $content);
 			}
 		}
 		elseif (isset($_POST['cancel']))
 		{
-			$content .= '<p>' . __('Cancelled action', 'MailPress') ."</p>\n";
+			$content .= '<p>' . __('Cancelled action', MP_TXTDOM) ."</p>\n";
 			$content .= "<br />\n";
 			return array('title' => $title, 'content' => $content);
 		}
 		else
 		{
-			$content .= '<p>' .sprintf(__('<p>Are you sure you want to unsubscribe <b>%1$s</b> from <b>%2$s</b>.</p>', 'MailPress'), $email, get_bloginfo('name')) ."</p>\n";
+			$content .= '<p>' .sprintf(__('<p>Are you sure you want to unsubscribe <b>%1$s</b> from <b>%2$s</b>.</p>', MP_TXTDOM), $email, get_bloginfo('name')) ."</p>\n";
 			$content .= "<br /><br />\n";
 			$content .= "<form action='' method='post'>\n";
-			$content .= "	<input class='button' type='submit' name='delconf' value='" . __('OK', 'MailPress') . "' />\n";
-			$content .= "	<input class='button' type='submit' name='cancel'  value='" . __('Cancel', 'MailPress') . "' />\n";
+			$content .= "	<input class='button' type='submit' name='delconf' value='" . __('OK', MP_TXTDOM) . "' />\n";
+			$content .= "	<input class='button' type='submit' name='cancel'  value='" . __('Cancel', MP_TXTDOM) . "' />\n";
 			$content .= "</form>\n";
 			$content .= "<br />\n";
 			return array('title' => $title, 'content' => $content);
@@ -192,12 +201,12 @@ class MP_Mail_links
 		$email 	= MP_Users::get_email($mp_user_id);
 		$url   = MP_Users::get_unsubscribe_url($_GET['add']);
 
-		$title    = __('Subscription confirmed', 'MailPress');
+		$title    = __('Subscription confirmed', MP_TXTDOM);
 		$content = '';
 
-		$content .= sprintf(__('<p><b>%1$s</b> has been succesfully inserted in the database.</p>', 'MailPress'), $email);
+		$content .= sprintf(__('<p><b>%1$s</b> has been succesfully inserted in the database.</p>', MP_TXTDOM), $email);
 		$content .= "<br />\n";
-		$content .= "<h3>" . sprintf(__('<a href="%1$s">Manage Subscription</a>', 'MailPress'), $url) . "</h3>\n";
+		$content .= "<h3>" . sprintf(__('<a href="%1$s">Manage Subscription</a>', MP_TXTDOM), $url) . "</h3>\n";
 		$content .= "<br />\n";
 		return array('title' => $title, 'content' => $content);
 	}
@@ -228,15 +237,15 @@ class MP_Mail_links
 			else
 			{
 				$title    = $mail->subject;
-				$content .= sprintf(__('<p> From : <b>%1$s</b></p>', 'MailPress'), MP_Mails::display_name_email($mail->fromname, $mail->fromemail));
-				$content .= sprintf(__('<p> To   : <b>%1$s</b></p>', 'MailPress'), MP_Mails::display_name_email($mail->toname, $mail->toemail));
+				$content .= sprintf(__('<p> From : <b>%1$s</b></p>', MP_TXTDOM), MP_Mails::display_name_email($mail->fromname, $mail->fromemail));
+				$content .= sprintf(__('<p> To   : <b>%1$s</b></p>', MP_TXTDOM), MP_Mails::display_name_email($mail->toname, $mail->toemail));
 				$content .= "<p><iframe id='mp' name='mp' style='width:800px;height:600px;border:none;' src='" . clean_url($view_url) . "'></iframe></p>";
 
 				MailPress::require_class('Mailmeta');
 				$metas = MP_Mailmeta::has( $mail_id, '_MailPress_attached_file');
 				if ($metas)
 				{
-					$content .= "<div id='attachements'><table><tr><td style='vertical-align:top;'>" . __('Attachements', 'MailPress') . "</td><td><table>";
+					$content .= "<div id='attachements'><table><tr><td style='vertical-align:top;'>" . __('Attachements', MP_TXTDOM) . "</td><td><table>";
 					foreach($metas as $meta) $content .= "<tr><td>&nbsp;" . MP_Mails::get_attachement_link($meta, $mail->status) . "</td></tr>";
 					$content .= "</table></td></tr></table></div>\n";
 				}
@@ -265,14 +274,14 @@ class MP_Mail_links
 
 				$title    = $mail->subject;
 				foreach ($recipient as $k => $v) $title = str_replace($k, $v, $title);
-				$content .= sprintf(__('<p> From : <b>%1$s</b></p>', 'MailPress'), MP_Mails::display_name_email($mail->fromname, $mail->fromemail));
-				$content .= sprintf(__('<p> To   : <b>%1$s</b></p>', 'MailPress'), MP_Mails::display_name_email($email, $email));
+				$content .= sprintf(__('<p> From : <b>%1$s</b></p>', MP_TXTDOM), MP_Mails::display_name_email($mail->fromname, $mail->fromemail));
+				$content .= sprintf(__('<p> To   : <b>%1$s</b></p>', MP_TXTDOM), MP_Mails::display_name_email($email, $email));
 				$content .= "<p><iframe id='mp' name='mp' style='width:800px;height:600px;border:none;' src='" . clean_url($view_url) . "'></iframe></p>";
 
 				$metas = MP_Mailmeta::has( $mail_id, '_MailPress_attached_file');
 				if ($metas)
 				{
-					$content .= "<div id='attachements'><table><tr><td style='vertical-align:top;'>" . __('Attachements', 'MailPress') . "</td><td><table>";
+					$content .= "<div id='attachements'><table><tr><td style='vertical-align:top;'>" . __('Attachements', MP_TXTDOM) . "</td><td><table>";
 					foreach($metas as $meta)
 					{
 						$meta_value = unserialize( $meta['meta_value'] );

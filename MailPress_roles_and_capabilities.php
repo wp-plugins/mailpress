@@ -6,7 +6,7 @@ Plugin Name: MailPress_roles_and_capabilities
 Plugin URI: http://www.mailpress.org
 Description: This is just an addon for MailPress to manage roles & capabilities.
 Author: Andre Renaut
-Version: 4.0.1
+Version: 4.0.2
 Author URI: http://www.mailpress.org
 */
 
@@ -15,17 +15,17 @@ class MailPress_roles_and_capabilities
 	function __construct()
 	{
 	// for link on plugin page
-		add_filter('plugin_action_links', 			array('MailPress_roles_and_capabilities', 'plugin_action_links'), 10, 2 );
+		add_filter('plugin_action_links', 			array(__CLASS__, 'plugin_action_links'), 10, 2 );
 	// for role & capabilities
-		add_action('MailPress_roles_and_capabilities', 	array('MailPress_roles_and_capabilities', 'roles_and_capabilities'));
+		add_action('MailPress_roles_and_capabilities', 	array(__CLASS__, 'roles_and_capabilities'));
 	// for settings
-		add_filter('MailPress_styles', 			array('MailPress_roles_and_capabilities', 'styles'), 8, 2);
-		add_filter('MailPress_scripts', 			array('MailPress_roles_and_capabilities', 'scripts'), 8, 2);
-		add_action('MailPress_settings_update', 		array('MailPress_roles_and_capabilities', 'settings_update'));
-		add_action('MailPress_settings_tab', 		array('MailPress_roles_and_capabilities', 'settings_tab'), 8, 1);
-		add_action('MailPress_settings_div', 		array('MailPress_roles_and_capabilities', 'settings_div'));
+		add_filter('MailPress_styles', 			array(__CLASS__, 'styles'), 8, 2);
+		add_filter('MailPress_scripts', 			array(__CLASS__, 'scripts'), 8, 2);
+		add_action('MailPress_settings_update', 		array(__CLASS__, 'settings_update'));
+		add_action('MailPress_settings_tab', 		array(__CLASS__, 'settings_tab'), 8, 1);
+		add_action('MailPress_settings_div', 		array(__CLASS__, 'settings_div'));
 	//for ajax
-		add_action('mp_action_r_and_c',			array('MailPress_roles_and_capabilities', 'mp_action_r_and_c'));
+		add_action('mp_action_r_and_c',			array(__CLASS__, 'mp_action_r_and_c'));
 	}
 
 ////  ADMIN  ////
@@ -91,7 +91,7 @@ class MailPress_roles_and_capabilities
 	public static function settings_tab($tab)
 	{
 		$t = ($tab=='MailPress_roles_and_capabilities') ? " class='ui-tabs-selected'" : ''; 
-		echo "\t\t\t<li $t><a href='#fragment-MailPress_roles_and_capabilities'><span class='button-secondary'>" . __('R&amp;C', 'MailPress') . "</span></a></li>\n";
+		echo "\t\t\t<li $t><a href='#fragment-MailPress_roles_and_capabilities'><span class='button-secondary'>" . __('R&amp;C', MP_TXTDOM) . "</span></a></li>\n";
 	}
 
 	public static function settings_div()

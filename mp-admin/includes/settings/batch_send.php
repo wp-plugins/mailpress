@@ -19,5 +19,5 @@ if ($old_batch_send['batch_mode'] != $batch_send['batch_mode'])
 	else							 MailPress_batch_send::schedule();
 }
 
-MP_AdminPage::message(__("'Batch' settings saved", 'MailPress'));
+MP_AdminPage::message(__("'Batch' settings saved", MP_TXTDOM));
 ?>

@@ -13,7 +13,7 @@ class MP_Tracking_module_m006 extends MP_Tracking_module_abstract
 	function __construct()
 	{
 		$this->type  = basename(dirname(__FILE__));
-		$this->title = __('Geoip','MailPress');
+		$this->title = __('Geoip', MP_TXTDOM);
 		add_filter('MailPress_scripts', array(&$this, 'scripts'), 8, 2);
 		parent::__construct();
 	}
@@ -34,10 +34,10 @@ class MP_Tracking_module_m006 extends MP_Tracking_module_abstract
 			'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/',
 			'ajaxurl'	=> MP_Action_url,
 			'color'	=> $color,
-			'zoomwide'	=> js_escape(__('zoom -', 'MailPress')),
-			'zoomtight'	=> js_escape(__('zoom +', 'MailPress')),
-			'center'	=> js_escape(__('center', 'MailPress')),
-			'changemap'	=> js_escape(__('change map', 'MailPress'))
+			'zoomwide'	=> js_escape(__('zoom -', MP_TXTDOM)),
+			'zoomtight'	=> js_escape(__('zoom +', MP_TXTDOM)),
+			'center'	=> js_escape(__('center', MP_TXTDOM)),
+			'changemap'	=> js_escape(__('change map', MP_TXTDOM))
 		));
 		$scripts[] = 'mp-gmap2';
 

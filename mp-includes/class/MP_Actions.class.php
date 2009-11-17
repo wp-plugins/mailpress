@@ -167,7 +167,7 @@ class MP_Actions
 			break;
 			default :
 				ob_start();
-					MP_AdminPage::get_row( $id, $url_parms, __('no recipient', 'MailPress') );
+					MP_AdminPage::get_row( $id, $url_parms, __('no recipient', MP_TXTDOM) );
 					$html = ob_get_contents();
 				ob_end_clean();
 				header('Content-Type: text/xml');
@@ -182,43 +182,34 @@ class MP_Actions
 
 	public static function dim_user() 
 	{
-		MailPress::require_class('Users');
+		$dims = array(	'unsubscribed' 	=> 'waiting',
+					'waiting'		=> 'active',
+					'active'		=> 'waiting'
+				);
 
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
-		switch (MP_Users::get_status($id))
-		{
-			case 'waiting' : 
-				$now = MP_Users::set_status( $id, 'active' );
-				if ($now) self::dim_user2($id, $now);
-			break;
-			case 'active' : 
-				$now = MP_Users::set_status( $id, 'waiting' );
-				if ($now) self::dim_user2($id, $now);
-			break;
-			default :
-				MailPress::mp_die();
-			break;
-		}
-		MailPress::mp_die(-1);
-	}
 
-	public static function dim_user2($id, $now) 
-	{
-		$t_time = mysql2date(__('Y/m/d g:i:s A'), $now);
-		$m_time = $now;
-		$time   = mysql2date(__('U'), $now);
+		MailPress::require_class('Users');
+		$status = MP_Users::get_status($id);
+		$rc = false;
+		if (isset($dims[$status])) 	$rc = MP_Users::set_status( $id, $dims[$status]);
+		else					MailPress::mp_die();
 
-		$time_diff = time() - $time; 
+		if (!$rc) MailPress::mp_die(-1);
 
-		if ( $time_diff > 0 && $time_diff < 24*60*60 )	$h_time = sprintf( __('%s ago'), human_time_diff( $time ) );
-		elseif ( $time_diff == 0 )				$h_time = __('now', 'MailPress');
-		else								$h_time = mysql2date(__('Y/m/d'), $m_time);
+		require_once(MP_TMP . 'mp-admin/users.php');
+		$url_parms 	= MP_AdminPage::get_url_parms();
+        
+		ob_start();
+			MP_AdminPage::get_row( $id, $url_parms );
+			$html = ob_get_contents();
+		ob_end_clean();
 
-		$xml = "<id><![CDATA[$id]]></id><now><![CDATA[$t_time]]></now><time><![CDATA[$h_time]]></time>";
+		$xml = "<rc><![CDATA[0]]></rc><id><![CDATA[$id]]></id><item><![CDATA[$html]]></item><old_status><![CDATA[$status]]></old_status><new_status><![CDATA[" . $dims[$status] . "]]></new_status>"; 
 
 		ob_end_clean();
 		header('Content-Type: text/xml');
-		MailPress::mp_die("<?xml version='1.0' standalone='yes'?><wp_ajax>$xml</wp_ajax>");
+		MailPress::mp_die("<?xml version='1.0' standalone='yes'?><mp_action>$xml</mp_action>");
 	}
 
 //// ADD LIST ////
@@ -510,20 +501,20 @@ class MP_Actions
 		$mail->Theme 	= $_GET['template'];
 		$mail->Template 	= 'confirmed';
 
-		$message  = sprintf(__('We confirm your subscription to %1$s emails', 'MailPress'), get_bloginfo('name') );
+		$message  = sprintf(__('We confirm your subscription to %1$s emails', MP_TXTDOM), get_bloginfo('name') );
 		$message .= "\n\n";
-		$message .= __('Congratulations !', 'MailPress');
+		$message .= __('Congratulations !', MP_TXTDOM);
 		$message .= "\n\n";
 		$mail->plaintext 	= $message;
 
-		$message  = sprintf(__('We confirm your subscription to %1$s emails', 'MailPress'), "<a href='$url'>" . get_bloginfo('name') . "</a>" );
+		$message  = sprintf(__('We confirm your subscription to %1$s emails', MP_TXTDOM), "<a href='$url'>" . get_bloginfo('name') . "</a>" );
 		$message .= '<br /><br />';
-		$message .= __('Congratulations !', 'MailPress');
+		$message .= __('Congratulations !', MP_TXTDOM);
 		$message .= '<br /><br />';
 		$mail->html 	= $message;
 
-		$mail->unsubscribe= __('"Subscription management link"', 'MailPress');
-		$mail->viewhtml 	= __('"Trouble reading link"', 'MailPress');
+		$mail->unsubscribe= __('"Subscription management link"', MP_TXTDOM);
+		$mail->viewhtml 	= __('"Trouble reading link"', MP_TXTDOM);
 
 		MailPress::require_class('Mail');
 		$x = new MP_Mail();
@@ -557,8 +548,8 @@ class MP_Actions
 		$supplemental = array();
 		$supplemental['tipe'] = $data = '';
 
-		$message['revision'] = sprintf( __('Revision saved at %s.', 'MailPress'), 	date( __('g:i:s a'), current_time( 'timestamp', true ) ) );
-		$message['draft']    = sprintf( __('Draft saved at %s.', 'MailPress'), 		date( __('g:i:s a'), current_time( 'timestamp', true ) ) );
+		$message['revision'] = sprintf( __('Revision saved at %s.', MP_TXTDOM), 	date( __('g:i:s a'), current_time( 'timestamp', true ) ) );
+		$message['draft']    = sprintf( __('Draft saved at %s.', MP_TXTDOM), 		date( __('g:i:s a'), current_time( 'timestamp', true ) ) );
 
 		$do_autosave= (bool) $_POST['autosave'];
 		$main_id 	= $_POST['id'];
@@ -753,8 +744,8 @@ class MP_Actions
 		$meta = MP_Mailmeta::get_by_id($mmeta_id);
 		$meta_value = unserialize( $meta->meta_value );
 
-		if (!$meta_value)						MailPress::mp_die(__('Cannot Open Attachement 1!', 'MailPress'));
-		if (!is_file($meta_value['file_fullpath']))	MailPress::mp_die(__('Cannot Open Attachement 2! ' . $meta_value['file_fullpath'], 'MailPress'));
+		if (!$meta_value)						MailPress::mp_die(__('Cannot Open Attachement 1!', MP_TXTDOM));
+		if (!is_file($meta_value['file_fullpath']))	MailPress::mp_die(__('Cannot Open Attachement 2! ' . $meta_value['file_fullpath'], MP_TXTDOM));
 
 		self::download($meta_value['name'], $meta_value['file_fullpath'], $meta_value['mime_type']);
 	}
@@ -767,7 +758,7 @@ class MP_Actions
 		if (!$name) $name = $file;
 		if (strstr($_SERVER['HTTP_USER_AGENT'], "MSIE")) $file = preg_replace('/\./', '%2e', $file, substr_count($file, '.') - 1);
 
-		if(!$fdl = @fopen($file_fullpath, 'r')) 	MailPress::mp_die(__('Cannot Open File !', 'MailPress'));
+		if(!$fdl = @fopen($file_fullpath, 'r')) 	MailPress::mp_die(__('Cannot Open File !', MP_TXTDOM));
 
 		header("Cache-Control: ");# leave blank to avoid IE errors
 		header("Pragma: ");# leave blank to avoid IE errors

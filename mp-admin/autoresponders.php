@@ -73,7 +73,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 ////  Title  ////
 
-	public static function title() { if (isset($_GET['id'])) { global $title; $title = __('Edit Autoresponder', 'MailPress'); } }
+	public static function title() { if (isset($_GET['id'])) { global $title; $title = __('Edit Autoresponder', MP_TXTDOM); } }
 
 ////  Styles  ////
 
@@ -120,10 +120,10 @@ class MP_AdminPage extends MP_Admin_page_list
 	public static function get_columns() 
 	{
 		$columns = array(	'cb' 		=> "<input type='checkbox' />", 
-					'name' 	=> __('Name', 'MailPress'), 
-					'active'	=> __('Active', 'MailPress'), 
-					'desc'	=> __('Description', 'MailPress'), 
-					'event' 	=> __('Event', 'MailPress')
+					'name' 	=> __('Name', MP_TXTDOM), 
+					'active'	=> __('Active', MP_TXTDOM), 
+					'desc'	=> __('Description', MP_TXTDOM), 
+					'event' 	=> __('Event', MP_TXTDOM)
 				);
 		return $columns;
 	}
@@ -219,7 +219,7 @@ class MP_AdminPage extends MP_Admin_page_list
 					$out .= '</td>';
 				break;
 				case 'active':
-					$x = (isset($autoresponder->description['active'])) ? __('Yes', 'MailPress') : __('No', 'MailPress');
+					$x = (isset($autoresponder->description['active'])) ? __('Yes', MP_TXTDOM) : __('No', MP_TXTDOM);
 					$out .= "<td $attributes>" . $x . "</td>";
 				break;
 				case 'desc':

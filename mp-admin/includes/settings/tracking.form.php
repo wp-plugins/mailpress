@@ -17,7 +17,7 @@ if (!isset($mp_general['gmapkey']) || empty($mp_general['gmapkey'])) unset($trac
 			<input type='hidden' name='formname' value='tracking.form' />
 			<table class='form-table'>
 				<tr valign='top' class="rc_role" >
-					<th scope='row'><strong><?php _e('User','MailPress'); ?></strong></th>
+					<th scope='row'><strong><?php _e('User', MP_TXTDOM); ?></strong></th>
 					<td class='field'>
 <?php
 foreach ($tracking_reports['user'] as $k => $v)
@@ -30,7 +30,7 @@ foreach ($tracking_reports['user'] as $k => $v)
 					</td>
 				</tr>
 				<tr valign='top' class="rc_role" >
-					<th scope='row'><strong><?php _e('Mail','MailPress'); ?></strong></th>
+					<th scope='row'><strong><?php _e('Mail', MP_TXTDOM); ?></strong></th>
 					<td class='field'>
 
 <?php

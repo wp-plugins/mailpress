@@ -8,7 +8,7 @@ class MP_Forms_field_type_radio extends MP_Forms_field_type_abstract
 
 	function __construct()
 	{
-		$this->description = __('Radio Button', 'MailPress');
+		$this->description = __('Radio Button', MP_TXTDOM);
 		$this->settings	 = dirname(__FILE__) . '/settings.xml';
 		parent::__construct();
 	}
@@ -29,7 +29,7 @@ class MP_Forms_field_type_radio extends MP_Forms_field_type_abstract
 		if ($value === $field->settings['attributes']['value'])
 		{
 			$field->submitted['value'] = $value;
-			$field->submitted['text']  = sprintf(__('"%1$s" checked', 'MailPress'), $value);
+			$field->submitted['text']  = sprintf(__('"%1$s" checked', MP_TXTDOM), $value);
 			return $field;
 		}
 

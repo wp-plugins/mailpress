@@ -6,10 +6,12 @@ Description: The WordPress mailing platform.
 Author: Andre Renaut
 Requires at least: 2.8
 Tested up to: 2.8
-Version: 4.0.1
+Version: 4.0.2
 Author URI: http://www.mailpress.org
 */
 //define ('MP_SCRIPT_DEBUG', true);
+
+define ('MP_TXTDOM', 'MailPress');
 
 define ('MP_FOLDER', 	basename(dirname(__FILE__)));
 define ('MP_PATH', 	PLUGINDIR . '/' . MP_FOLDER . '/' );
@@ -32,16 +34,16 @@ class MailPress extends MP_abstract
 		$wpdb->mp_usermeta  = $wpdb->prefix . 'MailPress_usermeta';
 		$wpdb->mp_stats     = $wpdb->prefix . 'MailPress_stats';
 // for gettext
-		load_plugin_textdomain('MailPress', MP_PATH . 'mp-content/languages');
+		load_plugin_textdomain(MP_TXTDOM, MP_PATH . 'mp-content/languages');
 // for widget & comments & newsletters
-		add_action('widgets_init', 	array('MailPress', 'widgets_init'));
-		add_action('plugins_loaded', 	array('MailPress', 'plugins_loaded'));
+		add_action('widgets_init', 	array(__CLASS__, 'widgets_init'));
+		add_action('plugins_loaded', 	array(__CLASS__, 'plugins_loaded'));
 // for shortcode
-		add_shortcode('mailpress', 	array('MailPress', 'shortcode'));
+		add_shortcode('mailpress', 	array(__CLASS__, 'shortcode'));
 // for post
-		add_action('delete_post', 	array('MailPress', 'delete_stats_c'));
+		add_action('delete_post', 	array(__CLASS__, 'delete_stats_c'));
 // for shutdown
-		add_action('shutdown', 		array('MailPress', 'shutdown'));
+		add_action('shutdown', 		array(__CLASS__, 'shutdown'));
 
 // for admin plugin pages
 		define ('MailPress_page_mails', 	'mailpress_mails');
@@ -73,19 +75,19 @@ class MailPress extends MP_abstract
 		// for contextual help
 			define ('MailPress_help_url', 	'http://www.mailpress.org/wiki');
 		// for install
-			register_activation_hook(MP_FOLDER . '/MailPress.php', array('MailPress', 'install'));
+			register_activation_hook(MP_FOLDER . '/MailPress.php', array(__CLASS__, 'install'));
 		// for link on plugin page
-			add_filter('plugin_action_links', 	array('MailPress', 'plugin_action_links'), 10, 2 );
+			add_filter('plugin_action_links', 	array(__CLASS__, 'plugin_action_links'), 10, 2 );
 		// for favorite action
-			add_filter('favorite_actions', 	array('MailPress', 'favorite_actions'), 8, 1);
+			add_filter('favorite_actions', 	array(__CLASS__, 'favorite_actions'), 8, 1);
 		// for menu
-			add_action('admin_menu', 		array('MailPress', 'menu'), 8, 1);
+			add_action('admin_menu', 		array(__CLASS__, 'menu'), 8, 1);
 
 		// load admin page
-			add_action('init', 			array('MailPress', 'load_admin_page'));
+			add_action('init', 			array(__CLASS__, 'load_admin_page'));
 
 		// for meta box in write post
-			add_action('do_meta_boxes', 		array('MailPress', 'meta_boxes'), 8, 3);
+			add_action('do_meta_boxes', 		array(__CLASS__, 'meta_boxes'), 8, 3);
 		}
 		do_action('MailPress_init');
 	}
@@ -235,13 +237,13 @@ class MailPress extends MP_abstract
 		$min_ver_wp  = '2.8';
 		$m = array();
 
-		if (version_compare(PHP_VERSION, $min_ver_php, '<')) 	$m[] = sprintf(__('Your %1$s version is \'%2$s\', at least version \'%3$s\' required.', 'MailPress'), __('PHP'), PHP_VERSION, $min_ver_php );
-		if (version_compare($wp_version, $min_ver_wp , '<'))	$m[] = sprintf(__('Your %1$s version is \'%2$s\', at least version \'%3$s\' required.', 'MailPress'), __('WordPress'), $wp_version , $min_ver_wp );
-		if (!is_writable(MP_TMP . 'tmp'))				$m[] = sprintf(__('The directory \'%1$s\' is not writable.', 'MailPress'), MP_TMP . 'tmp');
+		if (version_compare(PHP_VERSION, $min_ver_php, '<')) 	$m[] = sprintf(__('Your %1$s version is \'%2$s\', at least version \'%3$s\' required.', MP_TXTDOM), __('PHP'), PHP_VERSION, $min_ver_php );
+		if (version_compare($wp_version, $min_ver_wp , '<'))	$m[] = sprintf(__('Your %1$s version is \'%2$s\', at least version \'%3$s\' required.', MP_TXTDOM), __('WordPress'), $wp_version , $min_ver_wp );
+		if (!is_writable(MP_TMP . 'tmp'))				$m[] = sprintf(__('The directory \'%1$s\' is not writable.', MP_TXTDOM), MP_TMP . 'tmp');
 
 		if (!empty($m))
 		{
-			$err  = sprintf(__('<b>Sorry, but you can\'t run this plugin : %1$s. </b>', 'MailPress'), $_GET['plugin']);
+			$err  = sprintf(__('<b>Sorry, but you can\'t run this plugin : %1$s. </b>', MP_TXTDOM), $_GET['plugin']);
 			$err .= '<ol><li>' . implode('</li><li>', $m) . '</li></ol>';
 
 			if (isset($_GET['plugin'])) deactivate_plugins($_GET['plugin']);	
@@ -271,7 +273,7 @@ class MailPress extends MP_abstract
 
 	public static function favorite_actions($actions) 
 	{
-		$actions[MailPress_write] = array(__('New Mail', 'MailPress'), 'MailPress_edit_mails');
+		$actions[MailPress_write] = array(__('New Mail', MP_TXTDOM), 'MailPress_edit_mails');
 		return $actions;
 	}
 
@@ -303,7 +305,7 @@ class MailPress extends MP_abstract
 				if ($first)
 				{
 					$toplevel = $menu['page'];
-					add_menu_page('', __('Mails', 'MailPress'), $menu['capability'], $menu['page'], $menu['func'], 'div');
+					add_menu_page('', __('Mails', MP_TXTDOM), $menu['capability'], $menu['page'], $menu['func'], 'div');
 				}
 				$first = false;
 			}
@@ -313,7 +315,7 @@ class MailPress extends MP_abstract
 
 			if ($menu['page'] == MailPress_page_mails)
 			{
-				add_submenu_page($toplevel, __('Write Mail', 'MailPress'), __('New Mail', 'MailPress'), 'MailPress_edit_mails', MailPress_page_write, array('MP_AdminPage', 'body'));
+				add_submenu_page($toplevel, __('Write Mail', MP_TXTDOM), __('New Mail', MP_TXTDOM), 'MailPress_edit_mails', MailPress_page_write, array('MP_AdminPage', 'body'));
 			}
 		}
 	}
@@ -337,7 +339,7 @@ class MailPress extends MP_abstract
 
 	public static function capability_groups()
 	{
-		return array('admin' => __('Admin', 'MailPress'), 'mails' => __('Mails', 'MailPress'), 'users' => __('Users', 'MailPress'));
+		return array('admin' => __('Admin', MP_TXTDOM), 'mails' => __('Mails', MP_TXTDOM), 'users' => __('Users', MP_TXTDOM));
 	}
 
 ////	Dashboard	////
@@ -366,7 +368,7 @@ class MailPress extends MP_abstract
 
 // for dashboard
 		if ( isset($mp_general['dashboard']) && current_user_can('MailPress_edit_dashboard') )
-			add_filter('wp_dashboard_setup', 	array('MailPress', 'wp_dashboard_setup'));
+			add_filter('wp_dashboard_setup', 	array(__CLASS__, 'wp_dashboard_setup'));
 
 // for global css
 		$pathcss		= MP_TMP . 'mp-admin/css/colors_' . get_user_option('admin_color') . '.css';
@@ -413,7 +415,7 @@ class MailPress extends MP_abstract
 		wp_register_script( 'mp-thickbox', 		'/' . MP_PATH . 'mp-includes/js/mp_thickbox.js', array('thickbox'), false, 1);
 		wp_enqueue_script('mp-thickbox');
 
-		add_meta_box('MailPress_post_test_div', __('MailPress test', 'MailPress'), array('MailPress', 'meta_box_post'), 'post', 'side', 'core');
+		add_meta_box('MailPress_post_test_div', __('MailPress test', MP_TXTDOM), array(__CLASS__, 'meta_box_post'), 'post', 'side', 'core');
 	}
 
 	public static function meta_box_post($post) 

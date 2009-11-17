@@ -35,16 +35,16 @@ class MP_Newsletter
 					'', 
 					false, 
 					'single', 
-					__("Per post", 'MailPress'), 
-					__("For each new post", 'MailPress')
+					__("Per post", MP_TXTDOM), 
+					__("For each new post", MP_TXTDOM)
 		);
 
 		self::register (	'daily', 
-					sprintf( __('[%1$s] Daily newsletter', 'MailPress'), get_bloginfo('name')), 
+					sprintf( __('[%1$s] Daily newsletter', MP_TXTDOM), get_bloginfo('name')), 
 					false, 
 					'daily', 
-					__("Daily", 'MailPress'), 
-					__('Daily newsletter', 'MailPress'), 
+					__("Daily", MP_TXTDOM), 
+					__('Daily newsletter', MP_TXTDOM), 
 					array ( 	'callback'		=> array('MP_Newsletter', 'have'), 
 							'name'		=> 'MailPress_daily', 
 							'value'		=> date('Ymd'), 
@@ -56,11 +56,11 @@ class MP_Newsletter
 
 		$w  = self::get_yearweekofday(date('Y-m-d', mktime(10, 0, 0, date('m'), date('d') - 7, date('Y'))));
 		self::register (	'weekly', 
-					sprintf( __('[%1$s] Weekly newsletter', 'MailPress'), get_bloginfo('name')), 
+					sprintf( __('[%1$s] Weekly newsletter', MP_TXTDOM), get_bloginfo('name')), 
 					false, 
 					'weekly', 
-					__("Weekly", 'MailPress'), 
-					__('Weekly newsletter', 'MailPress'), 
+					__("Weekly", MP_TXTDOM), 
+					__('Weekly newsletter', MP_TXTDOM), 
 					array (	'callback'		=> array('MP_Newsletter', 'have'), 
 							'name'		=> 'MailPress_weekly', 
 							'value'		=> self::get_yearweekofday(date('Y-m-d')), 
@@ -73,11 +73,11 @@ class MP_Newsletter
 
 		$y  = date('Y'); $m = date('m') - 1; if (0 == $m) { $m = 12; $y--;} if (10 > $m) $m = '0' . $m;
 		self::register (	'monthly', 
-					sprintf( __('[%1$s] Monthly newsletter', 'MailPress'), get_bloginfo('name')), 
+					sprintf( __('[%1$s] Monthly newsletter', MP_TXTDOM), get_bloginfo('name')), 
 					false, 
 					'monthly', 
-					__("Monthly", 'MailPress'), 
-					__('Monthly newsletter', 'MailPress'), 
+					__("Monthly", MP_TXTDOM), 
+					__('Monthly newsletter', MP_TXTDOM), 
 					array (	'callback'		=> array('MP_Newsletter', 'have'), 
 							'name'		=> 'MailPress_monthly', 
 							'value'		=> date('Ym'), 
@@ -153,7 +153,7 @@ class MP_Newsletter
 
 		self::update_checklist($mp_user_id, $shortcode);
 
-		return $shortcode_message . __('<br />Newsletter added', 'MailPress');
+		return $shortcode_message . __('<br />Newsletter added', MP_TXTDOM);
 	}
 
 	public static function form($email, $options)  
@@ -228,12 +228,12 @@ class MP_Newsletter
 		global $user_ID;
 
 		$post_id 		= $_POST['post_id'];
-		if (empty($post_id))			return new WP_Error( 'post', __('post not saved', 'MailPress') );
+		if (empty($post_id))			return new WP_Error( 'post', __('post not saved', MP_TXTDOM) );
 		$post = &get_post($post_id);
-		if (!$post)					return new WP_Error( 'post', __('post not saved', 'MailPress') );
+		if (!$post)					return new WP_Error( 'post', __('post not saved', MP_TXTDOM) );
 
 		$newsletter = self::get($_POST['newsletter']);
-		if (!$newsletter)				return new WP_Error( 'newsletter', __('unknown newsletter', 'MailPress') );
+		if (!$newsletter)				return new WP_Error( 'newsletter', __('unknown newsletter', MP_TXTDOM) );
 
 		update_usermeta($user_ID, "_MailPress_post_$post_id", array('toemail' => $_POST['toemail'], 'theme' => $_POST['theme'], 'newsletter' => $_POST['newsletter']));	
 
@@ -253,7 +253,7 @@ class MP_Newsletter
 		$x = new WP_Ajax_Response( array	(
 						'what' => 'mp_post_test',
 						'id' => $mail->id,
-						'data' => !$rc ? __('Sending mail failed !', 'MailPress') : sprintf('<span id="mail-%1$s">%2$s</span>',$mail->id , sprintf(__('%1$sView%2$s sent mail', 'MailPress'), sprintf('<a href="%1$s" class="thickbox">', clean_url(MailPress::url( MP_Action_url, array('action' => 'iview', 'id' => $mail->id, 'KeepThis' => 'true', 'TB_iframe' => 'true')))), '</a>'))
+						'data' => !$rc ? __('Sending mail failed !', MP_TXTDOM) : sprintf('<span id="mail-%1$s">%2$s</span>',$mail->id , sprintf(__('%1$sView%2$s sent mail', MP_TXTDOM), sprintf('<a href="%1$s" class="thickbox">', clean_url(MailPress::url( MP_Action_url, array('action' => 'iview', 'id' => $mail->id, 'KeepThis' => 'true', 'TB_iframe' => 'true')))), '</a>'))
 						)
 						 );
 		$x->send();
@@ -311,7 +311,7 @@ class MP_Newsletter
 		if (!isset($mp_subscriptions['newsletters']['new_post'])) return true;
 
 		$newsletter 			= $mp_registered_newsletters['new_post'];
-		$newsletter['subject'] 		= sprintf( __('[%1$s] New post (%2$s)', 'MailPress'), get_bloginfo('name'), $post_id );
+		$newsletter['subject'] 		= sprintf( __('[%1$s] New post (%2$s)', MP_TXTDOM), get_bloginfo('name'), $post_id );
 		$newsletter['query_posts'] 	= array( 'p'	=>	$post_id );
 
 		$post = &get_post($post_id);

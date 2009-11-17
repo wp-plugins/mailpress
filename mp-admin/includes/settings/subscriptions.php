@@ -22,5 +22,5 @@ MP_Newsletter::register_newsletters();
 	
 if (!add_option ('MailPress_subscriptions', $subscriptions )) update_option ('MailPress_subscriptions', $subscriptions );
 if (!add_option ('MailPress_general', $mp_general )) update_option ('MailPress_general', $mp_general);
-MP_AdminPage::message(__('"Subscriptions" settings saved', 'MailPress'));
+MP_AdminPage::message(__('"Subscriptions" settings saved', MP_TXTDOM));
 ?>

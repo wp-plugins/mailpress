@@ -1,3 +1,10 @@
+.fileedit-sub {
+	line-height:180%;
+	padding:10px 0 8px;
+}
+
+
+
 .CodeMirror-line-numbers {
 
 // class .editbox in xmlcolors.css

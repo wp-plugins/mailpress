@@ -82,7 +82,7 @@ class MP_AdminPage extends MP_Admin_page
 
 ////  Title  ////
 
-	public static function title() { global $title; $title = (isset($_GET['file']) && ('write' == $_GET['file'])) ? __('Edit Mail', 'MailPress') : __('Write Mail', 'MailPress'); }
+	public static function title() { global $title; $title = (isset($_GET['file']) && ('write' == $_GET['file'])) ? __('Edit Mail', MP_TXTDOM) : __('Write Mail', MP_TXTDOM); }
 
 ////  Styles  ////
 
@@ -100,7 +100,7 @@ class MP_AdminPage extends MP_Admin_page
 	{
 		wp_register_script( 'mp-ajax-response', 	'/' . MP_PATH . 'mp-includes/js/mp_ajax_response.js', array('jquery'), false, 1);
 		wp_localize_script( 'mp-ajax-response', 'wpAjax', array( 
-			'noPerm' => __('Email was not sent AND/OR Update database failed', 'MailPress'), 
+			'noPerm' => __('Email was not sent AND/OR Update database failed', MP_TXTDOM), 
 			'broken' => __('An unidentified error has occurred.'), 
 			'l10n_print_after' => 'try{convertEntities(wpAjax);}catch(e){};' 
 		) );
@@ -110,7 +110,7 @@ class MP_AdminPage extends MP_Admin_page
 			'autosaveInterval'=> '60', 
 			'previewMailText'	=>  __('Preview'), 
 			'requestFile' 	=> MP_Action_url, 
-			'savingText'	=> __('Saving draft...', 'MailPress')
+			'savingText'	=> __('Saving draft...', MP_TXTDOM)
 		) );
 
 		wp_register_script( 'mp-lists', 		'/' . MP_PATH . 'mp-includes/js/mp_lists.js', array('mp-ajax-response'), false, 1);
@@ -145,9 +145,9 @@ class MP_AdminPage extends MP_Admin_page
 		wp_localize_script( 'mp_html_upload', 'htmuploadL10n', array(
 			'img' => 'images/wpspin_light.gif', //get_option('siteurl') . '/' . MP_PATH . 'mp-admin/images/loading_small.gif', 
 			'iframeurl' => MP_Action_url, 
-			'uploading' => __('Uploading ...', 'MailPress'), 
-			'attachfirst' => __('Attach a file', 'MailPress'), 
-			'attachseveral' => __('Attach another file', 'MailPress'), 
+			'uploading' => __('Uploading ...', MP_TXTDOM), 
+			'attachfirst' => __('Attach a file', MP_TXTDOM), 
+			'attachseveral' => __('Attach another file', MP_TXTDOM), 
 			'l10n_print_after' => 'try{convertEntities(htmuploadL10n);}catch(e){};' 
 		) );
 
@@ -158,7 +158,7 @@ class MP_AdminPage extends MP_Admin_page
 
 		wp_register_script( self::screen, 		'/' . MP_PATH . 'mp-admin/js/write.js', $deps, false, 1);
 		wp_localize_script( self::screen, 'MP_AdminPageL10n', array( 	
-			'errmess' => __('Enter a valid email !', 'MailPress'), 
+			'errmess' => __('Enter a valid email !', MP_TXTDOM), 
 			'screen' => self::screen, 
 			'l10n_print_after' => 'try{convertEntities(MP_AdminPageL10n);}catch(e){};' 
 		) );
@@ -189,9 +189,9 @@ class MP_AdminPage extends MP_Admin_page
 		$m = array('mp_swfupload' => array(
 				'flash_url' 			=> includes_url('js/swfupload/swfupload.swf'), 
 
-				'button_text' 			=> "<span class='mp_button'>" .  js_escape(__('Attach a file', 'MailPress')) . "</span>", 
+				'button_text' 			=> "<span class='mp_button'>" .  js_escape(__('Attach a file', MP_TXTDOM)) . "</span>", 
 				'button_text_style' 		=> '.mp_button { text-align: left; color: #21759B; text-decoration: underline; font-family:"Lucida Grande", "Lucida Sans Unicode", Tahoma, Verdana, sans-serif; } .mp_button:hover {cursor:pointer;}', 
-				'another_button_text'		=> "<span class='mp_button'>" .  js_escape(__('Attach another file', 'MailPress')) . "</span>", 
+				'another_button_text'		=> "<span class='mp_button'>" .  js_escape(__('Attach another file', MP_TXTDOM)) . "</span>", 
 
 
 				'button_height'			=> '24', 
@@ -233,10 +233,10 @@ class MP_AdminPage extends MP_Admin_page
 	public static function screen_meta() 
 	{
 		$id = (isset($_GET['id'])) ? $_GET['id'] : 0;
-		add_meta_box('submitdiv', 		__('Send', 'MailPress'), 		array('MP_AdminPage', 'meta_box_submit'), 		self::screen, 'side', 'core');
-		add_meta_box('plaintextbox', 		__('Plain Text', 'MailPress'), 	array('MP_AdminPage', 'meta_box_plaintext'), 		self::screen, 'normal', 'high');
-		add_meta_box('attachementsdiv', 	__('Attachements', 'MailPress'), 	array('MP_AdminPage', 'meta_box_attachements'), 	self::screen, 'side', 'core');
-		add_meta_box('themesdiv', 		__('Change Theme', 'MailPress'), 	array('MP_AdminPage', 'meta_box_themes'), 		self::screen, 'side', 'core');
+		add_meta_box('submitdiv', 		__('Send', MP_TXTDOM), 		array('MP_AdminPage', 'meta_box_submit'), 		self::screen, 'side', 'core');
+		add_meta_box('plaintextbox', 		__('Plain Text', MP_TXTDOM), 	array('MP_AdminPage', 'meta_box_plaintext'), 		self::screen, 'normal', 'high');
+		add_meta_box('attachementsdiv', 	__('Attachements', MP_TXTDOM), 	array('MP_AdminPage', 'meta_box_attachements'), 	self::screen, 'side', 'core');
+		add_meta_box('themesdiv', 		__('Change Theme', MP_TXTDOM), 	array('MP_AdminPage', 'meta_box_themes'), 		self::screen, 'side', 'core');
 
 		if ( current_user_can('MailPress_mail_custom_fields') )
 			add_meta_box('customfieldsdiv', 	__('Custom Fields'), 			array('MP_AdminPage', 'meta_box_customfields'), 	self::screen, 'normal', 'core');
@@ -247,7 +247,7 @@ class MP_AdminPage extends MP_Admin_page
 			$rev_ids 	= MP_Mailmeta::get($id, '_MailPress_mail_revisions');
 		}
 		if (isset($rev_ids))
-			add_meta_box('revisionbox', 	__('Mail Revisions', 'MailPress'), 	array('MP_AdminPage', 'meta_box_revision'), 		self::screen, 'normal', 'high');
+			add_meta_box('revisionbox', 	__('Mail Revisions', MP_TXTDOM), 	array('MP_AdminPage', 'meta_box_revision'), 		self::screen, 'normal', 'high');
 
 		do_action('MailPress_add_meta_boxes_write', $id, self::screen);
 
@@ -269,7 +269,7 @@ class MP_AdminPage extends MP_Admin_page
 <div class="submitbox" id="submitpost">
 	<div id="minor-publishing">
 		<div id="minor-publishing-actions">
-			<input type='submit' name='save' id='save-post' class='button button-highlighted' 	value="<?php _e('Save Draft', 'MailPress'); ?>"  />
+			<input type='submit' name='save' id='save-post' class='button button-highlighted' 	value="<?php _e('Save Draft', MP_TXTDOM); ?>"  />
 			<span id='previewview27'><?php if (isset($preview)) echo $preview; ?></span>
 		</div>
 		<div class="clear"><br /><br /><br /><br /><br /></div>
@@ -278,12 +278,12 @@ class MP_AdminPage extends MP_Admin_page
 		<div id="delete-action">
 <?php 	if (isset($delete_url)) : ?>
 			<a class='submitdelete' href='<?php echo $delete_url ?>' onclick="if (confirm('<?php echo(js_escape(sprintf( __("You are about to delete this draft '%s'\n  'Cancel' to stop, 'OK' to delete."), $draft->id ))); ?>')) return true; return false;">
-				<?php _e('Delete', 'MailPress'); ?>
+				<?php _e('Delete', MP_TXTDOM); ?>
 			</a>
 <?php		endif; ?>
 		</div>
 		<div id="publishing-action">
-<?php 	if (current_user_can('MailPress_send_mails')) : ?><input id='publish' type='submit' name='send' class='button-primary' value="<?php _e('Send', 'MailPress'); ?>" /><?php endif; ?>
+<?php 	if (current_user_can('MailPress_send_mails')) : ?><input id='publish' type='submit' name='send' class='button-primary' value="<?php _e('Send', MP_TXTDOM); ?>" /><?php endif; ?>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -312,14 +312,14 @@ class MP_AdminPage extends MP_Admin_page
 			$divid = 'flash-upload-ui';
 			$divs  = "<div><div id='flash-browse-button'></div></div>";
 			$url   = clean_url(add_query_arg('flash', 0));
-			$txt   = __('homemade uploader', 'MailPress');
+			$txt   = __('homemade uploader', MP_TXTDOM);
 		}
 		else
 		{
 			$divid = 'html-upload-ui';
 			$divs  = "<div class='mp_fileupload_txt'><span class='mp_fileupload_txt'></span></div><div class='mp_fileupload_file' id='mp_fileupload_file_div'></div>";
 			$url   = clean_url(remove_query_arg('flash'));
-			$txt   = __('Flash uploader', 'MailPress');
+			$txt   = __('Flash uploader', MP_TXTDOM);
 		}
 ?>
 <script type="text/javascript">
@@ -336,7 +336,7 @@ var draft_id = <?php echo $draft_id; ?>;
 	<br class="clear" />
 	<p>
 		<input type='hidden' name='type_of_upload' value="<?php echo $divid; ?>" />
-		<?php printf(__('Problems?  Try the %s.', 'MailPress'), sprintf ("<a id='mp_loader_link' href='%1s'>%2s</a>", $url , $txt )); ?>
+		<?php printf(__('Problems?  Try the %s.', MP_TXTDOM), sprintf ("<a id='mp_loader_link' href='%1s'>%2s</a>", $url , $txt )); ?>
 	</p>
 </div>
 <?php
@@ -386,11 +386,11 @@ var draft_id = <?php echo $draft_id; ?>;
         $current_mail_theme = (isset($draft->theme)) ? $draft->theme : '';
 ?>
 	<p id='MailPress_extra_form_mail_new'>
-<?php printf(__('Current theme is : %s', 'MailPress'), $current_theme ); ?>
+<?php printf(__('Current theme is : %s', MP_TXTDOM), $current_theme ); ?>
 		<br class='clear' />
 			<input type='hidden' name='CurrentTheme' value="<?php echo $current_theme; ?>" />
 			<select id='Theme' name='Theme'>
-				<option value="" style='font-style:italic;'><?php _e('current theme', 'MailPress'); ?></option>
+				<option value="" style='font-style:italic;'><?php _e('current theme', MP_TXTDOM); ?></option>
 <?php self::select_option($xtheme, $current_mail_theme);?>
 			</select>
 		<br class='clear' />
@@ -507,7 +507,7 @@ var draft_id = <?php echo $draft_id; ?>;
 		</tbody>
 	</table>
 </div>
-<p><?php _e('Custom fields can be used to add extra metadata to a mail that you can <a href="http://www.mailpress.org" target="_blank">use in your mail</a>.', 'MailPress'); ?></p>
+<p><?php _e('Custom fields can be used to add extra metadata to a mail that you can <a href="http://www.mailpress.org" target="_blank">use in your mail</a>.', MP_TXTDOM); ?></p>
 <?php
 	}
 
@@ -571,17 +571,17 @@ var draft_id = <?php echo $draft_id; ?>;
 			{
 				case (is_numeric($value)) :
 					if ($numeric_done) continue;
-					$list[$value] = '<optgroup label=\'' . __('Subscribers', 'MailPress') . '\'>' . $html;
+					$list[$value] = '<optgroup label=\'' . __('Subscribers', MP_TXTDOM) . '\'>' . $html;
 					$numeric_done = true;
 				break;
 				case (strpos($value, 'MailPress_mailinglist~') !== false) :
 					if ($mailinglist_done) continue;
-					$list[$value] = '</optgroup><optgroup label=\'' . __('Mailinglists', 'MailPress') . '\'>' . $html;
+					$list[$value] = '</optgroup><optgroup label=\'' . __('Mailinglists', MP_TXTDOM) . '\'>' . $html;
 					$mailinglist_done = true;
 				break;
 				case (strpos($value, 'MailPress_newsletter~') !== false) :
 					if ($newsletter_done) continue;
-					$list[$value] = '</optgroup><optgroup label=\'' . __('Newsletters', 'MailPress') . '\'>' . $html;
+					$list[$value] = '</optgroup><optgroup label=\'' . __('Newsletters', MP_TXTDOM) . '\'>' . $html;
 					$newsletter_done = true;
 				break;
 			}

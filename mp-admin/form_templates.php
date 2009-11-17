@@ -41,7 +41,7 @@ class MP_AdminPage extends MP_Admin_page
 
 ////  Title  ////
 
-	public static function title() { global $title; $title = __('MailPress Forms Templates', 'MailPress'); }
+	public static function title() { global $title; $title = __('MailPress Forms Templates', MP_TXTDOM); }
 
 ////  Styles  ////
 

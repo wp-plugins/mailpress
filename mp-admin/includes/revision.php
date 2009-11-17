@@ -23,7 +23,7 @@ switch ( $action )
 		$edit_url  = MailPress_edit . '&id=' . $id;
 		$edit_url  = clean_url($edit_url);
 		$mail_title = '<a href="' . $edit_url . '">' . $mail->subject . '</a>';
-		$h2 = sprintf( __( 'Compare Revisions of &#8220;%1$s&#8221;', 'MailPress' ), $mail_title );
+		$h2 = sprintf( __( 'Compare Revisions of &#8220;%1$s&#8221;', MP_TXTDOM ), $mail_title );
 
 		$left  = $left_revision->id;
 		$left_link = ('' == $left_revision->status) ? MailPress_revision . '&id=' . $mail->id . '&revision=' . $left : MailPress_edit . '&id=' . $left;
@@ -40,7 +40,7 @@ switch ( $action )
 		$mail_title = '<a href="' . $edit_url . '">' . $mail->subject . '</a>';
 
 		$revision_title = MP_Mails::mail_revision_title( $revision_id , false );
-		$h2 = sprintf( __( 'Mail Revision for &#8220;%1$s&#8221; created on %2$s', 'MailPress' ), $mail_title, $revision_title );
+		$h2 = sprintf( __( 'Mail Revision for &#8220;%1$s&#8221; created on %2$s', MP_TXTDOM ), $mail_title, $revision_title );
 
 		$left  = $revision->id;
 		$right = $mail->id;
@@ -58,8 +58,8 @@ switch ( $action )
 		<tr id="revision">
 			<th scope="row"></th>
 			<th scope="col" class="th-full">
-				<span class="alignleft"><?php  printf( __('Older: %s', 'MailPress'), MP_Mails::mail_revision_title( $left_revision, $left_link ) ); ?></span>
-				<span class="alignright"><?php printf( __('Newer: %s', 'MailPress'), MP_Mails::mail_revision_title( $right_revision, $right_link ) ); ?></span>
+				<span class="alignleft"><?php  printf( __('Older: %s', MP_TXTDOM), MP_Mails::mail_revision_title( $left_revision, $left_link ) ); ?></span>
+				<span class="alignright"><?php printf( __('Newer: %s', MP_TXTDOM), MP_Mails::mail_revision_title( $right_revision, $right_link ) ); ?></span>
 			</th>
 		</tr>
 <?php endif;
@@ -90,7 +90,7 @@ foreach ( $autosave_data as $field => $field_title ) :
 endforeach;
 if ( 'diff' == $action && $identical ) :
 ?>
-		<tr><td colspan="2"><div class="updated"><p><?php _e( 'These revisions are identical.' , 'MailPress'); ?></p></div></td></tr>
+		<tr><td colspan="2"><div class="updated"><p><?php _e( 'These revisions are identical.' , MP_TXTDOM); ?></p></div></td></tr>
 <?php endif; ?>
 	</table>
 	<br class="clear" />

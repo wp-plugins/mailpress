@@ -6,7 +6,7 @@ Plugin Name: MailPress_import
 Plugin URI: http://www.mailpress.org
 Description: This is just an addon for MailPress to provide an import API for files.
 Author: Andre Renaut
-Version: 4.0.1
+Version: 4.0.2
 Author URI: http://www.mailpress.org
 */
 
@@ -23,14 +23,14 @@ class MailPress_import
 			$file = 'admin.php';
 			define ('MailPress_import', $file . '?page=' . MailPress_page_import);
 		// for link on plugin page
-			add_filter('plugin_action_links', 		array('MailPress_import', 'plugin_action_links'), 10, 2 );
+			add_filter('plugin_action_links', 		array(__CLASS__, 'plugin_action_links'), 10, 2 );
 		// for role & capabilities
-			add_filter('MailPress_capabilities', 	array('MailPress_import', 'capabilities'), 1, 1);
+			add_filter('MailPress_capabilities', 	array(__CLASS__, 'capabilities'), 1, 1);
 		// for settings
-			add_action('MailPress_settings_logs', 	array('MailPress_import', 'settings_logs'), 8, 1);
+			add_action('MailPress_settings_logs', 	array(__CLASS__, 'settings_logs'), 8, 1);
 
 		// for load admin page
-			add_action('MailPress_load_admin_page', 	array('MailPress_import', 'load_admin_page'), 10, 1);
+			add_action('MailPress_load_admin_page', 	array(__CLASS__, 'load_admin_page'), 10, 1);
 		}
 	}
 
@@ -48,12 +48,12 @@ class MailPress_import
 // for role & capabilities
 	public static function capabilities($capabilities) 
 	{
-		$capabilities['MailPress_import'] = array(	'name'  => __('Import', 'MailPress'), 
+		$capabilities['MailPress_import'] = array(	'name'  => __('Import', MP_TXTDOM), 
 								'group' => 'admin', 
 								'menu'  => 95, 
 								'parent'		=> false, 
-								'page_title'	=> __('MailPress Import', 'MailPress'), 
-								'menu_title'   	=> __('Import', 'MailPress'), 
+								'page_title'	=> __('MailPress Import', MP_TXTDOM), 
+								'menu_title'   	=> __('Import', MP_TXTDOM), 
 								'page'  		=> MailPress_page_import, 
 								'func'  		=> array('MP_AdminPage', 'body')
 							);
@@ -63,7 +63,7 @@ class MailPress_import
 // for settings
 	public static function settings_logs($logs)
 	{
-		MP_AdminPage::logs_sub_form('import', $logs, __('Import','MailPress'), __('Import log','MailPress'), __('(for <b>ALL</b> imports through MailPress)','MailPress'), __('Number of Import log files : ','MailPress'));
+		MP_AdminPage::logs_sub_form('import', $logs, __('Import', MP_TXTDOM), __('Import log', MP_TXTDOM), __('(for <b>ALL</b> imports through MailPress)', MP_TXTDOM), __('Number of Import log files : ', MP_TXTDOM));
 	}
 
 // for load admin page

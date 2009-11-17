@@ -91,7 +91,7 @@ class MP_AdminPage extends MP_Admin_page
 
 ////  Title  ////
 
-	public static function title() { global $title; $title = __('Mail Revisions', 'MailPress'); }
+	public static function title() { global $title; $title = __('Mail Revisions', MP_TXTDOM); }
 
 ////  Styles  ////
 

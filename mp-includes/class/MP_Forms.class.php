@@ -77,7 +77,7 @@ class MP_Forms
 		if ( trim( $label ) == '' )
 		{
 			if ( ! $wp_error )	return 0;
-			else				return new WP_Error( 'label', __('You did not enter a valid label.', 'MailPress') );
+			else				return new WP_Error( 'label', __('You did not enter a valid label.', MP_TXTDOM) );
 		}
 
 	// theme/template
@@ -231,7 +231,7 @@ class MP_Forms
 
 			if (isset($field->submitted['file'])) $attachements[] = self::handle_upload($field->submitted['file'], $mail->id);
 		}
-		$subject 	= sprintf(__('[%1$s] Your form receipt "%2$s" (%3$s)', 'MailPress'), get_option('blogname'), $form->label, $form->id);
+		$subject 	= sprintf(__('[%1$s] Your form receipt "%2$s" (%3$s)', MP_TXTDOM), get_option('blogname'), $form->label, $form->id);
 
 		$mail->Theme 	= $form->settings['recipient']['theme'];
 		if ('0' != $form->settings['recipient']['template']) $mail->Template = $form->settings['recipient']['template'];

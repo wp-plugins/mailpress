@@ -33,9 +33,9 @@ abstract class MP_Import_importer_abstract
 ?>
 <div>
 	<p>
-<?php		_e('Howdy! Upload your file and we&#8217;ll import the emails and much more ... into this blog.', 'MailPress'); ?>
+<?php		_e('Howdy! Upload your file and we&#8217;ll import the emails and much more ... into this blog.', MP_TXTDOM); ?>
 		<br />
-<?php		_e('Choose a file to upload, then click Upload file and import.', 'MailPress'); ?>
+<?php		_e('Choose a file to upload, then click Upload file and import.', MP_TXTDOM); ?>
 	</p>
 <?php wp_import_upload_form( MailPress_import . '&amp;mp_import=' . $this->importer . '&amp;step=1'); ?>
 </div>
@@ -149,7 +149,7 @@ abstract class MP_Import_importer_abstract
 		{ 
 			$file = $this->trace->file;
 			$y = substr($this->trace->file, strpos($this->trace->file, str_replace( ABSPATH, '', WP_CONTENT_DIR ) ));
-			return "<p><a href='../$y' target='_blank'>" . __('See the log', 'MailPress') . '</a></p>';
+			return "<p><a href='../$y' target='_blank'>" . __('See the log', MP_TXTDOM) . '</a></p>';
 		}
 		return '';
 	}
@@ -158,7 +158,7 @@ abstract class MP_Import_importer_abstract
 
 	function success($text = '', $echo = true)
 	{
-		$x  = '<div><h3>'.__('Import successfull', 'MailPress').'</h3>';
+		$x  = '<div><h3>'.__('Import successfull', MP_TXTDOM).'</h3>';
 		$x .= $text;
 		$x .= $this->link_trace();
 		$x .= '</div>';
@@ -169,7 +169,7 @@ abstract class MP_Import_importer_abstract
 
 	function error($text = '', $echo = true)
 	{
-		$x  = '<div><h3>'.__('Sorry, there has been an error.', 'MailPress').'</h3>';
+		$x  = '<div><h3>'.__('Sorry, there has been an error.', MP_TXTDOM).'</h3>';
 		$x .= $text;
 		$x .= $this->link_trace();
 		$x .= '</div>';

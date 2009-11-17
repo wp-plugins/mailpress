@@ -111,7 +111,7 @@ abstract class MP_Forms_field_type_abstract
 
 		$xml = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
 		foreach ($xml->tabs->children() as $child) $tabs[$child->getName()] = (string) $child;
-		if (isset($_GET['action']) && ('edit' == $_GET['action']) && $this->type_ok) { $tabs['html'] = __('Html', 'MailPress'); MP_AdminPage::require_class('Forms'); }
+		if (isset($_GET['action']) && ('edit' == $_GET['action']) && $this->type_ok) { $tabs['html'] = __('Html', MP_TXTDOM); MP_AdminPage::require_class('Forms'); }
 
 		if (empty($tabs)) return;
 ?>
@@ -129,7 +129,7 @@ abstract class MP_Forms_field_type_abstract
 				case 'html' :
 					$form = MP_Forms::get($this->field->form_id);
 					echo "<textarea rows='5' cols='40' disabled='disabled'>" . htmlspecialchars(MP_Forms::get_field($this->field, false, $form->template), ENT_QUOTES) . '</textarea>';
-					echo '<p><small>' . sprintf(__('Templates : %1$s/%2$s', 'MailPress'), $form->template, $field->template) . '</small></p>';
+					echo '<p><small>' . sprintf(__('Templates : %1$s/%2$s', MP_TXTDOM), $form->template, $field->template) . '</small></p>';
 				break;
 				default :
 					foreach ($xml->{$tab_type}->items as $items)
@@ -151,7 +151,7 @@ abstract class MP_Forms_field_type_abstract
 										$this->settings_hidden_value($tab_type, $attribute, $tags->value);
 									break;
 									case 'is' :
-										$this->settings_description(__('initial state : ','MailPress'));
+										$this->settings_description(__('initial state : ', MP_TXTDOM));
 										$values = unserialize($tags->values);
 										$disabled = unserialize($tags->disabled);
 										foreach ($values as $attribute) 
@@ -207,7 +207,7 @@ abstract class MP_Forms_field_type_abstract
 					{
 						echo "<div id='field_type_controls_" . $this->field_type . "'" . ( ($has_controls_checked) ? '' : " style='display:none;'" ) . " class='field_type_controls'>\n";
 						echo "<hr style='border: 0pt none ; margin: 1px 5px 5px 1px; color: rgb(223, 223, 223); background-color: rgb(223, 223, 223); height: 1px;' />";
-						_e('On error <small>(to remove a class : -name_of_class)</small>', 'MailPress');
+						_e('On error <small>(to remove a class : -name_of_class)</small>', MP_TXTDOM);
 						echo '<br />';
 						echo "<div>";
 						foreach (array('class', 'style') as $attribute)

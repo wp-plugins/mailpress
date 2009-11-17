@@ -11,7 +11,7 @@ if (isset($_GET['mp_import']))
 	{
 		if (! file_exists(MP_TMP . "mp-admin/includes/options/import/importers/$importer.php"))
 		{
-			wp_die(__('Cannot load importer.','MailPress'));
+			wp_die(__('Cannot load importer.', MP_TXTDOM));
 		}
 		include(MP_TMP . "mp-admin/includes/options/import/importers/$importer.php");
 	}
@@ -32,7 +32,7 @@ else
 	if ($importers)
 	{
 ?>
-		<p><?php _e('If you have emails in another system, MailPress can import those into this blog. To get started, choose a system to import from below:', 'MailPress'); ?></p>
+		<p><?php _e('If you have emails in another system, MailPress can import those into this blog. To get started, choose a system to import from below:', MP_TXTDOM); ?></p>
 		<table class="widefat">
 			<thead>
 				<tr>
@@ -51,7 +51,7 @@ else
 <?php
 	} else {
 ?>
-		<p><?php _e('No importers available.', 'MailPress'); ?></p>
+		<p><?php _e('No importers available.', MP_TXTDOM); ?></p>
 <?php
 	}
 }

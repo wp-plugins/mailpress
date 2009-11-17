@@ -54,7 +54,7 @@ if (isset($_POST['id']))
 	do_action('MailPress_update_meta_boxes_user');
 
 // messages
-	$message = __('MailPress user saved', 'MailPress');
+	$message = __('MailPress user saved', MP_TXTDOM);
 }
 else
 {
@@ -63,7 +63,7 @@ else
 	$active  = ('active' == $mp_user->status) ? true : false;
 }
 
-$h2 = sprintf( __('Edit MailPress User # %1$s', 'MailPress'), $mp_user->id);
+$h2 = sprintf( __('Edit MailPress User # %1$s', MP_TXTDOM), $mp_user->id);
 
 //
 // User subscription datas
@@ -103,7 +103,7 @@ $rowspan = ($rowspan > 1) ? " rowspan='$rowspan'" : '';
 						<tbody>
 							<tr valign='top'>
 								<th scope='row' class='h1em'>
-									<?php _e('Email', 'MailPress'); ?>
+									<?php _e('Email', MP_TXTDOM); ?>
 								</th>
 								<td class='h1em'>
 									<input type='text' disabled='disabled' value='<?php echo $mp_user->email; ?>' size='30' />
@@ -119,7 +119,7 @@ echo MP_Users::get_flag_IP();
 							</tr>
 							<tr valign='top'>
 								<th scope='row' class='h1em'>
-									<?php _e('Name', 'MailPress'); ?>
+									<?php _e('Name', MP_TXTDOM); ?>
 								</th>
 								<td class='h1em'>
 									<input name='mp_user_name' type='text' value="<?php echo self::input_text($mp_user->name); ?>" size='30' />
@@ -138,7 +138,7 @@ echo MP_Users::get_flag_IP();
 <?php if (isset($check_newsletters) && $check_newsletters) : ?>
 			<tr>
 				<th scope="row">
-					<?php _e('Newsletters', 'MailPress'); ?>
+					<?php _e('Newsletters', MP_TXTDOM); ?>
 				</th>
 				<td class='checklist'>
 					<?php echo $check_newsletters ; $ok = true; ?>

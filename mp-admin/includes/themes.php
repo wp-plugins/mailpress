@@ -1,6 +1,6 @@
 <?php
 
-$h2 = __('MailPress Themes','MailPress'); 
+$h2 = __('MailPress Themes', MP_TXTDOM); 
 $h3 = __('Current Theme'); 
 
 $th = new MP_Themes();
@@ -35,27 +35,27 @@ $themes = array_slice( $themes, $start, $per_page );
 		if ( ! $th->validate_current_theme() ) 
 		{
 ?>
-<div id='message1' class='updated fade'><p><?php _e('The active MailPress theme is broken.  Reverting to the default MailPress theme.','MailPress'); ?></p></div>
+<div id='message1' class='updated fade'><p><?php _e('The active MailPress theme is broken.  Reverting to the default MailPress theme.', MP_TXTDOM); ?></p></div>
 <?php 
 		}
 		elseif ( isset($_GET['activated']) ) 
 		{
 ?>
-<div id='message2' class='updated fade'><p><?php printf(__('New MailPress theme activated.','MailPress'), get_option('home') . '/'); ?></p></div>
+<div id='message2' class='updated fade'><p><?php printf(__('New MailPress theme activated.', MP_TXTDOM), get_option('home') . '/'); ?></p></div>
 <?php 
 		}
 ?>
 	<h3><?php echo $h3; ?></h3>
 	<div id="current-theme">
 <?php if ( $ct->screenshot ) : ?>
-		<img src='<?php echo get_option('siteurl') . '/' . $ct->stylesheet_dir . '/' . $ct->screenshot; ?>' alt='<?php _e('Current MailPress theme preview','MailPress'); ?>' />
+		<img src='<?php echo get_option('siteurl') . '/' . $ct->stylesheet_dir . '/' . $ct->screenshot; ?>' alt='<?php _e('Current MailPress theme preview', MP_TXTDOM); ?>' />
 <?php endif; ?>
 		<h4><?php printf(_c('%1$s %2$s by %3$s|1: theme title, 2: theme version, 3: theme author'), $ct->title, $ct->version, $ct->author) ; ?></h4>
 		<p class="description"><?php echo $ct->description; ?></p>
 <?php if ($ct->parent_theme) { ?>
-		<p><?php printf(__('The template files are located in <code>%2$s</code>.  The stylesheet files are located in <code>%3$s</code>.  <strong>%4$s</strong> uses templates from <strong>%5$s</strong>.  Changes made to the templates will affect both MailPress themes.','MailPress'), $ct->title, $ct->template_dir, $ct->stylesheet_dir, $ct->title, $ct->parent_theme); ?></p>
+		<p><?php printf(__('The template files are located in <code>%2$s</code>.  The stylesheet files are located in <code>%3$s</code>.  <strong>%4$s</strong> uses templates from <strong>%5$s</strong>.  Changes made to the templates will affect both MailPress themes.', MP_TXTDOM), $ct->title, $ct->template_dir, $ct->stylesheet_dir, $ct->title, $ct->parent_theme); ?></p>
 <?php } else { ?>
-		<p><?php printf(__('All theme&#8217;s files in : <code>%2$s</code>.','MailPress'), $ct->title, $ct->template_dir, $ct->stylesheet_dir); ?></p>
+		<p><?php printf(__('All theme&#8217;s files in : <code>%2$s</code>.', MP_TXTDOM), $ct->title, $ct->template_dir, $ct->stylesheet_dir); ?></p>
 <?php } ?>
 <?php if ( $ct->tags ) : ?>
 		<p><?php _e('Tags:'); ?> <?php echo join(', ', $ct->tags); ?></p>
@@ -169,9 +169,9 @@ if ( count($broken_themes) ) {
 	<table class='widefat' width="100%" cellpadding="3" cellspacing="3">
 		<thead>
 			<tr>
-				<th><?php _e('Folder','MailPress'); ?></th>
-				<th><?php _e('Name','MailPress'); ?></th>
-				<th><?php _e('Description','MailPress'); ?></th>
+				<th><?php _e('Folder', MP_TXTDOM); ?></th>
+				<th><?php _e('Name', MP_TXTDOM); ?></th>
+				<th><?php _e('Description', MP_TXTDOM); ?></th>
 			</tr>
 		</thead>
 <?php

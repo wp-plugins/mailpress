@@ -2,7 +2,7 @@
 
 $url_parms = self::get_url_parms();
 if (empty($url_parms['s'])) unset($url_parms['s']);
-$h2 = __('View Logs','MailPress');
+$h2 = __('View Logs', MP_TXTDOM);
 
 //
 // MANAGING CHECKBOX RESULTS
@@ -13,7 +13,7 @@ if ( isset( $_GET['deleted'] )  )
 
 	if ( $deleted > 0 ) 
 	{
-		$message = sprintf( __ngettext( __('%s file deleted', 'MailPress'), __('%s files deleted', 'MailPress'), $deleted ), $deleted );
+		$message = sprintf( __ngettext( __('%s file deleted', MP_TXTDOM), __('%s files deleted', MP_TXTDOM), $deleted ), $deleted );
 	}
 }
 
@@ -21,7 +21,7 @@ if ( isset( $_GET['deleted'] )  )
 // MANAGING SUBSUBSUB URL
 //
 $status_links 	= array();
-$status_links[] 	= "	<li><a href=\"" . MailPress_view_logs . "\" class='current'>".__('Show All Logs','MailPress')."</a>";
+$status_links[] 	= "	<li><a href=\"" . MailPress_view_logs . "\" class='current'>".__('Show All Logs', MP_TXTDOM)."</a>";
 $subsubsub_urls = implode(' | </li>', $status_links) . '</li>';
 unset($status_links);
 
@@ -57,7 +57,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 	<form id='search-form' action='' method='get'>
 		<p id='post-search' class='search-box'>
 			<input type='text' id='file-search-input' name='s' value='<?php if (isset($url_parms['s'])) echo $url_parms['s']; ?>' class="search-input" />
-			<input type='submit' value="<?php _e( 'Search Logs','MailPress' ); ?>" class='button' />
+			<input type='submit' value="<?php _e( 'Search Logs', MP_TXTDOM); ?>" class='button' />
 		</p>
 		<input type='hidden' name='page' value='<?php echo MailPress_page_view_logs; ?>' />
 	</form>
@@ -67,7 +67,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 
 		<div class='tablenav'>
 			<div class='alignleft actions'>
-				<input type='submit' value="<?php _e('Delete','MailPress'); ?>" name='deleteit' class='button-secondary delete' />
+				<input type='submit' value="<?php _e('Delete', MP_TXTDOM); ?>" name='deleteit' class='button-secondary delete' />
 			</div>
 <?php if ( $page_links ) echo "\n<div class='tablenav-pages'>$page_links</div>\n"; ?>
 			<div class="clear"></div>
@@ -98,7 +98,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 		<div class='tablenav'>
 <?php 	if ( $page_links ) echo "			<div class='tablenav-pages'>$page_links</div>"; ?>
 			<div class='alignleft actions'>
-				<input type='submit' value="<?php _e('Delete','MailPress'); ?>" name='deleteit' class='button-secondary delete' />
+				<input type='submit' value="<?php _e('Delete', MP_TXTDOM); ?>" name='deleteit' class='button-secondary delete' />
 			</div>
 			<br class='clear' />
 		</div>
@@ -114,7 +114,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 ?>
 	</form>
 		<p>
-			<?php (is_dir('../' . self::get_path())) ? _e('No logs available','MailPress') : printf( __('Wrong path : %s', 'MailPress'), '../' . self::get_path() ); ?>
+			<?php (is_dir('../' . self::get_path())) ? _e('No logs available', MP_TXTDOM) : printf( __('Wrong path : %s', MP_TXTDOM), '../' . self::get_path() ); ?>
 		</p>
 <?php
 }

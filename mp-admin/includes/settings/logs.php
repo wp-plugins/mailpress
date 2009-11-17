@@ -6,5 +6,5 @@ foreach ($_POST['logs'] as $k => $v) $logs[$k] = $v; // so we don't delete setti
 if (!add_option ('MailPress_logs', $logs ))  update_option ('MailPress_logs', $logs );
 if (!add_option ('MailPress_general', $mp_general )) update_option ('MailPress_general', $mp_general);
 
-MP_AdminPage::message(__('Logs settings saved', 'MailPress'));
+MP_AdminPage::message(__('Logs settings saved', MP_TXTDOM));
 ?>

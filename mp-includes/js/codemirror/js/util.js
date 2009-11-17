@@ -2,6 +2,7 @@
 
 var internetExplorer = document.selection && window.ActiveXObject && /MSIE/.test(navigator.userAgent);
 var webkit = /AppleWebKit/.test(navigator.userAgent);
+var safari = /Apple Computers, Inc/.test(navigator.vendor);
 
 // Capture a method on an object.
 function method(obj, name) {
@@ -111,5 +112,23 @@ function addEventHandler(node, type, handler, removeFunc) {
 }
 
 function nodeText(node) {
-  return node.innerText || node.textContent || node.nodeValue || "";
+  return node.textContent || node.innerText || node.nodeValue || "";
+}
+
+function nodeTop(node) {
+  var top = 0;
+  while (node.offsetParent) {
+    top += node.offsetTop;
+    node = node.offsetParent;
+  }
+  return top;
+}
+
+function isBR(node) {
+  var nn = node.nodeName;
+  return nn == "BR" || nn == "br";
+}
+function isSpan(node) {
+  var nn = node.nodeName;
+  return nn == "SPAN" || nn == "span";
 }

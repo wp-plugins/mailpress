@@ -141,7 +141,7 @@ class MP_Comment
 
 		$mail->the_title	= apply_filters('the_title', $post->post_title );
 
-		$mail->subject	= sprintf( __('[%1$s] New Comment (%2$s)', 'MailPress'), get_bloginfo('name'), $mail->the_title);
+		$mail->subject	= sprintf( __('[%1$s] New Comment (%2$s)', MP_TXTDOM), get_bloginfo('name'), $mail->the_title);
 
 		$mail->content	= apply_filters('comment_text', get_comment_text() );
 

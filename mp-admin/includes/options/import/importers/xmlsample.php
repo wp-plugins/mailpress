@@ -5,8 +5,8 @@ class MP_import_xmlsample extends MP_Import_importer_abstract
 	function __construct() 
 	{
 		$this->importer 		= 'xmlsample';
-		$this->description	= __('Import your <strong>xmlsample</strong> file.', 'MailPress');
-		$this->header 		= __('Import XML sample', 'MailPress');
+		$this->description	= __('Import your <strong>xmlsample</strong> file.', MP_TXTDOM);
+		$this->header 		= __('Import XML sample', MP_TXTDOM);
 		$this->callback 		= array (&$this, 'dispatch');
 		parent::__construct();
 	}
@@ -34,7 +34,7 @@ class MP_import_xmlsample extends MP_Import_importer_abstract
 							$import = $this->import();
 						$this->end_trace($import);
 						if ($import)
-							$this->success('<p>' . sprintf(__("<b>File imported</b> : <i>%s</i>", 'MailPress'), $this->file) . '</p><p><strong>' . sprintf(__("<b>Number of records</b> : <i>%s</i>", 'MailPress'), $import) . '</strong></p>');
+							$this->success('<p>' . sprintf(__("<b>File imported</b> : <i>%s</i>", MP_TXTDOM), $this->file) . '</p><p><strong>' . sprintf(__("<b>Number of records</b> : <i>%s</i>", MP_TXTDOM), $import) . '</strong></p>');
 						else 
 							$this->error('<p><strong>' . $this->file . '</strong></p>');
 					}
@@ -135,7 +135,7 @@ class MP_import_xmlsample extends MP_Import_importer_abstract
 
 				if (!$mailinglist_ID)
 				{
-					$this->message_report(' mailinglist! ' . sprintf(__('Unable to read or create a mailing list : %s', 'MailPress'), $mailinglist));
+					$this->message_report(' mailinglist! ' . sprintf(__('Unable to read or create a mailing list : %s', MP_TXTDOM), $mailinglist));
 					return false;
 				}
 			}

@@ -4,15 +4,15 @@ $mp_autoresponder_registered_events = MP_Autoresponders_events::get_all();
 global $action;
 
 $url_parms = self::get_url_parms();
-$h2 = __('Autoresponders','MailPress');
+$h2 = __('Autoresponders', MP_TXTDOM);
 
 wp_reset_vars(array('action'));
 if ('edit' == $action) 
 {
-	$h3 = __('Update the autoresponder','MailPress');
+	$h3 = __('Update the autoresponder', MP_TXTDOM);
 	$action = 'edited';
 	$disabled = " disabled='disabled'";
-	$cancel = "<input type='submit' class='button' name='cancel' value=\"" . __('Cancel','MailPress') . "\" />\n";
+	$cancel = "<input type='submit' class='button' name='cancel' value=\"" . __('Cancel', MP_TXTDOM) . "\" />\n";
 	
 	$id = (int) $_GET['id'];
 	$autoresponder = MP_Autoresponders::get($id);
@@ -25,7 +25,7 @@ if ('edit' == $action)
 else 
 {
 	$customfield = array();
-	$h3 = __('Add an autoresponder','MailPress');
+	$h3 = __('Add an autoresponder', MP_TXTDOM);
 	$action = self::add_form_id;
 	$hidden = '';
 	$disabled = '';
@@ -38,12 +38,12 @@ else
 // MANAGING MESSAGE
 //
 
-$messages[1] = __('Autoresponder added.','MailPress');
-$messages[2] = __('Autoresponder deleted.','MailPress');
-$messages[3] = __('Autoresponder updated.','MailPress');
-$messages[4] = __('Autoresponder not added.','MailPress');
-$messages[5] = __('Autoresponder not updated.','MailPress');
-$messages[6] = __('Autoresponders deleted.','MailPress');
+$messages[1] = __('Autoresponder added.', MP_TXTDOM);
+$messages[2] = __('Autoresponder deleted.', MP_TXTDOM);
+$messages[3] = __('Autoresponder updated.', MP_TXTDOM);
+$messages[4] = __('Autoresponder not added.', MP_TXTDOM);
+$messages[5] = __('Autoresponder not updated.', MP_TXTDOM);
+$messages[6] = __('Autoresponders deleted.', MP_TXTDOM);
 
 if (isset($_GET['message']))
 {
@@ -75,7 +75,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 		<p class='search-box'>
 			<input type='hidden' name='page' value='<?php echo MailPress_page_autoresponders; ?>' />
 			<input type='text' id='post-search-input' name='s' value='<?php if (isset($url_parms['s'])) echo $url_parms['s']; ?>' class="search-input"  />
-			<input type='submit' value="<?php _e( 'Search Autoresponders','MailPress' ); ?>" class='button' />
+			<input type='submit' value="<?php _e( 'Search Autoresponders', MP_TXTDOM ); ?>" class='button' />
 		</p>
 	</form>
 	<br class='clear' />
@@ -87,7 +87,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 					<div class='tablenav'>
 <?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>"; ?>
 						<div class='alignleft actions'>
-							<input type='submit' value="<?php _e('Delete','MailPress'); ?>" name='deleteit' class='button-secondary delete action' />
+							<input type='submit' value="<?php _e('Delete', MP_TXTDOM); ?>" name='deleteit' class='button-secondary delete action' />
 							<input type='hidden' name='page' value='<?php echo MailPress_page_autoresponders; ?>' />
 						</div>
 						<br class='clear' />
@@ -111,7 +111,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 					<div class='tablenav'>
 <?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>\n"; ?>
 						<div class='alignleft actions'>
-							<input type='submit' value="<?php _e('Delete','MailPress'); ?>" name='deleteit' class='button-secondary delete' />
+							<input type='submit' value="<?php _e('Delete', MP_TXTDOM); ?>" name='deleteit' class='button-secondary delete' />
 						</div>
 						<br class='clear' />
 					</div>
@@ -131,40 +131,40 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 						<?php echo $hidden; ?>
 						<?php wp_nonce_field('update-' . self::tr_prefix_id); ?>
 						<div class="form-field form-required" style='margin:0;padding:0;'>
-							<label for='autoresponder_name'><?php _e('Name','MailPress'); ?></label>
+							<label for='autoresponder_name'><?php _e('Name', MP_TXTDOM); ?></label>
 							<input name='name' id='autoresponder_name' type='text'<?php echo $disabled; ?> value="<?php if (isset($autoresponder->name)) echo attribute_escape($autoresponder->name); ?>" size='40' aria-required='true' />
-							<p><?php _e('The name is used to identify the autoresponder almost everywhere.','MailPress'); ?></p>
+							<p><?php _e('The name is used to identify the autoresponder almost everywhere.', MP_TXTDOM); ?></p>
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>
-							<label for='autoresponder_slug'><?php _e('Slug','MailPress') ?></label>
+							<label for='autoresponder_slug'><?php _e('Slug', MP_TXTDOM) ?></label>
 							<input name='slug' id='autoresponder_slug' type='text' value="<?php if (isset($autoresponder->slug)) echo attribute_escape($autoresponder->slug); ?>" size='40' />
-							<p><?php _e('The &#8220;slug&#8221; is a unique id for the autoresponder (not so friendly !).','MailPress'); ?></p>
+							<p><?php _e('The &#8220;slug&#8221; is a unique id for the autoresponder (not so friendly !).', MP_TXTDOM); ?></p>
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>
-							<label for='autoresponder_description'><?php _e('Description','MailPress') ?></label>
+							<label for='autoresponder_description'><?php _e('Description', MP_TXTDOM) ?></label>
 							<input type="text" id='autoresponder_description' name='description[desc]' value="<?php if (isset($autoresponder->description)) echo htmlentities(stripslashes($autoresponder->description['desc']),ENT_QUOTES); ?>" size="40"/>
-							<p><?php _e('The description is not prominent by default.','MailPress'); ?></p>
+							<p><?php _e('The description is not prominent by default.', MP_TXTDOM); ?></p>
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>
-							<label for='autoresponder_event'><?php _e('Event','MailPress') ?></label>
+							<label for='autoresponder_event'><?php _e('Event', MP_TXTDOM) ?></label>
 							<select id='autoresponder_event' name='description[event]'>
 <?php self::select_option($mp_autoresponder_registered_events, (isset($autoresponder->description['event'])) ? $autoresponder->description['event'] : '' ); ?>
 							</select>
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>
-							<label for='autoresponder_active'><?php _e('Active','MailPress') ?></label>
+							<label for='autoresponder_active'><?php _e('Active', MP_TXTDOM) ?></label>
 							<input type="checkbox" id='autoresponder_active' name='description[active]'<?php if (isset($autoresponder->description['active'])) echo " checked='checked'"; ?> style='width:auto;'/>
-							<p><?php _e("If unchecked during a certain period of time, All mails that should have been sent on time will be cancelled. Following mails (if any) will be lost as well.",'MailPress'); ?></p>
+							<p><?php _e("If unchecked during a certain period of time, All mails that should have been sent on time will be cancelled. Following mails (if any) will be lost as well.", MP_TXTDOM); ?></p>
 						</div>
 <?php if ($_mails) : ?>
 						<div class="form-field" style='margin:0;padding:0;'>
-							<label for='autoresponder_mails'><?php _e('Mails','MailPress') ?></label>
+							<label for='autoresponder_mails'><?php _e('Mails', MP_TXTDOM) ?></label>
 							<table class="widefat" id='autoresponder_mails' style='width:100%;'>
 								<thead>
 									<tr>
-										<th><?php _e('mail','MailPress'); ?></th>
-										<th><?php _e('subject','MailPress'); ?></th>
-										<th><?php _e('m/d/h','MailPress'); ?></th>
+										<th><?php _e('mail', MP_TXTDOM); ?></th>
+										<th><?php _e('subject', MP_TXTDOM); ?></th>
+										<th><?php _e('m/d/h', MP_TXTDOM); ?></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -175,13 +175,13 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 			$mail 	= MP_Mails::get( $id );
 			$subject_display = htmlspecialchars($mail->subject,ENT_QUOTES);
 			if ( strlen($subject_display) > 40 )	$subject_display = substr($subject_display, 0, 39) . '...';
-			if ( '' == $mail->subject)  			$subject_display = $mail->subject = htmlspecialchars(__('(no subject)','MailPress'),ENT_QUOTES);
+			if ( '' == $mail->subject)  			$subject_display = $mail->subject = htmlspecialchars(__('(no subject)', MP_TXTDOM),ENT_QUOTES);
 
 			$edit_url    	= clean_url(MailPress_edit . "&id=$id");
-			$actions['edit']    = "<a href='$edit_url'   title='" . sprintf( __('Edit "%1$s"','MailPress') , $subject_display ) . "'>" . $_mail['mail_id'] . '</a>';
+			$actions['edit']    = "<a href='$edit_url'   title='" . sprintf( __('Edit "%1$s"', MP_TXTDOM) , $subject_display ) . "'>" . $_mail['mail_id'] . '</a>';
 
 			$view_url		= clean_url(add_query_arg( array('action' => 'iview', 'id' => $id, 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400'), MP_Action_url ));
-			$actions['view'] = "<a href='$view_url' class='thickbox'  title='" . sprintf( __('View "%1$s"','MailPress') , $subject_display ) . "'>" . $subject_display . '</a>';
+			$actions['view'] = "<a href='$view_url' class='thickbox'  title='" . sprintf( __('View "%1$s"', MP_TXTDOM) , $subject_display ) . "'>" . $subject_display . '</a>';
 ?>
 									<tr>
 										<td>

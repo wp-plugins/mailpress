@@ -7,7 +7,7 @@ class MP_Autoresponder_event_new_commenter extends MP_Autoresponders_event_abstr
 
 	function __construct()
 	{
-		$this->desc = __('New commenter', 'MailPress');
+		$this->desc = __('New commenter', MP_TXTDOM);
 		parent::__construct();
 	}
 }

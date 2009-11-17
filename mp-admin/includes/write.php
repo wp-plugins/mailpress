@@ -17,18 +17,18 @@ if (isset($_GET['id']))
 $autosave	= true;
 $notice 	= false;
 
-$h2 		= __('Add New Mail', 'MailPress');
+$h2 		= __('Add New Mail', MP_TXTDOM);
 $hidden  	= "\t\t\t<input type='hidden' id='mail_id' name='id' value='0' />\n";
 $list_url 	= self::url(MailPress_mails, $url_parms);
 
 if (isset($draft))
 {
-	$h2 		= sprintf( __('Edit Draft # %1$s', 'MailPress'), $draft->id);
+	$h2 		= sprintf( __('Edit Draft # %1$s', MP_TXTDOM), $draft->id);
 	$hidden  	= "\t\t\t<input type='hidden' id='mail_id' name='id' value='$draft->id' />\n";
 	$delete_url = clean_url(MailPress_mail  ."&amp;action=delete&amp;id=$draft->id");
 
 	$last_user 	= get_userdata($draft->created_user_id);
-	$lastedited	= sprintf(__('Last edited by %1$s on %2$s at %3$s', 'MailPress'), wp_specialchars( $last_user->display_name ), mysql2date(get_option('date_format'), $draft->created), mysql2date(get_option('time_format'), $draft->created));
+	$lastedited	= sprintf(__('Last edited by %1$s on %2$s at %3$s', MP_TXTDOM), wp_specialchars( $last_user->display_name ), mysql2date(get_option('date_format'), $draft->created), mysql2date(get_option('time_format'), $draft->created));
 
 /* revisions */
 	if (is_array($rev_ids))
@@ -68,7 +68,7 @@ if (isset($draft))
 				{
 					$autosave = false;
 
-					$notice = sprintf( __( 'There is an autosave of this mail that is more recent than the version below.  <a href="%s">View the autosave</a>.', 'MailPress' ), clean_url(MailPress_revision . "&id=$draft->id&revision=$revision->id") );
+					$notice = sprintf( __( 'There is an autosave of this mail that is more recent than the version below.  <a href="%s">View the autosave</a>.', MP_TXTDOM ), clean_url(MailPress_revision . "&id=$draft->id&revision=$revision->id") );
 					break;
 				}
 			}
@@ -114,14 +114,14 @@ if (isset($_SERVER['HTTP_REFERER']))
 // messages
 $class = 'fromto';
 $message = ''; $err = 0;
-if (isset($_GET['saved'])) 	{$err += 0; if (!empty($message)) $message .= '<br />'; $message .= __('Mail saved', 'MailPress'); }
-if (isset($_GET['notsent'])) 	{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= __('Mail NOT sent', 'MailPress'); }
-if (isset($_GET['nomail'])) 	{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= __('Please, enter a valid email',  'MailPress'); $class = "TO"; }
-if (isset($_GET['nodest'])) 	{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= __('Mail NOT sent, no recipient',  'MailPress'); $class = "TO"; }
+if (isset($_GET['saved'])) 	{$err += 0; if (!empty($message)) $message .= '<br />'; $message .= __('Mail saved', MP_TXTDOM); }
+if (isset($_GET['notsent'])) 	{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= __('Mail NOT sent', MP_TXTDOM); }
+if (isset($_GET['nomail'])) 	{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= __('Please, enter a valid email',  MP_TXTDOM); $class = "TO"; }
+if (isset($_GET['nodest'])) 	{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= __('Mail NOT sent, no recipient',  MP_TXTDOM); $class = "TO"; }
 if (isset($lock))			{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= $lock; }
 if ($notice)			{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= $notice; } 	
-if (isset($_GET['sent'])) 	{$err += 0; if (!empty($message)) $message .= '<br />'; $message .= sprintf( __ngettext( __('%s mail sent', 'MailPress'), __('%s mails sent', 'MailPress'), $_GET['sent']), $_GET['sent']); }
-if (isset($_GET['revision'])) {$err += 0; if (!empty($message)) $message .= '<br />'; $message .= sprintf( __('Mail restored to revision from %s', 'MailPress'), MP_Mails::mail_revision_title( (int) $_GET['revision'], false, $_GET['time']) ); }
+if (isset($_GET['sent'])) 	{$err += 0; if (!empty($message)) $message .= '<br />'; $message .= sprintf( __ngettext( __('%s mail sent', MP_TXTDOM), __('%s mails sent', MP_TXTDOM), $_GET['sent']), $_GET['sent']); }
+if (isset($_GET['revision'])) {$err += 0; if (!empty($message)) $message .= '<br />'; $message .= sprintf( __('Mail restored to revision from %s', MP_TXTDOM), MP_Mails::mail_revision_title( (int) $_GET['revision'], false, $_GET['time']) ); }
 $mp_general	= get_option('MailPress_general');
 
 // from
@@ -177,29 +177,29 @@ $draft_dest = MP_Users::get_mailinglists();
 						<table class='form-table'>
 							<tr>
 								<th class='nombp from'>
-									<?php _e('From', 'MailPress'); ?> 
+									<?php _e('From', MP_TXTDOM); ?> 
 								</th>
 								<td class='nombp' >
-									<input class='w90 fromto' type='text' value='<?php echo $draft->fromemail; ?>' disabled='disabled' title="<?php _e('Email', 'MailPress'); ?>" />
+									<input class='w90 fromto' type='text' value='<?php echo $draft->fromemail; ?>' disabled='disabled' title="<?php _e('Email', MP_TXTDOM); ?>" />
 								</td>
 								<td class='nombp' >
-									<input class='w90 fromto' type='text' value="<?php echo $draft->fromname; ?>"  disabled='disabled' title="<?php _e('Name', 'MailPress'); ?>" />
+									<input class='w90 fromto' type='text' value="<?php echo $draft->fromname; ?>"  disabled='disabled' title="<?php _e('Name', MP_TXTDOM); ?>" />
 								</td>
 							</tr>
 							<tr>
 								<th class='nombp' rowspan='2'>
-									<?php _e('To', 'MailPress'); ?> 
+									<?php _e('To', MP_TXTDOM); ?> 
 								</th>	
 								<td class='nombp' >
-									<input  class='w90 <?php echo $class; ?>' type='text' name='toemail' id='toemail' value='<?php echo $draft->toemail; ?>' title="<?php _e('Email', 'MailPress'); ?>" />
+									<input  class='w90 <?php echo $class; ?>' type='text' name='toemail' id='toemail' value='<?php echo $draft->toemail; ?>' title="<?php _e('Email', MP_TXTDOM); ?>" />
 								</td>
 								<td class='nombp' >
-									<input  class='w90 <?php echo $class; ?>' type='text' name='toname'  id='toname'  value='<?php echo $draft->toname; ?>'  title="<?php _e('Name', 'MailPress'); ?>" />
+									<input  class='w90 <?php echo $class; ?>' type='text' name='toname'  id='toname'  value='<?php echo $draft->toname; ?>'  title="<?php _e('Name', MP_TXTDOM); ?>" />
 								</td>
 							</tr>
 							<tr>
 								<td colspan='2'>
-									<?php _e('OR all', 'MailPress'); ?>
+									<?php _e('OR all', MP_TXTDOM); ?>
 									&nbsp;&nbsp;
 									<select name='to_list' id='to_list'  class='<?php echo $class; ?>'>
 <?php self::select_optgroup($draft_dest, (isset($draft->to_list)) ? $draft->to_list : '') ?>
@@ -211,7 +211,7 @@ $draft_dest = MP_Users::get_mailinglists();
 					<div id='titlediv'>
 						<h3 class='dashboard-widget-title'>
 							<label for='title'>
-								<?php _e('Subject', 'MailPress'); ?>
+								<?php _e('Subject', MP_TXTDOM); ?>
 							</label>
 						</h3>
 						<div id='titlewrap'>

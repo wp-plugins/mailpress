@@ -33,7 +33,7 @@ do_action('admin_print_scripts' );
 								<table class="form-table">
 									<tr>
 										<th>
-											<?php _e('From','MailPress'); ?>
+											<?php _e('From', MP_TXTDOM); ?>
 										</th>
 										<td>
 											<?php echo $from; ?>
@@ -41,7 +41,7 @@ do_action('admin_print_scripts' );
 									</tr>
 									<tr>
 										<th>
-											<?php _e('To','MailPress'); ?>
+											<?php _e('To', MP_TXTDOM); ?>
 										</th>
 										<td>
 											<?php echo $to; ?>
@@ -49,7 +49,7 @@ do_action('admin_print_scripts' );
 									</tr>
 									<tr>
 										<th>
-											<?php _e('Subject','MailPress'); ?>
+											<?php _e('Subject', MP_TXTDOM); ?>
 										</th>
 										<td>
 											<b><?php echo $subject;?></b> 
@@ -61,8 +61,8 @@ do_action('admin_print_scripts' );
 <?php endif; ?>
 						<div id='example'>
 							<ul class="tablenav ui-tabs-nav">
-								<li><a href='#fragment-2'><span><?php _e('Plaintext View','MailPress'); ?></span></a></li>
-								<li class='ui-tabs-selected'><a href='#fragment-1'><span><?php _e('Html View','MailPress'); ?></span></a></li>
+								<li><a href='#fragment-2'><span><?php _e('Plaintext View', MP_TXTDOM); ?></span></a></li>
+								<li class='ui-tabs-selected'><a href='#fragment-1'><span><?php _e('Html View', MP_TXTDOM); ?></span></a></li>
 							</ul>
 							<div id='fragment-1'>
 								<div style='margin:0;background:#fff;border:1px solid #c0c0c0;padding:5px;'>
@@ -80,7 +80,7 @@ do_action('admin_print_scripts' );
 							<table>
 								<tr>
 									<td style='vertical-align:top;'>
-										<?php _e('Attachements','MailPress'); ?>
+										<?php _e('Attachements', MP_TXTDOM); ?>
 									</td>
 									<td>
 										<table>

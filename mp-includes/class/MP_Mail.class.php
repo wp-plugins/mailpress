@@ -119,7 +119,7 @@ class MP_Mail
 	//¤ mail empty ? ¤//
 		if (!$this->row->subject && !$this->row->plaintext && !$this->row->html && !$this->mail->attachements)
 		{
-/*trace*/		$this->trace->log(__('*** WARNING *** Mail is empty', 'MailPress'));
+/*trace*/		$this->trace->log(__('*** WARNING *** Mail is empty', MP_TXTDOM));
 			return false;
 		}
 
@@ -875,6 +875,8 @@ class MP_Mail
 		foreach ($matches as $match)
 		{
 			$f = $u = false;
+            
+			if (!in_array(substr(strtolower(strrchr($match[1], '.')), 1), array('jpg', 'jpeg', 'png', 'gif', 'tif', 'bmp'))) continue;
 
 			if (stristr($match[1], $siteurl) && apply_filters('MailPress_img_mail_keepurl', false))
 			{

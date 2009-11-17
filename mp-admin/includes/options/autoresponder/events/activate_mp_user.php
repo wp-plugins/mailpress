@@ -7,7 +7,7 @@ class MP_Autoresponder_event_activate_mp_user extends MP_Autoresponders_event_ab
 
 	function __construct()
 	{
-		$this->desc = __('Subscription activated', 'MailPress');
+		$this->desc = __('Subscription activated', MP_TXTDOM);
 		parent::__construct();
 	}
 }

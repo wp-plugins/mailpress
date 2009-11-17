@@ -5,8 +5,8 @@ class MP_import_csv extends MP_Import_importer_abstract
 	function __construct() 
 	{
 		$this->importer 		= 'csv';
-		$this->description 	= __('Import your <strong>csv</strong> file.', 'MailPress');
-		$this->header 		= __('Import Csv', 'MailPress');
+		$this->description 	= __('Import your <strong>csv</strong> file.', MP_TXTDOM);
+		$this->header 		= __('Import Csv', MP_TXTDOM);
 		$this->callback 		= array (&$this, 'dispatch');
 		parent::__construct();
 	}
@@ -31,7 +31,7 @@ class MP_import_csv extends MP_Import_importer_abstract
 					if ($sniff)
 						$this->fileform();
 					else
-						$this->error('<p><strong>' . __('Unable to determine email location', 'MailPress') . '</strong></p>');
+						$this->error('<p><strong>' . __('Unable to determine email location', MP_TXTDOM) . '</strong></p>');
 				}
 				else
 				{
@@ -44,7 +44,7 @@ class MP_import_csv extends MP_Import_importer_abstract
 					$import = $this->import( $_GET['id'] );
 				$this->end_trace(true);
 				if ($import)
-					$this->success('<p>' . sprintf(__("<b>File imported</b> : <i>%s</i>", 'MailPress'), $this->file) . '</p><p><strong>' . sprintf(__("<b>Number of records</b> : <i>%s</i>", 'MailPress'), $import) . '</strong></p>');
+					$this->success('<p>' . sprintf(__("<b>File imported</b> : <i>%s</i>", MP_TXTDOM), $this->file) . '</p><p><strong>' . sprintf(__("<b>Number of records</b> : <i>%s</i>", MP_TXTDOM), $import) . '</strong></p>');
 				else 
 					$this->error('<p><strong>' . $this->file . '</strong></p>');
 			break;
@@ -102,19 +102,19 @@ class MP_import_csv extends MP_Import_importer_abstract
 ?>
 	<form action="<?php echo MailPress_import; ?>&amp;mp_import=csv&amp;step=2&amp;id=<?php echo $this->id; ?>" method="post">
 <?php if (class_exists('MailPress_mailinglist')) : ?>
-		<h3><?php _e('Mailing list', 'MailPress'); ?></h3>
-		<p><?php _e('Optional, you can import the MailPress users in a specific mailing list ...', 'MailPress'); ?></p>
+		<h3><?php _e('Mailing list', MP_TXTDOM); ?></h3>
+		<p><?php _e('Optional, you can import the MailPress users in a specific mailing list ...', MP_TXTDOM); ?></p>
 		<select name='mailinglist' id='mailinglist'>
 <?php MP_AdminPage::select_option($draft_dest, 'MailPress_mailinglist~' . get_option('MailPress_default_mailinglist')) ?>
 		</select>
 <?php endif; ?>
-		<h3><?php _e('File scan', 'MailPress'); ?></h3>
-		<p><?php printf(__("On the first records (see hereunder), the file scan found that the email is in column '<strong>%s</strong>'.", 'MailPress'), $this->emailcol); ?>
-		<?php _e('However, you can select another column.<br /> Invalid emails will not be inserted.', 'MailPress'); ?></p>
+		<h3><?php _e('File scan', MP_TXTDOM); ?></h3>
+		<p><?php printf(__("On the first records (see hereunder), the file scan found that the email is in column '<strong>%s</strong>'.", MP_TXTDOM), $this->emailcol); ?>
+		<?php _e('However, you can select another column.<br /> Invalid emails will not be inserted.', MP_TXTDOM); ?></p>
 		<table class='widefat'>
 			<thead>
 				<tr>
-					<td style='width:auto;'><?php _e('Choose email column', 'MailPress'); ?></td>
+					<td style='width:auto;'><?php _e('Choose email column', MP_TXTDOM); ?></td>
 <?php
 		foreach ($this->csv->data as $row)
 		{
@@ -129,7 +129,7 @@ class MP_import_csv extends MP_Import_importer_abstract
 ?>
 				</tr>
 				<tr>
-					<td><?php _e('Choose name column', 'MailPress'); ?></td>
+					<td><?php _e('Choose name column', MP_TXTDOM); ?></td>
 <?php
 		foreach ($this->csv->data as $row)
 		{

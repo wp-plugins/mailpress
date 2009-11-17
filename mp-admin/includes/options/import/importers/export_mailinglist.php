@@ -8,8 +8,8 @@ class MP_export_mailinglist extends MP_Import_importer_abstract
 	function __construct() 
 	{
 		$this->importer 		= 'csv_export_mailing_list';
-		$this->description 	= __('Export your mailing list in a <strong>csv</strong> file.', 'MailPress');
-		$this->header 		= __('Export mailing list', 'MailPress');
+		$this->description 	= __('Export your mailing list in a <strong>csv</strong> file.', MP_TXTDOM);
+		$this->header 		= __('Export mailing list', MP_TXTDOM);
 		$this->callback 		= array (&$this, 'dispatch');
 		parent::__construct();
 	}
@@ -31,7 +31,7 @@ class MP_export_mailinglist extends MP_Import_importer_abstract
 				if ($export)
 				{
 					$file = get_option('siteurl') . '/' . MP_PATH . 'tmp/' . $this->file;
-					$this->success('<p>' . sprintf(__("<b>File exported</b> : <i>%s</i>", 'MailPress'), "<a href='$file'>$file</a>") . '</p><p><strong>' . sprintf(__("<b>Number of records</b> : <i>%s</i>", 'MailPress'), $export) . '</strong></p>');
+					$this->success('<p>' . sprintf(__("<b>File exported</b> : <i>%s</i>", MP_TXTDOM), "<a href='$file'>$file</a>") . '</p><p><strong>' . sprintf(__("<b>Number of records</b> : <i>%s</i>", MP_TXTDOM), $export) . '</strong></p>');
 				}
 				else 
 					$this->error('<p><strong>' . $this->file . '</strong></p>');
@@ -47,12 +47,12 @@ class MP_export_mailinglist extends MP_Import_importer_abstract
 ?>
 <div>
 	<p>
-<?php		_e('Howdy! Choose your mailing list and we&#8217;ll export the emails ... into a file.', 'MailPress'); ?>
+<?php		_e('Howdy! Choose your mailing list and we&#8217;ll export the emails ... into a file.', MP_TXTDOM); ?>
 		<br />
 	</p>
 	<form id='export-mailing-list' method='post' action='<?php echo MailPress_import . '&amp;mp_import=' . $this->importer . '&amp;step=1'; ?>'>
 		<p>
-			<label for='download'><?php _e( 'Choose a mailing list :', 'MailPress' ); ?></label>
+			<label for='download'><?php _e( 'Choose a mailing list :', MP_TXTDOM ); ?></label>
 <?php
 			MP_AdminPage::require_class('Mailinglists');
 			$dropdown_options = array('hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'htmlid' => 'export_mailinglist', 'name' => 'export_mailinglist', 'selected' => get_option('MailPress_default_mailinglist'));
@@ -60,7 +60,7 @@ class MP_export_mailinglist extends MP_Import_importer_abstract
 ?>
 		</p>
 		<p class='submit'>
-			<input type='submit' class='button' value='<?php esc_attr_e( 'Export', 'MailPress' ); ?>' />
+			<input type='submit' class='button' value='<?php esc_attr_e( 'Export', MP_TXTDOM ); ?>' />
 		</p>
 	</form>
 </div>

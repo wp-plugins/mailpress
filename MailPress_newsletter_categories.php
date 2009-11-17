@@ -6,7 +6,7 @@ Plugin Name: MailPress_newsletter_categories
 Plugin URI: http://www.mailpress.org
 Description: This is just an addon for MailPress to manage newsletters per categories
 Author: Andre Renaut
-Version: 4.0.1
+Version: 4.0.2
 Author URI: http://www.mailpress.org
 */
 
@@ -15,12 +15,12 @@ class MailPress_newsletter_categories
 	function __construct() 
 	{
 // for plugin
-		add_action('MailPress_register_newsletter',	array('MailPress_newsletter_categories', 'register'));
+		add_action('MailPress_register_newsletter',	array(__CLASS__, 'register'));
 // for wp admin
 		if (is_admin())
 		{
 		// for link on plugin page
-			add_filter('plugin_action_links', 		array('MailPress_newsletter_categories', 'plugin_action_links'), 10, 2 );
+			add_filter('plugin_action_links', 		array(__CLASS__, 'plugin_action_links'), 10, 2 );
 		}
 	}
 
@@ -29,7 +29,7 @@ class MailPress_newsletter_categories
 	{
 		if ( function_exists( 'create_initial_taxonomies' ) ) create_initial_taxonomies();
 
-		add_action('publish_post', 	array('MailPress_newsletter_categories', 'have_post'), 8, 1);
+		add_action('publish_post', 	array(__CLASS__, 'have_post'), 8, 1);
 
 		$daily_value 	 	= date('Ymd');
 		$d  				= date('Ymd', mktime(0, 0, 0, date('m'), date('d') - 1, date('Y')));
@@ -54,22 +54,22 @@ class MailPress_newsletter_categories
 			$name = $category->cat_name;
 
 			MP_Newsletter::register (	"post_category_$id", 
-								sprintf( __('[%1$s] New post in %2$s', 'MailPress'), get_bloginfo('name'), $name), 
+								sprintf( __('[%1$s] New post in %2$s', MP_TXTDOM), get_bloginfo('name'), $name), 
 								false, 
 								'singlecat', 
-								sprintf(__('Per post "%1$s"', 'MailPress'), $name), 
-								sprintf(__('For each new post in %1$s', 'MailPress'), $name), 
+								sprintf(__('Per post "%1$s"', MP_TXTDOM), $name), 
+								sprintf(__('For each new post in %1$s', MP_TXTDOM), $name), 
 								false, 
 								true, 
 								array('category' => $id, 'catname'=>$name)
 						     );
 
 			MP_Newsletter::register (	"daily_category_$id", 
-								sprintf( __('[%1$s] Daily newsletter in %2$s', 'MailPress'), get_bloginfo('name'), $name), 
+								sprintf( __('[%1$s] Daily newsletter in %2$s', MP_TXTDOM), get_bloginfo('name'), $name), 
 								false, 
 								'dailycat', 
-								sprintf(__('Daily "%1$s"', 'MailPress'), $name), 
-								sprintf(__('Daily newsletter for %1$s', 'MailPress'), $name), 
+								sprintf(__('Daily "%1$s"', MP_TXTDOM), $name), 
+								sprintf(__('Daily newsletter for %1$s', MP_TXTDOM), $name), 
 								array ( 	'callback'	 => array('MP_Newsletter', 'have')		, 
 										'name'	 => 'MailPress_daily_category_' . $id	, 
 										'value'	 => $daily_value 					, 
@@ -83,11 +83,11 @@ class MailPress_newsletter_categories
 						     );
 
 			MP_Newsletter::register (	"weekly_category_$id", 
-								sprintf( __('[%1$s] Weekly newsletter for %2$s', 'MailPress'), get_bloginfo('name'), $name), 
+								sprintf( __('[%1$s] Weekly newsletter for %2$s', MP_TXTDOM), get_bloginfo('name'), $name), 
 								false, 
 								'weeklycat', 
-								sprintf(__('Weekly "%1$s"', 'MailPress'), $name), 
-								sprintf(__('Weekly newsletter for %1$s', 'MailPress'), $name), 
+								sprintf(__('Weekly "%1$s"', MP_TXTDOM), $name), 
+								sprintf(__('Weekly newsletter for %1$s', MP_TXTDOM), $name), 
 								array ( 	'callback'	 => array('MP_Newsletter', 'have') 		, 
 										'name'	 => 'MailPress_weekly_category_' . $id	, 
 										'value'	 => $weekly_value 				, 
@@ -102,11 +102,11 @@ class MailPress_newsletter_categories
 						     );
 
 			MP_Newsletter::register (	"monthly_category_$id", 
-								sprintf( __('[%1$s] Monthly newsletter for %2$s', 'MailPress'), get_bloginfo('name'), $name), 
+								sprintf( __('[%1$s] Monthly newsletter for %2$s', MP_TXTDOM), get_bloginfo('name'), $name), 
 								false, 
 								'monthlycat', 
-								sprintf(__('Monthly "%1$s"', 'MailPress'), $name), 
-								sprintf(__('Monthly newsletter for %1$s', 'MailPress'), $name), 
+								sprintf(__('Monthly "%1$s"', MP_TXTDOM), $name), 
+								sprintf(__('Monthly newsletter for %1$s', MP_TXTDOM), $name), 
 								array ( 	'callback'	 => array('MP_Newsletter', 'have')		, 
 										'name'	 => 'MailPress_monthly_category_' . $id	, 
 										'value'	 => $monthly_value				, 

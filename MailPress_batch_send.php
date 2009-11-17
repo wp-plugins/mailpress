@@ -6,7 +6,7 @@ Plugin Name: MailPress_batch_send
 Plugin URI: http://www.mailpress.org
 Description: This is just an addon for MailPress to send mail in batch mode.
 Author: Andre Renaut
-Version: 4.0.1
+Version: 4.0.2
 Author URI: http://www.mailpress.org
 */
 
@@ -17,7 +17,7 @@ class MailPress_batch_send
 	function __construct()
 	{
 // prepare mail
-		add_filter('MailPress_status_mail', 		array('MailPress_batch_send', 'status_mail'));
+		add_filter('MailPress_status_mail', 		array(__CLASS__, 'status_mail'));
 
 // for batch mode
 		add_action('mp_action_batchsend', 			array(&$this, 'process'));
@@ -26,30 +26,30 @@ class MailPress_batch_send
 		$batch_send_config = get_option('MailPress_batch_send');
 		if ('wpcron' == $batch_send_config['batch_mode'])
 		{	
-			add_action('MailPress_schedule_batch_send', 	array('MailPress_batch_send', 'schedule'));
+			add_action('MailPress_schedule_batch_send', 	array(__CLASS__, 'schedule'));
 		}
 // for to mails column
-		add_filter('MailPress_to_mails_column', 		array('MailPress_batch_send', 'to_mails_column'), 8, 2);
+		add_filter('MailPress_to_mails_column', 		array(__CLASS__, 'to_mails_column'), 8, 2);
 
 		if (is_admin())
 		{
 		// for install
-			register_activation_hook(MP_FOLDER . '/MailPress_batch_send.php', 	array('MailPress_batch_send', 'install'));
-			register_deactivation_hook(MP_FOLDER . '/MailPress_batch_send.php',	array('MailPress_batch_send', 'uninstall'));
+			register_activation_hook(MP_FOLDER . '/MailPress_batch_send.php', 	array(__CLASS__, 'install'));
+			register_deactivation_hook(MP_FOLDER . '/MailPress_batch_send.php',	array(__CLASS__, 'uninstall'));
 		// for link on plugin page
-			add_filter('plugin_action_links', 		array('MailPress_batch_send', 'plugin_action_links'), 10, 2 );
+			add_filter('plugin_action_links', 		array(__CLASS__, 'plugin_action_links'), 10, 2 );
 		// for settings
-			add_filter('MailPress_scripts', 		array('MailPress_batch_send', 'scripts'), 8, 2);
-			add_action('MailPress_settings_update', 	array('MailPress_batch_send', 'settings_update'));
-			add_action('MailPress_settings_tab', 	array('MailPress_batch_send', 'settings_tab'), 8, 1);
-			add_action('MailPress_settings_div', 	array('MailPress_batch_send', 'settings_div'));
-			add_action('MailPress_settings_logs', 	array('MailPress_batch_send', 'settings_logs'), 8, 1);
+			add_filter('MailPress_scripts', 		array(__CLASS__, 'scripts'), 8, 2);
+			add_action('MailPress_settings_update', 	array(__CLASS__, 'settings_update'));
+			add_action('MailPress_settings_tab', 	array(__CLASS__, 'settings_tab'), 8, 1);
+			add_action('MailPress_settings_div', 	array(__CLASS__, 'settings_div'));
+			add_action('MailPress_settings_logs', 	array(__CLASS__, 'settings_logs'), 8, 1);
 
 			if ('wpcron' == $batch_send_config['batch_mode'])
 			{	
 			// for autorefresh
-				add_filter('MailPress_autorefresh_js',	array('MailPress_batch_send', 'autorefresh_js'), 8, 1);
-				add_filter('MailPress_autorefresh_every', array('MailPress_batch_send', 'autorefresh_every'), 8, 1);
+				add_filter('MailPress_autorefresh_js',	array(__CLASS__, 'autorefresh_js'), 8, 1);
+				add_filter('MailPress_autorefresh_every', array(__CLASS__, 'autorefresh_every'), 8, 1);
 			}
 		}
 	}
@@ -121,7 +121,7 @@ class MailPress_batch_send
 	public static function settings_tab($tab)
 	{
 		$t = ($tab=='MailPress_batch_send') ? " class='ui-tabs-selected'" : ''; 
-		echo "\t\t\t<li $t><a href='#fragment-MailPress_batch_send'><span class='button-secondary'>" . __('Batch', 'MailPress') . "</span></a></li>\n";
+		echo "\t\t\t<li $t><a href='#fragment-MailPress_batch_send'><span class='button-secondary'>" . __('Batch', MP_TXTDOM) . "</span></a></li>\n";
 	}
 
 	public static function settings_div()
@@ -131,7 +131,7 @@ class MailPress_batch_send
 
 	public static function settings_logs($logs)
 	{
-		MP_AdminPage::logs_sub_form('batch_send', $logs, __('Batch', 'MailPress'), __('Batch log', 'MailPress'), __('(for <b>ALL</b> mails send through MailPress)', 'MailPress'), __('Number of Batch log files : ', 'MailPress'));
+		MP_AdminPage::logs_sub_form('batch_send', $logs, __('Batch', MP_TXTDOM), __('Batch log', MP_TXTDOM), __('(for <b>ALL</b> mails send through MailPress)', MP_TXTDOM), __('Number of Batch log files : ', MP_TXTDOM));
 	}
 
 // for mails list
@@ -142,11 +142,11 @@ class MailPress_batch_send
 
 		if ($mailmeta)
 		{
-			if ($mailmeta['sent'] != $mailmeta['count']) return sprintf( __ngettext( _c('%1$s of %2$s sent| Singular', 'MailPress'), _c('%1$s of %2$s sent| Plural', 'MailPress'), $mailmeta['sent'] ), $mailmeta['sent'], $mailmeta['count'] );
+			if ($mailmeta['sent'] != $mailmeta['count']) return sprintf( __ngettext( _c('%1$s of %2$s sent| Singular', MP_TXTDOM), _c('%1$s of %2$s sent| Plural', MP_TXTDOM), $mailmeta['sent'] ), $mailmeta['sent'], $mailmeta['count'] );
 		}
 		else
 		{
-			if (self::status_mail() == $mail->status) return __('Pending...', 'MailPress');
+			if (self::status_mail() == $mail->status) return __('Pending...', MP_TXTDOM);
 		}
 
 		return $to;
@@ -161,14 +161,14 @@ class MailPress_batch_send
 		$time    = (isset($_GET['autorefresh'])) ?  $_GET['autorefresh'] : $every;
 		$time    = (is_numeric($time) && ($time > $every)) ? $time : $every;
 		$time    = "<input type='text' value='$time' maxlength='3' id='MP_Refresh_every' class='screen-per-page'/>";
-		$option  = '<h5>' . __('Auto refresh for WP_Cron', 'MailPress') . '</h5>';
-		$option .= "<div><input id='MP_Refresh' type='checkbox'$checked style='margin:0 5px 0 2px;' /><span class='MP_Refresh'>" . sprintf(__('%1$s Autorefresh %2$s every %3$s sec', 'MailPress'), "<label for='MP_Refresh' style='vertical-align:inherit;'>", '</label>', $time) . "</span></div>";
+		$option  = '<h5>' . __('Auto refresh for WP_Cron', MP_TXTDOM) . '</h5>';
+		$option .= "<div><input id='MP_Refresh' type='checkbox'$checked style='margin:0 5px 0 2px;' /><span class='MP_Refresh'>" . sprintf(__('%1$s Autorefresh %2$s every %3$s sec', MP_TXTDOM), "<label for='MP_Refresh' style='vertical-align:inherit;'>", '</label>', $time) . "</span></div>";
 
 		wp_register_script( 'mp-refresh', 	'/' . MP_PATH . 'mp-includes/js/mp_refresh.js', array('schedule'), false, 1);
 		wp_localize_script( 'mp-refresh', 	'adminMpRefreshL10n', array(
 				'every' 	=> $every,
 
-				'message' 	=> __('Autorefresh in %i% sec', 'MailPress'), 
+				'message' 	=> __('Autorefresh in %i% sec', MP_TXTDOM), 
 
 				'option'	=> $option,
 				'l10n_print_after' => 'try{convertEntities(adminmailsL10n);}catch(e){};'

@@ -1,6 +1,6 @@
 <?php
 
-$h2 = __('View Log','MailPress');
+$h2 = __('View Log', MP_TXTDOM);
 
 $f = $_GET['id'];
 $view_url 	=  get_option('siteurl') . '/' . self::get_path() . '/' . $f;

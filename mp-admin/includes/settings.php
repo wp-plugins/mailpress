@@ -32,16 +32,16 @@ $class = " class='ui-tabs-selected'";
 ?>
 <div class='wrap'>
 	<div id='icon-mailpress-settings' class='icon32'><br /></div>
-	<h2><?php _e('MailPress Settings', 'MailPress'); ?></h2>
+	<h2><?php _e('MailPress Settings', MP_TXTDOM); ?></h2>
 	<div id='example'>
 		<ul class='bkgndc tablenav<?php if (!$mp_general) echo ' ui-tabs-nav'; ?>' style='padding:3px 8px 0;vertical-align:middle;'>
-			<li <?php if ((!$mp_general) || ($mp_tab=='0')) echo $class;?>><a href='#fragment-0'><span class='button-secondary'><?php _e('General', 'MailPress'); ?></span></a></li>
+			<li <?php if ((!$mp_general) || ($mp_tab=='0')) echo $class;?>><a href='#fragment-0'><span class='button-secondary'><?php _e('General', MP_TXTDOM); ?></span></a></li>
 <?php if ($mp_general) : ?>
 			<li <?php if ($mp_tab==1) echo $class;?>><a href='#fragment-1'><span class='button-secondary'><?php echo apply_filters('MailPress_Swift_Connection_type', 'SMTP'); ?></span></a></li>
-			<li <?php if ($mp_tab==2) echo $class;?>><a href='#fragment-2'><span class='button-secondary'><?php _e('Test'    , 'MailPress'); ?></span></a></li>
-			<li <?php if ($mp_tab==3) echo $class;?>><a href='#fragment-3'><span class='button-secondary'><?php _e('Subscriptions'    , 'MailPress'); ?></span></a></li>
+			<li <?php if ($mp_tab==2) echo $class;?>><a href='#fragment-2'><span class='button-secondary'><?php _e('Test'    , MP_TXTDOM); ?></span></a></li>
+			<li <?php if ($mp_tab==3) echo $class;?>><a href='#fragment-3'><span class='button-secondary'><?php _e('Subscriptions'    , MP_TXTDOM); ?></span></a></li>
 <?php do_action('MailPress_settings_tab', $mp_tab, $class); ?>
-			<li <?php if ($mp_tab==4) echo $class;?>><a href='#fragment-4'><span class='button-secondary'><?php _e('Logs'    , 'MailPress'); ?></span></a></li>
+			<li <?php if ($mp_tab==4) echo $class;?>><a href='#fragment-4'><span class='button-secondary'><?php _e('Logs'    , MP_TXTDOM); ?></span></a></li>
 <?php endif; ?>
 		</ul>
 		<div id='fragment-0' style='clear:both;'>

@@ -21,7 +21,7 @@ class MP_AdminPage extends MP_Admin_page
 
 ////  Title  ////
 
-	public static function title() { global $title; $title = __('Tracking', 'MailPress'); }
+	public static function title() { global $title; $title = __('Tracking', MP_TXTDOM); }
 
 ////  Styles  ////
 
@@ -49,13 +49,13 @@ class MP_AdminPage extends MP_Admin_page
 		$time    = (isset($_GET['autorefresh'])) ?  $_GET['autorefresh'] : $every;
 		$time    = (is_numeric($time) && ($time > $every)) ? $time : $every;
 		$time    = "<input type='text' value='$time' maxlength='3' id='MP_Refresh_every' class='screen-per-page'/>";
-		$option  = '<h5>' . __('Auto refresh', 'MailPress') . '</h5>';
-		$option .= "<div><input id='MP_Refresh' type='checkbox'$checked style='margin:0 5px 0 2px;' /><span class='MP_Refresh'>" . sprintf(__('%1$s Autorefresh %2$s every %3$s sec', 'MailPress'), "<label for='MP_Refresh' style='vertical-align:inherit;'>", '</label>', $time) . "</span></div>";
+		$option  = '<h5>' . __('Auto refresh', MP_TXTDOM) . '</h5>';
+		$option .= "<div><input id='MP_Refresh' type='checkbox'$checked style='margin:0 5px 0 2px;' /><span class='MP_Refresh'>" . sprintf(__('%1$s Autorefresh %2$s every %3$s sec', MP_TXTDOM), "<label for='MP_Refresh' style='vertical-align:inherit;'>", '</label>', $time) . "</span></div>";
 
 		wp_register_script( 'mp-refresh', 	'/' . MP_PATH . 'mp-includes/js/mp_refresh.js', array('schedule'), false, 1);
 		wp_localize_script( 'mp-refresh', 	'adminMpRefreshL10n', array(
 				'every' 	=> $every,
-				'message' 	=> __('Autorefresh in %i% sec', 'MailPress'), 
+				'message' 	=> __('Autorefresh in %i% sec', MP_TXTDOM), 
 				'option'	=> $option,
 				'l10n_print_after' => 'try{convertEntities(adminmailsL10n);}catch(e){};'
 		) );
@@ -82,10 +82,10 @@ class MP_AdminPage extends MP_Admin_page
 
 	public static function get_columns() 
 	{
-		$columns = array(	'title' 	=> __('Subject', 'MailPress'), 
+		$columns = array(	'title' 	=> __('Subject', MP_TXTDOM), 
 					'author' 	=> __('Author'), 
-					'theme' 	=> __('Theme', 'MailPress'), 
-					'to' 		=> __('To', 'MailPress'), 
+					'theme' 	=> __('Theme', MP_TXTDOM), 
+					'to' 		=> __('To', MP_TXTDOM), 
 					'date'	=> __('Date') );
 		$columns = apply_filters('MailPress_columns_mails', $columns);
 		return $columns;
@@ -138,7 +138,7 @@ class MP_AdminPage extends MP_Admin_page
 				$mail_url = clean_url( $mail_url . '&s=' . $mail->toemail );
 
 				$email_display  = "\t\t\t<strong>\n";
-				$email_display .= "\t\t\t\t<a class='row-title' href='$mail_url'  title='" . sprintf( __('Search "%1$s"', 'MailPress'), $mail->toemail) . "'>\n";
+				$email_display .= "\t\t\t\t<a class='row-title' href='$mail_url'  title='" . sprintf( __('Search "%1$s"', MP_TXTDOM), $mail->toemail) . "'>\n";
 				if ( get_option('show_avatars') ) $email_display .= get_avatar( $mail->toemail, 32 );
 				$email_display .= ( strlen($mail->toemail) > 40 ) ? substr($mail->toemail, 0, 39) . '...' : $mail->toemail;
 				$email_display .= "\t\t\t\t</a>\n";
@@ -151,7 +151,7 @@ class MP_AdminPage extends MP_Admin_page
 				$email_display = "<div class='num post-com-count-wrapper'><a class='post-com-count'><span class='comment-count'>" . count(unserialize($mail->toemail)) . "</span></a></div>"; 
 			break;
 			default  :
-				$email_display = "<span style='color:red;font-weight:bold;'>" . __('(unknown)', 'MailPress') . '</span>';
+				$email_display = "<span style='color:red;font-weight:bold;'>" . __('(unknown)', MP_TXTDOM) . '</span>';
 				unset($actions['send']);
 			break;
 		}
@@ -206,14 +206,14 @@ class MP_AdminPage extends MP_Admin_page
 <?php
 			if ($attach) :
 ?>
-			<img class='attach' alt="<?php _e('Attachements', 'MailPress'); ?>" title="<?php _e('Attachements', 'MailPress'); ?>"  src='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>/mp-admin/images/clip.gif' />
+			<img class='attach' alt="<?php _e('Attachements', MP_TXTDOM); ?>" title="<?php _e('Attachements', MP_TXTDOM); ?>"  src='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>/mp-admin/images/clip.gif' />
 <?php
 			endif;
 			do_action('MailPress_get_icon_mails', $id);
 ?>
 			<strong>
-				<a class='row-title thickbox' href='<?php echo $view_url; ?>' title='<?php printf( __('View "%1$s"', 'MailPress') , ( '' == $subject_display) ? __('(no subject)', 'MailPress') : htmlspecialchars($subject_display, ENT_QUOTES) ); ?>'>
-					<?php echo ( '' == $subject_display) ? __('(no subject)', 'MailPress') : (( strlen($subject_display) > 40 ) ? $subject_display = substr($subject_display, 0, 39) . '...' : $subject_display); ?>
+				<a class='row-title thickbox' href='<?php echo $view_url; ?>' title='<?php printf( __('View "%1$s"', MP_TXTDOM) , ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : htmlspecialchars($subject_display, ENT_QUOTES) ); ?>'>
+					<?php echo ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : (( strlen($subject_display) > 40 ) ? $subject_display = substr($subject_display, 0, 39) . '...' : $subject_display); ?>
 				</a>
 			</strong>
 		</td>
@@ -228,7 +228,7 @@ class MP_AdminPage extends MP_Admin_page
 					$time_diff = time() - $time; 
 
 					if ( $time_diff > 0 && $time_diff < 24*60*60 )	$h_time = sprintf( __('%s ago'), human_time_diff( $time ) );
-					elseif ( $time_diff == 0 )				$h_time = __('now', 'MailPress');
+					elseif ( $time_diff == 0 )				$h_time = __('now', MP_TXTDOM);
 					else								$h_time = mysql2date(__('Y/m/d'), $m_time);
 					
 ?>
@@ -242,7 +242,7 @@ class MP_AdminPage extends MP_Admin_page
 		<td  <?php echo $attributes ?>>
 <?php					if ($author != 0 && is_numeric($author)) { ?>
 			<?php echo $wp_user->display_name; ?>
-<?php 				} else _e("(unknown)", 'MailPress'); ?>
+<?php 				} else _e("(unknown)", MP_TXTDOM); ?>
 		</td>
 <?php
 				break;

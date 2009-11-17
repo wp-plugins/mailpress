@@ -225,6 +225,9 @@ class MP_Users
 			case 'bounced':
 					return self::bounced($id);
 			break;
+			case 'unsubscribed':
+					return self::unsubscribed($id);
+			break;
 			case 'delete':
 					return self::delete($id);
 			break;
@@ -273,12 +276,17 @@ class MP_Users
 		$mp_user = $wpdb->get_row( $query );
 		$now	  = date('Y-m-d H:i:s');
 
-		if ( $mp_user && in_array($mp_user->status, array('active', 'bounced')))
+		if ( $mp_user && in_array($mp_user->status, array('active', 'bounced', 'unsubscribed')))
 		{
 			if ('active' == $mp_user->status)
 			{
 				MailPress::update_stats('u', 'active', -1);
 				if (self::has_subscribed_to_comments($id)) MailPress::update_stats('u', 'comment', 1);
+			}
+
+			if ('unsubscribed' == $mp_user->status)
+			{
+				MailPress::update_stats('u', 'waiting', 1);
 			}
 
 			$userid 	= MailPress::get_wp_user_id();
@@ -322,6 +330,43 @@ class MP_Users
 		return $wpdb->query( $query );
 	}
 
+	public static function unsubscribed($id) 
+	{
+		global $wpdb;
+
+		$query  = "SELECT * FROM $wpdb->mp_users WHERE id='$id';";
+		$mp_user = $wpdb->get_row( $query );
+		$now      = date('Y-m-d H:i:s');
+
+		if ( $mp_user )
+		{
+			do_action('MailPress_unsubscribe_user', $id);
+
+			$x = self::has_subscribed_to_comments($id);
+			if ($x)
+			{
+				$query = "SELECT post_id FROM $wpdb->postmeta    WHERE meta_key = '_MailPress_subscribe_to_comments_' and meta_value = '$id';";
+				$posts = $wpdb->get_results( $query );
+				foreach ($posts as $post) MailPress::update_stats('c', $post->post_id, -1);
+				$query = "DELETE FROM $wpdb->postmeta    WHERE meta_key = '_MailPress_subscribe_to_comments_' and meta_value = '$id';"; 
+				$results = $wpdb->query( $query );
+			}
+
+			if ('active' == self::get_status($id))	MailPress::update_stats('u', 'active', -1);
+			elseif ($x) 					MailPress::update_stats('u', 'comment', -1);
+			MailPress::update_stats('u', 'waiting', -1);
+
+			$userid = MailPress::get_wp_user_id();
+
+			$query  = "UPDATE $wpdb->mp_users SET status = 'unsubscribed', laststatus = '$now', laststatus_user_id = $userid WHERE id='$id';";
+			$update = $wpdb->query( $query );
+
+			return ($update) ? $now : false;
+		}
+		wp_cache_delete($id, 'mp_user');
+		return true;
+	}
+
 	public static function delete($id) 
 	{
 		global $wpdb;
@@ -356,10 +401,10 @@ class MP_Users
 	public static function get_mailinglists()
 	{
 		$draft_dest = array (	''  => '&nbsp;', 
-						'1' => __('to blog', 'MailPress'), 
-						'2' => __('to comments', 'MailPress'), 
-						'3' => __('to blog & comments', 'MailPress'), 
-						'4' => __('all (active + waiting)', 'MailPress') 
+						'1' => __('to blog', MP_TXTDOM), 
+						'2' => __('to comments', MP_TXTDOM), 
+						'3' => __('to blog & comments', MP_TXTDOM), 
+						'4' => __('all (active + waiting)', MP_TXTDOM) 
 					  );
 		return apply_filters('MailPress_mailinglists', $draft_dest);
 	}
@@ -421,21 +466,21 @@ class MP_Users
 
 		$mail->subscribe		= self::get_subscribe_url($key);
 
-		$mail->subject		= sprintf( __('[%1$s] Waiting for %2$s', 'MailPress'), get_bloginfo('name'), $mail->toname );
+		$mail->subject		= sprintf( __('[%1$s] Waiting for %2$s', MP_TXTDOM), get_bloginfo('name'), $mail->toname );
 
-		$message  = sprintf( __('Please, confirm your subscription to %1$s emails by clicking the following link :', 'MailPress'), get_bloginfo('name') );
+		$message  = sprintf( __('Please, confirm your subscription to %1$s emails by clicking the following link :', MP_TXTDOM), get_bloginfo('name') );
 		$message .= "\n\n";
 		$message .= '{{subscribe}}';
 		$message .= "\n\n";
-		$message .= __('If you do not want to receive more emails, ignore this one !', 'MailPress');
+		$message .= __('If you do not want to receive more emails, ignore this one !', MP_TXTDOM);
 		$message .= "\n\n";
 		$mail->plaintext   	= $message;
 
-		$message  = sprintf( __('Please, confirm your subscription to %1$s emails by clicking the following link :', 'MailPress'), "<a href='$url'>" . get_bloginfo('name') . "</a>" );
+		$message  = sprintf( __('Please, confirm your subscription to %1$s emails by clicking the following link :', MP_TXTDOM), "<a href='$url'>" . get_bloginfo('name') . "</a>" );
 		$message .= '<br /><br />';
-		$message .= "<a href='{{subscribe}}'>" . __('Confirm', 'MailPress') . "</a>";
+		$message .= "<a href='{{subscribe}}'>" . __('Confirm', MP_TXTDOM) . "</a>";
 		$message .= '<br /><br />';
-		$message .= __('If you do not want to receive more emails, ignore this one !', 'MailPress');
+		$message .= __('If you do not want to receive more emails, ignore this one !', MP_TXTDOM);
 		$message .= '<br /><br />';
 		$mail->html    		= $message;
 
@@ -452,17 +497,17 @@ class MP_Users
 		$mail->toemail 		= $email;
 		$mail->toname		= $name;
 
-		$mail->subject		= sprintf( __('[%1$s] Successful subscription for %2$s', 'MailPress'), get_bloginfo('name'), $email );
+		$mail->subject		= sprintf( __('[%1$s] Successful subscription for %2$s', MP_TXTDOM), get_bloginfo('name'), $email );
 
-		$message  = sprintf(__('We confirm your subscription to %1$s emails', 'MailPress'), get_bloginfo('name') );
+		$message  = sprintf(__('We confirm your subscription to %1$s emails', MP_TXTDOM), get_bloginfo('name') );
 		$message .= "\n\n";
-		$message .= __('Congratulations !', 'MailPress');
+		$message .= __('Congratulations !', MP_TXTDOM);
 		$message .= "\n\n";
 		$mail->plaintext   	= $message;
 
-		$message  = sprintf(__('We confirm your subscription to %1$s emails', 'MailPress'), "<a href='$url'>" . get_bloginfo('name') . "</a>" );
+		$message  = sprintf(__('We confirm your subscription to %1$s emails', MP_TXTDOM), "<a href='$url'>" . get_bloginfo('name') . "</a>" );
 		$message .= '<br /><br />';
-		$message .= __('Congratulations !', 'MailPress');
+		$message .= __('Congratulations !', MP_TXTDOM);
 		$message .= '<br /><br />';
 		$mail->html    		= $message;
 

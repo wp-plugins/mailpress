@@ -11,7 +11,7 @@ class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
 
 	function __construct()
 	{
-		$this->description = __('Geotag', 'MailPress');
+		$this->description = __('Geotag', MP_TXTDOM);
 		$this->settings	 = dirname(__FILE__) . '/settings.xml';
 		parent::__construct();
 	}
@@ -63,8 +63,8 @@ class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
 		$field->submitted['value'] = $value;
 		$field->submitted['text']  = '';
 		$field->submitted['text']  = 'lat : ' . $value['lat'] . ' lng : ' . $value['lng'] . "<br />\n\r";
-		$field->submitted['text'] .= __('Reverse geocoding :', 'MailPress') . ' ' . ( (!empty($value['reverse_geocoding'])) ? $value['reverse_geocoding'] : '<small>[<i>' . __('empty', 'MailPress') . '</i>]</small>' ) . "<br />\n\r";
-		if (isset($value['geocode'])) $field->submitted['text'] .= ( (!empty($value['geocode'])) ? 'geocode : ' . $value['geocode'] : '<small>[<i>' . __('empty', 'MailPress') . '</i>]</small>' ) . "<br />\n\r";
+		$field->submitted['text'] .= __('Reverse geocoding :', MP_TXTDOM) . ' ' . ( (!empty($value['reverse_geocoding'])) ? $value['reverse_geocoding'] : '<small>[<i>' . __('empty', MP_TXTDOM) . '</i>]</small>' ) . "<br />\n\r";
+		if (isset($value['geocode'])) $field->submitted['text'] .= ( (!empty($value['geocode'])) ? 'geocode : ' . $value['geocode'] : '<small>[<i>' . __('empty', MP_TXTDOM) . '</i>]</small>' ) . "<br />\n\r";
 		$field->submitted['map']   = $static_map;
 
 		return $field;
@@ -242,11 +242,11 @@ class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
 
 			$m = array( 'mp_gmapL10n'	=> array(	'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/', 
 										'color'	=> '', 
-										'zoomwide'	=> js_escape(__('zoom -', 'MailPress')), 
-										'zoomtight'	=> js_escape(__('zoom +', 'MailPress')), 
-										'center'	=> js_escape(__('center', 'MailPress')), 
-										'rgeocode'	=> js_escape(__('find place', 'MailPress')), 
-										'changemap'	=> js_escape(__('change map', 'MailPress'))
+										'zoomwide'	=> js_escape(__('zoom -', MP_TXTDOM)), 
+										'zoomtight'	=> js_escape(__('zoom +', MP_TXTDOM)), 
+										'center'	=> js_escape(__('center', MP_TXTDOM)), 
+										'rgeocode'	=> js_escape(__('find place', MP_TXTDOM)), 
+										'changemap'	=> js_escape(__('change map', MP_TXTDOM))
 								)
 				);
 			$js .= "\n<script type='text/javascript'>\n/* <![CDATA[ */\n";

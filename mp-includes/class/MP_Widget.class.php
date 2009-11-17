@@ -3,7 +3,7 @@ class MP_Widget extends WP_Widget
 {
 	function __construct()
 	{
-		$widget_ops  = array('classname' => 'widget_mailpress', 'description' => __( 'the mailpress subscription form', 'MailPress'));
+		$widget_ops  = array('classname' => 'widget_mailpress', 'description' => __( 'the mailpress subscription form', MP_TXTDOM));
 		$control_ops = array('width' => 400, 'height' => 300);
 		parent::__construct('mailpress', 'MailPress', $widget_ops, $control_ops);
 	}
@@ -56,7 +56,7 @@ class MP_Widget extends WP_Widget
 	<br /><br />
 	<label for='<?php echo $this->get_field_id('urlsubmgt'); ?>'>
 		<input type='checkbox' id='<?php echo $this->get_field_id('urlsubmgt'); ?>' name='<?php echo $this->get_field_name('urlsubmgt'); ?>'<?php if ($instance['urlsubmgt']) checked(true); ?> onchange="jQuery('#<?php echo $this->get_field_id('txtsubmgt') ; ?>').toggle();" />
-		<?php _e("\"Manage your subscription\" link ?", 'MailPress'); ?>
+		<?php _e("\"Manage your subscription\" link ?", MP_TXTDOM); ?>
 	</label>
 	<label for='<?php echo $this->get_field_id('txtsubmgt'); ?>'>
 		<input type='text' id='<?php echo $this->get_field_id('txtsubmgt'); ?>' name='<?php echo $this->get_field_name('txtsubmgt'); ?>' value="<?php echo esc_attr($txtsubmgt); ?>" class='widefat<?php if (!$instance['urlsubmgt']) echo ' hide-if-js'; ?>' />
@@ -64,15 +64,15 @@ class MP_Widget extends WP_Widget
 	<br />
 	<div style='background-color:#f1f1f1;border:solid 1px #ddd;color:#999;padding:3px;'>
 		<small>
-			<?php _e('Preloaded :', 'MailPress'); ?>
+			<?php _e('Preloaded :', MP_TXTDOM); ?>
 			<label for='<?php echo $this->get_field_id('css'); ?>'>
-				<input type='checkbox' id='<?php echo $this->get_field_id('css'); ?>' name='<?php echo $this->get_field_name('css'); ?>'<?php if ($instance['css']) checked(true); ?> /> <?php _e('css', 'MailPress'); ?> 
+				<input type='checkbox' id='<?php echo $this->get_field_id('css'); ?>' name='<?php echo $this->get_field_name('css'); ?>'<?php if ($instance['css']) checked(true); ?> /> <?php _e('css', MP_TXTDOM); ?> 
 			</label>
 			<label for='<?php echo $this->get_field_id('jq'); ?>'>
-				<input type='checkbox' id='<?php echo $this->get_field_id('jq'); ?>' name='<?php echo $this->get_field_name('jq'); ?>'<?php if ($instance['jq']) checked(true); ?> /> <?php _e('jQuery', 'MailPress'); ?> 
+				<input type='checkbox' id='<?php echo $this->get_field_id('jq'); ?>' name='<?php echo $this->get_field_name('jq'); ?>'<?php if ($instance['jq']) checked(true); ?> /> <?php _e('jQuery', MP_TXTDOM); ?> 
 			</label>
 			<label for='<?php echo $this->get_field_id('js'); ?>'>	
-				<input type='checkbox' id='<?php echo $this->get_field_id('js'); ?>' name='<?php echo $this->get_field_name('js'); ?>'<?php if ($instance['js']) checked(true); ?> /> <?php _e('javascript', 'MailPress'); ?>
+				<input type='checkbox' id='<?php echo $this->get_field_id('js'); ?>' name='<?php echo $this->get_field_name('js'); ?>'<?php if ($instance['js']) checked(true); ?> /> <?php _e('javascript', MP_TXTDOM); ?>
 		</label>
 		</small>
 	</div>
@@ -88,20 +88,20 @@ class MP_Widget extends WP_Widget
 						'jq'			=> false,
 						'js'			=> false,
 						'urlsubmgt' 	=> false, 
-						'txtbutton' 	=> __('Subscribe', 'MailPress'), 
-						'txtsubmgt' 	=> __('Manage your subscription', 'MailPress'), 
-						'txtloading'	=> __('Loading...', 'MailPress'), 
+						'txtbutton' 	=> __('Subscribe', MP_TXTDOM), 
+						'txtsubmgt' 	=> __('Manage your subscription', MP_TXTDOM), 
+						'txtloading'	=> __('Loading...', MP_TXTDOM), 
 
-						'txtfield' 		=> __('Your email', 'MailPress'), 
-						'txtfieldname' 	=> __('Your name', 'MailPress'), 
-						'txtwait'		=> __('Waiting for ...', 'MailPress'), 
-						'txtwaitconf' 	=> __('Waiting for your confirmation', 'MailPress'), 
-						'txtallready' 	=> __('You have already subscribed', 'MailPress'), 
-						'txtvalidemail' 	=> __('Enter a valid email !', 'MailPress'), 
-						'txterrconf' 	=> __('ERROR. resend confirmation email failed', 'MailPress'), 
-						'txtdberror' 	=> __('ERROR in the database : subscriber not inserted', 'MailPress'), 
+						'txtfield' 		=> __('Your email', MP_TXTDOM), 
+						'txtfieldname' 	=> __('Your name', MP_TXTDOM), 
+						'txtwait'		=> __('Waiting for ...', MP_TXTDOM), 
+						'txtwaitconf' 	=> __('Waiting for your confirmation', MP_TXTDOM), 
+						'txtallready' 	=> __('You have already subscribed', MP_TXTDOM), 
+						'txtvalidemail' 	=> __('Enter a valid email !', MP_TXTDOM), 
+						'txterrconf' 	=> __('ERROR. resend confirmation email failed', MP_TXTDOM), 
+						'txtdberror' 	=> __('ERROR in the database : subscriber not inserted', MP_TXTDOM), 
 
-						'txtsubcomment' 	=> __("Notify me of follow-up comments via email.", 'MailPress')
+						'txtsubcomment' 	=> __("Notify me of follow-up comments via email.", MP_TXTDOM)
 					);
 
 		$defaults = apply_filters('MailPress_form_defaults', $defaults);

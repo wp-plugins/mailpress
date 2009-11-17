@@ -5,8 +5,8 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 	function __construct() 
 	{
 		$this->importer 		= 'subscribe2';
-		$this->description	= __('Import data from <strong>subscribe2</strong> plugin.', 'MailPress');
-		$this->header 		= __('Import from Subscribe2', 'MailPress');
+		$this->description	= __('Import data from <strong>subscribe2</strong> plugin.', MP_TXTDOM);
+		$this->header 		= __('Import from Subscribe2', MP_TXTDOM);
 		$this->callback 		= array (&$this, 'dispatch');
 		parent::__construct();
 
@@ -48,7 +48,7 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 				$import = $this->import();
 				$this->end_trace($import);
 				if ($import)
-					$this->success('<p>' . __("<b>Data imported</b>", 'MailPress') . '</p>');
+					$this->success('<p>' . __("<b>Data imported</b>", MP_TXTDOM) . '</p>');
 				else 
 					$this->error();
 			break;
@@ -62,48 +62,48 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 	{
 		$x = "<div style='text-align:center;'>\n";
 		$x .= "<br />\n";
-		$x .= __('First Things First', 'MailPress');
+		$x .= __('First Things First', MP_TXTDOM);
 		$x .= "<br />\n";		$x .= "<br />\n";
-		$x .= __('Before importing your Subscribe2 datas : ', 'MailPress');
+		$x .= __('Before importing your Subscribe2 datas : ', MP_TXTDOM);
 		$x .= "<br />\n";		$x .= "<br />\n";
 		$x .= "<span style='color:red;font-weight:bold;'>";
-		$x .= __('SAVE YOUR DATABASE', 'MailPress');
+		$x .= __('SAVE YOUR DATABASE', MP_TXTDOM);
 		$x .= "</span>\n";
 		$x .= "<br />\n";		$x .= "<br />\n";
-		$x .= __('and make sure you can restore it !', 'MailPress');
+		$x .= __('and make sure you can restore it !', MP_TXTDOM);
 		$x .= "<br />\n";		$x .= "<br />\n";
 		$x .= "</div>\n";
 ?>
 <?php MP_AdminPage::message($x, false); ?>
 <br />
 <div>
-	<?php _e('Howdy! Ready to import your <b>Subscribe2</b> data into <b>MailPress</b> ...', 'MailPress'); ?>
+	<?php _e('Howdy! Ready to import your <b>Subscribe2</b> data into <b>MailPress</b> ...', MP_TXTDOM); ?>
 
-	<?php $x = (class_exists('MailPress_mailinglist')) ? __("and/or mailing lists ", 'MailPress') : '' ; ?>
-	<p><?php _e('<b>Subscribe2</b> data is stored into the following tables :', 'MailPress'); ?></p>
+	<?php $x = (class_exists('MailPress_mailinglist')) ? __("and/or mailing lists ", MP_TXTDOM) : '' ; ?>
+	<p><?php _e('<b>Subscribe2</b> data is stored into the following tables :', MP_TXTDOM); ?></p>
 	<ol>
 		<li>usermeta
 			<p>
-				<?php _e("In this table, 'WP users' subscribers can subscribe to categories.", 'MailPress'); ?>
+				<?php _e("In this table, 'WP users' subscribers can subscribe to categories.", MP_TXTDOM); ?>
 				<br />
-				<?php printf(__('You will be able to convert this %1$s to newsletters %2$ssubscriptions.', 'MailPress'), __("'categories subscription'", 'MailPress'), $x); ?>
+				<?php printf(__('You will be able to convert this %1$s to newsletters %2$ssubscriptions.', MP_TXTDOM), __("'categories subscription'", MP_TXTDOM), $x); ?>
 			</p>
 		</li>
 		<li>subscribe2
 			<p>
-				<?php _e('In this table, subscribers have default subscription set by admin.', 'MailPress'); ?>
+				<?php _e('In this table, subscribers have default subscription set by admin.', MP_TXTDOM); ?>
 				<br />
-				<?php printf(__('You will be able to convert this %1$s to newsletters %2$s subscriptions.', 'MailPress'), __("'default subscription'", 'MailPress'), $x); ?>
+				<?php printf(__('You will be able to convert this %1$s to newsletters %2$s subscriptions.', MP_TXTDOM), __("'default subscription'", MP_TXTDOM), $x); ?>
 			</p>
 		</li>
 	</ol>
 	<br />
-	<p><?php _e('Note 1 : The tables are processed in the above order.', 'MailPress'); ?></p>
-	<p><?php _e('Note 2 : If a subscriber already exists in MailPress, the settings for this email remains <b>unchanged</b>.', 'MailPress'); ?></p>
+	<p><?php _e('Note 1 : The tables are processed in the above order.', MP_TXTDOM); ?></p>
+	<p><?php _e('Note 2 : If a subscriber already exists in MailPress, the settings for this email remains <b>unchanged</b>.', MP_TXTDOM); ?></p>
 
 	<form method='post' action='<?php echo MailPress_import; ?>&amp;mp_import=subscribe2&amp;step=1'>
 		<p class='submit'>
-			<input class='button-primary' type='submit' name='Submit' value='<?php _e('Continue', 'MailPress'); ?>' />
+			<input class='button-primary' type='submit' name='Submit' value='<?php _e('Continue', MP_TXTDOM); ?>' />
 		</p>
 	</form>
 </div>
@@ -124,12 +124,12 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 
 	 	$this->step1  = "<style type='text/css'> .general th {font-weight:bold;width:auto;} .general td, .general th {border:solid 1px #555;margin:0;padding:5px;vertical-align:top;} </style>";
 	 	$this->step1 .= "<div>\n";
-	 	$this->step1 .= "<h3>" . __('Data Analysis', 'MailPress') . "</h3>\n";
+	 	$this->step1 .= "<h3>" . __('Data Analysis', MP_TXTDOM) . "</h3>\n";
 	 	$this->step1 .= "<table class='form-table'>\n";
 	 	$this->step1 .= "<tr>\n";
 	 	$this->step1 .= "<th scope='row'>" . $this->maintable . "</th>\n";
 	 	$this->step1 .= "<td>\n";
-	 	$this->step1 .= "<p>" . __('*** ERROR *** Table not detected', 'MailPress') . "</p>\n";
+	 	$this->step1 .= "<p>" . __('*** ERROR *** Table not detected', MP_TXTDOM) . "</p>\n";
 	 	$this->step1 .= "</td>\n";
 	 	$this->step1 .= "</tr>\n";
 	 	$this->step1 .= "</table>\n";
@@ -152,7 +152,7 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 		if ( $countcat || $subs )
 		{
 		 	$head1  = "<style type='text/css'> .general th {font-weight:bold;width:auto;} .general td, .general th {border:solid 1px #555;margin:0;padding:5px;vertical-align:top;} </style>";
-		 	$head1 .= "<h3>" . __('Data Analysis', 'MailPress') . "</h3>\n";
+		 	$head1 .= "<h3>" . __('Data Analysis', MP_TXTDOM) . "</h3>\n";
 		 	$head1 .= "<form action='" . MailPress_import . "&amp;mp_import=subscribe2&amp;step=2' method='post'><table class='form-table'>\n";
 
 		 	$foot1 = "</table>\n";
@@ -166,7 +166,7 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 		else
 		{ 	
 		 	$head1  = "<style type='text/css'> .general th {font-weight:bold;width:auto;} .general td, .general th {border:solid 1px #555;margin:0;padding:5px;vertical-align:top;} </style>";
-		 	$head1 .= "<h3>" . __('Data Analysis', 'MailPress') . "</h3>\n";
+		 	$head1 .= "<h3>" . __('Data Analysis', MP_TXTDOM) . "</h3>\n";
 			$head1 = "<table class='form-table'>\n";
 
 		 	$foot1 = "</table>\n";
@@ -184,7 +184,7 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 			$this->step1 .= "<tr>\n";
 			$this->step1 .= "<th scope='row'>" . $wpdb->usermeta . "</th>\n";
 			$this->step1 .= "<td>\n";
-			$this->step1 .= "<p>" . __('no data', 'MailPress') . "</p>\n";
+			$this->step1 .= "<p>" . __('no data', MP_TXTDOM) . "</p>\n";
 			$this->step1 .= "</td>\n";
 			$this->step1 .= "</tr>\n";
 		}
@@ -204,7 +204,7 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 			$this->step1 .= "<tr>\n";
 			$this->step1 .= "<th scope='row'>" . $this->maintable . "</th>\n";
 			$this->step1 .= "<td>\n";
-			$this->step1 .= $this->error('<p>' . sprintf(__("*** ERROR *** Database error : %1$s", 'MailPress'), $wpdb->last_error) . "</p>\n", false);
+			$this->step1 .= $this->error('<p>' . sprintf(__("*** ERROR *** Database error : %1$s", MP_TXTDOM), $wpdb->last_error) . "</p>\n", false);
 			$this->step1 .= "</td>\n";
 			$this->step1 .= "</tr>\n";
 		}
@@ -215,7 +215,7 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 			$this->step1 .= "<tr>\n";
 			$this->step1 .= "<th scope='row'>" . $this->maintable . "</th>\n";
 			$this->step1 .= "<td>\n";
-			$this->step1 .= "<p>" . __('no data', 'MailPress') . "</p>\n";
+			$this->step1 .= "<p>" . __('no data', MP_TXTDOM) . "</p>\n";
 			$this->step1 .= "</td>\n";
 			$this->step1 .= "</tr>\n";
 		}
@@ -250,13 +250,13 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 
 		if (class_exists('MailPress_sync_wordpress_user')) 
 		{
-			$this->step1 .= "<p>" . sprintf( __('You are using %1$s, usermeta will not be processed', 'MailPress'), "'MailPress_sync_wordpress_user'") . "</p>\n";
+			$this->step1 .= "<p>" . sprintf( __('You are using %1$s, usermeta will not be processed', MP_TXTDOM), "'MailPress_sync_wordpress_user'") . "</p>\n";
 		}
 		else
 		{
 			$this->step1 .= "<ul>\n";
 			$this->step1 .= "<li>\n";
-			$this->step1 .= sprintf(__('%1$s WP user(s) subscriber(s) found', 'MailPress'), $countcat ) . "\n";
+			$this->step1 .= sprintf(__('%1$s WP user(s) subscriber(s) found', MP_TXTDOM), $countcat ) . "\n";
 			$this->step1 .= "</li>\n";
 			$this->step1 .= "</ul>\n";
 
@@ -269,15 +269,15 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 				$this->step1 .= "<thead>\n";	
 				$this->step1 .= "<tr>\n";	
 				$this->step1 .= "<th>\n";
-				$this->step1 .= __('Categories used in Subscribe2', 'MailPress') . "\n";
+				$this->step1 .= __('Categories used in Subscribe2', MP_TXTDOM) . "\n";
 				$this->step1 .= "</th>\n";
 				$this->step1 .= "<th>\n";
-				$this->step1 .= __("MailPress Newsletters", 'MailPress') . "\n";
+				$this->step1 .= __("MailPress Newsletters", MP_TXTDOM) . "\n";
 				$this->step1 .= "</th>\n";
 				if (class_exists('MailPress_mailinglist')) 
 				{
 					$this->step1 .= "<th>\n";
-					$this->step1 .= __('MailPress Mailing lists', 'MailPress') . "\n";
+					$this->step1 .= __('MailPress Mailing lists', MP_TXTDOM) . "\n";
 					$this->step1 .= "</th>\n";
 				}
 				$this->step1 .= "</tr>\n";
@@ -292,7 +292,7 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 					$this->step1 .= "</td>\n";
 					$this->step1 .= "<td style='text-align:center;'>\n";
 
-					$dropdown_options = array('show_option_all' => __('None', 'MailPress'), 'echo' => 0, 'type' => 'select', 'name' => 'usermeta_nl_' . $cat_id, 'admin' => true, 'selected' => $this->get_newsletter_id($cat_id));
+					$dropdown_options = array('show_option_all' => __('None', MP_TXTDOM), 'echo' => 0, 'type' => 'select', 'name' => 'usermeta_nl_' . $cat_id, 'admin' => true, 'selected' => $this->get_newsletter_id($cat_id));
 					$this->step1 .= MP_Newsletter::checklist_mp_user_newsletters(false, $dropdown_options) . "\n";
 
 					$this->step1 .= "</td>\n";
@@ -300,7 +300,7 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 					if (class_exists('MailPress_mailinglist')) 
 					{
 						$this->step1 .= "<td>\n";
-						$dropdown_options = array('show_option_all' => __('None', 'MailPress'), 'echo' => 0, 'type' => 'select', 'name' => 'usermeta_ml_' . $cat_id);
+						$dropdown_options = array('show_option_all' => __('None', MP_TXTDOM), 'echo' => 0, 'type' => 'select', 'name' => 'usermeta_ml_' . $cat_id);
 						$this->step1 .= MailPress_mailinglist::get_checklist(false, $dropdown_options) . "\n";
 						$this->step1 .= "</td>\n";
 					}
@@ -352,11 +352,11 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 
 		foreach ($subs as $sub)
 		{
-			$status = __('waiting', 'MailPress');
-			if (1 == $sub->active) $status = __('active', 'MailPress');
+			$status = __('waiting', MP_TXTDOM);
+			if (1 == $sub->active) $status = __('active', MP_TXTDOM);
 
 			$this->step1 .= "<li>\n";
-			$this->step1 .= sprintf(__(' %1$s subscriber(s) will be imported with status : "%2$s" .', 'MailPress'), $sub->count, $status) . "\n";
+			$this->step1 .= sprintf(__(' %1$s subscriber(s) will be imported with status : "%2$s" .', MP_TXTDOM), $sub->count, $status) . "\n";
 			$this->step1 .= "</li>\n";
 		}
 
@@ -364,7 +364,7 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 
 		if ($checklist_newsletters || $checklist_mailinglists) 
 		{
-			$this->step1 .= __("Select subscriptions for ACTIVE subscribers :", 'MailPress') . "\n"; 
+			$this->step1 .= __("Select subscriptions for ACTIVE subscribers :", MP_TXTDOM) . "\n"; 
 
 			$this->step1 .= "<table class='general'>\n";
 			$this->step1 .= "\n";
@@ -374,13 +374,13 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 	 		if ($checklist_newsletters) 
 			{
 				$this->step1 .= "<th>\n";	
- 				$this->step1 .= __("MailPress Newsletters", 'MailPress') . "\n";	
+ 				$this->step1 .= __("MailPress Newsletters", MP_TXTDOM) . "\n";	
 				$this->step1 .= "</th>\n";	
 			}
 			if ($checklist_mailinglists)
 			{
 				$this->step1 .= "<th>\n";	
- 				$this->step1 .= __("MailPress Mailing lists", 'MailPress') . "\n";	
+ 				$this->step1 .= __("MailPress Mailing lists", MP_TXTDOM) . "\n";	
 				$this->step1 .= "</th>\n";
 			}
 			$this->step1 .= "</tr>\n";

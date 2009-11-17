@@ -68,7 +68,7 @@ class MP_AdminPage extends MP_Admin_page
 
 ////  Title  ////
 
-	public static function title() { global $title; $title = __('MailPress User', 'MailPress'); }
+	public static function title() { global $title; $title = __('MailPress User', MP_TXTDOM); }
 
 ////  Styles  ////
 
@@ -100,10 +100,10 @@ class MP_AdminPage extends MP_Admin_page
 				'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/',
 				'ajaxurl'	=> MP_Action_url,
 				'color'	=> $color,
-				'zoomwide'	=> js_escape(__('zoom -', 'MailPress')),
-				'zoomtight'	=> js_escape(__('zoom +', 'MailPress')),
-				'center'	=> js_escape(__('center', 'MailPress')),
-				'changemap'	=> js_escape(__('change map', 'MailPress'))
+				'zoomwide'	=> js_escape(__('zoom -', MP_TXTDOM)),
+				'zoomtight'	=> js_escape(__('zoom +', MP_TXTDOM)),
+				'center'	=> js_escape(__('center', MP_TXTDOM)),
+				'changemap'	=> js_escape(__('change map', MP_TXTDOM))
 			));
 
 			$deps[] = 'mp-gmap2';
@@ -111,7 +111,7 @@ class MP_AdminPage extends MP_Admin_page
 
 		wp_register_script( 'mp-ajax-response', 	'/' . MP_PATH . 'mp-includes/js/mp_ajax_response.js', array('jquery'), false, 1);
 		wp_localize_script( 'mp-ajax-response', 	'wpAjax', array( 	
-			'noPerm' => __('Update database failed', 'MailPress'), 
+			'noPerm' => __('Update database failed', MP_TXTDOM), 
 			'broken' => __('An unidentified error has occurred.'), 
 			'l10n_print_after' => 'try{convertEntities(wpAjax);}catch(e){};' 
 		));
@@ -143,7 +143,7 @@ class MP_AdminPage extends MP_Admin_page
 		global $mp_general;
 
 		$id = (isset($_GET['id'])) ? $_GET['id'] : 0;
-		add_meta_box('submitdiv', 		__('Save', 'MailPress'), array('MP_AdminPage', 'meta_box_submit'), self::screen, 'side', 'core');
+		add_meta_box('submitdiv', 		__('Save', MP_TXTDOM), array('MP_AdminPage', 'meta_box_submit'), self::screen, 'side', 'core');
 
 		if ( current_user_can('MailPress_user_custom_fields') )
 			add_meta_box('customfieldsdiv', 	__('Custom Fields'), 	array('MP_AdminPage', 'meta_box_customfields'), self::screen, 'normal', 'core');
@@ -168,7 +168,7 @@ class MP_AdminPage extends MP_Admin_page
 
 		if (isset($mp_general['gmapkey']) && !empty($mp_general['gmapkey']))
 		{
-			add_meta_box('IP_info', __('IP info', 'MailPress'), array('MP_AdminPage', 'meta_box_IP_info'), MP_AdminPage::screen, 'side', 'core');
+			add_meta_box('IP_info', __('IP info', MP_TXTDOM), array('MP_AdminPage', 'meta_box_IP_info'), MP_AdminPage::screen, 'side', 'core');
 		}
 
 		do_action('MailPress_add_meta_boxes_user', $id, self::screen);
@@ -187,8 +187,8 @@ class MP_AdminPage extends MP_Admin_page
 		<div id="misc-publishing-actions">
 			<div id="unbounce-action" style='padding-left:6px;'>
 <?php 	if (isset($unbounce_url)) : ?>
-				<a class='submitunbounce' style='padding:1px 2px;' href='<?php echo $unbounce_url ?>' onclick="return (confirm('<?php echo(js_escape(sprintf( __("You are about to unbounce this MailPress user '%s'\n  'Cancel' to stop, 'OK' to unbounce.", 'MailPress'), $mp_user->id ))); ?>'));">
-					<?php _e('Unbounce', 'MailPress'); ?>
+				<a class='submitunbounce' style='padding:1px 2px;' href='<?php echo $unbounce_url ?>' onclick="return (confirm('<?php echo(js_escape(sprintf( __("You are about to unbounce this MailPress user '%s'\n  'Cancel' to stop, 'OK' to unbounce.", MP_TXTDOM), $mp_user->id ))); ?>'));">
+					<?php _e('Unbounce', MP_TXTDOM); ?>
 				</a>
 <?php		endif; ?>
 			</div>
@@ -201,13 +201,13 @@ class MP_AdminPage extends MP_Admin_page
 	<div id="major-publishing-actions">
 		<div id="delete-action">
 <?php 	if ($delete_url) : ?>
-			<a class='submitdelete' href='<?php echo $delete_url ?>' onclick="return (confirm('<?php echo(js_escape(sprintf( __("You are about to delete this MailPress user '%s'\n  'Cancel' to stop, 'OK' to delete.", 'MailPress'), $mp_user->id ))); ?>'));">
-				<?php _e('Delete', 'MailPress'); ?>
+			<a class='submitdelete' href='<?php echo $delete_url ?>' onclick="return (confirm('<?php echo(js_escape(sprintf( __("You are about to delete this MailPress user '%s'\n  'Cancel' to stop, 'OK' to delete.", MP_TXTDOM), $mp_user->id ))); ?>'));">
+				<?php _e('Delete', MP_TXTDOM); ?>
 			</a>
 <?php		endif; ?>
 		</div>
 		<div id="publishing-action">
-			<input id='publish' type="submit" name='save' class='button-primary' value="<?php _e('Save', 'MailPress'); ?>" />
+			<input id='publish' type="submit" name='save' class='button-primary' value="<?php _e('Save', MP_TXTDOM); ?>" />
 		</div>
 	<div class="clear"></div>
 	</div>
@@ -266,7 +266,7 @@ class MP_AdminPage extends MP_Admin_page
 			}
 		}
 	
-		if ($header) 	_e('No meta data', 'MailPress');
+		if ($header) 	_e('No meta data', MP_TXTDOM);
 		else
 		{
 ?>
@@ -391,7 +391,7 @@ class MP_AdminPage extends MP_Admin_page
 		</tbody>
 	</table>
 </div>
-<p><?php _e('Custom fields can be used to add extra metadata to a user that you can <a href="http://www.mailpress.org" target="_blank">use in your mail</a>.', 'MailPress'); ?></p>
+<p><?php _e('Custom fields can be used to add extra metadata to a user that you can <a href="http://www.mailpress.org" target="_blank">use in your mail</a>.', MP_TXTDOM); ?></p>
 <?php
 	}
 
@@ -497,7 +497,7 @@ class MP_AdminPage extends MP_Admin_page
 		}
 		if (isset($x['provider']))
 		{
-			printf("<div><p style='margin:3px;'><i><small>" . '%1$s' . "</small></i></p></div>\n", sprintf(__('ip data provided by %1$s', 'MailPress'), sprintf('<a href="%1$s">%2$s</a>', $x['provider']['credit'], $x['provider']['credit'])));
+			printf("<div><p style='margin:3px;'><i><small>" . '%1$s' . "</small></i></p></div>\n", sprintf(__('ip data provided by %1$s', MP_TXTDOM), sprintf('<a href="%1$s">%2$s</a>', $x['provider']['credit'], $x['provider']['credit'])));
 		}
 	}
 ////  Body  ////

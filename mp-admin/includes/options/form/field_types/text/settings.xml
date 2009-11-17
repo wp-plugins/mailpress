@@ -39,14 +39,14 @@
 			</is>
 		</items>
 		<items>
-			<misc><misc><![CDATA[<?php _e("other attributes except 'name' & 'id'", 'MailPress'); ?>]]></misc></misc>
+			<misc><misc><![CDATA[<?php _e("other attributes except 'name' & 'id'", MP_TXTDOM); ?>]]></misc></misc>
 		</items>
 	</attributes>
 	<controls>
 		<items>
 			<required>
 				<checkbox>
-					<text><![CDATA[<?php _e('Required', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('Required', MP_TXTDOM); ?>]]></text>
 					<value>1</value>
 					<disabled><?php echo ($visitor_name) ? '1' : '0'; ?></disabled>
 					<class>controls</class>
@@ -54,7 +54,7 @@
 			</required>
 			<numeric>
 				<checkbox>
-					<text><![CDATA[<?php _e('Numeric', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('Numeric', MP_TXTDOM); ?>]]></text>
 					<value>1</value>
 					<disabled><?php echo ($visitor_name) ? '1' : '0'; ?></disabled>
 					<class>controls</class>
@@ -68,8 +68,8 @@
 		<items>
 			<visitor_name>
 				<radio>
-					<text><![CDATA[<?php _e('Filled if found : ', 'MailPress'); ?>]]></text>
-					<values><![CDATA[<?php echo serialize(array(1 => __('yes', 'MailPress'), 0 => __('no', 'MailPress'))); ?>]]></values>
+					<text><![CDATA[<?php _e('Filled if found : ', MP_TXTDOM); ?>]]></text>
+					<values><![CDATA[<?php echo serialize(array(1 => __('yes', MP_TXTDOM), 0 => __('no', MP_TXTDOM))); ?>]]></values>
 					<disabled><![CDATA[<?php echo serialize(array()); ?>]]></disabled>
 					<default>1</default>
 				</radio>
@@ -80,7 +80,7 @@
 		<items>
 			<incopy>
 				<checkbox>
-					<text><![CDATA[<?php _e('In copy', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('In copy', MP_TXTDOM); ?>]]></text>
 					<value>1</value>
 					<disabled><?php echo ($visitor_name) ? '1' : '0'; ?></disabled>
 				</checkbox>
@@ -101,10 +101,10 @@
 	</hiddens>
 <?php endif; ?>
 	<tabs>
-		<attributes><![CDATA[<?php _e('Attributes', 'MailPress'); ?>]]></attributes>
-		<controls><![CDATA[<?php _e('Controls', 'MailPress'); ?>]]></controls>
+		<attributes><![CDATA[<?php _e('Attributes', MP_TXTDOM); ?>]]></attributes>
+		<controls><![CDATA[<?php _e('Controls', MP_TXTDOM); ?>]]></controls>
 <?php if ($visitor_name || $this->field->form_incopy) : ?>
-		<options><![CDATA[<?php _e('Options', 'MailPress'); ?>]]></options>
+		<options><![CDATA[<?php _e('Options', MP_TXTDOM); ?>]]></options>
 <?php endif; ?>
 	</tabs>
 </settings>

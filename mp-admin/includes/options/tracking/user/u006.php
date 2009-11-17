@@ -12,7 +12,7 @@ class MP_Tracking_module_u006 extends MP_Tracking_module_abstract
 	function __construct()
 	{
 		$this->type  = basename(dirname(__FILE__));
-		$this->title = __('Geoip','MailPress');
+		$this->title = __('Geoip', MP_TXTDOM);
 		add_filter('MailPress_scripts', array(&$this, 'scripts'), 8, 2);
 		parent::__construct();
 	}

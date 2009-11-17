@@ -4,7 +4,7 @@ Plugin Name: MailPress_form
 Plugin URI: http://www.mailpress.org
 Description: This is just an addon for MailPress to manage forms
 Author: Andre Renaut
-Version: 4.0.1
+Version: 4.0.2
 Author URI: http://www.mailpress.org
 */
 
@@ -20,11 +20,11 @@ class MailPress_form
 		$wpdb->mp_fields = $wpdb->prefix . 'mailpress_formfields';
 
 // for shortcode
-		add_shortcode('mailpress_form', 	array('MailPress_form', 'shortcode'));
+		add_shortcode('mailpress_form', 	array(__CLASS__, 'shortcode'));
 // for field_type captcha_gd
-		add_action('mp_action_1ahctpac',	array('MailPress_form', 'mp_action_captcha_gd1'));
-		add_action('mp_action_2ahctpac',	array('MailPress_form', 'mp_action_captcha_gd2'));
-		add_action('mp_form_purge', 		array('MailPress_form', 'do_purge'));
+		add_action('mp_action_1ahctpac',	array(__CLASS__, 'mp_action_captcha_gd1'));
+		add_action('mp_action_2ahctpac',	array(__CLASS__, 'mp_action_captcha_gd2'));
+		add_action('mp_form_purge', 		array(__CLASS__, 'do_purge'));
 
 // for admin plugin pages
 		define ('MailPress_page_forms',	'mailpress_forms');
@@ -36,25 +36,25 @@ class MailPress_form
 		define ('MailPress_fields', 	$file . '?page=' . MailPress_page_fields);
 		define ('MailPress_templates',$file . '?page=' . MailPress_page_templates);
 // for ajax
-		add_action('mp_action_add_form', 			array('MailPress_form', 'mp_action_add_form'));
-		add_action('mp_action_delete_form', 		array('MailPress_form', 'mp_action_delete_form'));
-		add_action('mp_action_dim_form', 			array('MailPress_form', 'mp_action_dim_form'));
-		add_action('mp_action_add_field', 			array('MailPress_form', 'mp_action_add_field'));
-		add_action('mp_action_delete_field', 		array('MailPress_form', 'mp_action_delete_field'));
-		add_action('mp_action_dim_field', 			array('MailPress_form', 'mp_action_dim_field'));
+		add_action('mp_action_add_form', 			array(__CLASS__, 'mp_action_add_form'));
+		add_action('mp_action_delete_form', 		array(__CLASS__, 'mp_action_delete_form'));
+		add_action('mp_action_dim_form', 			array(__CLASS__, 'mp_action_dim_form'));
+		add_action('mp_action_add_field', 			array(__CLASS__, 'mp_action_add_field'));
+		add_action('mp_action_delete_field', 		array(__CLASS__, 'mp_action_delete_field'));
+		add_action('mp_action_dim_field', 			array(__CLASS__, 'mp_action_dim_field'));
 
-		add_action('mp_action_ifview', 			array('MailPress_form', 'mp_action_ifview'));
+		add_action('mp_action_ifview', 			array(__CLASS__, 'mp_action_ifview'));
 
 // for wp admin
 		if (is_admin())
 		{
 		// install
-			register_activation_hook(MP_FOLDER . '/MailPress_form.php', 	array('MailPress_form', 'install'));
-			register_deactivation_hook(MP_FOLDER . '/MailPress_form.php', 	array('MailPress_form', 'uninstall'));
+			register_activation_hook(MP_FOLDER . '/MailPress_form.php', 	array(__CLASS__, 'install'));
+			register_deactivation_hook(MP_FOLDER . '/MailPress_form.php', 	array(__CLASS__, 'uninstall'));
 		// for role & capabilities
-			add_filter('MailPress_capabilities', 		array('MailPress_form', 'capabilities'), 1, 1);
+			add_filter('MailPress_capabilities', 		array(__CLASS__, 'capabilities'), 1, 1);
 		// for load admin page
-			add_action('MailPress_load_admin_page', 		array('MailPress_form', 'load_admin_page'), 10, 1);
+			add_action('MailPress_load_admin_page', 		array(__CLASS__, 'load_admin_page'), 10, 1);
 		}
 	}
 
@@ -86,13 +86,13 @@ class MailPress_form
 // for role & capabilities
 	public static function capabilities($capabilities)
 	{
-		$capabilities['MailPress_manage_forms'] = array(	'name'  	=> __('Forms', 'MailPress'),
+		$capabilities['MailPress_manage_forms'] = array(	'name'  	=> __('Forms', MP_TXTDOM),
 											'group' 	=> 'admin',
 											'menu'  	=> 85,
 	
 											'parent'	=> false,
-											'page_title'=> __('MailPress Forms', 'MailPress'),
-											'menu_title'=> __('Forms', 'MailPress'),
+											'page_title'=> __('MailPress Forms', MP_TXTDOM),
+											'menu_title'=> __('Forms', MP_TXTDOM),
 											'page'  	=> MailPress_page_forms,
 											'func'	=> array('MP_AdminPage', 'body')
 									);
@@ -118,7 +118,7 @@ class MailPress_form
 		if ( '' === trim($_POST['label']) )
 		{
 			$x = new WP_Ajax_Response( array(	'what' => 'form', 
-									'id' => new WP_Error( 'label', __('You did not enter a valid description.', 'MailPress') )
+									'id' => new WP_Error( 'label', __('You did not enter a valid description.', MP_TXTDOM) )
 								   ) );
 			$x->send();
 		}
@@ -142,7 +142,7 @@ class MailPress_form
 		$x = new WP_Ajax_Response( array(	'what' => 'form', 
 								'id' => $form->id, 
 								'data' => MP_AdminPage::get_row( $form->id, array() ), 
-								'supplemental' => array('name' => $form->description, 'show-link' => sprintf(__( 'form <a href="#%s">%s</a> added' , 'MailPress'), 'form-' . $form->id, $form->description))
+								'supplemental' => array('name' => $form->description, 'show-link' => sprintf(__( 'form <a href="#%s">%s</a> added' , MP_TXTDOM), 'form-' . $form->id, $form->description))
 							  ) );
 		$x->send();
 		break;
@@ -158,7 +158,7 @@ class MailPress_form
 		if ( !$form )
 		{
 			$x = new WP_Ajax_Response( array(	'what' => 'form', 
-									'id' => new WP_Error( __CLASS__ . '::mp_action_dim_form', __('Problems trying to duplicate form.', 'MailPress'), array( 'form' => 'form_description' ) ), 
+									'id' => new WP_Error( __CLASS__ . '::mp_action_dim_form', __('Problems trying to duplicate form.', MP_TXTDOM), array( 'form' => 'form_description' ) ), 
 								  ) );
 			$x->send();
 		}
@@ -169,7 +169,7 @@ class MailPress_form
 		$x = new WP_Ajax_Response( array(	'what' => 'form', 
 								'id' => $form->id, 
 								'data' => MP_AdminPage::get_row( $form->id, array() ), 
-								'supplemental' => array('name' => $form->description, 'show-link' => sprintf(__( 'form <a href="#%s">%s</a> added' , 'MailPress'), 'form-' . $form->id, $form->description))
+								'supplemental' => array('name' => $form->description, 'show-link' => sprintf(__( 'form <a href="#%s">%s</a> added' , MP_TXTDOM), 'form-' . $form->id, $form->description))
 							  ) );
 		$x->send();
 		break;
@@ -190,7 +190,7 @@ class MailPress_form
 		if ( '' === trim($_POST['label']) )
 		{
 			$x = new WP_Ajax_Response( array(	'what' => 'field', 
-									'id' => new WP_Error( 'label', __('You did not enter a valid description.', 'MailPress') )
+									'id' => new WP_Error( 'label', __('You did not enter a valid description.', MP_TXTDOM) )
 								   ) );
 			$x->send();
 		}
@@ -217,7 +217,7 @@ class MailPress_form
 		$x = new WP_Ajax_Response( array(	'what' => 'field', 
 								'id' => $field->id, 
 								'data' => MP_AdminPage::get_row( $field->id, array() ), 
-								'supplemental' => array('name' => $field->description, 'show-link' => sprintf(__( 'field <a href="#%s">%s</a> added' , 'MailPress'), "field-$field->id", $field->description))
+								'supplemental' => array('name' => $field->description, 'show-link' => sprintf(__( 'field <a href="#%s">%s</a> added' , MP_TXTDOM), "field-$field->id", $field->description))
 							  ) );
 		$x->send();
 		break;
@@ -233,7 +233,7 @@ class MailPress_form
 		if ( is_wp_error($field) )  
 		{
 			$x = new WP_Ajax_Response( array(	'what' => 'field', 
-									'id' => new WP_Error( __CLASS__ . '::mp_action_dim_field', __('Problems trying to duplicate field.', 'MailPress'), array( 'form-field' => 'field_description' ) ), 
+									'id' => new WP_Error( __CLASS__ . '::mp_action_dim_field', __('Problems trying to duplicate field.', MP_TXTDOM), array( 'form-field' => 'field_description' ) ), 
 								  ) );
 			$x->send();
 		}
@@ -244,7 +244,7 @@ class MailPress_form
 		$x = new WP_Ajax_Response( array(	'what' => 'field', 
 								'id' => $field->id, 
 								'data' => MP_AdminPage::get_row( $field->id, array() ), 
-								'supplemental' => array('name' => $field->description, 'show-link' => sprintf(__( 'field <a href="#%s">%s</a> added' , 'MailPress'), "field-$field->id", $field->description))
+								'supplemental' => array('name' => $field->description, 'show-link' => sprintf(__( 'field <a href="#%s">%s</a> added' , MP_TXTDOM), "field-$field->id", $field->description))
 							  ) );
 		$x->send();
 		break;
@@ -267,12 +267,12 @@ class MailPress_form
 		$field_url = clean_url(admin_url(MailPress_fields . '&form_id=' . $form->id));
 		$template_url = clean_url(admin_url(MailPress_fields . '&form_id=' . $form->id));
 
-		$actions['form'] 		= "<a href='$form_url' 		class='button'>" . __('Edit form', 'MailPress') . '</a>';
-		$actions['field'] 	= "<a href='$field_url' 	class='button'>" . __('Edit fields', 'MailPress') . '</a>';
-		$actions['template'] 	= "<a href='$template_url' 	class='button'>" . __('Edit template', 'MailPress') . '</a>';
+		$actions['form'] 		= "<a href='$form_url' 		class='button'>" . __('Edit form', MP_TXTDOM) . '</a>';
+		$actions['field'] 	= "<a href='$field_url' 	class='button'>" . __('Edit fields', MP_TXTDOM) . '</a>';
+		$actions['template'] 	= "<a href='$template_url' 	class='button'>" . __('Edit template', MP_TXTDOM) . '</a>';
 		$sep = ' / ';
 
-		add_action('admin_init', array('MailPress_form', 'ifview_title'));
+		add_action('admin_init', array(__CLASS__, 'ifview_title'));
 
 		include(MP_TMP . '/mp-includes/html/form.php');
 	}
@@ -280,7 +280,7 @@ class MailPress_form
 	{
 		MailPress::require_class('Forms');
 		$form = MP_Forms::get($_GET['id']);
-		global $title; $title = sprintf(__('Preview "%1$s"','MailPress'), stripslashes($form->label));
+		global $title; $title = sprintf(__('Preview "%1$s"', MP_TXTDOM), stripslashes($form->label));
 	}
 
 	public static function mp_action_captcha_gd1()

@@ -6,7 +6,7 @@ Plugin Name: MailPress_sync_wordpress_user
 Plugin URI: http://www.mailpress.org
 Description: This is just an add-on for MailPress to synchronise with WordPress users
 Author: Andre Renaut
-Version: 4.0.1
+Version: 4.0.2
 Author URI: http://www.mailpress.org
 */
 
@@ -17,14 +17,14 @@ class MailPress_sync_wordpress_user
 // WP user management
 // for register form
 		$settings = get_option('MailPress_sync_wordpress_user');
-		if (isset($settings['register_form']))			add_action('register_form', array('MailPress_sync_wordpress_user', 'register_form'));
+		if (isset($settings['register_form']))			add_action('register_form', array(__CLASS__, 'register_form'));
 
-		add_action('user_register', 					array('MailPress_sync_wordpress_user', 'register'), 1, 1);
-		add_action('profile_update', 					array('MailPress_sync_wordpress_user', 'update'), 1, 1);
-		add_action('delete_user', 					array('MailPress_sync_wordpress_user', 'delete'), 1, 1);
+		add_action('user_register', 					array(__CLASS__, 'register'), 1, 1);
+		add_action('profile_update', 					array(__CLASS__, 'update'), 1, 1);
+		add_action('delete_user', 					array(__CLASS__, 'delete'), 1, 1);
 // MP user management
-		add_action('MailPress_insert_user', 			array('MailPress_sync_wordpress_user', 'mp_insert_user'), 1, 1);
-		add_action('MailPress_delete_user', 			array('MailPress_sync_wordpress_user', 'mp_delete_user'), 1, 1);
+		add_action('MailPress_insert_user', 			array(__CLASS__, 'mp_insert_user'), 1, 1);
+		add_action('MailPress_delete_user', 			array(__CLASS__, 'mp_delete_user'), 1, 1);
 
 // for wp admin
 		if (is_admin())
@@ -32,26 +32,26 @@ class MailPress_sync_wordpress_user
 		// for admin plugin pages
 			define ('MailPress_page_subscriptions', 	'mailpress_subscriptions');
 		// for install
-			add_action('activate_' . basename(dirname(__FILE__)) . '/MailPress_sync_wordpress_user.php', 	array('MailPress_sync_wordpress_user', 'install'));
+			add_action('activate_' . basename(dirname(__FILE__)) . '/MailPress_sync_wordpress_user.php', 	array(__CLASS__, 'install'));
 		// for link on plugin page
-			add_filter('plugin_action_links', 			array('MailPress_sync_wordpress_user', 'plugin_action_links'), 10, 2 );
+			add_filter('plugin_action_links', 			array(__CLASS__, 'plugin_action_links'), 10, 2 );
 		// for role & capabilities
-			add_filter('MailPress_capabilities', 		array('MailPress_sync_wordpress_user', 'capabilities'), 1, 1);
-			if (!class_exists('MailPress_roles_and_capabilities')) add_action('MailPress_roles_and_capabilities', 	array('MailPress_sync_wordpress_user', 'roles_and_capabilities'));
+			add_filter('MailPress_capabilities', 		array(__CLASS__, 'capabilities'), 1, 1);
+			if (!class_exists('MailPress_roles_and_capabilities')) add_action('MailPress_roles_and_capabilities', 	array(__CLASS__, 'roles_and_capabilities'));
 		// for settings
 		// for settings subscriptions
-			add_action('MailPress_settings_general_forms', 	array('MailPress_sync_wordpress_user', 'settings_general_forms'));
+			add_action('MailPress_settings_general_forms', 	array(__CLASS__, 'settings_general_forms'));
 
 		// for profile update
-			add_action('personal_options_update', 		array('MailPress_sync_wordpress_user', 'profile_update'), 8, 1);
-			add_action('edit_user_profile_update', 		array('MailPress_sync_wordpress_user', 'profile_update'), 8, 1);
+			add_action('personal_options_update', 		array(__CLASS__, 'profile_update'), 8, 1);
+			add_action('edit_user_profile_update', 		array(__CLASS__, 'profile_update'), 8, 1);
 
 		// for load admin page
-			add_action('MailPress_load_admin_page', 		array('MailPress_sync_wordpress_user', 'load_admin_page'), 10, 1);
+			add_action('MailPress_load_admin_page', 		array(__CLASS__, 'load_admin_page'), 10, 1);
 
 		// for meta box in user page
-			add_filter('MailPress_styles', 			array('MailPress_sync_wordpress_user', 'styles'), 8, 2);
-			add_action('MailPress_add_meta_boxes_user', 	array('MailPress_sync_wordpress_user', 'meta_boxes_user'), 1, 2); 
+			add_filter('MailPress_styles', 			array(__CLASS__, 'styles'), 8, 2);
+			add_action('MailPress_add_meta_boxes_user', 	array(__CLASS__, 'meta_boxes_user'), 1, 2); 
 		}
 	}
 
@@ -182,7 +182,7 @@ class MailPress_sync_wordpress_user
 ?>
 <p>
 	<label>
-		<?php _e('Newsletters', 'MailPress'); ?>
+		<?php _e('Newsletters', MP_TXTDOM); ?>
 		<br />
 		<span style='color:#777;font-weight:normal;'>
 			<?php echo $checklist; ?>
@@ -303,13 +303,13 @@ class MailPress_sync_wordpress_user
 	{
 		$pu = ( current_user_can('edit_users') ) ? 'users.php' : 'profile.php';
 
-		$capabilities['MailPress_manage_subscriptions'] = array(	'name'	=> __('Your Subscriptions', 'MailPress'), 
+		$capabilities['MailPress_manage_subscriptions'] = array(	'name'	=> __('Your Subscriptions', MP_TXTDOM), 
 												'group'	=> 'admin', 
 												'menu'	=> 33, 
 	
 												'parent'	=> $pu, 
-												'page_title'=> __('MailPress - Subscriptions', 'MailPress'), 
-												'menu_title'=> __('Your Subscriptions', 'MailPress'), 
+												'page_title'=> __('MailPress - Subscriptions', MP_TXTDOM), 
+												'menu_title'=> __('Your Subscriptions', MP_TXTDOM), 
 												'page'	=> MailPress_page_subscriptions, 
 												'func'	=> array('MP_AdminPage', 'body')
 											);
@@ -333,11 +333,11 @@ class MailPress_sync_wordpress_user
 		$sync_wordpress_user = get_option('MailPress_sync_wordpress_user');
 ?>
 <tr valign='top'>
-	<th scope='row'><?php _e('Allow subscriptions from', 'MailPress'); ?></th>
+	<th scope='row'><?php _e('Allow subscriptions from', MP_TXTDOM); ?></th>
 	<td>
 		<label for='sync_wordpress_user_register_form'>
 			<input type='hidden' name='sync_wordpress_user_on' value='on' />
-			<input type='checkbox' name='sync_wordpress_user[register_form]' id='sync_wordpress_user_register_form'<?php if (isset($sync_wordpress_user['register_form'])) checked($sync_wordpress_user['register_form'], 'on'); ?> />&nbsp;&nbsp;<?php _e('Registration Form', 'MailPress'); ?><br />
+			<input type='checkbox' name='sync_wordpress_user[register_form]' id='sync_wordpress_user_register_form'<?php if (isset($sync_wordpress_user['register_form'])) checked($sync_wordpress_user['register_form'], 'on'); ?> />&nbsp;&nbsp;<?php _e('Registration Form', MP_TXTDOM); ?><br />
 		</label>
 	</td>
 </tr>
@@ -365,7 +365,7 @@ class MailPress_sync_wordpress_user
 
 	public static function meta_boxes_user($mp_user_id, $mp_screen)
 	{
-		add_meta_box('mp_user_syncwordpress', __('WP User sync', 'MailPress') , array('MailPress_sync_wordpress_user', 'meta_box'), MP_AdminPage::screen, 'normal', 'core');
+		add_meta_box('mp_user_syncwordpress', __('WP User sync', MP_TXTDOM) , array(__CLASS__, 'meta_box'), MP_AdminPage::screen, 'normal', 'core');
 	}
 
 	public static function meta_box($mp_user)
@@ -386,7 +386,7 @@ class MailPress_sync_wordpress_user
 		<tr>
 			<td style='border-bottom:none;padding:5px;' class='side-info-hide'>
 				<label>
-					<?php printf(__('WP User # %1$s', 'MailPress'), $wp_user->ID); ?>
+					<?php printf(__('WP User # %1$s', MP_TXTDOM), $wp_user->ID); ?>
 				</label>
 			</td>
 			<td style='border-bottom:none;line-height:0.8em;padding:5px;'>
@@ -432,7 +432,7 @@ class MailPress_sync_wordpress_user
 <?php
 		}
 		else 
-			printf(__('%1$s is not a WordPress user', 'MailPress'), $mp_user->email);
+			printf(__('%1$s is not a WordPress user', MP_TXTDOM), $mp_user->email);
 	}
 }
 

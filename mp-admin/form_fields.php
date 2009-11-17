@@ -80,7 +80,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 ////  Title  ////
 
-	public static function title() { if (isset($_GET['form_id'])) { global $title; $title = __('MailPress Forms Edit Fields', 'MailPress'); } }
+	public static function title() { if (isset($_GET['form_id'])) { global $title; $title = __('MailPress Forms Edit Fields', MP_TXTDOM); } }
 
 ////  Styles  ////
 
@@ -137,12 +137,12 @@ class MP_AdminPage extends MP_Admin_page_list
 	public static function get_columns() 
 	{
 		$columns = array(	'cb'		=> '<input type="checkbox" />',
-					'name' 	=> __('Label', 'MailPress'),
-				//	'description'=> __('Description', 'MailPress'),
-					'type' 	=> __('Type', 'MailPress'),
-					'order' 	=> __('Order', 'MailPress'),
-					'required' 	=> __('Required', 'MailPress'),
-					'template' 	=> __('Template', 'MailPress') 
+					'name' 	=> __('Label', MP_TXTDOM),
+				//	'description'=> __('Description', MP_TXTDOM),
+					'type' 	=> __('Type', MP_TXTDOM),
+					'order' 	=> __('Order', MP_TXTDOM),
+					'required' 	=> __('Required', MP_TXTDOM),
+					'template' 	=> __('Template', MP_TXTDOM) 
 				);
 		return apply_filters('MailPress_form_columns_form_fields', $columns);
 	}
@@ -150,7 +150,7 @@ class MP_AdminPage extends MP_Admin_page_list
 	public static function add_incopy_column($columns)
 	{
 		$template 			= array_pop($columns);
-		$columns['incopy']	= __('In&nbsp;copy', 'MailPress');
+		$columns['incopy']	= __('In&nbsp;copy', MP_TXTDOM);
         	$columns['template'] 	= $template;
 		return $columns;
     }
@@ -203,7 +203,7 @@ class MP_AdminPage extends MP_Admin_page_list
 // actions
 		$actions = array();
 		$actions['edit'] = '<a href="' . $edit_url . '">' . __('Edit') . '</a>';
-		$actions['duplicate'] = "<a class='dim:" . self::list_id . ":" . self::tr_prefix_id . "-" . $field->id . ":unapproved:e7e7d3:e7e7d3' href='$duplicate_url'>" . __('Duplicate', 'MailPress') . "</a>";
+		$actions['duplicate'] = "<a class='dim:" . self::list_id . ":" . self::tr_prefix_id . "-" . $field->id . ":unapproved:e7e7d3:e7e7d3' href='$duplicate_url'>" . __('Duplicate', MP_TXTDOM) . "</a>";
 		$actions['delete'] = "<a class='delete:" . self::list_id . ":" . self::tr_prefix_id . "-" . $field->id . " submitdelete' href='$delete_url'>" . __('Delete') . "</a>";
 
 		$row_class = 'alternate' == $row_class ? '' : 'alternate';
@@ -248,12 +248,12 @@ class MP_AdminPage extends MP_Admin_page_list
 	 			break;
 				case 'incopy':
 	 				$out .= "<td $attributes>";
-					if (isset($field->settings['options']['incopy'])) $out .= __('yes', 'MailPress');
+					if (isset($field->settings['options']['incopy'])) $out .= __('yes', MP_TXTDOM);
 	 				$out .= "</td>\n";
 	 			break;
 				case 'required':
 	 				$out .= "<td $attributes>";
-					if (isset($field->settings['controls']['required'])) $out .= __('yes', 'MailPress');
+					if (isset($field->settings['controls']['required'])) $out .= __('yes', MP_TXTDOM);
 	 				$out .= "</td>\n";
 	 			break;
 				case 'order':

@@ -21,7 +21,7 @@ foreach ($themes as $theme)
 	}
 	if (!empty($xtemplates[$theme['Template']])) ksort($xtemplates[$theme['Template']]);
 
-	array_unshift($xtemplates[$theme['Template']], __('none','MailPress'));
+	array_unshift($xtemplates[$theme['Template']], __('none', MP_TXTDOM));
 }
 ?>
 <div>
@@ -30,17 +30,17 @@ foreach ($themes as $theme)
 		<table class='form-table'>
 			<tr>
 				<th>
-					<?php _e('To','MailPress'); ?> 
+					<?php _e('To', MP_TXTDOM); ?> 
 				</th>
 				<td style='padding:0;'>
 					<table class='subscriptions' cellspacing='0'>
 						<tr>
 							<td class='pr10<?php if (isset($toemailclass)) echo " $form_invalid"; ?>'>
-								<?php _e('Email : ','MailPress'); ?> 
+								<?php _e('Email : ', MP_TXTDOM); ?> 
 								<input type='text' size='25' name='test[toemail]' value='<?php echo $test['toemail']; ?>' />
 							</td>
 							<td class='pr10<?php if (isset($tonameclass)) echo " $form_invalid"; ?>'>
-								<?php _e('Name : ','MailPress'); ?> 
+								<?php _e('Name : ', MP_TXTDOM); ?> 
 								<input type='text' size='25' name='test[toname]' value="<?php echo MP_AdminPage::input_text($test['toname']); ?>" />
 							</td>
 						</tr>
@@ -49,16 +49,16 @@ foreach ($themes as $theme)
 			</tr>
 			<tr>
 				<th scope='row'>
-					<?php _e("Advanced options",'MailPress'); ?> 
+					<?php _e("Advanced options", MP_TXTDOM); ?> 
 				</th>
 				<td> 
-					<?php _e('Theme','MailPress'); ?>
+					<?php _e('Theme', MP_TXTDOM); ?>
 					&nbsp;
 					<select name='test[theme]'    id='theme'>
 <?php MP_AdminPage::select_option($xtheme,$test['theme']);?>
 					</select>
 					&nbsp;
-					<?php _e('Template','MailPress'); ?>
+					<?php _e('Template', MP_TXTDOM); ?>
 					&nbsp;
 <?php 
 foreach ($xtemplates as $key => $xtemplate)
@@ -75,26 +75,26 @@ if ($key == $test['theme']) $xx = $test['template'];
 					<br /><br />
 					<input name='test[forcelog]' id='forcelog' type='checkbox' <?php echo( ($test['forcelog']==true) ? "checked='checked'" : ''); ?> />
 					&nbsp;
-					<label for='forcelog'><?php _e('Log it','MailPress'); ?></label>
+					<label for='forcelog'><?php _e('Log it', MP_TXTDOM); ?></label>
 					<br />
 					<input name='test[fakeit]' id='fakeit' type='checkbox' <?php echo( ($test['fakeit']==true) ? "checked='checked'" : ''); ?> />
 					&nbsp;
-					<label for='fakeit'><?php _e('Send it','MailPress'); ?></label>
+					<label for='fakeit'><?php _e('Send it', MP_TXTDOM); ?></label>
 					<br />
 					<input name='test[archive]' id='archive' type='checkbox' <?php echo( ($test['archive']==true) ? "checked='checked'" : ''); ?> />
 					&nbsp;
-					<label for='archive'><?php _e('Archive it','MailPress'); ?></label>
+					<label for='archive'><?php _e('Archive it', MP_TXTDOM); ?></label>
 					<br />
 					<input name='test[stats]' id='stats' type='checkbox' <?php echo( ($test['stats']==true) ? "checked='checked'" : ''); ?> />
 					&nbsp;
-					<label for='stats'><?php _e('Include it in statistics','MailPress'); ?></label>
+					<label for='stats'><?php _e('Include it in statistics', MP_TXTDOM); ?></label>
 				</td>
 			</tr>
 
 		</table>
 		<p class='submit'>
-			<input class='button-primary' type='submit' name='Submit' value='<?php  _e('Save','MailPress'); ?>' />
-			<input class='button-primary' type='submit' name='Test'   value='<?php  _e('Save &amp; Test','MailPress'); ?>' />
+			<input class='button-primary' type='submit' name='Submit' value='<?php  _e('Save', MP_TXTDOM); ?>' />
+			<input class='button-primary' type='submit' name='Test'   value='<?php  _e('Save &amp; Test', MP_TXTDOM); ?>' />
 		</p>
 	</form>
 </div>

@@ -47,7 +47,7 @@ class MP_Mailinglists
 		if ( trim( $name ) == '' ) 
 		{
 			if ( ! $wp_error )	return 0;
-			else				return new WP_Error( 'mailinglist_name', __('You did not enter a mailing list name.', 'MailPress') );
+			else				return new WP_Error( 'mailinglist_name', __('You did not enter a mailing list name.', MP_TXTDOM) );
 		}
 
 		$slug = self::add_slug($slug, $name);

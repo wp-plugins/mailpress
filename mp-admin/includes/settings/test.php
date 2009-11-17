@@ -9,18 +9,18 @@ switch (true)
 {
 	case ( !MP_AdminPage::is_email($test['toemail']) ) :
 		$toemailclass = true;
-		MP_AdminPage::message(__('field should be an email', 'MailPress'), false);
+		MP_AdminPage::message(__('field should be an email', MP_TXTDOM), false);
 	break;
 	case ( empty($test['toname']) ) :
 		$tonameclass = true;
-		MP_AdminPage::message(__('field should be a name', 'MailPress'), false);
+		MP_AdminPage::message(__('field should be a name', MP_TXTDOM), false);
 	break;
 	default :
 		if (!add_option ('MailPress_test', $test )) update_option ('MailPress_test', $test);
 		if (!add_option ('MailPress_general', $mp_general )) update_option ('MailPress_general', $mp_general);
 		if (isset($_POST['Submit']))
 		{
-			MP_AdminPage::message(__('Test settings saved', 'MailPress'));
+			MP_AdminPage::message(__('Test settings saved', MP_TXTDOM));
 		}
 		else
 		{
@@ -51,12 +51,12 @@ switch (true)
 			}
 
 		// Set mail's subject and body
-			$mail->subject	= __('Connection test - MailPress - ', 'MailPress') . ' ' . get_bloginfo('name');
+			$mail->subject	= __('Connection test - MailPress - ', MP_TXTDOM) . ' ' . get_bloginfo('name');
 
-			$mail->plaintext   =  "\n\n" . __('This is a test message of MailPress from', 'MailPress') . ' ' . $url . "\n\n";
+			$mail->plaintext   =  "\n\n" . __('This is a test message of MailPress from', MP_TXTDOM) . ' ' . $url . "\n\n";
 
 			$message  = "<div style='font-family: verdana, geneva;'><br /><br />";
-			$message .=  sprintf(__('This is a <blink>test</blink> message of %1$s from %2$s. <br /><br />', 'MailPress'), ' <b>MailPress</b> ', "<a href='" .  $url . "'>$title</a>");
+			$message .=  sprintf(__('This is a <blink>test</blink> message of %1$s from %2$s. <br /><br />', MP_TXTDOM), ' <b>MailPress</b> ', "<a href='" .  $url . "'>$title</a>");
 			$message .= "<br /><br /></div>";
 
 			$mail->html       = $message;
@@ -77,10 +77,10 @@ switch (true)
 			}
 
 			if (MailPress::mail($mail))
-				if (!isset($test['fakeit'])) 	MP_AdminPage::message(__('Test settings saved, Mail not send as required', 'MailPress'));
-				else					MP_AdminPage::message(__('Test successfull, CONGRATULATIONS !', 'MailPress'));
+				if (!isset($test['fakeit'])) 	MP_AdminPage::message(__('Test settings saved, Mail not send as required', MP_TXTDOM));
+				else					MP_AdminPage::message(__('Test successfull, CONGRATULATIONS !', MP_TXTDOM));
 			else
-				MP_AdminPage::message(__('FAILED. Check your logs & settings !', 'MailPress'), false);
+				MP_AdminPage::message(__('FAILED. Check your logs & settings !', MP_TXTDOM), false);
 		}
 	break;
 }

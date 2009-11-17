@@ -4,7 +4,7 @@ self::require_class('Forms');
 global $action;
 
 $url_parms = self::get_url_parms(array('id', 's', 'apage'));
-$h2 = __('Forms','MailPress');
+$h2 = __('Forms', MP_TXTDOM);
 
 wp_reset_vars(array('action'));
 if ('edit' == $action) 
@@ -12,21 +12,21 @@ if ('edit' == $action)
 	$id = (int) $_GET['id'];
 	$form = MP_Forms::get($id);
 		
-	$h3 = sprintf(__('Update form # %1$s','MailPress'), $id);
+	$h3 = sprintf(__('Update form # %1$s', MP_TXTDOM), $id);
 	$action = 'edited';
-	$cancel = "<input type='submit' class='button' name='cancel' value=\"" . __('Cancel','MailPress') . "\" />\n";
+	$cancel = "<input type='submit' class='button' name='cancel' value=\"" . __('Cancel', MP_TXTDOM) . "\" />\n";
 }
 else 
 {
 	$form = new stdClass();
-	$h3 = __('Add a form','MailPress');
+	$h3 = __('Add a form', MP_TXTDOM);
 	$action = self::add_form_id;
 	$cancel = '';
 }
 // form settings tab
 
-$tabs = array('attributes' => __('Attributes', 'MailPress'), 'options' => __('Options', 'MailPress'), 'messages' => __('Messages', 'MailPress'), 'recipient' => __('Recipient', 'MailPress'), 'visitor' => __('Visitor', 'MailPress') );
-if ( isset($_GET['action']) && ('edit' == $_GET['action']) ) $tabs['html'] = __('Html', 'MailPress'); 
+$tabs = array('attributes' => __('Attributes', MP_TXTDOM), 'options' => __('Options', MP_TXTDOM), 'messages' => __('Messages', MP_TXTDOM), 'recipient' => __('Recipient', MP_TXTDOM), 'visitor' => __('Visitor', MP_TXTDOM) );
+if ( isset($_GET['action']) && ('edit' == $_GET['action']) ) $tabs['html'] = __('Html', MP_TXTDOM); 
 
 // Mail themes and templates
 
@@ -53,7 +53,7 @@ foreach ($themes as $theme)
 	}
 	if (!empty($xtemplates[$theme['Template']])) ksort($xtemplates[$theme['Template']]);
 
-	array_unshift($xtemplates[$theme['Template']], __('none','MailPress'));
+	array_unshift($xtemplates[$theme['Template']], __('none', MP_TXTDOM));
 }
 
 // Form templates
@@ -64,26 +64,26 @@ $xform_template = $form_templates->get_all();
 
 // Subscribing visitor actions
 
-$xvisitor_subscriptions['0'] = __('no', 'MailPress');
-$xvisitor_subscriptions['1'] = __('not active', 'MailPress');
-$xvisitor_subscriptions['2'] = __('to be confirmed', 'MailPress');
-$xvisitor_subscriptions['3'] = __('active', 'MailPress');
+$xvisitor_subscriptions['0'] = __('no', MP_TXTDOM);
+$xvisitor_subscriptions['1'] = __('not active', MP_TXTDOM);
+$xvisitor_subscriptions['2'] = __('to be confirmed', MP_TXTDOM);
+$xvisitor_subscriptions['3'] = __('active', MP_TXTDOM);
 
-$xvisitor_mail['0'] = __('no', 'MailPress');
-$xvisitor_mail['1'] = __('to be confirmed', 'MailPress');
-$xvisitor_mail['2'] = __('yes', 'MailPress');
+$xvisitor_mail['0'] = __('no', MP_TXTDOM);
+$xvisitor_mail['1'] = __('to be confirmed', MP_TXTDOM);
+$xvisitor_mail['2'] = __('yes', MP_TXTDOM);
 
 
 //
 // MANAGING MESSAGE
 //
 
-$messages[1] = __('Form added.','MailPress');
-$messages[2] = __('Form deleted.','MailPress');
-$messages[3] = __('Form updated.','MailPress');
-$messages[4] = __('Form not added.','MailPress');
-$messages[5] = __('Form not updated.','MailPress');
-$messages[6] = __('Forms deleted.','MailPress');
+$messages[1] = __('Form added.', MP_TXTDOM);
+$messages[2] = __('Form deleted.', MP_TXTDOM);
+$messages[3] = __('Form updated.', MP_TXTDOM);
+$messages[4] = __('Form not added.', MP_TXTDOM);
+$messages[5] = __('Form not updated.', MP_TXTDOM);
+$messages[6] = __('Forms deleted.', MP_TXTDOM);
 
 if (isset($_GET['message']))
 {
@@ -123,7 +123,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 		<p class='search-box'>
 			<input type='hidden' name='page' value='<?php echo MailPress_page_forms; ?>' />
 			<input type='text' id='post-search-input' name='s' value='<?php if (isset($url_parms['s'])) echo $url_parms['s']; ?>' class="search-input"  />
-			<input type='submit' value="<?php _e( 'Search Forms', 'MailPress' ); ?>" class='button' />
+			<input type='submit' value="<?php _e( 'Search Forms', MP_TXTDOM ); ?>" class='button' />
 		</p>
 	</form>
 	<br class='clear' />
@@ -134,7 +134,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 					<div class='tablenav'>
 <?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>"; ?>
 						<div class='alignleft actions'>
-							<input type='submit' value="<?php _e('Delete','MailPress'); ?>" name='deleteit' class='button-secondary delete action' />
+							<input type='submit' value="<?php _e('Delete', MP_TXTDOM); ?>" name='deleteit' class='button-secondary delete action' />
 							<input type='hidden' name='page' value='<?php echo MailPress_page_forms; ?>' />
 						</div>
 						<br class='clear' />
@@ -166,7 +166,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 					<div class='tablenav'>
 <?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>\n"; ?>
 						<div class='alignleft actions'>
-							<input type='submit' value="<?php _e('Delete','MailPress'); ?>" name='deleteit' class='button-secondary delete' />
+							<input type='submit' value="<?php _e('Delete', MP_TXTDOM); ?>" name='deleteit' class='button-secondary delete' />
 						</div>
 						<br class='clear' />
 					</div>
@@ -185,21 +185,21 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 						<?php wp_nonce_field('update-' . self::tr_prefix_id); ?>
 
 						<div class="form-field form-required" style='margin:0;padding:0;'>
-							<label for='form_label'><?php _e('Label','MailPress'); ?></label>
+							<label for='form_label'><?php _e('Label', MP_TXTDOM); ?></label>
 							<input name='label' id='form_label' type='text' value="<?php if (isset($form->label)) echo self::input_text($form->label); ?>" size='40' aria-required='true' />
 							<p>&nbsp;</p>
 						</div>
 
 						<div class="form-field" style='margin:0;padding:0;'>
 							<span style='float:right'>
-								<span class='description'><small><?php _e('template', 'MailPress'); ?></small></span>
+								<span class='description'><small><?php _e('template', MP_TXTDOM); ?></small></span>
 								<select id='f_template' name='template' style='margin-right:14px;'>
 <?php self::select_option($xform_template, (isset($form->template)) ? $form->template : 'default' ); ?>
 								</select>
 							</span>
-							<label for='form_description' style='display:inline;'><?php _e('Description','MailPress'); ?></label>
+							<label for='form_description' style='display:inline;'><?php _e('Description', MP_TXTDOM); ?></label>
 							<input name='description' id='form_description' type='text' value="<?php if (isset($form->description)) echo self::input_text($form->description); ?>" size='40' />
-							<p><small><?php _e('The description can be use to give further explanations','MailPress'); ?></small></p>
+							<p><small><?php _e('The description can be use to give further explanations', MP_TXTDOM); ?></small></p>
 						</div>
 
 						<div id='form_settings' class='form field form_settings' style='margin-top:18px;'>
@@ -218,20 +218,20 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 									<span class='description'><small>class="</small></span><input type='text' name='settings[attributes][class]' id='form_attribute_class' 	value="<?php if (isset($form->settings['attributes']['class'])) echo self::input_text($form->settings['attributes']['class']); ?>" size='40' style='width:80%'  /><span class='description'><small>"</small></span><br />
 									<span class='description'><small>style="</small></span><input type='text' name='settings[attributes][style]' id='form_attribute_style' 	value="<?php if (isset($form->settings['attributes']['style'])) echo self::input_text($form->settings['attributes']['style']); ?>" size='40' style='width:80%'  /><span class='description'><small>"</small></span><br />
 									<input type='text' name='settings[attributes][misc]' id='form_attribute_misc' 	value="<?php if (isset($form->settings['attributes']['misc'])) echo self::input_text($form->settings['attributes']['misc']); ?>" size='40' style='width:98%'  /><br />
-									<span class='description'><i style='color:#666;font-size:8px;'><?php _e("other attributes except 'name' & 'action'", 'MailPress'); ?></i></span>
+									<span class='description'><i style='color:#666;font-size:8px;'><?php _e("other attributes except 'name' & 'action'", MP_TXTDOM); ?></i></span>
 <?php
 			break;
 			case 'options'    : 
 ?>
 									<input type='checkbox' name='settings[options][reset]' id='form_option_reset' value='1'<?php checked('1', ((isset($form->settings['options']['reset'])) ? 1 : 0)); ?> style='width:auto;' />
-									<label for='form_option_reset' style='display:inline;'><small><?php _e('Reset after submission', 'MailPress'); ?></small></label>
+									<label for='form_option_reset' style='display:inline;'><small><?php _e('Reset after submission', MP_TXTDOM); ?></small></label>
 <?php
 			break;
 			case 'messages'    : 
 ?>
-									<label for='f_message_ok'><small><?php _e('When processing form is successfull','MailPress'); ?></small></label>
+									<label for='f_message_ok'><small><?php _e('When processing form is successfull', MP_TXTDOM); ?></small></label>
 									<input name='settings[message][ok]' id='f_message_ok' type='text' value="<?php if (isset($form->settings['message']['ok'])) echo self::input_text($form->settings['message']['ok']); ?>" size='40' style='width:98%;' />
-									<label for='f_message_ko'><small><?php _e('When processing form has failed','MailPress'); ?></small></label>
+									<label for='f_message_ko'><small><?php _e('When processing form has failed', MP_TXTDOM); ?></small></label>
 									<input name='settings[message][ko]' id='f_message_ko' type='text' value="<?php if (isset($form->settings['message']['ko'])) echo self::input_text($form->settings['message']['ko']); ?>" size='40' style='width:98%;' />
 <?php
 			break;
@@ -239,12 +239,12 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 			case 'recipient'    : 
 ?>
 									<div id='div_form_toemail'>
-										<label for='form_toemail'><small><?php _e('Email','MailPress'); ?></small></label>
+										<label for='form_toemail'><small><?php _e('Email', MP_TXTDOM); ?></small></label>
 										<input type="text" id='form_toemail' name='settings[recipient][toemail]' value="<?php if (isset($form->settings['recipient']['toemail'])) echo $form->settings['recipient']['toemail']; ?>" size="40" style='width:auto;' aria-required='true' class='form-required'/>
 									</div>
-									<label for='form_toname'><small><?php _e('Name','MailPress'); ?></small></label>
+									<label for='form_toname'><small><?php _e('Name', MP_TXTDOM); ?></small></label>
 									<input type="text" id='form_toname' name='settings[recipient][toname]' value="<?php if (isset($form->settings['recipient']['toname'])) echo self::input_text($form->settings['recipient']['toname']); ?>" size="40" style='width:auto;' />
-									<label for='recipient_theme'><small><?php _e('Mail Theme/Template','MailPress'); ?></small></label>
+									<label for='recipient_theme'><small><?php _e('Mail Theme/Template', MP_TXTDOM); ?></small></label>
 									<select id='recipient_theme' name='settings[recipient][theme]'>
 <?php self::select_option($xtheme, (isset($form->settings['recipient']['theme'])) ? $form->settings['recipient']['theme'] : null ); ?>
 									</select>
@@ -262,18 +262,18 @@ if ($key == $form->settings['recipient']['theme'])  if (isset($form->settings['r
 			break;
 			case 'visitor'    : 
 ?>
-									<label for='visitor_subscription'><small><?php _e('Subscription option','MailPress'); ?></small></label>
+									<label for='visitor_subscription'><small><?php _e('Subscription option', MP_TXTDOM); ?></small></label>
 									<select id='visitor_subscription' name='settings[visitor][subscription]'>
 <?php self::select_option($xvisitor_subscriptions, (isset($form->settings['visitor']['subscription'])) ? $form->settings['visitor']['subscription'] : 0 ); ?>
 									</select>
-									<small><?php _e('Becomes a subscriber','MailPress'); ?></small>
-									<label for='visitor_mail'><small><?php _e('Mail option', 'MailPress'); ?></small></label>
+									<small><?php _e('Becomes a subscriber', MP_TXTDOM); ?></small>
+									<label for='visitor_mail'><small><?php _e('Mail option', MP_TXTDOM); ?></small></label>
 									<select id='visitor_mail' name='settings[visitor][mail]'>
 <?php self::select_option($xvisitor_mail, (isset($form->settings['visitor']['mail'])) ? $form->settings['visitor']['mail'] : 0 ); ?>
 									</select>
-									<small><?php _e('Receives a copy', 'MailPress'); ?></small>
+									<small><?php _e('Receives a copy', MP_TXTDOM); ?></small>
 									<div style='margin:0px;padding:0px;border:none;' class='<?php echo (isset($form->settings['visitor']['mail']) && ($form->settings['visitor']['mail'] != '0')) ? '' : 'mask '; ?>visitor_mail_selected'>
-										<label for='visitor_theme'><small><?php _e('Mail Theme/Template','MailPress'); ?></small></label>
+										<label for='visitor_theme'><small><?php _e('Mail Theme/Template', MP_TXTDOM); ?></small></label>
 										<select id='visitor_theme' name='settings[visitor][theme]'>
 <?php self::select_option($xtheme, (isset($form->settings['visitor']['theme'])) ? $form->settings['visitor']['theme'] : null ); ?>
 										</select>
@@ -300,14 +300,14 @@ if ($key == $form->settings['visitor']['theme'])  if (isset($form->settings['vis
 				$search = $replace = array();
 				$search[] = '{{label}}'; 	$replace[] = $form->label;
 				$search[] = '{{description}}'; 	$replace[] = $form->description;
-				$search[] = '{{form}}'; 	$replace[] = sprintf('%1$s<!-- %2$s --></form>', MP_Forms::get_tag($form, MP_Forms_fields::have_file($form->id)), __('form content', 'MailPress') );
-				$search[] = '{{message}}'; 	$replace[] = sprintf ('<!-- %1$s -->', __('ok/ko message', 'MailPress') );
+				$search[] = '{{form}}'; 	$replace[] = sprintf('%1$s<!-- %2$s --></form>', MP_Forms::get_tag($form, MP_Forms_fields::have_file($form->id)), __('form content', MP_TXTDOM) );
+				$search[] = '{{message}}'; 	$replace[] = sprintf ('<!-- %1$s -->', __('ok/ko message', MP_TXTDOM) );
 				$html = str_replace($search, $replace, $html );
 ?>
 									<div class="filter-img bkgndc bd1sc" style='font-family:"Courier new", serif;font-size:11px;font-style:normal;'>
 										<?php echo htmlspecialchars($html, ENT_QUOTES); ?>
 									</div>
-									<p><small><?php printf(__('Template : %1$s', 'MailPress'), $form->template); ?></small></p>
+									<p><small><?php printf(__('Template : %1$s', MP_TXTDOM), $form->template); ?></small></p>
 <?php
 			break;
 		}

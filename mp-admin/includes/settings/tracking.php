@@ -11,5 +11,5 @@ $tracking	= $_POST['tracking'];
 if (!add_option ('MailPress_tracking', $tracking, 'MailPress - tracking config' )) update_option ('MailPress_tracking', $tracking);
 if (!add_option ('MailPress_general', $mp_general, 'MailPress - general settings' )) update_option ('MailPress_general', $mp_general);
 
-MP_AdminPage::message(__("'Tracking' settings saved", 'MailPress'));
+MP_AdminPage::message(__("'Tracking' settings saved", 'MP_TXTDOM));
 ?>

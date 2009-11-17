@@ -10,7 +10,7 @@ class MP_Forms_field_type_captcha_gd2 extends MP_Forms_field_type_abstract
 
 	function __construct()
 	{
-		$this->description = __('Captcha 2', 'MailPress');
+		$this->description = __('Captcha 2', MP_TXTDOM);
 		$this->settings	 = dirname(__FILE__) . '/settings.xml';
 		parent::__construct();
 	}
@@ -39,7 +39,7 @@ class MP_Forms_field_type_captcha_gd2 extends MP_Forms_field_type_abstract
 		}
 
 		$field->submitted['value'] = 1;
-		$field->submitted['text']  = __('ok', 'MailPress');
+		$field->submitted['text']  = __('ok', MP_TXTDOM);
 
 		return $field;
 	}

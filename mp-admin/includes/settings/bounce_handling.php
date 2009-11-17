@@ -18,5 +18,5 @@ if ($old_bounce_handling['batch_mode'] != $bounce_handling['batch_mode'])
 	else 								MailPress_bounce_handling::schedule();
 }
 
-MP_AdminPage::message(__("'Bounces' settings saved", 'MailPress'));
+MP_AdminPage::message(__("'Bounces' settings saved", MP_TXTDOM));
 ?>

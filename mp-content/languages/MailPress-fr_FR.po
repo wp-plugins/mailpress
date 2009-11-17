@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-10-13 01:04+0100\n"
+"PO-Revision-Date: 2009-11-17 11:19+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -458,7 +458,7 @@ msgid "Registration Form"
 msgstr "Le formulaire d'Inscription"
 
 msgid "WP User sync"
-msgstr "WP User # %1$s"
+msgstr "WP User sync"
 
 #, php-format
 msgid "WP User # %1$s"
@@ -3178,4 +3178,58 @@ msgstr "Vue plaintext"
 
 msgid "Html View"
 msgstr "Vue html"
+
+# C:\wgettext\mailpress\mailpress_batch_send\MailPress_batch_send.php:502
+#, php-format
+msgid "%1$s of %2$s sent| Singular"
+msgstr "%1$s sur %2$s envoy&eacute;|  Singulier"
+
+# C:\wgettext\mailpress\mailpress_batch_send\MailPress_batch_send.php:502
+#, php-format
+msgid "%1$s of %2$s sent| Plural"
+msgstr "%1$s sur %2$s envoy&eacute;s|  Pluriel"
+
+msgid "<b>unsubscribed</b>"
+msgstr "d&eacute;sabonn&eacute;"
+
+msgid "Unsubscribed"
+msgstr "D&eacute;sabonn&eacute;"
+
+msgid "Subscribers"
+msgstr "Abonn&eacute;s"
+
+msgid "Mailinglists"
+msgstr "Mailing lists"
+
+#, php-format
+msgid "Unsubscribed (%s)"
+msgstr "D&eacute;sabonn&eacute; (%s)"
+
+#, php-format
+msgid "see sample in \"%1$s\""
+msgstr "Voir exemple dans \"%1$s\""
+
+# C:\wgettext\mp\mailpress\mp-includes\mp-mail-links.php:79
+msgid "Your email has been unsubscribed, ask the administrator ..."
+msgstr "Votre email a &eacute;t&eacute; d&eacute;sabonn&eacute;, demander &agrave; l'administrateur ..."
+
+msgid "Unsubscribe"
+msgstr "D&eacute;sabonner"
+
+#, php-format
+msgid "<p>We confirm that the email adress <b>%1$s</b> has been unsubscribed.</p>"
+msgstr "<p>\"D&eacute;sabonnement de <b>%1$s</b> confirm&eacute;e.</p>"
+
+msgid "to blog"
+msgstr "abonn&eacute;s au blog"
+
+msgid "to comments"
+msgstr "abonn&eacute;s aux commentaires"
+
+msgid "to blog & comments"
+msgstr "abonn&eacute;s blog + commentaires"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:407
+msgid "all (active + waiting)"
+msgstr "Tous (actif + en attente)"
 

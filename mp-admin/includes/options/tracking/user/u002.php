@@ -7,7 +7,7 @@ class MP_Tracking_module_u002 extends MP_Tracking_module_abstract
 	function __construct()
 	{
 		$this->type  = basename(dirname(__FILE__));
-		$this->title = __('Last 10 mails','MailPress');
+		$this->title = __('Last 10 mails',  MP_TXTDOM);
 		parent::__construct();
 	}
 
@@ -27,7 +27,7 @@ class MP_Tracking_module_u002 extends MP_Tracking_module_abstract
 					$metas = MP_Mailmeta::get( $track->meta_value, '_MailPress_replacements');
 					if ($metas) foreach($metas as $k => $v) $subject = str_replace($k, $v, $subject);
 				}
-				else $subject = __('(deleted)','MailPress');
+				else $subject = __('(deleted)', MP_TXTDOM);
 				echo '(' . $track->meta_value . ') ' . $subject . '<br />';
 			} 
 		}

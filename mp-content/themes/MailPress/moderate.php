@@ -11,7 +11,7 @@ Template Name: moderate
 		<td <?php $this->classes('nopmb ctd'); ?>>
 			<div <?php $this->classes('cdiv'); ?>>
 				<h2 <?php $this->classes('ch2'); ?>>
-<?php printf( __('New comment on post #%1$s "%2$s"'), $this->args->c->post_ID , '{{the_title}}' ); ?>
+<?php printf( __('New comment on your post #%1$s "%2$s"'), $this->args->c->post_ID , '{{the_title}}' ); ?>
 				</h2>
 				<small <?php $this->classes('nopmb cdate'); ?>>
 <?php echo mysql2date('F j, Y', current_time('mysql')); ?>

@@ -12,7 +12,7 @@ $args['action'] 	= 'ifview';
 $args['KeepThis'] = 'true'; $args['TB_iframe']= 'true'; $args['width'] = '600'; $args['height']	= '400';
 $view_url		= clean_url(self::url(MP_Action_url, $args));
 
-$h2 = sprintf(__('Fields in "%1$s" form','MailPress'), "<a class='thickbox' href='$view_url' title=\"" . sprintf(__('Form preview #%1$s (%2$s)', 'MailPress'), $form->id, stripslashes($form->label))  . "\" >" . stripslashes($form->label) . "</a>");
+$h2 = sprintf(__('Fields in "%1$s" form', MP_TXTDOM), "<a class='thickbox' href='$view_url' title=\"" . sprintf(__('Form preview #%1$s (%2$s)', MP_TXTDOM), $form->id, stripslashes($form->label))  . "\" >" . stripslashes($form->label) . "</a>");
 
 self::require_class('Forms_field_types');
 $field_types = MP_Forms_field_types::get_all();
@@ -28,16 +28,16 @@ if ('edit' == $action)
 	$disabled = '';
 	if (isset($field->settings['options']['protected']) && $field->settings['options']['protected']) $disabled = " disabled='disabled'";
 
-	$h3 = sprintf(__('Update field # %1$s','MailPress'), $id);
+	$h3 = sprintf(__('Update field # %1$s', MP_TXTDOM), $id);
 	$action = 'edited';
-	$cancel = "<input type='submit' class='button' name='cancel' value=\"" . __('Cancel','MailPress') . "\" />\n";
+	$cancel = "<input type='submit' class='button' name='cancel' value=\"" . __('Cancel', MP_TXTDOM) . "\" />\n";
 }
 else 
 {
 	$field = new stdClass();
 	$field->type = 'text';
 
-	$h3 = __('Add a field','MailPress');
+	$h3 = __('Add a field', MP_TXTDOM);
 	$action = self::add_form_id;
 	$disabled = '';
 	$cancel = '';
@@ -61,12 +61,12 @@ $xform_subtemplates = $form_templates->get_all_fields($form->template);
 // MANAGING MESSAGE
 //
 
-$messages[1] = __('Field added.','MailPress');
-$messages[2] = __('Field deleted.','MailPress');
-$messages[3] = __('Field updated.','MailPress');
-$messages[4] = __('Field not added.','MailPress');
-$messages[5] = __('Field not updated.','MailPress');
-$messages[6] = __('Fields deleted.','MailPress');
+$messages[1] = __('Field added.', MP_TXTDOM);
+$messages[2] = __('Field deleted.', MP_TXTDOM);
+$messages[3] = __('Field updated.', MP_TXTDOM);
+$messages[4] = __('Field not added.', MP_TXTDOM);
+$messages[5] = __('Field not updated.', MP_TXTDOM);
+$messages[6] = __('Fields deleted.', MP_TXTDOM);
 
 if (isset($_GET['message']))
 {
@@ -108,7 +108,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 			<input type='hidden' name='page' value='<?php echo MailPress_page_forms; ?>' />
 			<input type='hidden' name='file' value='fields' />
 			<input type='text' id='post-search-input' name='s' value='<?php if (isset($url_parms['s'])) echo $url_parms['s']; ?>' class="search-input"  />
-			<input type='submit' value="<?php _e( 'Search Fields', 'MailPress' ); ?>" class='button' />
+			<input type='submit' value="<?php _e( 'Search Fields', MP_TXTDOM ); ?>" class='button' />
 		</p>
 	</form>
 	<br class='clear' />
@@ -120,7 +120,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 					<div class='tablenav'>
 <?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>"; ?>
 						<div class='alignleft actions'>
-							<input type='submit' value="<?php _e('Delete','MailPress'); ?>" name='deleteit' class='button-secondary delete action' />
+							<input type='submit' value="<?php _e('Delete', MP_TXTDOM); ?>" name='deleteit' class='button-secondary delete action' />
 							<input type='hidden' name='page' value='<?php echo MailPress_page_forms; ?>' />
 							<input type='hidden' name='file' value='fields' />
 						</div>
@@ -153,7 +153,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 					<div class='tablenav'>
 <?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>\n"; ?>
 						<div class='alignleft actions'>
-							<input type='submit' value="<?php _e('Delete','MailPress'); ?>" name='deleteit' class='button-secondary delete' />
+							<input type='submit' value="<?php _e('Delete', MP_TXTDOM); ?>" name='deleteit' class='button-secondary delete' />
 						</div>
 						<br class='clear' />
 					</div>
@@ -172,30 +172,30 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 						<?php wp_nonce_field('update-' . self::tr_prefix_id); ?>
 
 						<div class="form-field form-required" style='margin:0;padding:0;'>
-							<label for='field_label'><?php _e('Label','MailPress'); ?></label>
+							<label for='field_label'><?php _e('Label', MP_TXTDOM); ?></label>
 							<input name='label' id='field_label' type='text' value="<?php if (isset($field->label)) echo self::input_text($field->label); ?>" size='40' aria-required='true' />
 							<p>&nbsp;</p>
 						</div>
 
 						<div class="form-field" style='margin:0;padding:0;'>
 							<span style='float:right'>
-								<span class='description'><small><?php _e('order in form', 'MailPress'); ?></small></span>
+								<span class='description'><small><?php _e('order in form', MP_TXTDOM); ?></small></span>
 								<select name='ordre' id='field_ordre'>
 <?php self::select_number(1, 100, (isset($field->ordre)) ? $field->ordre : 1); ?>
 								</select>
-								<span class='description'><small><?php _e('sub template', 'MailPress'); ?></small></span>
+								<span class='description'><small><?php _e('sub template', MP_TXTDOM); ?></small></span>
 								<select name='template' id='field_template'>
 <?php self::select_option($xform_subtemplates, (isset($field->template)) ? $field->template : ( (isset($xform_subtemplates[$field->type])) ? $field->type : 'standard' ) ); ?>
 								</select>
 							</span>
-							<label for='field_description' style='display:inline;'><?php _e('Description','MailPress'); ?></label>
+							<label for='field_description' style='display:inline;'><?php _e('Description', MP_TXTDOM); ?></label>
 							<input name='description' id='field_description' type='text' value="<?php if (isset($field->description)) echo self::input_text($field->description); ?>" size='40' />
-							<p><small><?php _e('The description can be use to give further explanations','MailPress'); ?></small></p>
+							<p><small><?php _e('The description can be use to give further explanations', MP_TXTDOM); ?></small></p>
 						</div>
 
 
 						<div>
-							<label><?php _e('Type','MailPress') ?></label>
+							<label><?php _e('Type', MP_TXTDOM) ?></label>
 							<table style='margin:1px;padding:3px;width:100%;-moz-border-radius: 5px;-webkit-border-radius: 5px;-khtml-border-radius: 5px;' class='bkgndc bd1sc'>
 <?php
 $col = 2;

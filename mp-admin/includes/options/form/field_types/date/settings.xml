@@ -1,12 +1,12 @@
 <?php /* date */ 
 
-$xformat_month['n'] = __('numbers', 'MailPress');
-$xformat_month['s'] = __('short text', 'MailPress');
-$xformat_month['f'] = __('full text', 'MailPress');
+$xformat_month['n'] = __('numbers', MP_TXTDOM);
+$xformat_month['s'] = __('short text', MP_TXTDOM);
+$xformat_month['f'] = __('full text', MP_TXTDOM);
 
-$xformat_date['ymd'] = __('y m d', 'MailPress');
-$xformat_date['dmy'] = __('d m y', 'MailPress');
-$xformat_date['mdy'] = __('m d y', 'MailPress');
+$xformat_date['ymd'] = __('y m d', MP_TXTDOM);
+$xformat_date['dmy'] = __('d m y', MP_TXTDOM);
+$xformat_date['mdy'] = __('m d y', MP_TXTDOM);
 ?>
 <settings>
 	<attributes>
@@ -25,14 +25,14 @@ $xformat_date['mdy'] = __('m d y', 'MailPress');
 			</is>
 		</items>
 		<items>
-			<misc><misc><![CDATA[<?php _e("other attributes except 'name' & 'id'", 'MailPress'); ?>]]></misc></misc>
+			<misc><misc><![CDATA[<?php _e("other attributes except 'name' & 'id'", MP_TXTDOM); ?>]]></misc></misc>
 		</items>
 	</attributes>
 	<controls>
 		<items>
 			<required>
 				<checkbox>
-					<text><![CDATA[<?php _e('Required', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('Required', MP_TXTDOM); ?>]]></text>
 					<value>1</value>
 					<disabled>0</disabled>
 					<class>controls</class>
@@ -43,20 +43,20 @@ $xformat_date['mdy'] = __('m d y', 'MailPress');
 	<options>
 		<items>
 			<only_text>
-				<only_text><![CDATA[<?php _e('Format in form :', 'MailPress'); ?>]]></only_text>
+				<only_text><![CDATA[<?php _e('Format in form :', MP_TXTDOM); ?>]]></only_text>
 			</only_text>
 		</items>
 		<items>
 			<form_date_format>
 				<select_opt>
-					<text><![CDATA[<?php _e('Date : ', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('Date : ', MP_TXTDOM); ?>]]></text>
 					<values><![CDATA[<?php echo serialize($xformat_date); ?>]]></values>
 					<default>0</default>
 				</select_opt>
 			</form_date_format>
 			<form_month_format>
 				<select_opt>
-					<text><![CDATA[<?php _e('Month : ', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('Month : ', MP_TXTDOM); ?>]]></text>
 					<values><![CDATA[<?php echo serialize($xformat_month); ?>]]></values>
 					<default>0</default>
 				</select_opt>
@@ -64,13 +64,13 @@ $xformat_date['mdy'] = __('m d y', 'MailPress');
 		</items>
 		<items>
 			<only_text>
-				<only_text><![CDATA[<?php _e('Years selection :', 'MailPress'); ?>]]></only_text>
+				<only_text><![CDATA[<?php _e('Years selection :', MP_TXTDOM); ?>]]></only_text>
 			</only_text>
 		</items>
 		<items>
 			<year_start>
 				<select_num>
-					<text><![CDATA[<?php _e('starting at : ', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('starting at : ', MP_TXTDOM); ?>]]></text>
 					<min><?php echo( date('Y') - 120 ); ?></min>
 					<max><?php echo( date('Y') +  50 ); ?></max>
 					<default><?php echo(date('Y') - 50); ?></default>
@@ -78,7 +78,7 @@ $xformat_date['mdy'] = __('m d y', 'MailPress');
 			</year_start>
 			<year_start_c>
 				<checkbox>
-					<text><![CDATA[<?php _e('or current year', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('or current year', MP_TXTDOM); ?>]]></text>
 					<value>1</value>
 					<disabled>0</disabled>
 				</checkbox>
@@ -87,7 +87,7 @@ $xformat_date['mdy'] = __('m d y', 'MailPress');
 		<items>
 			<year_end>
 				<select_num>
-					<text><![CDATA[<?php _e('&nbsp;ending at : ', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('&nbsp;ending at : ', MP_TXTDOM); ?>]]></text>
 					<min><?php echo( date('Y') - 120 ); ?></min>
 					<max><?php echo( date('Y') +  50 ); ?></max>
 					<default><?php echo(date('Y')); ?></default>
@@ -95,7 +95,7 @@ $xformat_date['mdy'] = __('m d y', 'MailPress');
 			</year_end>
 			<year_end_c>
 				<checkbox>
-					<text><![CDATA[<?php _e('or current year', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('or current year', MP_TXTDOM); ?>]]></text>
 					<value>1</value>
 					<disabled>0</disabled>
 				</checkbox>
@@ -103,7 +103,7 @@ $xformat_date['mdy'] = __('m d y', 'MailPress');
 		</items>
 		<items>
 			<only_text>
-				<only_text><![CDATA[<?php _e('Format in mail :', 'MailPress'); ?>]]></only_text>
+				<only_text><![CDATA[<?php _e('Format in mail :', MP_TXTDOM); ?>]]></only_text>
 			</only_text>
 		</items>
 		<items>
@@ -119,7 +119,7 @@ $xformat_date['mdy'] = __('m d y', 'MailPress');
 		<items>
 			<incopy>
 				<checkbox>
-					<text><![CDATA[<?php _e('In copy', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('In copy', MP_TXTDOM); ?>]]></text>
 					<value>1</value>
 					<disabled>0</disabled>
 				</checkbox>
@@ -135,8 +135,8 @@ $xformat_date['mdy'] = __('m d y', 'MailPress');
 	</hiddens>
 <?php endif; ?>
 	<tabs>
-		<attributes><![CDATA[<?php _e('Attributes', 'MailPress'); ?>]]></attributes>
-		<controls><![CDATA[<?php _e('Controls', 'MailPress'); ?>]]></controls>
-		<options><![CDATA[<?php _e('Options', 'MailPress'); ?>]]></options>
+		<attributes><![CDATA[<?php _e('Attributes', MP_TXTDOM); ?>]]></attributes>
+		<controls><![CDATA[<?php _e('Controls', MP_TXTDOM); ?>]]></controls>
+		<options><![CDATA[<?php _e('Options', MP_TXTDOM); ?>]]></options>
 	</tabs>
 </settings>

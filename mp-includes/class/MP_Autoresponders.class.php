@@ -28,7 +28,7 @@ class MP_Autoresponders
 		if ( trim( $name ) == '' ) 
 		{
 			if ( ! $wp_error )	return 0;
-			else				return new WP_Error( 'autoresponder_name', __('You did not enter a valid autoresponder name.', 'MailPress') );
+			else				return new WP_Error( 'autoresponder_name', __('You did not enter a valid autoresponder name.', MP_TXTDOM) );
 		}
 
 		$slug = self::add_slug($slug, $name);

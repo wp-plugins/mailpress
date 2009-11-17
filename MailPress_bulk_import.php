@@ -6,7 +6,7 @@ Plugin Name: MailPress_bulk_import
 Plugin URI: http://www.mailpress.org
 Description: This is just an addon for MailPress to import users
 Author: Daniel Caleb & Andre Renaut
-Version: 4.0.1
+Version: 4.0.2
 Author URI: http://www.mailpress.org http://galerie-eigenheim.de
 */
 
@@ -14,8 +14,8 @@ class MailPress_bulk_import
 {
 	function __construct()
 	{
-		add_action('MailPress_users_addon', 		array('MailPress_bulk_import', 'form'), 1, 1);
-		add_action('MailPress_users_addon_update', 	array('MailPress_bulk_import', 'process_form'));
+		add_action('MailPress_users_addon', 		array(__CLASS__, 'form'), 1, 1);
+		add_action('MailPress_users_addon_update', 	array(__CLASS__, 'process_form'));
 	}
 
 	public static function form($url_parms)
@@ -24,7 +24,7 @@ class MailPress_bulk_import
 <!-- MailPress_bulk_import -->
 <form id='bulk-add' action='' method='post' style="z-index:2000">
 	<input type='text'   name='emails'   value='' id='emails' onclick="document.getElementById('bulk-add').style.width='90%';document.getElementById('emails').style.width='70%';document.getElementById('radios').style.display='block';" />
-	<input type='submit' name='bulk_add' value='<?php _e('Bulk Add', 'MailPress' ); ?>' class='button' />
+	<input type='submit' name='bulk_add' value='<?php _e('Bulk Add', MP_TXTDOM ); ?>' class='button' />
 	<div id="radios" style="display:none">
 <?php 
 if (class_exists('MailPress_mailinglist'))
@@ -34,10 +34,10 @@ if (class_exists('MailPress_mailinglist'))
 	MP_Mailinglists::dropdown($dropdown_options);
 }
 ?>
-		<input type='radio' name='activate' value='activate' /><?php _e('Activate', 'MailPress'); ?>
-		<input type='radio' name='activate' value='waiting' checked='checked' /> <?php _e('Require Authorization', 'MailPress'); ?>
+		<input type='radio' name='activate' value='activate' /><?php _e('Activate', MP_TXTDOM); ?>
+		<input type='radio' name='activate' value='waiting' checked='checked' /> <?php _e('Require Authorization', MP_TXTDOM); ?>
 		<span style="color:#f00;padding-left:50px;">
-			<?php _e('email,name;email,name;...', 'MailPress'); ?>
+			<?php _e('email,name;email,name;...', MP_TXTDOM); ?>
 		</span>
 	</div>
 	<input type='hidden' name='mode' value='<?php echo $url_parms['mode']; ?>' />
@@ -63,10 +63,10 @@ if (class_exists('MailPress_mailinglist'))
 
 		$count_users 	= $wpdb->get_var("SELECT count(*)    FROM $wpdb->mp_users;");
 
-		$m1 = sprintf( __ngettext( __('%s email', 'MailPress'), __('%s emails', 'MailPress'), $count_emails ), $count_emails );
-		$m2 = sprintf( __ngettext( __('%s record', 'MailPress'), __('%s records', 'MailPress'), $count_records ), $count_records );
-		$m3 = sprintf( __ngettext( __('%s user', 'MailPress'), __('%s users', 'MailPress'), $count_users ), $count_users );
-		$m4 = sprintf(__('%1$s from %2$s added. Now there are a total of %3$s', 'MailPress'), $m1, $m2, $m3);
+		$m1 = sprintf( __ngettext( __('%s email', MP_TXTDOM), __('%s emails', MP_TXTDOM), $count_emails ), $count_emails );
+		$m2 = sprintf( __ngettext( __('%s record', MP_TXTDOM), __('%s records', MP_TXTDOM), $count_records ), $count_records );
+		$m3 = sprintf( __ngettext( __('%s user', MP_TXTDOM), __('%s users', MP_TXTDOM), $count_users ), $count_users );
+		$m4 = sprintf(__('%1$s from %2$s added. Now there are a total of %3$s', MP_TXTDOM), $m1, $m2, $m3);
 		MP_AdminPage::message($m4);
 	}
 

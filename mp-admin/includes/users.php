@@ -2,7 +2,7 @@
 global $wpdb;
 
 $url_parms = self::get_url_parms(array('mode','status','s','apage','author','mailinglist','startwith'));
-$h2 = __('Edit Users', 'MailPress');
+$h2 = __('Edit Users', MP_TXTDOM);
 $h2_author = '';
 if (isset($url_parms['author'])) 
 {
@@ -19,34 +19,34 @@ if (isset($url_parms['mailinglist']) && !empty($url_parms['mailinglist']))
 //
 // MANAGING CHECKBOX RESULTS
 //
-if ( isset( $_GET['activated'] ) || isset( $_GET['deactivated'] ) || isset( $_GET['deleted'] )  ) 
+if ( isset( $_GET['activated'] ) || isset( $_GET['deactivated'] ) || isset( $_GET['deleted'] ) || isset( $_GET['unbounced'] ) )
 {
 	$activated 		= isset( $_GET['activated'] ) 	? (int) $_GET['activated'] 	: 0;
 	$deactivated 	= isset( $_GET['deactivated'] ) 	? (int) $_GET['deactivated'] 	: 0;
 	$deleted   		= isset( $_GET['deleted'] )   	? (int) $_GET['deleted']   	: 0;
 	$unbounced   	= isset( $_GET['unbounced'] )   	? (int) $_GET['unbounced']   	: 0;
 
-	if ($activated > 0  || $deactivated > 0 || $deleted > 0  || $unbounced > 0 ) 
+	if ($activated > 0  || $deactivated > 0 || $deleted > 0 || $unbounced > 0 ) 
 	{
 		$message = '';
 		if ( $activated > 0 ) 
 		{
-			$message .= sprintf( __ngettext( __('%s subscriber activated', 'MailPress'), __('%s subscribers activated', 'MailPress'), $activated ), $activated );
+			$message .= sprintf( __ngettext( __('%s subscriber activated', MP_TXTDOM), __('%s subscribers activated', MP_TXTDOM), $activated ), $activated );
 			$message .=  '<br />';
 		}
 		if ( $deactivated > 0 ) 
 		{
-			$message .= sprintf( __ngettext( __('%s subscriber deactivated', 'MailPress'), __('%s subscribers deactivated', 'MailPress'), $deactivated ), $deactivated );
+			$message .= sprintf( __ngettext( __('%s subscriber deactivated', MP_TXTDOM), __('%s subscribers deactivated', MP_TXTDOM), $deactivated ), $deactivated );
 			$message .=  '<br />';
 		}
 		if ( $deleted > 0 ) 
 		{
-			$message .= sprintf( __ngettext( __('%s subscriber deleted', 'MailPress'), __('%s subscribers deleted', 'MailPress'), $deleted ), $deleted );
+			$message .= sprintf( __ngettext( __('%s subscriber deleted', MP_TXTDOM), __('%s subscribers deleted', MP_TXTDOM), $deleted ), $deleted );
 			$message .=  '<br />';
 		}
 		if ( $unbounced > 0 ) 
 		{
-			$message .= sprintf( __ngettext( __('%s subscriber unbounced', 'MailPress'), __('%s subscribers unbounced', 'MailPress'), $unbounced ), $unbounced );
+			$message .= sprintf( __ngettext( __('%s subscriber unbounced', MP_TXTDOM), __('%s subscribers unbounced', MP_TXTDOM), $unbounced ), $unbounced );
 			$message .=  '<br />';
 		}
 	}
@@ -61,17 +61,19 @@ $status_links 	= array();
 $status_links_url = (isset($url_parms['mode'])) ? MailPress_users . "&amp;mode=" . $url_parms['mode']  : MailPress_users ;
 $num_users = self::count();
 
-$stati = array(	'active' => __('Active','MailPress'),
-			'waiting' => sprintf(__('Waiting (%s)','MailPress'), "<span class='user-count'>" . $num_users->waiting . "</span>")
+$stati = array(	'active' 		=> __('Active', MP_TXTDOM),
+			'waiting' 		=> sprintf(__('Waiting (%s)', MP_TXTDOM), "<span class='user-count-waiting'>" . $num_users->waiting . "</span>"),
+			'bounced' 		=> sprintf(__('Bounced (%s)', MP_TXTDOM), "<span class='user-count-bounced'>" . $num_users->bounced . "</span>"),
+			'unsubscribed' 	=> sprintf(__('Unsubscribed (%s)', MP_TXTDOM), "<span class='user-count-unsubscribed'>" . $num_users->unsubscribed . "</span>"),
 		);
 
-if (class_exists('MailPress_bounce_handling'))
-{
-	if ($num_users->bounced) $stati['bounced'] = sprintf(__('Bounced (%s)','MailPress'), $num_users->bounced);
-}
+if (!class_exists('MailPress_bounce_handling')) 	unset($stati['bounced']);
+elseif (!$num_users->bounced)					unset($stati['bounced']);
+
+if (!$num_users->unsubscribed)				unset($stati['unsubscribed']);
 
 $class		= ( empty($url_parms['status']) ) ? ' class="current"' : '';
-$status_links[] 	= "<a href='" . $status_links_url . "'$class>" . __('All Subscribers','MailPress') . "</a>";
+$status_links[] 	= "<a href='" . $status_links_url . "'$class>" . __('All Subscribers', MP_TXTDOM) . "</a>";
 foreach ( $stati as $status => $label ) 
 {
 	$class = '';
@@ -129,7 +131,7 @@ foreach ($alphabet as $letter)
 	$alpha_url = clean_url(self::url( MailPress_users, $url_parms ));
 
 	if ($current_letter)	$alphanav .= "<span class='page-numbers current'>$letter</span>";
-	else				$alphanav .= "<a class='page-numbers' href='$alpha_url' title='" . sprintf(__('List Mailpress users from %s','MailPress'), $letter ) . "'>$letter</a>";
+	else				$alphanav .= "<a class='page-numbers' href='$alpha_url' title='" . sprintf(__('List Mailpress users from %s', MP_TXTDOM), $letter ) . "'>$letter</a>";
 }
 $url_parms['startwith'] = $wstartwith;
 unset($wstartwith);
@@ -143,7 +145,7 @@ if ($alphanav) $alphanav = "<div class='tablenav' style='float:left;margin:-5px 
 	<form id='search-form' action='' method='get'>
 		<p id='post-search' class='search-box'>
 			<input type='text' id='user-search-input' name='s' value="<?php if (isset($url_parms['s'])) echo $url_parms['s']; ?>" class="search-input" />
-			<input type='submit' value='<?php _e( 'Search subscribers','MailPress' ); ?>' class='button' />
+			<input type='submit' value='<?php _e( 'Search subscribers', MP_TXTDOM ); ?>' class='button' />
 		</p>
 		<input type='hidden' name='page' value='<?php echo MailPress_page_users; ?>' />
 		<input type='hidden' name='mode' value='<?php echo $url_parms['mode']; ?>' />
@@ -161,16 +163,17 @@ if ($users) {
 	
 		<div class='tablenav'>
 			<div class='alignleft actions'>
-				<?php if ((isset($url_parms['status'])) && ( 'bounced' == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Unbounce','MailPress'); ?>' 	name='unbounceit'   class='button-secondary action' /><?php endif; ?>
-				<?php if ((isset($url_parms['status'])) && ( 'waiting' == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Activate','MailPress'); ?>' 	name='activateit'	  class='button-secondary action' /><?php endif; ?>
-				<?php if ((isset($url_parms['status'])) && ( 'active'  == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Deactivate','MailPress'); ?>' 	name='deactivateit' class='button-secondary action' /><?php endif; ?>
-				<?php if (current_user_can('MailPress_delete_users')) : ?><input type='submit' value='<?php _e('Delete','MailPress'); ?>' 	name='deleteit'     class='button-secondary delete action' /><?php endif; ?>
+				<?php if ((isset($url_parms['status'])) && ( 'unsubscribed' == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Deactivate', MP_TXTDOM); ?>' name='deactivateit' class='button-secondary action' /><?php endif; ?>
+				<?php if ((isset($url_parms['status'])) && ( 'bounced' == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Unbounce', MP_TXTDOM); ?>' 	name='unbounceit'   class='button-secondary action' /><?php endif; ?>
+				<?php if ((isset($url_parms['status'])) && ( 'waiting' == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Activate', MP_TXTDOM); ?>' 	name='activateit'	  class='button-secondary action' /><?php endif; ?>
+				<?php if ((isset($url_parms['status'])) && ( 'active'  == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Deactivate', MP_TXTDOM); ?>' 	name='deactivateit' class='button-secondary action' /><?php endif; ?>
+				<?php if (current_user_can('MailPress_delete_users')) : ?><input type='submit' value='<?php _e('Delete', MP_TXTDOM); ?>' 	name='deleteit'     class='button-secondary delete action' /><?php endif; ?>
 <?php do_action('MailPress_restrict_users',$url_parms); ?>
 			</div>
 <?php if ( $page_links ) echo "\n<div class='tablenav-pages'>$page_links</div>\n"; ?>
 			<div class='view-switch'>
-				<a href="<?php echo $list_url;   ?>"><img id="view-switch-list"    height="20" width="20" <?php if ( 'list'   == $url_parms['mode'] ) echo "class='current'" ?> alt="<?php _e('List View','MailPress')   ?>" title="<?php _e('List View','MailPress')   ?>" src="../wp-includes/images/blank.gif" /></a>
-				<a href="<?php echo $detail_url; ?>"><img id="view-switch-excerpt" height="20" width="20" <?php if ( 'detail' == $url_parms['mode'] ) echo "class='current'" ?> alt="<?php _e('Detail View','MailPress') ?>" title="<?php _e('Detail View','MailPress') ?>" src="../wp-includes/images/blank.gif" /></a>
+				<a href="<?php echo $list_url;   ?>"><img id="view-switch-list"    height="20" width="20" <?php if ( 'list'   == $url_parms['mode'] ) echo "class='current'" ?> alt="<?php _e('List View', MP_TXTDOM)   ?>" title="<?php _e('List View', MP_TXTDOM)   ?>" src="../wp-includes/images/blank.gif" /></a>
+				<a href="<?php echo $detail_url; ?>"><img id="view-switch-excerpt" height="20" width="20" <?php if ( 'detail' == $url_parms['mode'] ) echo "class='current'" ?> alt="<?php _e('Detail View', MP_TXTDOM) ?>" title="<?php _e('Detail View', MP_TXTDOM) ?>" src="../wp-includes/images/blank.gif" /></a>
 			</div>
 		</div>
 		<div class="clear"></div>
@@ -200,10 +203,11 @@ if ($users) {
 		<div class='tablenav'>
 <?php if ( $page_links ) echo "\n<div class='tablenav-pages'>$page_links</div>\n"; ?>
 			<div class='alignleft actions'>
-				<?php if ((isset($url_parms['status'])) && ( 'bounced' == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Unbounce','MailPress'); ?>' 	name='unbounceit'   class='button-secondary action' /><?php endif; ?>
-				<?php if ((isset($url_parms['status'])) && ( 'waiting' == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Activate','MailPress'); ?>' 	name='activateit'	  class='button-secondary action' /><?php endif; ?>
-				<?php if ((isset($url_parms['status'])) && ( 'active'  == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Deactivate','MailPress'); ?>' 	name='deactivateit' class='button-secondary action' /><?php endif; ?>
-				<?php if (current_user_can('MailPress_delete_users')) : ?><input type='submit' value='<?php _e('Delete','MailPress'); ?>' 	name='deleteit'     class='button-secondary delete action' /><?php endif; ?>
+				<?php if ((isset($url_parms['status'])) && ( 'unsubscribed' == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Deactivate', MP_TXTDOM); ?>' name='deactivateit' class='button-secondary action' /><?php endif; ?>
+				<?php if ((isset($url_parms['status'])) && ( 'bounced' == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Unbounce', MP_TXTDOM); ?>' 	name='unbounceit'   class='button-secondary action' /><?php endif; ?>
+				<?php if ((isset($url_parms['status'])) && ( 'waiting' == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Activate', MP_TXTDOM); ?>' 	name='activateit'	  class='button-secondary action' /><?php endif; ?>
+				<?php if ((isset($url_parms['status'])) && ( 'active'  == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Deactivate', MP_TXTDOM); ?>' 	name='deactivateit' class='button-secondary action' /><?php endif; ?>
+				<?php if (current_user_can('MailPress_delete_users')) : ?><input type='submit' value='<?php _e('Delete', MP_TXTDOM); ?>' 	name='deleteit'     class='button-secondary delete action' /><?php endif; ?>
 			</div>
 		</div>
 		<div class="clear"></div>
@@ -221,7 +225,7 @@ if ($users) {
 	</form>
 	<div class="clear"></div>
 	<p>
-		<?php _e('No results found.','MailPress') ?>
+		<?php _e('No results found.', MP_TXTDOM) ?>
 	</p>
 <?php
 }

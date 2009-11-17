@@ -159,7 +159,7 @@ abstract class Swift_Transport_AbstractSmtpTransport
         return 0;
       }
     }
-    
+ /**/  
     if (!$reversePath = $this->_getReversePath($message))
     {
       throw new Swift_TransportException(

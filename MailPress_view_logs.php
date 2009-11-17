@@ -6,7 +6,7 @@ Plugin Name: MailPress_view_logs
 Plugin URI: http://www.mailpress.org
 Description: This is just an add-on for MailPress to view logs
 Author: Andre Renaut
-Version: 4.0.1
+Version: 4.0.2
 Author URI: http://www.mailpress.org
 */
 
@@ -22,10 +22,10 @@ class MailPress_view_logs
 		define ('MailPress_view_logs', 	$file . '?page=' . MailPress_page_view_logs);
 		define ('MailPress_view_log', 	$file . '?page=' . MailPress_page_view_log);
 	// for role & capabilities
-		add_filter('MailPress_capabilities',  		array('MailPress_view_logs', 'capabilities'), 1, 1);
+		add_filter('MailPress_capabilities',  		array(__CLASS__, 'capabilities'), 1, 1);
 
 	// for load admin page
-		add_action('MailPress_load_admin_page', 		array('MailPress_view_logs', 'load_admin_page'), 10, 1);
+		add_action('MailPress_load_admin_page', 		array(__CLASS__, 'load_admin_page'), 10, 1);
 	}
 
 ////  Admin  ////
@@ -33,13 +33,13 @@ class MailPress_view_logs
 // for role & capabilities
 	public static function capabilities($capabilities)
 	{
-		$capabilities['MailPress_view_logs'] = array(	'name'	=> __('Logs', 'MailPress'),
+		$capabilities['MailPress_view_logs'] = array(	'name'	=> __('Logs', MP_TXTDOM),
 										'group'	=> 'admin',
 										'menu'	=> 98,
 
 										'parent'	=> false,
-										'page_title'=> __('MailPress View logs', 'MailPress'),
-										'menu_title'=> __('Logs', 'MailPress'),
+										'page_title'=> __('MailPress View logs', MP_TXTDOM),
+										'menu_title'=> __('Logs', MP_TXTDOM),
 										'page'	=> MailPress_page_view_logs,
 										'func'	=> array('MP_AdminPage', 'body')
 									);

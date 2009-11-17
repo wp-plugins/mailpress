@@ -6,7 +6,7 @@ Plugin Name: MailPress_filter_img
 Plugin URI: http://www.mailpress.org
 Description: This is just an addon for MailPress to filter ALL html img tags before mailing them.
 Author: Andre Renaut
-Version: 4.0.1
+Version: 4.0.2
 Author URI: http://www.mailpress.org
 */
 
@@ -15,18 +15,18 @@ class MailPress_filter_img
 	function __construct()
 	{
 // prepare mail
-		add_filter('MailPress_img_mail_keepurl', 		array('MailPress_filter_img', 'img_mail_keepurl'), 8, 1);
-		add_filter('MailPress_img_mail', 			array('MailPress_filter_img', 'img_mail'), 8, 1);
+		add_filter('MailPress_img_mail_keepurl', 		array(__CLASS__, 'img_mail_keepurl'), 8, 1);
+		add_filter('MailPress_img_mail', 			array(__CLASS__, 'img_mail'), 8, 1);
 
 		if (is_admin())
 		{
 		// for link on plugin page
-			add_filter('plugin_action_links', 		array('MailPress_filter_img', 'plugin_action_links'), 10, 2 );
+			add_filter('plugin_action_links', 		array(__CLASS__, 'plugin_action_links'), 10, 2 );
 		// for settings
-			add_filter('MailPress_styles', 		array('MailPress_filter_img', 'styles'), 8, 2);
-			add_action('MailPress_settings_update', 	array('MailPress_filter_img', 'settings_update'));
-			add_action('MailPress_settings_tab', 	array('MailPress_filter_img', 'settings_tab'), 8, 1);
-			add_action('MailPress_settings_div', 	array('MailPress_filter_img', 'settings_div'));
+			add_filter('MailPress_styles', 		array(__CLASS__, 'styles'), 8, 2);
+			add_action('MailPress_settings_update', 	array(__CLASS__, 'settings_update'));
+			add_action('MailPress_settings_tab', 	array(__CLASS__, 'settings_tab'), 8, 1);
+			add_action('MailPress_settings_div', 	array(__CLASS__, 'settings_div'));
 		}
 	}
 
@@ -181,7 +181,7 @@ class MailPress_filter_img
 	public static function settings_tab($tab)
 	{
 		$t = ($tab=='MailPress_filter_img') ? " class='ui-tabs-selected'" : ''; 
-		echo "\t\t\t<li $t><a href='#fragment-MailPress_filter_img'><span class='button-secondary'>" . __('Image filter', 'MailPress') . "</span></a></li>\n";
+		echo "\t\t\t<li $t><a href='#fragment-MailPress_filter_img'><span class='button-secondary'>" . __('Image filter', MP_TXTDOM) . "</span></a></li>\n";
 	}
 
 	public static function settings_div()

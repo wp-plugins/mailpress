@@ -11,11 +11,11 @@ if (!isset($subscriptions['default_newsletters'])) $subscriptions['default_newsl
 <!-- Comments -->
 
 			<tr valign='top'>
-				<th style='padding:0;'><strong><?php _e('Comments','MailPress'); ?></strong></th>
+				<th style='padding:0;'><strong><?php _e('Comments', MP_TXTDOM); ?></strong></th>
 				<td style='padding:0;' colspan='4'></td>
 			</tr>
 			<tr valign='top' class='mp_sep'>
-				<th scope='row'><?php _e('Allow subscriptions to','MailPress'); ?></th>
+				<th scope='row'><?php _e('Allow subscriptions to', MP_TXTDOM); ?></th>
 				<td>
 					<label for='comment_subscription'>
 						<input id='comment_subscription' name='subscriptions[subcomment]' type='checkbox' <?php echo( ($subscriptions['subcomment']==true) ? "checked='checked'" : ''); ?> />
@@ -29,12 +29,12 @@ if (!isset($subscriptions['default_newsletters'])) $subscriptions['default_newsl
 <!-- Newsletters -->
 
 			<tr valign='top'>
-				<th style='padding:0;' ><strong><?php _e('Newsletters','MailPress'); ?></strong></th>
+				<th style='padding:0;' ><strong><?php _e('Newsletters', MP_TXTDOM); ?></strong></th>
 				<td style='padding:0;' colspan='4'></td>
 			</tr>
 			<tr valign='top'>
 				<th scope='row'>
-					<?php _e("Allow subscriptions to",'MailPress'); ?>
+					<?php _e("Allow subscriptions to", MP_TXTDOM); ?>
 				</th>
 				<td colspan='4'></td>
 			</tr>
@@ -55,7 +55,7 @@ if (!isset($subscriptions['default_newsletters'])) $subscriptions['default_newsl
 			$tr = true; 
 			$td = 0;
 			$blog = (isset($mp_registered_newsletter['params']['catname'])) ? '' : '_blog' ;
-			$th =  (isset($mp_registered_newsletter['params']['catname'])) ? "<tr valign='top' $alternate><th scope='row'>" . $mp_registered_newsletter['params']['catname'] . "</th>\n" : "<tr valign='top' class='bkgndc bd1sc'><th scope='row'>" . __("** Blog **",'MailPress') . "</th>\n";
+			$th =  (isset($mp_registered_newsletter['params']['catname'])) ? "<tr valign='top' $alternate><th scope='row'>" . $mp_registered_newsletter['params']['catname'] . "</th>\n" : "<tr valign='top' class='bkgndc bd1sc'><th scope='row'>" . __("** Blog **", MP_TXTDOM) . "</th>\n";
 			echo $th;
 		}
 		if (intval ($j/$item) == $j/$item ) { echo "<td class='field' style=''>\n"; ++$td; }
@@ -71,7 +71,7 @@ if (!isset($subscriptions['default_newsletters'])) $subscriptions['default_newsl
 								<label for='default_newsletter_<?php echo $mp_registered_newsletter['id'].$blog; ?>'>
 									<span id='span_default_newsletter_<?php echo $mp_registered_newsletter['id'].$blog; ?>'<?php echo $default_style; ?>>
 										<input  id='default_newsletter_<?php echo $mp_registered_newsletter['id'].$blog; ?>' name='subscriptions[default_newsletters][<?php echo $mp_registered_newsletter['id']; ?>]' type='checkbox'<?php echo "$default_checked"; ?> />
-										&nbsp;<?php _e('default','MailPress'); ?>
+										&nbsp;<?php _e('default', MP_TXTDOM); ?>
 									</span>
 								</label>
 <?php

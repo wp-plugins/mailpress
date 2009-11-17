@@ -11,7 +11,7 @@ class MP_Forms_field_type_select extends MP_Forms_field_type_abstract
 
 	function __construct()
 	{
-		$this->description = __('Drop-down list', 'MailPress');
+		$this->description = __('Drop-down list', MP_TXTDOM);
 		$this->settings	 = dirname(__FILE__) . '/settings.xml';
 		parent::__construct();
 	}
@@ -31,7 +31,7 @@ class MP_Forms_field_type_select extends MP_Forms_field_type_abstract
 		if ($empty)
 		{
 			$field->submitted['value'] = false;
-			$field->submitted['text']  = __('nothing selected', 'MailPress');
+			$field->submitted['text']  = __('nothing selected', MP_TXTDOM);
 			return $field;
 		}
 
@@ -53,7 +53,7 @@ class MP_Forms_field_type_select extends MP_Forms_field_type_abstract
 	{
 		$options = trim(stripslashes(base64_decode($this->field->settings['attributes']['tag_content'])));
 		$html = stripslashes($this->get_select_options($options, $no_reset));
-		$this->field->settings['attributes']['tag_content'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', 'MailPress') ) . ' -->';
+		$this->field->settings['attributes']['tag_content'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', MP_TXTDOM) ) . ' -->';
 		$this->attributes_filter_css();
 	}
 

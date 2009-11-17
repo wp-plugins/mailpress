@@ -7,7 +7,7 @@ class MP_Tracking_module_m007 extends MP_Tracking_module_abstract
 	function __construct()
 	{
 		$this->type  = basename(dirname(__FILE__));
-		$this->title = __('Opened, Clicks/day','MailPress');
+		$this->title = __('Opened, Clicks/day', MP_TXTDOM);
 		parent::__construct();
 	}
 
@@ -29,8 +29,8 @@ class MP_Tracking_module_m007 extends MP_Tracking_module_abstract
 	<thead>
 		<tr>
 			<th></th>
-			<th><?php _e('Opened', 'MailPress'); ?></th>
-			<th><?php _e('Clicks', 'MailPress'); ?></th>
+			<th><?php _e('Opened', MP_TXTDOM); ?></th>
+			<th><?php _e('Clicks', MP_TXTDOM); ?></th>
 		</tr>
 	</thead>
 	<tbody>

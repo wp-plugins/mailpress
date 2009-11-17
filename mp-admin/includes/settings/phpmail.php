@@ -10,5 +10,5 @@ $connection_phpmail	= $_POST['connection_phpmail'];
 if (!add_option ('MailPress_connection_phpmail', $connection_phpmail, 'MailPress - connection_phpmail config' )) update_option ('MailPress_connection_phpmail', $connection_phpmail);
 if (!add_option ('MailPress_general', $mp_general, 'MailPress - general settings' )) update_option ('MailPress_general', $mp_general);
 
-MP_AdminPage::message(__("'PHP MAIL' settings saved", 'MailPress'));
+MP_AdminPage::message(__("'PHP MAIL' settings saved", MP_TXTDOM));
 ?>

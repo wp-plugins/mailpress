@@ -1,7 +1,7 @@
 <?php /* captcha_gd1 */
 
 $root = dirname(__FILE__) . '/captcha/cfg/';
-$xform_img_style['random'] = __('random choice', 'MailPress');
+$xform_img_style['random'] = __('random choice', MP_TXTDOM);
 if (is_dir($root)) 
 {
 	$dir  = @opendir($root);
@@ -52,14 +52,14 @@ if (is_dir($root))
 			</is>
 		</items>
 		<items>
-			<misc><misc><![CDATA[<?php _e("other attributes except 'name' & 'id'", 'MailPress'); ?>]]></misc></misc>
+			<misc><misc><![CDATA[<?php _e("other attributes except 'name' & 'id'", MP_TXTDOM); ?>]]></misc></misc>
 		</items>
 	</attributes>
 	<controls>
 		<items>
 			<required>
 				<checkbox>
-					<text><![CDATA[<?php _e('Required', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('Required', MP_TXTDOM); ?>]]></text>
 					<value>1</value>
 					<disabled>1</disabled>
 					<class>controls</class>
@@ -71,13 +71,13 @@ if (is_dir($root))
 	<options>
 		<items>
 			<only_text>
-				<only_text><![CDATA[<?php _e('Format in form :', 'MailPress'); ?>]]></only_text>
+				<only_text><![CDATA[<?php _e('Format in form :', MP_TXTDOM); ?>]]></only_text>
 			</only_text>
 		</items>
 		<items>
 			<form_img_style>
 				<select_opt>
-					<text><![CDATA[<?php _e('Style : ', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('Style : ', MP_TXTDOM); ?>]]></text>
 					<values><![CDATA[<?php echo serialize($xform_img_style); ?>]]></values>
 					<default>default</default>
 				</select_opt>
@@ -87,7 +87,7 @@ if (is_dir($root))
 		<items>
 			<incopy>
 				<checkbox>
-					<text><![CDATA[<?php _e('In copy', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('In copy', MP_TXTDOM); ?>]]></text>
 					<value>1</value>
 					<disabled>0</disabled>
 				</checkbox>
@@ -113,9 +113,9 @@ if (is_dir($root))
 <?php endif; ?>
 	</hiddens>
 	<tabs>
-		<attributes><![CDATA[<?php _e('Attributes', 'MailPress'); ?>]]></attributes>
-		<controls><![CDATA[<?php _e('Controls', 'MailPress'); ?>]]></controls>
-		<options><![CDATA[<?php _e('Options', 'MailPress'); ?>]]></options>
-		<captcha><![CDATA[<?php _e('Captcha', 'MailPress'); ?>]]></captcha>
+		<attributes><![CDATA[<?php _e('Attributes', MP_TXTDOM); ?>]]></attributes>
+		<controls><![CDATA[<?php _e('Controls', MP_TXTDOM); ?>]]></controls>
+		<options><![CDATA[<?php _e('Options', MP_TXTDOM); ?>]]></options>
+		<captcha><![CDATA[<?php _e('Captcha', MP_TXTDOM); ?>]]></captcha>
 	</tabs>
 </settings>

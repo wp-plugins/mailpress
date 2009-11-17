@@ -34,14 +34,14 @@
 			</is>
 		</items>
 		<items>
-			<misc><misc><![CDATA[<?php _e("other attributes except 'name' & 'id'", 'MailPress'); ?>]]></misc></misc>
+			<misc><misc><![CDATA[<?php _e("other attributes except 'name' & 'id'", MP_TXTDOM); ?>]]></misc></misc>
 		</items>
 	</attributes>
 	<controls>
 		<items>
 			<required>
 				<checkbox>
-					<text><![CDATA[<?php _e('Required', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('Required', MP_TXTDOM); ?>]]></text>
 					<value>1</value>
 					<disabled>0</disabled>
 					<class>controls</class>
@@ -53,7 +53,7 @@
 		<items>
 			<tag_content>
 				<textarea>
-					<text><![CDATA[<?php _e('Initial value :', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('Initial value :', MP_TXTDOM); ?>]]></text>
 				</textarea>
 			</tag_content>
 		</items>
@@ -61,7 +61,7 @@
 		<items>
 			<incopy>
 				<checkbox>
-					<text><![CDATA[<?php _e('In copy', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('In copy', MP_TXTDOM); ?>]]></text>
 					<value>1</value>
 					<disabled>0</disabled>
 				</checkbox>
@@ -77,8 +77,8 @@
 	</hiddens>
 <?php endif; ?>
 	<tabs>
-		<attributes><![CDATA[<?php _e('Attributes', 'MailPress'); ?>]]></attributes>
-		<controls><![CDATA[<?php _e('Controls', 'MailPress'); ?>]]></controls>
-		<options><![CDATA[<?php _e('Options', 'MailPress'); ?>]]></options>
+		<attributes><![CDATA[<?php _e('Attributes', MP_TXTDOM); ?>]]></attributes>
+		<controls><![CDATA[<?php _e('Controls', MP_TXTDOM); ?>]]></controls>
+		<options><![CDATA[<?php _e('Options', MP_TXTDOM); ?>]]></options>
 	</tabs>
 </settings>

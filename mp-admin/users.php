@@ -11,6 +11,8 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function redirect() 
 	{
+		add_action('MailPress_get_icon_users', 	array(__CLASS__, 'get_icon_users'), 8, 1);
+
 		if (!isset($_GET['delete_users'])) return;		// MANAGING CHECKBOX REQUESTS
 
 		$deleted = $activated = $deactivated = $unbounced = 0;
@@ -66,7 +68,7 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		wp_register_script( 'mp-ajax-response', 	'/' . MP_PATH . 'mp-includes/js/mp_ajax_response.js', array('jquery'), false, 1);
 		wp_localize_script( 'mp-ajax-response', 	'wpAjax', array(
-			'noPerm' => __('Update database failed', 'MailPress'), 
+			'noPerm' => __('Update database failed', MP_TXTDOM), 
 			'broken' => __('An unidentified error has occurred.'), 
 			'l10n_print_after' => 'try{convertEntities(wpAjax);}catch(e){};' 
 		));
@@ -93,8 +95,8 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		$disabled = (!current_user_can('MailPress_delete_users')) ? " disabled='disabled'" : '';
 		$columns = array(	'cb' 		=> "<input type='checkbox'$disabled />", 
-					'title' 	=> __('E-mail', 'MailPress'), 
-					'user_name'	=> __('Name', 'MailPress'), 
+					'title' 	=> __('E-mail', MP_TXTDOM), 
+					'user_name'	=> __('Name', MP_TXTDOM), 
 					'author' 	=> __('Author'), 
 					'date'	=> __('Date'));
 		$columns = apply_filters('MailPress_columns_users', $columns);
@@ -187,20 +189,25 @@ class MP_AdminPage extends MP_Admin_page_list
 		$write_url 		= clean_url(self::url( MailPress_write, array_merge( array('toemail'=>$user->email), $url_parms) ));
 // actions
 		$actions = array();
-		$actions['edit']      = "<a href='$edit_url'  title='" . sprintf( __('Edit "%1$s"', 'MailPress'), $user->email ) . "'>" . __('Edit') . '</a>';
-		$actions['write']     = "<a href='$write_url' title='" . sprintf( __('Write to "%1$s"', 'MailPress'), $user->email ) . "'>" . __('Write', 'MailPress') . '</a>';
-		$actions['approve']   = "<a href='$activate_url' 	class='dim:the-user-list:user-$id:unapproved:e7e7d3:e7e7d3:?mode=" . $url_parms['mode'] . "' title='" . sprintf( __('Activate "%1$s"', 'MailPress'), $user->email ) . "'>" . __( 'Activate', 'MailPress' ) 	 . '</a>';
-		$actions['unapprove'] = "<a href='$deactivate_url' 	class='dim:the-user-list:user-$id:unapproved:e7e7d3:e7e7d3:?mode=" . $url_parms['mode'] . "' title='" . sprintf( __('Deactivate "%1$s"', 'MailPress'), $user->email ) . "'>" . __( 'Deactivate', 'MailPress' ) . '</a>';
+		$actions['edit']      = "<a href='$edit_url'  title='" . sprintf( __('Edit "%1$s"', MP_TXTDOM), $user->email ) . "'>" . __('Edit') . '</a>';
+		$actions['write']     = "<a href='$write_url' title='" . sprintf( __('Write to "%1$s"', MP_TXTDOM), $user->email ) . "'>" . __('Write', MP_TXTDOM) . '</a>';
+		$actions['approve']   = "<a href='$activate_url' 	class='dim:the-user-list:user-$id:unapproved:e7e7d3:e7e7d3:?mode=" . $url_parms['mode'] . "' title='" . sprintf( __('Activate "%1$s"', MP_TXTDOM), $user->email ) . "'>" . __( 'Activate', MP_TXTDOM ) 	 . '</a>';
+		$actions['unapprove'] = "<a href='$deactivate_url' 	class='dim:the-user-list:user-$id:unapproved:e7e7d3:e7e7d3:?mode=" . $url_parms['mode'] . "' title='" . sprintf( __('Deactivate "%1$s"', MP_TXTDOM), $user->email ) . "'>" . __( 'Deactivate', MP_TXTDOM ) . '</a>';
 
 		if ('bounced' == $user->status)
 		{
 			unset($actions['write'], $actions['approve'], $actions['unapprove']);
 			$args['action'] = 'unbounce';
 			$unbounce_url   =	clean_url(self::url( MailPress_user, array_merge($args, $url_parms) ));
-			$actions['unbounce'] = "<a href='$unbounce_url' title='" . sprintf( __('Unbounce "%1$s"', 'MailPress'), $user->email ) . "'>" . __('Unbounce', 'MailPress') . '</a>';
+			$actions['unbounce'] = "<a href='$unbounce_url' title='" . sprintf( __('Unbounce "%1$s"', MP_TXTDOM), $user->email ) . "'>" . __('Unbounce', MP_TXTDOM) . '</a>';
 		}
 
-		$actions['delete']    = "<a href='$delete_url' 		class='delete:the-user-list:user-$id submitdelete' title='" . __('Delete this user', 'MailPress' ) . "'>" . __('Delete', 'MailPress') . '</a>';
+		if ('unsubscribed' == $user->status)
+		{
+			unset($actions['write'], $actions['approve']);
+		}
+
+		$actions['delete']    = "<a href='$delete_url' 		class='delete:the-user-list:user-$id submitdelete' title='" . __('Delete this user', MP_TXTDOM ) . "'>" . __('Delete', MP_TXTDOM) . '</a>';
 
 		if (!current_user_can('MailPress_delete_users')) unset($actions['delete']);
 
@@ -208,12 +215,12 @@ class MP_AdminPage extends MP_Admin_page_list
 		{
 			if ( 'waiting' == $url_parms['status'])
 			{
-				$actions['approve']   = "<a href='$activate_url' class='delete:the-user-list:user-$id:e7e7d3:action=dim-user'   title='" . __( 'Activate this user', 'MailPress' )   . "'>" . __( 'Activate', 'MailPress' ) 	. '</a>';
+				$actions['approve']   = "<a href='$activate_url' class='delete:the-user-list:user-$id:e7e7d3:action=dim-user'   title='" . __( 'Activate this user', MP_TXTDOM )   . "'>" . __( 'Activate', MP_TXTDOM ) 	. '</a>';
 				unset($actions['unapprove']);
 			}
 			if ( 'active' == $url_parms['status'])
 			{
-				$actions['unapprove'] = "<a href='$deactivate_url' class='delete:the-user-list:user-$id:e7e7d3:action=dim-user' title='" . __( 'Deactivate this user', 'MailPress' ) . "'>" . __( 'Deactivate', 'MailPress' ) . '</a>';
+				$actions['unapprove'] = "<a href='$deactivate_url' class='delete:the-user-list:user-$id:e7e7d3:action=dim-user' title='" . __( 'Deactivate this user', MP_TXTDOM ) . "'>" . __( 'Deactivate', MP_TXTDOM ) . '</a>';
 				unset($actions['approve']);
 			}
 		}
@@ -223,6 +230,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		$row_class = '';
 		if ('waiting' == $the_user_status) $row_class = 'unapproved';
 		if ('bounced' == $the_user_status) $row_class = 'bounced';
+		if ('unsubscribed' == $the_user_status) $row_class = 'unsubscribed';
 
 // 	checkbox
 		$disabled = (!current_user_can('MailPress_delete_users')) ? " disabled='disabled'" : '';
@@ -244,6 +252,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 			$style = '';
 			if ('bounced' == $user->status) 		$style .= 'font-style:italic;';
+			if ('unsubscribed' == $user->status) 	$style .= 'font-style:italic;';
 			if ( in_array($column_name, $hidden) )	$style .= 'display:none;';
 			$style = ' style="' . $style . '"';
 
@@ -268,7 +277,7 @@ class MP_AdminPage extends MP_Admin_page_list
 <?php	do_action('MailPress_get_icon_users', $mp_user); ?>
 <?php if (('detail' == $url_parms['mode']) && (get_option('show_avatars'))) echo get_avatar( $user->email, 32 ); else self::flag_IP() ?>
 					<strong>
-						<a class='row-title' href='<?php echo $edit_url; ?>' title='<?php printf( __('Edit "%1$s"', 'MailPress') ,$user->email ); ?>'>
+						<a class='row-title' href='<?php echo $edit_url; ?>' title='<?php printf( __('Edit "%1$s"', MP_TXTDOM) ,$user->email ); ?>'>
 							<?php echo $email_display; ?>
 						</a>
 					</strong>
@@ -300,7 +309,7 @@ class MP_AdminPage extends MP_Admin_page_list
 					$time_diff = time() - $time; 
 
 					if ( $time_diff > 0 && $time_diff < 24*60*60 )	$h_time = sprintf( __('%s ago'), human_time_diff( $time ) );
-					elseif ( $time_diff == 0 )				$h_time = __('now', 'MailPress');
+					elseif ( $time_diff == 0 )				$h_time = __('now', MP_TXTDOM);
 					else								$h_time = mysql2date(__('Y/m/d'), $m_time);
 ?>
 		<td  <?php echo $attributes ?>>
@@ -312,8 +321,8 @@ class MP_AdminPage extends MP_Admin_page_list
 ?>
 		<td  <?php echo $attributes ?>>	
 <?php 				if ($author != 0 && is_numeric($author)) { ?>
-				<a href='<?php echo $author_url; ?>' title='<?php printf( __('Users by "%1$s"', 'MailPress'), $wp_user->display_name); ?>'><?php echo $wp_user->display_name; ?></a>
-<?php 				} else  	_e("(unknown)", 'MailPress'); ?>
+				<a href='<?php echo $author_url; ?>' title='<?php printf( __('Users by "%1$s"', MP_TXTDOM), $wp_user->display_name); ?>'><?php echo $wp_user->display_name; ?></a>
+<?php 				} else  	_e("(unknown)", MP_TXTDOM); ?>
 		</td>
 <?php
 				break;
@@ -364,12 +373,19 @@ class MP_AdminPage extends MP_Admin_page_list
 		return (('ZZ' == $mp_user->created_country) || empty($mp_user->created_country)) ? '' : "<img class='flag' alt='" . strtolower($mp_user->created_country) . "' src='" . get_option('siteurl') . '/' . MP_PATH . 'mp-admin/images/flag/' . strtolower($mp_user->created_country) . ".gif' />\n";
 	}
 
+	public static function get_icon_users($mp_user)
+	{
+		if ('unsubscribed' != $mp_user->status) return;
+?>
+			<img class='unsubscribed' alt="<?php _e('Unsubscribed', MP_TXTDOM); ?>" title="<?php _e('Unsubscribed', MP_TXTDOM); ?>" src='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>/mp-admin/images/unsubscribed.png' />
+<?php
+	}
 //// Body ////
 
 	public static function count() 
 	{
 		global $wpdb;
-		$stats = array('waiting' => 0, 'active' => 0, 'bounced' => 0);
+		$stats = array('waiting' => 0, 'active' => 0, 'bounced' => 0, 'unsubscribed' => 0);
 
 		$query = "SELECT status, COUNT( * ) AS count FROM $wpdb->mp_users GROUP BY status";
 		$counts = $wpdb->get_results( $query );

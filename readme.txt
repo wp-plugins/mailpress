@@ -4,7 +4,7 @@ Donate link: http://www.mailpress.org/wiki
 Tags: mail, mails, comments, comment, subscribe, newsletters, newsletter, Wordpress, Plugin, swiftmailer, post, posts, smtp, sendmail, phpmail, notification, notifications, mail, mails
 Requires at least: 2.8
 Tested up to: 2.8
-Stable tag: 4.0.1
+Stable tag: 4.0.2
 
 The WordPress mailing platform
 
@@ -62,7 +62,27 @@ Thank you
 
 == Changelog ==
 
-** 4.0 ** 17/09/2009
+** 4.0.2 ** 17/11/2009
+
+fixes several bugs :
+
+* bounces : (bug fix) swiftmailer (decorator plugin not working for some configs when using smtp)
+* bounces : (bug fix) MP_Bounce.class.php reviewed (now includes mail header Received to detect bounces)
+
+* themes : (bug fix) MP_Themes.class.php reviewed (replacing global wp variables by mp variables)
+
+* mail : (bug fix) MP_Mail.class.php (not include into mail any img src file not having the following extension (jpg, jpeg, gif, png, bmp, tif))
+
+* install files : (bug fix) replacing some tabs by spaces to comply to dbDelta format.
+
+some changes and/or enhancements :
+
+* write mail : now it is possible to select subscribers to a newsletter as recipients
+* settings : general tab, changing "Manage subscriptions from" radio buttons by a select
+* new user status : unsubscribed + corresponding event in tracking.
+
+* text domain a php constant now (MP_TXTDOM)!
+* using __CLASS__ instead of string whenever possible.
 
 ** 4.0.1 ** 09/10/2009
 
@@ -86,6 +106,8 @@ fixes several bugs since Oct 17, 2009 :
 * mp-admin/mail.php : (bug fix) name of capability changed (previously referring to a tracking one)
 * mp-admin/mails.php : (bug fix) subscriber name now included in search.
 * mp-admin/user.php : (bug fix) wrong html generated in IP info meta box when ip informations not found.
+
+** 4.0 ** 17/09/2009
 
 == Next features ==
 

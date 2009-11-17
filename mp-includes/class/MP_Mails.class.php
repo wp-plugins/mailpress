@@ -231,12 +231,12 @@ class MP_Mails
 
 	public static function autosave_data()
 	{
-		$autosave_data['toemail'] 	= __('To', 'MailPress'); 
-		$autosave_data['toname'] 	= __('Name', 'MailPress'); 
-		$autosave_data['theme']		= __('Theme', 'MailPress');
-		$autosave_data['subject'] 	= __('Subject', 'MailPress'); 
+		$autosave_data['toemail'] 	= __('To', MP_TXTDOM); 
+		$autosave_data['toname'] 	= __('Name', MP_TXTDOM); 
+		$autosave_data['theme']		= __('Theme', MP_TXTDOM);
+		$autosave_data['subject'] 	= __('Subject', MP_TXTDOM); 
 		$autosave_data['html'] 		= __('Html');
-		$autosave_data['plaintext']	= __('Plain Text', 'MailPress');
+		$autosave_data['plaintext']	= __('Plain Text', MP_TXTDOM);
 		return $autosave_data;
 	}
 
@@ -274,9 +274,9 @@ class MP_Mails
 	{
 		if ( !$revision = self::get( $revision ) ) return $revision;
 
-		$datef = _c( 'j F, Y @ G:i|revision date format', 'MailPress');
-		$autosavef = __( '%s [Autosave]' , 'MailPress');
-		$currentf  = __( '%s [Current Revision]' , 'MailPress');
+		$datef = _c( 'j F, Y @ G:i|revision date format', MP_TXTDOM);
+		$autosavef = __( '%s [Autosave]' , MP_TXTDOM);
+		$currentf  = __( '%s [Current Revision]' , MP_TXTDOM);
 
 		$gmt_offset = (int) get_option('gmt_offset');
 		$sign = '+';
@@ -318,7 +318,7 @@ class MP_Mails
 				break;
 		}
 
-		$titlef = _c( '%1$s by %2$s|mail revision 1:datetime, 2:name', 'MailPress');
+		$titlef = _c( '%1$s by %2$s|mail revision 1:datetime, 2:name', MP_TXTDOM);
 
 		$rev_ids[0] = $mail->id;
 		ksort($rev_ids);
@@ -344,7 +344,7 @@ class MP_Mails
 				$class = $class ? '' : " class='alternate'";
 
 				if ( $k != 0)
-					$actions = '<a href="' . wp_nonce_url( add_query_arg( array( 'page' => MailPress_page_revision, 'action' => 'restore', 'id' => $mail->id, 'revision' => $rev_id ) ), "restore-post_$mail->id|$rev_id" ) . '">' . __( 'Restore', 'MailPress' ) . '</a>';
+					$actions = '<a href="' . wp_nonce_url( add_query_arg( array( 'page' => MailPress_page_revision, 'action' => 'restore', 'id' => $mail->id, 'revision' => $rev_id ) ), "restore-post_$mail->id|$rev_id" ) . '">' . __( 'Restore', MP_TXTDOM ) . '</a>';
 				else
 					$actions = '';
 
@@ -369,7 +369,7 @@ class MP_Mails
 <form action='admin.php' method="get">
 	<div class="tablenav">
 		<div class="alignleft actions">
-			<input type="submit" class="button-secondary" value="<?php _e( 'Compare Revisions', 'MailPress' ); ?>" />
+			<input type="submit" class="button-secondary" value="<?php _e( 'Compare Revisions', MP_TXTDOM ); ?>" />
 			<input type="hidden" name="page"   value="<?php echo MailPress_page_mails; ?>" />
 			<input type="hidden" name="file"   value="revision" />
 			<input type="hidden" name="action" value="diff" />
@@ -385,9 +385,9 @@ class MP_Mails
 		<thead>
 			<tr>
 				<th scope="col"></th>
-				<th scope="col"><?php _e( 'Date Created', 'MailPress' ); ?></th>
-				<th scope="col"><?php _e( 'Author' , 'MailPress'); ?></th>
-				<th scope="col" class="action-links"><?php _e( 'Actions', 'MailPress' ); ?></th>
+				<th scope="col"><?php _e( 'Date Created', MP_TXTDOM ); ?></th>
+				<th scope="col"><?php _e( 'Author' , MP_TXTDOM); ?></th>
+				<th scope="col" class="action-links"><?php _e( 'Actions', MP_TXTDOM ); ?></th>
 			</tr>
 		</thead>
 		<tbody>

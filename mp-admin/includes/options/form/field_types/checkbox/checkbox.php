@@ -8,7 +8,7 @@ class MP_Forms_field_type_checkbox extends MP_Forms_field_type_abstract
 
 	function __construct()
 	{
-		$this->description = __('Checkbox', 'MailPress');
+		$this->description = __('Checkbox', MP_TXTDOM);
 		$this->settings	 = dirname(__FILE__) . '/settings.xml';
 		parent::__construct();
 	}
@@ -18,7 +18,7 @@ class MP_Forms_field_type_checkbox extends MP_Forms_field_type_abstract
 		if (!isset($_POST[$this->prefix][$field->form_id][$field->id]))
 		{
 			$field->submitted['value'] = false;
-			$field->submitted['text']  = __('not checked', 'MailPress');
+			$field->submitted['text']  = __('not checked', MP_TXTDOM);
 			return $field;
 		}
 		return parent::submitted($field);

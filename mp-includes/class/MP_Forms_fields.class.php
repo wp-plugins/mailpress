@@ -80,7 +80,7 @@ class MP_Forms_fields
 		if ( trim( $label ) == '' )
 		{
 			if ( ! $wp_error )	return 0;
-			else				return new WP_Error( 'label', __('You did not enter a valid label.', 'MailPress') );
+			else				return new WP_Error( 'label', __('You did not enter a valid label.', MP_TXTDOM) );
 		}
 
 		$type_prefixed 	= MailPress_form::prefix . $_type;
@@ -221,8 +221,8 @@ class MP_Forms_fields
 		$data['type'] 		= 'email';							$format[] = '%s';
 
 		$data['template']		= 'standard';									$format[] = '%s';
-		$data['label'] 		= mysql_real_escape_string(__('Email', 'MailPress'));			$format[] = '%s';
-		$data['description'] 	= mysql_real_escape_string(__('Visitor email', 'MailPress'));	$format[] = '%s';
+		$data['label'] 		= mysql_real_escape_string(__('Email', MP_TXTDOM));			$format[] = '%s';
+		$data['description'] 	= mysql_real_escape_string(__('Visitor email', MP_TXTDOM));	$format[] = '%s';
 		$data['settings'] 	= mysql_real_escape_string(serialize($settings));			$format[] = '%s';
 
 		global $wpdb;
@@ -240,8 +240,8 @@ class MP_Forms_fields
 		$data['type'] 		= 'text';							$format[] = '%s';
 
 		$data['template']		= 'standard';									$format[] = '%s';
-		$data['label'] 		= mysql_real_escape_string(__('Name', 'MailPress'));			$format[] = '%s';
-		$data['description'] 	= mysql_real_escape_string(__('Visitor name', 'MailPress'));	$format[] = '%s';
+		$data['label'] 		= mysql_real_escape_string(__('Name', MP_TXTDOM));			$format[] = '%s';
+		$data['description'] 	= mysql_real_escape_string(__('Visitor name', MP_TXTDOM));	$format[] = '%s';
 		$data['settings'] 	= mysql_real_escape_string(serialize($settings));			$format[] = '%s';
 
 		global $wpdb;
@@ -259,8 +259,8 @@ class MP_Forms_fields
 		$data['type'] 		= 'checkbox';							$format[] = '%s';
 
 		$data['template']		= 'standard';										$format[] = '%s';
-		$data['label'] 		= mysql_real_escape_string(__('Mail sent if checked', 'MailPress'));	$format[] = '%s';
-		$data['description'] 	= mysql_real_escape_string(__('Check to get a copy', 'MailPress'));	$format[] = '%s';
+		$data['label'] 		= mysql_real_escape_string(__('Mail sent if checked', MP_TXTDOM));	$format[] = '%s';
+		$data['description'] 	= mysql_real_escape_string(__('Check to get a copy', MP_TXTDOM));		$format[] = '%s';
 		$data['settings'] 	= mysql_real_escape_string(serialize($settings));				$format[] = '%s';
 
 		global $wpdb;

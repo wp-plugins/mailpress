@@ -43,7 +43,7 @@ class MP_AdminPage extends MP_Admin_page
 	{
 		if (!isset($data[$name])) $data[$name] = array('level' => 123456789, 'lognbr' => 0, 'lastpurge' => '');
 
-		$xlevel = array (		123456789	=> __('No logging', 'MailPress') , 
+		$xlevel = array (		123456789	=> __('No logging', MP_TXTDOM) , 
 							0	=> $optiontext , 
 							1 	=> 'E_ERROR', 
 							2 	=> 'E_WARNING', 
@@ -64,7 +64,7 @@ class MP_AdminPage extends MP_Admin_page
 <tr valign='top' class='mp_sep'>
 	<th scope='row'><strong><?php echo $headertext; ?></strong></th>
 	<td>
-		<?php _e('Logging level : ', 'MailPress'); ?>
+		<?php _e('Logging level : ', MP_TXTDOM); ?>
 		<select name='logs[<?php echo $name ?>][level]'>
 <?php self::select_option($xlevel, $data[$name]['level']);?>
 		</select> 
@@ -75,9 +75,9 @@ class MP_AdminPage extends MP_Admin_page
 		<select name='logs[<?php echo $name ?>][lognbr]'>
 <?php self::select_number(1, 10, $data[$name]['lognbr']);?>
 		</select>
-		<i><?php _e('(one log file per day)', 'MailPress'); ?></i>
+		<i><?php _e('(one log file per day)', MP_TXTDOM); ?></i>
 		&nbsp;&nbsp;&nbsp;&nbsp;
-		<?php _e('Date of last purge', 'MailPress'); ?>
+		<?php _e('Date of last purge', MP_TXTDOM); ?>
 		<input type='text' size='9' value='<?php echo $data[$name]['lastpurge']; ?>' disabled='disabled' />
 		<input type='hidden' name='logs[<?php echo $name ?>][lastpurge]' value='<?php echo $data[$name]['lastpurge']; ?>' />
 	</td>

@@ -1,7 +1,7 @@
 <?php
 global $user_ID;
 
-$fields = array('toemail' => __('Email: ', 'MailPress'), 'newsletter' => __('Newsletter: ', 'MailPress'), 'theme' => __('Theme: ', 'MailPress') );
+$fields = array('toemail' => __('Email: ', MP_TXTDOM), 'newsletter' => __('Newsletter: ', MP_TXTDOM), 'theme' => __('Theme: ', MP_TXTDOM) );
 
 $umeta = get_usermeta($user_ID, '_MailPress_post_' . $post->ID);
 $test	= get_option('MailPress_test');
@@ -14,7 +14,7 @@ self::require_class('Themes');
 $th = new MP_Themes();
 $themes = $th->themes;
 	
-$xthemes = array('' => '<i>' . __('current', 'MailPress') . '</i>');
+$xthemes = array('' => '<i>' . __('current', MP_TXTDOM) . '</i>');
 foreach ($themes as $theme) $xthemes[$theme['Template']] = $theme['Template'];
 unset($xthemes['plaintext']);
 
@@ -38,12 +38,12 @@ else
 		<div style='padding:6px;text-align:right;'>
 			<div style='position:relative;'>
 				<div style='float:left'>
-					<div id='MailPress_post_test_loading' style='position:absolute;opacity:0;filter:alpha(opacity=0);'><img src='images/wpspin_light.gif' style='padding-right:5px;' /><?php _e('Sending ...', 'MailPress'); ?></div>
+					<div id='MailPress_post_test_loading' style='position:absolute;opacity:0;filter:alpha(opacity=0);'><img src='images/wpspin_light.gif' style='padding-right:5px;' /><?php _e('Sending ...', MP_TXTDOM); ?></div>
 					<div id='MailPress_post_test_ajax'    style='position:relative;absolute;'><br /></div>
 				</div>
 			</div>
 			<div>
-				<a style='min-width:80px;text-align:center;' class='mp_meta_box_post button' href='#mp_send'><?php _e('Test', 'MailPress'); ?></a>
+				<a style='min-width:80px;text-align:center;' class='mp_meta_box_post button' href='#mp_send'><?php _e('Test', MP_TXTDOM); ?></a>
 			</div>
 			<div class="clear"></div>
 		</div>

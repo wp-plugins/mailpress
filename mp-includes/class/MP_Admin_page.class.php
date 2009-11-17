@@ -41,8 +41,8 @@ class MP_Admin_page extends MP_abstract
 
 	public static function screen_meta() 
 	{
-		$help	= sprintf(__('<a href="%1$s" target="_blank">Documentation</a>', 'MailPress'), (MP_AdminPage::help_url) ? MP_AdminPage::help_url : MailPress_help_url );
-		$help	.= '<br />' . sprintf(__('<a href="%1$s" target="_blank">Support Forum</a>', 'MailPress'), 'http://groups.google.com/group/mailpress');
+		$help	= sprintf(__('<a href="%1$s" target="_blank">Documentation</a>', MP_TXTDOM), (MP_AdminPage::help_url) ? MP_AdminPage::help_url : MailPress_help_url );
+		$help	.= '<br />' . sprintf(__('<a href="%1$s" target="_blank">Support Forum</a>', MP_TXTDOM), 'http://groups.google.com/group/mailpress');
 		add_contextual_help(MP_AdminPage::screen, $help);
 	}
 

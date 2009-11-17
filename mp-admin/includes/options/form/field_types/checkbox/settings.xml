@@ -32,7 +32,7 @@
 			</is>
 		</items>
 		<items>
-			<misc><misc><![CDATA[<?php _e("other attributes except 'name' & 'id'", 'MailPress'); ?>]]></misc></misc>
+			<misc><misc><![CDATA[<?php _e("other attributes except 'name' & 'id'", MP_TXTDOM); ?>]]></misc></misc>
 		</items>
 	</attributes>
 <?php if ($this->field->form_incopy) : ?>
@@ -40,7 +40,7 @@
 		<items>
 			<incopy>
 				<checkbox>
-					<text><![CDATA[<?php _e('In copy', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('In copy', MP_TXTDOM); ?>]]></text>
 					<value>1</value>
 					<disabled>0</disabled>
 				</checkbox>
@@ -57,9 +57,9 @@
 	</hiddens>
 <?php endif; ?>
 	<tabs>
-		<attributes><![CDATA[<?php _e('Attributes', 'MailPress'); ?>]]></attributes>
+		<attributes><![CDATA[<?php _e('Attributes', MP_TXTDOM); ?>]]></attributes>
 <?php if ($this->field->form_incopy) : ?>
-		<options><![CDATA[<?php _e('Options', 'MailPress'); ?>]]></options>
+		<options><![CDATA[<?php _e('Options', MP_TXTDOM); ?>]]></options>
 <?php endif; ?>
 	</tabs>
 </settings>

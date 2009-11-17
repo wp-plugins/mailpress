@@ -14,5 +14,5 @@ foreach($wp_roles->role_names as $role => $name)
 }
 if (!add_option ('MailPress_general', $mp_general, 'MailPress - general settings' )) update_option ('MailPress_general', $mp_general);
 
-MP_AdminPage::message(__("'Roles and capabilities' settings saved", 'MailPress'));
+MP_AdminPage::message(__("'Roles and capabilities' settings saved", MP_TXTDOM));
 ?>

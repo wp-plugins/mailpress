@@ -6,7 +6,7 @@ Plugin Name: MailPress_mailinglist
 Plugin URI: http://www.mailpress.org
 Description: This is just an addon for MailPress to manage mailing lists
 Author: Andre Renaut
-Version: 4.0.1
+Version: 4.0.2
 Author URI: http://www.mailpress.org
 */
 
@@ -17,22 +17,22 @@ class MailPress_mailinglist
 	function __construct()
 	{
 // for taxonomy
-		register_taxonomy(self::taxonomy, 'MailPress_user', array('hierarchical' => true , 'update_count_callback' => array('MailPress_mailinglist', 'update_count_callback')));
+		register_taxonomy(self::taxonomy, 'MailPress_user', array('hierarchical' => true , 'update_count_callback' => array(__CLASS__, 'update_count_callback')));
 
 // for sending mails
-		add_filter('MailPress_mailinglists', 	array('MailPress_mailinglist', 'mailinglists'), 8, 1);
-		add_filter('MailPress_query_mailinglist', array('MailPress_mailinglist', 'query_mailinglist'), 8, 2);
+		add_filter('MailPress_mailinglists', 	array(__CLASS__, 'mailinglists'), 8, 1);
+		add_filter('MailPress_query_mailinglist', array(__CLASS__, 'query_mailinglist'), 8, 2);
 // for shortcode
-		add_filter('MailPress_form_defaults', 	array('MailPress_mailinglist', 'form_defaults'), 8, 1);
-		add_filter('MailPress_form_options', 	array('MailPress_mailinglist', 'form_options'), 8, 1);
-		add_filter('MailPress_form_submit', 	array('MailPress_mailinglist', 'form_submit'), 8, 2);
-		add_action('MailPress_form', 		  	array('MailPress_mailinglist', 'form'), 1, 2); 
+		add_filter('MailPress_form_defaults', 	array(__CLASS__, 'form_defaults'), 8, 1);
+		add_filter('MailPress_form_options', 	array(__CLASS__, 'form_options'), 8, 1);
+		add_filter('MailPress_form_submit', 	array(__CLASS__, 'form_submit'), 8, 2);
+		add_action('MailPress_form', 		  	array(__CLASS__, 'form'), 1, 2); 
 // register form && registering user
-		add_action('MailPress_register_form', 	array('MailPress_mailinglist', 'register_form'), 1); 
-		add_action('user_register', 			array('MailPress_mailinglist', 'register'), 10, 1);
+		add_action('MailPress_register_form', 	array(__CLASS__, 'register_form'), 1); 
+		add_action('user_register', 			array(__CLASS__, 'register'), 10, 1);
 // for mp_user in mailinglists
-		add_action('MailPress_insert_user', 	array('MailPress_mailinglist', 'set_user_mailinglists'), 1, 1);
-		add_action('MailPress_delete_user', 	array('MailPress_mailinglist', 'delete_user'), 1, 1);
+		add_action('MailPress_insert_user', 	array(__CLASS__, 'set_user_mailinglists'), 1, 1);
+		add_action('MailPress_delete_user', 	array(__CLASS__, 'delete_user'), 1, 1);
 
 // for admin plugin pages
 		define ('MailPress_page_mailinglists', 	'mailpress_mailinglists');
@@ -40,39 +40,39 @@ class MailPress_mailinglist
 		$file = 'admin.php';
 		define ('MailPress_mailinglists', $file . '?page=' . MailPress_page_mailinglists);
 // for ajax
-		add_action('mp_action_add_mlnglst', 		array('MailPress_mailinglist', 'mp_action_add_mlnglst'));
-		add_action('mp_action_delete_mlnglst', 		array('MailPress_mailinglist', 'mp_action_delete_mlnglst'));
-		add_action('mp_action_add_mailinglist', 		array('MailPress_mailinglist', 'mp_action_add_mailinglist'));
+		add_action('mp_action_add_mlnglst', 		array(__CLASS__, 'mp_action_add_mlnglst'));
+		add_action('mp_action_delete_mlnglst', 		array(__CLASS__, 'mp_action_delete_mlnglst'));
+		add_action('mp_action_add_mailinglist', 		array(__CLASS__, 'mp_action_add_mailinglist'));
 
 // for wp admin
 		if (is_admin())
 		{
 		// for plugin
-			add_action('activate_' . MP_FOLDER . '/MailPress_mailinglist.php', 	array('MailPress_mailinglist', 'install'));
+			add_action('activate_' . MP_FOLDER . '/MailPress_mailinglist.php', 	array(__CLASS__, 'install'));
 
 		// for link on plugin page
-			add_filter('plugin_action_links', 			array('MailPress_mailinglist', 'plugin_action_links'), 10, 2 );
+			add_filter('plugin_action_links', 			array(__CLASS__, 'plugin_action_links'), 10, 2 );
 		// for role & capabilities
-			add_filter('MailPress_capabilities', 		array('MailPress_mailinglist', 'capabilities'), 1, 1);
+			add_filter('MailPress_capabilities', 		array(__CLASS__, 'capabilities'), 1, 1);
 		// for settings general
-			add_action('MailPress_settings_general', 		array('MailPress_mailinglist', 'settings_general'));
+			add_action('MailPress_settings_general', 		array(__CLASS__, 'settings_general'));
 		// for settings subscriptions
-			add_action('MailPress_settings_subscriptions', 	array('MailPress_mailinglist', 'settings_subscriptions'));
+			add_action('MailPress_settings_subscriptions', 	array(__CLASS__, 'settings_subscriptions'));
 
 		// for load admin page
-			add_action('MailPress_load_admin_page', 		array('MailPress_mailinglist', 'load_admin_page'), 10, 1);
-
-		// for mp_users list
-			add_action('MailPress_restrict_users', 		array('MailPress_mailinglist', 'restrict_users'), 1, 1);
-			add_filter('MailPress_columns_users', 		array('MailPress_mailinglist', 'columns_users'), 1, 1);
-			add_action('MailPress_get_row_users', 		array('MailPress_mailinglist', 'get_row_users'), 1, 3);
+			add_action('MailPress_load_admin_page', 		array(__CLASS__, 'load_admin_page'), 10, 1);
 
 		// for meta box in user page
-			add_action('MailPress_redirect', 			array('MailPress_mailinglist', 'redirect'), 8, 1);
-			add_filter('MailPress_styles', 			array('MailPress_mailinglist', 'styles'), 8, 2);
-			add_filter('MailPress_scripts', 			array('MailPress_mailinglist', 'scripts'), 8, 2);
-			add_action('MailPress_add_meta_boxes_user', 	array('MailPress_mailinglist', 'meta_boxes_user'), 8, 2);
+			add_action('MailPress_redirect', 			array(__CLASS__, 'redirect'), 8, 1);
+			add_filter('MailPress_styles', 			array(__CLASS__, 'styles'), 8, 2);
+			add_filter('MailPress_scripts', 			array(__CLASS__, 'scripts'), 8, 2);
+			add_action('MailPress_add_meta_boxes_user', 	array(__CLASS__, 'meta_boxes_user'), 8, 2);
 		}
+
+		// for mp_users list
+		add_action('MailPress_restrict_users', 		array(__CLASS__, 'restrict_users'), 1, 1);
+		add_filter('MailPress_columns_users', 		array(__CLASS__, 'columns_users'), 1, 1);
+		add_action('MailPress_get_row_users', 		array(__CLASS__, 'get_row_users'), 1, 3);
 	}
 
 //// Taxonomy ////
@@ -137,11 +137,11 @@ class MailPress_mailinglist
 		$mp_user_mls = MP_Mailinglists::get_object_terms($mp_user_id);
 
 		if (in_array($mailinglist_ID, $mp_user_mls))
-			return $shortcode_message . __('<br />already in Mailing list!', 'MailPress');
+			return $shortcode_message . __('<br />already in Mailing list!', MP_TXTDOM);
 
 		array_push($mp_user_mls, $mailinglist_ID);
 		MP_Mailinglists::set_object_terms( $mp_user_id, $mp_user_mls);
-		return $shortcode_message . __('<br />Mailing list added', 'MailPress');
+		return $shortcode_message . __('<br />Mailing list added', MP_TXTDOM);
 	}
 
 	public static function form($email, $options)  
@@ -162,7 +162,7 @@ class MailPress_mailinglist
 	<br />
 	<p>
 		<label>
-			<?php _e('Mailing lists', 'MailPress'); ?>
+			<?php _e('Mailing lists', MP_TXTDOM); ?>
 			<br />
 			<span style='color:#777;font-weight:normal;'>
 				<?php echo $checklist_mailinglists; ?>
@@ -319,8 +319,8 @@ class MailPress_mailinglist
 		if (!get_option('MailPress_default_mailinglist'))
 		{
 	// Default mailing list
-			$name = $wpdb->escape(__('Uncategorized', 'MailPress'));
-			$slug = sanitize_title(sanitize_term_field('slug', _c('Uncategorized', 'MailPress'), 0, self::taxonomy, 'db'));
+			$name = $wpdb->escape(__('Uncategorized', MP_TXTDOM));
+			$slug = sanitize_title(sanitize_term_field('slug', _c('Uncategorized', MP_TXTDOM), 0, self::taxonomy, 'db'));
 			$wpdb->query("INSERT INTO $wpdb->terms (name, slug, term_group) VALUES ('$name', '$slug', '0')");
 			$term_id = $wpdb->get_var("SELECT term_id FROM $wpdb->terms WHERE slug = '$slug' ");
 			$wpdb->query("INSERT INTO $wpdb->term_taxonomy (term_id, taxonomy, description, parent, count) VALUES ($term_id, '" . self::taxonomy . "', '', '0', '0')");
@@ -347,13 +347,13 @@ class MailPress_mailinglist
 // for role & capabilities
 	public static function capabilities($capabilities) 
 	{
-		$capabilities['MailPress_manage_mailinglists'] = array(	'name'  => __('Mailing lists', 'MailPress'), 
+		$capabilities['MailPress_manage_mailinglists'] = array(	'name'  => __('Mailing lists', MP_TXTDOM), 
 											'group' => 'users', 
 											'menu'  => 35, 
 
 											'parent'		=> false, 
-											'page_title'	=> __('MailPress Mailing lists', 'MailPress'), 
-											'menu_title'   	=> __('Mailing lists', 'MailPress'), 
+											'page_title'	=> __('MailPress Mailing lists', MP_TXTDOM), 
+											'menu_title'   	=> __('Mailing lists', MP_TXTDOM), 
 											'page'  		=> MailPress_page_mailinglists, 
 											'func'  		=> array('MP_AdminPage', 'body')
 										);
@@ -369,13 +369,13 @@ class MailPress_mailinglist
 ?>
 <tr><th></th><td></td></tr>
 <tr valign='top' class="mp_sep">
-	<th style='padding:0;'><strong><?php _e('Mailing lists', 'MailPress'); ?></strong></th>
+	<th style='padding:0;'><strong><?php _e('Mailing lists', MP_TXTDOM); ?></strong></th>
 	<td class='field'>
 		<input type='hidden' name='default_mailinglist_on' value='on' />
 <?php
 		$dropdown_options = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'selected' => $default_mailinglist, 'name' => 'default_mailinglist' );
 		MP_Mailinglists::dropdown($dropdown_options);
-?>&nbsp;<?php _e('Default Mailing list', 'MailPress'); ?>
+?>&nbsp;<?php _e('Default Mailing list', MP_TXTDOM); ?>
 	</td>
 </tr>
 <?php
@@ -388,11 +388,11 @@ class MailPress_mailinglist
 ?>
 <tr><th></th><td colspan='4'></td></tr>
 <tr valign='top'>
-	<th style='padding:0;'><strong><?php _e('Mailing lists', 'MailPress'); ?></strong></th>
+	<th style='padding:0;'><strong><?php _e('Mailing lists', MP_TXTDOM); ?></strong></th>
 	<td style='padding:0;' colspan='4'></td>
 </tr>
 <tr valign='top' class="rc_role">
-	<th scope='row'><?php _e('Allow subscriptions to', 'MailPress'); ?></th>
+	<th scope='row'><?php _e('Allow subscriptions to', MP_TXTDOM); ?></th>
 	<td colspan='4'>
 		<table id='mailinglists' class='general'>
 			<tr>
@@ -406,7 +406,7 @@ class MailPress_mailinglist
 
 		if (empty($mailinglists))
         {
-				_e('You need to create at least one mailinglist.', 'MailPress');
+				_e('You need to create at least one mailinglist.', MP_TXTDOM);
         }
 		else
         {
@@ -459,7 +459,7 @@ class MailPress_mailinglist
 		if ( '' === trim($_POST['name']) ) 
 		{
 			$x = new WP_Ajax_Response( array(	'what' => 'mailinglist', 
-									'id' => new WP_Error( 'mailinglist_name', __('You did not enter a valid mailing list name.', 'MailPress') )
+									'id' => new WP_Error( 'mailinglist_name', __('You did not enter a valid mailing list name.', MP_TXTDOM) )
 								   ) );
 			$x->send();
 		}
@@ -468,7 +468,7 @@ class MailPress_mailinglist
 		if ( MP_Mailinglists::exists( trim( $_POST['name'] ) ) ) 
 		{
 			$x = new WP_Ajax_Response( array(	'what' => 'mailinglist', 
-									'id' => new WP_Error( __CLASS__ . '::exists', __('The mailing list you are trying to create already exists.', 'MailPress'), array( 'form-field' => 'name' ) ), 
+									'id' => new WP_Error( __CLASS__ . '::exists', __('The mailing list you are trying to create already exists.', MP_TXTDOM), array( 'form-field' => 'name' ) ), 
 								  ) );
 			$x->send();
 		}
@@ -500,7 +500,7 @@ class MailPress_mailinglist
 		$x = new WP_Ajax_Response( array(	'what' => 'mailinglist', 
 								'id' => $mailinglist->term_id, 
 								'data' => MP_AdminPage::get_row( $mailinglist, array(), $level, $mailinglist_full_name ), 
-								'supplemental' => array('name' => $mailinglist_full_name, 'show-link' => sprintf(__( 'Mailing list <a href="#%s">%s</a> added' , 'MailPress'), "mailinglist-$mailinglist->term_id", $mailinglist_full_name))
+								'supplemental' => array('name' => $mailinglist_full_name, 'show-link' => sprintf(__( 'Mailing list <a href="#%s">%s</a> added' , MP_TXTDOM), "mailinglist-$mailinglist->term_id", $mailinglist_full_name))
 							  ) );
 		$x->send();
 		break;
@@ -556,15 +556,15 @@ class MailPress_mailinglist
 	{
 		MailPress::require_class('Mailinglists');
 		$x = (isset($url_parms['mailinglist'])) ? $url_parms['mailinglist'] : '';
-		$dropdown_options = array('show_option_all' => __('View all mailing lists', 'MailPress'), 'hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'selected' => $x );
+		$dropdown_options = array('show_option_all' => __('View all mailing lists', MP_TXTDOM), 'hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'selected' => $x );
 		MP_Mailinglists::dropdown($dropdown_options);
-		echo "<input type='submit' id='mailinglistsub' value=\"" . __('Filter', 'MailPress') . "\" class='button-secondary' />";
+		echo "<input type='submit' id='mailinglistsub' value=\"" . __('Filter', MP_TXTDOM) . "\" class='button-secondary' />";
 	}
 
 	public static function columns_users($x)
 	{
 		$date = array_pop($x);
-		$x['mailinglists']=  __('Mailing lists','MailPress');
+		$x['mailinglists']=  __('Mailing lists', MP_TXTDOM);
 		$x['date']		= $date;
 		return $x;
 	}
@@ -587,7 +587,7 @@ class MailPress_mailinglist
 		}
 		else
 		{
-			_e('Uncategorized ', 'MailPress');
+			_e('Uncategorized ', MP_TXTDOM);
 		}
 	}
 
@@ -629,7 +629,7 @@ class MailPress_mailinglist
 	public static function meta_boxes_user($mp_user_id, $screen)
 	{
 		if (current_user_can('MailPress_manage_mailinglists'))
-			add_meta_box('mailinglistdiv', __('Mailing lists', 'MailPress'), array('MailPress_mailinglist', 'meta_box'), $screen, 'side', 'core');
+			add_meta_box('mailinglistdiv', __('Mailing lists', MP_TXTDOM), array(__CLASS__, 'meta_box'), $screen, 'side', 'core');
 	}
 
 	public static function meta_box($mp_user)
@@ -639,12 +639,12 @@ class MailPress_mailinglist
 <ul id="mailinglist-tabs">
 	<li class="tabs">
 		<a href="#mailinglists-all" tabindex="3">
-			<?php _e( 'All Mailing lists', 'MailPress'  ); ?>
+			<?php _e( 'All Mailing lists', MP_TXTDOM  ); ?>
 		</a>
 	</li>
 	<li class="hide-if-no-js">
 		<a href="#mailinglists-pop" tabindex="3">
-			<?php _e( 'Most Used' , 'MailPress' ); ?>
+			<?php _e( 'Most Used' , MP_TXTDOM ); ?>
 		</a>
 	</li>
 </ul>
@@ -662,19 +662,19 @@ class MailPress_mailinglist
 <div id="mailinglist-adder" class="wp-hidden-children">
 	<h4>
 		<a id="mailinglist-add-toggle" href="#mailinglist-add" class="hide-if-no-js" tabindex="3">
-			<?php _e( '+ Add New mailing list' , 'MailPress'); ?>
+			<?php _e( '+ Add New mailing list' , MP_TXTDOM); ?>
 		</a>
 	</h4>
 	<p id="mailinglist-add" class="wp-hidden-child">
 		<label class="screen-reader-text" for="newcat">
 			<?php _e( 'Add New mailinglist' ); ?>
 		</label>
-		<input type="text" name="newmailinglist" id="newmailinglist" class="form-required form-input-tip" value="<?php esc_attr_e( 'New mailing list', 'MailPress' ); ?>" tabindex="3" aria-required="true"/>
+		<input type="text" name="newmailinglist" id="newmailinglist" class="form-required form-input-tip" value="<?php esc_attr_e( 'New mailing list', MP_TXTDOM ); ?>" tabindex="3" aria-required="true"/>
 		<label class="screen-reader-text" for="newmailinglist_parent">
-			<?php _e('Parent Mailing list', 'MailPress'); ?> :
+			<?php _e('Parent Mailing list', MP_TXTDOM); ?> :
 		</label>
-		<?php MP_Mailinglists::dropdown( array( 'hide_empty' => 0, 'name' => 'newmailinglist_parent', 'orderby' => 'name', 'hierarchical' => 1, 'show_option_none' => __('Parent Mailing list', 'MailPress'), 'tab_index' => 3 ) ); ?>
-		<input type="button" id="mailinglist-add-submit" class="add:mailinglistchecklist:mailinglist-add button" value="<?php esc_attr_e( 'Add', 'MailPress'  ); ?>" tabindex="3" />
+		<?php MP_Mailinglists::dropdown( array( 'hide_empty' => 0, 'name' => 'newmailinglist_parent', 'orderby' => 'name', 'hierarchical' => 1, 'show_option_none' => __('Parent Mailing list', MP_TXTDOM), 'tab_index' => 3 ) ); ?>
+		<input type="button" id="mailinglist-add-submit" class="add:mailinglistchecklist:mailinglist-add button" value="<?php esc_attr_e( 'Add', MP_TXTDOM  ); ?>" tabindex="3" />
 <?php	wp_nonce_field( 'add-mailinglist', '_ajax_nonce', false ); ?>
 		<span id="mailinglist-ajax-response"></span>
 	</p>

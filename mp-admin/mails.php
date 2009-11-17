@@ -57,7 +57,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 		wp_register_script( 'mp-ajax-response', 	'/' . MP_PATH . 'mp-includes/js/mp_ajax_response.js', array('jquery'), false, 1);
 		wp_localize_script( 'mp-ajax-response', 		'wpAjax', array( 
-			'noPerm' => __('Email was not sent AND/OR Update database failed', 'MailPress'), 
+			'noPerm' => __('Email was not sent AND/OR Update database failed', MP_TXTDOM), 
 			'broken' => __('An unidentified error has occurred.'), 
 			'l10n_print_after' => 'try{convertEntities(wpAjax);}catch(e){};' 
 		));
@@ -86,10 +86,10 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		$disabled = (!current_user_can('MailPress_delete_mails') && !current_user_can('MailPress_send_mails')) ? " disabled='disabled'" : '';
 		$columns = array(	'cb' 		=> "<input type='checkbox'$disabled />", 
-					'title' 	=> __('Subject', 'MailPress'), 
+					'title' 	=> __('Subject', MP_TXTDOM), 
 					'author' 	=> __('Author'), 
-					'theme' 	=> __('Theme', 'MailPress'), 
-					'to' 		=> __('To', 'MailPress'), 
+					'theme' 	=> __('Theme', MP_TXTDOM), 
+					'to' 		=> __('To', MP_TXTDOM), 
 					'date'	=> __('Date') );
 		$columns = apply_filters('MailPress_columns_mails', $columns);
 		return $columns;
@@ -163,10 +163,10 @@ class MP_AdminPage extends MP_Admin_page_list
 // actions
 		$actions = array();
 		$actions['edit']	= "<a href='$edit_url'   	title='" .  __('Edit') . "'>" . __('Edit') . '</a>';
-		$actions['send'] 	= "<a href='$send_url' 		class='dim:the-mail-list:mail-$id:unapproved:e7e7d3:e7e7d3:?mode=" . $url_parms['mode'] . "' title='" . __('Send this mail', 'MailPress' ) . "'>" . __( 'Send', 'MailPress' ) . '</a>';
-		if (apply_filters('MailPress_is_tracking', false)) $actions['tracking'] = "<a href='$tracking_url' title='" . __('See tracking results', 'MailPress' ) . "'>" 									. __('Tracking', 'MailPress') . '</a>';
-		$actions['delete']= "<a href='$delete_url' 	class='delete:the-mail-list:mail-$id submitdelete' title='" . __('Delete this mail', 'MailPress' ) . "'>" 	. __('Delete', 'MailPress') . '</a>';
-		$actions['view'] 	= "<a href='$view_url' 		class='thickbox'  title='" . __('View', 'MailPress' ) . "'>"								. __('View', 'MailPress') . '</a>';
+		$actions['send'] 	= "<a href='$send_url' 		class='dim:the-mail-list:mail-$id:unapproved:e7e7d3:e7e7d3:?mode=" . $url_parms['mode'] . "' title='" . __('Send this mail', MP_TXTDOM ) . "'>" . __( 'Send', MP_TXTDOM ) . '</a>';
+		if (apply_filters('MailPress_is_tracking', false)) $actions['tracking'] = "<a href='$tracking_url' title='" . __('See tracking results', MP_TXTDOM ) . "'>" 									. __('Tracking', MP_TXTDOM) . '</a>';
+		$actions['delete']= "<a href='$delete_url' 	class='delete:the-mail-list:mail-$id submitdelete' title='" . __('Delete this mail', MP_TXTDOM ) . "'>" 	. __('Delete', MP_TXTDOM) . '</a>';
+		$actions['view'] 	= "<a href='$view_url' 		class='thickbox'  title='" . __('View', MP_TXTDOM ) . "'>"								. __('View', MP_TXTDOM) . '</a>';
 
 		if (!current_user_can('MailPress_send_mails')) 		unset($actions['send']);
 		if (!current_user_can('MailPress_delete_mails')) 	unset($actions['delete']);
@@ -199,7 +199,7 @@ class MP_AdminPage extends MP_Admin_page_list
 				$mail_url = clean_url( $mail_url . '&s=' . $mail->toemail );
 
 				$email_display = '';
-				$mail_url2 	    = "<a class='row-title' href='$mail_url'  title='" . sprintf( __('Search "%1$s"', 'MailPress'), $mail->toemail) . "'>";
+				$mail_url2 	    = "<a class='row-title' href='$mail_url'  title='" . sprintf( __('Search "%1$s"', MP_TXTDOM), $mail->toemail) . "'>";
 				if ( ('detail' == $url_parms['mode']) && (get_option('show_avatars') ) )
 				{
 					$email_display .= "<div style='float:left;'>";
@@ -227,7 +227,7 @@ class MP_AdminPage extends MP_Admin_page_list
 				$email_display = "<div class='num post-com-count-wrapper'><a class='post-com-count'><span class='comment-count'>" . count(unserialize($mail->toemail)) . "</span></a></div>"; 
 			break;
 			default  :
-				$email_display = "<span style='color:red;font-weight:bold;'>" . __('(unknown)', 'MailPress') . '</span>';
+				$email_display = "<span style='color:red;font-weight:bold;'>" . __('(unknown)', MP_TXTDOM) . '</span>';
 				unset($actions['send']);
 			break;
 		}
@@ -309,14 +309,14 @@ class MP_AdminPage extends MP_Admin_page_list
 <?php
 			if ($attach) :
 ?>
-			<img class='attach' alt="<?php _e('Attachements', 'MailPress'); ?>" title="<?php _e('Attachements', 'MailPress'); ?>"  src='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>/mp-admin/images/clip.gif' />
+			<img class='attach' alt="<?php _e('Attachements', MP_TXTDOM); ?>" title="<?php _e('Attachements', MP_TXTDOM); ?>"  src='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>/mp-admin/images/clip.gif' />
 <?php
 			endif;
 			do_action('MailPress_get_icon_mails', $id);
 ?>
 			<strong>
-				<a class='row-title<?php echo ('draft' == $mail->status) ? '' : ' thickbox'; ?>' href='<?php echo ('draft' == $mail->status) ? $edit_url : $view_url; ?>' title='<?php printf( ('draft' == $mail->status) ?  __('Edit "%1$s"', 'MailPress') : __('View "%1$s"', 'MailPress') , ( '' == $subject_display) ? __('(no subject)', 'MailPress') : htmlspecialchars($subject_display, ENT_QUOTES) ); ?>'>
-					<?php echo ( '' == $subject_display) ? __('(no subject)', 'MailPress') : (( strlen($subject_display) > 40 ) ? $subject_display = substr($subject_display, 0, 39) . '...' : $subject_display); ?>
+				<a class='row-title<?php echo ('draft' == $mail->status) ? '' : ' thickbox'; ?>' href='<?php echo ('draft' == $mail->status) ? $edit_url : $view_url; ?>' title='<?php printf( ('draft' == $mail->status) ?  __('Edit "%1$s"', MP_TXTDOM) : __('View "%1$s"', MP_TXTDOM) , ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : htmlspecialchars($subject_display, ENT_QUOTES) ); ?>'>
+					<?php echo ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : (( strlen($subject_display) > 40 ) ? $subject_display = substr($subject_display, 0, 39) . '...' : $subject_display); ?>
 				</a>
 <?php if ('draft' == $mail->status) echo ' - ' . __('Draft'); ?>
 			</strong>
@@ -328,8 +328,8 @@ class MP_AdminPage extends MP_Admin_page_list
 ?>
 		<td  <?php echo $attributes ?>>
 <?php					if ($author != 0 && is_numeric($author)) { ?>
-			<a href='<?php echo $author_url; ?>' title='<?php printf( __('Mails by "%1$s"', 'MailPress'), $wp_user->display_name); ?>'><?php echo $wp_user->display_name; ?></a>
-<?php 				} else _e("(unknown)", 'MailPress'); ?>
+			<a href='<?php echo $author_url; ?>' title='<?php printf( __('Mails by "%1$s"', MP_TXTDOM), $wp_user->display_name); ?>'><?php echo $wp_user->display_name; ?></a>
+<?php 				} else _e("(unknown)", MP_TXTDOM); ?>
 		</td>
 <?php
 				break;
@@ -358,7 +358,7 @@ class MP_AdminPage extends MP_Admin_page_list
 					$time_diff = time() - $time; 
 
 					if ( $time_diff > 0 && $time_diff < 24*60*60 )	$h_time = sprintf( __('%s ago'), human_time_diff( $time ) );
-					elseif ( $time_diff == 0 )				$h_time = __('now', 'MailPress');
+					elseif ( $time_diff == 0 )				$h_time = __('now', MP_TXTDOM);
 					else								$h_time = mysql2date(__('Y/m/d'), $m_time);
 					
 ?>

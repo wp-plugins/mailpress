@@ -1,7 +1,7 @@
 <?php /* date */ 
 
-$xformat_time[0] = __('22:10', 'MailPress');
-$xformat_time[1] = __('10:10 am/pm', 'MailPress');
+$xformat_time[0] = __('22:10', MP_TXTDOM);
+$xformat_time[1] = __('10:10 am/pm', MP_TXTDOM);
 ?>
 <settings>
 	<attributes>
@@ -20,14 +20,14 @@ $xformat_time[1] = __('10:10 am/pm', 'MailPress');
 			</is>
 		</items>
 		<items>
-			<misc><misc><![CDATA[<?php _e("other attributes except 'name' & 'id'", 'MailPress'); ?>]]></misc></misc>
+			<misc><misc><![CDATA[<?php _e("other attributes except 'name' & 'id'", MP_TXTDOM); ?>]]></misc></misc>
 		</items>
 	</attributes>
 	<controls>
 		<items>
 			<required>
 				<checkbox>
-					<text><![CDATA[<?php _e('Required', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('Required', MP_TXTDOM); ?>]]></text>
 					<value>1</value>
 					<disabled>0</disabled>
 					<class>controls</class>
@@ -38,20 +38,20 @@ $xformat_time[1] = __('10:10 am/pm', 'MailPress');
 	<options>
 		<items>
 			<only_text>
-				<only_text><![CDATA[<?php _e('Format in form :', 'MailPress'); ?>]]></only_text>
+				<only_text><![CDATA[<?php _e('Format in form :', MP_TXTDOM); ?>]]></only_text>
 			</only_text>
 		</items>
 		<items>
 			<form_time_format>
 				<select_opt>
-					<text><![CDATA[<?php _e('Time : ', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('Time : ', MP_TXTDOM); ?>]]></text>
 					<values><![CDATA[<?php echo serialize($xformat_time); ?>]]></values>
 					<default>0</default>
 				</select_opt>
 			</form_time_format>
 			<form_timezones>
 				<checkbox>
-					<text><![CDATA[<?php _e('with Time zones', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('with Time zones', MP_TXTDOM); ?>]]></text>
 					<value>1</value>
 					<disabled>0</disabled>
 				</checkbox>
@@ -59,7 +59,7 @@ $xformat_time[1] = __('10:10 am/pm', 'MailPress');
 		</items>
 		<items>
 			<only_text>
-				<only_text><![CDATA[<?php _e('Format in mail :', 'MailPress'); ?>]]></only_text>
+				<only_text><![CDATA[<?php _e('Format in mail :', MP_TXTDOM); ?>]]></only_text>
 			</only_text>
 		</items>
 		<items>
@@ -75,7 +75,7 @@ $xformat_time[1] = __('10:10 am/pm', 'MailPress');
 		<items>
 			<incopy>
 				<checkbox>
-					<text><![CDATA[<?php _e('In copy', 'MailPress'); ?>]]></text>
+					<text><![CDATA[<?php _e('In copy', MP_TXTDOM); ?>]]></text>
 					<value>1</value>
 					<disabled>0</disabled>
 				</checkbox>
@@ -91,8 +91,8 @@ $xformat_time[1] = __('10:10 am/pm', 'MailPress');
 	</hiddens>
 <?php endif; ?>
 	<tabs>
-		<attributes><![CDATA[<?php _e('Attributes', 'MailPress'); ?>]]></attributes>
-		<controls><![CDATA[<?php _e('Controls', 'MailPress'); ?>]]></controls>
-		<options><![CDATA[<?php _e('Options', 'MailPress'); ?>]]></options>
+		<attributes><![CDATA[<?php _e('Attributes', MP_TXTDOM); ?>]]></attributes>
+		<controls><![CDATA[<?php _e('Controls', MP_TXTDOM); ?>]]></controls>
+		<options><![CDATA[<?php _e('Options', MP_TXTDOM); ?>]]></options>
 	</tabs>
 </settings>

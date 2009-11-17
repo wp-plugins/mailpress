@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-13 00:59+0200\n"
+"POT-Creation-Date: 2009-11-17 11:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,35 +18,44 @@ msgstr ""
 
 #: C:\wgettext\mailpress\MailPress.php:238
 #: C:\wgettext\mailpress\MailPress.php:239
+#: C:\wgettext\mailpress\MailPress.php:240
+#: C:\wgettext\mailpress\MailPress.php:241
 #, php-format
 msgid "Your %1$s version is '%2$s', at least version '%3$s' required."
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress.php:238
+#: C:\wgettext\mailpress\MailPress.php:240
 msgid "PHP"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress.php:239
+#: C:\wgettext\mailpress\MailPress.php:241
 msgid "WordPress"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress.php:240
+#: C:\wgettext\mailpress\MailPress.php:242
 #, php-format
 msgid "The directory '%1$s' is not writable."
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress.php:244
+#: C:\wgettext\mailpress\MailPress.php:246
 #, php-format
 msgid "<b>Sorry, but you can't run this plugin : %1$s. </b>"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress.php:265
 #: C:\wgettext\mailpress\mp-admin\includes\options\capabilities.php:46
+#: C:\wgettext\mailpress\MailPress.php:267
 msgid "Settings"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress.php:274
 #: C:\wgettext\mailpress\MailPress.php:316
+#: C:\wgettext\mailpress\MailPress.php:276
+#: C:\wgettext\mailpress\MailPress.php:318
 msgid "New Mail"
 msgstr ""
 
@@ -55,26 +64,33 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\includes\autoresponders.php:161
 #: C:\wgettext\mailpress\mp-admin\includes\options\capabilities.php:17
 #: C:\wgettext\mailpress\mp-admin\includes\settings\logs.form.php:11
+#: C:\wgettext\mailpress\MailPress.php:308
+#: C:\wgettext\mailpress\MailPress.php:342
 msgid "Mails"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress.php:316
 #: C:\wgettext\mailpress\mp-admin\write.php:85
+#: C:\wgettext\mailpress\MailPress.php:318
 msgid "Write Mail"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress.php:340
 #: C:\wgettext\mailpress\mp-admin\includes\dashboard.php:377
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:119
+#: C:\wgettext\mailpress\MailPress.php:342
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:103
 msgid "Admin"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress.php:340
 #: C:\wgettext\mailpress\mp-admin\includes\options\capabilities.php:62
+#: C:\wgettext\mailpress\MailPress.php:342
 msgid "Users"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress.php:416
+#: C:\wgettext\mailpress\MailPress.php:418
 msgid "MailPress test"
 msgstr ""
 
@@ -130,6 +146,7 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\mailinglists.php:103
 #: C:\wgettext\mailpress\mp-admin\mails.php:74
 #: C:\wgettext\mailpress\mp-admin\users.php:81
+#: C:\wgettext\mailpress\mp-admin\users.php:83
 msgid "%i% pending"
 msgstr ""
 
@@ -196,6 +213,9 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-content\themes\default\moderate.php:33
 #: C:\wgettext\mailpress\mp-content\themes\MailPress\moderate.php:39
 #: C:\wgettext\mailpress\mp-content\themes\nogent94\moderate.php:35
+#: C:\wgettext\mailpress\mp-admin\users.php:210
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:170
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:210
 msgid "Delete"
 msgstr ""
 
@@ -240,6 +260,7 @@ msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_batch_send.php:164
 #: C:\wgettext\mailpress\MailPress_bounce_handling.php:254
+#: C:\wgettext\mailpress\MailPress_bounce_handling.php:252
 msgid "Auto refresh for WP_Cron"
 msgstr ""
 
@@ -247,6 +268,7 @@ msgstr ""
 #: C:\wgettext\mailpress\MailPress_bounce_handling.php:255
 #: C:\wgettext\mailpress\mp-admin\tracking.php:53
 #: C:\wgettext\mailpress\mp-admin\view_log.php:44
+#: C:\wgettext\mailpress\MailPress_bounce_handling.php:253
 #, php-format
 msgid "%1$s Autorefresh %2$s every %3$s sec"
 msgstr ""
@@ -255,6 +277,7 @@ msgstr ""
 #: C:\wgettext\mailpress\MailPress_bounce_handling.php:261
 #: C:\wgettext\mailpress\mp-admin\tracking.php:58
 #: C:\wgettext\mailpress\mp-admin\view_log.php:55
+#: C:\wgettext\mailpress\MailPress_bounce_handling.php:259
 msgid "Autorefresh in %i% sec"
 msgstr ""
 
@@ -262,6 +285,8 @@ msgstr ""
 #: C:\wgettext\mailpress\MailPress_bounce_handling.php:155
 #: C:\wgettext\mailpress\MailPress_bounce_handling.php:202
 #: C:\wgettext\mailpress\MailPress_bounce_handling.php:212
+#: C:\wgettext\mailpress\MailPress_bounce_handling.php:200
+#: C:\wgettext\mailpress\MailPress_bounce_handling.php:210
 msgid "Bounces"
 msgstr ""
 
@@ -278,17 +303,20 @@ msgid "Bounce rate"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_bounce_handling.php:191
+#: C:\wgettext\mailpress\MailPress_bounce_handling.php:189
 msgid "Bounced"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_bounce_handling.php:219
 #: C:\wgettext\mailpress\mp-admin\includes\options\tracking\user\u002.php:30
+#: C:\wgettext\mailpress\MailPress_bounce_handling.php:217
 msgid "(deleted)"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_bounce_handling.php:222
 #: C:\wgettext\mailpress\mp-admin\mails.php:169
 #: C:\wgettext\mailpress\mp-admin\view_logs.php:110
+#: C:\wgettext\mailpress\MailPress_bounce_handling.php:220
 msgid "View"
 msgstr ""
 
@@ -302,6 +330,10 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\includes\themes.php:142
 #: C:\wgettext\mailpress\mp-admin\includes\users.php:165
 #: C:\wgettext\mailpress\mp-admin\includes\users.php:204
+#: C:\wgettext\mailpress\mp-admin\users.php:194
+#: C:\wgettext\mailpress\mp-admin\users.php:218
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:168
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:208
 msgid "Activate"
 msgstr ""
 
@@ -430,10 +462,12 @@ msgid "Number of Import log files : "
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:138
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:140
 msgid "<br />already in Mailing list!"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:142
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:144
 msgid "<br />Mailing list added"
 msgstr ""
 
@@ -447,77 +481,104 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\includes\mailinglists.php:7
 #: C:\wgettext\mailpress\mp-admin\includes\subscriptions.php:84
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:121
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:165
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:350
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:356
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:372
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:391
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:567
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:632
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:130
 msgid "Mailing lists"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:320
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:321
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:322
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:323
 msgid "Uncategorized"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:353
 #: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\subscribe2.php:280
 #: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\subscribe2.php:383
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:355
 msgid "MailPress Mailing lists"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:376
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:378
 msgid "Default Mailing list"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:393
 #: C:\wgettext\mailpress\mp-admin\includes\settings\subscriptions.form.php:17
 #: C:\wgettext\mailpress\mp-admin\includes\settings\subscriptions.form.php:36
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:395
+#: C:\wgettext\mailpress\mp-admin\includes\settings\subscriptions.form.php:18
+#: C:\wgettext\mailpress\mp-admin\includes\settings\subscriptions.form.php:37
 msgid "Allow subscriptions to"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:407
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:409
 msgid "You need to create at least one mailinglist."
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:460
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:462
 msgid "You did not enter a valid mailing list name."
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:469
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:471
 msgid "The mailing list you are trying to create already exists."
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:501
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:503
 #, php-format
 msgid "Mailing list <a href=\"#%s\">%s</a> added"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:557
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:559
 msgid "View all mailing lists"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:559
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:561
 msgid "Filter"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:588
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:590
 msgid "Uncategorized "
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:640
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:642
 msgid "All Mailing lists"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:645
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:647
 msgid "Most Used"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:663
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:665
 msgid "+ Add New mailing list"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:668
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:670
 msgid "Add New mailinglist"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:672
 #: C:\wgettext\mailpress\MailPress_mailinglist.php:674
+#: C:\wgettext\mailpress\MailPress_mailinglist.php:676
 msgid "Parent Mailing list"
 msgstr ""
 
@@ -591,6 +652,10 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:100
 #: C:\wgettext\mailpress\mp-admin\includes\settings\subscriptions.form.php:31
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:114
+#: C:\wgettext\mailpress\mp-admin\write.php:584
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:84
+#: C:\wgettext\mailpress\mp-admin\includes\settings\subscriptions.form.php:32
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:123
 msgid "Newsletters"
 msgstr ""
 
@@ -639,46 +704,60 @@ msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_tracking.php:236
 #: C:\wgettext\mailpress\MailPress_tracking.php:240
+#: C:\wgettext\mailpress\MailPress_tracking.php:250
+#: C:\wgettext\mailpress\MailPress_tracking.php:254
 msgid "View tracking"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_tracking.php:256
 #: C:\wgettext\mailpress\mp-admin\mails.php:167
 #: C:\wgettext\mailpress\mp-admin\tracking.php:24
+#: C:\wgettext\mailpress\MailPress_tracking.php:270
 msgid "Tracking"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_tracking.php:276
+#: C:\wgettext\mailpress\MailPress_tracking.php:290
 msgid "Open rate"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_tracking.php:277
 #: C:\wgettext\mailpress\mp-admin\includes\options\tracking\mail\m007.php:33
 #: C:\wgettext\mailpress\mp-admin\includes\options\tracking\user\u007.php:33
+#: C:\wgettext\mailpress\MailPress_tracking.php:291
 msgid "Clicks"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_tracking.php:316
 #: C:\wgettext\mailpress\MailPress_tracking.php:360
+#: C:\wgettext\mailpress\MailPress_tracking.php:330
+#: C:\wgettext\mailpress\MailPress_tracking.php:374
 msgid "Unknown"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_tracking.php:411
 #: C:\wgettext\mailpress\MailPress_tracking.php:426
+#: C:\wgettext\mailpress\MailPress_tracking.php:425
+#: C:\wgettext\mailpress\MailPress_tracking.php:443
 msgid "subscribe"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_tracking.php:414
 #: C:\wgettext\mailpress\MailPress_tracking.php:429
+#: C:\wgettext\mailpress\MailPress_tracking.php:428
+#: C:\wgettext\mailpress\MailPress_tracking.php:446
 msgid "unsubscribe"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_tracking.php:417
 #: C:\wgettext\mailpress\MailPress_tracking.php:432
+#: C:\wgettext\mailpress\MailPress_tracking.php:431
+#: C:\wgettext\mailpress\MailPress_tracking.php:449
 msgid "view html"
 msgstr ""
 
 #: C:\wgettext\mailpress\MailPress_tracking.php:420
+#: C:\wgettext\mailpress\MailPress_tracking.php:434
 msgid "mail opened"
 msgstr ""
 
@@ -707,6 +786,7 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\user.php:115
 #: C:\wgettext\mailpress\mp-admin\users.php:70
 #: C:\wgettext\mailpress\mp-admin\write.php:104
+#: C:\wgettext\mailpress\mp-admin\users.php:72
 msgid "An unidentified error has occurred."
 msgstr ""
 
@@ -732,6 +812,9 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-includes\class\MP_Forms_fields.class.php:243
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:236
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:101
+#: C:\wgettext\mailpress\mp-admin\users.php:99
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:235
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:110
 msgid "Name"
 msgstr ""
 
@@ -764,6 +847,7 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\mails.php:165
 #: C:\wgettext\mailpress\mp-admin\users.php:190
 #: C:\wgettext\mailpress\mp-includes\mp_meta_box_post.php:62
+#: C:\wgettext\mailpress\mp-admin\users.php:192
 msgid "Edit"
 msgstr ""
 
@@ -804,6 +888,7 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\forms.php:134
 #: C:\wgettext\mailpress\mp-admin\form_fields.php:145
 #: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:62
+#: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:61
 msgid "Template"
 msgstr ""
 
@@ -948,6 +1033,7 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\includes\write.php:214
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:238
 #: C:\wgettext\mailpress\mp-includes\html\mail.php:52
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:237
 msgid "Subject"
 msgstr ""
 
@@ -955,6 +1041,8 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\tracking.php:86
 #: C:\wgettext\mailpress\mp-admin\users.php:98
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:390
+#: C:\wgettext\mailpress\mp-admin\users.php:100
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:389
 msgid "Author"
 msgstr ""
 
@@ -962,6 +1050,8 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\tracking.php:87
 #: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:56
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:237
+#: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:55
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:236
 msgid "Theme"
 msgstr ""
 
@@ -971,6 +1061,8 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:34
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:235
 #: C:\wgettext\mailpress\mp-includes\html\mail.php:44
+#: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:33
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:234
 msgid "To"
 msgstr ""
 
@@ -978,6 +1070,7 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\tracking.php:89
 #: C:\wgettext\mailpress\mp-admin\users.php:99
 #: C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\date\date.php:12
+#: C:\wgettext\mailpress\mp-admin\users.php:101
 msgid "Date"
 msgstr ""
 
@@ -1004,6 +1097,7 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\tracking.php:154
 #: C:\wgettext\mailpress\mp-admin\tracking.php:245
 #: C:\wgettext\mailpress\mp-admin\users.php:316
+#: C:\wgettext\mailpress\mp-admin\users.php:325
 msgid "(unknown)"
 msgstr ""
 
@@ -1013,6 +1107,8 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:239
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:275
 #: C:\wgettext\mailpress\mp-includes\html\mail.php:83
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:248
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:284
 msgid "Attachements"
 msgstr ""
 
@@ -1020,6 +1116,8 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\users.php:190
 #: C:\wgettext\mailpress\mp-admin\users.php:271
 #: C:\wgettext\mailpress\mp-admin\includes\autoresponders.php:181
+#: C:\wgettext\mailpress\mp-admin\users.php:192
+#: C:\wgettext\mailpress\mp-admin\users.php:280
 #, php-format
 msgid "Edit \"%1$s\""
 msgstr ""
@@ -1054,6 +1152,7 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\tracking.php:224
 #: C:\wgettext\mailpress\mp-admin\users.php:296
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:207
+#: C:\wgettext\mailpress\mp-admin\users.php:305
 msgid "Y/m/d g:i:s A"
 msgstr ""
 
@@ -1061,6 +1160,7 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\tracking.php:230
 #: C:\wgettext\mailpress\mp-admin\users.php:302
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:213
+#: C:\wgettext\mailpress\mp-admin\users.php:311
 #, php-format
 msgid "%s ago"
 msgstr ""
@@ -1069,6 +1169,7 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\tracking.php:231
 #: C:\wgettext\mailpress\mp-admin\users.php:303
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:214
+#: C:\wgettext\mailpress\mp-admin\users.php:312
 msgid "now"
 msgstr ""
 
@@ -1076,6 +1177,7 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\tracking.php:232
 #: C:\wgettext\mailpress\mp-admin\users.php:304
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:215
+#: C:\wgettext\mailpress\mp-admin\users.php:313
 msgid "Y/m/d"
 msgstr ""
 
@@ -1138,6 +1240,7 @@ msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\user.php:114
 #: C:\wgettext\mailpress\mp-admin\users.php:69
+#: C:\wgettext\mailpress\mp-admin\users.php:71
 msgid "Update database failed"
 msgstr ""
 
@@ -1145,6 +1248,7 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\user.php:210
 #: C:\wgettext\mailpress\mp-admin\includes\subscriptions.php:93
 #: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:97
+#: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:96
 msgid "Save"
 msgstr ""
 
@@ -1169,6 +1273,9 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\users.php:200
 #: C:\wgettext\mailpress\mp-admin\includes\users.php:164
 #: C:\wgettext\mailpress\mp-admin\includes\users.php:203
+#: C:\wgettext\mailpress\mp-admin\users.php:202
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:167
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:207
 msgid "Unbounce"
 msgstr ""
 
@@ -1225,6 +1332,8 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-includes\mp_meta_box_post.php:100
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:129
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:177
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:138
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:186
 msgid "Cancel"
 msgstr ""
 
@@ -1245,24 +1354,29 @@ msgid "ip data provided by %1$s"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\users.php:96
+#: C:\wgettext\mailpress\mp-admin\users.php:98
 msgid "E-mail"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\users.php:191
+#: C:\wgettext\mailpress\mp-admin\users.php:193
 #, php-format
 msgid "Write to \"%1$s\""
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\users.php:191
+#: C:\wgettext\mailpress\mp-admin\users.php:193
 msgid "Write"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\users.php:192
+#: C:\wgettext\mailpress\mp-admin\users.php:194
 #, php-format
 msgid "Activate \"%1$s\""
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\users.php:193
+#: C:\wgettext\mailpress\mp-admin\users.php:195
 #, php-format
 msgid "Deactivate \"%1$s\""
 msgstr ""
@@ -1271,27 +1385,37 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\users.php:216
 #: C:\wgettext\mailpress\mp-admin\includes\users.php:166
 #: C:\wgettext\mailpress\mp-admin\includes\users.php:205
+#: C:\wgettext\mailpress\mp-admin\users.php:195
+#: C:\wgettext\mailpress\mp-admin\users.php:223
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:169
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:206
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:209
 msgid "Deactivate"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\users.php:200
+#: C:\wgettext\mailpress\mp-admin\users.php:202
 #, php-format
 msgid "Unbounce \"%1$s\""
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\users.php:203
+#: C:\wgettext\mailpress\mp-admin\users.php:210
 msgid "Delete this user"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\users.php:211
+#: C:\wgettext\mailpress\mp-admin\users.php:218
 msgid "Activate this user"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\users.php:216
+#: C:\wgettext\mailpress\mp-admin\users.php:223
 msgid "Deactivate this user"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\users.php:315
+#: C:\wgettext\mailpress\mp-admin\users.php:324
 #, php-format
 msgid "Users by \"%1$s\""
 msgstr ""
@@ -1404,6 +1528,7 @@ msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\write.php:237
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:240
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:239
 msgid "Plain Text"
 msgstr ""
 
@@ -1640,6 +1765,9 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\includes\settings\subscriptions.form.php:13
 #: C:\wgettext\mailpress\mp-admin\includes\settings\subscriptions.form.php:21
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:107
+#: C:\wgettext\mailpress\mp-admin\includes\settings\subscriptions.form.php:14
+#: C:\wgettext\mailpress\mp-admin\includes\settings\subscriptions.form.php:22
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:116
 msgid "Comments"
 msgstr ""
 
@@ -1676,6 +1804,7 @@ msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\forms.php:28
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:123
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:107
 msgid "Options"
 msgstr ""
 
@@ -1691,12 +1820,15 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\includes\write.php:223
 #: C:\wgettext\mailpress\mp-includes\class\MP_Forms_field_type_abstract.class.php:114
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:239
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:238
 msgid "Html"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\forms.php:56
 #: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:56
 #: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:25
+#: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:57
+#: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:24
 msgid "none"
 msgstr ""
 
@@ -2061,16 +2193,19 @@ msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\mails.php:138
 #: C:\wgettext\mailpress\mp-admin\includes\users.php:172
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:175
 msgid "List View"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\mails.php:139
 #: C:\wgettext\mailpress\mp-admin\includes\users.php:173
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:176
 msgid "Detail View"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\mails.php:189
 #: C:\wgettext\mailpress\mp-admin\includes\users.php:224
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:228
 msgid "No results found."
 msgstr ""
 
@@ -2113,6 +2248,7 @@ msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\subscriptions.php:26
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:85
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:94
 msgid "Subscriptions saved"
 msgstr ""
 
@@ -2122,11 +2258,13 @@ msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\subscriptions.php:98
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:134
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:143
 msgid "Nothing to subscribe for ..."
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\subscriptions.php:99
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:135
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:144
 msgid "Your email has been deactivated, ask the administrator ..."
 msgstr ""
 
@@ -2269,20 +2407,24 @@ msgid "Waiting (%s)"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\users.php:70
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:66
 #, php-format
 msgid "Bounced (%s)"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\users.php:74
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:76
 msgid "All Subscribers"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\users.php:132
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:134
 #, php-format
 msgid "List Mailpress users from %s"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\users.php:146
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:148
 msgid "Search subscribers"
 msgstr ""
 
@@ -2561,19 +2703,23 @@ msgid "<b>Number of records</b> : <i>%s</i>"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:108
+#: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:105
 msgid "Mailing list"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:109
+#: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:106
 msgid ""
 "Optional, you can import the MailPress users in a specific mailing list ..."
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:114
+#: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:111
 msgid "File scan"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:115
+#: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:112
 #, php-format
 msgid ""
 "On the first records (see hereunder), the file scan found that the email is "
@@ -2581,22 +2727,26 @@ msgid ""
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:116
+#: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:113
 msgid ""
 "However, you can select another column.<br /> Invalid emails will not be "
 "inserted."
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:120
+#: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:117
 msgid "Choose email column"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:135
+#: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:132
 msgid "Choose name column"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:175
 #: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\subscribe2.php:160
 #: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\subscribe_to_comments.php:153
+#: C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:172
 msgid "Submit"
 msgstr ""
 
@@ -2863,12 +3013,14 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\includes\settings\batch_send.form.php:4
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:2
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:3
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:4
 #, php-format
 msgid "%1$s seconds"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\batch_send.form.php:5
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:4
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:5
 #, php-format
 msgid "%1$s minute"
 msgstr ""
@@ -2881,12 +3033,14 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:6
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:7
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:8
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:9
 #, php-format
 msgid "%1$s minutes"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\batch_send.form.php:10
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:9
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:10
 #, php-format
 msgid "%1$s hour"
 msgstr ""
@@ -2901,21 +3055,25 @@ msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\batch_send.form.php:39
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:38
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:39
 msgid "Submit batch with"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\batch_send.form.php:47
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:46
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:47
 msgid "WP_Cron"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\batch_send.form.php:51
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:50
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:51
 msgid "Every"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\batch_send.form.php:63
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:62
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:63
 msgid "Other"
 msgstr ""
 
@@ -2929,54 +3087,69 @@ msgid "'Batch' settings saved"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:11
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:12
 msgid "no changes"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:12
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:13
 msgid "mark as read"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:13
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:14
 msgid "delete"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:23
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:24
 msgid "Return-Path"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:26
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:27
 #, php-format
 msgid "generated Return-Path will be %1$s"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:26
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:27
 msgid "start_of_email<i>+mail_id</i>+<i>mp_user_id</i>@mydomain.com"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:30
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:31
 msgid "Max bounces per user"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:73
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:74
 msgid "POP3 Server"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:79
 #: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:61
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:80
+#: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:62
 msgid "Port"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:85
 #: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:33
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:86
+#: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:34
 msgid "Username"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:91
 #: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:41
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:92
+#: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:42
 msgid "Password"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:97
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:98
 msgid "Bounce in mailbox"
 msgstr ""
 
@@ -3037,75 +3210,93 @@ msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:30
 #: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:40
+#: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:39
 msgid "Email : "
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:34
 #: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:44
+#: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:43
 msgid "Name : "
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:50
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:51
 msgid " Manage subscriptions from"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:58
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:2
 msgid "Default"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:63
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:2
 msgid "Page template"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:68
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:2
 msgid "Category template"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:74
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:62
 msgid "Page id"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:79
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:63
 msgid "Category id"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:89
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:73
 msgid "View mail"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:92
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:76
 msgid "View mail in fullscreen"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:104
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:88
 msgid "Newsletters show at most"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:110
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:94
 msgid "posts <i>(blank = WordPress Reading setting)</i>"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:126
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:110
 msgid "MailPress version of wp_mail"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:129
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:113
 msgid "Dashboard widgets"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:135
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:119
 msgid "get your google map api key !"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:135
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:119
 msgid "Google Map API Key"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:135
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:119
 msgid "(Optional)"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:145
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:129
 msgid ""
 "You can start to update your SMTP config, once you have saved your General "
 "settings"
@@ -3113,19 +3304,23 @@ msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.php:22
 #: C:\wgettext\mailpress\mp-admin\includes\settings\test.php:12
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.php:11
 msgid "field should be an email"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.php:26
 #: C:\wgettext\mailpress\mp-admin\includes\settings\test.php:16
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.php:15
 msgid "field should be a name"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.php:33
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.php:19
 msgid "field should be numeric"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\general.php:49
+#: C:\wgettext\mailpress\mp-admin\includes\settings\general.php:36
 msgid "General settings saved"
 msgstr ""
 
@@ -3193,27 +3388,33 @@ msgid "Custom Port: (Use Box)"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:25
+#: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:26
 msgid "SMTP Server"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:49
+#: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:50
 msgid "Use SSL or TLS ?"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:56
+#: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:57
 #, php-format
 msgid "Site registered socket transports are : <b>%1$s</b>"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:73
+#: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:74
 msgid "Pop before Smtp"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:79
+#: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:80
 msgid "POP3 hostname"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:82
+#: C:\wgettext\mailpress\mp-admin\includes\settings\smtp.form.php:83
 msgid "port"
 msgstr ""
 
@@ -3228,10 +3429,12 @@ msgid "SMTP settings saved, Test it !!"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\subscriptions.form.php:57
+#: C:\wgettext\mailpress\mp-admin\includes\settings\subscriptions.form.php:58
 msgid "** Blog **"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\subscriptions.form.php:73
+#: C:\wgettext\mailpress\mp-admin\includes\settings\subscriptions.form.php:74
 msgid "default"
 msgstr ""
 
@@ -3240,26 +3443,32 @@ msgid "\"Subscriptions\" settings saved"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:53
+#: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:52
 msgid "Advanced options"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:79
+#: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:78
 msgid "Log it"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:83
+#: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:82
 msgid "Send it"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:87
+#: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:86
 msgid "Archive it"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:91
+#: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:90
 msgid "Include it in statistics"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:98
+#: C:\wgettext\mailpress\mp-admin\includes\settings\test.form.php:97
 msgid "Save &amp; Test"
 msgstr ""
 
@@ -3304,6 +3513,7 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-content\themes\default\moderate.php:13
 #: C:\wgettext\mailpress\mp-content\themes\nogent94\moderate.php:13
 #: C:\wgettext\mailpress\mp-includes\wp_pluggable.php:135
+#: C:\wgettext\mailpress\mp-content\themes\MailPress\moderate.php:14
 #, php-format
 msgid "New comment on your post #%1$s \"%2$s\""
 msgstr ""
@@ -3388,6 +3598,7 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-content\themes\classic\new_subscriber.php:21
 #: C:\wgettext\mailpress\mp-content\themes\default\new_subscriber.php:25
 #: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:436
+#: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:481
 msgid "Confirm"
 msgstr ""
 
@@ -3434,6 +3645,10 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:521
 #: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:459
 #: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:465
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:506
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:512
+#: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:504
+#: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:510
 msgid "Congratulations !"
 msgstr ""
 
@@ -3478,6 +3693,8 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-includes\mp_meta_box_post.php:99
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:128
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:176
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:137
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:185
 msgid "OK"
 msgstr ""
 
@@ -3634,55 +3851,71 @@ msgstr ""
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:519
 #: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:457
 #: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:463
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:504
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:510
+#: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:502
+#: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:508
 #, php-format
 msgid "We confirm your subscription to %1$s emails"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:525
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:516
 msgid "\"Subscription management link\""
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:526
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:517
 msgid "\"Trouble reading link\""
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:560
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:551
 #, php-format
 msgid "Revision saved at %s."
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:560
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:561
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:551
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:552
 msgid "g:i:s a"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:561
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:552
 #, php-format
 msgid "Draft saved at %s."
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:590
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:581
 msgid "Someone"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:591
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:582
 #, php-format
 msgid "Autosave disabled: %s is currently editing this mail."
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:756
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:747
 msgid "Cannot Open Attachement 1!"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:757
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:748
 msgid "Cannot Open Attachement 2! "
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:757
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:748
 msgid "file_fullpath"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:770
+#: C:\wgettext\mailpress\mp-includes\class\MP_Actions.class.php:761
 msgid "Cannot Open File !"
 msgstr ""
 
@@ -3784,37 +4017,45 @@ msgid "You did not enter a mailing list name."
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:278
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:277
 msgid "j F, Y @ G:i|revision date format"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:279
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:278
 #, php-format
 msgid "%s [Autosave]"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:280
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:279
 #, php-format
 msgid "%s [Current Revision]"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:322
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:321
 #, php-format
 msgid "%1$s by %2$s|mail revision 1:datetime, 2:name"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:348
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:347
 msgid "Restore"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:373
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:372
 msgid "Compare Revisions"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:389
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:388
 msgid "Date Created"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:391
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mails.class.php:390
 msgid "Actions"
 msgstr ""
 
@@ -3852,17 +4093,21 @@ msgid "Check you are using the appropriate link."
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:60
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:61
 #, php-format
 msgid "Manage Subscription (%1$s)"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:65
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:167
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:74
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:176
 msgid "Cancelled action"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:140
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:153
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:149
 msgid "Delete Subscription"
 msgstr ""
 
@@ -3874,33 +4119,41 @@ msgid ""
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:173
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:182
 #, php-format
 msgid ""
 "<p>Are you sure you want to unsubscribe <b>%1$s</b> from <b>%2$s</b>.</p>"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:195
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:204
 msgid "Subscription confirmed"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:198
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:207
 #, php-format
 msgid "<p><b>%1$s</b> has been succesfully inserted in the database.</p>"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:200
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:209
 #, php-format
 msgid "<a href=\"%1$s\">Manage Subscription</a>"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:231
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:268
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:240
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:277
 #, php-format
 msgid "<p> From : <b>%1$s</b></p>"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:232
 #: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:269
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:241
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:278
 #, php-format
 msgid "<p> To   : <b>%1$s</b></p>"
 msgstr ""
@@ -3953,28 +4206,35 @@ msgid "Monthly newsletter"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Newsletter.class.php:128
+#: C:\wgettext\mailpress\mp-includes\class\MP_Newsletter.class.php:156
 msgid "<br />Newsletter added"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Newsletter.class.php:203
 #: C:\wgettext\mailpress\mp-includes\class\MP_Newsletter.class.php:205
+#: C:\wgettext\mailpress\mp-includes\class\MP_Newsletter.class.php:231
+#: C:\wgettext\mailpress\mp-includes\class\MP_Newsletter.class.php:233
 msgid "post not saved"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Newsletter.class.php:208
+#: C:\wgettext\mailpress\mp-includes\class\MP_Newsletter.class.php:236
 msgid "unknown newsletter"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Newsletter.class.php:228
+#: C:\wgettext\mailpress\mp-includes\class\MP_Newsletter.class.php:256
 msgid "Sending mail failed !"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Newsletter.class.php:228
+#: C:\wgettext\mailpress\mp-includes\class\MP_Newsletter.class.php:256
 #, php-format
 msgid "%1$sView%2$s sent mail"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Newsletter.class.php:286
+#: C:\wgettext\mailpress\mp-includes\class\MP_Newsletter.class.php:314
 #, php-format
 msgid "[%1$s] New post (%2$s)"
 msgstr ""
@@ -4016,12 +4276,15 @@ msgid "active + not active"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:424
+#: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:469
 #, php-format
 msgid "[%1$s] Waiting for %2$s"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:426
 #: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:434
+#: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:471
+#: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:479
 #, php-format
 msgid ""
 "Please, confirm your subscription to %1$s emails by clicking the following "
@@ -4030,10 +4293,13 @@ msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:430
 #: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:438
+#: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:475
+#: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:483
 msgid "If you do not want to receive more emails, ignore this one !"
 msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:455
+#: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:500
 #, php-format
 msgid "[%1$s] Successful subscription for %2$s"
 msgstr ""
@@ -4128,4 +4394,71 @@ msgstr ""
 
 #: C:\wgettext\mailpress\mp-includes\html\mail.php:65
 msgid "Html View"
+msgstr ""
+
+#: C:\wgettext\mailpress\MailPress_batch_send.php:145
+#, php-format
+msgid "%1$s of %2$s sent| Singular"
+msgstr ""
+
+#: C:\wgettext\mailpress\MailPress_batch_send.php:145
+#, php-format
+msgid "%1$s of %2$s sent| Plural"
+msgstr ""
+
+#: C:\wgettext\mailpress\MailPress_tracking.php:437
+msgid "<b>unsubscribed</b>"
+msgstr ""
+
+#: C:\wgettext\mailpress\mp-admin\users.php:380
+msgid "Unsubscribed"
+msgstr ""
+
+#: C:\wgettext\mailpress\mp-admin\write.php:574
+msgid "Subscribers"
+msgstr ""
+
+#: C:\wgettext\mailpress\mp-admin\write.php:579
+msgid "Mailinglists"
+msgstr ""
+
+#: C:\wgettext\mailpress\mp-admin\includes\users.php:67
+#, php-format
+msgid "Unsubscribed (%s)"
+msgstr ""
+
+#: C:\wgettext\mailpress\mp-admin\includes\settings\batch_send.form.php:67
+#: C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:67
+#, php-format
+msgid "see sample in \"%1$s\""
+msgstr ""
+
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:67
+msgid "Your email has been unsubscribed, ask the administrator ..."
+msgstr ""
+
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:162
+msgid "Unsubscribe"
+msgstr ""
+
+#: C:\wgettext\mailpress\mp-includes\class\MP_Mail_links.class.php:169
+#, php-format
+msgid ""
+"<p>We confirm that the email adress <b>%1$s</b> has been unsubscribed.</p>"
+msgstr ""
+
+#: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:404
+msgid "to blog"
+msgstr ""
+
+#: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:405
+msgid "to comments"
+msgstr ""
+
+#: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:406
+msgid "to blog & comments"
+msgstr ""
+
+#: C:\wgettext\mailpress\mp-includes\class\MP_Users.class.php:407
+msgid "all (active + waiting)"
 msgstr ""

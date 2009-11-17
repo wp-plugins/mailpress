@@ -38,7 +38,7 @@ class MP_AdminPage extends MP_Admin_page_list
 			case 'delete':
 				$id = $_GET['id'];
 				if ( $id == get_option('MailPress_default_mailinglist') )
-					wp_die(sprintf(__("Can&#8217;t delete the <strong>%s</strong> mailing list: this is the default one",'MailPress'), MP_Mailinglists::get_name($id)));
+					wp_die(sprintf(__("Can&#8217;t delete the <strong>%s</strong> mailing list: this is the default one", MP_TXTDOM), MP_Mailinglists::get_name($id)));
 
 				MP_Mailinglists::delete($id);
 				unset($url_parms['id']);
@@ -51,7 +51,7 @@ class MP_AdminPage extends MP_Admin_page_list
 				foreach ( (array) $_GET['delete'] as $id) 
 				{
 					if ( $id == get_option('MailPress_default_mailinglist') )
-						wp_die(sprintf(__("Can&#8217;t delete the <strong>%s</strong> mailing list: this is the default one",'MailPress'), MP_Mailinglists::get_name($id)));
+						wp_die(sprintf(__("Can&#8217;t delete the <strong>%s</strong> mailing list: this is the default one", MP_TXTDOM), MP_Mailinglists::get_name($id)));
 
 					MP_Mailinglists::delete($id);
 				}
@@ -80,7 +80,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 ////  Title  ////
 
-	public static function title() { if (isset($_GET['id'])) { global $title; $title = __('Edit Mailinglist','MailPress'); } }
+	public static function title() { if (isset($_GET['id'])) { global $title; $title = __('Edit Mailinglist', MP_TXTDOM); } }
 
 //// Scripts ////
 
@@ -88,7 +88,7 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		wp_register_script( 'mp-ajax-response',	'/' . MP_PATH . 'mp-includes/js/mp_ajax_response.js', array('jquery'), false, 1);
 		wp_localize_script( 'mp-ajax-response', 	'wpAjax', array( 
-			'noPerm' => __('Email was not sent AND/OR Update database failed', 'MailPress'), 
+			'noPerm' => __('Email was not sent AND/OR Update database failed', MP_TXTDOM), 
 			'broken' => __('An unidentified error has occurred.'), 
 			'l10n_print_after' => 'try{convertEntities(wpAjax);}catch(e){};' 
 		));
@@ -117,9 +117,9 @@ class MP_AdminPage extends MP_Admin_page_list
 	public static function get_columns() 
 	{
 		$columns = array(	'cb'		=> '<input type="checkbox" />',
-					'name' 	=> __('Name','MailPress'),
-					'desc'	=> __('Description','MailPress'),
-					'num' 	=> __('MailPress users','MailPress'));
+					'name' 	=> __('Name', MP_TXTDOM),
+					'desc'	=> __('Description', MP_TXTDOM),
+					'num' 	=> __('MailPress users', MP_TXTDOM));
 		return $columns;
 	}
 

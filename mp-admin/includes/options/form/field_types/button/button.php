@@ -8,7 +8,7 @@ class MP_Forms_field_type_button extends MP_Forms_field_type_abstract
 
 	function __construct()
 	{
-		$this->description = __('Button', 'MailPress');
+		$this->description = __('Button', MP_TXTDOM);
 		$this->settings	 = dirname(__FILE__) . '/settings.xml';
 		parent::__construct();
 	}
@@ -18,7 +18,7 @@ class MP_Forms_field_type_button extends MP_Forms_field_type_abstract
 		if (!isset($_POST[$this->prefix][$field->form_id][$field->id]))
 		{
 			$field->submitted['value'] = false;
-			$field->submitted['text']  = __('not selected', 'MailPress');
+			$field->submitted['text']  = __('not selected', MP_TXTDOM);
 			return $field;
 		}
 		return parent::submitted($field);

@@ -7,7 +7,7 @@ class MP_Tracking_module_m005 extends MP_Tracking_module_abstract
 	function __construct()
 	{
 		$this->type  = basename(dirname(__FILE__));
-		$this->title = __('System info','MailPress');
+		$this->title = __('System info', MP_TXTDOM);
 		parent::__construct();
 	}
 

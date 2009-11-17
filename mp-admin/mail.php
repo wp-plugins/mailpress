@@ -54,7 +54,7 @@ class MP_AdminPage extends MP_Admin_page
 
 ////  Title  ////
 
-	public static function title() { global $title;  $title = __('View Mail', 'MailPress'); }
+	public static function title() { global $title;  $title = __('View Mail', MP_TXTDOM); }
 
 ////  Styles  ////
 
@@ -81,8 +81,8 @@ class MP_AdminPage extends MP_Admin_page
 
 	public static function screen_meta() 
 	{
-		add_meta_box('submitdiv',	__('Send', 'MailPress'), array('MP_AdminPage', 'meta_box_submit'), self::screen, 'side', 'core');
-		add_meta_box('maildiv', 	__('Mail', 'MailPress'), array('MP_AdminPage', 'meta_box_mail'), 	 self::screen, 'normal', 'core');
+		add_meta_box('submitdiv',	__('Send', MP_TXTDOM), array('MP_AdminPage', 'meta_box_submit'), self::screen, 'side', 'core');
+		add_meta_box('maildiv', 	__('Mail', MP_TXTDOM), array('MP_AdminPage', 'meta_box_mail'), 	 self::screen, 'normal', 'core');
 
 		parent::screen_meta();
 	}
@@ -110,12 +110,12 @@ class MP_AdminPage extends MP_Admin_page
 		<div id="delete-action">
 <?php 	if (isset($delete_url)) : ?>
 			<a class='submitdelete' href='<?php echo $delete_url ?>' onclick="if (confirm('<?php echo(js_escape(sprintf( __("You are about to delete this draft '%s'\n  'Cancel' to stop, 'OK' to delete."), $draft->id ))); ?>')) return true; return false;">
-				<?php _e('Delete', 'MailPress'); ?>
+				<?php _e('Delete', MP_TXTDOM); ?>
 			</a>
 <?php		endif; ?>
 		</div>
 		<div id="publishing-action">
-<?php 	if (current_user_can('MailPress_send_mails')) : ?><input id='publish' type='submit' name='send' class='button-primary' value="<?php _e('Send', 'MailPress'); ?>" /><?php endif; ?>
+<?php 	if (current_user_can('MailPress_send_mails')) : ?><input id='publish' type='submit' name='send' class='button-primary' value="<?php _e('Send', MP_TXTDOM); ?>" /><?php endif; ?>
 		</div>
 		<div class="clear"></div>
 	</div>

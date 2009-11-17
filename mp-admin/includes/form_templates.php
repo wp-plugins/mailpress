@@ -18,9 +18,9 @@ $content = htmlspecialchars( $content );
 $codepress_lang = 'html';
 
 // messages
-$messages[1] = __('File edited successfully.', 'MailPress');
-$messages[2] = __('Could not save to file.',   'MailPress');
-$messages[3] = __('Could not save to file, xml errors',   'MailPress');
+$messages[1] = __('File edited successfully.', MP_TXTDOM);
+$messages[2] = __('Could not save to file.',   MP_TXTDOM);
+$messages[3] = __('Could not save to file, xml errors',   MP_TXTDOM);
 if (isset($_GET['message'])) $message = $messages[$_GET['message']];
 
 // file status
@@ -30,20 +30,20 @@ $file_status = is_writeable($template_file);
 ?>
 <div class='wrap'>
 	<div id='icon-mailpress-tools' class='icon32'><br /></div>
-	<h2><?php _e('Edit Form templates', 'MailPress'); ?></h2>
+	<h2><?php _e('Edit Form templates', MP_TXTDOM); ?></h2>
 <?php if (isset($message)) self::message($message); ?>
 	<br class='clear' />
 	<div class='fileedit-sub'>
 		<div class='alignleft'>
 			<big>
-<?php echo ($file_status) ? sprintf(__('Editing <strong>%s</strong>', 'MailPress'), $template) : sprintf(__('Browsing <strong>%s</strong>', 'MailPress'), $template); 	?>
+<?php echo ($file_status) ? sprintf(__('Editing <strong>%s</strong>', MP_TXTDOM), $template) : sprintf(__('Browsing <strong>%s</strong>', MP_TXTDOM), $template); 	?>
 			</big>
 		</div>
 		<div class='alignright'>
 			<form action='' method='post'>
 				<strong>
 					<label for='plugin'>
-						<?php _e('Select template to edit:', 'MailPress'); ?> 
+						<?php _e('Select template to edit:', MP_TXTDOM); ?> 
 					</label>
 				</strong>
 				<input type='hidden' name='action' value='toedit' />

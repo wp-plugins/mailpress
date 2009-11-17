@@ -8,7 +8,7 @@ class MP_Forms_field_type_text extends MP_Forms_field_type_abstract
 
 	function __construct()
 	{
-		$this->description = __('Text Input', 'MailPress');
+		$this->description = __('Text Input', MP_TXTDOM);
 		$this->settings	 = dirname(__FILE__) . '/settings.xml';
 		parent::__construct();
 	}

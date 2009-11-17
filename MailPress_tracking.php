@@ -6,7 +6,7 @@ Plugin Name: MailPress_tracking
 Plugin URI: http://www.mailpress.org
 Description: This is just an addon for MailPress to track the mails/users activity.
 Author: Andre Renaut
-Version: 4.0.1
+Version: 4.0.2
 Author URI: http://www.mailpress.org
 */
 
@@ -16,20 +16,21 @@ class MailPress_tracking
 	{
 		define ('MailPress_tracking_openedmail', 	'_MailPress_mail_opened');
 
-		add_action('init',  					array('MailPress_tracking', 'init'), 100);
+		add_action('init',  					array(__CLASS__, 'init'), 100);
 
 		global $wpdb;
 // for mysql
 		$wpdb->mp_tracks = $wpdb->prefix . 'mailpress_tracks';
 // for referential integrity
-		add_action('MailPress_delete_mail',  		array('MailPress_tracking', 'delete_mail'), 1, 1);
-		add_action('MailPress_delete_user',  		array('MailPress_tracking', 'delete_user'), 1, 1);
+		add_action('MailPress_delete_mail',  		array(__CLASS__, 'delete_mail'), 1, 1);
+		add_action('MailPress_delete_user',  		array(__CLASS__, 'delete_user'), 1, 1);
+		add_action('MailPress_unsubscribe_user',		array(__CLASS__, 'unsubscribe_user'), 1, 1);
 
 // prepare mail
-		add_filter('MailPress_is_tracking',  		array('MailPress_tracking', 'is_tracking'), 1, 1);
-		add_filter('MailPress_mail',				array('MailPress_tracking', 'mail'), 8, 1);
+		add_filter('MailPress_is_tracking',  		array(__CLASS__, 'is_tracking'), 1, 1);
+		add_filter('MailPress_mail',				array(__CLASS__, 'mail'), 8, 1);
 // process link
-		add_action('mp_action_tracking', 			array('MailPress_tracking', 'tracking'), 8, 1);
+		add_action('mp_action_tracking', 			array(__CLASS__, 'tracking'), 8, 1);
 
 // for admin plugin pages
 		define ('MailPress_page_tracking', MailPress_page_mails . '&file=tracking');
@@ -40,17 +41,17 @@ class MailPress_tracking
 		if (is_admin())
 		{
 		// install
-			register_activation_hook(MP_FOLDER . '/MailPress_tracking.php', 	array('MailPress_tracking', 'install'));
+			register_activation_hook(MP_FOLDER . '/MailPress_tracking.php', 	array(__CLASS__, 'install'));
 		// for link on plugin page
-			add_filter('plugin_action_links', 		array('MailPress_tracking', 'plugin_action_links'), 10, 2 );
+			add_filter('plugin_action_links', 		array(__CLASS__, 'plugin_action_links'), 10, 2 );
 		// for role & capabilities
-			add_filter('MailPress_capabilities',  	array('MailPress_tracking', 'capabilities'), 1, 1);
+			add_filter('MailPress_capabilities',  	array(__CLASS__, 'capabilities'), 1, 1);
 		// for settings
-			add_action('MailPress_settings_update', 	array('MailPress_tracking', 'settings_update'));
-			add_action('MailPress_settings_tab', 	array('MailPress_tracking', 'settings_tab'), 8, 1);
-			add_action('MailPress_settings_div', 	array('MailPress_tracking', 'settings_div'));
+			add_action('MailPress_settings_update', 	array(__CLASS__, 'settings_update'));
+			add_action('MailPress_settings_tab', 	array(__CLASS__, 'settings_tab'), 8, 1);
+			add_action('MailPress_settings_div', 	array(__CLASS__, 'settings_div'));
 		// for load admin page
-			add_action('MailPress_load_admin_page', 	array('MailPress_tracking', 'load_admin_page'), 10, 1);
+			add_action('MailPress_load_admin_page', 	array(__CLASS__, 'load_admin_page'), 10, 1);
 		}
 	}
 
@@ -59,12 +60,12 @@ class MailPress_tracking
 	// for mails list
 		if ( current_user_can('MailPress_tracking_mails') )
 		{
-			add_filter('MailPress_columns_mails', 		array('MailPress_tracking', 'columns_mails'), 8, 1);
-			add_action('MailPress_get_row_mails',  		array('MailPress_tracking', 'get_row_mails'), 1, 3);
+			add_filter('MailPress_columns_mails', 		array(__CLASS__, 'columns_mails'), 8, 1);
+			add_action('MailPress_get_row_mails',  		array(__CLASS__, 'get_row_mails'), 1, 3);
 		}
 	// for user page
 		if ( current_user_can('MailPress_tracking_users') )
-			add_action('MailPress_add_meta_boxes_user',  	array('MailPress_tracking', 'meta_boxes_user'), 1, 2); 
+			add_action('MailPress_add_meta_boxes_user',  	array(__CLASS__, 'meta_boxes_user'), 1, 2); 
 	}
 
 // for referential integrity
@@ -84,6 +85,19 @@ class MailPress_tracking
 		$wpdb->query($query);
 	}
 
+	public static function unsubscribe_user($mp_user_id)
+	{
+		$now	  	= date('Y-m-d H:i:s');
+		$track	= mysql_real_escape_string('!!unsubscribed!!');
+
+		$ip		= mysql_real_escape_string(trim($_SERVER['REMOTE_ADDR']));
+		$agent	= mysql_real_escape_string(trim($_SERVER['HTTP_USER_AGENT']));
+		$referrer   = (isset($_SERVER['HTTP_REFERER'])) ? mysql_real_escape_string(trim($_SERVER['HTTP_REFERER'])) : '';
+
+		global $wpdb;
+		$query = "INSERT INTO $wpdb->mp_tracks (user_id, mail_id, mmeta_id, track, context, ip, agent, referrer, tmstp) VALUES ($mp_user_id, 0, 0, '$track', '?', '$ip', '$agent', '$referrer', '$now');";
+		$wpdb->query( $query );
+	}
 
 // prepare mail
 	public static function is_tracking($x)
@@ -233,11 +247,11 @@ class MailPress_tracking
 // for role & capabilities
 	public static function capabilities($capabilities) 
 	{
-		$capabilities['MailPress_tracking_mails'] = array(	'name'  	=> __('View tracking', 'MailPress'), 
+		$capabilities['MailPress_tracking_mails'] = array(	'name'  	=> __('View tracking', MP_TXTDOM), 
             									'group' 	=> 'mails', 
             									'menu'  	=> false
             								);
-		$capabilities['MailPress_tracking_users'] = array(	'name'  	=> __('View tracking', 'MailPress'), 
+		$capabilities['MailPress_tracking_users'] = array(	'name'  	=> __('View tracking', MP_TXTDOM), 
             									'group' 	=> 'users', 
             									'menu'  	=> false
             								);
@@ -253,7 +267,7 @@ class MailPress_tracking
 	public static function settings_tab($tab)
 	{
 		$t = ($tab=='MailPress_tracking') ? " class='ui-tabs-selected'" : ''; 
-		echo "\t\t\t<li $t><a href='#fragment-MailPress_tracking'><span class='button-secondary'>" . __('Tracking', 'MailPress') . "</span></a></li>\n";
+		echo "\t\t\t<li $t><a href='#fragment-MailPress_tracking'><span class='button-secondary'>" . __('Tracking', MP_TXTDOM) . "</span></a></li>\n";
 	}
 
 	public static function settings_div()
@@ -273,8 +287,8 @@ class MailPress_tracking
 	public static function columns_mails($x)
 	{
 		$date = array_pop($x);
-		$x['tracking_openrate']	=  __('Open rate', 'MailPress');
-		$x['tracking_clicks']	=  __('Clicks', 'MailPress');
+		$x['tracking_openrate']	=  __('Open rate', MP_TXTDOM);
+		$x['tracking_clicks']	=  __('Clicks', MP_TXTDOM);
 		$x['date']		= $date;
 		return $x;
 	}
@@ -313,7 +327,7 @@ class MailPress_tracking
 		$file = MP_TMP . '/mp-admin/xml/browsers.xml';
 		$x = file_get_contents($file);
 
-		$br = __('Unknown','MailPress');
+		$br = __('Unknown', MP_TXTDOM);
 
 		if ($x)
 		{
@@ -357,7 +371,7 @@ class MailPress_tracking
 		$file = MP_TMP . '/mp-admin/xml/oss.xml';
 		$x = file_get_contents($file);
 
-		$se = __('Unknown','MailPress');
+		$se = __('Unknown', MP_TXTDOM);
 
 		if ($x)
 		{
@@ -408,28 +422,31 @@ class MailPress_tracking
 		switch ($track)
 		{
 			case '{{subscribe}}' :
-				return __('subscribe', 'MailPress');
+				return __('subscribe', MP_TXTDOM);
 			break;
 			case '{{unsubscribe}}' :
-				return __('unsubscribe', 'MailPress');
+				return __('unsubscribe', MP_TXTDOM);
 			break;
 			case '{{viewhtml}}' :
-				return __('view html', 'MailPress');
+				return __('view html', MP_TXTDOM);
 			break;
 			case MailPress_tracking_openedmail :
-				return __('mail opened', 'MailPress');
+				return __('mail opened', MP_TXTDOM);
+			break;
+			case '!!unsubscribed!!' :
+				return __('<b>unsubscribed</b>', MP_TXTDOM);
 			break;
 			default :
 				MailPress::require_class('Users');
 				$url = MP_Users::get_subscribe_url('#µ$&$µ#');
 				$url = str_replace('#µ$&$µ#', '', $url);
-				if (stripos($track, $url) !== false) {return __('subscribe', 'MailPress');}
+				if (stripos($track, $url) !== false) {return __('subscribe', MP_TXTDOM);}
 				$url = MP_Users::get_unsubscribe_url('#µ$&$µ#');
 				$url = str_replace('#µ$&$µ#', '', $url);
-				if (stripos($track, $url) !== false) {return __('unsubscribe', 'MailPress');}
+				if (stripos($track, $url) !== false) {return __('unsubscribe', MP_TXTDOM);}
 				$url = MP_Users::get_view_url('#µ$&$µ#', $mail_id);
 				$url = str_replace('#µ$&$µ#&id=' . $mail_id, '', $url);
-				if (stripos($track, $url) !== false) {return __('view html', 'MailPress');}
+				if (stripos($track, $url) !== false) {return __('view html', MP_TXTDOM);}
 			break;
 		}
 		global $wpdb;

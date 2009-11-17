@@ -1,43 +1,43 @@
 <?php
 // Mails - mini dashboard
 wp_add_dashboard_widget( 	'mp_mini_dashboard',					
-					__( "MailPress - 'Right Now'", 'MailPress' ), 
+					__( "MailPress - 'Right Now'", MP_TXTDOM ), 
 					'mp_mini_dashboard', 
 					$control_callback = null 
 				);
 // Posts - most subscribed
 wp_add_dashboard_widget( 	'mp_posts_most_subscribed',					
-					__( 'MailPress - Most subscribed', 'MailPress' ), 
+					__( 'MailPress - Most subscribed', MP_TXTDOM ), 
 					'mp_posts_most_subscribed',
 					$control_callback = null 
 				);
 // Subscribers Map
 wp_add_dashboard_widget( 	'mp_map',					
-					__( 'MailPress - Subscribers Map', 'MailPress' ),
+					__( 'MailPress - Subscribers Map', MP_TXTDOM ),
 					'mp_map',
 					'mp_map_control'
 				);
 // Mails - send
 wp_add_dashboard_widget( 	'mp_mails_sent',					
-					__( 'MailPress - Mails sent', 'MailPress' ),
+					__( 'MailPress - Mails sent', MP_TXTDOM ),
 					'mp_mails_sent',
 					$control_callback = null 
 				);
 // Subscribers - Activity
 wp_add_dashboard_widget( 	'mp_subscribers_activity',					
-					__( 'MailPress - Subscribers activity', 'MailPress' ), 
+					__( 'MailPress - Subscribers activity', MP_TXTDOM ), 
 					'mp_subscribers_activity',
 					$control_callback = null 
 				);
 // Mails - Activity
 wp_add_dashboard_widget( 	'mp_mails_activity',					
-					__( 'MailPress - Mails activity', 'MailPress' ), 
+					__( 'MailPress - Mails activity', MP_TXTDOM ), 
 					'mp_mails_activity',
 					$control_callback = null 
 				);
 // Posts - Activity
 wp_add_dashboard_widget( 	'mp_comment_subscribers_per_post',					
-					__( 'MailPress - Comments subscribers per post', 'MailPress' ),
+					__( 'MailPress - Comments subscribers per post', MP_TXTDOM ),
 					'mp_comment_subscribers_per_post',
 					$control_callback = null 
 				);
@@ -51,7 +51,7 @@ function mp_map() {
 	if ( !$options = get_option( 'MailPress_dashboard_mp_map' ) )
 	{
 		$options['code'] = 'world';
-		$options['title'] = __( 'Subscribers - World', 'MailPress' );
+		$options['title'] = __( 'Subscribers - World', MP_TXTDOM );
 	}
 
 	$chdW = $chldW = '';
@@ -83,13 +83,13 @@ function mp_map() {
 
 function mp_map_control() {
 
-	$c= array (	'africa' 		=> __('Africa','MailPress'),
-			'asia'		=> __('Asia','MailPress'),
-			'europe'		=> __('Europe','MailPress'),
-			'middle_east'	=> __('Middle East','MailPress'),
-			'south_america'	=> __('South America','MailPress'),
-			'usa'			=> __('USA','MailPress'),
-			'world'		=> __('World','MailPress'));
+	$c= array (	'africa' 		=> __('Africa', MP_TXTDOM),
+			'asia'		=> __('Asia', MP_TXTDOM),
+			'europe'		=> __('Europe', MP_TXTDOM),
+			'middle_east'	=> __('Middle East', MP_TXTDOM),
+			'south_america'	=> __('South America', MP_TXTDOM),
+			'usa'			=> __('USA', MP_TXTDOM),
+			'world'		=> __('World', MP_TXTDOM));
 
 	if ( !$options = get_option( 'MailPress_dashboard_mp_map' ) )
 	{
@@ -144,7 +144,7 @@ function mp_mini_dashboard() {
 					<?php echo $countm; ?>
 <?php endif; ?>
 				</td>
-				<td class="t posts"><?php echo( __ngettext( __('Mail sent', 'MailPress'), __('Mails sent', 'MailPress'), $countm )); ?></td>
+				<td class="t posts"><?php echo( __ngettext( __('Mail sent', MP_TXTDOM), __('Mails sent', MP_TXTDOM), $countm )); ?></td>
 				<td class="b b-comments">
 <?php if (current_user_can('MailPress_edit_users')) : ?>
 					<a href="<?php echo MailPress_users; ?>"><?php echo $counts; ?></a>
@@ -152,19 +152,19 @@ function mp_mini_dashboard() {
 					<?php echo $counts; ?>
 <?php endif; ?>
 				</td>
-				<td class="last t approved"><?php echo(__ngettext( __('Active subscriber', 'MailPress'), __('Active subscribers', 'MailPress'), $counts )); ?></td>
+				<td class="last t approved"><?php echo(__ngettext( __('Active subscriber', MP_TXTDOM), __('Active subscribers', MP_TXTDOM), $counts )); ?></td>
 			</tr>
 		</table>
 	</div>
 	<div class="versions">
 		<p>
 <?php if (current_user_can('MailPress_switch_themes')) : ?>
-			<a class="button rbutton" href="<?php echo MailPress_themes; ?>"><?php _e('Change Theme','MailPress'); ?></a>
+			<a class="button rbutton" href="<?php echo MailPress_themes; ?>"><?php _e('Change Theme', MP_TXTDOM); ?></a>
 <?php endif; ?>
-		<?php printf(__('Current theme is : %s','MailPress'),"<span class='b'>".$ct->title."</span>"); ?>
+		<?php printf(__('Current theme is : %s', MP_TXTDOM),"<span class='b'>".$ct->title."</span>"); ?>
 		</p>
 		<span id="wp-version-message">
-			<?php printf(__('and using <span class=\'b\'>MailPress version %1$s</span>.','MailPress'), $plugin_version) ; ?>
+			<?php printf(__('and using <span class=\'b\'>MailPress version %1$s</span>.', MP_TXTDOM), $plugin_version) ; ?>
 		</span>
 	</div>
 </div>
@@ -240,7 +240,7 @@ function mp_mails_sent() {
 		$_size = mp_dashboard_widget_size('400x200');
 ?>
 <div style='text-align:center;'>
-<img src="http://chart.apis.google.com/chart?cht=bvg&amp;chs=<?php echo $_size; ?>&amp;chxt=x,y,x,x&amp;chxl=0:<?php echo $chxlM0; ?>|1:||<?php echo $chxlM1; ?>|2:<?php echo $chxlM2; ?>|3:<?php echo $chxlM3; ?>&amp;chds=0,<?php echo $chxlM1; ?>&amp;chbh=5,1,1&amp;chco=4d89f9&amp;chd=<?php if ('' == $chdM) echo 's:_'; else echo 't:' . $chdM; ?>" alt="<?php _e( 'Mails - send', 'MailPress' ); ?>" />
+<img src="http://chart.apis.google.com/chart?cht=bvg&amp;chs=<?php echo $_size; ?>&amp;chxt=x,y,x,x&amp;chxl=0:<?php echo $chxlM0; ?>|1:||<?php echo $chxlM1; ?>|2:<?php echo $chxlM2; ?>|3:<?php echo $chxlM3; ?>&amp;chds=0,<?php echo $chxlM1; ?>&amp;chbh=5,1,1&amp;chco=4d89f9&amp;chd=<?php if ('' == $chdM) echo 's:_'; else echo 't:' . $chdM; ?>" alt="<?php _e( 'Mails - send', MP_TXTDOM ); ?>" />
 </div>
 <?php
 	} 
@@ -352,8 +352,8 @@ function mp_subscribers_activity() {
 		$_size = mp_dashboard_widget_size('395x230');
 ?>
 <div style='text-align:center;'>
-<img style='width:100%;' src="http://chart.apis.google.com/chart?cht=lc&amp;chs=<?php echo $_size; ?>&amp;chd=t:<?php echo $chdS['wait']; ?>|<?php echo $chdS['comm']; ?>|<?php echo $chdS['blog']; ?>|<?php echo $chdS['fake']; ?>&amp;chco=224499,FF0000,80C65A,000000&amp;chm=b,224499,0,1,0|b,FF0000,1,2,0|b,80C65A,2,3,0&amp;chds=0,<?php echo $chxlS1; ?>&amp;chxt=x,y,x,x&amp;chxl=0:<?php echo $chxlS0; ?>|1:||<?php echo $chxlS1; ?>|2:<?php echo $chxlS2; ?>|3:<?php echo $chxlS3; ?>" alt="<?php _e( 'Subscribers - Activity', 'MailPress' ); ?>" />
-<br /><small><span style='background:#224499;margin:0 20px 0 20px;'>&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;<?php _e('waiting','MailPress'); ?>&nbsp;<span style='background:#FF0000;margin:0 20px;'>&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;<?php _e('comment','MailPress'); ?>&nbsp;<span style='background:#80C65A;margin:0 20px;'>&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;<?php _e('blog &amp; comment','MailPress'); ?></small>
+<img style='width:100%;' src="http://chart.apis.google.com/chart?cht=lc&amp;chs=<?php echo $_size; ?>&amp;chd=t:<?php echo $chdS['wait']; ?>|<?php echo $chdS['comm']; ?>|<?php echo $chdS['blog']; ?>|<?php echo $chdS['fake']; ?>&amp;chco=224499,FF0000,80C65A,000000&amp;chm=b,224499,0,1,0|b,FF0000,1,2,0|b,80C65A,2,3,0&amp;chds=0,<?php echo $chxlS1; ?>&amp;chxt=x,y,x,x&amp;chxl=0:<?php echo $chxlS0; ?>|1:||<?php echo $chxlS1; ?>|2:<?php echo $chxlS2; ?>|3:<?php echo $chxlS3; ?>" alt="<?php _e( 'Subscribers - Activity', MP_TXTDOM ); ?>" />
+<br /><small><span style='background:#224499;margin:0 20px 0 20px;'>&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;<?php _e('waiting', MP_TXTDOM); ?>&nbsp;<span style='background:#FF0000;margin:0 20px;'>&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;<?php _e('comment', MP_TXTDOM); ?>&nbsp;<span style='background:#80C65A;margin:0 20px;'>&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;<?php _e('blog &amp; comment', MP_TXTDOM); ?></small>
 </div>
 <?php
 	}
@@ -374,11 +374,11 @@ function mp_mails_activity() {
 
 	$out = '';
 	$MASS = array (	
-				__('Admin','MailPress') 		=> array('moderate','new_user' )		,
-				__('Posts','MailPress') 		=> array('single','monthly' )			,
-				__('Subscription','MailPress')	=> array('new_subscriber','confirmed')	,
-				__('Comments','MailPress')		=> array('comments')				,
-				__('Test','MailPress')			=> array('test')
+				__('Admin', MP_TXTDOM) 		=> array('moderate','new_user' )		,
+				__('Posts', MP_TXTDOM) 		=> array('single','monthly' )			,
+				__('Subscription', MP_TXTDOM)	=> array('new_subscriber','confirmed')	,
+				__('Comments', MP_TXTDOM)		=> array('comments')				,
+				__('Test', MP_TXTDOM)			=> array('test')
 			);
 
 	foreach ($MASS as $k => $MAS)
@@ -396,7 +396,7 @@ function mp_mails_activity() {
 	if ($x) 
 	{
 		$chdMA .= (empty($chdMA)) ? $x 				: ',' . $x;
-		$chlMA .= (empty($chlMA)) ? __('Misc.','MailPress') 	: '|' . __('Misc.','MailPress');
+		$chlMA .= (empty($chlMA)) ? __('Misc.', MP_TXTDOM) 	: '|' . __('Misc.', MP_TXTDOM);
 	}
 
 	if ('' != $chdMA) 
@@ -404,7 +404,7 @@ function mp_mails_activity() {
 		$_size = mp_dashboard_widget_size('396x180');
 ?>
 <div style='text-align:center;'>
-<img style='width:100%;' src="http://chart.apis.google.com/chart?cht=p3&amp;chs=<?php echo $_size; ?>&amp;chco=0000ff&amp;chd=t:<?php echo $chdMA; ?>&amp;chl=<?php echo $chlMA; ?>" alt="<?php _e( 'Mails - Activity', 'MailPress' ); ?>" />
+<img style='width:100%;' src="http://chart.apis.google.com/chart?cht=p3&amp;chs=<?php echo $_size; ?>&amp;chco=0000ff&amp;chd=t:<?php echo $chdMA; ?>&amp;chl=<?php echo $chlMA; ?>" alt="<?php _e( 'Mails - Activity', MP_TXTDOM ); ?>" />
 </div>
 <?php
 	}
@@ -499,11 +499,10 @@ function mp_comment_subscribers_per_post() {
 			{
 				do 
 				{
+					if (!isset($chdS[$postid])) $chdS[$postid] = '';
 					if ($chxlS1 < $init) $chxlS1 = $init;
 					if (!empty($chdS[$postid])) $chdS[$postid] .= ',';
-					if (isset($chdS[$postid])) $chdS[$postid] .= $init ;
-                    else $chdS[$postid] = $init ;
-
+					$chdS[$postid] .= $init ;
 					$wtime = date('Y-m-d',mktime(0, 0, 0, $wm, ++$wd, $wy));
 				} while ($date > $wtime);
 			}
@@ -530,6 +529,7 @@ function mp_comment_subscribers_per_post() {
 		foreach ($INIT as $postid => $init) 
 		{
 			if ($chxlS1 < $init) $chxlS1 = $init;
+            if (!isset($chdS[$postid])) $chdS[$postid] = '';
 			if (!empty($chdS[$postid])) $chdS[$postid] .= ',';
 			$chdS[$postid] .= $init;
 		}
@@ -550,7 +550,7 @@ function mp_comment_subscribers_per_post() {
 		$_size = mp_dashboard_widget_size('395x230');
 ?>
 <div style='text-align:center;'>
-<img style='width:100%;' src="http://chart.apis.google.com/chart?cht=lc&amp;chs=<?php echo $_size; ?>&amp;chdlp=b&amp;chd=t:<?php echo $v; ?>&amp;chdl=<?php echo $p; ?>&amp;chco=<?php echo $c; ?>&amp;chds=0,<?php echo $chxlS1; ?>&amp;chxt=x,y,x,x&amp;chxl=0:<?php echo $chxlS0; ?>|1:||<?php echo $chxlS1; ?>|2:<?php echo $chxlS2; ?>|3:<?php echo $chxlS3; ?>" alt="<?php _e( 'Comments subscribers per post', 'MailPress' ); ?>" />
+<img style='width:100%;' src="http://chart.apis.google.com/chart?cht=lc&amp;chs=<?php echo $_size; ?>&amp;chdlp=b&amp;chd=t:<?php echo $v; ?>&amp;chdl=<?php echo $p; ?>&amp;chco=<?php echo $c; ?>&amp;chds=0,<?php echo $chxlS1; ?>&amp;chxt=x,y,x,x&amp;chxl=0:<?php echo $chxlS0; ?>|1:||<?php echo $chxlS1; ?>|2:<?php echo $chxlS2; ?>|3:<?php echo $chxlS3; ?>" alt="<?php _e( 'Comments subscribers per post', MP_TXTDOM ); ?>" />
 </div>
 <?php
 	}

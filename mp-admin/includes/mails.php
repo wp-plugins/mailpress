@@ -3,7 +3,7 @@
 global $wpdb;
 
 $url_parms = self::get_url_parms();
-$h2 = __('Edit Mails', 'MailPress');
+$h2 = __('Edit Mails', MP_TXTDOM);
 
 if (isset($url_parms['author'])) 
 {
@@ -26,23 +26,23 @@ if ( isset($_GET['deleted']) || isset($_GET['sent']) || isset($_GET['notsent']) 
 		$message = '';
 		if ( $deleted > 0 ) 
 		{
-			$message .= sprintf( __ngettext( __('%s mail deleted', 'MailPress'), __('%s mails deleted', 'MailPress'), $deleted ), $deleted );
+			$message .= sprintf( __ngettext( __('%s mail deleted', MP_TXTDOM), __('%s mails deleted', MP_TXTDOM), $deleted ), $deleted );
 			$message .=  '<br />';
 		}
 		if ( $sent > 0 ) 
 		{
-			$message .= sprintf( __ngettext( __('%s mail sent', 'MailPress'), __('%s mails sent', 'MailPress'), $sent ), $sent );
+			$message .= sprintf( __ngettext( __('%s mail sent', MP_TXTDOM), __('%s mails sent', MP_TXTDOM), $sent ), $sent );
 			$message .=  '<br />';
 		}
 		if ( $notsent > 0 ) 
 		{
-			$message .= sprintf( __ngettext( __('%s mail NOT sent', 'MailPress'), __('%s mails NOT sent', 'MailPress'), $notsent ), $notsent );
+			$message .= sprintf( __ngettext( __('%s mail NOT sent', MP_TXTDOM), __('%s mails NOT sent', MP_TXTDOM), $notsent ), $notsent );
 			$message .=  '<br />';
    			$err   = true;
 		}
 		if ( $saved > 0 ) 
 		{
-			$message .=	__('Mail saved', 'MailPress');
+			$message .=	__('Mail saved', MP_TXTDOM);
 			$message .=  '<br />';
 		}
 	}
@@ -56,11 +56,11 @@ $status_links_url = (isset($url_parms['mode'])) ? MailPress_mails . "&amp;mode="
 $where =  (!current_user_can('MailPress_edit_others_mails')) ? "AND created_user_id = " . $user_ID : '';
 $num_mails 		= $wpdb->get_var("SELECT count(*) FROM $wpdb->mp_mails WHERE status = 'draft' $where;");
 
-$stati = array(	'sent' => __('Sent', 'MailPress'), 
-			'draft' => sprintf(__('Draft (%s)', 'MailPress'), "<span class='mail-count'>$num_mails</span>")
+$stati = array(	'sent' => __('Sent', MP_TXTDOM), 
+			'draft' => sprintf(__('Draft (%s)', MP_TXTDOM), "<span class='mail-count'>$num_mails</span>")
 		);
 $class		= ( empty($url_parms['status']) ) ? ' class="current"' : '';
-$status_links[] 	= "<a href='" . $status_links_url . "'$class>" . __('All Mails', 'MailPress') . "</a>";
+$status_links[] 	= "<a href='" . $status_links_url . "'$class>" . __('All Mails', MP_TXTDOM) . "</a>";
 foreach ( $stati as $status => $label ) 
 {
 	$class = '';
@@ -113,7 +113,7 @@ if ($url_parms['apage'] == 1) unset($url_parms['apage']);
 	<form id='search-form' action='' method='get'>
 		<p id='post-search' class='search-box'>
 			<input type='text' id='mail-search-input' name='s' value="<?php if (isset($url_parms['s'])) echo $url_parms['s']; ?>" class="search-input" />
-			<input type='submit' value='<?php _e( 'Search mails', 'MailPress' ); ?>' class='button' />
+			<input type='submit' value='<?php _e( 'Search mails', MP_TXTDOM ); ?>' class='button' />
 		</p>
 		<input type='hidden' name='page' value='<?php echo MailPress_page_mails; ?>' />
 		<input type='hidden' name='mode' value='<?php echo $url_parms['mode']; ?>' />
@@ -129,14 +129,14 @@ if ($mails) {
 		<div class='tablenav'>
 			<div class='alignleft actions'>
 <?php if ((isset($url_parms['status'])) && ( 'sent' != $url_parms['status'] )) : ?>
-				<?php if (current_user_can('MailPress_send_mails'))   : ?><input type='submit' value='<?php _e('Send', 'MailPress'); ?>' 	name='sendit'	  class='button-secondary action' /><?php endif; ?>
+				<?php if (current_user_can('MailPress_send_mails'))   : ?><input type='submit' value='<?php _e('Send', MP_TXTDOM); ?>' 	name='sendit'	  class='button-secondary action' /><?php endif; ?>
 <?php endif; ?>
-				<?php if (current_user_can('MailPress_delete_mails')) : ?><input type='submit' value='<?php _e('Delete', 'MailPress'); ?>' 	name='deleteit'     class='button-secondary action' /><?php endif; ?>
+				<?php if (current_user_can('MailPress_delete_mails')) : ?><input type='submit' value='<?php _e('Delete', MP_TXTDOM); ?>' 	name='deleteit'     class='button-secondary action' /><?php endif; ?>
 			</div>
 <?php if ( $page_links ) echo "\n<div class='tablenav-pages'>$page_links</div>\n"; ?>
 			<div class='view-switch'>
-				<a href="<?php echo $list_url;   ?>"><img id="view-switch-list"    height="20" width="20" <?php if ( 'list'   == $url_parms['mode'] ) echo "class='current'" ?> alt="<?php _e('List View', 'MailPress')   ?>" title="<?php _e('List View', 'MailPress')   ?>" src="../wp-includes/images/blank.gif" /></a>
-				<a href="<?php echo $detail_url; ?>"><img id="view-switch-excerpt" height="20" width="20" <?php if ( 'detail' == $url_parms['mode'] ) echo "class='current'" ?> alt="<?php _e('Detail View', 'MailPress') ?>" title="<?php _e('Detail View', 'MailPress') ?>" src="../wp-includes/images/blank.gif" /></a>
+				<a href="<?php echo $list_url;   ?>"><img id="view-switch-list"    height="20" width="20" <?php if ( 'list'   == $url_parms['mode'] ) echo "class='current'" ?> alt="<?php _e('List View', MP_TXTDOM)   ?>" title="<?php _e('List View', MP_TXTDOM)   ?>" src="../wp-includes/images/blank.gif" /></a>
+				<a href="<?php echo $detail_url; ?>"><img id="view-switch-excerpt" height="20" width="20" <?php if ( 'detail' == $url_parms['mode'] ) echo "class='current'" ?> alt="<?php _e('Detail View', MP_TXTDOM) ?>" title="<?php _e('Detail View', MP_TXTDOM) ?>" src="../wp-includes/images/blank.gif" /></a>
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -166,9 +166,9 @@ if ($mails) {
 <?php if ( $page_links ) echo "\n<div class='tablenav-pages'>$page_links</div>\n"; ?>
 			<div class='alignleft actions'>
 <?php if ((isset($url_parms['status'])) && ( 'sent' != $url_parms['status'] )) : ?>
-				<?php if (current_user_can('MailPress_send_mails'))   : ?><input type='submit' value='<?php _e('Send', 'MailPress'); ?>' 	name='sendit'	  class='button-secondary action' /><?php endif; ?>
+				<?php if (current_user_can('MailPress_send_mails'))   : ?><input type='submit' value='<?php _e('Send', MP_TXTDOM); ?>' 	name='sendit'	  class='button-secondary action' /><?php endif; ?>
 <?php endif; ?>
-				<?php if (current_user_can('MailPress_delete_mails')) : ?><input type='submit' value='<?php _e('Delete', 'MailPress'); ?>' 	name='deleteit'     class='button-secondary action' /><?php endif; ?>
+				<?php if (current_user_can('MailPress_delete_mails')) : ?><input type='submit' value='<?php _e('Delete', MP_TXTDOM); ?>' 	name='deleteit'     class='button-secondary action' /><?php endif; ?>
 			</div>
 		</div>
 		<div class="clear"></div>
@@ -186,7 +186,7 @@ if ($mails) {
 	</form>
 	<div class="clear"></div>
 	<p>
-		<?php _e('No results found.', 'MailPress') ?>
+		<?php _e('No results found.', MP_TXTDOM) ?>
 	</p>
 <?php
 }

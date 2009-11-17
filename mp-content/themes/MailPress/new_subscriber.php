@@ -1,7 +1,7 @@
 <?php
 /*
 Template Name: new_subscriber
-Subject: [<?php bloginfo('name');?>] <?php printf( __('Waiting for : %s','MailPress'), '{{toemail}}'); ?>
+Subject: [<?php bloginfo('name');?>] <?php printf( __('Waiting for : %s', MP_TXTDOM), '{{toemail}}'); ?>
 */
 ?>
 <?php $this->get_header() ?>

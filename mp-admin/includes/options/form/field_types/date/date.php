@@ -9,7 +9,7 @@ class MP_Forms_field_type_date extends MP_Forms_field_type_abstract
 
 	function __construct()
 	{
-		$this->description = __('Date', 'MailPress');
+		$this->description = __('Date', MP_TXTDOM);
 		$this->settings	 = dirname(__FILE__) . '/settings.xml';
 		parent::__construct();
 	}
@@ -87,11 +87,11 @@ class MP_Forms_field_type_date extends MP_Forms_field_type_abstract
 		$this->field->settings['options']['value'] = $_POST[$this->prefix][$this->field->form_id][$this->field->id];
 
 		$html = MP_Forms_field_type_select::no_reset( $this->field->settings['options']['tag_content_y'], $this->field->settings['options']['value']['y'] );
-		$this->field->settings['options']['tag_content_y'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', 'MailPress') ) . ' -->';
+		$this->field->settings['options']['tag_content_y'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', MP_TXTDOM) ) . ' -->';
 		$html = MP_Forms_field_type_select::no_reset( $this->field->settings['options']['tag_content_m'], $this->field->settings['options']['value']['m'] );
-		$this->field->settings['options']['tag_content_m'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', 'MailPress') ) . ' -->';
+		$this->field->settings['options']['tag_content_m'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', MP_TXTDOM) ) . ' -->';
 		$html = MP_Forms_field_type_select::no_reset( $this->field->settings['options']['tag_content_d'], $this->field->settings['options']['value']['d'] );
-		$this->field->settings['options']['tag_content_d'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', 'MailPress') ) . ' -->';
+		$this->field->settings['options']['tag_content_d'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', MP_TXTDOM) ) . ' -->';
 
 		$this->attributes_filter_css();
 	}
