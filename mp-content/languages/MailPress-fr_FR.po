@@ -1,0 +1,3181 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-10-13 01:04+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# C:\wgettext\m201\mailpress\mp-includes\class\MP_Admin.class.php:33
+# C:\wgettext\m201\mailpress\mp-includes\class\MP_Admin.class.php:35
+#, php-format
+msgid "Your %1$s version is '%2$s', at least version '%3$s' required."
+msgstr "Votre version %1$s est '%2$s', version '%3$s' requise."
+
+# C:\wgettext\m201\mailpress\mp-includes\class\MP_Admin.class.php:33
+msgid "PHP"
+msgstr "PHP"
+
+# C:\wgettext\mailpress_sync_wordpress_user\MailPress_sync_wordpress_user.php:216
+msgid "WordPress"
+msgstr "WordPress"
+
+# C:\wgettext\m201\mailpress\mp-includes\class\MP_Admin.class.php:37
+#, php-format
+msgid "The directory '%1$s' is not writable."
+msgstr "Le r&eacute;pertoire '%1$s' n'est pas accessible en &eacute;criture."
+
+# C:\wgettext\m201\mailpress\mp-includes\class\MP_Admin.class.php:52
+#, php-format
+msgid "<b>Sorry, but you can't run this plugin : %1$s. </b>"
+msgstr "<b>D&eacute;sol&eacute;, mais vous ne pouvez pas utiliser ce plugin : %1$s. </b>"
+
+msgid "Settings"
+msgstr "R&eacute;glages"
+
+msgid "New Mail"
+msgstr "Nouveau mail"
+
+msgid "Mails"
+msgstr "Mails"
+
+msgid "Write Mail"
+msgstr "&Eacute;crire un mail"
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Users"
+msgstr "Abonn&eacute;s"
+
+msgid "MailPress test"
+msgstr "Test MailPress"
+
+# C:\wgettext\m\mailpress_autoresponder\MailPress_autoresponder.php:220
+# C:\wgettext\m\mailpress_autoresponder\MailPress_autoresponder.php:226
+# C:\wgettext\m\mailpress_autoresponder\MailPress_autoresponder.php:309
+# C:\wgettext\m\mailpress_autoresponder\MailPress_autoresponder.php:518
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:113
+msgid "Autoresponders"
+msgstr "Autor&eacute;pondeurs"
+
+msgid "MailPress Autoresponders"
+msgstr "MailPress Autor&eacute;pondeurs"
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\includes\template.php:11
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\includes\template.php:26
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\includes\template.php:130
+msgid "Autoresponder"
+msgstr "Autor&eacute;pondeur"
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\includes\settings-autoresponder.php:12
+msgid "Autoresponder log"
+msgstr "Log autor&eacute;pondeur"
+
+msgid "(for <b>ALL</b> Autoresponders through MailPress)"
+msgstr "(pour <b>TOUS</b> les autor&eacute;pondeurs avec MailPress)"
+
+msgid "Number of Autoresponder log files : "
+msgstr "Nombre de fichiers log Autor&eacute;pondeur : "
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:314
+# C:\wgettext\mailpress_mailing_lists\mp-admin\includes\taxonomy.php:51
+msgid "You did not enter a valid autoresponder name."
+msgstr "Veuillez rentrer un nom pour l'autor&eacute;pondeur"
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:322
+msgid "The autoresponder you are trying to create already exists."
+msgstr "Cet autor&eacute;pondeur existe d&eacute;j&agrave;"
+
+#, php-format
+msgid "Autoresponder <a href=\"#%s\">%s</a> added"
+msgstr "Autor&eacute;pondeur <a href=\"#%s\">%s</a> ajout&eacute;e"
+
+msgid "%i% pending"
+msgstr "%i% en attente"
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\includes\template.php:12
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\includes\template.php:27
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\includes\template.php:131
+msgid "Schedule"
+msgstr "Planification"
+
+# C:\wgettext\m\mailpress_autoresponder\MailPress_autoresponder.php:220
+# C:\wgettext\m\mailpress_autoresponder\MailPress_autoresponder.php:226
+# C:\wgettext\m\mailpress_autoresponder\MailPress_autoresponder.php:309
+# C:\wgettext\m\mailpress_autoresponder\MailPress_autoresponder.php:518
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:113
+msgid "No autoresponder"
+msgstr "Pas d'autor&eacute;pondeur"
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\includes\template.php:126
+msgid "Link to :"
+msgstr "Associ&eacute; &agrave; :"
+
+# C:\wgettext\mailpress_newsletter_categories\MailPress_newsletter_categories.php:216
+msgid "Month"
+msgstr "Mois"
+
+# C:\wgettext\mailpress_newsletter_categories\MailPress_newsletter_categories.php:210
+msgid "Day"
+msgstr "Jour"
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\includes\template.php:98
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\includes\template.php:158
+msgid "Hour"
+msgstr "Heure"
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:517
+msgid "Add"
+msgstr "Ajouter"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+# C:\wgettext\m201\mailpress_custom_fields\mp-admin\includes\template.php:86
+msgid "Update"
+msgstr ""
+
+# C:\wgettext\mailpress_batch_send\MailPress_batch_send.php:71
+msgid "Batch"
+msgstr "Batch"
+
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:3
+msgid "Batch log"
+msgstr "Logging"
+
+msgid "(for <b>ALL</b> mails send through MailPress)"
+msgstr "(pour <b>TOUS</b> les mails envoy&eacute;s avec MailPress)"
+
+msgid "Number of Batch log files : "
+msgstr "Nombre de fichiers log : "
+
+# C:\wgettext\mailpress\mailpress_batch_send\MailPress_batch_send.php:502
+#, php-format
+msgid "%1$s on %2$s sent| Singular"
+msgstr "%1$s sur %2$s envoy&eacute;| Singulier"
+
+# C:\wgettext\mailpress\mailpress_batch_send\MailPress_batch_send.php:502
+#, php-format
+msgid "%1$s on %2$s sent| Plural"
+msgstr "%1$s sur %2$s envoy&eacute;s| Pluriel"
+
+msgid "Pending..."
+msgstr "En attente ..."
+
+# C:\wgettext\mailpress\mailpress_batch_send\MailPress_batch_send.php:487
+msgid "Auto refresh for WP_Cron"
+msgstr "Auto rafraichissement pour WP_Cron"
+
+# C:\wgettext\mailpress\mailpress_batch_send\MailPress_batch_send.php:489
+#, php-format
+msgid "%1$s Autorefresh %2$s every %3$s sec"
+msgstr "%1$s Rafraichissement  %2$s  toutes les %3$s sec"
+
+# C:\wgettext\mailpress\mailpress_batch_send\MailPress_batch_send.php:416
+msgid "Autorefresh in %i% sec"
+msgstr "Rafraichissement de l'&eacute;cran dans  %i% sec"
+
+# C:\wgettext\mailpress\MailPress_bounce_handling.php:295
+# C:\wgettext\mailpress\MailPress_bounce_handling.php:305
+# C:\wgettext\mailpress\MailPress_bounce_handling.php:352
+# C:\wgettext\mailpress\MailPress_bounce_handling.php:362
+msgid "Bounces"
+msgstr "Rejets"
+
+# C:\wgettext\mailpress\MailPress_bounce_handling.php:305
+msgid "Bounces log"
+msgstr "Log rejets"
+
+msgid "Number of Bounces log files : "
+msgstr "Nombre de fichiers log Rejets : "
+
+# C:\wgettext\mailpress\MailPress_bounce_handling.php:312
+msgid "Bounce rate"
+msgstr "Taux de rejet"
+
+# C:\wgettext\mailpress\MailPress_bounce_handling.php:341
+msgid "Bounced"
+msgstr "Rejet&eacute;"
+
+msgid "(deleted)"
+msgstr "(supprim&eacute;)"
+
+msgid "View"
+msgstr "Voir"
+
+# C:\wgettext\mailpress_bulk_import\MailPress_bulk_import.php:26
+msgid "Bulk Add"
+msgstr "Ajout en masse"
+
+msgid "Activate"
+msgstr "Activer"
+
+# C:\wgettext\mailpress_bulk_import\MailPress_bulk_import.php:29
+msgid "Require Authorization"
+msgstr "A confirmer"
+
+# C:\wgettext\mailpress\MailPress_bulk_import.php:32
+msgid "email,name;email,name;..."
+msgstr "email,nom;email,nom;..."
+
+#, php-format
+msgid "%s email"
+msgstr "%s email"
+
+#, php-format
+msgid "%s emails"
+msgstr "%s emails"
+
+# C:\wgettext\mailpress_bulk_import\MailPress_bulk_import.php:58
+#, php-format
+msgid "%s record"
+msgstr "%s item"
+
+# C:\wgettext\mailpress_bulk_import\MailPress_bulk_import.php:58
+#, php-format
+msgid "%s records"
+msgstr "%s items"
+
+# C:\wgettext\mailpress_bulk_import\MailPress_bulk_import.php:59
+#, php-format
+msgid "%s user"
+msgstr "%s abonn&eacute;"
+
+#, php-format
+msgid "%s users"
+msgstr "%s abonn&eacute;s"
+
+# C:\wgettext\mailpress_bulk_import\MailPress_bulk_import.php:60
+#, php-format
+msgid "%1$s from %2$s added. Now there are a total of %3$s"
+msgstr "%1$s sur 1%2$s. Vous avez maintenant %3$s"
+
+# C:\wgettext\mailpress_filter_img\MailPress_filter_img.php:51
+msgid "Image filter"
+msgstr "Filtre image"
+
+msgid "Forms"
+msgstr "Formulaires"
+
+msgid "MailPress Forms"
+msgstr "MailPress Formulaires"
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:314
+# C:\wgettext\mailpress_mailing_lists\mp-admin\includes\taxonomy.php:51
+msgid "You did not enter a valid description."
+msgstr "Veuillez rentrer une description correcte."
+
+#, php-format
+msgid "form <a href=\"#%s\">%s</a> added"
+msgstr "Formulaire <a href=\"#%s\">%s</a> ajout&eacute;"
+
+# C:\wgettext\mailpress\MailPress_form.php:174
+msgid "Problems trying to duplicate form."
+msgstr "Probl&egrave;mes pour dupliquer le formulaire."
+
+#, php-format
+msgid "field <a href=\"#%s\">%s</a> added"
+msgstr "Champ <a href=\"#%s\">%s</a> ajout&eacute;"
+
+# C:\wgettext\mailpress\MailPress_form.php:249
+msgid "Problems trying to duplicate field."
+msgstr "Probl&egrave;mes pour dupliquer le champ."
+
+msgid "Edit form"
+msgstr "Modifier formulaire"
+
+msgid "Edit fields"
+msgstr "Champs"
+
+msgid "Edit template"
+msgstr "Modifier  template"
+
+#, php-format
+msgid "Preview \"%1$s\""
+msgstr "Aper&ccedil;u de \"%1$s\""
+
+# C:\wgettext\mailpress_import\MailPress_import.php:89
+# C:\wgettext\mailpress_import\MailPress_import.php:114
+# C:\wgettext\mailpress_import\MailPress_import.php:127
+# C:\wgettext\mailpress_import\mp-admin\import.php:29
+msgid "Import"
+msgstr "Importer"
+
+msgid "MailPress Import"
+msgstr "MailPress Import"
+
+# C:\wgettext\mailpress_import\mp-admin\includes\settings-import.php:12
+msgid "Import log"
+msgstr "Log Import"
+
+msgid "(for <b>ALL</b> imports through MailPress)"
+msgstr "(pour <b>TOUS</b> les imports avec MailPress)"
+
+msgid "Number of Import log files : "
+msgstr "Nombre de fichiers log : "
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:514
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:516
+msgid "<br />already in Mailing list!"
+msgstr "<br />d&eacute;j&agrave; dans la Mailing list!"
+
+msgid "<br />Mailing list added"
+msgstr "<br />Mailing list ajout&eacute;e"
+
+msgid "Mailing lists"
+msgstr "Mailing lists"
+
+msgid "Uncategorized"
+msgstr "Uncategorized"
+
+msgid "MailPress Mailing lists"
+msgstr "MailPress Mailing lists"
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:159
+msgid "Default Mailing list"
+msgstr "Mailing list par d&eacute;faut "
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Themes.class.php:48
+msgid "Allow subscriptions to"
+msgstr "Autoriser l'abonnement aux"
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:314
+# C:\wgettext\mailpress_mailing_lists\mp-admin\includes\taxonomy.php:51
+msgid "You need to create at least one mailinglist."
+msgstr "Veuillez cr&eacute;er une mailing list"
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:314
+# C:\wgettext\mailpress_mailing_lists\mp-admin\includes\taxonomy.php:51
+msgid "You did not enter a valid mailing list name."
+msgstr "Veuillez rentrer un nom de mailing list"
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:322
+msgid "The mailing list you are trying to create already exists."
+msgstr "Cette mailing list existe d&eacute;j&agrave;"
+
+#, php-format
+msgid "Mailing list <a href=\"#%s\">%s</a> added"
+msgstr "Mailing list <a href=\"#%s\">%s</a> ajout&eacute;e"
+
+msgid "View all mailing lists"
+msgstr "Voir toutes les mailing lists"
+
+msgid "Filter"
+msgstr "Filtrer"
+
+msgid "Uncategorized "
+msgstr "Uncategorized "
+
+msgid "All Mailing lists"
+msgstr "Toutes les mailing lists"
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:487
+msgid "Most Used"
+msgstr "Les plus utilis&eacute;es"
+
+msgid "+ Add New mailing list"
+msgstr "+ Ajouter une nouvelle mailing list"
+
+msgid "Add New mailinglist"
+msgstr "Ajouter une nouvelle mailing list "
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:514
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:516
+msgid "Parent Mailing list"
+msgstr "Mailing list m&egrave;re"
+
+#, php-format
+msgid "[%1$s] New post in %2$s"
+msgstr "[%1$s] Nouvel article (%2$s)"
+
+#, php-format
+msgid "Per post \"%1$s\""
+msgstr "&Agrave; chaque article de  \"%1$s\""
+
+#, php-format
+msgid "For each new post in %1$s"
+msgstr "&Agrave; chaque nouvel article  dans %1$s"
+
+#, php-format
+msgid "[%1$s] Daily newsletter in %2$s"
+msgstr "[%1$s] Newsletter quotidienne pour %2$s"
+
+#, php-format
+msgid "Daily \"%1$s\""
+msgstr "Quotidienne de \"%1$s\""
+
+#, php-format
+msgid "Daily newsletter for %1$s"
+msgstr "Newsletter quotidienne pour %1$s"
+
+#, php-format
+msgid "[%1$s] Weekly newsletter for %2$s"
+msgstr "[%1$s] Newsletter hebdomadaire pour %2$s"
+
+#, php-format
+msgid "Weekly \"%1$s\""
+msgstr "Hebdomadaire de \"%1$s\""
+
+#, php-format
+msgid "Weekly newsletter for %1$s"
+msgstr "Newsletter hebdomadaire pour %1$s"
+
+#, php-format
+msgid "[%1$s] Monthly newsletter for %2$s"
+msgstr "[%1$s] Newsletter mensuelle pour %2$s"
+
+#, php-format
+msgid "Monthly \"%1$s\""
+msgstr "Mensuelle de \"%1$s\""
+
+#, php-format
+msgid "Monthly newsletter for %1$s"
+msgstr "Newsletter mensuelle pour %1$s"
+
+# C:\wgettext\mailpress\mailpress_roles_and_capabilities\MailPress_roles_and_capabilities.php:83
+msgid "R&amp;C"
+msgstr "R&amp;C"
+
+msgid "Newsletters"
+msgstr "Newsletters"
+
+msgid "Your Subscriptions"
+msgstr "Vos abonnements"
+
+msgid "MailPress - Subscriptions"
+msgstr "MailPress - Abonnements "
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Themes.class.php:48
+msgid "Allow subscriptions from"
+msgstr "Autoriser l'abonnement depuis "
+
+# C:\wgettext\mp\mailpress_sync_wordpress_user\mp-admin\includes\settings-sync-wordpress-user.php:14
+msgid "Registration Form"
+msgstr "Le formulaire d'Inscription"
+
+msgid "WP User sync"
+msgstr "WP User # %1$s"
+
+#, php-format
+msgid "WP User # %1$s"
+msgstr "WP User # %1$s"
+
+# C:\wgettext\mailpress_sync_wordpress_user\MailPress_sync_wordpress_user.php:249
+msgid "First name"
+msgstr "Pr&eacute;nom"
+
+# C:\wgettext\mailpress_sync_wordpress_user\MailPress_sync_wordpress_user.php:252
+msgid "Last name"
+msgstr "  \tNom"
+
+msgid "Nickname"
+msgstr "Nom"
+
+# C:\wgettext\mailpress_sync_wordpress_user\MailPress_sync_wordpress_user.php:283
+#, php-format
+msgid "%1$s is not a WordPress user"
+msgstr "%1$s n'est pas un utilisateur WordPress"
+
+msgid "View tracking"
+msgstr "Visualiser le tracking"
+
+# C:\wgettext\mailpress\mailpress\mp-includes\class\MP_Mail.class.php:1406
+# C:\wgettext\mailpress\mailpress\mp-includes\class\MP_Mail.class.php:1412
+# C:\wgettext\mailpress\mailpress_tracking\MailPress_tracking.php:110
+# C:\wgettext\mailpress\mailpress_tracking\MailPress_tracking.php:280
+msgid "Tracking"
+msgstr "Tracking"
+
+# C:\wgettext\mailpress\mailpress_tracking\MailPress_tracking.php:136
+msgid "Open rate"
+msgstr "Taux d'ouverture"
+
+msgid "Clicks"
+msgstr "Clics"
+
+msgid "Unknown"
+msgstr "(inconnu)"
+
+msgid "subscribe"
+msgstr "lien Abonnement"
+
+msgid "unsubscribe"
+msgstr "lien D&eacute;sabonnement"
+
+msgid "view html"
+msgstr "Affichage aper&ccedil;u"
+
+msgid "mail opened"
+msgstr "mail ouvert"
+
+# C:\wgettext\mailpress_view_logs\MailPress_view_logs.php:87
+msgid "Logs"
+msgstr "Logs"
+
+msgid "MailPress View logs"
+msgstr "MailPress Voir les logs"
+
+msgid "Edit Autoresponder"
+msgstr "Modifier Autor&eacute;pondeur"
+
+msgid "An unidentified error has occurred."
+msgstr "Une erreur s'est produite !"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Active"
+msgstr "Actif"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Event"
+msgstr "Ev&eacute;nement"
+
+msgid "Edit"
+msgstr "Modifier"
+
+#, php-format
+msgid "Edit \"%s\""
+msgstr "Modifier \"%s\""
+
+# C:\wgettext\m\mailpress_autoresponder\MailPress_autoresponder.php:489
+msgid "Yes"
+msgstr "Oui"
+
+msgid "No"
+msgstr "Non"
+
+msgid "Edit Form"
+msgstr "Modifier le formulaire"
+
+msgid "Enter a valid email !"
+msgstr "Entrer un email correct !"
+
+# C:\wgettext\mailpress\mp-admin\forms.php:134
+# C:\wgettext\mailpress\mp-admin\form_fields.php:134
+# C:\wgettext\mailpress\mp-admin\includes\forms.php:155
+# C:\wgettext\mailpress\mp-admin\includes\form_fields.php:175
+msgid "Label"
+msgstr "Libell&eacute;"
+
+msgid "Template"
+msgstr "Template"
+
+msgid "Recipient"
+msgstr "Destinataire"
+
+# C:\wgettext\mailpress\mp-admin\forms.php:137
+msgid "Copy"
+msgstr "Copie"
+
+msgid "Templates"
+msgstr "Templates"
+
+# C:\wgettext\mailpress\mailpress\mp-admin\includes\uzer.php:100
+msgid "Fields"
+msgstr "Champs"
+
+msgid "Duplicate"
+msgstr "Dupliquer"
+
+# C:\wgettext\mailpress\mp-admin\forms.php:222
+#, php-format
+msgid "Form preview #%1$s (%2$s)"
+msgstr "Pr&eacute;visualisation du formulaire #%1$s (%2$s)"
+
+msgid "Preview"
+msgstr "Pr&eacute;visualiser"
+
+# C:\wgettext\mailpress\mp-admin\forms.php:274
+msgid "t.b.c."
+msgstr "&agrave; confirmer"
+
+# C:\wgettext\m\mailpress_autoresponder\MailPress_autoresponder.php:489
+msgid "yes"
+msgstr "oui"
+
+msgid "no"
+msgstr "non"
+
+msgid "MailPress Forms Edit Fields"
+msgstr "MailPress Formulaires modifier les champs"
+
+# C:\wgettext\mailpress\mp-admin\form_fields.php:137
+# C:\wgettext\mailpress\mp-admin\includes\form_fields.php:198
+msgid "Type"
+msgstr "Type"
+
+# C:\wgettext\mailpress\mp-admin\form_fields.php:137
+msgid "Order"
+msgstr "Ordre"
+
+# C:\wgettext\mailpress\mp-admin\form_fields.php:136
+msgid "Required"
+msgstr "Requis"
+
+# C:\wgettext\mailpress\mp-admin\form_fields.php:146
+msgid "In&nbsp;copy"
+msgstr "Dans&nbsp;la&nbsp;copie"
+
+msgid "MailPress Forms Templates"
+msgstr "MailPress Formulaires templates"
+
+# C:\wgettext\mailpress_import\MailPress_import.php:89
+# C:\wgettext\mailpress_import\MailPress_import.php:114
+# C:\wgettext\mailpress_import\MailPress_import.php:127
+# C:\wgettext\mailpress_import\mp-admin\import.php:29
+msgid "Export"
+msgstr "Exporter"
+
+# C:\wgettext\mailpress_import\MailPress_import.php:89
+# C:\wgettext\mailpress_import\MailPress_import.php:114
+# C:\wgettext\mailpress_import\MailPress_import.php:127
+# C:\wgettext\mailpress_import\mp-admin\import.php:29
+#, php-format
+msgid "Import \"%s\""
+msgstr "Import \"%s\""
+
+msgid "View Mail"
+msgstr "Visualiser un mail"
+
+msgid "Send"
+msgstr "Envoyer"
+
+msgid "Mail"
+msgstr "Mail"
+
+#, php-format
+msgid ""
+"You are about to delete this draft '%s'\n"
+"  'Cancel' to stop, 'OK' to delete."
+msgstr ""
+"Vous allez supprimer ce brouillon '%s'\n"
+"  'Annuler' pour abandonner, 'OK' pour le supprimer."
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:206
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:223
+#, php-format
+msgid "Can&#8217;t delete the <strong>%s</strong> mailing list: this is the default one"
+msgstr "Impossible de supprimer la mailing list par d&eacute;faut <strong>%s</strong>"
+
+msgid "Edit Mailinglist"
+msgstr "Modifier la mailing list"
+
+msgid "Email was not sent AND/OR Update database failed"
+msgstr "Mail PAS envoy&eacute; OU ECHEC de la mise à jour de la base de données"
+
+msgid "MailPress users"
+msgstr "Abonn&eacute;s MailPress"
+
+msgid "Subject"
+msgstr "Objet"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "Theme"
+msgstr "Th&egrave;me"
+
+msgid "To"
+msgstr "&Agrave;"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Send this mail"
+msgstr "Envoyer ce mail"
+
+# C:\wgettext\mailpress\mailpress\mp-includes\class\MP_Mail.class.php:1406
+# C:\wgettext\mailpress\mailpress\mp-includes\class\MP_Mail.class.php:1412
+msgid "See tracking results"
+msgstr "Voir les r&eacute;sultats du tracking"
+
+msgid "Delete this mail"
+msgstr "Supprimer ce mail"
+
+#, php-format
+msgid "Search \"%1$s\""
+msgstr "Chercher \"%1$s\""
+
+msgid "(unknown)"
+msgstr "(inconnu)"
+
+# C:\wgettext\mailpress\mp-includes\mp-mail-links.php:180
+# C:\wgettext\mailpress\mp-includes\mp-mail-links.php:213
+# C:\wgettext\mailpress\mp-includes\viewthickbox.html.php:90
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:729
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:751
+msgid "Attachements"
+msgstr "Pi&egrave;ces jointes"
+
+#, php-format
+msgid "Edit \"%1$s\""
+msgstr "Modifier \"%1$s\""
+
+#, php-format
+msgid "View \"%1$s\""
+msgstr "Voir \"%1$s\""
+
+msgid "(no subject)"
+msgstr "(sans objet)"
+
+msgid "Draft"
+msgstr "Brouillon"
+
+#, php-format
+msgid "Mails by \"%1$s\""
+msgstr "Mails de \"%1$s\""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Mail.class.php:1299
+# C:\wgettext\mailpress\mp-includes\class\MP_User.class.php:856
+# C:\wgettext\mailpress\mp-includes\class\MP_User.class.php:881
+# C:\wgettext\mailpress\mp-includes\class\MP_User.class.php:1128
+msgid "Y/m/d g:i:s A"
+msgstr ""
+
+#, php-format
+msgid "%s ago"
+msgstr "il y a %s"
+
+msgid "now"
+msgstr "maintenant"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Mail.class.php:1307
+# C:\wgettext\mailpress\mp-includes\class\MP_User.class.php:863
+# C:\wgettext\mailpress\mp-includes\class\MP_User.class.php:888
+# C:\wgettext\mailpress\mp-includes\class\MP_User.class.php:1135
+msgid "Y/m/d"
+msgstr ""
+
+msgid "Mail Revisions"
+msgstr "Historique du mail"
+
+# C:\wgettext\mailpress\mp-admin\settings.php:9
+msgid "Save Changes"
+msgstr ""
+
+msgid "No logging"
+msgstr "Pas de log"
+
+msgid "Logging level : "
+msgstr "Niveau : "
+
+msgid "(one log file per day)"
+msgstr "(un fichier log par jour)"
+
+msgid "Date of last purge"
+msgstr "Dernière purge"
+
+# C:\wgettext\mailpress\mailpress_batch_send\MailPress_batch_send.php:487
+msgid "Auto refresh"
+msgstr "Auto rafraichissement"
+
+msgid "MailPress User"
+msgstr "Abonn&eacute;s"
+
+# C:\wgettext\mailpress_IP_user_info\MailPress_IP_user_info.php:54
+msgid "zoom -"
+msgstr "zoom -"
+
+# C:\wgettext\mailpress_IP_user_info\MailPress_IP_user_info.php:55
+msgid "zoom +"
+msgstr "zoom +"
+
+msgid "center"
+msgstr "centrer"
+
+msgid "change map"
+msgstr "changer de carte"
+
+msgid "Update database failed"
+msgstr "Echec de la mise &agrave jour de la base de donn&eacute;es"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+# C:\wgettext\mailpress\mailpress\mp-admin\includes\uzer.php:100
+msgid "Custom Fields"
+msgstr "Champs personnalis&eacute;s"
+
+# C:\wgettext\mailpress_IP_user_info\MailPress_IP_user_info.php:46
+msgid "IP info"
+msgstr "IP info"
+
+#, php-format
+msgid ""
+"You are about to unbounce this MailPress user '%s'\n"
+"  'Cancel' to stop, 'OK' to unbounce."
+msgstr ""
+"Vous allez accepter cet abonn&eacute;  '%s'\n"
+"  'Annuler' pour abandonner, 'OK' pour l'accepter."
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\time\settings.xml:55
+msgid "Unbounce"
+msgstr "Accepter"
+
+#, php-format
+msgid ""
+"You are about to delete this MailPress user '%s'\n"
+"  'Cancel' to stop, 'OK' to delete."
+msgstr ""
+"Vous allez supprimer cet abonn&eacute;  '%s'\n"
+"  'Annuler' pour abandonner, 'OK' pour le supprimer."
+
+# C:\wgettext\mailpress_import\MailPress_import.php:157
+msgid "Key"
+msgstr "Clef"
+
+# C:\wgettext\mailpress_import\MailPress_import.php:160
+msgid "Value"
+msgstr "Valeur"
+
+# C:\wgettext\mailpress_import\MailPress_import.php:181
+msgid "No meta data"
+msgstr "Pas de meta data"
+
+# C:\wgettext\m201\mailpress_custom_fields\mp-admin\includes\template.php:105
+msgid "Add new custom field:"
+msgstr ""
+
+# C:\wgettext\m201\mailpress_custom_fields\mp-admin\includes\template.php:119
+msgid "- Select -"
+msgstr ""
+
+# C:\wgettext\m201\mailpress_custom_fields\mp-admin\includes\template.php:130
+msgid "Enter new"
+msgstr ""
+
+msgid "Cancel"
+msgstr "Abandonner"
+
+# C:\wgettext\mailpress\mailpress\mp-admin\includes\uzer.php:100
+msgid "Add Custom Field"
+msgstr "Ajouter un champ personnalis&eacute;"
+
+# C:\wgettext\m201\mailpress_custom_fields\MailPress_custom_fields.php:66
+msgid "Custom fields can be used to add extra metadata to a user that you can <a href=\"http://www.mailpress.org\" target=\"_blank\">use in your mail</a>."
+msgstr "Les champs personnalis&eacute;s peuvent &ecirc;tre utilis&eacute;s afin d’ajouter des donn&eacute;es suppl&eacute;mentaires &agrave; vos abonn&eacute;s.  Vous pouvez les <a href=\"http://www.mailpress.org\" target=\"_blank\">utiliser dans votre mail</a>."
+
+# C:\wgettext\mailpress\mp-admin\user.php:438
+#, php-format
+msgid "ip data provided by %1$s"
+msgstr "donn&eacute;es fournies par %1$s"
+
+msgid "E-mail"
+msgstr "E-mail"
+
+#, php-format
+msgid "Write to \"%1$s\""
+msgstr "&Eacute;crire &agrave; \"%1$s\""
+
+msgid "Write"
+msgstr "&Eacute;crire"
+
+#, php-format
+msgid "Activate \"%1$s\""
+msgstr "Activer \"%1$s\""
+
+#, php-format
+msgid "Deactivate \"%1$s\""
+msgstr "D&eacute;sactiver \"%1$s\""
+
+msgid "Deactivate"
+msgstr "D&eacute;sactiver"
+
+#, php-format
+msgid "Unbounce \"%1$s\""
+msgstr "Accepter \"%1$s\""
+
+msgid "Delete this user"
+msgstr "Supprimer cet abonn&eacute;"
+
+msgid "Activate this user"
+msgstr "Activer cet abonn&eacute;"
+
+msgid "Deactivate this user"
+msgstr "D&eacute;sactiver cet abonn&eacute;"
+
+#, php-format
+msgid "Users by \"%1$s\""
+msgstr "Abonnés créés par \"%1$s\""
+
+msgid "View Log"
+msgstr "Voir la log"
+
+# C:\wgettext\mailpress\mailpress_batch_send\MailPress_batch_send.php:487
+msgid "Auto refresh for Auto scrolling"
+msgstr "Auto rafraichissement pour d&eacute;roulement auto"
+
+#, php-format
+msgid "Browse \"%1$s\""
+msgstr "Afficher \"%1$s\""
+
+# C:\wgettext\mailpress\mp-admin\view_logs.php:111
+msgid "Browse"
+msgstr "Afficher"
+
+msgid "Edit Mail"
+msgstr "&Eacute;crire un mail "
+
+msgid "Saving draft..."
+msgstr "Enregistrement en cours..."
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:556
+msgid "You have attempted to queue too many files."
+msgstr ""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:557
+#, php-format
+msgid "This file is too big. Your php.ini upload_max_filesize is %s."
+msgstr ""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:558
+msgid "This file is empty. Please try another."
+msgstr ""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:559
+msgid "This file type is not allowed. Please try another."
+msgstr ""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:560
+msgid "An error occurred in the upload. Please try again later."
+msgstr ""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:561
+msgid "There was a configuration error. Please contact the server administrator."
+msgstr ""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:562
+msgid "You may only upload 1 file."
+msgstr ""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:563
+msgid "HTTP error."
+msgstr ""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:564
+msgid "Upload failed."
+msgstr ""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:565
+msgid "IO error."
+msgstr ""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:566
+msgid "Security error."
+msgstr ""
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:150
+msgid "File cancelled."
+msgstr ""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:568
+msgid "Upload stopped."
+msgstr ""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:569
+msgid "Dismiss"
+msgstr ""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:570
+msgid "Crunching&hellip;"
+msgstr ""
+
+msgid "Deleted"
+msgstr ""
+
+msgid "Uploading ..."
+msgstr "Chargement en cours ..."
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:586
+# C:\wgettext\mailpress\mp-includes\class\MP_Mail.class.php:1695
+msgid "Attach a file"
+msgstr "Joindre un fichier"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:587
+# C:\wgettext\mailpress\mp-includes\class\MP_Mail.class.php:1697
+msgid "Attach another file"
+msgstr "Joindre un autre fichier"
+
+msgid "Plain Text"
+msgstr "Plaintext"
+
+msgid "Change Theme"
+msgstr "Changer de th&egrave;me"
+
+msgid "Save Draft"
+msgstr "Enregistrer"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Mail.class.php:1649
+msgid "homemade uploader"
+msgstr "l'outil maison"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Mail.class.php:1656
+msgid "Flash uploader"
+msgstr "l'outil Flash"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Mail.class.php:1672
+#, php-format
+msgid "Problems?  Try the %s."
+msgstr "Probl&egrave;mes ? Essayez %s."
+
+# C:\wgettext\mailpress\mailpress_extra_form_mail_new\MailPress_extra_form_mail_new.php:38
+#, php-format
+msgid "Current theme is : %s"
+msgstr "Le th&egrave;me courant est : %s"
+
+msgid "current theme"
+msgstr "Th&egrave;me MailPress courant"
+
+# C:\wgettext\m201\mailpress_custom_fields\MailPress_custom_fields.php:66
+msgid "Custom fields can be used to add extra metadata to a mail that you can <a href=\"http://www.mailpress.org\" target=\"_blank\">use in your mail</a>."
+msgstr "Les champs personnalis&eacute;s peuvent &ecirc;tre utilis&eacute;s afin d’ajouter des donn&eacute;es suppl&eacute;mentaires &agrave; vos mails.  Vous pouvez les <a href=\"http://www.mailpress.org\" target=\"_blank\">utiliser dans votre mail</a>."
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:52
+msgid "Update the autoresponder"
+msgstr "Modifier l'autor&eacute;pondeur"
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:69
+msgid "Add an autoresponder"
+msgstr "Ajouter un autor&eacute;pondeur"
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:85
+msgid "Autoresponder added."
+msgstr "Autor&eacute;pondeur ajout&eacute;."
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:86
+msgid "Autoresponder deleted."
+msgstr "Autor&eacute;pondeur supprim&eacute;."
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:87
+msgid "Autoresponder updated."
+msgstr "Autor&eacute;pondeur modifi&eacute;."
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:88
+msgid "Autoresponder not added."
+msgstr "Autor&eacute;pondeur pas ajout&eacute;."
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:89
+msgid "Autoresponder not updated."
+msgstr "Autor&eacute;pondeur pas  modifi&eacute;."
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:90
+msgid "Autoresponders deleted."
+msgstr "Autor&eacute;pondeurs supprim&eacute;s."
+
+msgid "Search Autoresponders"
+msgstr "Chercher dans les autor&eacute;pondeurs"
+
+# C:\wgettext\mailpress_mailing_lists\mp-admin\edit-mailinglist-form.php:33
+msgid "The name is used to identify the autoresponder almost everywhere."
+msgstr " Le nom est utilis&eacute; pour identifier l'Autor&eacute;pondeur un peu partout. "
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:181
+msgid "Slug"
+msgstr "Identifiant"
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:183
+msgid "The &#8220;slug&#8221; is a unique id for the autoresponder (not so friendly !)."
+msgstr "L’identifiant est la cl&eacute; unique de l'autor&eacute;pondeur !!."
+
+# C:\wgettext\mailpress_mailing_lists\mp-admin\edit-mailinglist-form.php:52
+msgid "The description is not prominent by default."
+msgstr " La description n’est pas tr&eacute;s utile par d&eacute;faut "
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:200
+msgid "If unchecked during a certain period of time, All mails that should have been sent on time will be cancelled. Following mails (if any) will be lost as well."
+msgstr "Si inactif pendant une certaine dur&eacute;e, Tous les mails devant &ecirc;tre envoy&eacute;s pendant cette p&eacute;riode sont perdus ainsi que les mails &agrave; suivre (s'il y en a)."
+
+msgid "mail"
+msgstr "mail"
+
+msgid "subject"
+msgstr "objet"
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:210
+msgid "m/d/h"
+msgstr "m/j/h"
+
+msgid "MailPress - 'Right Now'"
+msgstr "MailPress - 'Aujourd'hui'"
+
+msgid "MailPress - Most subscribed"
+msgstr "MailPress - Articles les plus souscrits"
+
+msgid "MailPress - Subscribers Map"
+msgstr "MailPress - Abonn&eacute;s "
+
+msgid "MailPress - Mails sent"
+msgstr "MailPress - Mails envoy&eacute;s"
+
+msgid "MailPress - Subscribers activity"
+msgstr "MailPress - Activit&eacute; abonn&eacute;s"
+
+msgid "MailPress - Mails activity"
+msgstr "MailPress - activit&eacute; mails"
+
+msgid "MailPress - Comments subscribers per post"
+msgstr "MailPress - Abonn&eacute;s commentaires par article"
+
+msgid "Subscribers - World"
+msgstr "Abonn&eacute;s - Monde"
+
+# C:\wgettext\mailpress\mailpress\mp-admin\includes\dashboard.php:64
+msgid "Africa"
+msgstr "Afrique"
+
+# C:\wgettext\mailpress\mailpress\mp-admin\includes\dashboard.php:65
+msgid "Asia"
+msgstr "Asie"
+
+# C:\wgettext\mailpress\mailpress\mp-admin\includes\dashboard.php:66
+msgid "Europe"
+msgstr "Europe"
+
+msgid "Middle East"
+msgstr "Moyen orient"
+
+msgid "South America"
+msgstr "Am&eacute;rique du sud"
+
+# C:\wgettext\mailpress\mailpress\mp-admin\includes\dashboard.php:69
+msgid "USA"
+msgstr "USA"
+
+# C:\wgettext\mailpress\mailpress\mp-admin\includes\dashboard.php:70
+msgid "World"
+msgstr "Monde"
+
+# C:\wgettext\mailpress.2.0.beta1\mailpress\mp-admin\includes\dashboard.php:193
+msgid "At a Glance"
+msgstr ""
+
+msgid "Mail sent"
+msgstr "Mail envoy&eacute;"
+
+msgid "Mails sent"
+msgstr "Mails envoy&eacute;s"
+
+msgid "Active subscriber"
+msgstr "Abonn&eacute; actif"
+
+msgid "Active subscribers"
+msgstr "Abonn&eacute;s actifs"
+
+#, php-format
+msgid "and using <span class='b'>MailPress version %1$s</span>."
+msgstr "Vous utilisez <span class='b'>MailPress version %1$s</span>."
+
+msgid "Mails - send"
+msgstr "Mails - envoy&eacute;s"
+
+msgid "Subscribers - Activity"
+msgstr "Activit&eacute; - Abonn&eacute;s"
+
+msgid "waiting"
+msgstr "en attente"
+
+msgid "comment"
+msgstr "commentaire"
+
+msgid "blog &amp; comment"
+msgstr "blog &amp; commentaire"
+
+msgid "Posts"
+msgstr "Articles"
+
+msgid "Subscription"
+msgstr "Abonnement"
+
+msgid "Comments"
+msgstr "Commentaires"
+
+msgid "Test"
+msgstr "Test"
+
+msgid "Misc."
+msgstr "Divers"
+
+msgid "Mails - Activity"
+msgstr "Activit&eacute; - Mails"
+
+msgid "Comments subscribers per post"
+msgstr "Abonn&eacute;s commentaires par article"
+
+#, php-format
+msgid "Update form # %1$s"
+msgstr "Modifier le formulaire # %1$s"
+
+# C:\wgettext\mailpress\mp-admin\includes\forms.php:27
+msgid "Add a form"
+msgstr "Ajouter"
+
+# C:\wgettext\mailpress\mp-admin\includes\forms.php:35
+msgid "Attributes"
+msgstr "Attributs"
+
+msgid "Options"
+msgstr "Options"
+
+# C:\wgettext\mailpress\mp-admin\includes\forms.php:223
+msgid "Messages"
+msgstr "Messages"
+
+# C:\wgettext\mailpress\mp-admin\includes\forms.php:271
+msgid "Visitor"
+msgstr "Visiteur"
+
+msgid "Html"
+msgstr "Html"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\time\settings.xml:55
+msgid "none"
+msgstr "aucun"
+
+msgid "not active"
+msgstr "inactif"
+
+msgid "to be confirmed"
+msgstr "&agrave; confirmer"
+
+msgid "active"
+msgstr "actif"
+
+# C:\wgettext\mailpress\mp-admin\includes\forms.php:88
+msgid "Form added."
+msgstr "Formulaire ajout&eacute;."
+
+msgid "Form deleted."
+msgstr "Formulaire supprim&eacute;."
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:87
+msgid "Form updated."
+msgstr "Formulaire modifi&eacute;."
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:88
+msgid "Form not added."
+msgstr "Formulaire pas ajout&eacute;."
+
+# C:\wgettext\m\mailpress_autoresponder\mp-admin\autoresponders.php:89
+msgid "Form not updated."
+msgstr "Formulaire pas  modifi&eacute;."
+
+msgid "Forms deleted."
+msgstr "Formulaire supprim&eacute;."
+
+msgid "Search Forms"
+msgstr "Chercher les formulaires"
+
+msgid "template"
+msgstr "template"
+
+# C:\wgettext\mailpress\mp-admin\includes\form_fields.php:193
+msgid "The description can be use to give further explanations"
+msgstr "La description peut &ecirc;tre utilis&eacute;e pour plus amples informations"
+
+# C:\wgettext\mailpress\mp-admin\includes\forms.php:176
+msgid "other attributes except 'name' & 'action'"
+msgstr "autres attributs &agrave l'exception de 'name' & 'action'"
+
+# C:\wgettext\mailpress\mp-admin\includes\forms.php:182
+msgid "Reset after submission"
+msgstr "Reset apr&egrave;s soumission"
+
+# C:\wgettext\mailpress\mp-admin\includes\forms.php:226
+msgid "When processing form is successfull"
+msgstr "Après traitement r&eacute;ussi du formulaire"
+
+# C:\wgettext\mailpress\mp-admin\includes\forms.php:228
+msgid "When processing form has failed"
+msgstr "Après &eacute;chec du traitement du formulaire"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Mail Theme/Template"
+msgstr "Th&egrave;me / Template du mail"
+
+msgid "Subscription option"
+msgstr "Option abonnement"
+
+msgid "Becomes a subscriber"
+msgstr "Devient un abonn&eacute;"
+
+msgid "Mail option"
+msgstr "Option mail"
+
+# C:\wgettext\mailpress\mp-admin\includes\forms.php:281
+msgid "Receives a copy"
+msgstr "Re&ccedil;o&icirc;t une copie"
+
+# C:\wgettext\mailpress\mp-admin\includes\forms.php:193
+msgid "form content"
+msgstr "contenu du formulaire"
+
+# C:\wgettext\mailpress\mp-admin\includes\forms.php:194
+msgid "ok/ko message"
+msgstr "message ok/ko"
+
+#, php-format
+msgid "Template : %1$s"
+msgstr "Template : %1$s"
+
+#, php-format
+msgid "Fields in \"%1$s\" form"
+msgstr "Champs du formulaire \"%1$s\""
+
+# C:\wgettext\mailpress\mp-admin\user.php:438
+#, php-format
+msgid "Update field # %1$s"
+msgstr "Modifier le champ # %1$s"
+
+# C:\wgettext\mailpress\mailpress\mp-admin\includes\uzer.php:100
+msgid "Add a field"
+msgstr "Ajouter un champ"
+
+# C:\wgettext\mailpress\mp-admin\includes\form_fields.php:64
+msgid "Field added."
+msgstr "Champ ajout&eacute;."
+
+msgid "Field deleted."
+msgstr "Champ supprim&eacute;."
+
+# C:\wgettext\mailpress_mailing_lists\mp-admin\mailinglists.php:40
+msgid "Field updated."
+msgstr "Champ modifi&eacute;."
+
+msgid "Field not added."
+msgstr "Champ pas ajout&eacute;."
+
+# C:\wgettext\mailpress_mailing_lists\mp-admin\mailinglists.php:42
+msgid "Field not updated."
+msgstr "Champ  pas  modifi&eacute;."
+
+msgid "Fields deleted."
+msgstr "Champs supprim&eacute;s."
+
+msgid "Search Fields"
+msgstr "Chercher les champs"
+
+# C:\wgettext\mailpress\mp-admin\includes\form_fields.php:182
+msgid "order in form"
+msgstr "ordre"
+
+msgid "sub template"
+msgstr "template du champ"
+
+# C:\wgettext\mailpress\mp-admin\includes\form_templates.php:14
+msgid "No such file exists! Double check the name and try again."
+msgstr ""
+
+# C:\wgettext\mailpress\mp-admin\class\MP_Import_abstract.class.php:154
+msgid "File edited successfully."
+msgstr "Fichier &eacute;dit&eacute; avec succ&egrave;s"
+
+# C:\wgettext\mailpress\mp-admin\includes\form_templates.php:22
+msgid "Could not save to file."
+msgstr "Impossible de sauvegarder le fichier"
+
+# C:\wgettext\mailpress\mp-admin\includes\form_templates.php:23
+msgid "Could not save to file, xml errors"
+msgstr "Impossible de sauvegarder le fichier, erreur(s) xml."
+
+msgid "Edit Form templates"
+msgstr "Templates"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:276
+#, php-format
+msgid "Editing <strong>%s</strong>"
+msgstr "Modification de <strong>%s</strong>"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:276
+#, php-format
+msgid "Browsing <strong>%s</strong>"
+msgstr "Visualisation de <strong>%s</strong>"
+
+# C:\wgettext\mailpress\mp-admin\includes\form_templates.php:46
+msgid "Select template to edit:"
+msgstr "S&eacute;lectionner la template &agrave; &eacute;diter :"
+
+msgid "Update File"
+msgstr "Mettre &agrave; le fichier"
+
+# C:\wgettext\mailpress\mp-admin\includes\form_templates.php:113
+msgid "You need to make this file writable before you can save your changes. See <a href=\"http://codex.wordpress.org/Changing_File_Permissions\">the Codex</a> for more information."
+msgstr ""
+
+# C:\wgettext\mailpress_import\mp-admin\import.php:15
+msgid "Cannot load importer."
+msgstr "Impossible de charger l'importateur"
+
+# C:\wgettext\mailpress_import\mp-admin\import.php:30
+msgid "If you have emails in another system, MailPress can import those into this blog. To get started, choose a system to import from below:"
+msgstr "Si vous avez des emails dans un autre système de blog, MailPress peut les importer dans votre blog actuel. Pour commencer, choisissez un syst&egrave;me d’origine ci-dessous :"
+
+# C:\wgettext\mailpress_import\mp-admin\import.php:53
+msgid "No importers available."
+msgstr "Pas d'importateur disponible"
+
+msgid "Update the mailing list"
+msgstr "Actualiser la mailing list "
+
+msgid "Add a mailing list"
+msgstr "Ajouter une nouvelle mailing list"
+
+msgid "Mailinglist added."
+msgstr "Mailing list ajout&eacute;e."
+
+msgid "Mailinglist deleted."
+msgstr "Mailing list supprim&eacute;e."
+
+# C:\wgettext\mailpress_mailing_lists\mp-admin\mailinglists.php:40
+msgid "Mailinglist updated."
+msgstr "Mailing list modifi&eacute;e"
+
+# C:\wgettext\mailpress_mailing_lists\mp-admin\mailinglists.php:41
+msgid "Mailinglist not added."
+msgstr "IMPOSSIBLE d'ajouter la mailing list"
+
+# C:\wgettext\mailpress_mailing_lists\mp-admin\mailinglists.php:42
+msgid "Mailinglist not updated."
+msgstr "Impossible de modifier la mailin list"
+
+msgid "Mailinglists deleted."
+msgstr "Mailing list supprim&eacute;e."
+
+msgid "Search Mailinglists"
+msgstr "Chercher dans les mailing lists"
+
+# C:\wgettext\mailpress_mailing_lists\mp-admin\mailinglists.php:130
+#, php-format
+msgid "<strong>Note:</strong><br />Deleting a mailing list does not delete the MailPress users in that mailing list. Instead, MailPress users that were only assigned to the deleted mailing list are set to the mailing list <strong>%s</strong>."
+msgstr "<strong>&Agrave; savoir :</strong><br />supprimer une mailing list ne supprime pas les abonn&eacute;s qu’elle contient. Les abonn&eacute;s affect&eacute;s uniquement &agrave; la mailing list effac&eacute;e seront assign&eacute;s &agrave; celle par d&eacute;faut : <strong>%s</strong>."
+
+# C:\wgettext\mailpress_mailing_lists\mp-admin\edit-mailinglist-form.php:33
+msgid "The name is used to identify the mailinglist almost everywhere."
+msgstr " Le nom est utilis&eacute; pour identifier la mailing list un peu partout."
+
+# C:\wgettext\mailpress_mailing_lists\mp-admin\edit-mailinglist-form.php:39
+msgid "The &#8220;slug&#8221; is a unique id for the mailing list (not so friendly !). In case of conflict, new mailing list is not created or when updating, slug might be regenerated. It is usually all lowercase and contains only letters, numbers, and hyphens. It is never displayed."
+msgstr " Le  &#8220;slug&#8221; est l'identifiant unique d'une mailing list. En cas de conflit, la nouvelle mailing list n'est pas cr&eacute;&eacute;e ou lors d'une mise &agrave; jour, le slug peut &ecirc;tre reg&eacute;n&eacute;r&eacute;. Il ne contient g&eacute;n&eacute;ralement que des lettres minuscules non accentu&eacute;es, des chiffres et des traits d’unions. "
+
+msgid "Mailing list Parent"
+msgstr "Mailing list m&egrave;re"
+
+msgid "None"
+msgstr "Aucune"
+
+# C:\wgettext\mailpress_mailing_lists\mp-admin\edit-mailinglist-form.php:46
+msgid "Mailing list can have a hierarchy. You might have a Rock'n roll mailing list, and under that have children mailing lists for Elvis and The Beatles. Totally optional !"
+msgstr "Les mailing lists peuvent avoir une hi&eacute;rarchie. Vous pouvez avoir une cat&eacute;gorie nomm&eacute;e Rock'n roll, et &agrave; l’int&eacute;rieur, plusieurs mailing lists filles comme Elvis et The Beatles. Ceci est totalement facultatif."
+
+msgid "Edit Mails"
+msgstr "G&eacute;rer les mails"
+
+#, php-format
+msgid "by %s"
+msgstr "par %s"
+
+#, php-format
+msgid "%s mail deleted"
+msgstr "%s mail supprim&eacute;"
+
+#, php-format
+msgid "%s mails deleted"
+msgstr "%s mails supprim&eacute;s"
+
+#, php-format
+msgid "%s mail sent"
+msgstr "%s mail envoy&eacute;"
+
+#, php-format
+msgid "%s mails sent"
+msgstr "%s mails envoy&eacute;s"
+
+#, php-format
+msgid "%s mail NOT sent"
+msgstr "%s mail PAS envoy&eacute;"
+
+#, php-format
+msgid "%s mails NOT sent"
+msgstr "%s mails PAS envoy&eacute;s"
+
+msgid "Mail saved"
+msgstr "Mail enregistr&eacute;"
+
+msgid "Sent"
+msgstr "Envoy&eacute;s"
+
+#, php-format
+msgid "Draft (%s)"
+msgstr "Brouillon (%s)"
+
+msgid "All Mails"
+msgstr "Tous les mails"
+
+msgid "Search mails"
+msgstr "Chercher dans les mails"
+
+msgid "List View"
+msgstr "Vue liste"
+
+msgid "Detail View"
+msgstr "Vue détaill&eacute;e"
+
+msgid "No results found."
+msgstr "Aucun r&eacute;sultat."
+
+#, php-format
+msgid "Compare Revisions of &#8220;%1$s&#8221;"
+msgstr "Comparer les versions de &#8220;%1$s&#8221;"
+
+#, php-format
+msgid "Mail Revision for &#8220;%1$s&#8221; created on %2$s"
+msgstr "Version du mail &#8220;%1$s&#8221;cr&eacute;&eacute;e le %2$s"
+
+#, php-format
+msgid "Older: %s"
+msgstr "+ ancienne: %s"
+
+#, php-format
+msgid "Newer: %s"
+msgstr "+ r&eacute;cente : %s"
+
+msgid "These revisions are identical."
+msgstr "Ces 2 versions sont identiques."
+
+msgid "MailPress Settings"
+msgstr "R&eacute;glages MailPress"
+
+msgid "General"
+msgstr "G&eacute;n&eacute;ral"
+
+msgid "Subscriptions"
+msgstr "Abonnement"
+
+msgid "Subscriptions saved"
+msgstr "Abonnements enregistr&eacute;s"
+
+msgid "Manage Subscription"
+msgstr "Gestion de l'abonnement"
+
+# C:\wgettext\mp\mailpress\mp-includes\mp-mail-links.php:78
+# C:\wgettext\mp\mailpress_sync_wordpress_user\mp-admin\subscriptions.php:70
+msgid "Nothing to subscribe for ..."
+msgstr "Liste vide ..."
+
+# C:\wgettext\mp\mailpress\mp-includes\mp-mail-links.php:79
+msgid "Your email has been deactivated, ask the administrator ..."
+msgstr "Votre email a &eacute;t&eacute; d&eacute;sactiv&eacute;, demander &agrave; l'administrateur ..."
+
+msgid "MailPress Themes"
+msgstr "Th&egrave;mes MailPress"
+
+msgid "Current Theme"
+msgstr "Th&egrave;me MailPress courant"
+
+msgid "The active MailPress theme is broken.  Reverting to the default MailPress theme."
+msgstr "Le th&egrave;me MailPress actif est incomplet. Retour au th&egrave;me MailPress default."
+
+msgid "New MailPress theme activated."
+msgstr "Nouveau th&egrave;me MailPress activ&eacute;"
+
+msgid "Current MailPress theme preview"
+msgstr "Pr&eacute;visualisation du th&egrave;me MailPress courant"
+
+#, php-format
+msgid "%1$s %2$s by %3$s|1: theme title, 2: theme version, 3: theme author"
+msgstr "%1$s %2$s par %3$s|1: theme title, 2: theme version, 3: theme author"
+
+#, php-format
+msgid "The template files are located in <code>%2$s</code>.  The stylesheet files are located in <code>%3$s</code>.  <strong>%4$s</strong> uses templates from <strong>%5$s</strong>.  Changes made to the templates will affect both MailPress themes."
+msgstr "The template files are located in <code>%2$s</code>.  The stylesheet files are located in <code>%3$s</code>.  <strong>%4$s</strong> uses templates from <strong>%5$s</strong>.  Changes made to the templates will affect both MailPress themes."
+
+#, php-format
+msgid "All theme&#8217;s files in : <code>%2$s</code>."
+msgstr "Tous les fichiers de ce th&egrave;me sont dans : <code>%2$s</code>."
+
+msgid "Tags:"
+msgstr "Tags:"
+
+msgid "Available Themes"
+msgstr "Th&egrave;mes MailPress"
+
+#, php-format
+msgid "Preview of \"%s\""
+msgstr "Aper&ccedil;u de \"%1$s\""
+
+#, php-format
+msgid "Activate \"%s\""
+msgstr "Active \"%s\""
+
+msgid "Broken Themes"
+msgstr "Th&egrave;mes invalides"
+
+# C:\wgettext\mailpress\mp-admin\themes.php:178
+msgid "The following themes are installed but incomplete.  Themes must have a stylesheet and a template."
+msgstr "Les th&egrave;mes suivants sont install&eacute;s mais incomplets. Les th&egrave;mes doivent avoir au moins une feuille de style et un mod&egrave;le."
+
+msgid "Folder"
+msgstr "Dossier"
+
+msgid "MailPress user saved"
+msgstr "Abonn&eacute; enregistr&eacute;"
+
+#, php-format
+msgid "Edit MailPress User # %1$s"
+msgstr "Modifier l'abonn&eacute;  # %1$s"
+
+msgid "Edit Users"
+msgstr "Modifier Abonn&eacute;s"
+
+#, php-format
+msgid "in &#8220;%s&#8221;"
+msgstr "dans &#8220;%s&#8221;"
+
+#, php-format
+msgid "%s subscriber activated"
+msgstr "%s abonn&eacute; activ&eacute;"
+
+#, php-format
+msgid "%s subscribers activated"
+msgstr "%s abonn&eacute;s activ&eacute;s"
+
+#, php-format
+msgid "%s subscriber deactivated"
+msgstr "%s abonn&eacute; d&eacute;sactiv&eacute;"
+
+#, php-format
+msgid "%s subscribers deactivated"
+msgstr "%s abonn&eacute;s d&eacute;sactiv&eacute;s"
+
+#, php-format
+msgid "%s subscriber deleted"
+msgstr "%s abonn&eacute; supprim&eacute;"
+
+#, php-format
+msgid "%s subscribers deleted"
+msgstr "%s abonn&eacute;s supprim&eacute;s"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:304
+#, php-format
+msgid "%s subscriber unbounced"
+msgstr "%s abonn&eacute; accept&eacute;"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:304
+#, php-format
+msgid "%s subscribers unbounced"
+msgstr "%s abonn&eacute;s accept&eacute;s"
+
+#, php-format
+msgid "Waiting (%s)"
+msgstr "En attente (%s)"
+
+# C:\wgettext\mailpress\mp-admin\includes\users.php:72
+#, php-format
+msgid "Bounced (%s)"
+msgstr "Rejet&eacute; (%s)"
+
+msgid "All Subscribers"
+msgstr "Tous les abonn&eacute;s"
+
+#, php-format
+msgid "List Mailpress users from %s"
+msgstr "Lister les abonn&eacute;s &agrave; partir de  %1$s"
+
+msgid "Search subscribers"
+msgstr "Chercher dans les abonn&eacute;s"
+
+msgid "View Logs"
+msgstr "Voir les logs"
+
+#, php-format
+msgid "%s file deleted"
+msgstr "%s fichier supprim&eacute;"
+
+#, php-format
+msgid "%s files deleted"
+msgstr "%s fichiers supprim&eacute;s"
+
+msgid "Show All Logs"
+msgstr "Toutes les logs"
+
+msgid "Search Logs"
+msgstr "Chercher les logs"
+
+# C:\wgettext\mailpress_import\mp-admin\import.php:53
+msgid "No logs available"
+msgstr "Pas de log disponible"
+
+# C:\wgettext\mailpress_view_logs\mp-admin\viewlogs.php:204
+#, php-format
+msgid "Wrong path : %s"
+msgstr "Mauvais chemin : %s"
+
+msgid "Add New Mail"
+msgstr "Nouveau mail"
+
+#, php-format
+msgid "Edit Draft # %1$s"
+msgstr "Modifier le brouillon # %1$s"
+
+#, php-format
+msgid "Last edited by %1$s on %2$s at %3$s"
+msgstr "Derni&egrave;re modification par %1$s le %2$s à %3$s"
+
+#, php-format
+msgid "There is an autosave of this mail that is more recent than the version below.  <a href=\"%s\">View the autosave</a>."
+msgstr "Une sauvegarde automatique existe pour ce mail, qui est plus r&eacute;cente que la version affich&eacute;e ci-dessous. <a href=\"%s\">Afficher cette sauvegarde</a>."
+
+msgid "Somebody"
+msgstr "Quelqu'un"
+
+#, php-format
+msgid "Warning: %s is currently editing this mail"
+msgstr "Alerte : %s est en train de modifier ce mail"
+
+msgid "Mail NOT sent"
+msgstr "Mail PAS envoy&eacute;"
+
+msgid "Please, enter a valid email"
+msgstr "Entrez un email correct"
+
+msgid "Mail NOT sent, no recipient"
+msgstr "Mail PAS envoy&eacute;, aucun destinataire"
+
+#, php-format
+msgid "Mail restored to revision from %s"
+msgstr "Article r&eacute;cup&eacute;r&eacute; depuis la version du %s"
+
+msgid "From"
+msgstr "De"
+
+msgid "OR all"
+msgstr "OU tous les "
+
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+msgid "Edit mails"
+msgstr "Modifier mails"
+
+msgid "View all Mails"
+msgstr "Tous les mails"
+
+msgid "Edit others mails"
+msgstr "Modifier autres mails"
+
+msgid "Send mails"
+msgstr "Envoyer mails"
+
+msgid "Delete mails"
+msgstr "Supprimer mails"
+
+# C:\wgettext\mailpress\mailpress\mp-admin\includes\uzer.php:100
+msgid "Custom fields"
+msgstr "Champs personnalis&eacute;s"
+
+msgid "Themes"
+msgstr "Th&egrave;mes"
+
+msgid "MailPress"
+msgstr "MailPress"
+
+msgid "Edit users"
+msgstr "Modifier Abonn&eacute;s"
+
+msgid "MailPress Users"
+msgstr "Abonn&eacute;s MailPress"
+
+msgid "Delete users"
+msgstr "Supprimer abonn&eacute;s"
+
+msgid "Subscription activated"
+msgstr "Abonnement activ&eacute;"
+
+# C:\wgettext\m201\mailpress\MailPress.php:205
+msgid "Button"
+msgstr "Bouton"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\button\button.php:21
+msgid "not selected"
+msgstr "pas s&eacute;lectionn&eacute;"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\captcha_gd1\captcha_gd1.php:13
+msgid "Captcha 1"
+msgstr "Captcha 1"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\captcha_gd1\captcha_gd1.php:48
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\captcha_gd2\captcha_gd2.php:41
+msgid "ok"
+msgstr "ok"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\captcha_gd2\captcha_gd2.php:13
+msgid "Captcha 2"
+msgstr "Captcha 2"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\checkbox\checkbox.php:11
+msgid "Checkbox"
+msgstr "Bo&icirc;te &agrave; cocher"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\checkbox\checkbox.php:21
+msgid "not checked"
+msgstr "pas s&eacute;lectionn&eacute;"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\date\date.php:90
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\date\date.php:92
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\date\date.php:94
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\select\select.php:56
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\time\time.php:66
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\time\time.php:68
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\time\time.php:72
+msgid "invalid select options"
+msgstr "options du select invalides"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\ereg\ereg.php:11
+msgid "Ereg[i] Input "
+msgstr "Ereg[i]"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:150
+msgid "File select"
+msgstr "Upload fichier"
+
+# C:\wgettext\mailpress_import\mp-admin\import\xmlsample.php:198
+msgid "no file"
+msgstr "pas de fichier"
+
+msgid "empty"
+msgstr "vide"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\geotag\geotag.php:14
+msgid "Geotag"
+msgstr "Geotag"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\geotag\geotag.php:66
+msgid "Reverse geocoding :"
+msgstr "Reverse geocoding :"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\geotag\geotag.php:256
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\geotag\settings.xml:151
+msgid "find place"
+msgstr "adresse"
+
+# C:\wgettext\m201\mailpress\MailPress.php:205
+msgid "Radio Button"
+msgstr "Bouton radio"
+
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:19
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:20
+#, php-format
+msgid "\"%1$s\" checked"
+msgstr "\"%1$s\" s&eacute;lectionn&eacute;"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\select\select.php:14
+msgid "Drop-down list"
+msgstr "Select"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\select\select.php:34
+msgid "nothing selected"
+msgstr "s&eacute;lection vide"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\text\text.php:11
+msgid "Text Input"
+msgstr "Texte"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\form\field_types\textarea\textarea.php:12
+msgid "Multi-line Input"
+msgstr "Aire de texte"
+
+msgid "Time"
+msgstr "Heure/min"
+
+msgid "am"
+msgstr "am"
+
+# C:\wgettext\mailpress\mp-content\themes\BROKEN\moderate.php:34
+# C:\wgettext\mailpress\mp-content\themes\classic\moderate.php:34
+# C:\wgettext\mailpress\mp-content\themes\default\moderate.php:34
+# C:\wgettext\mailpress\mp-content\themes\MailPress\moderate.php:33
+# C:\wgettext\mailpress\mp-content\themes\nogent94\moderate.php:36
+msgid "pm"
+msgstr "pm"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:276
+msgid "Import your <strong>csv</strong> file."
+msgstr "Importer votre fichier <strong>csv</strong>."
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:13
+msgid "Import Csv"
+msgstr "Importer Csv"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:45
+msgid "Unable to determine email location"
+msgstr "Impossible de d&eacute;tecter o&ugrave; se trouve l'email."
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:60
+# C:\wgettext\mailpress_import\mp-admin\import\xmlsample.php:155
+#, php-format
+msgid "<b>File imported</b> : <i>%s</i>"
+msgstr "<b>Fichier import&eacute;</b> : <i>%s</i>"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:60
+# C:\wgettext\mailpress_import\mp-admin\import\xmlsample.php:155
+#, php-format
+msgid "<b>Number of records</b> : <i>%s</i>"
+msgstr "<b>Nombre d'enregistrements</b> : <i>%s</i>"
+
+msgid "Mailing list"
+msgstr "Mailing list"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:145
+msgid "Optional, you can import the MailPress users in a specific mailing list ..."
+msgstr "En option, vous pouvez importer les abonn&eacute;s dans une mailing list sp&eacute;cifique ..."
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:150
+msgid "File scan"
+msgstr "Scan du fichier"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:151
+#, php-format
+msgid "On the first records (see hereunder), the file scan found that the email is in column '<strong>%s</strong>'."
+msgstr "Sur les premiers enregistrements (voir ci-dessous), le scan du fichier a d&eacute;tect&eacute; que la colonne contenant l'email est  '<strong>%s</strong>'."
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:152
+msgid "However, you can select another column.<br /> Invalid emails will not be inserted."
+msgstr "Toutefois vous pouvez s&eacute;lectionner une autre colonne.<br /> Les emails invalides ne seront pas pris en compte. "
+
+# C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:119
+msgid "Choose email column"
+msgstr "Choisissez la colonne Email"
+
+# C:\wgettext\mailpress\mp-admin\includes\options\import\importers\csv.php:134
+msgid "Choose name column"
+msgstr "Choisissez la colonne Nom"
+
+msgid "Submit"
+msgstr "Envoyer"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:276
+msgid "Export your mailing list in a <strong>csv</strong> file."
+msgstr "Exporter votre mailing list dans un fichier <strong>csv</strong>."
+
+# C:\wgettext\mailpress_mailing_lists\mp-includes\mailinglist-template.php:430
+# C:\wgettext\mailpress_mailing_lists\mp-includes\mailinglist-template.php:431
+msgid "Export mailing list"
+msgstr "Exporter mailing list"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:60
+# C:\wgettext\mailpress_import\mp-admin\import\xmlsample.php:155
+#, php-format
+msgid "<b>File exported</b> : <i>%s</i>"
+msgstr "<b>Fichier export&eacute;</b> : <i>%s</i>"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:72
+# C:\wgettext\mailpress_import\mp-admin\import\xmlsample.php:42
+msgid "Howdy! Choose your mailing list and we&#8217;ll export the emails ... into a file."
+msgstr "Salutations ! S&eacute;lectionner une mailing list et nous exporterons vos emails et plus ... dans un fichier."
+
+msgid "Choose a mailing list :"
+msgstr "Choisissez une  mailing list :"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:276
+msgid "Import data from <strong>subscribe2</strong> plugin."
+msgstr "Importer les abonnements de <strong>Subscribe2</strong>."
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:11
+msgid "Import from Subscribe2"
+msgstr "Importer &agrave; partir de Subscribe2"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:60
+# C:\wgettext\mailpress_import\mp-admin\import\xmlsample.php:155
+msgid "<b>Data imported</b>"
+msgstr "<b>Donn&eacute;es import&eacute;es</b>"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:99
+msgid "First Things First"
+msgstr "Avant Tout"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:101
+msgid "Before importing your Subscribe2 datas : "
+msgstr "Avant d'importer vos donn&eacute;es Subscribe2 :"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:104
+msgid "SAVE YOUR DATABASE"
+msgstr "SAUVEGARDEZ VOTRE BASE DE DONNEES"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:107
+msgid "and make sure you can restore it !"
+msgstr "et assurer vous de pouvoir la restaurer !"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:114
+msgid "Howdy! Ready to import your <b>Subscribe2</b> data into <b>MailPress</b> ..."
+msgstr "Salutations ! Pr&ecirc;t &agrave; importer vos donn&eacute;es <b>Subscribe2</b> dans <b>MailPress</b> ..."
+
+# C:\wgettext\mailpress_mailing_lists\mp-includes\mailinglist-template.php:430
+# C:\wgettext\mailpress_mailing_lists\mp-includes\mailinglist-template.php:431
+msgid "and/or mailing lists "
+msgstr "et/ou mailing list(s)"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:117
+msgid "<b>Subscribe2</b> data is stored into the following tables :"
+msgstr "Les donn&eacute;es de <b>Subscribe2</b> sont stock&eacute;es dans les tables suivantes :"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:121
+msgid "In this table, 'WP users' subscribers can subscribe to categories."
+msgstr "Dans cette table, les 'Utilisateurs WP' peuvent s'abonner &agrave des cat&eacute;gories."
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:123
+#, php-format
+msgid "You will be able to convert this %1$s to newsletters %2$ssubscriptions."
+msgstr "Vous serez en mesure de convertir ces %1$s  en abonnements newsletters %2$s."
+
+msgid "'categories subscription'"
+msgstr "'souscription cat&eacute;gories'"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:128
+msgid "In this table, subscribers have default subscription set by admin."
+msgstr "Dans cette table, les abonn&eacute;s souscrivent automatiquement aux abonnements établis par l'administrateur."
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:130
+#, php-format
+msgid "You will be able to convert this %1$s to newsletters %2$s subscriptions."
+msgstr "Vous serez en mesure de convertir ces %1$s  en abonnements newsletters %2$s."
+
+msgid "'default subscription'"
+msgstr "'souscription par d&eacute;faut'"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:135
+msgid "Note 1 : The tables are processed in the above order."
+msgstr "Note 1 : Les tables sont trait&eacute;es dans l'ordre indiqu&eacute; ci-dessus."
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:136
+msgid "Note 2 : If a subscriber already exists in MailPress, the settings for this email remains <b>unchanged</b>."
+msgstr "Note 2 :Si un abonn&eacute; existe d&eacute;j&agrave; dans MailPress, les abonnements pour cet email restent <b>inchang&eacute;s</b>."
+
+# C:\wgettext\mailpress_connexion_sendmail\mp-admin\includes\settings-sendmail.php:11
+msgid "Continue"
+msgstr "Poursuivre"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:162
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:196
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:210
+msgid "Data Analysis"
+msgstr "Analyse des donn&eacute;es"
+
+msgid "*** ERROR *** Table not detected"
+msgstr "*** ERREUR *** Table non detect&eacute;e"
+
+# C:\wgettext\mailpress_import\MailPress_import.php:181
+msgid "no data"
+msgstr "Pas de donn&eacute;es"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:298
+#, php-format
+msgid "You are using %1$s, usermeta will not be processed"
+msgstr "Vous utilisez %1$s, usermeta ne sera pas trait&eacute;e"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:304
+#, php-format
+msgid "%1$s WP user(s) subscriber(s) found"
+msgstr "%1$s Utilisateur(s)  WP abonn&eacute;(s) trouv&eacute;(s)"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:317
+msgid "Categories used in Subscribe2"
+msgstr "Cat&eacute;gorie(s)  utilis&eacute;e(s) dans Subscribe2"
+
+msgid "MailPress Newsletters"
+msgstr " Newsletters MailPress"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:402
+#, php-format
+msgid " %1$s subscriber(s) will be imported with status : \"%2$s\" ."
+msgstr " %1$s abonn&eacute;(s) seront import&eacute;(s) avec le status : \"%2$s\" ."
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:410
+msgid "Select subscriptions for ACTIVE subscribers :"
+msgstr "S&eacute;lectionner les abonnements pour les abonn&eacute;s ACTIF :"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:276
+msgid "Import data from <strong>subscribe to comments</strong> plugin."
+msgstr "Importer les abonnements de <strong>Subscribe to comments</strong>."
+
+msgid "Import from Subscribe to comments"
+msgstr "Importer de Subscribe to comments"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:101
+msgid "Before importing your 'Subscribe to comments' datas : "
+msgstr "Avant d'importer vos donn&eacute;es  'Subscribe to comments'  :"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:114
+msgid "Howdy! Ready to import your <b>Subscribe to comments</b> data into <b>MailPress</b> ..."
+msgstr "Salutations ! Pr&ecirc;t &agrave; importer vos donn&eacute;es <b>Subscribe to comments</b> dans <b>MailPress</b> ..."
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:117
+msgid "<b>Subscribe to comments</b> data are stored into the following table :"
+msgstr "Les donn&eacute;es de <b>Subscribe to comments</b> sont stock&eacute;es dans la table suivante :"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:121
+msgid "In this table, subscribers can subscribe to posts comments."
+msgstr "Dans cette table, les 'Utilisateurs WP' peuvent s'abonner aux commentaires des articles."
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:123
+msgid "You will be able to convert these subscriptions to MailPress."
+msgstr "Vous serez en mesure de convertir ces abonnements dans MailPress."
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:136
+msgid "Note : If a subscriber already exists in MailPress, only the subscriptions to comments are added."
+msgstr "Note :Si un abonn&eacute; existe d&eacute;j&agrave; dans MailPress, seuls les abonnements aux commentaires sont ajout&eacute;s."
+
+#, php-format
+msgid "*** ERROR *** Column not detected in %1$s"
+msgstr "*** ERREUR *** Colonne non detect&eacute;e dans %1$s"
+
+# C:\wgettext\mp\mailpress_import\mp-admin\import\subscribe2.php:304
+#, php-format
+msgid "%1$s subscriber(s) found"
+msgstr "%1$s Utilisateur(s)  WP abonn&eacute;(s) trouv&eacute;(s) "
+
+# C:\wgettext\mailpress_import\mp-admin\import\xmlsample.php:237
+msgid "Import your <strong>xmlsample</strong> file."
+msgstr "Importer votre fichier <strong>xmlsample</strong>."
+
+# C:\wgettext\mailpress_import\mp-admin\import\xmlsample.php:11
+msgid "Import XML sample"
+msgstr "Importer l'exemple XML"
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:314
+# C:\wgettext\mailpress_mailing_lists\mp-admin\includes\taxonomy.php:51
+#, php-format
+msgid "Unable to read or create a mailing list : %s"
+msgstr "Impossible de lire ou de cr&eacute;er une mailing list :%s "
+
+# C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:2
+# C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:9
+msgid "Last 10 actions"
+msgstr "Les 10 derni&egrave;res actions"
+
+msgid "Last 10 users"
+msgstr "Les 10 derniers abonn&eacute;s"
+
+# C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:4
+# C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:11
+msgid "Opened/day"
+msgstr "Ouverts/jour"
+
+# C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:5
+# C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:12
+msgid "Clicks/day"
+msgstr "Clics/jour"
+
+# C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:6
+# C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:13
+msgid "System info"
+msgstr "Info syst&egrave;me"
+
+# C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:7
+# C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:14
+msgid "Geoip"
+msgstr "Geoip"
+
+# C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:4
+# C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:11
+msgid "Opened, Clicks/day"
+msgstr "Ouverts, Clics /jour"
+
+# C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:4
+# C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:11
+msgid "Opened"
+msgstr "Ouverts"
+
+msgid "Last 10 mails"
+msgstr "Les 10 derniers mails"
+
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:19
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:20
+#, php-format
+msgid "%1$s seconds"
+msgstr "%1$s secondes"
+
+#, php-format
+msgid "%1$s minute"
+msgstr "%1$s minute"
+
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:22
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:23
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:24
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:25
+#, php-format
+msgid "%1$s minutes"
+msgstr "%1$s minutes"
+
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:26
+#, php-format
+msgid "%1$s hour"
+msgstr "%1$s heure"
+
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:37
+msgid "Max mails sent per batch"
+msgstr "Nbre max de mails envoy&eacute;s par batch "
+
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:50
+msgid "Max retries"
+msgstr "Reprises max "
+
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:80
+msgid "Submit batch with"
+msgstr "Soumettre le batch avec"
+
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:87
+msgid "WP_Cron"
+msgstr "WP_Cron"
+
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:90
+msgid "Every"
+msgstr "Chaque"
+
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:101
+msgid "Other"
+msgstr "autre"
+
+# C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:104
+msgid "Using"
+msgstr "En utilisant"
+
+msgid "'Batch' settings saved"
+msgstr "R&eacute;glages &#8220;Batch&#8221; enregistr&eacute;s"
+
+# C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:11
+msgid "no changes"
+msgstr "pas de changement"
+
+# C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:12
+msgid "mark as read"
+msgstr "marquer comme lu"
+
+msgid "delete"
+msgstr "supprimer"
+
+# C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:19
+msgid "Return-Path"
+msgstr "Return-Path"
+
+# C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:22
+#, php-format
+msgid "generated Return-Path will be %1$s"
+msgstr "Le Return-Path g&eacute;n&eacute;r&eacute; sera : \" %1$s"
+
+# C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:22
+msgid "start_of_email<i>+mail_id</i>+<i>mp_user_id</i>@mydomain.com"
+msgstr "d&eacute;but_de_l'email<i>+mail_id</i>+<i>mp_user_id</i>@mondomaine.com"
+
+# C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:25
+msgid "Max bounces per user"
+msgstr "Rejets max par abonn&eacute;"
+
+msgid "POP3 Server"
+msgstr "Serveur POP"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Username"
+msgstr "Identifiant"
+
+msgid "Password"
+msgstr "Mot de passe"
+
+# C:\wgettext\mailpress\mp-admin\includes\settings\bounce_handling.form.php:19
+msgid "Bounce in mailbox"
+msgstr "Rejet une fois trait&eacute;"
+
+msgid "'Bounces' settings saved"
+msgstr "R&eacute;glages &#8220;Rejets&#8221; enregistr&eacute;s"
+
+# C:\wgettext\mailpress_filter_img\MailPress_filter_img.php:67
+msgid "&lt;img&gt; defaults"
+msgstr "d&eacute;fauts &lt;img&gt;"
+
+# C:\wgettext\mailpress_filter_img\MailPress_filter_img.php:73
+msgid "Alignment"
+msgstr "Alignement"
+
+# C:\wgettext\mailpress_filter_img\MailPress_filter_img.php:79
+msgid "Left"
+msgstr "Gauche"
+
+msgid "Center"
+msgstr "Centre"
+
+msgid "Right"
+msgstr "Droite"
+
+# C:\wgettext\mailpress_filter_img\MailPress_filter_img.php:88
+msgid "style="
+msgstr "style="
+
+# C:\wgettext\mailpress_filter_img\MailPress_filter_img.php:99
+msgid "Enter full &lt;img&gt; html tag"
+msgstr "Saisir le tag html &lt;img&gt; complet "
+
+# C:\wgettext\mailpress_filter_img\MailPress_filter_img.php:111
+msgid "Filter result"
+msgstr "R&eacute;sultat du filtre "
+
+# C:\wgettext\mailpress_filter_img\MailPress_filter_img.php:132
+msgid "Keep url"
+msgstr "Conserver l'url "
+
+# C:\wgettext\mailpress_filter_img\MailPress_filter_img.php:136
+#, php-format
+msgid "NO mail attachements with site images when full url (<i>&lt;img src=\"<b>%1$s/...</b>\"</i>) is provided."
+msgstr "Ne PAS inclure, dans les mails, les images du site lorsque référencées sous la forme : <i>&lt;img src=\"<b>%1$s/...</b>\"</i>"
+
+msgid "'Image filter' settings saved"
+msgstr "R&eacute;glages &#8220;Filtre image&#8221; enregistr&eacute;s"
+
+msgid "All Mails sent from"
+msgstr "Tous les mails envoy&eacute;s depuis"
+
+msgid "Email : "
+msgstr "Email : "
+
+msgid "Name : "
+msgstr "Nom : "
+
+msgid " Manage subscriptions from"
+msgstr "Gestion des abonnements depuis"
+
+msgid "Default"
+msgstr "D&eacute;faut"
+
+msgid "Page template"
+msgstr "Template de page"
+
+msgid "Category template"
+msgstr "Template de cat&eacute;gorie"
+
+msgid "Page id"
+msgstr "Id de la page"
+
+msgid "Category id"
+msgstr "Id de la cat&eacute;gorie"
+
+msgid "View mail"
+msgstr "Visualiser un mail"
+
+msgid "View mail in fullscreen"
+msgstr "Voir le mail en pleine page"
+
+msgid "Newsletters show at most"
+msgstr "Les Newsletters affichent au plus"
+
+# C:\wgettext\mailpress2\mailpress\mp-admin\includes\settings-general.php:97
+msgid "posts <i>(blank = WordPress Reading setting)</i>"
+msgstr "articles <i>(blanc = R&eacute;glage Lecture de WordPress)</i>"
+
+msgid "MailPress version of wp_mail"
+msgstr "version MailPress de wp-mail "
+
+msgid "Dashboard widgets"
+msgstr "Widgets tableau de bord"
+
+# C:\wgettext\mailpress\mp-admin\includes\settings\general.form.php:132
+msgid "get your google map api key !"
+msgstr "obtenez votre clef Google Map !"
+
+# C:\wgettext\mailpress_IP_user_info\MailPress_IP_user_info.php:37
+msgid "Google Map API Key"
+msgstr "Google Map API Key"
+
+msgid "(Optional)"
+msgstr "(Optionnel"
+
+msgid "You can start to update your SMTP config, once you have saved your General settings"
+msgstr "Vous pouvez actualiser votre configuration SMTP d&egrave;s que vous aurez sauvegard&eacute; vos r&eacute;glages G&eacute;n&eacute;ral"
+
+msgid "field should be an email"
+msgstr "Le champ devrait &ecirc;tre un email"
+
+msgid "field should be a name"
+msgstr "Le champ devrait &ecirc;tre un nom"
+
+msgid "field should be numeric"
+msgstr "Le champ devrait &ecirc;tre num&eacute;rique"
+
+msgid "General settings saved"
+msgstr "R&eacute;glages &#8220;G&eacute;n&eacute;ral&#8221; enregistr&eacute;s"
+
+msgid "Mailing log"
+msgstr "Log mail"
+
+msgid "Number of Log files : "
+msgstr "Nombre de fichiers log : "
+
+msgid "Logs settings saved"
+msgstr "R&eacute;glages &#8220;Logs&#8221; enregistr&eacute;s"
+
+# C:\wgettext\mailpress\mailpress_connection_phpmail\mp-admin\includes\settings-phpmail.php:11
+msgid "Additional_parameters"
+msgstr "Param&egrave;tres additionnels"
+
+# C:\wgettext\mailpress\mailpress_connection_phpmail\mp-admin\includes\settings-phpmail.php:15
+#, php-format
+msgid "(optional) Specify here the 5th parameter of php <a href='%s'>mail()</a> function"
+msgstr "(optionnel) Sp&eacute;cifier ici le 5i&egrave;me param&egrave;tre de la fonction php <a href='%s'>mail()</a>"
+
+# C:\wgettext\mailpress\mailpress_connection_phpmail\mp-admin\includes\settings-phpmail.php:15
+msgid "http://fr.php.net/manual/en/function.mail.php"
+msgstr "http://fr.php.net/manual/fr/function.mail.php"
+
+msgid "'PHP MAIL' settings saved"
+msgstr "R&eacute;glages &#8220;PHP MAIL&#8221; enregistr&eacute;s"
+
+msgid "'Roles and capabilities' settings saved"
+msgstr "R&eacute;glages &#8220;R & C&#8221; enregistr&eacute;s"
+
+# C:\wgettext\mailpress_connexion_sendmail\mp-admin\includes\settings-sendmail.php:11
+msgid "Connect"
+msgstr "Se connecter"
+
+# C:\wgettext\mailpress_connexion_sendmail\mp-admin\includes\settings-sendmail.php:15
+msgid "using '/usr/sbin/sendmail -bs'"
+msgstr "en utilisant '/usr/sbin/sendmail -bs' "
+
+# C:\wgettext\mailpress_connexion_sendmail\mp-admin\includes\settings-sendmail.php:18
+msgid "using a custom command"
+msgstr "en utilisant une commande spécifique"
+
+msgid "'SENDMAIL' settings saved"
+msgstr "R&eacute;glages &#8220;SENDMAIL&#8221; enregistr&eacute;s"
+
+msgid "Default SMTP Port"
+msgstr "Port SMTP par d&eacute;faut"
+
+msgid "Use for SSL/TLS/GMAIL"
+msgstr "Utiliser pour SSL/TLS/GMAIL"
+
+msgid "Custom Port: (Use Box)"
+msgstr "Port sp&eacute;cifique : (Utiliser le champ)"
+
+msgid "SMTP Server"
+msgstr "Serveur SMTP"
+
+msgid "Use SSL or TLS ?"
+msgstr "Utilise SSL ou TLS ?"
+
+#, php-format
+msgid "Site registered socket transports are : <b>%1$s</b>"
+msgstr "Gestionnaires de transports de sockets disponibles : <b>%1$s</b>"
+
+msgid "Pop before Smtp"
+msgstr "POP avant Smtp"
+
+msgid "POP3 hostname"
+msgstr "Serveur POP3"
+
+# C:\wgettext\mailpress_import\MailPress_import.php:89
+# C:\wgettext\mailpress_import\MailPress_import.php:114
+# C:\wgettext\mailpress_import\MailPress_import.php:127
+# C:\wgettext\mailpress_import\mp-admin\import.php:29
+msgid "port"
+msgstr "port"
+
+msgid "field should not be empty"
+msgstr "Le champ ne devrait pas &ecirc;tre vide"
+
+msgid "SMTP settings saved, Test it !!"
+msgstr "R&eacute;glages &#8220;SMTP&#8221; enregistr&eacute;s"
+
+# C:\wgettext\mailpress_newsletter_categories\MailPress_newsletter_categories.php:232
+msgid "** Blog **"
+msgstr "** Blog **"
+
+msgid "default"
+msgstr "par d&eacute;faut"
+
+msgid "\"Subscriptions\" settings saved"
+msgstr "R&eacute;glages &#8220;Abonnements&#8221; enregistr&eacute;s"
+
+msgid "Advanced options"
+msgstr "Options avanc&eacute;es"
+
+msgid "Log it"
+msgstr "Le logger"
+
+msgid "Send it"
+msgstr "L'envoyer"
+
+msgid "Archive it"
+msgstr "L'archiver"
+
+msgid "Include it in statistics"
+msgstr "L'inclure dans les statistiques"
+
+msgid "Save &amp; Test"
+msgstr "Enregistrer &amp; Tester"
+
+msgid "Test settings saved"
+msgstr "R&eacute;glages &#8220;Test&#8221; enregistr&eacute;s"
+
+msgid "Connection test - MailPress - "
+msgstr "Test de connection - MailPress - "
+
+msgid "This is a test message of MailPress from"
+msgstr "Ceci est un message de test de MailPress de"
+
+#, php-format
+msgid "This is a <blink>test</blink> message of %1$s from %2$s. <br /><br />"
+msgstr "Ceci est un message de <blink>test</blink> de %1$s depuis  %2$s. <br /><br />"
+
+msgid "Test settings saved, Mail not send as required"
+msgstr "\"R&eacute;glages &#8220;Test&#8221; enregistr&eacute;s\", Mail non transmis comme requis"
+
+msgid "Test successfull, CONGRATULATIONS !"
+msgstr "Test r&eacute;ussi, F&eacute;licitations !  "
+
+msgid "FAILED. Check your logs & settings !"
+msgstr "ECHEC. V&eacute;rifiez vos logs et r&eacute;glages !"
+
+msgid "User"
+msgstr "Abonn&eacute;"
+
+msgid "'Tracking' settings saved"
+msgstr "R&eacute;glages &#8220;Tracking&#8221; enregistr&eacute;s"
+
+#, php-format
+msgid "New comment on your post #%1$s \"%2$s\""
+msgstr "Nouveau commentaire sur votre article #%1$s \"%2$s\""
+
+#, php-format
+msgid "Author : %1$s (IP: %2$s , %3$s)"
+msgstr "Auteur : %1$s (IP: %2$s , %3$s)"
+
+#, php-format
+msgid "E-mail : %s"
+msgstr "E-mail : %s"
+
+#, php-format
+msgid "URL    : %s"
+msgstr "URL    : %s"
+
+#, php-format
+msgid "Whois  : http://ws.arin.net/cgi-bin/whois.pl?queryinput=%s"
+msgstr "Whois  : http://ws.arin.net/cgi-bin/whois.pl?queryinput=%s"
+
+msgid "Comment: "
+msgstr "Commentaire : "
+
+msgid "You can see all comments on this post here: "
+msgstr "Vous pouvez voir tous les commentaires sur cet article ici : "
+
+# C:\wgettext\mailpress\mp-content\themes\BROKEN\moderate.php:34
+# C:\wgettext\mailpress\mp-content\themes\classic\moderate.php:34
+# C:\wgettext\mailpress\mp-content\themes\default\moderate.php:34
+# C:\wgettext\mailpress\mp-content\themes\MailPress\moderate.php:33
+# C:\wgettext\mailpress\mp-content\themes\nogent94\moderate.php:36
+msgid "Spam"
+msgstr "Ind&eacute;sirable"
+
+msgid "Please confirm your subscription"
+msgstr "Merci de confirmer votre abonnement"
+
+msgid "Please confirm your subscription by clicking the link below : "
+msgstr "Confirmez votre abonnement en cliquant sur le lien suivant :"
+
+msgid "Confirm"
+msgstr "Confirmer"
+
+#, php-format
+msgid "Username: %s"
+msgstr "Utilisateur : %s"
+
+#, php-format
+msgid "E-mail: %s"
+msgstr "E-mail: %s"
+
+#, php-format
+msgid "Password: %s"
+msgstr "Mot de passe: %s"
+
+msgid "Log in"
+msgstr "Connection"
+
+msgid "Congratulations !"
+msgstr "F&eacute;licitations !"
+
+#, php-format
+msgid "You are now a subscriber of : %s"
+msgstr "Vous &ecirc;tes d&eacute;sormais abonn&eacute; &agrave; : %s"
+
+#, php-format
+msgid "New comment on post #%1$s \"%2$s\""
+msgstr "Nouveau commentaire sur votre article #%1$s \"%2$s\""
+
+msgid "View all"
+msgstr "Tout visualiser"
+
+msgid "Approve"
+msgstr "Approuver"
+
+msgid "Email: "
+msgstr "Email: "
+
+msgid "Newsletter: "
+msgstr "Newsletter:"
+
+msgid "Theme: "
+msgstr "Th&egrave;me:"
+
+msgid "current"
+msgstr "Th&egrave;me MailPress courant"
+
+msgid "Sending ..."
+msgstr "Envoi en cours ..."
+
+msgid "OK"
+msgstr "OK"
+
+#, php-format
+msgid "New trackback on your post #%1$s \"%2$s\""
+msgstr "Nouveau trackback sur votre article #%1$s \"%2$s\""
+
+#, php-format
+msgid "Website: %1$s (IP: %2$s , %3$s)"
+msgstr "Site web: %1$s (IP: %2$s , %3$s)"
+
+msgid "Excerpt: "
+msgstr "Extrait : "
+
+msgid "You can see all trackbacks on this post here: "
+msgstr "Vous pouvez voir tous les trackbacks de cet article ici : "
+
+#, php-format
+msgid "[%1$s] Trackback: \"%2$s\""
+msgstr "[%1$s] Trackback: \"%2$s\""
+
+#, php-format
+msgid "New pingback on your post #%1$s \"%2$s\""
+msgstr "Nouveau pingback sur votre article #%1$s \"%2$s\""
+
+msgid "You can see all pingbacks on this post here: "
+msgstr "Vous pouvez voir tous les pingbacks de cet article ici : "
+
+#, php-format
+msgid "[%1$s] Pingback: \"%2$s\""
+msgstr "[%1$s] Pingback: \"%2$s\""
+
+#, php-format
+msgid "[%1$s] Comment: \"%2$s\""
+msgstr "[%1$s] Commentaire: \"%2$s\""
+
+#, php-format
+msgid "Delete it: %s"
+msgstr "Le supprimer: %s"
+
+#, php-format
+msgid "Spam it: %s"
+msgstr "Le rendre ind&eacute;sirable: %s"
+
+#, php-format
+msgid "A new trackback on the post #%1$s \"%2$s\" is waiting for your approval"
+msgstr "Un nouveau trackback sur l'article #%1$s \"%2$s\" en attente de mod&eacute;ration"
+
+#, php-format
+msgid "Website : %1$s (IP: %2$s , %3$s)"
+msgstr "Site web: %1$s (IP: %2$s , %3$s)"
+
+msgid "Trackback excerpt: "
+msgstr "Extrait trackback: "
+
+#, php-format
+msgid "A new pingback on the post #%1$s \"%2$s\" is waiting for your approval"
+msgstr "Un nouveau pingback sur l'article #%1$s \"%2$s\" en attente de mod&eacute;ration"
+
+msgid "Pingback excerpt: "
+msgstr "Extrait pingback: "
+
+#, php-format
+msgid "A new comment on the post #%1$s \"%2$s\" is waiting for your approval"
+msgstr "Un nouveau commentaire sur l'article #%1$s \"%2$s\" en attente de mod&eacute;ration"
+
+#, php-format
+msgid "Approve it: %s"
+msgstr "L'approuver: %s"
+
+#, php-format
+msgid "[%1$s] Please moderate: \"%2$s\""
+msgstr "[%1$s] A mod&eacute;rer: \"%2$s\""
+
+# C:\wgettext\mailpress\mailpress\mp-includes\wp-pluggable.php:275
+#, php-format
+msgid "[%s] Password Lost/Changed"
+msgstr ""
+
+# C:\wgettext\mailpress\mailpress\mp-includes\wp-pluggable.php:276
+#, php-format
+msgid "Password Lost and Changed for user: %s"
+msgstr ""
+
+#, php-format
+msgid "New user registration on your blog %s:"
+msgstr "Nouvel utilisateur enregistr&eacute; sur votre blog %s:"
+
+#, php-format
+msgid "[%s] New User Registration"
+msgstr "[%s] Nouvel utilisateur"
+
+#, php-format
+msgid "[%s] Your username and password"
+msgstr "[%s] Votre identifiant et mot de passe"
+
+# C:\wgettext\mailpress\mailpress\mp-includes\wp-pluggable.php:348
+msgid "Someone has asked to reset the password for the following site and username."
+msgstr ""
+
+# C:\wgettext\mailpress\mailpress\mp-includes\wp-pluggable.php:351
+msgid "To reset your password visit the following address, otherwise just ignore this email and nothing will happen."
+msgstr ""
+
+#, php-format
+msgid "[%s] Password Reset"
+msgstr "Mot de passe: %s"
+
+#, php-format
+msgid "[%s] Your new password"
+msgstr "[%s] Votre identifiant et mot de passe"
+
+msgid "no recipient"
+msgstr "aucun destinataire"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_User.class.php:858
+# C:\wgettext\mailpress\mp-includes\class\MP_User.class.php:883
+msgid "U"
+msgstr ""
+
+#, php-format
+msgid "We confirm your subscription to %1$s emails"
+msgstr "Nous confirmons votre abonnement &agrave;  %1$s"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Themes.class.php:48
+msgid "\"Subscription management link\""
+msgstr "\"Lien gestion de l'abonnement\""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Themes.class.php:49
+msgid "\"Trouble reading link\""
+msgstr "\"Lien voir sur le site web\""
+
+#, php-format
+msgid "Revision saved at %s."
+msgstr "Version enregistr&eacute;e &agrave; %s."
+
+msgid "g:i:s a"
+msgstr "g:i:s a"
+
+#, php-format
+msgid "Draft saved at %s."
+msgstr "Brouillon enregistr&eacute; &agrave; %s."
+
+msgid "Someone"
+msgstr "Quelqu'un"
+
+#, php-format
+msgid "Autosave disabled: %s is currently editing this mail."
+msgstr "Sauvegarde automatique desactiv&eacute;e : %s est en train de modifier ce mail"
+
+# C:\wgettext\mailpress\mp-includes\action.php:65
+msgid "Cannot Open Attachement 1!"
+msgstr "Impossible d'ouvir la pi&egrave;ce jointe (1) !"
+
+# C:\wgettext\mailpress\mp-includes\action.php:66
+msgid "Cannot Open Attachement 2! "
+msgstr "Impossible d'ouvir la pi&egrave;ce jointe (2) !"
+
+# C:\wgettext\mailpress\mp-includes\action.php:66
+msgid "file_fullpath"
+msgstr ""
+
+# C:\wgettext\mailpress\mp-includes\action.php:65
+msgid "Cannot Open File !"
+msgstr "Impossible d'ouvir la pi&egrave;ce jointe !"
+
+# C:\wgettext\mailpress\mailpress\mp-admin\mail-new.php:2
+# C:\wgettext\mailpress\mailpress\mp-admin\mails.php:2
+# C:\wgettext\mailpress\mailpress\mp-admin\settings.php:2
+# C:\wgettext\mailpress\mailpress\mp-admin\themes.php:2
+# C:\wgettext\mailpress\mailpress\mp-admin\uzers.php:2
+# C:\wgettext\mailpress\mailpress\mp-admin\includes\mail-new.php:2
+# C:\wgettext\mailpress\mailpress\mp-admin\includes\mails.php:2
+# C:\wgettext\mailpress\mailpress\mp-admin\includes\uzer.php:2
+# C:\wgettext\mailpress\mailpress\mp-admin\includes\uzers.php:2
+# C:\wgettext\mailpress\mailpress_import\mp-admin\import.php:2
+# C:\wgettext\mailpress\mailpress_mailing_lists\mp-admin\mailinglists.php:2
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#, php-format
+msgid "<a href=\"%1$s\" target=\"_blank\">Documentation</a>"
+msgstr "<a href=\"%1$s\" target=\"_blank\">Documentation</a>"
+
+#, php-format
+msgid "<a href=\"%1$s\" target=\"_blank\">Support Forum</a>"
+msgstr "<a href=\"%1$s\" target=\"_blank\">Forum support</a>"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:608
+#, php-format
+msgid "Get help with \"%s\""
+msgstr ""
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Admin.class.php:608
+msgid "Get help with this page"
+msgstr ""
+
+#, php-format
+msgid "[%1$s] New Comment (%2$s)"
+msgstr "[%1$s] Nouveau commentaire (%2$s)"
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:314
+# C:\wgettext\mailpress_mailing_lists\mp-admin\includes\taxonomy.php:51
+msgid "You did not enter a valid label."
+msgstr "Veuillez rentrer un libell&eacute; correct"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Form.class.php:229
+#, php-format
+msgid "[%1$s] Your form receipt \"%2$s\" (%3$s)"
+msgstr "[%1$s] Votre accus&eacute;-r&eacute;ception du formulaire \"%2$s\" (%3$s)"
+
+msgid "Visitor email"
+msgstr "Email visiteur"
+
+# C:\wgettext\mailpress_sync_wordpress_user\MailPress_sync_wordpress_user.php:249
+msgid "Visitor name"
+msgstr "Nom visiteur"
+
+msgid "Mail sent if checked"
+msgstr "Mail envoy&eacute; si s&eacute;lectionn&eacute;"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Form_fields.class.php:264
+msgid "Check to get a copy"
+msgstr "S&eacute;lectionner pour recevoir une copie"
+
+# C:\wgettext\mailpress\mp-admin\includes\form_fields.php:243
+# C:\wgettext\mailpress\mp-includes\class\MP_Form_field_type_abstract.class.php:132
+#, php-format
+msgid "Templates : %1$s/%2$s"
+msgstr "Templates : %1$s/%2$s"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Form_field_type_abstract.class.php:154
+msgid "initial state : "
+msgstr "statut initial : "
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Form_field_type_abstract.class.php:210
+msgid "On error <small>(to remove a class : -name_of_class)</small>"
+msgstr "En erreur <small>(pour supprimer une classe : -nom de la classe)</small>"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:72
+# C:\wgettext\mailpress_import\mp-admin\import\xmlsample.php:42
+msgid "Howdy! Upload your file and we&#8217;ll import the emails and much more ... into this blog."
+msgstr "Salutations ! Mettez en ligne votre fichier et nous importerons vos emails et plus ... dans ce blog."
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:74
+# C:\wgettext\mailpress_import\mp-admin\import\xmlsample.php:44
+msgid "Choose a file to upload, then click Upload file and import."
+msgstr "Choisissez un fichier &agrave; utiliser, puis cliquez sur Envoyer le fichier et l’importer."
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:61
+# C:\wgettext\mailpress_import\mp-admin\import\xmlsample.php:156
+# C:\wgettext\mailpress_import\mp-admin\import\xmlsample.php:168
+msgid "See the log"
+msgstr "Voir la log"
+
+# C:\wgettext\mailpress\mp-admin\class\MP_Import_abstract.class.php:154
+msgid "Import successfull"
+msgstr "Donn&eacute;es import&eacute;es"
+
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:44
+# C:\wgettext\mailpress_import\mp-admin\import\csv.php:88
+# C:\wgettext\mailpress_import\mp-admin\import\xmlsample.php:56
+# C:\wgettext\mailpress_import\mp-admin\import\xmlsample.php:94
+# C:\wgettext\mailpress_import\mp-admin\import\xmlsample.php:166
+msgid "Sorry, there has been an error."
+msgstr "D&eacute;sol&eacute;, il y a une erreur."
+
+msgid "*** WARNING *** Mail is empty"
+msgstr "*** WARNING *** Mail is empty"
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:314
+# C:\wgettext\mailpress_mailing_lists\mp-admin\includes\taxonomy.php:51
+msgid "You did not enter a mailing list name."
+msgstr "Veuillez rentrer un nom de mailing list"
+
+msgid "j F, Y @ G:i|revision date format"
+msgstr "j F, Y @ G:i|revision date format"
+
+#, php-format
+msgid "%s [Autosave]"
+msgstr "%s [Sauvegarde automatique]"
+
+#, php-format
+msgid "%s [Current Revision]"
+msgstr "%s [Version actuelle]"
+
+#, php-format
+msgid "%1$s by %2$s|mail revision 1:datetime, 2:name"
+msgstr "%1$s par %2$s|mail revision 1:datetime, 2:name"
+
+msgid "Restore"
+msgstr "Restaurer"
+
+msgid "Compare Revisions"
+msgstr "Comparer les versions"
+
+msgid "Date Created"
+msgstr "Date de cr&eacute;ation"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "unknown user"
+msgstr "abonn&eacute; inconnu"
+
+msgid "cannot activate user"
+msgstr "impossible d'activer l'abonn&eacute;"
+
+msgid "user already active"
+msgstr "abonn&eacute; d&eacute;j&agrave; activ&eacute;"
+
+msgid "user not a recipient"
+msgstr "abonn&eacute; pas destinataire"
+
+msgid "unknown mail"
+msgstr "mail inconnu"
+
+#, php-format
+msgid "<p> ERROR # %1$s (%2$s) !</p>"
+msgstr "<p> ERREUR # %1$s (%2$s) !</p>"
+
+msgid "Check you are using the appropriate link."
+msgstr "V&eacute;rifier que vous utiliser le bon lien."
+
+#, php-format
+msgid "Manage Subscription (%1$s)"
+msgstr "Gestion de l'abonnement  (%1$s)"
+
+msgid "Cancelled action"
+msgstr "Abandon"
+
+msgid "Delete Subscription"
+msgstr "Suppression de l'abonnement"
+
+#, php-format
+msgid "<p>We confirm that the email adress <b>%1$s</b> has been removed from the database.</p>"
+msgstr "<p>Suppression de <b>%1$s</b> confirm&eacute;e.</p>"
+
+#, php-format
+msgid "<p>Are you sure you want to unsubscribe <b>%1$s</b> from <b>%2$s</b>.</p>"
+msgstr "<p>Etes vous s&ucirc;r de d&eacute;sabonner <b>%1$s</b> de <b>%2$s</b>.</p>"
+
+msgid "Subscription confirmed"
+msgstr "Abonnement enregistr&eacute; "
+
+#, php-format
+msgid "<p><b>%1$s</b> has been succesfully inserted in the database.</p>"
+msgstr "<p><b>%1$s</b> est ins&eacute;r&eacute; dans la base de donn&eacute;es.</p>"
+
+#, php-format
+msgid "<a href=\"%1$s\">Manage Subscription</a>"
+msgstr "<a href=\"%1$s\">Gestion de l'abonnement</a>"
+
+#, php-format
+msgid "<p> From : <b>%1$s</b></p>"
+msgstr "<p> De : <b>%1$s</b></p>"
+
+#, php-format
+msgid "<p> To   : <b>%1$s</b></p>"
+msgstr "<p> &Agrave; : <b>%1$s</b></p>"
+
+msgid "Per post"
+msgstr "Pour chaque article"
+
+msgid "For each new post"
+msgstr "&Agrave; chaque nouvel article"
+
+#, php-format
+msgid "[%1$s] Daily newsletter"
+msgstr "[%1$s] Newsletter quotidienne"
+
+# C:\wgettext\mailpress_newsletter_categories\MailPress_newsletter_categories.php:210
+msgid "Daily"
+msgstr "Quotidien"
+
+msgid "Daily newsletter"
+msgstr "Newsletter quotidienne"
+
+#, php-format
+msgid "[%1$s] Weekly newsletter"
+msgstr "[%1$s] Newsletter hebdomadaire"
+
+# C:\wgettext\mailpress_newsletter_categories\MailPress_newsletter_categories.php:213
+msgid "Weekly"
+msgstr "Hebdomadaire "
+
+msgid "Weekly newsletter"
+msgstr "Newsletter hebdomadaire"
+
+#, php-format
+msgid "[%1$s] Monthly newsletter"
+msgstr "[%1$s] Newsletter mensuelle"
+
+# C:\wgettext\mailpress_newsletter_categories\MailPress_newsletter_categories.php:216
+msgid "Monthly"
+msgstr "Mensuel"
+
+msgid "Monthly newsletter"
+msgstr "Newsletter mensuelle"
+
+msgid "<br />Newsletter added"
+msgstr "<br />Newsletter  ajout&eacute;e."
+
+# C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:487
+msgid "post not saved"
+msgstr "article non sauvegard&eacute;"
+
+msgid "unknown newsletter"
+msgstr "newsletter inconnue"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Newsletter.class.php:254
+msgid "Sending mail failed !"
+msgstr "Echec de l'envoi du mail"
+
+# C:\wgettext\mailpress\mailpress_batch_send\MailPress_batch_send.php:502
+#, php-format
+msgid "%1$sView%2$s sent mail"
+msgstr "%1$sVoir%2$s le mail"
+
+#, php-format
+msgid "[%1$s] New post (%2$s)"
+msgstr "[%1$s] Nouvel article (%2$s)"
+
+msgid "Visit author homepage"
+msgstr "Visiter la page de l'auteur"
+
+msgid "Anonymous"
+msgstr "Anonyme"
+
+msgid "Stylesheet is missing."
+msgstr "La Feuille de style est manquante"
+
+msgid "File not readable."
+msgstr "Fichier illisible"
+
+msgid "Template is missing."
+msgstr "Template manquante."
+
+msgid "active blog"
+msgstr "abonn&eacute;s au blog"
+
+msgid "active comments"
+msgstr "abonn&eacute;s aux commentaires"
+
+msgid "active blog + comments"
+msgstr "abonn&eacute;s blog + commentaires"
+
+msgid "active + not active"
+msgstr "abonn&eacute;s actifs et en attente"
+
+#, php-format
+msgid "[%1$s] Waiting for %2$s"
+msgstr "[%1$s] En attente de %2$s"
+
+#, php-format
+msgid "Please, confirm your subscription to %1$s emails by clicking the following link :"
+msgstr "Confirmez votre abonnement aux mails de %1$s en cliquant sur le lien suivant :"
+
+msgid "If you do not want to receive more emails, ignore this one !"
+msgstr "Si vous n'avez pas solliciter ce mail, ignorer le !"
+
+#, php-format
+msgid "[%1$s] Successful subscription for %2$s"
+msgstr "[%1$s] Abonnement réussi pour %2$s"
+
+msgid "the mailpress subscription form"
+msgstr "L'abonn&eacute; g&egrave;re ses abonnements depuis "
+
+msgid "Title:"
+msgstr "Titre:"
+
+# C:\wgettext\m201\mailpress\MailPress.php:205
+msgid "Button:"
+msgstr "Bouton:"
+
+msgid "\"Manage your subscription\" link ?"
+msgstr "Lien \"Gestion de l'abonnement\" ?"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Widget.class.php:67
+msgid "Preloaded :"
+msgstr "Pr&eacute;charg&eacute;s :"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Widget.class.php:69
+msgid "css"
+msgstr "css"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Widget.class.php:72
+msgid "jQuery"
+msgstr "jQuery"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Widget.class.php:75
+msgid "javascript"
+msgstr "javascript"
+
+msgid "Subscribe"
+msgstr "S'abonner"
+
+msgid "Manage your subscription"
+msgstr "Gestion de votre abonnement"
+
+msgid "Loading..."
+msgstr "Chargement"
+
+msgid "Your email"
+msgstr "Votre email"
+
+msgid "Your name"
+msgstr "Votre nom"
+
+msgid "Waiting for ..."
+msgstr "En attente de ..."
+
+msgid "Waiting for your confirmation"
+msgstr "En attente de votre confirmation"
+
+msgid "You have already subscribed"
+msgstr "Vous &ecirc;tes d&egrave;j&agrave; abonn&eacute;"
+
+msgid "ERROR. resend confirmation email failed"
+msgstr "ERREUR, Le renvoi du mail de confirmation a &eacute;chou&eacute;"
+
+# C:\wgettext\m301\mailpress\mp-includes\class\MP_Widget.class.php:41
+msgid "ERROR in the database : subscriber not inserted"
+msgstr "Erreur sur la base de donn&eacute;es : aboon&eacute; non ins&eacute;r&eacute;"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Widget.class.php:104
+msgid "Notify me of follow-up comments via email."
+msgstr "Me notifier des commentaires &agrave; venir par mail."
+
+msgid "Classic"
+msgstr "Classic"
+
+msgid "Fresh"
+msgstr "Fresh"
+
+msgid "Plaintext View"
+msgstr "Vue plaintext"
+
+msgid "Html View"
+msgstr "Vue html"
+

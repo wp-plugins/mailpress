@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oss>
+	 <os>
+		<name><![CDATA[Windows]]></name>
+		<link><![CDATA[]]></link>
+		<icon><![CDATA[/os/win.png]]></icon>
+		<pattern><![CDATA[#(Windows|Win) ([a-zA-Z0-9.\ ]+)#i]]></pattern>
+		<versions pattern="0">
+			<version>
+				<name><![CDATA[Vista]]></name>
+				<pattern><![CDATA[/NT 6.0/i]]></pattern>
+			</version>
+			<version>
+				<name><![CDATA[XP]]></name>
+				<pattern><![CDATA[/NT 5.1/i]]></pattern>
+			</version>
+			<version>
+				<name><![CDATA[2000]]></name>
+				<pattern><![CDATA[/NT 5.0/i]]></pattern>
+			</version>
+			<version>
+				<name><![CDATA[ME]]></name>
+				<pattern><![CDATA[/9x 4.90/i]]></pattern>
+			</version>
+			<version>
+				<name><![CDATA[NT 4]]></name>
+				<pattern><![CDATA[/NT4.0/i]]></pattern>
+			</version>
+			<version>
+				<name><![CDATA[98]]></name>
+				<pattern><![CDATA[/Win98/i]]></pattern>
+			</version>
+			<version>
+				<name><![CDATA[CE]]></name>
+				<pattern><![CDATA[/CE/i]]></pattern>
+			</version>
+			<version>
+				<name><![CDATA[7]]></name>
+				<pattern><![CDATA[/NT 6.1|NT 7.0/i]]></pattern>
+			</version>
+			<version>
+				<name><![CDATA[NT]]></name>
+				<pattern><![CDATA[/NT/i]]></pattern>
+			</version>
+			<version>
+				<name><![CDATA[]]></name>
+				<pattern><![CDATA[]]></pattern>
+			</version>
+		</versions>
+	 </os>
+	 <os>
+		<name><![CDATA[Mac OS]]></name>
+		<link><![CDATA[]]></link>
+		<icon><![CDATA[/os/mac.png]]></icon>
+		<pattern><![CDATA[/Mac/i]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[FreeBSD]]></name>
+		<link><![CDATA[]]></link>
+		<icon><![CDATA[/os/freebsd.png]]></icon>
+		<pattern><![CDATA[/FreeBSD/i]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[OpenBSD]]></name>
+		<link><![CDATA[]]></link>
+		<icon><![CDATA[/os/openbsd.png]]></icon>
+		<pattern><![CDATA[/OpenBSD/i]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[Solaris]]></name>
+		<link><![CDATA[]]></link>
+		<icon><![CDATA[/os/solaris.png]]></icon>
+		<pattern><![CDATA[/Solaris/i]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[SymbianOS]]></name>
+		<link><![CDATA[]]></link>
+		<icon><![CDATA[/os/symbian.png]]></icon>
+		<pattern><![CDATA[#SymbianOS/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </os>
+	 <os>
+		<name><![CDATA[Debian GNU/Linux]]></name>
+		<link><![CDATA[http://debian.org]]></link>
+		<icon><![CDATA[/os/debian.png]]></icon>
+		<pattern><![CDATA[/Debian/i]]></pattern>
+		<versions pattern="1"></versions>
+	 </os>
+	 <os>
+		<name><![CDATA[CentOs]]></name>
+		<link><![CDATA[]]></link>
+		<icon><![CDATA[/os/centos.png]]></icon>
+		<pattern><![CDATA[/CentOs/]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[Gentoo]]></name>
+		<link><![CDATA[http://gentoo.org/]]></link>
+		<icon><![CDATA[/os/gentoo.png]]></icon>
+		<pattern><![CDATA[/Gentoo/i]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[Fedora]]></name>
+		<link><![CDATA[http://fedoraproject.org//]]></link>
+		<icon><![CDATA[/os/fedora.png]]></icon>
+		<pattern><![CDATA[/Fedora/i]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[Xubuntu]]></name>
+		<link><![CDATA[http://xubuntu.org]]></link>
+		<icon><![CDATA[/os/xubuntu.png]]></icon>
+		<pattern><![CDATA[/Xubuntu/i]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[Kubuntu]]></name>
+		<link><![CDATA[http://kubuntu.org]]></link>
+		<icon><![CDATA[/os/kubuntu.png]]></icon>
+		<pattern><![CDATA[/Kubuntu/i]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[Ubuntu]]></name>
+		<link><![CDATA[http://ubuntu.org]]></link>
+		<icon><![CDATA[/os/ubuntu.png]]></icon>
+		<pattern><![CDATA[/Ubuntu/i]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[Slackware]]></name>
+		<link><![CDATA[http://slackware.com/]]></link>
+		<icon><![CDATA[/os/slackware.png]]></icon>
+		<pattern><![CDATA[/Slackware/i]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[OLPC (XO)]]></name>
+		<link><![CDATA[http://laptop.org/]]></link>
+		<icon><![CDATA[/os/suse.png]]></icon>
+		<pattern><![CDATA[/Suse/i]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[SuSE]]></name>
+		<link><![CDATA[http://www.opensuse.org/]]></link>
+		<icon><![CDATA[/os/chrome.png]]></icon>
+		<pattern><![CDATA[#Chrome/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </os>
+	 <os>
+		<name><![CDATA[Zenwalk GNU Linux]]></name>
+		<link><![CDATA[http://www.zenwalk.org/]]></link>
+		<icon><![CDATA[/os/zenwalk.png]]></icon>
+		<pattern><![CDATA[/Zenwalk/i]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[GNU/Linux]]></name>
+		<link><![CDATA[]]></link>
+		<icon><![CDATA[/os/linux.png]]></icon>
+		<pattern><![CDATA[/Linux/i]]></pattern>
+	 </os>
+</oss>
