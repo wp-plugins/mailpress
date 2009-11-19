@@ -1,7 +1,7 @@
 <?php
 global $wpdb;
 
-$url_parms = self::get_url_parms(array('mode','status','s','apage','author','mailinglist','startwith'));
+$url_parms = self::get_url_parms(array('mode','status','s','apage','author','mailinglist','newsletter','startwith'));
 $h2 = __('Edit Users', MP_TXTDOM);
 $h2_author = '';
 if (isset($url_parms['author'])) 
@@ -14,6 +14,12 @@ if (isset($url_parms['mailinglist']) && !empty($url_parms['mailinglist']))
 	self::require_class('Mailinglists');
 	$mailinglist = MP_Mailinglists::get( $url_parms['mailinglist'] );
 	$h2 .= ' ' . sprintf(__('in &#8220;%s&#8221;'), wp_specialchars( $mailinglist->name ));
+}
+
+if (isset($url_parms['newsletter']) && !empty($url_parms['newsletter'])) 
+{
+	$newsletter = MP_Newsletter::get( $url_parms['newsletter'] );
+	$h2 .= ' ' . sprintf(__('in &#8220;%s&#8221;'), wp_specialchars( $newsletter['desc']));
 }
 
 //
@@ -151,12 +157,14 @@ if ($alphanav) $alphanav = "<div class='tablenav' style='float:left;margin:-5px 
 		<input type='hidden' name='mode' value='<?php echo $url_parms['mode']; ?>' />
 		<?php if (isset($url_parms['status'])) : ?><input type='hidden' name='status' value='<?php echo $url_parms['status']; ?>' /><?php endif; ?>
 	<?php if (isset($url_parms['mailinglist'])) echo "	<input type='hidden' name='mailinglist' value='" . $url_parms['mailinglist'] . "' />"; ?>
+	<?php if (isset($url_parms['newsletter']))  echo "	<input type='hidden' name='newsletter'  value='" . $url_parms['newsletter'] . "' />"; ?>
 	</form>
 	<form id='posts-filter' action='' method='get'>
 		<input type='hidden' name='page' value='<?php echo MailPress_page_users; ?>' />
 		<input type='hidden' name='mode' value='<?php echo $url_parms['mode']; ?>' />
 		<?php if ((isset($url_parms['status'])) && ( 'sent' != $url_parms['status'] )) : ?><input type='hidden' name='status' value='<?php echo $url_parms['status']; ?>' /><?php endif; ?>
 <?php if (isset($url_parms['mailinglist'])) echo "		<input type='hidden' name='mailinglist' value='" . $url_parms['mailinglist'] . "' />"; ?>
+<?php if (isset($url_parms['newsletter']))  echo "		<input type='hidden' name='newsletter'  value='" . $url_parms['newsletter'] . "' />"; ?>
 <?php 
 if ($users) {
 ?>
@@ -169,6 +177,9 @@ if ($users) {
 				<?php if ((isset($url_parms['status'])) && ( 'active'  == $url_parms['status'] )) : ?><input type='submit' value='<?php _e('Deactivate', MP_TXTDOM); ?>' 	name='deactivateit' class='button-secondary action' /><?php endif; ?>
 				<?php if (current_user_can('MailPress_delete_users')) : ?><input type='submit' value='<?php _e('Delete', MP_TXTDOM); ?>' 	name='deleteit'     class='button-secondary delete action' /><?php endif; ?>
 <?php do_action('MailPress_restrict_users',$url_parms); ?>
+<?php if (has_action('MailPress_restrict_users')) : ?>
+				<input type='submit' id='restrict' value="<?php _e('Filter', MP_TXTDOM); ?>" class='button-secondary' />
+<?php endif; ?>
 			</div>
 <?php if ( $page_links ) echo "\n<div class='tablenav-pages'>$page_links</div>\n"; ?>
 			<div class='view-switch'>

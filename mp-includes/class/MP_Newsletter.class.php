@@ -45,7 +45,7 @@ class MP_Newsletter
 					'daily', 
 					__("Daily", MP_TXTDOM), 
 					__('Daily newsletter', MP_TXTDOM), 
-					array ( 	'callback'		=> array('MP_Newsletter', 'have'), 
+					array ( 	'callback'		=> array(__CLASS__, 'have'), 
 							'name'		=> 'MailPress_daily', 
 							'value'		=> date('Ymd'), 
 							'query_posts'	=> array(
@@ -61,7 +61,7 @@ class MP_Newsletter
 					'weekly', 
 					__("Weekly", MP_TXTDOM), 
 					__('Weekly newsletter', MP_TXTDOM), 
-					array (	'callback'		=> array('MP_Newsletter', 'have'), 
+					array (	'callback'		=> array(__CLASS__, 'have'), 
 							'name'		=> 'MailPress_weekly', 
 							'value'		=> self::get_yearweekofday(date('Y-m-d')), 
 							'query_posts'	=> array (
@@ -78,7 +78,7 @@ class MP_Newsletter
 					'monthly', 
 					__("Monthly", MP_TXTDOM), 
 					__('Monthly newsletter', MP_TXTDOM), 
-					array (	'callback'		=> array('MP_Newsletter', 'have'), 
+					array (	'callback'		=> array(__CLASS__, 'have'), 
 							'name'		=> 'MailPress_monthly', 
 							'value'		=> date('Ym'), 
 							'query_posts'	=> array (
@@ -101,9 +101,15 @@ class MP_Newsletter
 		}
 
 // for sending mails
-		add_filter('MailPress_mailinglists', 	array('MP_Newsletter', 'mailinglists'), 8, 1);
-		add_filter('MailPress_query_mailinglist', array('MP_Newsletter', 'query_mailinglist'), 8, 2);
+		add_filter('MailPress_mailinglists', 	array(__CLASS__, 'mailinglists'), 8, 1);
+		add_filter('MailPress_query_mailinglist', array(__CLASS__, 'query_mailinglist'), 8, 2);
+// for mp_users list
+		add_action('MailPress_restrict_users', 		array(__CLASS__, 'restrict_users'), 1, 1);
+		add_filter('MailPress_columns_users', 		array(__CLASS__, 'columns_users'), 1, 1);
+		add_action('MailPress_get_row_users', 		array(__CLASS__, 'get_row_users'), 1, 3);
 	}
+
+// for sending mails
 
 	public static function mailinglists( $draft_dest = array() ) 
 	{
@@ -127,6 +133,74 @@ class MP_Newsletter
 		$in 	= ($mp_registered_newsletters[$id]['in']) ? '' : 'NOT';
 
 		return self::get_query_newsletter($id, $in);
+	}
+
+// for mp_users list
+
+	public static function restrict_users($url_parms)
+	{
+		$x = (isset($url_parms['newsletter'])) ? $url_parms['newsletter'] : '';
+		$dropdown_options = array('show_option_all' => __('View all newsletters', MP_TXTDOM), 'selected' => $x );
+		self::dropdown($dropdown_options);
+		//echo "<input type='submit' id='mailinglistsub' value=\"" . __('Filter', MP_TXTDOM) . "\" class='button-secondary' />";
+	}
+
+	public static function columns_users($x)
+	{
+		$date = array_pop($x);
+		$x['newsletters']=  __('Newsletters', MP_TXTDOM);
+		$x['date']		= $date;
+		return $x;
+	}
+
+	public static function get_row_users($column_name, $mp_user, $url_parms)
+	{
+		if ('newsletters' != $column_name) return;
+		$out = array();
+
+		$in = self::get_mp_user_newsletters($mp_user->id);
+		if (!empty($in)) 
+		{
+            foreach($in as $k => $v)
+            {
+               $out[] = "<a href='" . MailPress_users . "&amp;newsletter=$k'>$v</a>";
+            }
+
+			echo join( ', ', $out );
+			return;
+		}
+		_e('None ', MP_TXTDOM);
+	}
+
+	public static function dropdown($args = '')
+	{
+		$defaults = array('class'		=> 'postform',
+					'echo' 		=> 1,
+					'htmlid'		=> 'newsletter_dropdown',
+					'name' 		=> 'newsletter',
+					'selected' 		=> 0
+					);
+
+		$r = wp_parse_args( $args, $defaults );
+		extract( $r );
+
+		$x = self::get_active();
+
+		$output = '';
+		if ( ! empty($x) )
+		{
+			if ( $show_option_all ) $list[0] = $show_option_all;
+			foreach($x as $k => $v) $list[$k] = $v;
+
+			$htmlid = ($htmlid === true) ? "id='$name'" : "id='$htmlid'" ;
+			$output = "<select name='$name' $htmlid class='$class'>\n";
+			$output .= MailPress::select_option($list, $selected, false);
+			$output .= "</select>\n";
+		}
+
+		if ( $echo )	echo $output;
+
+		return $output;
 	}
 
 	public static function get_defaults()
@@ -276,7 +350,7 @@ class MP_Newsletter
 		if (isset($newsletter['the_title'] )) 		$mail->the_title    = $newsletter['the_title'];
 		if (isset($newsletter['params']['catname']))	$mail->the_category = $newsletter['params']['catname'];
 
-		add_filter('post_limits', array('MP_Newsletter', 'post_limits'), 8, 1);
+		add_filter('post_limits', array(__CLASS__, 'post_limits'), 8, 1);
 
 		if ($qp)
 		{
@@ -292,7 +366,7 @@ class MP_Newsletter
 			wp_reset_query();
 		}
 
-		remove_filter( 'post_limits', array('MP_Newsletter', 'post_limits'), 8, 1);
+		remove_filter( 'post_limits', array(__CLASS__, 'post_limits'), 8, 1);
 
 		return $rc;
 	}

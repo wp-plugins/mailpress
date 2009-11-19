@@ -140,6 +140,23 @@ class MP_AdminPage extends MP_Admin_page_list
 			$tables .= ", $wpdb->term_taxonomy b, $wpdb->term_relationships c";
 			$where .= "( b.taxonomy='MailPress_mailing_list' AND b.term_taxonomy_id=c.term_taxonomy_id AND b.term_id " . $x . "  AND a.id = c.object_id)";
 		}
+		if (isset($url_parms['newsletter']) && !empty($url_parms['newsletter']))
+		{
+			global $mp_registered_newsletters;
+			if (!isset($mp_registered_newsletters[$url_parms['newsletter']])) continue;
+
+			$newsletter = $mp_registered_newsletters[$url_parms['newsletter']];
+			$in 	= ($newsletter['in']) ? '' : 'NOT';
+
+			if (!empty($where)) $where = $where . ' AND ';
+			$where .= " $in EXISTS 	(
+						SELECT DISTINCT z.user_id 
+						FROM 	$wpdb->mp_usermeta z 
+						WHERE z.meta_key = '_MailPress_newsletter' 
+						AND 	z.meta_value = '" . $newsletter['id'] . "' 
+						AND 	z.user_id = a.id
+					) ";
+		}
 		if (isset($url_parms['startwith']) && !empty($url_parms['startwith']))
 		{
 			if (!empty($where)) $where = $where . ' AND ';

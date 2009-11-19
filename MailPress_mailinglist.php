@@ -70,7 +70,7 @@ class MailPress_mailinglist
 		}
 
 		// for mp_users list
-		add_action('MailPress_restrict_users', 		array(__CLASS__, 'restrict_users'), 1, 1);
+		add_action('MailPress_restrict_users', 		array(__CLASS__, 'restrict_users'), 10, 1);
 		add_filter('MailPress_columns_users', 		array(__CLASS__, 'columns_users'), 1, 1);
 		add_action('MailPress_get_row_users', 		array(__CLASS__, 'get_row_users'), 1, 3);
 	}
@@ -558,7 +558,7 @@ class MailPress_mailinglist
 		$x = (isset($url_parms['mailinglist'])) ? $url_parms['mailinglist'] : '';
 		$dropdown_options = array('show_option_all' => __('View all mailing lists', MP_TXTDOM), 'hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'selected' => $x );
 		MP_Mailinglists::dropdown($dropdown_options);
-		echo "<input type='submit' id='mailinglistsub' value=\"" . __('Filter', MP_TXTDOM) . "\" class='button-secondary' />";
+		//echo "<input type='submit' id='mailinglistsub' value=\"" . __('Filter', MP_TXTDOM) . "\" class='button-secondary' />";
 	}
 
 	public static function columns_users($x)
