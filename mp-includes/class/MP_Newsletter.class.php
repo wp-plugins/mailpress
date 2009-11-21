@@ -217,14 +217,15 @@ class MP_Newsletter
 	public static function form_submit($shortcode_message, $email)  
 	{ 
 		if (!isset($_POST['newsletter']))  return $shortcode_message;
+		$shortcode = 'shortcode_newsletters';
 
-		$shortcode = 'shortcode';
-		$mp_user_id = MP_User::get_user_id_by_email($email);
+		MailPress::require_class('Users');
+
+		$mp_user_id = MP_Users::get_id_by_email($email);
 		$newsletter_id = $_POST['newsletter'];
 
 		$_POST[$shortcode] = self::get_mp_user_newsletters($mp_user_id);
 		$_POST[$shortcode][$newsletter_id] = true;
-
 		self::update_checklist($mp_user_id, $shortcode);
 
 		return $shortcode_message . __('<br />Newsletter added', MP_TXTDOM);
