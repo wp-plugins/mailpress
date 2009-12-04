@@ -75,6 +75,9 @@ class MP_Bounce
 	{
 		if (!list($mail_id, $mp_user_id, $bounce_email) = $this->is_bounce($message_id)) return;
 
+		$this->mysql_disconnect($x = 'MailPress_bounce_handling');
+		$this->mysql_connect('MailPress_bounce_handling');
+
 		$this->trace->log('!' . str_repeat( '-', self::bt) . '!');
 		$bm = '            ! id         ! bounces   ! ' . $bounce_email;
 		$this->trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
@@ -168,9 +171,9 @@ class MP_Bounce
 			{
 				MailPress::require_class('Mailmeta');
     
-				$mailmeta       = MP_Mailmeta::get($mail_id, MailPress_bounce_handling::metakey);
-				if ($mailmeta) 	MP_Mailmeta::update($mail_id, MailPress_bounce_handling::metakey, $mailmeta++ );
-				else 			MP_Mailmeta::add($mail_id, MailPress_bounce_handling::metakey, $mailmeta = 1);
+				$mailmeta = MP_Mailmeta::get($mail_id, MailPress_bounce_handling::metakey);
+				$mailmeta = ($mailmeta) ? $mailmeta++ : 1;	
+				MP_Mailmeta::update($mail_id, MailPress_bounce_handling::metakey, $mailmeta );
 		
 				$metas = MP_Mailmeta::get( $mail_id, '_MailPress_replacements');
 				$mail_logmess = $mail->subject;
@@ -185,9 +188,6 @@ class MP_Bounce
 		$this->trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
 	
 		$this->trace->log('!' . str_repeat( '-', self::bt) . '!');
-
-		$this->mysql_disconnect($x = 'MailPress_bounce_handling');
-		$this->mysql_connect('MailPress_bounce_handling');
 	}
 
 	function is_bounce($message_id)
