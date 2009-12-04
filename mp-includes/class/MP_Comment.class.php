@@ -1,6 +1,14 @@
 <?php
 class MP_Comment
 {
+
+	public static function construct()
+	{
+		add_action('comment_form', 			array(__CLASS__, 'comment_form'));
+		add_action('comment_post', 			array(__CLASS__, 'comment_post'), 8, 1);
+		add_action('wp_set_comment_status', 	array(__CLASS__, 'approve_comment'));	
+	}
+
 ////	comment subscription form	////
 
 	public static function comment_form($post_id) 

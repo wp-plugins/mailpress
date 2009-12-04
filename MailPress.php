@@ -108,25 +108,12 @@ class MailPress extends MP_abstract
 		if (isset($mp_subscriptions['subcomment']))
 		{
 			self::require_class('Comment');
-			add_action('comment_form', 			array('MP_Comment', 'comment_form'));
-			add_action('comment_post', 			array('MP_Comment', 'comment_post'), 8, 1);
-			add_action('wp_set_comment_status', 	array('MP_Comment', 'approve_comment'));	
+			MP_Comment::construct();
 		}
 
 	// for newsletters
 		self::require_class('Newsletter');
-	// for post published
-		add_action('publish_post', 			array('MP_Newsletter', 'have_post'), 8, 1);
-	// for mailpress shutdown
-		add_action('mp_build_newsletters', 		array('MP_Newsletter', 'process'));
-		add_action('mp_process_newsletters', 	array('MP_Newsletter', 'process'));
-	// for shortcode
-		add_filter('MailPress_form_defaults', 	array('MP_Newsletter', 'form_defaults'), 8, 1);
-		add_filter('MailPress_form_options', 	array('MP_Newsletter', 'form_options'), 8, 1);
-		add_filter('MailPress_form_submit', 	array('MP_Newsletter', 'form_submit'), 8, 2);
-		add_action('MailPress_form', 		  	array('MP_Newsletter', 'form'), 1, 2); 
-
-		MP_Newsletter::register_newsletters();
+		MP_Newsletter::construct();
 	}
 
 ////  Shortcode  ////

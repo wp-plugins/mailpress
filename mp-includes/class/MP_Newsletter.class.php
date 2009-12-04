@@ -1,6 +1,30 @@
 <?php
 class MP_Newsletter
 {
+
+	public static function construct()
+	{
+// for post published
+		add_action('publish_post', 			array(__CLASS__, 'have_post'), 8, 1);
+// for mailpress shutdown
+		add_action('mp_build_newsletters', 		array(__CLASS__, 'process'));
+		add_action('mp_process_newsletters', 	array(__CLASS__, 'process'));
+// for shortcode
+		add_filter('MailPress_form_defaults', 	array(__CLASS__, 'form_defaults'), 8, 1);
+		add_filter('MailPress_form_options', 	array(__CLASS__, 'form_options'), 8, 1);
+		add_filter('MailPress_form_submit', 	array(__CLASS__, 'form_submit'), 8, 2);
+		add_action('MailPress_form', 		  	array(__CLASS__, 'form'), 1, 2); 
+// for sending mails
+		add_filter('MailPress_mailinglists', 	array(__CLASS__, 'mailinglists'), 8, 1);
+		add_filter('MailPress_query_mailinglist', array(__CLASS__, 'query_mailinglist'), 8, 2);
+// for mp_users list
+		add_action('MailPress_restrict_users', 	array(__CLASS__, 'restrict_users'), 1, 1);
+		add_filter('MailPress_columns_users', 	array(__CLASS__, 'columns_users'), 1, 1);
+		add_action('MailPress_get_row_users', 	array(__CLASS__, 'get_row_users'), 1, 3);
+
+		self::register_newsletters();
+	}
+
 // for newsletters
 	public static function register($id, $mp_subject, $mp_theme, $mp_template, $desc, $display = true, $threshold = false, $in = false, $args = false)
 	{
@@ -99,14 +123,6 @@ class MP_Newsletter
 				$mp_registered_newsletters[$k]['in'] = (isset($mp_subscriptions['default_newsletters'][$k])) ? false : true; 
 			}
 		}
-
-// for sending mails
-		add_filter('MailPress_mailinglists', 	array(__CLASS__, 'mailinglists'), 8, 1);
-		add_filter('MailPress_query_mailinglist', array(__CLASS__, 'query_mailinglist'), 8, 2);
-// for mp_users list
-		add_action('MailPress_restrict_users', 		array(__CLASS__, 'restrict_users'), 1, 1);
-		add_filter('MailPress_columns_users', 		array(__CLASS__, 'columns_users'), 1, 1);
-		add_action('MailPress_get_row_users', 		array(__CLASS__, 'get_row_users'), 1, 3);
 	}
 
 // for sending mails
