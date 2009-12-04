@@ -391,7 +391,7 @@ class MailPress_tracking
 						{
 							foreach($os->versions->version as $ver)
 							{
-								if (preg_match($ver->pattern, $regmatch[$vp]))
+								if (!empty($ver->pattern) && preg_match($ver->pattern, $regmatch[$vp]))
 								{
 									$version = $ver->name;
 									break;
