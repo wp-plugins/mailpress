@@ -266,7 +266,6 @@ if ( !function_exists('wp_password_change_notification') ) :
  * wp_password_change_notification() - Notify the blog admin of a user changing password, normally via email.
  */
 function wp_password_change_notification(&$user) {
-MailPress::mp_die('wp_password_change_notification');
 	// send a copy of password change notification to the admin
 	// but check to see if it's the admin whose password we're changing, and skip this
 	if ( $user->user_email == get_option('admin_email') ) return;
@@ -348,14 +347,14 @@ function mp_retrieve_password_message($message, $key)
 	$user = ( strpos($_POST['user_login'], '@') ) ? get_user_by_email(trim($_POST['user_login'])) : get_userdatabylogin(trim($_POST['user_login']));
 	if (!$user) return $message;
 
-	$user_login = stripslashes($user->user_login);
-	$user_email = stripslashes($user->user_email);
+	$user_login = $user->user_login;
+	$user_email = $user->user_email;
 
 	$message2 = __('Someone has asked to reset the password for the following site and username.') . "<br />\r\n<br />\r\n";
 	$message2 .= get_option('siteurl') . "<br />\r\n<br />\r\n";
 	$message2 .= sprintf(__('Username: %s'), $user_login) . "<br />\r\n<br />\r\n";
 	$message2 .= __('To reset your password visit the following address, otherwise just ignore this email and nothing will happen.') . "<br />\r\n<br />\r\n";
-	$message2 .= site_url("wp-login.php?action=rp&key=$key", 'login') . "<br />\r\n";
+	$message2 .= site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login')  . "<br />\r\n";
 
 	$mail = new stdClass();
 	$mail->Template	= 'retrieve_pwd';
@@ -367,7 +366,7 @@ function mp_retrieve_password_message($message, $key)
 		$mail->u = new stdClass();
 		$mail->u->login	= $user_login;
 		$mail->u->key	= $key;
-		$mail->u->url	= site_url("wp-login.php?action=rp&key=$key", 'login');
+		$mail->u->url	= site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') ;
 
 	if (MailPress::mail($mail)) return false;
 	return $message;
@@ -379,10 +378,12 @@ function mp_password_reset_message($message, $new_pass)
 {
 	global $wpdb;
 
-	$key = preg_replace('/[^a-z0-9]/i', '', $_GET['key']);
-	if (empty($key)) return $message;
+	$key   = preg_replace('/[^a-z0-9]/i', '', $_GET['key']);
+	if (empty($key))   return $message;
+	$login = $_GET['login'];
+	if (empty($login)) return $message;
 
-	$user = $wpdb->get_row($wpdb->prepare("SELECT * FROM $wpdb->users WHERE user_activation_key = %s", $key));
+	$user = $wpdb->get_row($wpdb->prepare("SELECT * FROM $wpdb->users WHERE user_activation_key = %s AND user_login = %s", $key, $login));
 	if ( empty( $user ) ) return $message;
 
 	$message2  = sprintf(__('Username: %s'), $user->user_login) . "\r\n";
@@ -399,6 +400,7 @@ function mp_password_reset_message($message, $new_pass)
 		$mail->u = new stdClass();
 		$mail->u->login	= $user->user_login;
 		$mail->u->new_pass= $new_pass;
+		$mail->u->url	= site_url('wp-login.php', 'login');
 
 	if (MailPress::mail($mail)) return false;
 	return $message;
