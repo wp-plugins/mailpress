@@ -195,10 +195,10 @@ class MP_Mail_links
 		MailPress::require_class('Users');
 		$mp_user_id = MP_Users::get_id($mp_confkey);
 		if (!$mp_user_id) 						return 5;
-		if ('active' == MP_Users::get_status($mp_user_id)) 	return 4;
 		if (!MP_Users::set_status($mp_user_id, 'active')) 	return 3;
+		//if ('active' == MP_Users::get_status($mp_user_id)) 	return 4;
 
-		$email 	= MP_Users::get_email($mp_user_id);
+		$email = MP_Users::get_email($mp_user_id);
 		$url   = MP_Users::get_unsubscribe_url($_GET['add']);
 
 		$title    = __('Subscription confirmed', MP_TXTDOM);
