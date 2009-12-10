@@ -125,7 +125,7 @@ class MailPress_tracking
 			foreach ($matches as $match)
 			{
 				if (strpos($match[1], 'mailto:') !== false) continue;
-				$mmeta_id = self::get_mmid($mail->id, '_MailPress_mail_link', $match[1]);
+				$mmeta_id = self::get_mmid($mail->id, '_MailPress_mail_link', str_replace('&amp;', '&', $match[1]));
 
 				$search = $match[1];
 				$replace = MP_Action_url . "?tg=l&mm=$mmeta_id";
