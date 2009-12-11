@@ -220,7 +220,7 @@ class MailPress extends MP_abstract
 	{
 		global $wp_version; 
 
-		$min_ver_php = '5.2.0';
+		$min_ver_php = '5.2.5';
 		$min_ver_wp  = '2.8';
 		$m = array();
 
