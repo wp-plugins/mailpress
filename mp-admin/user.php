@@ -55,15 +55,14 @@ class MP_AdminPage extends MP_Admin_page
 
 	public static function admin_xml_ns()
 	{
-		global $mp_general;
-		if (!isset($mp_general['gmapkey']) || empty($mp_general['gmapkey'])) return;
-		echo "xmlns:v=\"urn:schemas-microsoft-com:vml\"";
-
 		if (class_exists('MailPress_tracking'))
 		{
 			MailPress::require_class('Tracking_modules');
 			$MP_Tracking_modules = new MP_Tracking_modules('user');
 		}
+
+		global $mp_general;
+		if (isset($mp_general['gmapkey']) && !empty($mp_general['gmapkey'])) echo "xmlns:v=\"urn:schemas-microsoft-com:vml\"";
 	}
 
 ////  Title  ////
