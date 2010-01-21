@@ -228,20 +228,6 @@ class MP_AdminPage extends MP_Admin_page_list
 
 		if (!current_user_can('MailPress_delete_users')) unset($actions['delete']);
 
-		if (isset($url_parms['status']))
-		{
-			if ( 'waiting' == $url_parms['status'])
-			{
-				$actions['approve']   = "<a href='$activate_url' class='delete:the-user-list:user-$id:e7e7d3:action=dim-user'   title='" . __( 'Activate this user', MP_TXTDOM )   . "'>" . __( 'Activate', MP_TXTDOM ) 	. '</a>';
-				unset($actions['unapprove']);
-			}
-			if ( 'active' == $url_parms['status'])
-			{
-				$actions['unapprove'] = "<a href='$deactivate_url' class='delete:the-user-list:user-$id:e7e7d3:action=dim-user' title='" . __( 'Deactivate this user', MP_TXTDOM ) . "'>" . __( 'Deactivate', MP_TXTDOM ) . '</a>';
-				unset($actions['approve']);
-			}
-		}
-
 // table row 
 //	class
 		$row_class = '';
