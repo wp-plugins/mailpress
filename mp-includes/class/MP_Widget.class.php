@@ -172,7 +172,7 @@ class MP_Widget extends WP_Widget
 		{
 			$headers = 1;
 			if (!$options['css']) { echo "<style  type='text/css'>\n"; include MP_TMP . 'mp-includes/css/form.css'; echo "\n</style>\n"; }
-			if (!$options['jq'])  echo "<script type='text/javascript' src='" . get_option('siteurl') . "/wp-includes/js/jquery/jquery.js?ver=1.2.3'></script>\n";
+			if (!$options['jq'])  echo "<script type='text/javascript' src='" . get_option('siteurl') . "/wp-includes/js/jquery/jquery.js'></script>\n";
 			if (!$options['js'])  echo "<script type='text/javascript'> var mp_url = '" . MP_Action_url . "';</script>\n";
 			if (!$options['js'])  echo "<script type='text/javascript' src='" . get_option('siteurl') . '/' . MP_PATH . "mp-includes/js/mp_form.js'></script>\n";
 		}
