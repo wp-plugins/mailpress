@@ -1,0 +1,87 @@
+<?php
+$mp_general['tab'] = $mp_tab =  2;
+	
+$test 	= $_POST['test'];
+$test['template'] = $test['th'][$test['theme']]['tm'];
+unset($test['th']);
+
+switch (true)
+{
+	case ( !MP_AdminPage::is_email($test['toemail']) ) :
+		$toemailclass = true;
+		MP_AdminPage::message(__('field should be an email', MP_TXTDOM), false);
+	break;
+	case ( empty($test['toname']) ) :
+		$tonameclass = true;
+		MP_AdminPage::message(__('field should be a name', MP_TXTDOM), false);
+	break;
+	default :
+		if (!add_option ('MailPress_test', $test )) update_option ('MailPress_test', $test);
+		if (!add_option ('MailPress_general', $mp_general )) update_option ('MailPress_general', $mp_general);
+		if (isset($_POST['Submit']))
+		{
+			MP_AdminPage::message(__('Test settings saved', MP_TXTDOM));
+		}
+		else
+		{
+			$url   = get_option('home');
+			$title = get_bloginfo('name');
+
+			$mail = new stdClass();
+			$mail->Theme = $test['theme'];
+			if ('0' != $test['template']) $mail->Template = $test['template'];
+
+			MP_AdminPage::require_class('Mails');
+			$mail->id		= MP_Mails::get_id('settings test');
+
+		// Set the from name and email
+			$mail->fromemail 	= $mp_general['fromemail'];
+			$mail->fromname	= stripslashes($mp_general['fromname']);
+
+		// Set destination address
+			$mail->toemail 	= $test['toemail'];
+			$mail->toname	= MP_Mails::display_name(stripslashes($test['toname']));
+			MP_AdminPage::require_class('Users');
+			$key = MP_Users::get_key_by_email($mail->toemail);
+			if ($key)
+			{
+				$mail->viewhtml	 = MP_Users::get_view_url($key, $mail->id);
+				$mail->unsubscribe = MP_Users::get_unsubscribe_url($key);
+				$mail->subscribe 	 = MP_Users::get_subscribe_url($key);
+			}
+
+		// Set mail's subject and body
+			$mail->subject	= __('Connection test - MailPress - ', MP_TXTDOM) . ' ' . get_bloginfo('name');
+
+			$mail->plaintext   =  "\n\n" . __('This is a test message of MailPress from', MP_TXTDOM) . ' ' . $url . "\n\n";
+
+			$message  = "<div style='font-family: verdana, geneva;'><br /><br />";
+			$message .=  sprintf(__('This is a <blink>test</blink> message of %1$s from %2$s. <br /><br />', MP_TXTDOM), ' <b>MailPress</b> ', "<a href='" .  $url . "'>$title</a>");
+			$message .= "<br /><br /></div>";
+
+			$mail->html       = $message;
+
+			if (isset($test['forcelog'])) 	$mail->forcelog = '';
+			if (!isset($test['fakeit'])) 		$mail->nomail = '';
+			if (!isset($test['archive'])) 	$mail->noarchive = '';
+			if (!isset($test['stats'])) 		$mail->nostats = '';
+
+			if (isset($mail->Template) && (!in_array($mail->Template, array('comments', 'confirmed', 'moderate', 'new_subscriber', 'new_user')))) 
+			{
+				$query = "SELECT ID FROM $wpdb->posts WHERE post_status = 'publish' AND post_type = 'post' ORDER BY RAND() LIMIT 1;";
+				$posts = $wpdb->get_results( $query );
+				if ($posts)
+				{
+					query_posts('p='. $posts[0]->ID);
+				}
+			}
+
+			if (MailPress::mail($mail))
+				if (!isset($test['fakeit'])) 	MP_AdminPage::message(__('Test settings saved, Mail not send as required', MP_TXTDOM));
+				else					MP_AdminPage::message(__('Test successfull, CONGRATULATIONS !', MP_TXTDOM));
+			else
+				MP_AdminPage::message(__('FAILED. Check your logs & settings !', MP_TXTDOM), false);
+		}
+	break;
+}
+?>
