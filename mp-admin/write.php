@@ -393,7 +393,8 @@ class MP_AdminPage extends MP_Admin_page
 
 		$time_adj = current_time('timestamp');
 
-		$draft_date = ($draft->_scheduled) ? $draft->sent : date('Y-m-d H:i');
+//		$draft_date = ($draft->_scheduled) ? $draft->sent : date('Y-m-d H:i');
+		$draft_date = ($draft->_scheduled) ? $draft->sent : date_i18n('Y-m-d H:i');
 
 		$jj = ($edit) ? mysql2date( 'd', $draft_date, false ) : gmdate( 'd', $time_adj );
 		$mm = ($edit) ? mysql2date( 'm', $draft_date, false ) : gmdate( 'm', $time_adj );
