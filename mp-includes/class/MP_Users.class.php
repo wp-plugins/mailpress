@@ -1,6 +1,8 @@
 <?php
 class MP_Users
 {
+	const status_deleted = 'deleted';
+
 	public static function get($user, $output = OBJECT) 
 	{
 		switch (true)
@@ -40,7 +42,7 @@ class MP_Users
 
 	public static function is_user($email='') 
 	{
-		if ( '' != $email && 'delete' != self::get_status_by_email($email) ) return true; 
+		if ( '' != $email && self::status_deleted != self::get_status_by_email($email) ) return true; 
 		return false;
 	}
 
@@ -66,14 +68,14 @@ class MP_Users
 	{
       	global $wpdb;
 	      $result = $wpdb->get_var( $wpdb->prepare("SELECT status FROM $wpdb->mp_users WHERE id = %s LIMIT 1;", $id) );
-		return ($result == NULL) ? 'deleted' : $result;
+		return ($result == NULL) ? self::status_deleted : $result;
 	}
 
 	public static function get_status_by_email($email) 
 	{
 		global $wpdb;
 	      $result = $wpdb->get_var( $wpdb->prepare("SELECT status FROM $wpdb->mp_users WHERE email = %s ;", $email) );
-		return ($result == NULL) ? 'deleted' : $result;
+		return ($result == NULL) ? self::status_deleted : $result;
 	}
 
 	public static function get_key_by_email($email) 
@@ -107,7 +109,7 @@ class MP_Users
 
 		switch ($status)
 		{
-			case 'deleted' :
+			case self::status_deleted :
 				$key = md5(uniqid(rand(), 1));								//generate key
 				if ( self::send_confirmation_subscription($email, $name, $key) )			//email was sent
 				{
@@ -340,7 +342,7 @@ class MP_Users
 
 	public static function delete($id) 
 	{
-		$the_status = 'deleted';
+		$the_status = self::status_deleted;
 		$status = self::get_status($id);
 
 		if ($the_status == $status) return true;
