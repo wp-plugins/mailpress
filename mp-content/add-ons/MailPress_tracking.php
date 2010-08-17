@@ -399,7 +399,7 @@ class MailPress_tracking
 					}
 					$version = ($version) ? $i->name . " $version" : $i->name;
 					if (!empty($icon))
-						$txt .= "<img src='http://127.0.0.1/wptest/wp-content/plugins/mailpress/mp-admin/images" . $icon . "' alt='' />";
+						$txt .= "<img src='" . get_option('siteurl') . '/' . MP_PATH . 'mp-admin/images' . $icon . "' alt='' />";
 					if (isset($i->link))
 						$txt .= "&nbsp<a href='" . $i->link . "' title='" . $version . "' >" . $i->name . '</a>';
 					else

@@ -65,7 +65,7 @@ class MP_Dashboard_users_activity extends MP_Dashboard_widget_abstract
 		}
 
 		$chxl_y = 0;
-		$chxl_day = $chxl_month = $chxl_year = $chds = $prev_chds = $colors = $item_ids = array();
+		$chxl_day = $chxl_month = $chxl_year = $chds = $prev_chds = $colors = $item_ids = $values = $lines = array();
 
 		$time = $dbeg; $wy = $y; $wm = $m; $wd = $d;
 

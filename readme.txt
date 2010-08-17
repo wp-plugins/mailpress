@@ -128,7 +128,7 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 == Changelog ==
 
-** 5.0 ** xx/05/2010
+** 5.0 ** 06/13/2010
 
 Changes & Enhancements :
 

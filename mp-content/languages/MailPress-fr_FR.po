@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: MailPress\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-13 17:20+0200\n"
-"PO-Revision-Date: 2010-06-13 17:22+0100\n"
+"PO-Revision-Date: 2010-08-17 11:30+0100\n"
 "Last-Translator: are <a@a.a>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1373,22 +1373,22 @@ msgstr "Add-ons MailPress"
 #: C:\webserver\gnu\gettext\mailpress\mp-admin\includes\addons.php:16
 #, php-format
 msgid "%s add-on activated"
-msgstr "%s add-on activat&eacute;"
+msgstr "%s add-on activ&eacute;"
 
 #: C:\webserver\gnu\gettext\mailpress\mp-admin\includes\addons.php:16
 #, php-format
 msgid "%s add-ons activated"
-msgstr "%s add-ons activat&eacute;s"
+msgstr "%s add-ons activ&eacute;s"
 
 #: C:\webserver\gnu\gettext\mailpress\mp-admin\includes\addons.php:17
 #, php-format
 msgid "%s add-on deactivated"
-msgstr "%s add-on desactivat&eacute;"
+msgstr "%s add-on desactiv&eacute;"
 
 #: C:\webserver\gnu\gettext\mailpress\mp-admin\includes\addons.php:17
 #, php-format
 msgid "%s add-ons deactivated"
-msgstr "%s add-ons desactivat&eacute;s"
+msgstr "%s add-ons desactiv&eacute;s"
 
 #: C:\webserver\gnu\gettext\mailpress\mp-admin\includes\addons.php:42
 #: C:\webserver\gnu\gettext\mailpress\mp-admin\includes\autoresponders.php:85
