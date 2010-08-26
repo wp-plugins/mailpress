@@ -578,9 +578,12 @@ class MailPress_newsletter
 		$newsletter = MP_Newsletters::get($_POST['newsletter']);
 		if (!$newsletter)				return new WP_Error( 'newsletter', __('unknown newsletter', MP_TXTDOM) );
 
-		update_usermeta(MailPress::get_wp_user_id(), "_MailPress_post_$post_id", array('toemail' => $_POST['toemail'], 'theme' => $_POST['theme'], 'newsletter' => $_POST['newsletter']));	
+		$theme = $_POST['theme'];
+		if (empty($theme) && isset($newsletter['mail']['Theme'])) $theme = $newsletter['mail']['Theme'];
 
-		$newsletter['mail']['Theme'] 		= $_POST['theme'];
+		update_usermeta(MailPress::get_wp_user_id(), "_MailPress_post_$post_id", array('toemail' => $_POST['toemail'], 'theme' => $theme, 'newsletter' => $_POST['newsletter']));	
+
+		$newsletter['mail']['Theme'] 		= $theme;
 		$newsletter['mail']['subject']	= __('(Test)', MP_TXTDOM) . ' ' . $newsletter['mail']['subject'];
 		$newsletter['mail']['the_title'] 	= apply_filters('the_title', $post->post_title );
 
