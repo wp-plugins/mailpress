@@ -46,8 +46,21 @@ class MailPress_tracking_ga
 				if (strpos($match[1], $siteurl) === false && strpos($match[1], $home) === false) continue;
 
 				$t_url  = $match[1];
+
+				/* Strip any anchor reference off */
+				$anchor 	= '';
+				$hash_pos 	= strrpos($match[1], '#');
+
+				if ($hash_pos !== false)
+				{
+					$t_url  = substr($match[1], 0, $hash_pos);
+					$anchor = substr($match[1], $hash_pos);
+			      }
+
 				$sep = (strpos($t_url, '?')) ? '&' : '?';
 				foreach ($args as $k => $v) {$t_url .= "{$sep}{$k}={$v}"; $sep = '&';}
+
+				$t_url .= $anchor;
 
 				$link = self::str_replace_count($match[1], $t_url, $match[0], 1);
 				$mail->html = str_replace($match[0], $link, $mail->html);
