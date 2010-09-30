@@ -24,6 +24,7 @@ $queries[] =
  description       varchar(255)    NOT NULL default '',
  template          varchar(50)     NOT NULL default '',
  settings          longtext,
+ PRIMARY KEY (id),
  UNIQUE KEY id (id)
 ) $charset_collate;";
 
@@ -37,6 +38,7 @@ $queries[] =
  label             varchar(255)    NOT NULL default '',
  description       varchar(255)    NOT NULL default '',
  settings          longtext,
+ PRIMARY KEY (id),
  UNIQUE KEY id (id)
 ) $charset_collate;";
 

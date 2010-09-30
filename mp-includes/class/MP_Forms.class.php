@@ -154,6 +154,8 @@ class MP_Forms
 	{
 		global $wpdb;
 		$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->mp_forms WHERE id = %d;", $id) );
+		MailPress::require_class('Forms_fields');
+		MP_Forms_fields::delete_all($id);
 		return true;
 	}
 
