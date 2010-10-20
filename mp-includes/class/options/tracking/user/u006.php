@@ -1,8 +1,4 @@
 <?php
-
-global $mp_general;
-if (!isset($mp_general['gmapkey']) || empty($mp_general['gmapkey'])) return;
-
 class MP_Tracking_module_u006 extends MP_Tracking_module_abstract
 {
 	const prefix = 'tracking_u006';
@@ -20,28 +16,20 @@ class MP_Tracking_module_u006 extends MP_Tracking_module_abstract
 	function scripts($scripts)
 	{
         if (!isset($_GET['id'])) return;
-		global $mp_general;
 	// google map
-		wp_register_script( 'google-map',	'http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=' . $mp_general['gmapkey'], false, false, 1);
+		wp_register_script( 'google-map',	'http://maps.google.com/maps/api/js?sensor=false', false, false, 1);
 
-		$color 	= ('fresh' == get_user_option('admin_color')) ? '' : '_b';
-		$pathimg 	= MP_ABSPATH . 'mp-admin/images/map_control' . $color . '.png';
-		$color 	= (is_file($pathimg)) ? $color : '';
-
-	// mp-gmap2
-		wp_register_script( 'mp-gmap2',	'/' . MP_PATH . 'mp-includes/js/mp_gmap2.js', array('google-map', 'schedule'), false, 1);
-		wp_localize_script( 'mp-gmap2', 	'mp_gmapL10n', array(
+	// mp-gmap3
+		wp_register_script( 'mp-gmap3',	'/' . MP_PATH . 'mp-includes/js/mp_gmap3.js', array('google-map', 'schedule'), false, 1);
+		wp_localize_script( 'mp-gmap3', 	'mp_gmapL10n', array(
 			'id'		=> $_GET['id'],
 			'type'	=> 'mp_user',
 			'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/',
 			'ajaxurl'	=> MP_Action_url,
-			'color'	=> $color,
-			'zoomwide'	=> js_escape(__('zoom -', MP_TXTDOM)),
-			'zoomtight'	=> js_escape(__('zoom +', MP_TXTDOM)),
 			'center'	=> js_escape(__('center', MP_TXTDOM)),
 			'changemap'	=> js_escape(__('change map', MP_TXTDOM))
 		));
-		$scripts[] = 'mp-gmap2';
+		$scripts[] = 'mp-gmap3';
 
 	// markerclusterer
 		wp_register_script( 'mp-markerclusterer',	'/' . MP_PATH . 'mp-includes/js/markerclusterer/markerclusterer_packed.js', false, false, 1);

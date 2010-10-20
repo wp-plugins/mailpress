@@ -121,8 +121,7 @@ class MP_Ip
 
 	public static function get_address($lat, $lng)
 	{
-		global $mp_general;
-		$url = "http://maps.google.com/maps/geo?q=$lat,$lng&output=xml&oe=utf8&sensor=true&key=" . $mp_general['gmapkey'];
+		$url = "http://maps.googleapis.com/maps/api/geocode/xml?latlng=$lat,$lng&sensor=false";
 
 		$xml = file_get_contents($url);
 		if ( !$xml || empty($xml) ) return '';
@@ -130,21 +129,7 @@ class MP_Ip
 		$xml = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
 
 		if (!$xml) return '';
-		if (200 != $xml->Response->Status->code) return '';
-		if (!isset($xml->Response->Placemark)) return '';
-
-		$i = 0;
-		foreach($xml->Response->Placemark as $placemark)
-		{
-			if (!isset($placemark->address) || !isset($placemark->AddressDetails['Accuracy'])) continue; 
-
-			$accuracy[(int) $placemark->AddressDetails['Accuracy']] = $i;
-			$address[$i] = (string) $placemark->address[0];
-			$i++;
-		}
-		if (empty($accuracy)) return '';
-		if (isset($accuracy[8])) return $address[$accuracy[8]];
-		krsort($accuracy);
-		return $address[reset($accuracy)];
+		if ('OK' != $xml->status) return '';
+		return (isset($xml->result[0]->formatted_address)) ? $xml->result[0]->formatted_address : '';
 	}
 }

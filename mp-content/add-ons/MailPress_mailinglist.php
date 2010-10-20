@@ -136,7 +136,7 @@ class MailPress_mailinglist
 			$x = str_replace('MailPress_mailinglist~', '', $k, $count);
 			if (0 == $count) 	continue;	
 			if (empty($x)) 	continue;
-			if ($x == $default_mailing_list) continue;
+			//if ($x == $default_mailing_list) continue;
 			$mls[$x] = $v;
 		}
 

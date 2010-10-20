@@ -24,20 +24,21 @@ var mp_user = {
 		jQuery('#user-tabs').tabs();
 
 		// ip info
-		if (GBrowserIsCompatible()) mp_user.gmap();
+		mp_user.gmap();
 	},
 
 	gmap : function() {
 		if(typeof(meta_box_IP_info) == "undefined") return;
 
-		var map = new mp_gmap2(meta_box_IP_info_user_settings);
-		var icon = new GIcon(G_DEFAULT_ICON, mp_gmapL10n.url+'map_icon'+mp_gmapL10n.color+'.png');
+		var map = new mp_gmap3(meta_box_IP_info_user_settings);
 
-		map.map.mp_center = new GLatLng(parseFloat(meta_box_IP_info.lat), parseFloat(meta_box_IP_info.lng)); 
-		tooltip = 'lat : '+meta_box_IP_info.lat+' lng : '+meta_box_IP_info.lng;
+		var mkOptions = {
+			position:new google.maps.LatLng(parseFloat(meta_box_IP_info.lat), parseFloat(meta_box_IP_info.lng)),
+			map:map.map,
+			title:'lat : '+meta_box_IP_info.lat+' lng : '+meta_box_IP_info.lng
+		};
 
-		var marker = new GMarker(map.map.mp_center, {icon:icon, title:tooltip, draggable:false});
-		map.map.addOverlay(marker);
+		var marker = new google.maps.Marker(mkOptions);
 	}
 }
 jQuery(document).ready( function() { mp_user.init(); });

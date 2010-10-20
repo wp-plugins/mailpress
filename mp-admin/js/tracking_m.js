@@ -10,37 +10,25 @@ var mp_tracking = {
 		postboxes.add_postbox_toggles(MP_AdminPageL10n.screen);
 
 		// ip info
-		if (GBrowserIsCompatible()) mp_tracking.gmap();
+		mp_tracking.gmap();
 	},
 
 	gmap : function() {
 		if(typeof(m006) == "undefined") return;
 
-		var map = new mp_gmap2(m006_user_settings);
-		var icon = new GIcon(G_DEFAULT_ICON, mp_gmapL10n.url+'map_icon'+mp_gmapL10n.color+'.png');
-
+		var map  = new mp_gmap3(m006_user_settings);
 		var markers = [];
 
 		for (var i in m006)
 		{
-			mp_info = m006[i];
-
-			lat = parseFloat(mp_info['lat']);
-			lng = parseFloat(mp_info['lng']);
-			tooltip = mp_info['ip'];
-
-			var marker = new GMarker(new GLatLng(lat, lng), {icon:icon, title:tooltip, draggable:false});
+			var mkOptions = {
+				position:new google.maps.LatLng(parseFloat(m006[i]['lat']), parseFloat(m006[i]['lng'])),
+				title:m006[i]['ip']
+			};
+			var marker = new google.maps.Marker(mkOptions);
 			markers.push(marker);
 		}
-		if (markers.length > 100)
-		{
-			var markerCluster = new MarkerClusterer(map.map, markers);
-			return;
-		}
-		for (var i in markers)
-		{
-			map.map.addOverlay(markers[i]);
-		}
+		var markerCluster = new MarkerClusterer(map.map, markers);
 	}
 }
 jQuery(document).ready( function() { mp_tracking.init(); });

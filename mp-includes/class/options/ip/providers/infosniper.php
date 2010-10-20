@@ -1,4 +1,5 @@
 <?php
+/*
 class MP_Ip_infosniper extends MP_Ip_provider_abstract
 {
 	var $provider 	= 'infosniper';
@@ -35,3 +36,4 @@ class MP_Ip_infosniper extends MP_Ip_provider_abstract
 	}
 }
 new MP_Ip_infosniper();
+//*/

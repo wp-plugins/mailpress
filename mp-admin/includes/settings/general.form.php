@@ -90,12 +90,6 @@ $formname = substr(basename(__FILE__), 0, -4);
 			</td>
 		</tr>
 <?php do_action('MailPress_settings_general_admin'); ?>
-		<tr>
-			<th scope='row'><a target='_blank' style='color:#333;' title="<?php _e('get your google map api key !', MP_TXTDOM); ?>" href='http://www.google.com/apis/maps/signup.html'><?php _e('Google Map API Key', MP_TXTDOM); ?></a><br /><small><?php _e('(Optional)', MP_TXTDOM); ?></small></th>
-			<td>
-				<input type="text" size="90"  name="general[gmapkey]" value="<?php if (isset($mp_general['gmapkey'])) echo $mp_general['gmapkey']; ?>" />
-			</td>
-		</tr>
 		<tr valign='top' class='mp_sep' style='line-height:2px;padding:0;'><th style='line-height:2px;padding:0;'></th><td style='line-height:2px;padding:0;'></td></tr>
 	</table>
 <?php if(!$mp_general) { ?>

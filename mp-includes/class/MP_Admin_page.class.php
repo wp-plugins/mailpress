@@ -7,7 +7,6 @@ abstract class MP_Admin_page extends MP_abstract
 			wp_die(__('You do not have sufficient permissions to access this page.'));
 
 		add_action('admin_init',      		array('MP_AdminPage', 'redirect'));
-		add_action('admin_xml_ns', 			array('MP_AdminPage', 'admin_xml_ns'));
 		add_action('admin_init',      		array('MP_AdminPage', 'title'));
 
 		add_action('admin_head',      		array('MP_AdminPage', 'screen_meta'));
@@ -26,10 +25,6 @@ abstract class MP_Admin_page extends MP_abstract
 ////  Redirect  ////
 
 	public static function redirect() {}
-
-////  Xmlns  ////
-
-	public static function admin_xml_ns() {}
 
 ////  Title  ////
 

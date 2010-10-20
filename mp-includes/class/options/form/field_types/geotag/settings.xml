@@ -1,6 +1,4 @@
 <?php /* geotag */ 
-global $mp_general;
-if (!isset($mp_general['gmapkey']) || empty($mp_general['gmapkey'])) return;
 
 $xmap_types = 	array('NORMAL' 	=> __('Normal', MP_TXTDOM),
 				'SATELLITE' => __('Satellite', MP_TXTDOM),

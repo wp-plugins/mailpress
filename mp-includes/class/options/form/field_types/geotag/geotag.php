@@ -1,7 +1,4 @@
 <?php
-global $mp_general;
-if (!isset($mp_general['gmapkey']) || empty($mp_general['gmapkey'])) return;
-
 class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
 {
 	var $field_type 	= 'geotag';
@@ -38,7 +35,6 @@ class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
 		MailPress::require_class('Ip');
 		$value['reverse_geocoding'] = MP_Ip::get_address($value['lat'], $value['lng']);
 
-		global $mp_general;
 		$width  = (float) $field->settings['googlemap']['width'];
 		$height = (float) $field->settings['googlemap']['height'];
 		if ($width  > 640) $width  = 640;
@@ -51,7 +47,6 @@ class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
 		switch ($value['maptype']) { case 'SATELLITE' : $static_map .= 'satellite'; break; case 'HYBRID' : $static_map .= 'hybrid'; break; case 'PHYSICAL' : $static_map .= 'terrain'; break; default : $static_map .= 'roadmap'; break; }
 		$static_map .= '&markers=' . $value['lat'] . ',' . $value['lng'];
 		$static_map .= '&sensor=false';
-		$static_map .= '&key=' . $mp_general['gmapkey'];
 
 		$field->submitted['value'] = $value;
 		$field->submitted['text']  = '';
@@ -229,14 +224,10 @@ class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
 		if (!defined('MP_FORM_GEOTAG'))
 		{
 			define ('MP_FORM_GEOTAG', true);
-			global $mp_general;
-			if (!isset($options['gmap']))   $js .= "\n<script type='text/javascript' src='http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=" . $mp_general['gmapkey'] . "'></script>";
+			if (!isset($options['gmap']))   $js .= "\n<script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=false'></script>";
 			if (!isset($options['jQuery'])) $js .= "\n<script type='text/javascript' src='" . get_option('siteurl') . "/wp-includes/js/jquery/jquery.js'></script>";
 
 			$m = array( 'mp_gmapL10n'	=> array(	'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/', 
-										'color'	=> '', 
-										'zoomwide'	=> js_escape(__('zoom -', MP_TXTDOM)), 
-										'zoomtight'	=> js_escape(__('zoom +', MP_TXTDOM)), 
 										'center'	=> js_escape(__('center', MP_TXTDOM)), 
 										'rgeocode'	=> js_escape(__('find place', MP_TXTDOM)), 
 										'changemap'	=> js_escape(__('change map', MP_TXTDOM))

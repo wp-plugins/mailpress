@@ -8,20 +8,16 @@ class MP_AdminPage extends MP_Admin_page_list
 	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Add_ons:Tracking';
 	const file        = __FILE__;
 
-////  Xmlns  ////
-
-	public static function admin_xml_ns()
-	{
-		global $mp_general;
-		if (isset($mp_general['gmapkey']) && !empty($mp_general['gmapkey'])) echo "xmlns:v=\"urn:schemas-microsoft-com:vml\"";
-
-		MailPress::load_options('Tracking_modules');
-		$MP_Tracking_modules = new MP_Tracking_modules('mail');
-	}
-
 ////  Title  ////
 
-	public static function title() { global $title; $title = __('Tracking', MP_TXTDOM); }
+	public static function title() 
+	{ 
+		MailPress::load_options('Tracking_modules');
+		$MP_Tracking_modules = new MP_Tracking_modules('mail');
+
+		global $title; 
+		$title = __('Tracking', MP_TXTDOM); 
+	}
 
 ////  Styles  ////
 

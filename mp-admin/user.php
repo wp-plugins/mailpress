@@ -90,14 +90,6 @@ class MP_AdminPage extends MP_Admin_page
 		} 
 	}
 
-////  Xmlns  ////
-
-	public static function admin_xml_ns()
-	{
-		global $mp_general;
-		if (isset($mp_general['gmapkey']) && !empty($mp_general['gmapkey'])) echo "xmlns:v=\"urn:schemas-microsoft-com:vml\"";
-	}
-
 ////  Title  ////
 
 	public static function title() { global $title; $title = __('MailPress User', MP_TXTDOM); }
@@ -116,32 +108,21 @@ class MP_AdminPage extends MP_Admin_page
 
 	public static function print_scripts($scripts = array()) 
 	{
-		global $mp_general;
-		if (isset($mp_general['gmapkey']) && !empty($mp_general['gmapkey']))
-		{
 		// google map
-			wp_register_script( 'google-map',	'http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=' . $mp_general['gmapkey'], false, false, 1);
+			wp_register_script( 'google-map',	'http://maps.google.com/maps/api/js?sensor=false', false, false, 1);
 
-			$color 	= ('fresh' == get_user_option('admin_color')) ? '' : '_b';
-			$pathimg 	= MP_ABSPATH . 'mp-admin/images/map_control' . $color . '.png';
-			$color 	= (is_file($pathimg)) ? $color : '';
-
-		// mp-gmap2
-			wp_register_script( 'mp-gmap2',	'/' . MP_PATH . 'mp-includes/js/mp_gmap2.js', array('google-map', 'schedule'), false, 1);
-			wp_localize_script( 'mp-gmap2', 	'mp_gmapL10n', array(
+		// mp-gmap3
+			wp_register_script( 'mp-gmap3',	'/' . MP_PATH . 'mp-includes/js/mp_gmap3.js', array('google-map', 'schedule'), false, 1);
+			wp_localize_script( 'mp-gmap3', 	'mp_gmapL10n', array(
 				'id'		=> $_GET['id'],
 				'type'	=> 'mp_user',
 				'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/',
 				'ajaxurl'	=> MP_Action_url,
-				'color'	=> $color,
-				'zoomwide'	=> js_escape(__('zoom -', MP_TXTDOM)),
-				'zoomtight'	=> js_escape(__('zoom +', MP_TXTDOM)),
 				'center'	=> js_escape(__('center', MP_TXTDOM)),
 				'changemap'	=> js_escape(__('change map', MP_TXTDOM))
 			));
 
-			$deps[] = 'mp-gmap2';
-		}
+			$deps[] = 'mp-gmap3';
 
 		wp_register_script( 'mp-ajax-response', 	'/' . MP_PATH . 'mp-includes/js/mp_ajax_response.js', array('jquery'), false, 1);
 		wp_localize_script( 'mp-ajax-response', 	'wpAjax', array( 	
@@ -174,8 +155,6 @@ class MP_AdminPage extends MP_Admin_page
 
 	public static function screen_meta() 
 	{
-		global $mp_general;
-
 		$id = (isset($_GET['id'])) ? $_GET['id'] : 0;
 		add_meta_box('submitdiv', 		__('Save', MP_TXTDOM), array(__CLASS__, 'meta_box_submit'), self::screen, 'side', 'core');
 
@@ -202,10 +181,7 @@ class MP_AdminPage extends MP_Admin_page
 			}
 		}
 
-		if (isset($mp_general['gmapkey']) && !empty($mp_general['gmapkey']))
-		{
-			add_meta_box('IP_info', __('IP info', MP_TXTDOM), array(__CLASS__, 'meta_box_IP_info'), self::screen, 'side', 'core');
-		}
+		add_meta_box('IP_info', __('IP info', MP_TXTDOM), array(__CLASS__, 'meta_box_IP_info'), self::screen, 'side', 'core');
 
 		parent::screen_meta();
 	}

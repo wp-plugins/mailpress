@@ -76,7 +76,7 @@ else
 
 // Form settings tab
 
-$tabs = array('attributes' => __('Attributes', MP_TXTDOM), 'options' => __('Options', MP_TXTDOM), 'messages' => __('Messages', MP_TXTDOM), 'recipient' => __('Recipient', MP_TXTDOM), 'visitor' => __('Visitor', MP_TXTDOM) );
+$tabs = array('attributes' => __('Attributes', MP_TXTDOM), 'options' => __('Options', MP_TXTDOM), 'messages' => __('Messages', MP_TXTDOM), 'visitor' => __('Visitor', MP_TXTDOM), 'recipient' => __('Recipient', MP_TXTDOM) );
 if ( isset($_GET['action']) && ('edit' == $_GET['action']) ) $tabs['html'] = __('Html', MP_TXTDOM); 
 
 // Form templates

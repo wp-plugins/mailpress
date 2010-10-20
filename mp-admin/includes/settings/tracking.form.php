@@ -8,8 +8,6 @@ foreach(array('mail', 'user') as $folder)
 	$tracking_reports[$folder] = $MP_Tracking_modules->get_all($folder);
 }
 
-if (!isset($mp_general['gmapkey']) || empty($mp_general['gmapkey'])) unset($tracking_reports['user']['u006'], $tracking_reports['mail']['m006']);
-
 $formname = substr(basename(__FILE__), 0, -4); 
 ?>
 <form name='<?php echo $formname ?>' action='' method='post' class='mp_settings'>
