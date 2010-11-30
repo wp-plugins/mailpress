@@ -1,4 +1,0 @@
-# BEGIN MailPress
-RewriteEngine on
-RewriteRule ^mail/analytics/([l|o])-([0-9]+)-([h|p])-([0-9a-zA-Z]+).html   wp-content/plugins/mailpress/mp-includes/action.php?tg=$1&mm=$2&co=$3&us=$4 [L]
-# END MailPress
