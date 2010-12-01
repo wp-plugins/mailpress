@@ -5,6 +5,7 @@ Plugin URI: http://www.mailpress.org
 Description: The WordPress mailing platform. <b>(do not use automatic upgrade!)</b>
 Author: Andre Renaut
 Requires at least: 3.0
+Tested up to: 3.1
 Version: 5.0.1
 Author URI: http://www.mailpress.org
 */
