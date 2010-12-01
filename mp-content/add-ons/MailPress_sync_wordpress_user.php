@@ -118,7 +118,7 @@ class MailPress_sync_wordpress_user
 			}
 			else
 			{
-				self::register($wp_user_id);
+				self::user_register($wp_user_id);
 			}
 		}
 	}
