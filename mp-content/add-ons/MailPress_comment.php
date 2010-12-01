@@ -347,7 +347,7 @@ class MailPress_comment
 
 	public static function sync_subscriptions($oldid, $newid)
 	{
-		if (!has_subscriptions(false, $oldid)) return;
+		if (!self::has_subscriptions(false, $oldid)) return;
 		global $wpdb;
 		return $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->postmeta SET meta_value = %s WHERE meta_key = %s AND meta_value = %s ;", $newid, self::meta_key, $oldid) );
 	}
