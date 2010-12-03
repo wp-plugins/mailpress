@@ -210,9 +210,10 @@ class MP_AdminPage extends MP_Admin_page
 		if ($_footer_enabled && !$is_footer) return;
 
 		global $hook_suffix;
+		global $wp_version; 
 		$action = ($_footer_enabled && $is_footer) ? "admin_footer-$hook_suffix" : "admin_head-$hook_suffix" ;
 		add_action($action, 'wp_tiny_mce', 25);
-		add_action($action, 'wp_tiny_mce_preload_dialogs', 30 );
+		if (version_compare($wp_version, '3.1' , 'ge')) add_action($action, 'wp_tiny_mce_preload_dialogs', 30 );
 		if (self::flash()) add_action($action, array('MP_AdminPage', 'swfupload'));
 	}
 
