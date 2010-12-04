@@ -172,7 +172,8 @@ class MP_Widget extends WP_Widget
 			$wp_head = true;
 			if (!$options['css']) 
 			{
-				echo "<style  type='text/css'>\n"; include MP_CONTENT_DIR . 'advanced/subscription-form/style.css'; echo "\n</style>\n"; 
+				$root = apply_filters('MailPress_advanced_subscription-form_root', MP_CONTENT_DIR . 'advanced/subscription-form');
+				echo "<style  type='text/css'>\n"; include "$root/style.css"; echo "\n</style>\n"; 
 			}
 			if (!$options['jq'])
 			{
@@ -192,13 +193,13 @@ class MP_Widget extends WP_Widget
 				{
 					wp_register_script( 'mailpress_widget',	$js, false, false, 1);
 					wp_localize_script( 'mailpress_widget', 	'MP_Widget', array(
-						'url' => MP_Action_home
+						'url' => MP_Action_url
 					));
 					wp_enqueue_script('mailpress_widget');
 				}
 				else
 				{
-					echo "<script type='text/javascript'>\n/* <![CDATA[ */\nvar MP_Widget = {\n\turl: '" . MP_Action_home . "'\n};\n/* ]]> */\n</script>\n";
+					echo "<script type='text/javascript'>\n/* <![CDATA[ */\nvar MP_Widget = {\n\turl: '" . MP_Action_url . "'\n};\n/* ]]> */\n</script>\n";
 					echo "<script type='text/javascript' src='" . get_option('siteurl') . $js . "'></script>\n";
 				}
 			}
