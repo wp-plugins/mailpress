@@ -91,6 +91,7 @@ class MailPress_form
 	public static function install() 
 	{
 		wp_clear_scheduled_hook('mp_purge_form');
+		include (MP_ABSPATH . 'mp-admin/includes/install/form.php');
 	}
 	
 // for role & capabilities
