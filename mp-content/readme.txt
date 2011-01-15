@@ -25,4 +25,4 @@
 
 If you want to rename and/or place the 'mp-content' folder in 'mailpress' folder or its parent directory,
 see mailpress/mailpress-config-sample.php.
-
+
