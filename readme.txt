@@ -67,4 +67,4 @@ Thank you
 
 ** available, new wiki ! http://www.mailpress.org/wiki
 
-Please donate !
+Please donate !
