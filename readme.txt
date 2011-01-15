@@ -152,4 +152,4 @@ solved by "deregistering" unwelcomed scripts on MailPress pages.
 
 **Any new idea** or **code improvement** can be posted at : contact@nogent94.com
 
-Please donate !
+Please donate !
