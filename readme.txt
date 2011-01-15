@@ -136,4 +136,4 @@ Tested with Firefox3, Internet Explorer 7, Safari 3.1, Google Chrome (Windows XP
 
 **Any new idea** or **code improvement** can be posted at : contact@nogent94.com
 
-Please donate !
+Please donate !
