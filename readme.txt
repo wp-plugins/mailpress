@@ -91,4 +91,4 @@ fixes several bugs since Oct 17, 2009 :
 
 ** available, new wiki ! http://www.mailpress.org/wiki
 
-Please donate !
+Please donate !
