@@ -159,4 +159,4 @@ Tags: mail, mails, comments, comment, subscribe, newsletters, newsletter, Wordpr
 
 **Any new idea** or **code improvement** can be posted at : contact@nogent94.com
 
-Please donate !
+Please donate !
