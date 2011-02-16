@@ -8,14 +8,9 @@ var mp_forms = {
 		if (!mp_forms.is_email(jQuery('#form_toemail').val()))
 		{
 			jQuery('div#div_form_toemail').addClass('form-invalid');
-			err++;
+			jQuery("#form_settings").tabs( 'select' , 4 );
 		}
-
-		if (err) 
-		{
-			jQuery("#form_settings").tabs( 'select' , 3 );
-			alert(MP_AdminPageL10n.errmess);
-		}
+		else jQuery('div#div_form_toemail').removeClass('form-invalid');
 	},
 
 	is_empty : function(t) { return (t.length == 0); },

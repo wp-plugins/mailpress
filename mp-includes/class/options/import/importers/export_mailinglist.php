@@ -46,7 +46,6 @@ class MP_export_mailinglist extends MP_Import_importer_abstract
 		<p>
 			<label for='download'><?php _e( 'Choose a mailing list :', MP_TXTDOM ); ?></label>
 <?php
-			MP_AdminPage::require_class('Mailinglists');
 			$dropdown_options = array('hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'htmlid' => 'export_mailinglist', 'name' => 'export_mailinglist', 'selected' => get_option(MailPress_mailinglist::option_name_default));
 			MP_Mailinglists::dropdown($dropdown_options);
 ?>
@@ -63,8 +62,6 @@ class MP_export_mailinglist extends MP_Import_importer_abstract
 
 	function export() 
 	{
-		MP_AdminPage::require_class('Mailinglists');
-
 		$this->message_report(" EXPORTING  !");
 
 		$id = $_POST['export_mailinglist'];

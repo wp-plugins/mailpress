@@ -22,13 +22,8 @@ class MP_Pluggable
 			{
 				if (@is_file($attachment))
 				{
-					if ($f)
-					{
-						MailPress::require_class('Mails');
-						$mail->id = MP_Mails::get_id('wp_mail_3.0');
+					if ($f) $mail->id = MP_Mails::get_id('wp_mail_3.0');
 
-						MailPress::require_class('Mailmeta');
-					}
 					$object = array(	'name' 	=> basename($attachment), 
 								'mime_type'	=> 'application/octet-stream', 
 								'file'	=> '', 

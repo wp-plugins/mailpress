@@ -15,7 +15,6 @@ class MP_Dashboard__right_now extends MP_Dashboard_widget_abstract
 		$plugin_data = get_plugin_data( MP_ABSPATH . 'MailPress.php' );
 		$plugin_version = $plugin_data['Version'];
 
-		MailPress::require_class('Themes');
 		$th = new MP_Themes();
 		$themes = $th->themes; 
 		$ct = $th->current_theme_info(); 
@@ -32,7 +31,7 @@ class MP_Dashboard__right_now extends MP_Dashboard_widget_abstract
 					<?php echo $countm; ?>
 <?php 	endif; ?>
 				</td>
-				<td class="t posts"><?php echo( __ngettext( __('Mail sent', MP_TXTDOM), __('Mails sent', MP_TXTDOM), $countm )); ?></td>
+				<td class="t posts"><?php echo( _n( __('Mail sent', MP_TXTDOM), __('Mails sent', MP_TXTDOM), $countm )); ?></td>
 				<td class="b b-comments">
 <?php 	if (current_user_can('MailPress_edit_users')) : ?>
 					<a href="<?php echo MailPress_users; ?>"><?php echo $counts; ?></a>
@@ -40,7 +39,7 @@ class MP_Dashboard__right_now extends MP_Dashboard_widget_abstract
 					<?php echo $counts; ?>
 <?php 	endif; ?>
 				</td>
-				<td class="last t approved"><?php echo(__ngettext( __('Active subscriber', MP_TXTDOM), __('Active subscribers', MP_TXTDOM), $counts )); ?></td>
+				<td class="last t approved"><?php echo(_n( __('Active subscriber', MP_TXTDOM), __('Active subscribers', MP_TXTDOM), $counts )); ?></td>
 			</tr>
 		</table>
 	</div>

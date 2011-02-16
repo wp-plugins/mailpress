@@ -6,7 +6,7 @@ abstract class MP_Tracking_module_abstract
 		$this->title = $title;
 		$this->type  = basename(dirname($this->file));
 
-		add_filter('MailPress_tracking_module_register', 	array(&$this, 'register'), 8, 2);
+		add_filter('MailPress_tracking_modules_register', 	array(&$this, 'register'), 8, 2);
 		add_action('MailPress_tracking_add_meta_box', 		array(&$this, 'add_meta_box'), 8, 1);
 	}
 

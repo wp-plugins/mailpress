@@ -42,7 +42,7 @@ class MP_Dashboard_users_map extends MP_Dashboard_widget_abstract
 		if (!empty($chld)) $args['chld'] = join('', $chld);
 		$args['chco'] = 'ffffff,B5F8C2,294D30';
 		$args['chd']  = (empty($chd)) ? 's:_' : 't:' . join(',', $chd);
-		$url = clean_url(add_query_arg($args, $this->url));
+		$url = esc_url(add_query_arg($args, $this->url));
 
 ?>
 <div style='text-align:center;'>

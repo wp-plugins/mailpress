@@ -149,4 +149,3 @@ class MP_Addons
 		return true;
 	}
 }
-MP_Addons::load_all();

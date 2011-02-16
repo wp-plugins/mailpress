@@ -83,7 +83,6 @@ class MP_Newsletters
 
 		$x = self::get_active();
 
-		MailPress::require_class('Usermeta');
 		$a = ($mp_user_id) ? MP_Usermeta::get($mp_user_id, MailPress_newsletter::meta_key) : '';
 
 		$y = (is_array($a)) ? array_flip($a) : ((empty($a)) ? array() : array($a => 1));
@@ -101,7 +100,6 @@ class MP_Newsletters
 		global $mp_registered_newsletters;
 		$x = self::get_active();
 
-		MailPress::require_class('Usermeta');
 		MP_Usermeta::delete($mp_user_id, MailPress_newsletter::meta_key);
 
 		foreach ($x as $k => $v) 

@@ -6,7 +6,7 @@ Plugin Name: MailPress_form
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Form
 Description: This is just an add-on for MailPress to manage Contact forms
 Author: Andre Renaut
-Version: 5.0.1
+Version: 5.1
 Author URI: http://www.mailpress.org
 */
 
@@ -67,7 +67,6 @@ class MailPress_form
 
 	public static function shortcode($options=false)
 	{
-		MailPress::require_class('Forms');
 		return MP_Forms::form($options['id']);
 	}
 
@@ -127,12 +126,18 @@ class MailPress_form
 		if ( '' === trim($_POST['label']) )
 		{
 			$x = new WP_Ajax_Response( array(	'what' => 'form', 
-									'id' => new WP_Error( 'label', __('You did not enter a valid description.', MP_TXTDOM) )
+									'id' => new WP_Error( 'label', __('You did not enter a valid label.', MP_TXTDOM) )
+								   ) );
+			$x->send();
+		}
+		if ( '' === trim($_POST['settings']['recipient']['toemail']) || !is_email(($_POST['settings']['recipient']['toemail'])) )
+		{
+			$x = new WP_Ajax_Response( array(	'what' => 'form', 
+									'id' => new WP_Error( 'settings[recipient][toemail]', __('You did not enter a valid email.', MP_TXTDOM) )
 								   ) );
 			$x->send();
 		}
 
-		MailPress::require_class('Forms');
 		$form = MP_Forms::insert( $_POST );
 
 		if ( !$form )
@@ -160,7 +165,6 @@ class MailPress_form
 	public static function mp_action_dim_form() // duplicate
 	{
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
-		MailPress::require_class('Forms');
 
 		$form = MP_Forms::duplicate($id);
 
@@ -187,7 +191,6 @@ class MailPress_form
 	public static function mp_action_delete_form() 
 	{
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
-		MailPress::require_class('Forms');
 		MailPress::mp_die( MP_Forms::delete($id) ? '1' : '0' );
 	}
 
@@ -204,7 +207,6 @@ class MailPress_form
 			$x->send();
 		}
 
-		MailPress::require_class('Forms_fields');
 		$field = MP_Forms_fields::insert( $_POST );
 
 		if ( !$field )
@@ -217,11 +219,11 @@ class MailPress_form
 
 		if ( !$field || (!$field = MP_Forms_fields::get( $field )) ) 	MailPress::mp_die('0');
 
-		MailPress::require_class('Forms');
 		$form = MP_Forms::get($field->form_id);
 		if (isset($form->settings['visitor']['mail']) && ($form->settings['visitor']['mail'] != '0'))
 			add_filter('MailPress_form_columns_form_fields', array('MP_AdminPage', 'add_incopy_column'), 1, 1);
 
+		new MP_Forms_field_types();
 		include (MP_ABSPATH . 'mp-admin/form_fields.php');
 		$x = new WP_Ajax_Response( array(	'what' => 'field', 
 								'id' => $field->id, 
@@ -235,7 +237,6 @@ class MailPress_form
 	public static function mp_action_dim_field() // duplicate
 	{
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
-		MailPress::require_class('Forms_fields');
 
 		$field = MP_Forms_fields::duplicate($id);
 
@@ -262,19 +263,17 @@ class MailPress_form
 	public static function mp_action_delete_field() 
 	{
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
-		MailPress::require_class('Forms_fields');
 		MailPress::mp_die( MP_Forms_fields::delete($id) ? '1' : '0' );
 	}
 
 // for preview
 	public static function mp_action_ifview()
 	{
-		MailPress::require_class('Forms');
 		$form = MP_Forms::get($_GET['id']);
 
-		$form_url = clean_url(admin_url(MailPress_forms . '&action=edit&id=' . $form->id));
-		$field_url = clean_url(admin_url(MailPress_fields . '&form_id=' . $form->id));
-		$template_url = clean_url(admin_url(MailPress_fields . '&form_id=' . $form->id));
+		$form_url = esc_url(admin_url(MailPress_forms . '&action=edit&id=' . $form->id));
+		$field_url = esc_url(admin_url(MailPress_fields . '&form_id=' . $form->id));
+		$template_url = esc_url(admin_url(MailPress_fields . '&form_id=' . $form->id));
 
 		$actions['form'] 		= "<a href='$form_url' 		class='button'>" . __('Edit form', MP_TXTDOM) . '</a>';
 		$actions['field'] 	= "<a href='$field_url' 	class='button'>" . __('Edit fields', MP_TXTDOM) . '</a>';
@@ -288,7 +287,6 @@ class MailPress_form
 
 	public static function ifview_title()
 	{
-		MailPress::require_class('Forms');
 		$form = MP_Forms::get($_GET['id']);
 		global $title; $title = sprintf(__('Preview "%1$s"', MP_TXTDOM), $form->label);
 	}

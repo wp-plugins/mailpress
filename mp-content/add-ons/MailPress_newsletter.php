@@ -6,7 +6,7 @@ Plugin Name: MailPress_newsletter
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Newsletter
 Description: This is just an add-on for MailPress to manage newsletters
 Author: Andre Renaut
-Version: 5.0.1
+Version: 5.1
 Author URI: http://www.mailpress.org
 */
 
@@ -158,20 +158,16 @@ class MailPress_newsletter
 
 	public static function plugins_loaded()
 	{
-		MailPress::require_class('Newsletters');
-
 		do_action('MailPress_register_newsletter');
 		do_action('MailPress_registered_newsletters');
 
-		MailPress::load_options('Newsletters_schedulers');
+		new MP_Newsletters_schedulers();
 	}
 
 //// Register form ////
 
 	public static function user_register($wp_user_id)
 	{
-		MailPress::require_class('Users');
-
 		$user 	= get_userdata($wp_user_id);
 		$email 	= $user->user_email;
 		$mp_user_id	= MP_Users::get_id_by_email($email);
@@ -208,7 +204,6 @@ class MailPress_newsletter
 		if (!isset($_POST['newsletter'])) return $shortcode_message;
 		$shortcode = 'shortcode_newsletters';
 
-		MailPress::require_class('Users');
 		$mp_user_id = MP_Users::get_id_by_email($email);
 		$_POST[$shortcode] = MP_Newsletters::get_object_terms($mp_user_id);
 
@@ -235,14 +230,14 @@ class MailPress_newsletter
 
 	public static function register() 
 	{
-		MailPress::require_class('Xml');
-
+		$root  = MP_CONTENT_DIR . 'advanced/newsletters';
+		$root  = apply_filters('MailPress_advanced_newsletters_root', $root);
 		$files = array('new_post', 'daily', 'weekly', 'monthly');
 
 		$xml = '';
 		foreach($files as $file)
 		{
-			$fullpath = MP_CONTENT_DIR . "advanced/newsletters/$file.xml";
+			$fullpath = "$root/$file.xml";
 			if (!is_file($fullpath)) continue;
 
 			ob_start();
@@ -287,7 +282,8 @@ class MailPress_newsletter
 	{
 		extract($args);
 
-		MailPress::load_options('Newsletters_processors');
+		new MP_Newsletters_processors();
+
 		MP_Newsletters_processors::process($newsletter);
 	}
 
@@ -583,7 +579,7 @@ class MailPress_newsletter
 		$theme = $_POST['theme'];
 		if (empty($theme) && isset($newsletter['mail']['Theme'])) $theme = $newsletter['mail']['Theme'];
 
-		update_usermeta(MailPress::get_wp_user_id(), "_MailPress_post_$post_id", array('toemail' => $_POST['toemail'], 'theme' => $theme, 'newsletter' => $_POST['newsletter']));	
+		update_user_meta(MailPress::get_wp_user_id(), "_MailPress_post_$post_id", array('toemail' => $_POST['toemail'], 'theme' => $theme, 'newsletter' => $_POST['newsletter']));	
 
 		$newsletter['mail']['Theme'] 		= $theme;
 		$newsletter['mail']['subject']	= __('(Test)', MP_TXTDOM) . ' ' . $newsletter['mail']['subject'];
@@ -591,7 +587,6 @@ class MailPress_newsletter
 
 		$newsletter['query_posts'] 	= array( 'p'	=>	$post_id );
 
-		MailPress::require_class('Mails');
 		$mail			= new stdClass();
 		$mail->id		= MP_Mails::get_id('send_post_ajax');
 		$mail->toemail 	= $_POST['toemail'];
@@ -603,7 +598,7 @@ class MailPress_newsletter
 		$x = new WP_Ajax_Response( array	(
 						'what' => 'mp_post_test', 
 						'id' => $mail->id, 
-						'data' => !$rc ? __('Sending mail failed !', MP_TXTDOM) : sprintf('<span id="mail-%1$s">%2$s</span>', $mail->id , sprintf(__('%1$sView%2$s sent mail', MP_TXTDOM), sprintf('<a href="%1$s" class="thickbox">', clean_url(MailPress::url( MP_Action_url, array('action' => 'iview', 'id' => $mail->id, 'KeepThis' => 'true', 'TB_iframe' => 'true')))), '</a>'))
+						'data' => !$rc ? __('Sending mail failed !', MP_TXTDOM) : sprintf('<span id="mail-%1$s">%2$s</span>', $mail->id , sprintf(__('%1$sView%2$s sent mail', MP_TXTDOM), sprintf('<a href="%1$s" class="thickbox">', esc_url(MailPress::url( MP_Action_url, array('action' => 'iview', 'id' => $mail->id, 'KeepThis' => 'true', 'TB_iframe' => 'true')))), '</a>'))
 						)
 		);
 		$x->send();

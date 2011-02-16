@@ -61,7 +61,6 @@ if ('edit' == $action)
 	$action = 'edited';
 	$cancel = "<input type='submit' class='button' name='cancel' value=\"" . __('Cancel', MP_TXTDOM) . "\" />\n";
 
-	MP_AdminPage::require_class('Forms');
 	$id = (int) $url_parms['id'];
 	$form = MP_Forms::get($id);
 
@@ -84,7 +83,6 @@ if ( isset($_GET['action']) && ('edit' == $_GET['action']) ) $tabs['html'] = __(
 
 // Form templates
 
-MP_AdminPage::require_class('Forms_templates');
 $form_templates = new MP_Forms_templates();
 $xform_template = $form_templates->get_all();
 
@@ -101,7 +99,6 @@ $xvisitor_mail['2'] = __('yes', MP_TXTDOM);
 
 // Mail themes and templates
 
-MP_AdminPage::require_class('Themes');
 $th = new MP_Themes();
 $themes = $th->themes; 
 
@@ -310,7 +307,6 @@ if (isset($form->settings['visitor']['template']) && $key == $form->settings['vi
 <?php
 			break;
 			case 'html'       : 
-				MailPress::require_class('Forms_fields');
 				$html = $form_templates->get_form_template($form->template);
 				if (!$html) $html = '{{form}}';
 

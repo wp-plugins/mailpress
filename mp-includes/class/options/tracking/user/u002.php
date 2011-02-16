@@ -28,14 +28,11 @@ class MP_Tracking_module_u002 extends MP_Tracking_module_abstract
 	function meta_box($mp_user)
 	{
 		global $wpdb;
-		MailPress::require_class('Mail');
 		$x = new MP_Mail();
 
 		$tracks = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->mp_usermeta WHERE mp_user_id = %d AND meta_key = %s ORDER BY meta_id DESC LIMIT 10;", $mp_user->id, '_MailPress_mail_sent') );
 		if ($tracks)
 		{
-			MailPress::require_class('Mailmeta');
-
 			echo '<table cellpadding="0" cellspacing="0">';
 			foreach($tracks as $track)
 			{
@@ -50,7 +47,7 @@ class MP_Tracking_module_u002 extends MP_Tracking_module_abstract
 				{
 					$subject 	= $x->viewsubject($subject, $track->meta_value, $track->meta_value, $mp_user->id);
 
-					$view_url	= clean_url(add_query_arg( array('action' => 'iview', 'id' => $track->meta_value, 'user' => $mp_user->id, 'key' => $mp_user->confkey, 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400'), MP_Action_url ));
+					$view_url	= esc_url(add_query_arg( array('action' => 'iview', 'id' => $track->meta_value, 'user' => $mp_user->id, 'key' => $mp_user->confkey, 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400'), MP_Action_url ));
 					$track->meta_value = "<a href='$view_url' class='thickbox'  title='" . sprintf( __('View "%1$s"', MP_TXTDOM) , $subject) . "'>" . $track->meta_value . '</a>';
 				}
 				else

@@ -1,6 +1,4 @@
 <?php
-MP_AdminPage::require_class('Mails');
-
 $autosave_data = MP_Mails::autosave_data();
 
 $x = array('revision', 'id', 'left', 'right', 'action');
@@ -21,7 +19,7 @@ switch ( $action )
 		$mail    		= MP_Mails::get($id);
 
 		$edit_url  = MailPress_edit . '&id=' . $id;
-		$edit_url  = clean_url($edit_url);
+		$edit_url  = esc_url($edit_url);
 		$mail_title = '<a href="' . $edit_url . '">' . $mail->subject . '</a>';
 		$h2 = sprintf( __( 'Compare Revisions of &#8220;%1$s&#8221;', MP_TXTDOM ), $mail_title );
 
@@ -36,7 +34,7 @@ switch ( $action )
 		$revision 	= MP_Mails::get( $revision_id );
 		$mail 	= MP_Mails::get( $id );
 
-		$edit_url  = clean_url(MailPress_edit . '&id=' . $id);
+		$edit_url  = esc_url(MailPress_edit . '&id=' . $id);
 		$mail_title = '<a href="' . $edit_url . '">' . $mail->subject . '</a>';
 
 		$revision_title = MP_Mails::mail_revision_title( $revision_id , false );
@@ -83,7 +81,7 @@ foreach ( $autosave_data as $field => $field_title ) :
 	}
 	?>
 		<tr id="revision-field-<?php echo $field; ?>">
-			<th scope="row"><?php echo wp_specialchars( $field_title ); ?></th>
+			<th scope="row"><?php echo esc_html( $field_title ); ?></th>
 			<td><div class="pre"><?php echo $content; ?></div></td>
 		</tr>
 <?php

@@ -4,7 +4,7 @@ $url_parms = MP_AdminPage::get_url_parms(array('s', 'apage', 'id', 'form_id'));
 $form = MP_Forms::get($url_parms['form_id']);
 
 $h2 = sprintf(__('Fields in form &#8220;%1$s&#8221;', MP_TXTDOM), $form->label);
-$h2_preview_url = clean_url(MP_AdminPage::url(MP_Action_url, array('id' => $form->id, 'action' => 'ifview', 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400')));
+$h2_preview_url = esc_url(MP_AdminPage::url(MP_Action_url, array('id' => $form->id, 'action' => 'ifview', 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400')));
 
 //
 // MANAGING PAGINATION
@@ -59,12 +59,10 @@ $bulk_actions['delete']	= __('Delete', MP_TXTDOM);
 
 // Form field types
 
-MP_AdminPage::load_options('Forms_field_types');
 $field_types = MP_Forms_field_types::get_all();
 
 // Form templates
 
-MP_AdminPage::require_class('Forms_templates');
 $form_templates = new MP_Forms_templates();
 $xform_subtemplates = $form_templates->get_all_fields($form->template);
 
@@ -75,7 +73,6 @@ if ('edit' == $action)
 	$action = 'edited';
 	$cancel = "<input type='submit' class='button' name='cancel' value=\"" . __('Cancel', MP_TXTDOM) . "\" />\n";
 
-	MP_AdminPage::require_class('Forms_fields');
 	$id = (int) $url_parms['id'];
 	$field = MP_Forms_fields::get($id);
 

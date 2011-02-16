@@ -5,7 +5,7 @@ class MP_Mailinglists
 
 	public static function exists($term_name) 
 	{
-		$id = is_term($term_name, self::taxonomy);
+		$id = term_exists($term_name, self::taxonomy);
 		if ( is_array($id) )	$id = $id['term_id'];
 		return $id;
 	}
@@ -169,10 +169,10 @@ class MP_Mailinglists
 
 		$object_terms = array_map('intval', $object_terms);
 		$object_terms = array_unique($object_terms);
-		if (empty($object_terms)) $object_terms = array();
+		if (!is_array($object_terms)) $object_terms = array();
 
 		$in = self::get_object_terms($object_id);
-		if (empty($in)) $in = array();
+		if (!is_array($in)) $in = array();
 
 		$added = array_diff_assoc($object_terms, $in);
 		foreach ($added as $term_id) do_action('MailPress_mailinglist_new_subscriber', array('mp_user_id' => $object_id, 'mailinglist_id' => $term_id));
@@ -245,7 +245,6 @@ class MP_Mailinglists
 
 	public static function walk_dropdown_tree() 
 	{
-		MailPress::require_class('Mailinglists_Walker_Dropdown');
 		$walker = new MP_Mailinglists_Walker_Dropdown;
 		$args = func_get_args();
 		return call_user_func_array(array(&$walker, 'walk'), $args);
@@ -299,7 +298,6 @@ class MP_Mailinglists
 
 	public static function walk_array() 
 	{
-		MailPress::require_class('Mailinglists_Walker_Array');
 		$walker = new MP_Mailinglists_Walker_Array;
 		$args = func_get_args();
 		return call_user_func_array(array(&$walker, 'walk'), $args);

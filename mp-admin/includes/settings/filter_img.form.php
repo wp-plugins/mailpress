@@ -30,7 +30,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 					<tr>
 						<td class='nobd'><?php _e('style=', MP_TXTDOM); ?></td>
 						<td class='nobd'>
-							<textarea rows='3' cols='61' name='filter_img[extra_style]'  style='font-family:Courier, "Courier New", monospace;'><?php echo htmlspecialchars(stripslashes($filter_img['extra_style']),ENT_QUOTES);?></textarea>
+							<textarea rows='2' cols='61' name='filter_img[extra_style]'  style='font-family:Courier, "Courier New", monospace;'><?php echo htmlspecialchars(stripslashes($filter_img['extra_style']),ENT_QUOTES);?></textarea>
 						</td>
 					</tr>
 				</table>
@@ -39,7 +39,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 		<tr>
 			<th scope='row'><?php _e('Enter full &lt;img&gt; html tag', MP_TXTDOM); ?></th>
 			<td>
-				<textarea rows='5' cols='72' name='filter_img[img]'  style='font-family:Courier, "Courier New", monospace;'><?php echo esc_attr($filter_img['img']); ?></textarea>
+				<textarea rows='2' cols='72' name='filter_img[img]'  style='font-family:Courier, "Courier New", monospace;'><?php echo esc_attr($filter_img['img']); ?></textarea>
 			</td>
 		</tr>
 <?php 

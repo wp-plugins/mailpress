@@ -6,7 +6,7 @@ Plugin Name: MailPress_view_logs
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:View_logs
 Description: This is just an add-on for MailPress to view logs
 Author: Andre Renaut
-Version: 5.0.1
+Version: 5.1
 Author URI: http://www.mailpress.org
 */
 
@@ -62,7 +62,6 @@ class MailPress_view_logs
 // for autorefresh
 	public static function autorefresh_js($scripts)
 	{
-		MailPress::require_class('AutoRefresh_js');
 		return MP_AutoRefresh_js::register_scripts($scripts, true);
 	}
 }

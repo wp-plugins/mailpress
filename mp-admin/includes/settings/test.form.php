@@ -1,7 +1,6 @@
 <?php
 if (!isset($test)) $test = get_option(MailPress::option_name_test);
 
-MP_AdminPage::require_class('Themes');
 $th = new MP_Themes();
 $themes = $th->themes; 
 if (empty($test['theme'])) $test['theme'] = $themes[$th->current_theme]['Template']; 
@@ -36,11 +35,11 @@ $formname = substr(basename(__FILE__), 0, -4);
 					<tr>
 						<td class='pr10<?php if (isset($toemailclass)) echo " $form_invalid"; ?>'>
 							<?php _e('Email : ', MP_TXTDOM); ?> 
-							<input type='text' size='25' name='test[toemail]' value='<?php echo $test['toemail']; ?>' />
+							<input type='text' size='25' name='test[toemail]' value="<?php if (isset($test['toemail'])) echo $test['toemail']; ?>" />
 						</td>
 						<td class='pr10<?php if (isset($tonameclass)) echo " $form_invalid"; ?>'>
 							<?php _e('Name : ', MP_TXTDOM); ?> 
-							<input type='text' size='25' name='test[toname]' value="<?php echo esc_attr($test['toname']); ?>" />
+							<input type='text' size='25' name='test[toname]' value="<?php if (isset($test['toname'])) echo esc_attr($test['toname']); ?>" />
 						</td>
 					</tr>
 				</table>
@@ -62,11 +61,10 @@ $formname = substr(basename(__FILE__), 0, -4);
 <?php 
 foreach ($xtemplates as $key => $xtemplate)
 {
-$xx='0';
-if ($key == $test['theme']) $xx = $test['template'];
+	$xx = ( isset($test['theme'], $test['template']) && $key == $test['theme'] ) ? $test['template'] : '0';
 ?>
 				<select name='test[th][<?php echo $key; ?>][tm]' id='<?php echo $key; ?>' class='<?php if ($key != $test['theme']) echo 'mask ';?>template'>
-<?php MP_AdminPage::select_option($xtemplate,$xx);?>
+<?php MP_AdminPage::select_option($xtemplate, $xx);?>
 				</select>
 <?php
 }

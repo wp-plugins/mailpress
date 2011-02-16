@@ -1,6 +1,4 @@
 <?php
-MailPress::require_class('Meta');
-
 class MP_Usermeta
 {
 	const meta_type = 'mp_user';

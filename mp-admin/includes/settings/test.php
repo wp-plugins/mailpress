@@ -32,7 +32,6 @@ switch (true)
 			$mail->Theme = $test['theme'];
 			if ('0' != $test['template']) $mail->Template = $test['template'];
 
-			MP_AdminPage::require_class('Mails');
 			$mail->id		= MP_Mails::get_id('settings test');
 
 		// Set the from name and email
@@ -42,7 +41,6 @@ switch (true)
 		// Set destination address
 			$mail->toemail 	= $test['toemail'];
 			$mail->toname	= MP_Mails::display_name($test['toname']);
-			MP_AdminPage::require_class('Users');
 			$key = MP_Users::get_key_by_email($mail->toemail);
 			if ($key)
 			{

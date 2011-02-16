@@ -2,14 +2,13 @@
 
 $fields = array('toemail' => __('Email: ', MP_TXTDOM), 'newsletter' => __('Newsletter: ', MP_TXTDOM), 'theme' => __('Theme: ', MP_TXTDOM) );
 
-$meta = get_usermeta(MailPress::get_wp_user_id(), '_MailPress_post_' . $post->ID);
+$meta = get_user_meta(MailPress::get_wp_user_id(), '_MailPress_post_' . $post->ID);
 $test	= get_option(MailPress::option_name_test);
 
 $xnewsletters = array();
 global $mp_registered_newsletters;
 foreach ($mp_registered_newsletters as $id => $data) $xnewsletters[$id] = $data['descriptions']['admin'];
 
-MailPress::require_class('Themes');
 $th = new MP_Themes();
 $themes = $th->themes;
 	

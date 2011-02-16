@@ -73,7 +73,7 @@ class MP_Tracking_module_u009 extends MP_Tracking_module_abstract
 		$args['chm']  = 'o,D54E21,1,,7,2';
 
 		$args['chd']  = 't1:' . join(',', $chdMo) . '|' . join(',', $chdMc);
-		$url = clean_url(add_query_arg($args, $this->url));
+		$url = esc_url(add_query_arg($args, $this->url));
 
 ?>
 <div style='text-align:center;'>

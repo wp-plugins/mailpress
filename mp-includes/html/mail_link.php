@@ -1,6 +1,5 @@
 <?php
 
-MailPress::require_class('Mail_links');
 $results = MP_Mail_links::process();
 
 if (isset($_GET['view']))

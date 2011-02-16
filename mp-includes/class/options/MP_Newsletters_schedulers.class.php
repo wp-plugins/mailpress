@@ -1,12 +1,9 @@
 <?php
-MailPress::require_class('Options');
-
 class MP_Newsletters_schedulers extends MP_Options
 {
 	const bt = 130;
 
 	var $path = 'newsletter/schedulers';
-	var $abstract = array('Newsletters_abstract', 'Newsletters_scheduler_abstract', 'Newsletters_scheduler_post_abstract');
 
 	public static function get_all()
 	{
@@ -62,7 +59,6 @@ class MP_Newsletters_schedulers extends MP_Options
 
 	public static function header_report($event)
 	{
-		MailPress::require_class('Log');
 		$trace = new MP_Log('sched_proc', MP_ABSPATH, 'MP_Newsletter', false, 'newsletter');
 
 		self::sep_report($trace);
@@ -109,4 +105,3 @@ class MP_Newsletters_schedulers extends MP_Options
 		$trace->end(true);
 	}
 }
-new MP_Newsletters_schedulers();

@@ -107,17 +107,17 @@ class MP_Pop3
 		return true;
 	}
 
-	function get_headers($id)
+	function get_headers($id, $headers = array())
 	{
 		$this->headers = array();
 		$response = $this->get_response("TOP $id 0");
 		if (!$response) return false;
 
 		$this->message = $this->fetch_all();
-		$this->extract_headers($this->message);
+		$this->extract_headers($this->message, $headers);
 	}
 
-	function get_headers_deep($id)
+	function get_headers_deep($id, $headers = array())
 	{
 		$this->headers = array();
 		$response = $this->get_response("TOP $id 100");
@@ -125,10 +125,10 @@ class MP_Pop3
 
 		$this->message = $this->fetch_all();
 
-		$this->extract_headers($this->message);
+		$this->extract_headers($this->message, $headers);
 	}
 
-	function extract_headers($string)
+	function extract_headers($string, $headers = array())
 	{
 		$raw_headers = preg_replace("/\r\n[ \t]+/", ' ', $string); // Unfold headers
 		$raw_headers = explode("\r\n", $raw_headers);
@@ -140,10 +140,16 @@ class MP_Pop3
 			$v = ltrim(substr($value, $pos + 1));
 			if (empty($k)) continue;
 			if (empty($v)) continue;
-			if (isset($this->headers[$k]) && is_array($this->headers[$k])) 	$this->headers[$k][] = $v;
-			elseif (isset($this->headers[$k])) 						$this->headers[$k]   = array($this->headers[$k], $v);
-			else 											$this->headers[$k]   = $v;
+			if (empty($headers) || in_array($k, $headers)) $this->headers[$k][] = $v;
 		}
+		if (!empty($headers)) $this->sort_headers($headers);
+	}
+
+	function sort_headers($headers)
+	{
+		$sort = array_flip($headers);
+		$keys = array_intersect_key($sort, $this->headers);
+		$this->headers = array_merge($keys, array_intersect_key($this->headers, $keys), array_diff_key($this->headers, $sort));
 	}
 
 	function get_message($id)

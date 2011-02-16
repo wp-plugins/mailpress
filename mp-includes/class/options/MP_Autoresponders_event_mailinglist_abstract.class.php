@@ -10,7 +10,6 @@ class MP_Autoresponders_event_mailinglist_abstract extends MP_Autoresponders_eve
 
 	function settings_form($settings)
 	{
-		MailPress::require_class('Mailinglists');
 		$mailinglist_id = (isset($settings['mailinglist_id'])) ? $settings['mailinglist_id'] : get_option(MailPress_mailinglist::option_name_default);
 ?>
 							<label for='autoresponder_mailinglist_<?php echo $this->id; ?>'><?php _e('Mailing list', MP_TXTDOM) ?></label>

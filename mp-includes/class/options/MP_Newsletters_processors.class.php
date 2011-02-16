@@ -1,12 +1,9 @@
 <?php
-MailPress::require_class('Options');
-
 class MP_Newsletters_processors extends MP_Options
 {
 	const bt = 130;
 
 	var $path = 'newsletter/processors';
-	var $abstract = array('Newsletters_abstract', 'Newsletters_processor_abstract');
 
 	public static function get_all()
 	{
@@ -81,7 +78,6 @@ class MP_Newsletters_processors extends MP_Options
 
 	public static function header_report($newsletter)
 	{
-		MailPress::require_class('Log');
 		$trace = new MP_Log('sched_proc', MP_ABSPATH, 'MP_Newsletter', false, 'newsletter');
 
 		self::sep_report($trace);
@@ -98,4 +94,3 @@ class MP_Newsletters_processors extends MP_Options
 	public static function sep_report($trace) { MP_Newsletters_schedulers::sep_report($trace); }
 	public static function footer_report($trace) { MP_Newsletters_schedulers::footer_report($trace); }
 }
-new MP_Newsletters_processors();

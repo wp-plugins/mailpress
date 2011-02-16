@@ -6,7 +6,7 @@ Plugin Name: MailPress_bulk_import
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Bulk_import
 Description: This is just an add-on for MailPress to import users
 Author: Daniel Caleb &amp; Andre Renaut
-Version: 5.0.1
+Version: 5.1
 Author URI: http://galerie-eigenheim.de
 */
 
@@ -29,7 +29,6 @@ class MailPress_bulk_import
 <?php 
 if (class_exists('MailPress_mailinglist'))
 {
-	MailPress::require_class('Mailinglists');
 	MP_Mailinglists::dropdown(array('name' => 'bulk_import_mailinglist', 'htmlid' => 'bulk_import_mailinglist', 'selected' => get_option(MailPress_mailinglist::option_name_default), 'hierarchical' => true, 'orderby' => 'name', 'hide_empty' => '0'));
 }
 ?>
@@ -55,7 +54,7 @@ if (class_exists('MailPress_mailinglist'))
 
 		$count_emails	= self::bulk_users($_POST['emails'], $_POST['activate']);
 
-		MP_AdminPage::message( sprintf( __ngettext( __('%s subscriber added', MP_TXTDOM), __('%s subscribers added', MP_TXTDOM), $count_emails ), $count_emails ) );
+		MP_AdminPage::message( sprintf( _n( __('%s subscriber added', MP_TXTDOM), __('%s subscribers added', MP_TXTDOM), $count_emails ), $count_emails ) );
 	}
 
 	public static function bulk_users($mails, $type)
@@ -70,25 +69,21 @@ if (class_exists('MailPress_mailinglist'))
 			$email = trim($x[0]);
 			$name = (isset($x[1])) ? trim($x[1]) : '';
 
-			MP_AdminPage::require_class('Users');
 			if (is_email($email) && ('deleted' == MP_Users::get_status_by_email($email)))
 			{
 				if ('activate' == $type) 
 				{
-				 	$key = md5(uniqid(rand(), 1));	
-					MP_Users::insert($email, $name, $key, 'active');
+					MP_Users::insert($email, $name, array('status' => 'active'));
 					$count++;
 				}
 				else
 				{
-					MP_AdminPage::require_class('Mails');
 					$return = MP_Users::add($email, $name);
 					if ($return['result']) $count++;
 				}
 
 				if (class_exists('MailPress_mailinglist'))
 				{
-					MP_AdminPage::require_class('Mailinglists');
 					$mp_user_id  = MP_Users::get_id_by_email($email);
 					MP_Mailinglists::set_object_terms(MP_Users::get_id_by_email($email), (is_array($_POST['bulk_import_mailinglist'])) ? $_POST['bulk_import_mailinglist'] : array($_POST['bulk_import_mailinglist']) );
 				}

@@ -32,7 +32,6 @@ class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
 			return $field;
 		}
 
-		MailPress::require_class('Ip');
 		$value['reverse_geocoding'] = MP_Ip::get_address($value['lat'], $value['lng']);
 
 		$width  = (float) $field->settings['googlemap']['width'];
@@ -62,7 +61,6 @@ class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
 	{
 		$ip = $_SERVER['REMOTE_ADDR'];
 
-		MailPress::require_class('Ip');
 		$xlatlng = MP_Ip::get_latlng($ip);
 		$options = $this->field->settings['googlemap'];
 
@@ -228,9 +226,9 @@ class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
 			if (!isset($options['jQuery'])) $js .= "\n<script type='text/javascript' src='" . get_option('siteurl') . "/wp-includes/js/jquery/jquery.js'></script>";
 
 			$m = array( 'mp_gmapL10n'	=> array(	'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/', 
-										'center'	=> js_escape(__('center', MP_TXTDOM)), 
-										'rgeocode'	=> js_escape(__('find place', MP_TXTDOM)), 
-										'changemap'	=> js_escape(__('change map', MP_TXTDOM))
+										'center'	=> esc_js(__('center', MP_TXTDOM)), 
+										'rgeocode'	=> esc_js(__('find place', MP_TXTDOM)), 
+										'changemap'	=> esc_js(__('change map', MP_TXTDOM))
 								)
 				);
 			$js .= "\n<script type='text/javascript'>\n/* <![CDATA[ */\n";
@@ -260,15 +258,7 @@ class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
 		$form_formats['geocode']	=  '{{map}}{{geocode}}&nbsp;{{geocode_button}}';
 		$form_formats['latlng_geocode']=  '{{map}}lat:{{lat}}&nbsp;lng:{{lng}}<br />{{geocode}}&nbsp;{{geocode_button}}';
 
-		MailPress::require_class('Forms');
-		$form_template = MP_Forms::get_template($this->field->form_id);
-		if ($form_template)
-		{
-			MailPress::require_class('Forms_templates');
-			$form_templates = new MP_Forms_templates();
-			$f = $form_templates->get_composite_template($form_template, $this->id);
-			if (is_array($f)) $form_formats = array_merge($form_formats, $f);
-		}
+		$form_formats = $this->get_formats($form_formats);
 
 		$search[] = '{{map}}';			$replace[] = '%1$s';
 		$search[] = '{{id_map}}';		$replace[] = '%2$s';

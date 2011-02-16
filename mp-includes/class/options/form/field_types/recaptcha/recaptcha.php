@@ -42,15 +42,7 @@ class MP_Forms_field_type_recaptcha extends MP_Forms_field_type_abstract
 
 		$form_format =  '{{img}}';
 
-		MailPress::require_class('Forms');
-		$form_template = MP_Forms::get_template($this->field->form_id);
-		if ($form_template)
-		{
-			MailPress::require_class('Forms_templates');
-			$form_templates = new MP_Forms_templates();
-			$f = $form_templates->get_composite_template($form_template, $this->id);
-			if (!empty($f)) $form_format = $f;
-		}
+		$form_formats = $this->get_formats($form_formats);
 
 		$search[] = '{{img}}';		$replace[] = '%1$s';
 		$search[] = '{{id}}'; 		$replace[] = '%2$s';

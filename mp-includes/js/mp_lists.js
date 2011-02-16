@@ -1,8 +1,7 @@
 (function($) {
-var currentFormEl = false;
-var fs = {add:'ajaxAdd',del:'ajaxDel',dim:'ajaxDim',process:'process',recolor:'recolor'};
+var fs = {add:'ajaxAdd',del:'ajaxDel',dim:'ajaxDim',process:'process',recolor:'recolor'}, wpList;
 
-var wpList = {
+wpList = {
 	settings: {
 		url: wpListL10n.url, type: 'POST',
 		response: 'ajax-response',
@@ -26,14 +25,14 @@ var wpList = {
 		var c = [], cl;
 		try {
 			cl = $(e).attr('class') || '';
-			cl = cl.match(new RegExp(t+':[?&A-Za-z0-9:_=-]+'));
+			cl = cl.match(new RegExp(t+':[\\S]+'));
 			if ( cl ) { c = cl[0].split(':'); }
 		} catch(r) {}
 		return c;
 	},
 
 	pre: function(e,s,a) {
-		var bg; var r;
+		var bg, r;
 		s = $.extend( {}, this.wpList.settings, {
 			element: null,
 			nonce: 0,
@@ -52,8 +51,9 @@ var wpList = {
 	},
 
 	ajaxAdd: function( e, s ) {
-		var list = this; e = $(e); s = s || {};
-		var cls = wpList.parseClass(e,'add');
+		e = $(e);
+		s = s || {};
+		var list = this, cls = wpList.parseClass(e,'add'), es, valid, formData;
 		s = wpList.pre.call( list, e, s, 'add' );
 
 		s.element = cls[2] || e.attr( 'id' ) || s.element || null;
@@ -70,12 +70,12 @@ var wpList = {
 
 		s.nonce = wpList.nonce(e,s);
 
-		var es = $('#' + s.element + ' :input').not('[name=_ajax_nonce], [name=_wpnonce], [name=action]');
-		var valid = wpAjax.validateForm( '#' + s.element );
+		es = $('#' + s.element + ' :input').not('[name=_ajax_nonce], [name=_wpnonce], [name=action]');
+		valid = wpAjax.validateForm( '#' + s.element );
 		if ( !valid ) { return false; }
 
 		s.data = $.param( $.extend( { _ajax_nonce: s.nonce, action: s.action }, wpAjax.unserialize( cls[4] || '' ) ) );
-		var formData = $.isFunction(es.fieldSerialize) ? es.fieldSerialize() : es.serialize();
+		formData = $.isFunction(es.fieldSerialize) ? es.fieldSerialize() : es.serialize();
 		if ( formData ) { s.data += '&' + formData; }
 
 		if ( $.isFunction(s.addBefore) ) {
@@ -85,7 +85,7 @@ var wpList = {
 		if ( !s.data.match(/_ajax_nonce=[a-f0-9]+/) ) { return true; }
 
 		s.success = function(r) {
-			var res = wpAjax.parseAjaxResponse(r, s.response, s.element);
+			var res = wpAjax.parseAjaxResponse(r, s.response, s.element), o;
 			if ( !res || res.errors ) { return false; }
 
 			if ( true === res ) { return true; }
@@ -99,7 +99,7 @@ var wpList = {
 			} );
 
 			if ( $.isFunction(s.addAfter) ) {
-				var o = this.complete;
+				o = this.complete;
 				this.complete = function(x,st) {
 					var _s = $.extend( { xml: x, status: st, parsed: res }, s );
 					s.addAfter( r, _s );
@@ -107,6 +107,7 @@ var wpList = {
 				};
 			}
 			list.wpList.recolor();
+			$(list).trigger( 'wpListAddEnd', [ s, list.wpList ] );
 			wpList.clear.call(list,'#' + s.element);
 		};
 
@@ -115,13 +116,13 @@ var wpList = {
 	},
 
 	ajaxDel: function( e, s ) {
-		var list = this; e = $(e); s = s || {};
-		var cls = wpList.parseClass(e,'delete');
+		e = $(e); s = s || {};
+		var list = this, cls = wpList.parseClass(e,'delete'), element;
 		s = wpList.pre.call( list, e, s, 'delete' );
 
 		s.element = cls[2] || s.element || null;
 		if ( cls[3] ) { s.delColor = '#' + cls[3]; }
-		else { s.delColor = s.delColor || '#FF3333'; }
+		else { s.delColor = s.delColor || '#faa'; }
 
 		if ( !s || !s.element ) { return false; }
 
@@ -135,32 +136,31 @@ var wpList = {
 		);
 
 		if ( $.isFunction(s.delBefore) ) {
-			s = s.delBefore( s );
+			s = s.delBefore( s, list );
 			if ( !s ) { return true; }
 		}
 		if ( !s.data._ajax_nonce ) { return true; }
 
-		var element = $('#' + s.element);
+		element = $('#' + s.element);
 
 		if ( 'none' != s.delColor ) {
-			var anim = 'slideUp';
-			if ( element.css( 'display' ).match(/table/) )
-				anim = 'fadeOut'; // Can't slideup table rows and other table elements.  Known jQuery bug
-			element
-				.animate( { backgroundColor: s.delColor }, 'fast'  )[anim]( 'fast' )
-				.queue( function() { list.wpList.recolor(); $(this).dequeue(); } );
+			element.css( 'backgroundColor', s.delColor ).fadeOut( 350, function(){
+				list.wpList.recolor();
+				$(list).trigger( 'wpListDelEnd', [ s, list.wpList ] );
+			});
 		} else {
 			list.wpList.recolor();
+			$(list).trigger( 'wpListDelEnd', [ s, list.wpList ] );
 		}
 
 		s.success = function(r) {
-			var res = wpAjax.parseAjaxResponse(r, s.response, s.element);
+			var res = wpAjax.parseAjaxResponse(r, s.response, s.element), o;
 			if ( !res || res.errors ) {
-				element.stop().stop().css( 'backgroundColor', '#FF3333' ).show().queue( function() { list.wpList.recolor(); $(this).dequeue(); } );
+				element.stop().stop().css( 'backgroundColor', '#faa' ).show().queue( function() { list.wpList.recolor(); $(this).dequeue(); } );
 				return false;
 			}
 			if ( $.isFunction(s.delAfter) ) {
-				var o = this.complete;
+				o = this.complete;
 				this.complete = function(x,st) {
 					element.queue( function() {
 						var _s = $.extend( { xml: x, status: st, parsed: res }, s );
@@ -175,8 +175,10 @@ var wpList = {
 	},
 
 	ajaxDim: function( e, s ) {
-		var list = this; e = $(e); s = s || {};
-		var cls = wpList.parseClass(e,'dim');
+		if ( $(e).parent().css('display') == 'none' ) // Prevent hidden links from being clicked by hotkeys
+			return false;
+		e = $(e); s = s || {};
+		var list = this, cls = wpList.parseClass(e,'dim'), element, isClass, color, dimColor;
 		s = wpList.pre.call( list, e, s, 'dim' );
 
 		s.element = cls[2] || s.element || null;
@@ -202,28 +204,30 @@ var wpList = {
 			if ( !s ) { return true; }
 		}
 
-		var element = $('#' + s.element);
-		var isClass = element.toggleClass(s.dimClass).is('.' + s.dimClass);
-		var color = wpList.getColor( element );
+		element = $('#' + s.element);
+		isClass = element.toggleClass(s.dimClass).is('.' + s.dimClass);
+		color = wpList.getColor( element );
 		element.toggleClass( s.dimClass )
-		var dimColor = isClass ? s.dimAddColor : s.dimDelColor;
+		dimColor = isClass ? s.dimAddColor : s.dimDelColor;
 		if ( 'none' != dimColor ) {
 			element
 				.animate( { backgroundColor: dimColor }, 'fast' )
 				.queue( function() { element.toggleClass(s.dimClass); $(this).dequeue(); } )
-				.animate( { backgroundColor: color }, { complete: function() { $(this).css( 'backgroundColor', '' ); } } );
+				.animate( { backgroundColor: color }, { complete: function() { $(this).css( 'backgroundColor', '' ); $(list).trigger( 'wpListDimEnd', [ s, list.wpList ] ); } } );
+		} else {
+			$(list).trigger( 'wpListDimEnd', [ s, list.wpList ] );
 		}
 
 		if ( !s.data._ajax_nonce ) { return true; }
 
 		s.success = function(r) {
-			var res = wpAjax.parseAjaxResponse(r, s.response, s.element);
+			var res = wpAjax.parseAjaxResponse(r, s.response, s.element), o;
 			if ( !res || res.errors ) {
 				element.stop().stop().css( 'backgroundColor', '#FF3333' )[isClass?'removeClass':'addClass'](s.dimClass).show().queue( function() { list.wpList.recolor(); $(this).dequeue(); } );
 				return false;
 			}
 			if ( $.isFunction(s.dimAfter) ) {
-				var o = this.complete;
+				o = this.complete;
 				this.complete = function(x,st) {
 					element.queue( function() {
 						var _s = $.extend( { xml: x, status: st, parsed: res }, s );
@@ -252,11 +256,9 @@ var wpList = {
 	},
 
 	add: function( e, s ) {
-		var list = $(this);
 		e = $(e);
 
-		var old = false;
-		var _s = { pos: 0, id: 0, oldId: null };
+		var list = $(this), old = false, _s = { pos: 0, id: 0, oldId: null }, ba, ref, color;
 		if ( 'string' == typeof s ) { s = { what: s }; }
 		s = $.extend(_s, this.wpList.settings, s);
 		if ( !e.size() || !s.what ) { return false; }
@@ -264,14 +266,15 @@ var wpList = {
 		if ( s.id && ( s.id != s.oldId || !old || !old.size() ) ) { $('#' + s.what + '-' + s.id).remove(); }
 
 		if ( old && old.size() ) {
-			old.replaceWith(e);
+			old.before(e);
+			old.remove();
 		} else if ( isNaN(s.pos) ) {
-			var ba = 'after';
+			ba = 'after';
 			if ( '-' == s.pos.substr(0,1) ) {
 				s.pos = s.pos.substr(1);
 				ba = 'before';
 			}
-			var ref = list.find( '#' + s.pos );
+			ref = list.find( '#' + s.pos );
 			if ( 1 === ref.size() ) { ref[ba](e); }
 			else { list.append(e); }
 		} else if ( s.pos < 0 ) {
@@ -286,7 +289,7 @@ var wpList = {
 		}
 
 		if ( 'none' != s.addColor ) {
-			var color = wpList.getColor( e );
+			color = wpList.getColor( e );
 			e.css( 'backgroundColor', s.addColor ).animate( { backgroundColor: color }, { complete: function() { $(this).css( 'backgroundColor', '' ); } } );
 		}
 		list.each( function() { this.wpList.process( e ); } );
@@ -294,13 +297,14 @@ var wpList = {
 	},
 
 	clear: function(e) {
-		var list = this;
+		var list = this, t, tag;
 		e = $(e);
 		if ( list.wpList && e.parents( '#' + list.id ).size() ) { return; }
 		e.find(':input').each( function() {
 			if ( $(this).parents('.form-no-clear').size() )
 				return;
-			var t = this.type.toLowerCase(); var tag = this.tagName.toLowerCase();
+			t = this.type.toLowerCase();
+			tag = this.tagName.toLowerCase();
 			if ( 'text' == t || 'password' == t || 'textarea' == tag ) { this.value = ''; }
 			else if ( 'checkbox' == t || 'radio' == t ) { this.checked = false; }
 			else if ( 'select' == tag ) { this.selectedIndex = null; }
@@ -311,34 +315,17 @@ var wpList = {
 		var list = this;
 		$("[class^=add:" + list.id + ":]", el || null)
 			.filter('form').submit( function() { return list.wpList.add(this); } ).end()
-			.not('form').click( function() { return list.wpList.add(this); } ).each( function() {
-				var addEl = this;
-				var c = wpList.parseClass(this,'add')[2] || addEl.id;
-				if ( !c ) { return; }
-				var forms = []; var ins = []; // this is all really inefficient
-				$('#' + c + ' :input').focus( function() { currentFormEl = this; } ).blur( function() { currentFormEl = false; } ).each( function() {
-					ins.push(this);
-					var f = $(this).parents('form:first').get(0);
-					if ( $.inArray(f,forms) < 0 ) { forms.push(f); }
-				} );
-				$(forms).submit( function() {
-					if ( 0 <= $.inArray(currentFormEl,ins) ) {
-						$(addEl).trigger( 'click' );
-						$(currentFormEl).focus();
-						return false;
-					}
-				} );
-			} );
+			.not('form').click( function() { return list.wpList.add(this); } );
 		$("[class^=delete:" + list.id + ":]", el || null).click( function() { return list.wpList.del(this); } );
 		$("[class^=dim:" + list.id + ":]", el || null).click( function() { return list.wpList.dim(this); } );
 	},
 
 	recolor: function() {
-		var list = this;
+		var list = this, items, eo;
 		if ( !list.wpList.settings.alt ) { return; }
-		var items = $('.list-item:visible', list);
+		items = $('.list-item:visible', list);
 		if ( !items.size() ) { items = $(list).children(':visible'); }
-		var eo = [':even',':odd'];
+		eo = [':even',':odd'];
 		if ( list.wpList.settings.altOffset % 2 ) { eo.reverse(); }
 		items.filter(eo[0]).addClass(list.wpList.settings.alt).end().filter(eo[1]).removeClass(list.wpList.settings.alt);
 	},

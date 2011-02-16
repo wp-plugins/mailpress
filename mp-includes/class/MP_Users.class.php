@@ -9,7 +9,7 @@ class MP_Users
 		{
 			case ( empty($user) ) :
 				if ( isset($GLOBALS['mp_user']) ) 	$_user = & $GLOBALS['mp_user'];
-				else						$_user = null;
+				else						return null;
 			break;
 			case ( is_object($user) ) :
 				wp_cache_add($user->id, $user, 'mp_user');
@@ -40,194 +40,11 @@ class MP_Users
 		}
 	}
 
-	public static function is_user($email='') 
-	{
-		if ( '' != $email && self::status_deleted != self::get_status_by_email($email) ) return true; 
-		return false;
-	}
-
-	public static function get_id($key) 
-	{
-		global $wpdb;
-		return $wpdb->get_var( $wpdb->prepare("SELECT id FROM $wpdb->mp_users WHERE confkey = %s ;", $key) );
-	}
-
-	public static function get_email($id) 
-	{
-		global $wpdb;
-		return $wpdb->get_var( $wpdb->prepare("SELECT email FROM $wpdb->mp_users WHERE id = %s ;", $id) );
-	}
-
-	public static function get_id_by_email($email) 
-	{
-		global $wpdb;
-		return $wpdb->get_var( $wpdb->prepare("SELECT id FROM $wpdb->mp_users WHERE email = %s ;", $email) );
-	}
-
 	public static function get_status($id) 
 	{
       	global $wpdb;
 	      $result = $wpdb->get_var( $wpdb->prepare("SELECT status FROM $wpdb->mp_users WHERE id = %s LIMIT 1;", $id) );
 		return ($result == NULL) ? self::status_deleted : $result;
-	}
-
-	public static function get_status_by_email($email) 
-	{
-		global $wpdb;
-	      $result = $wpdb->get_var( $wpdb->prepare("SELECT status FROM $wpdb->mp_users WHERE email = %s ;", $email) );
-		return ($result == NULL) ? self::status_deleted : $result;
-	}
-
-	public static function get_key_by_email($email) 
-	{
-		global $wpdb;
-		return $wpdb->get_var( $wpdb->prepare("SELECT confkey FROM $wpdb->mp_users WHERE email = %s ;", $email) );
-	}
-
-	public static function get_flag_IP() 
-	{
-		global $mp_user;
-		return (('ZZ' == $mp_user->created_country) || empty($mp_user->created_country)) ? '' : "<img class='flag' alt='" . strtolower($mp_user->created_country) . "' title='" . strtolower($mp_user->created_country) . "' src='" . get_option('siteurl') . '/' . MP_PATH . 'mp-admin/images/flag/' . strtolower($mp_user->created_country) . ".gif' />\n";
-	}
-
-// Insert
-
-	public static function add($email, $name) 
-	{
-		$return = array();
-
-		$defaults = MP_Widget::form_defaults();
-
-		if ( !is_email($email) )
-		{
-			$return['result']  = false;
-			$return['message'] = $defaults['txtvalidemail'];
-			return $return;
-		}
-		
-		$status = self::get_status_by_email($email);								//Test if subscription already exists
-
-		switch ($status)
-		{
-			case self::status_deleted :
-				$key = md5(uniqid(rand(), 1));								//generate key
-				if ( self::send_confirmation_subscription($email, $name, $key) )			//email was sent
-				{
-					if ( self::insert($email, $name, $key) )
-					{
-						$return['result']  = true;
-						$return['message'] = $defaults['txtwaitconf'] ;
-						return $return;
-					}
-					else
-					{
-						$return['result']  = false;
-						$return['message'] = $defaults['txtdberror'];
-						return $return;
-					}
-				}
-				$return['result']  = false;
-				$return['message'] = $defaults['txterrconf'];
-				return $return;
-			break;
-			case 'active' :
-				$return['result']  = false;
-				$return['message'] = $defaults['txtallready'];
-				return $return;
-			break;
-			case 'unsubscribed' :
-				$id = self::get_id_by_email($email);
-
-				self::update_name($id, $name);
-				self::set_status($id, 'waiting');
-			case 'waiting' :
-				if ( self::send_confirmation_subscription($email, $name, self::get_key_by_email($email)) )
-				{
-					$return['result']  = true;
-					$return['message'] = $defaults['txtwaitconf'] . ((defined('MP_DEBUG_LOG')) ? ' <small>(2)</small>' : '');
-				}
-				else
-				{
-					$return['result']  = false;
-					$return['message'] = $defaults['txterrconf']  . ((defined('MP_DEBUG_LOG')) ? ' <small>(2)</small>' : '');
-				}
-				return $return;
-			break;
-		}
-	}
-
-	public static function insert($email, $name, $confkey = false, $status = 'waiting', $stopPropagation = false) 
-	{
-		$data = $format= array();
-
-		$data['email'] 		= $email; 									$format[] = '%s';
-		$data['name'] 		= $name; 									$format[] = '%s';
-		$data['status'] 		= $status; 									$format[] = '%s';
-		$data['confkey'] 		= ($confkey === false) ? md5(uniqid(rand(), 1)) : $confkey;	$format[] = '%s';
-		$data['created'] 		= current_time( 'mysql' );						$format[] = '%s';
-		$data['created_IP'] 	= trim($_SERVER['REMOTE_ADDR']);					$format[] = '%s';
-		$data['created_agent'] 	= trim(strip_tags($_SERVER['HTTP_USER_AGENT'])); 		$format[] = '%s';
-		$data['created_user_id']= MailPress::get_wp_user_id();; 					$format[] = '%d';
-		$data['created_country']= self::get_ip2country($data['created_IP']);			$format[] = '%s';
-		$data['created_US_state']= ('US' == $data['created_country']) ? self::get_ip2USstate($data['created_IP']) : 'ZZ'; $format[] = '%s';
-
-		global $wpdb;
-		if (!$wpdb->insert($wpdb->mp_users, $data, $format)) return false;
-
-		$mp_user_id = $wpdb->insert_id;
-
-		MailPress::update_stats('u', 'waiting', 1);
-		if ('active' == $status) MailPress::update_stats('u', 'active', 1);
- 
-		do_action('MailPress_insert_user', $mp_user_id);
-		if (('active' == $status) && !$stopPropagation) do_action('MailPress_activate_user', $mp_user_id, 'MailPress_activate_user');
-
-		return $mp_user_id;
-	}
-
-////  Ip  ////
-
-	public static function get_ip2country($ip)
-	{
-		MailPress::require_class('Ip');
-		return MP_Ip::get_country($ip);
-	}
-
-	public static function get_ip2USstate($ip)
-	{
-		MailPress::require_class('Ip');
-		return MP_Ip::get_USstate($ip);
-	}
-
-	public static function set_ip($id, $ip)
-	{
-		$data = $format = $where = $where_format = array();
-
-		$data['created_IP']	 = $ip; 					$format[] = '%s';
-		$data['created_country'] = self::get_ip2country($ip); 	$format[] = '%s';
-		$data['created_US_state']= self::get_ip2USstate($ip); 	$format[] = '%s';
-
-		$where['id'] 		 = (int) $id;	$where_format[] = '%d';
-
-		global $wpdb;
-		return $wpdb->update( $wpdb->mp_users, $data, $where, $format, $where_format );
-	}
-
-// Update
-
-	public static function update_name($id, $name) 
-	{
-		$name = stripslashes($name);
-
-		do_action('MailPress_update_name', $id, $name);
-
-		$data = $format = $where = $where_format = array();
-
-		$data['name'] 		= $name; 		$format[] = '%s';
-		$where['id'] 		= (int) $id;	$where_format[] = '%d';
-
-		global $wpdb;
-		return $wpdb->update( $wpdb->mp_users, $data, $where, $format, $where_format );
 	}
 
 	public static function update_status($id, $status) 
@@ -356,29 +173,207 @@ class MP_Users
 
 	public static function delete($id) 
 	{
+		do_action('MailPress_delete_user', $id);
+
 		$the_status = self::status_deleted;
 		$status = self::get_status($id);
 
 		if ($the_status == $status) return true;
 
-		do_action('MailPress_delete_user', $id);
-
-		global $wpdb;
-		$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->mp_users    WHERE id = %s ;", $id ) );
-		$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->mp_usermeta WHERE mp_user_id =  %s ;", $id ) );
-
 		if ('waiting' == $status) MailPress::update_stats('u', 'waiting', -1);
-		if ('active' == $status) 
-		{
-			MailPress::update_stats('u', 'waiting', -1);
-			MailPress::update_stats('u', 'active', -1);
-		}
+		if ('active' == $status) { MailPress::update_stats('u', 'waiting', -1); MailPress::update_stats('u', 'active', -1); }
+
+		MP_Usermeta::delete( $id );
 
 		wp_cache_delete($id, 'mp_user');
-		return true;
+
+		global $wpdb;
+		return $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->mp_users WHERE id = %d ; ", $id ) );
 	}
 
-//// Mailing lists ////
+
+	public static function is_user($email = '') 
+	{
+		return ( is_email($email) && self::status_deleted != self::get_status_by_email($email) ) ; 
+	}
+
+
+	public static function get_id($key) 
+	{
+		global $wpdb;
+		return $wpdb->get_var( $wpdb->prepare("SELECT id FROM $wpdb->mp_users WHERE confkey = %s ;", $key) );
+	}
+
+	public static function get_id_by_email($email) 
+	{
+		global $wpdb;
+		return $wpdb->get_var( $wpdb->prepare("SELECT id FROM $wpdb->mp_users WHERE email = %s ;", $email) );
+	}
+
+	public static function get_email($id) 
+	{
+		global $wpdb;
+		return $wpdb->get_var( $wpdb->prepare("SELECT email FROM $wpdb->mp_users WHERE id = %s ;", $id) );
+	}
+
+	public static function get_status_by_email($email) 
+	{
+		global $wpdb;
+	      $result = $wpdb->get_var( $wpdb->prepare("SELECT status FROM $wpdb->mp_users WHERE email = %s ;", $email) );
+		return ($result == NULL) ? self::status_deleted : $result;
+	}
+
+	public static function get_key_by_email($email) 
+	{
+		global $wpdb;
+		return $wpdb->get_var( $wpdb->prepare("SELECT confkey FROM $wpdb->mp_users WHERE email = %s ;", $email) );
+	}
+
+	public static function get_flag_IP() 
+	{
+		global $mp_user;
+		return (('ZZ' == $mp_user->created_country) || empty($mp_user->created_country)) ? '' : "<img class='flag' alt='" . strtolower($mp_user->created_country) . "' title='" . strtolower($mp_user->created_country) . "' src='" . get_option('siteurl') . '/' . MP_PATH . 'mp-admin/images/flag/' . strtolower($mp_user->created_country) . ".gif' />\n";
+	}
+
+/// USER ///
+
+	public static function insert($email, $name, $args = array())
+	{
+		$defaults = array(	'status'		=> 'waiting',
+						'confkey' 		=> md5(uniqid(rand(), 1)),
+						'created'		=> current_time( 'mysql' ),
+						'created_IP'	=> trim($_SERVER['REMOTE_ADDR']),
+						'created_agent'	=> trim(strip_tags($_SERVER['HTTP_USER_AGENT'])),
+						'created_user_id'	=> MailPress::get_wp_user_id(),
+						'stopPropagation' => false,
+		);
+		$r = wp_parse_args( $args, $defaults );
+		extract( $r );
+
+		$data = $format = array();
+
+		$data['email'] 		= $email; 			$format[] = '%s';
+		$data['name'] 		= $name; 			$format[] = '%s';
+		$data['status'] 		= $status; 			$format[] = '%s';
+		$data['confkey'] 		= $confkey;			$format[] = '%s';
+		$data['created'] 		= $created;			$format[] = '%s';
+		$data['created_IP'] 	= $created_IP;		$format[] = '%s';
+		$data['created_agent'] 	= $created_agent; 	$format[] = '%s';
+		$data['created_user_id']= $created_user_id;	$format[] = '%d';
+
+		$data['created_country']= MP_Ip::get_country($data['created_IP']);			$format[] = '%s';
+		$data['created_US_state']= ('US' == $data['created_country']) ? MP_Ip::get_USstate($data['created_IP']) : 'ZZ'; $format[] = '%s';
+
+		global $wpdb;
+		if (!$wpdb->insert($wpdb->mp_users, $data, $format)) return false;
+
+		$mp_user_id = $wpdb->insert_id;
+
+		MailPress::update_stats('u', 'waiting', 1);
+		if ('active' == $status) MailPress::update_stats('u', 'active', 1);
+ 
+		do_action('MailPress_insert_user', $mp_user_id);
+		if (('active' == $status) && !$stopPropagation) do_action('MailPress_activate_user', $mp_user_id, 'MailPress_activate_user');
+
+		return $mp_user_id;
+	}
+
+	public static function update_name($id, $name) 
+	{
+		$name = stripslashes($name);
+
+		do_action('MailPress_update_name', $id, $name);
+
+		$data = $format = $where = $where_format = array();
+
+		$data['name'] 		= $name; 		$format[] = '%s';
+		$where['id'] 		= (int) $id;	$where_format[] = '%d';
+
+		global $wpdb;
+		return $wpdb->update( $wpdb->mp_users, $data, $where, $format, $where_format );
+	}
+
+	public static function set_ip($id, $ip)
+	{
+		$data = $format = $where = $where_format = array();
+
+		$data['created_IP']	 = $ip; 					$format[] = '%s';
+		$data['created_country'] = MP_Ip::get_country($ip); 	$format[] = '%s';
+		$data['created_US_state']= MP_Ip::get_USstate($ip); 	$format[] = '%s';
+
+		$where['id'] 		 = (int) $id;	$where_format[] = '%d';
+
+		global $wpdb;
+		return $wpdb->update( $wpdb->mp_users, $data, $where, $format, $where_format );
+	}
+
+
+
+	public static function add($email, $name) 
+	{
+		$return = array();
+
+		$defaults = MP_Widget::form_defaults();
+
+		if ( !is_email($email) )
+		{
+			$return['result']  = false;
+			$return['message'] = $defaults['txtvalidemail'];
+			return $return;
+		}
+		
+		$status = self::get_status_by_email($email);								//Test if subscription already exists
+
+		switch ($status)
+		{
+			case self::status_deleted :
+				$key = md5(uniqid(rand(), 1));								//generate key
+				if ( self::send_confirmation_subscription($email, $name, $key) )			//email was sent
+				{
+					if ( self::insert($email, $name, array('confkey' => $key)) )
+					{
+						$return['result']  = true;
+						$return['message'] = $defaults['txtwaitconf'] ;
+						return $return;
+					}
+					else
+					{
+						$return['result']  = false;
+						$return['message'] = $defaults['txtdberror'];
+						return $return;
+					}
+				}
+				$return['result']  = false;
+				$return['message'] = $defaults['txterrconf'];
+				return $return;
+			break;
+			case 'active' :
+				$return['result']  = false;
+				$return['message'] = $defaults['txtallready'];
+				return $return;
+			break;
+			case 'unsubscribed' :
+				$id = self::get_id_by_email($email);
+
+				self::update_name($id, $name);
+				self::set_status($id, 'waiting');
+			case 'waiting' :
+				if ( self::send_confirmation_subscription($email, $name, self::get_key_by_email($email)) )
+				{
+					$return['result']  = true;
+					$return['message'] = $defaults['txtwaitconf'] . ((defined('MP_DEBUG_LOG')) ? ' <small>(2)</small>' : '');
+				}
+				else
+				{
+					$return['result']  = false;
+					$return['message'] = $defaults['txterrconf']  . ((defined('MP_DEBUG_LOG')) ? ' <small>(2)</small>' : '');
+				}
+				return $return;
+			break;
+		}
+	}
+
+//// Recipients queries ////
 
 	public static function get_mailinglists()
 	{

@@ -1,6 +1,4 @@
 <?php
-MailPress::require_class('Admin_page');
-
 abstract class MP_Admin_page_list extends MP_Admin_page
 {
 

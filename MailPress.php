@@ -4,9 +4,9 @@ Plugin Name: MailPress
 Plugin URI: http://www.mailpress.org
 Description: The WordPress mailing platform. <b>(do not use automatic upgrade!)</b>
 Author: Andre Renaut
-Requires at least: 3.0
+Requires at least: 3.1
 Tested up to: 3.1
-Version: 5.0.1
+Version: 5.1
 Author URI: http://www.mailpress.org
 */
 
@@ -26,7 +26,7 @@ class MailPress extends MP_abstract
 		$plugin_data = get_plugin_data( MP_ABSPATH . 'MailPress.php' );
 		define ('MP_Version', 	$plugin_data['Version']);
 
-		if (defined('MP_DEBUG_LOG')) { self::require_class('Log'); global $mp_debug_log; $mp_debug_log = new MP_Log('debug', MP_ABSPATH, 'MailPress', false, 'general'); }
+		if (defined('MP_DEBUG_LOG')) { global $mp_debug_log; $mp_debug_log = new MP_Log('debug', MP_ABSPATH, 'MailPress', false, 'general'); }
 
 // for mysql
 		global $wpdb;
@@ -70,11 +70,11 @@ class MailPress extends MP_abstract
 
 ////	Add-ons   ////
 
-	public static function plugins_loaded() {	self::require_class('Addons'); }
+	public static function plugins_loaded() {	MP_Addons::load_all(); }
 
 ////  Widget ////
 
-	public static function widgets_init()   {	self::require_class('Widget'); }
+	public static function widgets_init()   {	register_widget('MP_Widget'); }
 
 ////	Shutdown   ////
 
@@ -100,7 +100,6 @@ class MailPress extends MP_abstract
 
 	public static function process($args)
 	{
-		MailPress::require_class('Mails');
 		return MP_Mails::send_draft($args);
 	}
 
@@ -143,6 +142,23 @@ class MailPress extends MP_abstract
 			break;
 		}
 		return '';
+	}
+
+//// stuff ////
+	public static function no_abort_limit()
+	{
+		if (function_exists('ignore_user_abort')) 	ignore_user_abort(1);
+		if (function_exists('set_time_limit')) 		if( !in_array(ini_get('safe_mode'),array('1', 'On')) ) set_time_limit(0);
+	}
+
+	public static function lock($lock, $timeout = 60)
+	{
+/* not working, retrieves always true 
+		global $wpdb;
+		$x = $wpdb->query("SELECT GET_LOCK('$lock', 1);");
+		return (!empty($x));
+*/
+		return apply_filters('MailPress_lock', true, $lock, $timeout);
 	}
 
 ////  ADMIN  ////
@@ -210,17 +226,15 @@ class MailPress extends MP_abstract
 
 	public static function roles_and_capabilities()
 	{
-		$capabilities	= self::capabilities();
-		$role 		= get_role('administrator');
-		foreach ($capabilities as $capability => $v) $role->add_cap($capability);
+		$role = get_role('administrator');
+		foreach (self::capabilities() as $capability => $v) $role->add_cap($capability);
 		do_action('MailPress_roles_and_capabilities');
 	}
 
 	public static function capabilities()
 	{
 		include (MP_ABSPATH . 'mp-admin/includes/capabilities/capabilities.php');
-		$capabilities	= apply_filters('MailPress_capabilities', $capabilities);
-		return $capabilities;
+		return apply_filters('MailPress_capabilities', $capabilities);
 	}
 
 	public static function capability_groups()
@@ -233,9 +247,8 @@ class MailPress extends MP_abstract
 	public static function menu() 
 	{
 		$menus = array();
-		$capabilities	= self::capabilities();
 
-		foreach ($capabilities as $capability => $datas)
+		foreach (self::capabilities() as $capability => $datas)
 		{
 			if (isset($datas['menu']) && $datas['menu'] && current_user_can($capability))
 			{
@@ -324,7 +337,7 @@ class MailPress extends MP_abstract
 
 ////	Dashboard	////
 
-	public static function wp_dashboard_setup() { self::load_options('Dashboard_widgets'); }
+	public static function wp_dashboard_setup() { new MP_Dashboard_widgets(); }
 
 ////	Subscription form	////
 
@@ -343,7 +356,6 @@ class MailPress extends MP_abstract
 
 	public static function mail($args)
 	{
-		self::require_class('Mail');
 		$x = new MP_Mail();
 		return $x->send($args);
 	}

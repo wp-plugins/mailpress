@@ -114,15 +114,7 @@ class MP_Forms_field_type_date extends MP_Forms_field_type_abstract
 		$form_formats['dmy'] = '{{d}}&nbsp;{{m}}&nbsp;{{y}}';
 		$form_formats['mdy'] = '{{m}}&nbsp;{{d}}&nbsp;{{y}}';
 
-		MailPress::require_class('Forms');
-		$form_template = MP_Forms::get_template($this->field->form_id);
-		if ($form_template)
-		{
-			MailPress::require_class('Forms_templates');
-			$form_templates = new MP_Forms_templates();
-			$f = $form_templates->get_composite_template($form_template, $this->id);
-			if (is_array($f)) $form_formats = array_merge($form_formats, $f);
-		}
+		$form_formats = $this->get_formats($form_formats);
 
 		$search[] = '{{y}}';	$replace[] = '%1$s';
 		$search[] = '{{id_y}}';	$replace[] = '%2$s';

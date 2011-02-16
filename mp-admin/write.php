@@ -1,6 +1,4 @@
-<?php 
-MailPress::require_class('Admin_page');
-
+<?php
 class MP_AdminPage extends MP_Admin_page
 {
 	const screen 	= MailPress_page_write;
@@ -18,8 +16,6 @@ class MP_AdminPage extends MP_Admin_page
 		if (isset($_GET['id'])) $id = $_GET['id'];
 
 		$list_url = self::url(MailPress_mails, self::get_url_parms());
-
-		self::require_class('Mails');
 
 		switch($action) 
 		{
@@ -49,12 +45,10 @@ class MP_AdminPage extends MP_Admin_page
 				{
 				// process attachements
 					case isset($_POST['addmeta']) :
-						self::require_class('Mailmeta');
 						MP_Mailmeta::add_meta($id);
 						$parm = "&cfsaved=1";
 					break;
 					case isset($_POST['updatemailmeta']) :
-						self::require_class('Mailmeta');
 						$cfsaved = 0;
 						foreach ($_POST['meta'] as $meta_id => $meta)
 						{
@@ -66,7 +60,6 @@ class MP_AdminPage extends MP_Admin_page
 						$parm = "&cfsaved=$cfsaved";
 					break;
 					case isset($_POST['deletemailmeta']) :
-						self::require_class('Mailmeta');
 						$cfdeleted = 0;
 						foreach ($_POST['deletemailmeta'] as $meta_id => $x)
 						{
@@ -231,9 +224,9 @@ class MP_AdminPage extends MP_Admin_page
 		$m = array('mp_swfupload' => array(
 				'flash_url' 			=> includes_url('js/swfupload/swfupload.swf'), 
 
-				'button_text' 			=> "<span class='mp_button'>" .  js_escape(__('Attach a file', MP_TXTDOM)) . "</span>", 
+				'button_text' 			=> "<span class='mp_button'>" .  esc_js(__('Attach a file', MP_TXTDOM)) . "</span>", 
 				'button_text_style' 		=> '.mp_button { text-align: left; color: #21759B; text-decoration: underline; font-family:Verdana, Arial, "Bitstream Vera Sans", sans-serif; } .mp_button:hover {cursor:pointer;}', 
-				'another_button_text'		=> "<span class='mp_button'>" .  js_escape(__('Attach another file', MP_TXTDOM)) . "</span>", 
+				'another_button_text'		=> "<span class='mp_button'>" .  esc_js(__('Attach another file', MP_TXTDOM)) . "</span>", 
 
 
 				'button_height'			=> '24', 
@@ -284,7 +277,6 @@ class MP_AdminPage extends MP_Admin_page
 
 		if ($id)
 		{
-			self::require_class('Mailmeta');
 			$rev_ids 	= MP_Mailmeta::get($id, '_MailPress_mail_revisions');
 		}
 		if (isset($rev_ids) && $rev_ids)
@@ -311,8 +303,8 @@ class MP_AdminPage extends MP_Admin_page
 
 		if ($draft && isset($draft->id))
 		{
-			if (current_user_can('MailPress_delete_mails')) $delete_url = clean_url(MailPress_write  ."&amp;action=delete&amp;id=$draft->id");
-			$preview_url= clean_url(add_query_arg( array('action' => 'iview', 'id' => $draft->id, 'KeepThis' => 'true', 'TB_iframe' => 'true'), MP_Action_url ));
+			if (current_user_can('MailPress_delete_mails')) $delete_url = esc_url(MailPress_write  ."&amp;action=delete&amp;id=$draft->id");
+			$preview_url= esc_url(add_query_arg( array('action' => 'iview', 'id' => $draft->id, 'KeepThis' => 'true', 'TB_iframe' => 'true'), MP_Action_url ));
 			$preview	= "<a class='preview button' target='_blank' href='$preview_url'>" . __('Preview') . "</a>";
 
 	            if ($draft->_scheduled)
@@ -349,7 +341,6 @@ class MP_AdminPage extends MP_Admin_page
 
 <?php
 		$xthemes = array();
-		self::require_class('Themes');
 		$th = new MP_Themes();
 		$themes = $th->themes;
 
@@ -367,7 +358,7 @@ class MP_AdminPage extends MP_Admin_page
 				<div id='themediv' class='hide-if-js'>
 					<input id='hidden_theme' name='hidden_theme' type='hidden' value='<?php echo $theme; ?>' />
 					<select id='theme' name='Theme'>
-<?php MailPress::select_option($xthemes, $theme);?>
+<?php self::select_option($xthemes, $theme);?>
 					</select>
 					<a href="#edit_theme" class="save-theme hide-if-no-js button"><?php _e('OK'); ?></a>
 					<a href="#edit_theme" class="cancel-theme hide-if-no-js"><?php _e('Cancel'); ?></a>
@@ -386,7 +377,7 @@ class MP_AdminPage extends MP_Admin_page
 	<div id="major-publishing-actions">
 		<div id="delete-action">
 <?php 	if (isset($delete_url)) : ?>
-			<a class='submitdelete' href='<?php echo $delete_url ?>' onclick="if (confirm('<?php echo(js_escape(sprintf( __("You are about to delete this draft '%s'\n  'Cancel' to stop, 'OK' to delete."), $draft->id ))); ?>')) return true; return false;">
+			<a class='submitdelete' href='<?php echo $delete_url ?>' onclick="if (confirm('<?php echo(esc_js(sprintf( __("You are about to delete this draft '%s'\n  'Cancel' to stop, 'OK' to delete."), $draft->id ))); ?>')) return true; return false;">
 				<?php _e('Delete', MP_TXTDOM); ?>
 			</a>
 <?php		endif; ?>
@@ -472,7 +463,6 @@ class MP_AdminPage extends MP_Admin_page
 /**/
 	public static function meta_box_revision($draft)
 	{
-		self::require_class('Mails');
 		MP_Mails::list_mail_revisions($draft->id);
 	}
 /**/
@@ -483,14 +473,14 @@ class MP_AdminPage extends MP_Admin_page
 		{
 			$divid = 'flash-upload-ui';
 			$divs  = "<div><div id='flash-browse-button'></div></div>";
-			$url   = clean_url(add_query_arg('flash', 0));
+			$url   = esc_url(add_query_arg('flash', 0));
 			$txt   = __('homemade uploader', MP_TXTDOM);
 		}
 		else
 		{
 			$divid = 'html-upload-ui';
 			$divs  = "<div class='mp_fileupload_txt'><span class='mp_fileupload_txt'></span></div><div class='mp_fileupload_file' id='mp_fileupload_file_div'></div>";
-			$url   = clean_url(remove_query_arg('flash'));
+			$url   = esc_url(remove_query_arg('flash'));
 			$txt   = __('Flash uploader', MP_TXTDOM);
 		}
 ?>
@@ -516,7 +506,6 @@ var draft_id = <?php echo $draft_id; ?>;
 
 	public static function get_attachements_list($draft_id)
 	{
-		self::require_class('Mailmeta');
 		$metas = MP_Mailmeta::has( $draft_id, '_MailPress_attached_file');
 		if ($metas) foreach($metas as $meta) self::get_attachement_row($meta);
 	}
@@ -525,7 +514,7 @@ var draft_id = <?php echo $draft_id; ?>;
 	{
 		$meta_value = maybe_unserialize( $meta['meta_value'] );
 		if (!is_file($meta_value['file_fullpath'])) return;
-		$href = clean_url(add_query_arg( array('action' => 'attach_download', 'id' => $meta['meta_id']), MP_Action_url ));
+		$href = esc_url(add_query_arg( array('action' => 'attach_download', 'id' => $meta['meta_id']), MP_Action_url ));
 
 ?>
 	<div id='attachement-item-<?php echo $meta['meta_id']; ?>' class='attachement-item child-of-<?php echo $meta['mp_mail_id']; ?>'>
@@ -549,7 +538,6 @@ var draft_id = <?php echo $draft_id; ?>;
 	<div id='ajax-response'></div>
 <?php
         $id = (isset($draft->id)) ? $draft->id : '';
-		self::require_class('Mailmeta');
 		$metadata = MP_Mailmeta::has($id);
 		$count = 0;
 		if ( !$metadata ) : $metadata = array(); 

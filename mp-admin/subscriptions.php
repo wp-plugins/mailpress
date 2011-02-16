@@ -1,6 +1,4 @@
-<?php 
-MailPress::require_class('Admin_page');
-
+<?php
 class MP_AdminPage extends MP_Admin_page
 {
 	const screen 	= MailPress_page_subscriptions;

@@ -9,14 +9,14 @@ abstract class MP_Forms_field_type_abstract
 		$this->description = $description;
 		$this->settings	 = dirname($this->file) . '/settings.xml';
 
-		add_filter('MailPress_form_field_type_register',						array(&$this, 'register'), 		8, 1);
-		add_filter('MailPress_form_field_type_' . $this->id . '_have_file',		array(&$this, 'have_file'), 		8, 1);
+		add_filter('MailPress_form_field_types_register',				array(&$this, 'register'), 		8, 1);
+		add_filter('MailPress_form_field_type_' . $this->id . '_have_file',	array(&$this, 'have_file'), 		8, 1);
 
-		add_filter('MailPress_form_field_type_' . $this->id . '_submitted',		array(&$this, 'submitted'), 		8, 1);
+		add_filter('MailPress_form_field_type_' . $this->id . '_submitted',	array(&$this, 'submitted'), 		8, 1);
 
 		add_filter('MailPress_form_field_type_' . $this->id . '_get_tag',		array(&$this, 'get_tag'), 		8, 2);
 		add_filter('MailPress_form_field_type_' . $this->id . '_get_id',		array(&$this, 'get_id'), 		8, 1);
-		add_filter('MailPress_form_field_type_' . $this->id . '_get_name',		array(&$this, 'get_name'), 		8, 1);
+		add_filter('MailPress_form_field_type_' . $this->id . '_get_name',	array(&$this, 'get_name'), 		8, 1);
 
 		add_action('MailPress_form_field_type_' . $this->id . '_settings_form',	array(&$this, 'settings_form'),	8, 1);
 	}
@@ -43,6 +43,17 @@ abstract class MP_Forms_field_type_abstract
 		$this->attributes_filter($no_reset);
 
 		return $this->build_tag();
+	}
+
+	function get_formats($default)
+	{
+		$form_template = MP_Forms::get_template($this->field->form_id);
+		if ($form_template)
+		{
+			$form_templates = new MP_Forms_templates();
+			$f = $form_templates->get_composite_template($form_template, $this->id);
+			return (is_array($f)) ? array_merge($default, $f) : ((!empty($f)) ? $f : $default);
+		}
 	}
 
 	function attributes_filter($no_reset) 
@@ -111,7 +122,7 @@ abstract class MP_Forms_field_type_abstract
 
 		$xml = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
 		foreach ($xml->tabs->children() as $child) $tabs[$child->getName()] = (string) $child;
-		if (isset($_GET['action']) && ('edit' == $_GET['action']) && $this->type_ok) { $tabs['html'] = __('Html', MP_TXTDOM); MP_AdminPage::require_class('Forms'); }
+		if (isset($_GET['action']) && ('edit' == $_GET['action']) && $this->type_ok) { $tabs['html'] = __('Html', MP_TXTDOM); }
 
 		if (empty($tabs)) return;
 ?>

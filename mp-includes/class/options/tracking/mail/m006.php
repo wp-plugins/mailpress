@@ -26,8 +26,8 @@ class MP_Tracking_module_m006 extends MP_Tracking_module_abstract
 			'type'	=> 'mp_mail',
 			'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/',
 			'ajaxurl'	=> MP_Action_url,
-			'center'	=> js_escape(__('center', MP_TXTDOM)),
-			'changemap'	=> js_escape(__('change map', MP_TXTDOM))
+			'center'	=> esc_js(__('center', MP_TXTDOM)),
+			'changemap'	=> esc_js(__('change map', MP_TXTDOM))
 		));
 		$scripts[] = 'mp-gmap3';
 
@@ -48,8 +48,6 @@ class MP_Tracking_module_m006 extends MP_Tracking_module_abstract
 
 		if ($tracks)
 		{
-			MP_AdminPage::require_class('Users');
-			MP_AdminPage::require_class('Ip');
 			foreach($tracks as $track)
 			{
 				$x = MP_Ip::get_latlng($track->ip);
@@ -62,7 +60,7 @@ class MP_Tracking_module_m006 extends MP_Tracking_module_abstract
 					$user = MP_Users::get($track->user_id);
 					if (get_option('show_avatars')) $x['info'] = get_avatar( $user->email, 32 );
 					$flag   = (('ZZ' == $user->created_country) || empty($user->created_country)) ? '' : "<img class='flag' alt='" . strtolower($user->created_country) . "' title='" . strtolower($user->created_country) . "' src='" . get_option('siteurl') . '/' . MP_PATH . 'mp-admin/images/flag/' . strtolower($user->created_country) . ".gif' />";
- 					$x['info'] = "<table cellspacing='0' cellpadding='0'><tr><td style='text-align:center;'>" . ((get_option('show_avatars')) ? get_avatar( $user->email, 32 ) : '') . "<br style='line-height:0;' /><br style='line-height:3px;' />{$flag}</td><td style='text-align:center;padding-left:5px;'>{$user->email}<br />" . js_escape($user->name) . "<br />{$track->ip}</td></tr></table>";
+ 					$x['info'] = "<table cellspacing='0' cellpadding='0'><tr><td style='text-align:center;'>" . ((get_option('show_avatars')) ? get_avatar( $user->email, 32 ) : '') . "<br style='line-height:0;' /><br style='line-height:3px;' />{$flag}</td><td style='text-align:center;padding-left:5px;'>{$user->email}<br />" . esc_js($user->name) . "<br />{$track->ip}</td></tr></table>";
 
 					$m['t006'][] = $x;
 				}
@@ -73,7 +71,6 @@ class MP_Tracking_module_m006 extends MP_Tracking_module_abstract
 /* <![CDATA[ */
 <?php
 	// t006_user_settings
-		MailPress::require_class('Mailmeta');
 		$u['t006_user_settings'] = MP_Mailmeta::get($mail->id, '_MailPress_' . self::prefix);
 		if (!$u['t006_user_settings']) $u['t006_user_settings'] = get_user_option('_MailPress_' . self::prefix);
 		if (!isset($def_lat)) $def_lat = 48.8352;

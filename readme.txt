@@ -2,7 +2,7 @@
 Contributors: andre renaut
 Donate link: http://www.mailpress.org/wiki
 Tags: mail, mails, comments, comment, subscribe, newsletters, newsletter, Wordpress, Plugin, swiftmailer, post, posts, smtp, sendmail, phpmail, notification, notifications, mail, mails, contact form
-Requires at least: 3.0
+Requires at least: 3.1
 Tested up to: 3.1
 Stable tag: 5.0.1
 
@@ -14,7 +14,7 @@ Your donations are welcomed !
 
 == Description ==
 
-**in 5.0.1, mp-content/advanced/newsletters : xml format has changed**
+**since 5.0.1, mp-content/advanced/newsletters : xml format has changed**
 
 1. Style your html and plain text mails with dedicated themes and templates.
 1. Double opt-in subscription.
@@ -57,7 +57,7 @@ Thank you
 
 **Never use WordPress automatic upgrade** : you will loose the content of mailpress/mp-content and mailpress/tmp folders !
 
-**in 5.0.1, mp-content/advanced/newsletters : xml format has changed**
+**since 5.0.1, mp-content/advanced/newsletters : xml format has changed**
 
 1. Point your browser to "Plugins > MailPress Add-ons" page and deactivate all add ons.
 1. Point your browser to "Plugins" page and deactivate MailPress plugin.
@@ -82,6 +82,34 @@ MailPress themes and templates do not need to be changed if customized in a prev
 1. none
 
 == Changelog ==
+
+** 5.1 ** xx/xx/2011
+
+Changes & Enhancements :
+
+**since 5.0.1, mp-content/advanced/newsletters : xml format has changed**
+
+* MailPress::require_class deprecated, replaced by an autoloader.
+* modifying some code due to WordPress deprecated functions.
+
+1. Ip
+
+* code review for ipinfodb provider, requires a api key now (see mailpress-config-sample.php)
+
+1. Autoresponder
+
+* autoresponders can be scheduled with year, month, week, day, hour.
+
+1. Bounce
+
+* code review.
+
+1. Form
+
+* From email and name are the visitor ones when available for recipient mail (can be overrided by your MTA).
+* code review on composite field types merging default template formats with customized ones.
+* (bug fix) control of recipient email when creating/modifying a new form...
+* (bug fix) creating some mysql tables on install can be usefull ...
 
 ** 5.0.1 ** 01/12/2010
 
@@ -201,4 +229,4 @@ fixes several bugs since 4.0.2 released Nov 17, 2009 :
 
 
 
-**Please Donate** https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=andre%2erenaut%40gmail%2ecom&lc=US&item_name=MailPress&item_number=gg&amount=5%2e00&currency_code=EUR&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest
+**Please Donate** https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=andre%2erenaut%40gmail%2ecom&lc=US&item_name=MailPress&item_number=gg&amount=5%2e00&currency_code=EUR&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest

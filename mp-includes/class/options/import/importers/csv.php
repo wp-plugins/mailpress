@@ -89,8 +89,6 @@ class MP_import_csv extends MP_Import_importer_abstract
 
 	function fileform() 
 	{
-		if (class_exists('MailPress_mailinglist'))
-			MailPress::require_class('Mailinglists');
 ?>
 	<form action="<?php echo MailPress_import; ?>&amp;mp_import=csv&amp;step=2&amp;id=<?php echo $this->file_id; ?>" method="post">
 <?php 	if (class_exists('MailPress_mailinglist')) : ?>
@@ -170,7 +168,7 @@ class MP_import_csv extends MP_Import_importer_abstract
 			</tbody>
 		</table>
 		<p class='submit'>
-			<input class='button-primary' type='submit' value="<?php echo attribute_escape( __('Submit') ); ?>" />
+			<input class='button-primary' type='submit' value="<?php echo esc_attr( __('Submit') ); ?>" />
 		</p>
 	</form>
 <?php
@@ -200,7 +198,6 @@ class MP_import_csv extends MP_Import_importer_abstract
 				$this->mailinglist_ID = $_POST['mailinglist'];
 				add_filter('MailPress_mailinglist_default', array(&$this, 'mailinglist_default'), 8, 1);
 
-				MP_AdminPage::require_class('Mailinglists');
 				$mailinglist_name = MP_Mailinglists::get_name($this->mailinglist_ID);
 			}
 		}

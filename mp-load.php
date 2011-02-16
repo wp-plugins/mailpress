@@ -6,7 +6,7 @@
 		3. setting some admin page and url constants,
 		4. loading text domain file for gettext,
 		5. set debug stuff if WP_DEBUG is true,
-		6. loading MP_abstract.class,
+		6. class auto loader,
 		7. mp_general, mp_subscriptions,
 		8. loading pluggable functions
 
@@ -89,15 +89,18 @@ define ('MP_Help_url', 'http://www.mailpress.org/wiki/');
 // 4.
 
 /** for gettext */
-load_plugin_textdomain(MP_TXTDOM, MP_PATH_CONTENT . 'languages');
+//load_plugin_textdomain(MP_TXTDOM, MP_PATH_CONTENT . 'languages');
+load_plugin_textdomain(MP_TXTDOM, false, MP_FOLDER . '/' . MP_CONTENT_FOLDER . '/' . 'languages');
 
 // 5.
 
-if ( defined('WP_DEBUG') && WP_DEBUG && !defined('MP_DEBUG_LOG') ) define('MP_DEBUG_LOG', true);
+if ( defined('WP_DEBUG') && WP_DEBUG && !defined('MP_DEBUG_LOG') ) 
+	define('MP_DEBUG_LOG', true);
 
 // 6.
 
-require_once(MP_ABSPATH . 'mp-includes/class/MP_abstract.class.php');
+require_once(MP_ABSPATH . 'mp-includes/class/MP_autoload.class.php');
+MP_autoload::registerAutoload();
 
 // 7.
 

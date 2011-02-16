@@ -7,7 +7,7 @@ $subtitle = '';
 if (isset($url_parms['author'])) 
 {
 	$author_user = get_userdata( $url_parms['author'] );
-	$subtitle .= ' ' . sprintf(__('by %s'), wp_specialchars( $author_user->display_name ));
+	$subtitle .= ' ' . sprintf(__('by %s'), esc_html( $author_user->display_name ));
 }
 
 //
@@ -54,7 +54,7 @@ foreach ($results as $k => $v)
 	if (isset($_GET[$k]) && $_GET[$k])
 	{
 		if (!isset($message)) $message = '';
-		$message .= sprintf( __ngettext( $v['s'], $v['p'], $_GET[$k] ), $_GET[$k] );
+		$message .= sprintf( _n( $v['s'], $v['p'], $_GET[$k] ), $_GET[$k] );
 		$message .=  '<br />';
 	}
 }
@@ -65,9 +65,9 @@ foreach ($results as $k => $v)
 
 if (isset($url_parms['mode'])) $wmode = $url_parms['mode'];
 $url_parms['mode'] = 'detail';
-$detail_url = clean_url(MP_AdminPage::url( MailPress_mails, $url_parms ));
+$detail_url = esc_url(MP_AdminPage::url( MailPress_mails, $url_parms ));
 $url_parms['mode'] = 'list';
-$list_url  	= clean_url(MP_AdminPage::url( MailPress_mails, $url_parms ));
+$list_url  	= esc_url(MP_AdminPage::url( MailPress_mails, $url_parms ));
 if (isset($wmode)) $url_parms['mode'] = $wmode; 
 
 //

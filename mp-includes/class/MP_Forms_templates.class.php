@@ -6,7 +6,9 @@ class MP_Forms_templates
 	function __construct()
 	{
    		// Load all templates.
-		$root = MP_CONTENT_DIR . 'advanced/forms/templates';
+		$root  = MP_CONTENT_DIR . 'advanced/forms';
+		$root  = apply_filters('MailPress_advanced_forms_root', $root);
+		$root .= '/templates';
 		$dir  = @opendir($root);
 		if ($dir) 
 			while (($file = readdir($dir)) !== false) if (($file{0} != '.') && (substr($file, -4) == '.xml')) 
@@ -14,7 +16,6 @@ class MP_Forms_templates
 				$f = file_get_contents("$root/$file");
 				if (simplexml_load_string($f))
 				{
-					MailPress::require_class('Xml');
 					$xml = new MP_Xml($f);
 					$this->templates[substr($file, 0, -4)] = self::xml_clean_up($xml->object->children);
 				}

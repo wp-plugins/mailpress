@@ -6,7 +6,7 @@ Plugin Name: MailPress_comment
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Comment
 Description: This is just an add-on for MailPress to subscribe to comments
 Author: Andre Renaut
-Version: 5.0.1
+Version: 5.1
 Author URI: http://www.mailpress.org
 */
 
@@ -58,7 +58,7 @@ class MailPress_comment
 				add_action('MailPress_add_meta_boxes_user', 	array(__CLASS__, 'add_meta_boxes_user'), 10, 2);
 			}
 		// for dashboard
-			add_action('MailPress_dashboard', 			array(__CLASS__, 'dashboard'));
+			add_action('MailPress_load_Dashboard_widgets', 	array(__CLASS__, 'load_Dashboard_widgets'));
 		}
 
 // for mp_users list
@@ -137,7 +137,6 @@ class MailPress_comment
 
 		if (is_email($email))
 		{
-			MailPress::require_class('Users');
 			$i = MP_Users::get_id_by_email($email);
 			if ($i)
 			{
@@ -181,7 +180,6 @@ class MailPress_comment
 
 		if (is_email($email))
 		{
-			MailPress::require_class('Users');
 			$mp_user_id = MP_Users::get_id_by_email($email);
 
 			if ($mp_user_id)
@@ -332,7 +330,7 @@ class MailPress_comment
 
 	public static function load_Autoresponders_events()
 	{
-		MailPress::load_options('Autoresponders_events_comment');
+		new MP_Autoresponders_events_comment();
 	}
 
 // Sync wordpress user
@@ -404,9 +402,9 @@ class MailPress_comment
 	}
 
 // for dashboard
-	public static function dashboard() 
+	public static function load_Dashboard_widgets() 
 	{
-		MailPress::load_options('Dashboard_widgets_comment');
+		new MP_Dashboard_widgets_comment();
 	}
 
 // for mp_users list
@@ -472,7 +470,6 @@ class MailPress_comment
 		if (!empty($comment->comment_post_ID))
 		{
 			$post_id = $comment->comment_post_ID;
-			MailPress::require_class('Users');
 			$mp_user_id = MP_Users::get_id_by_email($comment->comment_author_email);
 			if ($mp_user_id)
 			{

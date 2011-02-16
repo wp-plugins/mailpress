@@ -1,10 +1,6 @@
 <?php
-
-/*
- * MP_Query
- */
-
-class MP_Query {
+class MP_Query 
+{
 
 	var $query;
 	var $query_vars = array();
@@ -519,7 +515,6 @@ class MP_Query {
 	}
 	function get_the_subject() 
 	{
-		MailPress::require_class('Mailmeta');
 		$metas = MP_Mailmeta::get( $this->mail->id, '_MailPress_replacements' );
 
 		$subject_display = $this->mail->subject;

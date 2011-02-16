@@ -1,10 +1,7 @@
 <?php
-MailPress::require_class('Options');
-
 class MP_Import_importers extends MP_Options
 {
 	var $path = 'import/importers';
-	var $abstract = 'Import_importer_abstract';
 
 	public static function get_all()
 	{
@@ -13,4 +10,3 @@ class MP_Import_importers extends MP_Options
 		return $x;
 	}
 }
-new MP_Import_importers();

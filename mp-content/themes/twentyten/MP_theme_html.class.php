@@ -40,7 +40,6 @@ class MP_theme_html
 //
 	public static function who_is($ip)
 	{
-		MailPress::require_class('Ip');
 		$x  = MP_Ip::get_all($ip);
 
 		if (!$x['geo']['lat'] && !$x['geo']['lng']) return array('src' => false, 'addr' => false);

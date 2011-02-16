@@ -9,7 +9,7 @@ class MP_Mails
 		{
 			case ( empty($mail) ) :
 				if ( isset($GLOBALS['mp_mail']) ) 	$_mail = & $GLOBALS['mp_mail'];
-				else						$_mail = null;
+				else						return null;
 			break;
 			case ( is_object($mail) ) :
 				wp_cache_add($mail->id, $mail, 'mp_mail');
@@ -77,27 +77,27 @@ class MP_Mails
 				return self::delete($id);
 			break;
 		}
-		wp_cache_delete($id, 'mp_user');
+		wp_cache_delete($id, 'mp_mail');
 		return true;
 	}
 
-	public static function delete($id, $rev = false)
+	public static function delete($id)
 	{
+		global $wpdb;
 		do_action('MailPress_delete_mail', $id);
 
-		MailPress::require_class('Mailmeta');
-
-		if (!$rev)
-		{
-			$metas = MP_Mailmeta::has( $id, '_MailPress_mail_revisions' );
-			if ($metas) foreach($metas as $meta) foreach(maybe_unserialize($meta['meta_value']) as $rev_id) self::delete($rev_id, true);
-		}
+		$metas = MP_Mailmeta::has( $id, '_MailPress_mail_revisions' );
+		if ($metas) {
+			foreach($metas as $meta) {
+				foreach(maybe_unserialize($meta['meta_value']) as $rev_id) {
+					$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->mp_mails WHERE id = %d ; ", $rev_id ) );
+		}}}
+		wp_clear_scheduled_hook('mp_process_send_draft', $id);
 
 		MP_Mailmeta::delete( $id );
 
-		wp_clear_scheduled_hook('mp_process_send_draft', $id);
+		wp_cache_delete($id, 'mp_mail');
 
-		global $wpdb;
 		return $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->mp_mails WHERE id = %d ; ", $id ) );
 	}
 
@@ -192,7 +192,6 @@ class MP_Mails
 			$attach = (empty($files)) ? '' : join(', ', $files);
 
 			$file_exits = $wpdb->get_results( $wpdb->prepare( "SELECT meta_id FROM $wpdb->mp_mailmeta WHERE mp_mail_id = %d AND meta_key = %s", $id, '_MailPress_attached_file') . ( (empty($attach)) ? ';' : " AND meta_id NOT IN ($attach);" ) );
-			MailPress::require_class('Mailmeta');
 			if ($file_exits) foreach($file_exits as $entry) MP_Mailmeta::delete_by_id( $entry->meta_id );
 		}
 
@@ -328,7 +327,6 @@ class MP_Mails
 	public static function display_toemail($toemail, $toname, $tolist='', $selected=false)
 	{
 		$return = '';
-		MailPress::require_class('Users');
 		$draft_dest = MP_Users::get_mailinglists();
 
 		if 		(!empty($tolist)  && isset($draft_dest[$tolist]))	return "<b>" . $draft_dest[$tolist] . "</b>"; 
@@ -395,7 +393,6 @@ class MP_Mails
 
 		if ( !$mail = self::get( $id ) ) return false;
 
-		MailPress::require_class('Mailmeta');
 		$lock = MP_Mailmeta::get( $id, '_edit_lock' );
 		$last = MP_Mailmeta::get( $id, '_edit_last' );
 		$time_window = AUTOSAVE_INTERVAL * 2 ;
@@ -412,7 +409,6 @@ class MP_Mails
 
 		$now = time();
 
-		MailPress::require_class('Mailmeta');
 		if (!MP_Mailmeta::add(     $mail->id, '_edit_lock', $now, true))
 			MP_Mailmeta::update( $mail->id, '_edit_lock', $now );
 		if (!MP_Mailmeta::add(     $mail->id, '_edit_last', $current_user->ID, true))
@@ -440,7 +436,7 @@ class MP_Mails
 		$time = ($time) ? $time : $revision->created;
 
 		$date = date_i18n( $datef, strtotime( $time . ' ' . $gmt_offset ) );
-		if ($link) $date = "<a href='" . clean_url($link) . "'>$date</a>";
+		if ($link) $date = "<a href='" . esc_url($link) . "'>$date</a>";
 	
 		if ('' == $revision->status) 	$date = sprintf( $autosavef, $date );
 		else					$date = sprintf( $currentf, $date );
@@ -458,13 +454,11 @@ class MP_Mails
 		switch ( $type ) 
 		{
 			case 'autosave' :
-				MailPress::require_class('Mailmeta');
 				if ( !$rev_ids = MP_Mailmeta::get($mail->id, '_MailPress_mail_revisions')) return;
 				break;
 			case 'revision' : // just revisions - remove autosave later
 			case 'all' :
 			default :
-				MailPress::require_class('Mailmeta');
 				if ( !$rev_ids = MP_Mailmeta::get($mail->id, '_MailPress_mail_revisions')) return;
 				break;
 		}
@@ -559,7 +553,7 @@ class MP_Mails
 	public static function get_attachement_link($meta, $mail_status)
 	{
 		$meta_value = unserialize( $meta['meta_value'] );
-		$href = clean_url(add_query_arg( array('action' => 'attach_download', 'id' => $meta['meta_id']), MP_Action_url ));
+		$href = esc_url(add_query_arg( array('action' => 'attach_download', 'id' => $meta['meta_id']), MP_Action_url ));
 
 		if (in_array($mail_status, array('sent', 'archived')))
 		{

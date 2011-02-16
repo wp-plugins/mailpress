@@ -1,6 +1,4 @@
 <?php
-MailPress::require_class('Admin_page_list');
-
 class MP_AdminPage extends MP_Admin_page_list
 {
 	const screen 	= MailPress_page_mailinglists;
@@ -21,8 +19,6 @@ class MP_AdminPage extends MP_Admin_page_list
 		if     ( !empty($_REQUEST['action'])  && ($_REQUEST['action']  != -1))	$action = $_REQUEST['action'];
 		elseif ( !empty($_REQUEST['action2']) && ($_REQUEST['action2'] != -1) )	$action = $_REQUEST['action2'];
 		if (!isset($action)) return;
-
-		self::require_class('Mailinglists');
 
 		$url_parms = self::get_url_parms(array('s', 'apage', 'id'));
 		$checked	= (isset($_GET['checked'])) ? $_GET['checked'] : array();
@@ -132,7 +128,6 @@ class MP_AdminPage extends MP_Admin_page_list
 		$args = array('offset' => $start, 'number' => $pagesize, 'hide_empty' => 0);
 		if (isset($url_parms['s'])) $args['search'] = $url_parms['s'];
 
-		self::require_class('Mailinglists');
 		$_terms = MP_Mailinglists::get_all($args);
 		if (empty($_terms)) return false;
 
@@ -176,8 +171,6 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		global $mp_subscriptions;
 
-		self::require_class('Mailinglists');
-
 		static $row_class = '';
 
 		$mailinglist = MP_Mailinglists::get( $mailinglist );
@@ -190,9 +183,9 @@ class MP_AdminPage extends MP_Admin_page_list
 		$url_parms['action'] = 'edit';
 		$url_parms['id'] = $mailinglist->term_id;
 
-		$edit_url = clean_url(self::url( MailPress_mailinglists, $url_parms ));
+		$edit_url = esc_url(self::url( MailPress_mailinglists, $url_parms ));
 		$url_parms['action']	= 'delete';
-		$delete_url = clean_url(self::url( MailPress_mailinglists, $url_parms,  'delete-mailinglist_' . $mailinglist->term_id ));
+		$delete_url = esc_url(self::url( MailPress_mailinglists, $url_parms,  'delete-mailinglist_' . $mailinglist->term_id ));
 // actions
 		$actions = array();
 		$actions['edit'] = '<a href="' . $edit_url . '">' . __('Edit') . '</a>';
@@ -238,7 +231,7 @@ class MP_AdminPage extends MP_Admin_page_list
 					$out .= '</th>';
 				break;
 				case 'name':
-					$out .= '<td ' . $attributes . '><strong><a class="row-title" href="' . $edit_url . '" title="' . attribute_escape(sprintf(__('Edit "%s"'), $name)) . '">' . $name . '</a></strong><br />';
+					$out .= '<td ' . $attributes . '><strong><a class="row-title" href="' . $edit_url . '" title="' . esc_attr(sprintf(__('Edit "%s"'), $name)) . '">' . $name . '</a></strong><br />';
 					$out .= self::get_actions($actions);
 					$out .= '</td>';
 	 			break;

@@ -1,7 +1,6 @@
 <?php
 if (!isset($tracking)) $tracking = get_option(MailPress_tracking::option_name);
 
-MailPress::load_options('Tracking_modules');
 foreach(array('mail', 'user') as $folder)
 {
 	$MP_Tracking_modules = new MP_Tracking_modules($folder, array());

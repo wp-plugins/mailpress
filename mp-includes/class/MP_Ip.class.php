@@ -45,7 +45,7 @@ class MP_Ip
 
 	public static function get_ip_info($ip)
 	{
-		MailPress::load_options('Ip_providers');
+		new MP_Ip_providers();
 		$providers = MP_Ip_providers::get_all();
 		foreach($providers as $provider => $pdata)
 		{
@@ -107,7 +107,7 @@ class MP_Ip
 
 	public static function get_context($pdata, $ip)
 	{
-		$file  = $ip_url = sprintf( $pdata['url'], $ip );
+		$file  = $ip_url = vsprintf( $pdata['url'], apply_filters('MailPress_ip_url_' . $pdata['id'] , array($ip)) );
 		$cache = MP_ABSPATH . 'tmp/' . ((!isset($pdata['md5'])) ?  md5($ip_url) : $ip_url) . '.spc';
 
 		if (file_exists($cache))

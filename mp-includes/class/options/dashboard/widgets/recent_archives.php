@@ -1,6 +1,5 @@
 <?php
 global $mp_mails;
-MailPress::require_class('Query');
 $mp_mails = new MP_Query();
 $mp_mails->query();
 if ($mp_mails->mail_count)
@@ -29,7 +28,7 @@ class MP_Dashboard_recent_archives extends MP_Dashboard_widget_abstract
 			$args['id'] 	= $mp_mails->get_the_ID();
 			$args['action'] 	= 'iview';
 			$args['KeepThis'] = 'true'; $args['TB_iframe']= 'true'; $args['width'] = '600'; $args['height']	= '400';
-			$view_url		= clean_url(MailPress::url(MP_Action_url, $args));
+			$view_url		= esc_url(MailPress::url(MP_Action_url, $args));
 ?>
 	<li id='mail-<?php $mp_mails->the_ID(); ?>'>
 		<h4 style='font-weight:normal;'>

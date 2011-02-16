@@ -6,7 +6,7 @@ Plugin Name: MailPress_filter_img
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Filter_img
 Description: This is just an add-on for MailPress to filter ALL html img tags before mailing them.
 Author: Andre Renaut
-Version: 5.0.1
+Version: 5.1
 Author URI: http://www.mailpress.org
 */
 

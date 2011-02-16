@@ -3,10 +3,6 @@ abstract class MP_Options
 {
 	function __construct()
 	{
-		// Load abstract class if any
-		if (isset($this->abstract) && !is_array($this->abstract)) $this->abstract = array($this->abstract);
-		if (isset($this->abstract)) foreach($this->abstract as $abstract) MailPress::load_options($abstract);
-
    		// Load all options so that they can do what they have to do.
 		$root = MP_ABSPATH . 'mp-includes/class/options/' . $this->path;
 		$dir  = @opendir($root);

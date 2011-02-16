@@ -1,6 +1,4 @@
-<?php 
-MailPress::require_class('Admin_page_list');
-
+<?php
 class MP_AdminPage extends MP_Admin_page_list
 {
 	const screen 	= MailPress_page_mails;
@@ -15,8 +13,6 @@ class MP_AdminPage extends MP_Admin_page_list
 		if     ( !empty($_REQUEST['action'])  && ($_REQUEST['action']  != -1))	$action = $_REQUEST['action'];
 		elseif ( !empty($_REQUEST['action2']) && ($_REQUEST['action2'] != -1) )	$action = $_REQUEST['action2'];
 		if (!isset($action)) return;
-
-		self::require_class('Mails');
 
 		$url_parms 	= self::get_url_parms();
 		$checked	= (isset($_GET['checked'])) ? $_GET['checked'] : array();
@@ -181,7 +177,6 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		global $mp_mail;
 
-		self::require_class('Mails');
 		$mp_mail = $mail = MP_Mails::get( $id );
 		$the_mail_status = $mail->status;
 
@@ -189,24 +184,24 @@ class MP_AdminPage extends MP_Admin_page_list
 		$args = array();
 		$args['id'] 	= $id;
 
-		$edit_url    	= clean_url(self::url( MailPress_edit, array_merge($args, $url_parms) ));
+		$edit_url    	= esc_url(self::url( MailPress_edit, array_merge($args, $url_parms) ));
 
 		$args['action'] 	= 'archive';
-		$archive_url 	= clean_url(MailPress::url( MailPress_write, array_merge($args, $url_parms), "archive-mail_{$mail->id}" ));
+		$archive_url 	= esc_url(MailPress::url( MailPress_write, array_merge($args, $url_parms), "archive-mail_{$mail->id}" ));
 
 		$args['action'] 	= 'unarchive';
-		$unarchive_url 	= clean_url(MailPress::url( MailPress_write, array_merge($args, $url_parms), "unarchive-mail_{$mail->id}" ));
+		$unarchive_url 	= esc_url(MailPress::url( MailPress_write, array_merge($args, $url_parms), "unarchive-mail_{$mail->id}" ));
 
 		$args['action'] 	= 'send';
-		$send_url    	= clean_url(self::url( MailPress_write, array_merge($args, $url_parms) ));
+		$send_url    	= esc_url(self::url( MailPress_write, array_merge($args, $url_parms) ));
 
 		$args['action'] 	= 'delete';
-		$delete_url 	= clean_url(self::url( MailPress_write, array_merge($args, $url_parms), "delete-mail_$id" ));
+		$delete_url 	= esc_url(self::url( MailPress_write, array_merge($args, $url_parms), "delete-mail_$id" ));
 
 		$args['action'] 	= 'iview';
 		if ('draft' == $mail->status) if (!empty($mail->theme)) $args['theme'] 	= $mail->theme;
 		$args['KeepThis'] = 'true'; $args['TB_iframe']= 'true'; $args['width'] = '600'; $args['height']	= '400';
-		$view_url		= clean_url(self::url(MP_Action_url, $args));
+		$view_url		= esc_url(self::url(MP_Action_url, $args));
 
 
 // actions
@@ -256,7 +251,6 @@ class MP_AdminPage extends MP_Admin_page_list
 // 	checkbox
 		$disabled = (!current_user_can('MailPress_delete_mails') && !current_user_can('MailPress_send_mails')) ? " disabled='disabled'" : '';
 //	to
-		self::require_class('Users');
 		$draft_dest = MP_Users::get_mailinglists();
 
 		switch (true)
@@ -267,7 +261,7 @@ class MP_AdminPage extends MP_Admin_page_list
 			case (is_email($mail->toemail)) :
 				$mail_url = self::url(MailPress_mails, $url_parms);
 				$mail_url = remove_query_arg('s', $mail_url);
-				$mail_url = clean_url( $mail_url . '&s=' . $mail->toemail );
+				$mail_url = esc_url( $mail_url . '&s=' . $mail->toemail );
 
 				$email_display = '';
 				$mail_url2 	    = "<a class='row-title' href='$mail_url'  title='" . sprintf( __('Search "%1$s"', MP_TXTDOM), $mail->toemail) . "'>";
@@ -306,10 +300,9 @@ class MP_AdminPage extends MP_Admin_page_list
 		{
 			unset($url_parms['author']);
 			$wp_user 		= get_userdata($author);
-			$author_url 	= clean_url(self::url( MailPress_mails . "&author=" . $author, $url_parms ));
+			$author_url 	= esc_url(self::url( MailPress_mails . "&author=" . $author, $url_parms ));
 		}
 //	subject
-		self::require_class('Mailmeta');
 		$metas = MP_Mailmeta::get( $id, '_MailPress_replacements' );
 		$subject_display = $mail->subject;
 		if ($metas) foreach($metas as $k => $v) $subject_display = str_replace($k, $v, $subject_display);

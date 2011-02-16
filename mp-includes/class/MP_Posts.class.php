@@ -6,7 +6,6 @@ class MP_Posts
 
 	public static function exists($mp_mail_id, $post_id) 
 	{
-		MailPress::require_class('Mailmeta');
 		return MP_Mailmeta::get( $mp_mail_id, self::metakey, $post_id );
 	}
 
@@ -24,8 +23,6 @@ class MP_Posts
 
 	public static function delete($mp_mail_id, $post_id) 
 	{
-		MailPress::require_class('Mailmeta');
-
 		$meta_value   = MP_Mailmeta::get( $mp_mail_id, self::metakey_order );
 		unset($meta_value[$post_id]);
 		if (empty($meta_value)) MP_Mailmeta::delete( $mp_mail_id, self::metakey_order );
@@ -55,14 +52,12 @@ class MP_Posts
 
 	public static function get_object_terms( $mp_mail_id )
 	{
-		MailPress::require_class('Mailmeta');
 		$_terms = MP_Mailmeta::get( $mp_mail_id, self::metakey_order );
 		return $_terms;
 	}
 
 	public static function object_have_relations( $mp_mail_id )
 	{
-		MailPress::require_class('Mailmeta');
 		return MP_Mailmeta::get( $mp_mail_id, self::metakey );
 	}
 }

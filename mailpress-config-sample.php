@@ -15,6 +15,10 @@
  	** define log for debug purpose only, uncomment appropriate line.
 */
 
+// 0.
+
+//define ('MP_Ip_ipinfodb_ApiKey', 	'<- get your api key here : http://www.ipinfodb.com/register.php ->');
+
 // 1.
 
 /** Folder name of MailPress 'mp-content'. */

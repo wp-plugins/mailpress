@@ -1,7 +1,6 @@
-<?php 
+<?php
 global $mp_subscriptions;
 
-MP_AdminPage::require_class('Users');
 $email	= MailPress::get_wp_user_email();
 $mp_user	= MP_Users::get(MP_Users::get_id_by_email($email));
 $active 	= ('active' == $mp_user->status) ? true : false;

@@ -8,13 +8,11 @@ if (empty($results))
 	_e('No results found.', MP_TXTDOM);
 	return;
 }
-MailPress::require_class('Mail');
 $x = new MP_Mail();
 foreach($results as $draft) $drafts[$draft->id] = $x->viewsubject($draft->subject, $draft->id, $draft->id);
 unset($results);
 
 // posts in drafts
-MailPress::require_class('Posts');
 $post_drafts = MP_Posts::get_term_objects($post->ID);
 
 ?>

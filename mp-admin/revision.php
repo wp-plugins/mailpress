@@ -1,6 +1,4 @@
-<?php 
-MailPress::require_class('Admin_page');
-
+<?php
 class MP_AdminPage extends MP_Admin_page
 {
 	const screen 	= 'mailpress_revision';
@@ -29,7 +27,6 @@ class MP_AdminPage extends MP_Admin_page
 			case 'edit' :
 			break;
 			case 'restore' :
-				self::require_class('Mails');
 				if (!$revision = MP_Mails::get($revision_id)) break;
 				if (!$mail     = MP_Mails::get($id))          break;
 
@@ -54,7 +51,6 @@ class MP_AdminPage extends MP_Admin_page
 					break;
 				}
 
-				self::require_class('Mails');
 				if ( !$left_revision  = MP_Mails::get( $left ) )
 					break;
 				if ( !$right_revision = MP_Mails::get( $right ) )
@@ -69,7 +65,6 @@ class MP_AdminPage extends MP_Admin_page
 
 				if ($left_revision->id  == $id) $left_ok = true;
 				if ($right_revision->id == $id) $right_ok = true;
-				self::require_class('Mailmeta');
 				$rev_ids = MP_Mailmeta::get($id, '_MailPress_mail_revisions');
 				foreach ($rev_ids as $v) if ($left_revision->id  == $v) $left_ok = true;
 				foreach ($rev_ids as $v) if ($right_revision->id == $v) $right_ok = true;
@@ -78,7 +73,6 @@ class MP_AdminPage extends MP_Admin_page
 			break;
 			case 'view' :
 			default :
-				self::require_class('Mails');
  				if ( !$revision = MP_Mails::get( $revision_id ) )
 					break;
 				if ( !$mail = MP_Mails::get( $id ) )

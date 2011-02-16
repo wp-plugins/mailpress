@@ -6,7 +6,7 @@ Plugin Name: MailPress_bounce_handling
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Bounces
 Description: This is just an add-on for MailPress to handle bounce mails (based on <a href='http://en.wikipedia.org/wiki/VERP'>VERP</a>).
 Author: Andre Renaut
-Version: 5.0.1
+Version: 5.1
 Author URI: http://www.mailpress.org
 */
 
@@ -93,8 +93,7 @@ class MailPress_bounce_handling
 	{
 		MailPress::no_abort_limit();
 
-		MailPress::require_class('Bounce');
-		$MP_Bounce = new MP_Bounce();
+		new MP_Bounce();
 	}
 
 // schedule
@@ -179,7 +178,6 @@ class MailPress_bounce_handling
 
 	public static function autorefresh_js($scripts)
 	{
-		MailPress::require_class('AutoRefresh_js');
 		return MP_AutoRefresh_js::register_scripts($scripts);
 	}
 
@@ -195,7 +193,6 @@ class MailPress_bounce_handling
 // for user page
 	public static function meta_boxes_user($mp_user_id, $screen)
 	{
-		MailPress::require_class('Usermeta');
 		$usermeta = MP_Usermeta::get($mp_user_id, self::metakey);
 		if (!$usermeta) return;
 
@@ -204,7 +201,6 @@ class MailPress_bounce_handling
 
 	public static function meta_box_user($mp_user)
 	{
-		MailPress::require_class('Usermeta');
 		$usermeta = MP_Usermeta::get($mp_user->id, self::metakey);
 		if (!$usermeta) return;
 
@@ -218,7 +214,7 @@ class MailPress_bounce_handling
 				$subject = $wpdb->get_var("SELECT subject FROM $wpdb->mp_mails WHERE id = " . $mail_id . ';');
 				$subject = ($subject) ? $subject : __('(deleted)', MP_TXTDOM);
 
-				$view_url		= clean_url(add_query_arg( array('action' => 'view_bounce', 'user_id' => $mp_user->id, 'mail_id' => $mail_id, 'id' => $k, 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400'), MP_Action_url ));
+				$view_url		= esc_url(add_query_arg( array('action' => 'view_bounce', 'user_id' => $mp_user->id, 'mail_id' => $mail_id, 'id' => $k, 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400'), MP_Action_url ));
 				$actions['view'] = "<a href='$view_url' class='thickbox'  title='" . __('View', MP_TXTDOM) . "'>" . $subject . '</a>';
 
 				echo '(' . $mail_id . ') ' . $actions['view'];
@@ -245,7 +241,6 @@ class MailPress_bounce_handling
 				elseif(is_serialized($mail->toemail)) $total = count(unserialize($mail->toemail));
 				else return;
 
-				MailPress::require_class('Mailmeta');
 				$result = MP_Mailmeta::get($mail->id, self::metakey);
 				if ($result) if ($total > 0) printf("%01.2f %%", 100 * $result/$total );
 			break;
@@ -259,7 +254,6 @@ class MailPress_bounce_handling
 		$mail_id    = $_GET['mail_id'];
 		$bounce_id  = $_GET['id'];
 
-		MailPress::require_class('Usermeta');
 		$usermeta = MP_Usermeta::get($mp_user_id, self::metakey);
 		if (!$usermeta) return;
 

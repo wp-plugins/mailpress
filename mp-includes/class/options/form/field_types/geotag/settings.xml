@@ -6,7 +6,6 @@ $xmap_types = 	array('NORMAL' 	=> __('Normal', MP_TXTDOM),
 				'PHYSICAL' 	=> __('Physical', MP_TXTDOM)
 			);
 
-MailPress::require_class('Ip');
 $ip = $_SERVER['REMOTE_ADDR'];
 $xlatlng = MP_Ip::get_latlng($ip);
 if (!$xlatlng || !isset($xlatlng['lat'])) $xlatlng = array('lat' => 48.8352, 'lng' => 2.4718);

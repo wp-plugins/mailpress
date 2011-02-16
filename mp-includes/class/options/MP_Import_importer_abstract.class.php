@@ -106,7 +106,6 @@ abstract class MP_Import_importer_abstract
 
 	function start_trace($step)
 	{
-		MP_AdminPage::require_class('Log');
 		$this->trace = new MP_Log($this->id, MP_ABSPATH, 'MP_Import', false, 'import');
 		$this->header_report($step);
 	}
@@ -196,15 +195,13 @@ abstract class MP_Import_importer_abstract
 		 	return false;
 		}
 		
-		MP_AdminPage::require_class('Users');
 		if ( 'deleted' != MP_Users::get_status_by_email($email) )
 		{
 			$this->message_report(" **WARNING* ! $x already exists ($name) (processed if extra work to do)");
 		}
 		else
 		{
-		 	$key = md5(uniqid(rand(), 1));	
-			MP_Users::insert($email, $name, $key, $status, true);
+			MP_Users::insert($email, $name, array('status' => $status, 'stopPropagation' => true));
 
 			$this->message_report(" insert     ! $x inserted ($name)");
 		}
@@ -213,7 +210,6 @@ abstract class MP_Import_importer_abstract
 
 	function sync_mp_usermeta($mp_user_id, $meta_key, $meta_value)
 	{
-		MP_AdminPage::require_class('Usermeta');
 		if (!MP_Usermeta::add(    $mp_user_id, $meta_key, $meta_value, true))
 			MP_Usermeta::update($mp_user_id, $meta_key, $meta_value);
 
@@ -224,7 +220,6 @@ abstract class MP_Import_importer_abstract
 	{
 		if (!class_exists('MailPress_mailinglist')) return false;
 
-		MP_AdminPage::require_class('Mailinglists');
 		if ($id = MP_Mailinglists::get_id('MailPress_import_' . $mailinglist))
 		{
 			$this->message_report(" mailinglist! mailing list found : [$id] => $mailinglist");
@@ -245,7 +240,6 @@ abstract class MP_Import_importer_abstract
 	{
 		if (!class_exists('MailPress_mailinglist')) return false;
 
-		MP_AdminPage::require_class('Mailinglists');
 		$user_mailinglists = MP_Mailinglists::get_object_terms($mp_user_id);
 		if (in_array($mailinglist_ID, $user_mailinglists))
 		{

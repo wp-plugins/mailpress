@@ -51,7 +51,7 @@ class MP_Dashboard_mails_sent extends MP_Dashboard_widget_abstract
 		$args['chbh'] = $this->bar_size(7) . ',1,1';
 		$args['chco'] = '4d89f9';
 		$args['chd']  = 't:' . join(',', $chdM);
-		$url = clean_url(add_query_arg($args, $this->url));
+		$url = esc_url(add_query_arg($args, $this->url));
 
 ?>
 <div style='text-align:center;'>

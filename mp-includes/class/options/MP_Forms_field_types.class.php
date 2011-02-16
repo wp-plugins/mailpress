@@ -1,15 +1,12 @@
 <?php
-MailPress::require_class('Options');
-
 class MP_Forms_field_types extends MP_Options
 {
 	var $path = 'form/field_types';
-	var $abstract = 'Forms_field_type_abstract';
 	var $deep = true;
 
 	public static function get_all()
 	{
-		$x = apply_filters('MailPress_form_field_type_register', array());
+		$x = apply_filters('MailPress_form_field_types_register', array());
 		uasort($x, create_function('$a, $b', 'return ($a["order"] > $b["order"] ? 1 : (($a["order"] > $b["order"]) ? -1 : 0));'));
 		return $x;
 	}
@@ -46,4 +43,3 @@ class MP_Forms_field_types extends MP_Options
 		return apply_filters('MailPress_form_field_type_' . $id . '_have_file', $have_file);
 	}
 }
-new MP_Forms_field_types();

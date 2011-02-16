@@ -1,6 +1,4 @@
 <?php
-MailPress::require_class('Db_connect');
-
 abstract class MP_Mail_api extends MP_Db_connect
 {
 	const default_theme = 'twentyten';
@@ -239,7 +237,6 @@ abstract class MP_Mail_api extends MP_Db_connect
 	function html_entity_decode($html)
 	{
 		if (!preg_match('/&[^&;]+;/i', $html)) return $html;
-		MailPress::require_class('Html2txt');
 		$h = new MP_Html2txt( 'entities' );
 		return $h->get_text( $html, 0 );
 	}
@@ -247,7 +244,6 @@ abstract class MP_Mail_api extends MP_Db_connect
 	function html2txt($html)
 	{
 		if (empty($html)) return $html;
-		MailPress::require_class('Html2txt');
 		$h = new MP_Html2txt();
 		return $h->get_text( $html, 0 );
 	}

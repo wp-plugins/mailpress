@@ -1,6 +1,4 @@
 <?php
-MailPress::require_class('Admin_page_list');
-
 class MP_AdminPage extends MP_Admin_page_list
 {
 	const screen 	= 'mailpress_tracking_m';
@@ -12,8 +10,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function title() 
 	{ 
-		MailPress::load_options('Tracking_modules');
-		$MP_Tracking_modules = new MP_Tracking_modules('mail');
+		new MP_Tracking_modules('mail');
 
 		global $title; 
 		$title = __('Tracking', MP_TXTDOM); 
@@ -93,7 +90,6 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		global $mp_mail;
 
-		self::require_class('Mails');
 		$mp_mail = $mail = MP_Mails::get( $id );
 		$the_mail_status = $mail->status;
 
@@ -102,11 +98,10 @@ class MP_AdminPage extends MP_Admin_page_list
 		$args['id'] 	= $id;
 		$args['action'] 	= 'iview';
 		$args['KeepThis'] = 'true'; $args['TB_iframe']= 'true'; $args['width'] = '600'; $args['height']	= '400';
-		$view_url		= clean_url(self::url(MP_Action_url, $args));
+		$view_url		= esc_url(self::url(MP_Action_url, $args));
 
 // table row 
 //	to
-		self::require_class('Users');
 		$draft_dest = MP_Users::get_mailinglists();
 
 		switch (true)
@@ -117,7 +112,7 @@ class MP_AdminPage extends MP_Admin_page_list
 			case (is_email($mail->toemail)) :
 				$mail_url = self::url(MailPress_mails, $url_parms);
 				$mail_url = remove_query_arg('s', $mail_url);
-				$mail_url = clean_url( $mail_url . '&s=' . $mail->toemail );
+				$mail_url = esc_url( $mail_url . '&s=' . $mail->toemail );
 
 				$email_display = '';
 				if ( get_option('show_avatars') ) 
@@ -154,7 +149,6 @@ class MP_AdminPage extends MP_Admin_page_list
 			$wp_user 		= get_userdata($author);
 		}
 //	subject
-		self::require_class('Mailmeta');
 		$metas = MP_Mailmeta::get( $id, '_MailPress_replacements');
 		$subject_display = $mail->subject;
 		if ($metas) foreach($metas as $k => $v) $subject_display = str_replace($k, $v, $subject_display);

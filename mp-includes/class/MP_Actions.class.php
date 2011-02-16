@@ -43,7 +43,9 @@ class MP_Actions
 	{
 		if (!isset($_GET['iframe'])) return;
 
-		$file = MP_CONTENT_DIR . 'advanced/subscription-form/iframes/' . $_GET['iframe'] . '/index.php';
+		$root = MP_CONTENT_DIR . 'advanced/subscription-form';
+		$root = apply_filters('MailPress_advanced_subscription-form_root', $root);
+		$file = "$root/iframes/" . $_GET['iframe'] . '/index.php';
 		$dir  = dirname($file);
 
 		if (is_dir($dir))
@@ -69,7 +71,6 @@ class MP_Actions
 
 	public static function tracking()
 	{
-		MailPress::require_class('Mailmeta');
 		$meta = MP_Mailmeta::get_by_id($_GET['mm']);
 		if ($meta)
 		{
@@ -80,15 +81,12 @@ class MP_Actions
 					switch ($meta->meta_value)
 					{
 						case '{{subscribe}}' :
-							MailPress::require_class('Users');
 							$url = MP_Users::get_subscribe_url($_GET['us']);
 						break;
 						case '{{unsubscribe}}' :
-							MailPress::require_class('Users');
 							$url = MP_Users::get_unsubscribe_url($_GET['us']);
 						break;
 						case '{{viewhtml}}' :
-							MailPress::require_class('Users');
 							$url = MP_Users::get_view_url($_GET['us'], $meta->mp_mail_id);
 						break;
 						default :
@@ -115,14 +113,12 @@ class MP_Actions
 	public static function delete_mail() 
 	{
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
-		MailPress::require_class('Mails');
 		MailPress::mp_die( MP_Mails::set_status( $id, 'delete' ) ? 1 : 0 );
 	}
 
 	public static function delete_user() 
 	{
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
-		MailPress::require_class('Users');
 		MailPress::mp_die( MP_Users::set_status( $id, 'delete' ) ? 1 : 0 );
 	}
 
@@ -133,7 +129,6 @@ class MP_Actions
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
 		check_ajax_referer( "delete-mailmeta_$id" );
 
-		MailPress::require_class('Mailmeta');
 		MailPress::mp_die( MP_Mailmeta::delete_by_id( $id ) ? 1 : 0 );
 	}
 
@@ -144,7 +139,6 @@ class MP_Actions
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
 		check_ajax_referer( "delete-usermeta_$id" );
 
-		MailPress::require_class('Usermeta');
 		MailPress::mp_die( MP_Usermeta::delete_by_id( $id ) ? 1 : 0 );
 	}
 
@@ -152,8 +146,6 @@ class MP_Actions
 	{
 		if (!isset($_POST['meta_id'])) return;
 		if (!is_numeric($_POST['meta_id'])) return;
-
-		MailPress::require_class('Mailmeta');
 
 		$meta_id = (int) $_POST['meta_id'];
 		MP_Mailmeta::delete_by_id( $meta_id );
@@ -164,7 +156,6 @@ class MP_Actions
 
 	public static function dim_mail() 
 	{
-		MailPress::require_class('Mails');
 		require_once(MP_ABSPATH . 'mp-admin/mails.php');
 
 		$url_parms 	= MP_AdminPage::get_url_parms();
@@ -191,7 +182,6 @@ class MP_Actions
 
 	public static function dim_user() 
 	{
-		MailPress::require_class('Users');
 		require_once(MP_ABSPATH . 'mp-admin/users.php');
 
 		$url_parms 	= MP_AdminPage::get_url_parms();
@@ -220,7 +210,6 @@ class MP_Actions
 
 	public static function add_mail() 
 	{
-		MailPress::require_class('Mails');
 		require_once(MP_ABSPATH . 'mp-admin/mails.php');
 
 		$url_parms = MP_AdminPage::get_url_parms(array('mode', 'status', 's'));
@@ -250,7 +239,6 @@ class MP_Actions
 
 	public static function add_user() 
 	{
-		MailPress::require_class('Users');
 		require_once(MP_ABSPATH . 'mp-admin/users.php');
 
 		$url_parms = MP_AdminPage::get_url_parms(array('mode', 'status', 's'));
@@ -290,7 +278,6 @@ class MP_Actions
 		$object_id = (int) $_POST['mail_id'];
 		if ($object_id === 0) MailPress::mp_die();
 
-		MailPress::require_class('Mailmeta');
 		if ( isset($_POST['metakeyselect']) || isset($_POST['metakeyinput']) ) 
 		{
 			if (isset($_POST['metakeyselect']) && ('#NONE#' == $_POST['metakeyselect']) && empty($_POST['metakeyinput']) )	MailPress::mp_die(1);
@@ -332,7 +319,6 @@ class MP_Actions
 		$object_id = (int) $_POST['mp_user_id'];
 		if ($object_id === 0) MailPress::mp_die();
 
-		MailPress::require_class('Usermeta');
 		if ( isset($_POST['metakeyselect']) || isset($_POST['metakeyinput']) ) 
 		{
 			if (isset($_POST['metakeyselect']) && ('#NONE#' == $_POST['metakeyselect']) && empty($_POST['metakeyinput']) )	MailPress::mp_die(1);
@@ -377,7 +363,7 @@ class MP_Actions
 		$args['width']    = $_POST['width'];
 		$args['height']   = $_POST['height'];
 
-		$url = clean_url(add_query_arg( $args, MP_Action_url ));
+		$url = esc_url(add_query_arg( $args, MP_Action_url ));
 		MailPress::mp_die($url);
 	}
 
@@ -388,8 +374,6 @@ class MP_Actions
 		$theme 	= (isset($_GET['theme']) && !empty($_GET['theme'])) ? $_GET['theme'] : false;
 		$user 	= (isset($_GET['user'])  && !empty($_GET['user']))  ? $_GET['user']  : false;
 
-		MailPress::require_class('Mails');
-
 		$mail 	= MP_Mails::get($_GET['id']);
 		$mp_general = get_option(MailPress::option_name_general);
 	// from
@@ -397,7 +381,6 @@ class MP_Actions
 	// to
 		$to 		= MP_Mails::display_toemail($mail->toemail, $mail->toname, '', $user);
 	// subject
-		MailPress::require_class('Mail');
 		$x = new MP_Mail();
 		$subject 	= (in_array($mail->status, array('sent', 'archived'))) ? $mail->subject : $x->do_eval($mail->subject);
 		$subject 	= $x->viewsubject($subject, $id, $main_id, $user);
@@ -416,16 +399,15 @@ class MP_Actions
 		if (!empty($mail->html))
 		{
 			$args['type'] 	= 'html';
-			$html 		= "<iframe id='ihtml'		style='width:100%;border:0;height:550px' src='" . clean_url(add_query_arg( $args, MP_Action_url )) . "'></iframe>";
+			$html 		= "<iframe id='ihtml'		style='width:100%;border:0;height:550px' src='" . esc_url(add_query_arg( $args, MP_Action_url )) . "'></iframe>";
 		}
 		if (!empty($mail->plaintext))
 		{
 			$args['type'] 	= 'plaintext';
-			$plaintext 		= "<iframe id='iplaintext' 	style='width:100%;border:0;height:550px' src='" . clean_url(add_query_arg( $args, MP_Action_url )) . "'></iframe>";
+			$plaintext 		= "<iframe id='iplaintext' 	style='width:100%;border:0;height:550px' src='" . esc_url(add_query_arg( $args, MP_Action_url )) . "'></iframe>";
 		}
 
 	// attachements
-		MailPress::require_class('Mailmeta');
 		$attachements = '';
 		$metas = MP_Mailmeta::has( $args['main_id'], '_MailPress_attached_file');
 		if ($metas) foreach($metas as $meta) $attachements .= "<tr><td>&nbsp;" . MP_Mails::get_attachement_link($meta, $mail->status) . "</td></tr>";
@@ -435,8 +417,6 @@ class MP_Actions
 
 	public static function viewadmin() 
 	{
-		MailPress::require_class('Mail');
-
 		$id 		= $_GET['id'];
 		$main_id 	= $_GET['main_id'];
 		$type		= (isset($_GET['type']))  ? $_GET['type']  : 'html';
@@ -452,9 +432,6 @@ class MP_Actions
 
 	public static function view() 
 	{
-		MailPress::require_class('Users');
-		MailPress::require_class('Mails');
-		MailPress::require_class('Mail');
 		$id 		= $_GET['id'];
 		$key		= $_GET['key'];
 		$email 	= MP_Users::get_email(MP_Users::get_id($key));
@@ -472,7 +449,6 @@ class MP_Actions
 		}
 		else
 		{
-			MailPress::require_class('Mailmeta');
 			$m = MP_Mailmeta::get($id, '_MailPress_replacements');
 			if (!is_array($m)) $m = array();
 
@@ -503,10 +479,10 @@ class MP_Actions
 		$args			= array( 'action'	=> 'previewtheme', 'template' => $_GET['template'], 'stylesheet'=> $_GET['stylesheet'] );
 
 		$args['type'] 	= 'html';
-		$html 		= "<iframe id='ihtml'		style='width:100%;border:0;height:550px' src='" . clean_url(add_query_arg( $args, MP_Action_url )) . "'></iframe>";
+		$html 		= "<iframe id='ihtml'		style='width:100%;border:0;height:550px' src='" . esc_url(add_query_arg( $args, MP_Action_url )) . "'></iframe>";
 
 		$args['type'] 	= 'plaintext';
-		$plaintext 		= "<iframe id='iplaintext' 	style='width:100%;border:0;height:550px' src='" . clean_url(add_query_arg( $args, MP_Action_url )) . "'></iframe>";
+		$plaintext 		= "<iframe id='iplaintext' 	style='width:100%;border:0;height:550px' src='" . esc_url(add_query_arg( $args, MP_Action_url )) . "'></iframe>";
 
 		unset($view);
 		include (MP_ABSPATH . 'mp-includes/html/mail.php');
@@ -535,7 +511,6 @@ class MP_Actions
 		$mail->unsubscribe= __('"Subscription management link"', MP_TXTDOM);
 		$mail->viewhtml 	= __('"Trouble reading link"', MP_TXTDOM);
 
-		MailPress::require_class('Mail');
 		$x = new MP_Mail();
 		$x->args = new stdClass();
 		$x->args = $mail;
@@ -561,7 +536,6 @@ class MP_Actions
 		$content = trim(stripslashes($_POST['html']));
 		if (empty($content)) return '';
 
-		MailPress::require_class('Html2txt');
 		$txt = new MP_Html2txt();
 		echo trim($txt->get_text( apply_filters('the_content', $content), 0 ), " \r\n");
 		die();
@@ -574,8 +548,6 @@ class MP_Actions
 		$data = '';
 		$supplemental = array();
 		$do_lock 	= true;
-
-		MailPress::require_class('Mails');
 
 		$working_id = $main_id 	= (int) $_POST['id'];
 		$do_autosave= (bool) $_POST['autosave'];
@@ -598,7 +570,7 @@ class MP_Actions
 				$do_autosave 	= $do_lock = false;
 				$last_user 		= get_userdata( $last );
 				$last_user_name 	= ($last_user) ? $last_user->display_name : __( 'Someone' );	
-				$data 		= new WP_Error( 'locked', sprintf( __( 'Autosave disabled: %s is currently editing this mail.' ) , wp_specialchars( $last_user_name )	) );
+				$data 		= new WP_Error( 'locked', sprintf( __( 'Autosave disabled: %s is currently editing this mail.' ) , esc_html( $last_user_name )	) );
 				$supplemental['disable_autosave'] = 'disable';
 			}
 
@@ -608,8 +580,6 @@ class MP_Actions
 				if (!$working_id)
 				{
 					$working_id = MP_Mails::get_id(__CLASS__ . ' 2 ' . __METHOD__);
-
-					MailPress::require_class('Mailmeta');
 
 					$mailmetas = MP_Mailmeta::get( $main_id, '_MailPress_mail_revisions');
 					$mailmetas[$current_user->ID] = $working_id;
@@ -752,10 +722,9 @@ class MP_Actions
 					'guid' 	=> $uploaded_file['url']
 				);
 // Save the data
-		MailPress::require_class('Mailmeta');
 		$id = MP_Mailmeta::add( $draft_id, '_MailPress_attached_file', $object );
 
-		$href = clean_url(add_query_arg( array('action' => 'attach_download', 'id' => $id), MP_Action_url ));
+		$href = esc_url(add_query_arg( array('action' => 'attach_download', 'id' => $id), MP_Action_url ));
 		return array('id' => $id, 'url' => $href, 'file' => $object['file_fullpath']);
 	}
 
@@ -764,7 +733,6 @@ class MP_Actions
 	{
 		$meta_id 	= (int) $_GET['id'];
 
-		MailPress::require_class('Mailmeta');
 		$meta = MP_Mailmeta::get_by_id($meta_id);
 
 		if (!$meta) MailPress::mp_die(__('Cannot Open Attachement 1!', MP_TXTDOM));
@@ -797,20 +765,17 @@ class MP_Actions
 	{
 		if ('mp_user' == $_POST['type'])
 		{
-			MailPress::require_class('Usermeta');
 			if (!MP_Usermeta::add(     $_POST['id'], '_MailPress_' . $_POST['prefix'], $_POST['settings'], true ))
 				MP_Usermeta::update( $_POST['id'], '_MailPress_' . $_POST['prefix'], $_POST['settings'] );
 		}
 		else
 		{
-			MailPress::require_class('Mailmeta');
 			if (!MP_Mailmeta::add(     $_POST['id'], '_MailPress_' . $_POST['prefix'], $_POST['settings'], true ))
 				MP_Mailmeta::update( $_POST['id'], '_MailPress_' . $_POST['prefix'], $_POST['settings'] );
 		}
 		MailPress::mp_die();
 
-		update_usermeta( MailPress::get_wp_user_id(), '_MailPress_' . $_POST['prefix'], $_POST['settings'] );
+		update_user_meta( MailPress::get_wp_user_id(), '_MailPress_' . $_POST['prefix'], $_POST['settings'] );
 		MailPress::mp_die();
 	}
 }
-new MP_Actions();

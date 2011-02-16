@@ -6,7 +6,7 @@ Plugin Name: MailPress_tracking
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Tracking
 Description: This is just an add-on for MailPress to track the mails/users activity.
 Author: Andre Renaut
-Version: 5.0.1
+Version: 5.1
 Author URI: http://www.mailpress.org
 */
 
@@ -90,7 +90,7 @@ class MailPress_tracking
 		$args = array();
 		$args['id'] 	= $mail->id;
 
-		$tracking_url 	= clean_url(MailPress::url( MailPress_tracking_m, array_merge($args, $url_parms)));
+		$tracking_url 	= esc_url(MailPress::url( MailPress_tracking_m, array_merge($args, $url_parms)));
 
 	// actions
 		$actions['tracking'] = "<a href='$tracking_url' title='" . __('See tracking results', MP_TXTDOM ) . "'>" . __('Tracking', MP_TXTDOM) . '</a>';
@@ -107,7 +107,7 @@ class MailPress_tracking
 		$args = array();
 		$args['id'] 	= $user->id;
 
-		$tracking_url 	= clean_url(MailPress::url( MailPress_tracking_u, array_merge($args, $url_parms)));
+		$tracking_url 	= esc_url(MailPress::url( MailPress_tracking_u, array_merge($args, $url_parms)));
 
 	// actions
 		$actions['tracking'] = "<a href='$tracking_url' title='" . __('See tracking results', MP_TXTDOM ) . "'>" . __('Tracking', MP_TXTDOM) . '</a>';
@@ -136,7 +136,6 @@ class MailPress_tracking
 		$ip = $wpdb->get_var( $wpdb->prepare( "SELECT ip FROM $wpdb->mp_tracks WHERE user_id = %d AND ip <> '' ORDER BY tmstp DESC LIMIT 1;", $id) );
 		if (!$ip) return false;
 
-		MailPress::require_class('Users');
 		return MP_Users::set_ip($id, $ip);
 	}
 
@@ -190,8 +189,6 @@ class MailPress_tracking
 			$toemail = (is_email($k)) ? $k : $v;
 			if (isset($mail->replacements[$toemail]['{{_confkey}}']))
 			{
-				MailPress::require_class('Usermeta');
-				MailPress::require_class('Users');
 				MP_Usermeta::add(MP_Users::get_id_by_email($toemail), '_MailPress_mail_sent', $mail->id);
 			}
 		}
@@ -263,7 +260,6 @@ class MailPress_tracking
 		global $wpdb;
 		$meta_id = $wpdb->get_var( $wpdb->prepare( "SELECT meta_id FROM $wpdb->mp_mailmeta WHERE mp_mail_id = %d AND meta_key = %s AND meta_value = %s ;", $mail_id, $meta_key, $meta_value ) );
 		if ($meta_id) return $meta_id;
-		MailPress::require_class('Mailmeta');
 		return MP_Mailmeta::add( $mail_id, $meta_key, $meta_value);
 	}
 
@@ -289,7 +285,6 @@ class MailPress_tracking
 	{
 		global $wpdb;
 
-		MailPress::require_class('Users');
 		$mp_user_id = MP_Users::get_id($_GET['us']);
 
 		if (!$mp_user_id) return;
@@ -369,7 +364,6 @@ class MailPress_tracking
 // for autorefresh
 	public static function autorefresh_js($scripts)
 	{
-		MailPress::require_class('AutoRefresh_js');
 		return MP_AutoRefresh_js::register_scripts($scripts);
 	}
 
@@ -496,7 +490,6 @@ class MailPress_tracking
 				return __('<b>unsubscribed</b>', MP_TXTDOM);
 			break;
 			default :
-				MailPress::require_class('Users');
 				$confkey = '#µ$&$µ#';
 				$url = MP_Users::get_subscribe_url($confkey);
 				$url = str_replace($confkey, '', $url);

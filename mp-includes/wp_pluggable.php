@@ -1,6 +1,4 @@
 <?php
-require_once('class/MP_Pluggable.class.php');
-
 add_filter('retrieve_password_message', 	array('MP_Pluggable', 'retrieve_password_message'), 8, 2);
 add_filter('password_reset_message', 	array('MP_Pluggable', 'password_reset_message')   , 8, 2);
 
@@ -8,9 +6,9 @@ add_filter('password_reset_message', 	array('MP_Pluggable', 'password_reset_mess
  * wp_mail() - Function to send mail
  */
 if ( !function_exists( 'wp_mail' ) ) :
-	function wp_mail( $to, $subject, $message, $headers = '', $attachements = false ) 
+	function wp_mail( $to, $subject, $message, $headers = '', $attachments = array() ) 
 	{
-		MP_Pluggable::wp_mail( $to, $subject, $message, $headers, $attachements);
+		return MP_Pluggable::wp_mail( $to, $subject, $message, $headers, $attachments);
 	}
 endif;
 

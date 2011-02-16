@@ -1,5 +1,4 @@
 <?php
-
 global $mp_user;
 
 $url_parms = MP_AdminPage::get_url_parms(array('mode', 'status', 's', 'apage', 'author', 'mailinglist', 'newsletter', 'startwith'));
@@ -10,7 +9,6 @@ $url_parms = MP_AdminPage::get_url_parms(array('mode', 'status', 's', 'apage', '
 
 if (!isset($_GET['id'])) MP_AdminPage::mp_redirect( MP_AdminPage::url(MailPress_users, $url_parms) );
 
-MP_AdminPage::require_class('Users');
 $mp_user = MP_Users::get( $_GET['id'] );
 $active  = ('active' == $mp_user->status) ? true : false;
 
@@ -29,7 +27,7 @@ if (isset($_GET['saved'])) 	{$err += 0; if (!empty($message)) $message .= '<br /
 		<input type='hidden' 				name='action'  		value='save' />
 
 		<input type="hidden" name='id' 		value="<?php echo $mp_user->id ?>" id='mp_user_id' />
-		<input type="hidden" name='referredby' 	value='<?php if(isset($_SERVER['HTTP_REFERER'])) echo clean_url($_SERVER['HTTP_REFERER']); ?>' />
+		<input type="hidden" name='referredby' 	value='<?php if(isset($_SERVER['HTTP_REFERER'])) echo esc_url($_SERVER['HTTP_REFERER']); ?>' />
 		<?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
 		<?php wp_nonce_field( 'meta-box-order',  'meta-box-order-nonce', false ); ?>
 
@@ -51,7 +49,7 @@ if (isset($_GET['saved'])) 	{$err += 0; if (!empty($message)) $message .= '<br /
 								</td>
 								<td class='mp_avatar' rowspan='2'>
 <?php if (get_option('show_avatars')) echo get_avatar( $mp_user->email, 64 ) . '<br /><br />'; ?>
-<?php MP_AdminPage::require_class('Users'); echo MP_Users::get_flag_IP(); ?>
+<?php echo MP_Users::get_flag_IP(); ?>
 								</td>
 							</tr>
 							<tr valign='top'>

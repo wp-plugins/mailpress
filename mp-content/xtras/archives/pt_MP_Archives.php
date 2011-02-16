@@ -8,7 +8,6 @@ Template Name: MailPress Archives
 <?php
 if (class_exists('MailPress'))
 {
-	MailPress::require_class('Query');
 	$m = new MP_Query();
 	$m->query();
 	while ($m->have_mails()) : $m->the_mail(); 

@@ -1,8 +1,5 @@
 <?php
 /* based on http://www.chuggnutt.com/html2text.php */
-
-MailPress::require_class('Html2txt_api');
-
 class MP_Html2txt extends MP_Html2txt_api
 {
 	var   $files = array();

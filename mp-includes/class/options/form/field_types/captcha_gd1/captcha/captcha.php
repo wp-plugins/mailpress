@@ -22,7 +22,6 @@ class MP_Forms_field_type_captcha_gd1_cryptogra
 	{
 		session_start();
 
-		MailPress::require_class('Forms_fields');
 		$field = MP_Forms_fields::get($_GET['id']);
 
 		$root = dirname(__FILE__) . '/cfg/';

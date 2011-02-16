@@ -110,7 +110,6 @@ class MP_Forms
 
 		if (!$id) return $id;
 
-		MailPress::require_class('Forms_fields');
 		MP_Forms_fields::check_visitor($id, $has_visitor, $tbc_visitor);
 
 		return $id;
@@ -142,7 +141,6 @@ class MP_Forms
 
 		if ($dup_id)
 		{
-			MailPress::require_class('Forms_fields');
 			$fields = MP_Forms_fields::get_all($id);
 			if ($fields) foreach($fields as $field) MP_Forms_fields::duplicate($field->id, $dup_id);
 		}
@@ -154,7 +152,6 @@ class MP_Forms
 	{
 		global $wpdb;
 		$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->mp_forms WHERE id = %d;", $id) );
-		MailPress::require_class('Forms_fields');
 		MP_Forms_fields::delete_all($id);
 		return true;
 	}
@@ -163,21 +160,18 @@ class MP_Forms
 
 	public static function form( $id )
 	{
-		MailPress::require_class('Forms');
 		$form = MP_Forms::get($id);
 		if (!$form) return '<!-- MailPress_form  ERROR : unknown form #' . $id . ' ! -->';
 
-		MailPress::require_class('Forms_fields');
 		$fields = MP_Forms_fields::get_all($form->id);
 		if (!$fields) return '<!-- MailPress_form  WARNING : form #' . $form->id . ' is empty ! -->';
 
-		MailPress::require_class('Forms_templates');
 		$form_templates = new MP_Forms_templates();
 		$xform_template = $form_templates->get_all();
 		if (!isset($xform_template[$form->template]))
 			if (!isset($xform_template['default'])) return '<!-- MailPress_form  ERROR : form #' . $form->id . ', template : ' . $form->template . ' unknown ! -->';
 
-		MailPress::load_options('Forms_field_types');
+		new MP_Forms_field_types();
 
 		$processed = $on_error = false;
 		$submitted = ((isset($_POST[self::prefix][$id])));
@@ -207,7 +201,6 @@ class MP_Forms
 		$mail  = new stdClass();
 		$attachements = array();
 
-		MailPress::require_class('Mails');
 		$mail->id = $mail_main_id = MP_Mails::get_id('MP_Forms::process');
 
 		$array->form['id'] 	= $form->id;
@@ -242,6 +235,12 @@ class MP_Forms
 		$mail->Theme 	= $form->settings['recipient']['theme'];
 		if ('0' != $form->settings['recipient']['template']) $mail->Template = $form->settings['recipient']['template'];
 
+		if (isset($visitor_toemail))
+		{
+			$mail->fromemail 	= $visitor_toemail;
+			$mail->fromname   = (isset($visitor_toname)) ? $visitor_toname : $visitor_toemail;
+		}
+
 		$mail->toemail 	= $form->settings['recipient']['toemail'];
 		$mail->toname     = $form->settings['recipient']['toname'];
 
@@ -254,7 +253,6 @@ class MP_Forms
         
 		if ('0' != $form->settings['visitor']['subscription'] && isset($visitor_toemail))
 		{
-			MailPress::require_class('Users');
 
 			if ($mp_user = MP_Users::get( MP_Users::get_id_by_email($visitor_toemail) ))
 			{
@@ -307,7 +305,7 @@ class MP_Forms
 						MP_Users::add($visitor_toemail, $visitor_toname);
 					break;
 					case '3' :	// active
-						MP_Users::insert($visitor_toemail, $visitor_toname, md5(uniqid(rand(), 1)), 'active');
+						MP_Users::insert($visitor_toemail, $visitor_toname, array('status' => 'active'));
 					break;
 				}
 				do_action('MailPress_visitor_subscription', 'init', $visitor_toemail, $form);
@@ -477,7 +475,6 @@ class MP_Forms
 			}
 		}
 
-		MailPress::require_class('Forms_fields');
 		return sprintf('%2$s%1$s%3$s%1$s%4$s', "\n", self::get_tag( $form, MP_Forms_fields::have_file($form->id) ), implode("\n", $htmls), '</form>');
 	}
 
@@ -510,10 +507,8 @@ class MP_Forms
 	public static function get_attribute($attr, $value) { $quote = (false !== strpos($value, '"')) ? "'" : '"'; return " $attr=$quote$value$quote"; }
 	public static function get_field($field, $html = false, $form_template = false)
 	{
-		MailPress::load_options('Forms_field_types');
 		if (!$html)
 		{
-			MailPress::require_class('Forms_templates');
 			$form_templates 	= new MP_Forms_templates();
 			$html			= $form_templates->get_field_template($form_template, $field->template);
 			if (!$html) $html = '{{field}}';
@@ -559,7 +554,6 @@ class MP_Forms
 					'guid' 	=> $uploaded_file['url']
 				);
 // Save the data
-		MailPress::require_class('Mailmeta');
 		return MP_Mailmeta::add( $draft_id, '_MailPress_attached_file', $object );
 	}
 

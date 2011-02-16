@@ -1,6 +1,4 @@
 <?php
-MailPress::require_class('Admin_page');
-
 class MP_AdminPage extends MP_Admin_page
 {
 	const screen 	= 'mailpress_user';
@@ -19,8 +17,6 @@ class MP_AdminPage extends MP_Admin_page
 
 		$list_url = self::url(MailPress_users, self::get_url_parms());
 
-		self::require_class('Users');
-
 		switch($action) 
 		{
 			case 'activate' :
@@ -32,7 +28,6 @@ class MP_AdminPage extends MP_Admin_page
 				self::mp_redirect($list_url);
 			break;
 			case 'unbounce' :
-				self::require_class('Usermeta');
 				if (MP_Users::set_status($id, 'waiting'))
 				{
 					MP_Usermeta::delete($id, '_MailPress_bounce_handling');
@@ -50,18 +45,15 @@ class MP_AdminPage extends MP_Admin_page
 
 				if ($_POST['mp_user_name'] != $_POST['mp_user_old_name'])
 				{
-					self::require_class('Users');
 					MP_Users::update_name($id, $_POST['mp_user_name']);
 				}
 
 				switch (true)
 				{
 					case isset($_POST['addmeta']) :
-						self::require_class('Usermeta');
 						MP_Usermeta::add_meta($id);
 					break;
 					case isset($_POST['updatemeta']) :
-						self::require_class('Usermeta');
 						foreach ($_POST['meta'] as $meta_id => $meta)
 						{
 							$meta_key = $meta['key'];
@@ -70,7 +62,6 @@ class MP_AdminPage extends MP_Admin_page
 						}
 					break;
 					case isset($_POST['deletemeta']) :
-						self::require_class('Usermeta');
 						foreach ($_POST['deletemeta'] as $meta_id => $x)
 							MP_Usermeta::delete_by_id( $meta_id );
 					break;
@@ -116,8 +107,8 @@ class MP_AdminPage extends MP_Admin_page
 				'type'	=> 'mp_user',
 				'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/',
 				'ajaxurl'	=> MP_Action_url,
-				'center'	=> js_escape(__('center', MP_TXTDOM)),
-				'changemap'	=> js_escape(__('change map', MP_TXTDOM))
+				'center'	=> esc_js(__('center', MP_TXTDOM)),
+				'changemap'	=> esc_js(__('change map', MP_TXTDOM))
 			));
 
 			$deps[] = 'mp-gmap3';
@@ -164,7 +155,6 @@ class MP_AdminPage extends MP_Admin_page
 		{
 			if ($id)
 			{
-				self::require_class('Usermeta');
 				$metas = MP_Usermeta::get($id);
 				if ($metas) 
 				{
@@ -187,15 +177,15 @@ class MP_AdminPage extends MP_Admin_page
 	public static function meta_box_submit($mp_user) 
 	{
 		$url_parms 	= self::get_url_parms();
-		if (current_user_can('MailPress_delete_users')) 	$delete_url =   clean_url(self::url(MailPress_user . "&amp;action=delete&amp;id=$mp_user->id",   $url_parms));
+		if (current_user_can('MailPress_delete_users')) 	$delete_url =   esc_url(self::url(MailPress_user . "&amp;action=delete&amp;id=$mp_user->id",   $url_parms));
 
-		$unbounce_url = clean_url(self::url(MailPress_user . "&amp;action=unbounce&amp;id=$mp_user->id", $url_parms));
-		$unbounce_click = "onclick=\"return (confirm('" . js_escape(sprintf( __("You are about to unbounce this MailPress user '%s'\n  'Cancel' to stop, 'OK' to unbounce.", MP_TXTDOM), $mp_user->id )) . "'));\"";
+		$unbounce_url = esc_url(self::url(MailPress_user . "&amp;action=unbounce&amp;id=$mp_user->id", $url_parms));
+		$unbounce_click = "onclick=\"return (confirm('" . esc_js(sprintf( __("You are about to unbounce this MailPress user '%s'\n  'Cancel' to stop, 'OK' to unbounce.", MP_TXTDOM), $mp_user->id )) . "'));\"";
 		if ('bounced' == $mp_user->status) $unbounce = "<a class='button button-highlighted' style='float:left;min-width:80px;text-align:center;' href='$unbounce_url' $unbounce_click>" . __('Unbounce', MP_TXTDOM) . "</a>";
 
 		if (class_exists('MailPress_tracking'))
 		{
-			$tracking_url = clean_url(self::url(MailPress_tracking_u . "&amp;id=$mp_user->id"));
+			$tracking_url = esc_url(self::url(MailPress_tracking_u . "&amp;id=$mp_user->id"));
 			$tracking = "<a class='button preview' href='$tracking_url'>" . __('Tracking', MP_TXTDOM) . "</a>";
 		}
 ?>
@@ -210,7 +200,7 @@ class MP_AdminPage extends MP_Admin_page
 	<div id="major-publishing-actions">
 		<div id="delete-action">
 <?php 	if ($delete_url) : ?>
-			<a class='submitdelete' href='<?php echo $delete_url ?>' onclick="return (confirm('<?php echo(js_escape(sprintf( __("You are about to delete this MailPress user '%s'\n  'Cancel' to stop, 'OK' to delete.", MP_TXTDOM), $mp_user->id ))); ?>'));">
+			<a class='submitdelete' href='<?php echo $delete_url ?>' onclick="return (confirm('<?php echo(esc_js(sprintf( __("You are about to delete this MailPress user '%s'\n  'Cancel' to stop, 'OK' to delete.", MP_TXTDOM), $mp_user->id ))); ?>'));">
 				<?php _e('Delete', MP_TXTDOM); ?>
 			</a>
 <?php		endif; ?>
@@ -230,7 +220,6 @@ class MP_AdminPage extends MP_Admin_page
 <div id="user-import">
 <?php
 		$header = true;
-		self::require_class('Usermeta');
 		$metas = MP_Usermeta::get($mp_user->id);
 
 		if ($metas)
@@ -299,7 +288,6 @@ class MP_AdminPage extends MP_Admin_page
 <div id='postcustomstuff'>
 	<div id='ajax-response'></div>
 <?php
-		self::require_class('Usermeta');
 		$metadata = MP_Usermeta::has($mp_user->id);
 		$count = 0;
 		if ( !$metadata ) : $metadata = array(); 
@@ -452,11 +440,9 @@ class MP_AdminPage extends MP_Admin_page
 	// meta_box_IP_info
 		$x = false;
 		$ip = ( '' == $mp_user->laststatus_IP) ? $mp_user->created_IP : $mp_user->laststatus_IP;
-		self::require_class('Ip');
 		$x  = MP_Ip::get_all($ip);
 
 	// meta_box_IP_info_user_settings
-		MailPress::require_class('Usermeta');
 		$u['meta_box_IP_info_user_settings'] = MP_Usermeta::get($mp_user->id, '_MailPress_meta_box_IP_info');
 		if (!$u['meta_box_IP_info_user_settings']) $u['meta_box_IP_info_user_settings'] = get_user_option('_MailPress_meta_box_IP_info');
 		$def_lat = (isset($x['geo']['lat']))? $x['geo']['lat'] : 48.8352;

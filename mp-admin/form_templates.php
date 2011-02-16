@@ -1,6 +1,4 @@
-<?php 
-MailPress::require_class('Admin_page');
-
+<?php
 class MP_AdminPage extends MP_Admin_page
 {
 	const screen 	= 'MailPress_page_templates';
@@ -20,7 +18,11 @@ class MP_AdminPage extends MP_Admin_page
 		{
 			case 'update' :
 				$template = $_POST['template'];
-				$template_file = MP_CONTENT_DIR . "advanced/forms/templates/$template.xml";
+
+				$root  = MP_CONTENT_DIR . 'advanced/forms';
+				$root  = apply_filters('MailPress_advanced_forms_root', $root);
+				$root .= '/templates';
+				$template_file = "$root/$template.xml";
 
 				$args['action']  = 'edit';
 				$args['template']= $template;

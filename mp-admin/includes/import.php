@@ -15,7 +15,6 @@ if (isset($_GET['mp_import']))
 
 	define('MP_IMPORTING', true);
 
-	MP_AdminPage::require_class('Log');
 	call_user_func($importers[$importer][2]);
 
 	return;

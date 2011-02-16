@@ -27,8 +27,7 @@ abstract class MP_abstract
 	public static function url($url, $url_parms = array(), $wpnonce = false)
 	{
 		$url = add_query_arg(array_map ( 'urlencode', $url_parms), $url);
-		if ($wpnonce) return wp_nonce_url( $url, $wpnonce );
-		return $url;
+		return ($wpnonce) ? wp_nonce_url( $url, $wpnonce ) : $url;
 	}
 
 //// plugin/add-on ////
@@ -46,14 +45,11 @@ abstract class MP_abstract
 
 	public static function require_class($classname, $path = false)
 	{
+		/* deprecated */
+		if (!$path) return;
 		if (class_exists('MP_' . $classname)) return;
-		if (!$path) $path = MP_ABSPATH . 'mp-includes/class/';
-		require_once("{$path}MP_{$classname}.class.php");
-	}
-
-	public static function load_options($classname)
-	{
-		self::require_class($classname, MP_ABSPATH . 'mp-includes/class/options/');
+		$file = "{$path}MP_{$classname}.class.php";
+		if (is_file($file)) require_once($file);
 	}
 
 //// form ////
@@ -96,22 +92,6 @@ abstract class MP_abstract
 	}
 
 //// functions ////
-
-	public static function no_abort_limit()
-	{
-		if (function_exists('ignore_user_abort')) 	ignore_user_abort(1);
-		if (function_exists('set_time_limit')) 		if( !in_array(ini_get('safe_mode'),array('1', 'On')) ) set_time_limit(0);
-	}
-
-	public static function lock($lock, $timeout = 60)
-	{
-/* not working, retrieves always true 
-		global $wpdb;
-		$x = $wpdb->query("SELECT GET_LOCK('$lock', 1);");
-		return (!empty($x));
-*/
-		return apply_filters('MailPress_lock', true, $lock, $timeout);
-	}
 
 	public static function mp_redirect($r)
 	{

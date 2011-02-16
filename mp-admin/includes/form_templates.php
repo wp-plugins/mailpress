@@ -2,14 +2,16 @@
 
 // Form templates
 
-MP_AdminPage::require_class('Forms_templates');
 $form_templates = new MP_Forms_templates();
 $templates = $form_templates->get_all();
 
 if (isset($_GET['template']))	$template = $_GET['template'];
 if (!isset($template) )		$template = reset($templates);
 
-$template_file = MP_CONTENT_DIR . "advanced/forms/templates/$template.xml";
+$root  = MP_CONTENT_DIR . 'advanced/forms';
+$root  = apply_filters('MailPress_advanced_forms_root', $root);
+$root .= '/templates';
+$template_file = "$root/$template.xml";
 
 if ( ! is_file($template_file) ) wp_die(sprintf('<p>%s</p>', __('No such file exists! Double check the name and try again.')));
 

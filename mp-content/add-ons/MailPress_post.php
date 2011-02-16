@@ -6,7 +6,7 @@ Plugin Name: MailPress_post
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Post
 Description: This is just an add-on for MailPress to select posts for draft mails
 Author: Roberto Morales O., Andre Renaut
-Version: 5.0.1
+Version: 5.1
 Author URI: http://www.mailpress.org
 */
 
@@ -61,7 +61,6 @@ class MailPress_post
 // for mails list
 	public static function get_icon_mails($mail_id)
 	{ 
-		MailPress::require_class('Posts');
 		if (!MP_Posts::object_have_relations($mail_id)) return;
 ?>
 			<img class='attach' alt="<?php _e('Posts', MP_TXTDOM); ?>" title="<?php _e('Posts', MP_TXTDOM); ?>" src='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>mp-admin/images/post.png' />
@@ -71,7 +70,6 @@ class MailPress_post
 // trash post
 	public static function trash_post($post_id)
 	{ 
-		MailPress::require_class('Posts');
 		MP_Posts::delete_post($post_id);
 	}
 
@@ -108,8 +106,6 @@ class MailPress_post
 			$x->send();
 		}
 
-		MailPress::require_class('Posts');
-
 		$mpdraft = MP_Posts::insert( $_POST['newmpdraft'], $_POST['post_id'] );
 
 		if ( is_wp_error($mpdraft) ) 
@@ -130,15 +126,15 @@ class MailPress_post
 
 	public static function get_draft_row($id, $subject)
 	{
-		$edit_url = clean_url(MailPress_edit . "&id=$id");
+		$edit_url = esc_url(MailPress_edit . "&id=$id");
 		$title    = esc_attr(sprintf( __('Edit "%1$s"', MP_TXTDOM) , $subject ));
 		$actions['edit'] = "<a href='$edit_url' title=\"$title\">$id</a>";
 
-		$view_url = clean_url(add_query_arg( array('action' => 'iview', 'id' => $id, 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400'), MP_Action_url ));
+		$view_url = esc_url(add_query_arg( array('action' => 'iview', 'id' => $id, 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400'), MP_Action_url ));
 		$title    = esc_attr(sprintf( __('View "%1$s"', MP_TXTDOM) , $subject ));
 		$actions['view'] = "<a href='$view_url' class='thickbox' title=\"$title\">$subject</a>";
 
-		$delete_url = clean_url(MailPress::url( '#', array(), "delete-mpdraft_$id" ));
+		$delete_url = esc_url(MailPress::url( '#', array(), "delete-mpdraft_$id" ));
 		$title      = esc_attr(__('Delete link', MP_TXTDOM));
 		$actions['delete'] = "<a class='delete:mpdraftchecklist:mpdraft-{$id}' href='$delete_url' title=\"$title\"><img src='" . get_option('siteurl') . '/' . MP_PATH . "mp-admin/images/trash.png' alt='' /></a>";
 
@@ -162,7 +158,6 @@ class MailPress_post
 
 	public static function wp_ajax_delete_mpdraft()
 	{
-		MailPress::require_class('Posts');
 		$x = MP_Posts::delete($_POST['id'], $_POST['post_id']);
 		$x = ($x) ? $_POST['id'] : '-1';
 		MailPress::mp_die($x);
@@ -189,7 +184,6 @@ class MailPress_post
 		if (!$mail_id) return;
 		if (!current_user_can('MailPress_manage_posts')) return;
 
-		MP_AdminPage::require_class('Posts');
 		if ( !MP_Posts::get_object_terms($mail_id) ) return;
 
 		add_meta_box('write_posts', __('Posts', MP_TXTDOM), array(__CLASS__, 'meta_box'), MP_AdminPage::screen, 'normal', 'core');
@@ -197,7 +191,6 @@ class MailPress_post
 /**/
 	public static function meta_box($mail)
 	{
-		MP_AdminPage::require_class('Posts');
 		$id = (isset($mail->id)) ? $mail->id : 0;
 		$post_ids = MP_Posts::get_object_terms($id);
 		if ( !$post_ids ) return;
@@ -223,7 +216,7 @@ class MailPress_post
 
 		$actions['sortable'] = "<img class='mppost-handle' style='cursor:move' alt='" . __('up/down', MP_TXTDOM) . "' title=\"" . esc_attr(__('up/down', MP_TXTDOM)) . "\" src='" . get_option('siteurl') . '/' . MP_PATH . "mp-admin/images/sortable.png' />";
 
-		$edit_url = clean_url('post.php?action=edit&post=' . $id);
+		$edit_url = esc_url('post.php?action=edit&post=' . $id);
 		$title    = esc_attr(sprintf( __('Edit "%1$s"', MP_TXTDOM) , $ptitle ));
 		$actions['edit'] = "<a href='$edit_url' title=\"$title\">$id</a>";
 
@@ -231,7 +224,7 @@ class MailPress_post
 		$title    = esc_attr(sprintf( __('View "%1$s"', MP_TXTDOM) , $ptitle ));
 		$actions['view'] = "<a href='$view_url' target='_new' title=\"$title\">$ptitle</a>";
 
-		$delete_url 	 = clean_url(MailPress::url( '#', array(), "delete-mppost_$id" ));
+		$delete_url = esc_url(MailPress::url( '#', array(), "delete-mppost_$id" ));
 		$title      = esc_attr(__('Delete link', MP_TXTDOM));
 		$actions['delete'] = "<a class='delete:mppostchecklist:mppost-{$id}' href='$delete_url' title=\"$title\"><img src='" . get_option('siteurl') . '/' . MP_PATH . "mp-admin/images/trash.png' alt='' /></a>";
 
@@ -265,14 +258,12 @@ class MailPress_post
 			$post_id = str_replace('mppost-', '', $post);
 			$meta_value[$post_id] = $post_id;
 		}
-		MailPress::require_class('Mailmeta');
 		if (!MP_Mailmeta::add($mp_mail_id, self::metakey_order, $meta_value, true))
 			MP_Mailmeta::update($mp_mail_id, self::metakey_order, $meta_value);
 	}
 
 	public static function mp_action_delete_mppost()
 	{
-		MailPress::require_class('Posts');
 		$x = MP_Posts::delete($_POST['mail_id'], $_POST['id']);
 		$x = ($x) ? $_POST['id'] : '-1';
 		MailPress::mp_die($x);
@@ -283,7 +274,6 @@ class MailPress_post
 	{ 
 		global $MP_post_ids, $mp_general;
 
-		MailPress::require_class('Posts');
 		$MP_post_ids = MP_Posts::get_object_terms($main_id);
 		if (empty($MP_post_ids)) return false;
 

@@ -1,6 +1,4 @@
-<?php 
-MailPress::require_class('Admin_page_list');
-
+<?php
 class MP_AdminPage extends MP_Admin_page_list
 {
 	const screen 	= MailPress_page_import;
@@ -12,7 +10,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function title() 
 	{
-		MP_AdminPage::load_options('Import_importers');
+		new MP_Import_importers();
 	}
 
 ////  Columns  ////
@@ -28,7 +26,6 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function get_list($void = '', $void2 = '',$void3 = '', $void4 = '') 
 	{
-		self::load_options('Import_importers');
 		$importers = MP_Import_importers::get_all();
 
 		return ( empty($importers) ) ? false : $importers;
@@ -44,7 +41,7 @@ class MP_AdminPage extends MP_Admin_page_list
 // url's
 		$url_parms = array();
 		$url_parms['mp_import'] 	= $id;
-		$import_url = clean_url(self::url( MailPress_import, $url_parms ));
+		$import_url = esc_url(self::url( MailPress_import, $url_parms ));
 // actions
 		$actions = array();
 		$actions['import'] = "<a href='$import_url' title='" . wptexturize(strip_tags($data[1])) . "'>" . ((strpos($id, 'export') !== false) ?  __('Export', MP_TXTDOM) : __('Import', MP_TXTDOM) ) . '</a>';
@@ -70,7 +67,7 @@ class MP_AdminPage extends MP_Admin_page_list
 			switch ($column_name) 
 			{
 				case 'name':
-					$out .= "<td $attributes><strong><a class='row-title' href='$import_url' title='" . attribute_escape(sprintf(__('Import "%s"', MP_TXTDOM), $data[1])) . "'>{$data[0]}</a></strong>";
+					$out .= "<td $attributes><strong><a class='row-title' href='$import_url' title='" . esc_attr(sprintf(__('Import "%s"', MP_TXTDOM), $data[1])) . "'>{$data[0]}</a></strong>";
 					$out .= self::get_actions($actions);
 					$out .= '</td>';
 				break;

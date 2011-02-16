@@ -1,6 +1,4 @@
-<?php 
-MailPress::require_class('Admin_page');
-
+<?php
 class MP_AdminPage extends MP_Admin_page
 {
 	const screen 	= MailPress_page_themes;
@@ -12,7 +10,6 @@ class MP_AdminPage extends MP_Admin_page
 
 	public static function redirect() 
 	{
-		self::require_class('Themes');
 		$th = new MP_Themes();
 
 		if ( isset($_GET['action']) ) 
@@ -73,13 +70,13 @@ class MP_AdminPage extends MP_Admin_page
 		$args['action'] 		= 'activate';
 		$args['template'] 	= $theme['Template'];
 		$args['stylesheet'] 	= $theme['Stylesheet'];
-		$activate_url = clean_url(self::url( MailPress_themes, $args, 'switch-theme_' . $theme['Template'] ));
+		$activate_url = esc_url(self::url( MailPress_themes, $args, 'switch-theme_' . $theme['Template'] ));
 
 		$args['action'] 		= 'theme-preview';
 		$args['TB_iframe'] 	= 'true';
 		$args['width'] 		= 600;
 		$args['height'] 		= 400;
-		$preview_url =  clean_url(self::url( MP_Action_url, $args));
+		$preview_url =  esc_url(self::url( MP_Action_url, $args));
 
 // titles's
 		$activate_title	= esc_attr( sprintf( __('Activate &#8220;%s&#8221;'), $theme['Title'] ) );

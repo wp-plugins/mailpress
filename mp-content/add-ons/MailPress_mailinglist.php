@@ -6,7 +6,7 @@ Plugin Name: MailPress_mailinglist
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Mailinglist
 Description: This is just an add-on for MailPress to manage mailing lists
 Author: Andre Renaut
-Version: 5.0.1
+Version: 5.1
 Author URI: http://www.mailpress.org
 */
 
@@ -126,7 +126,6 @@ class MailPress_mailinglist
 
 		if ($mp_user_id)
 		{
-			MailPress::require_class('Mailinglists');
 			$mp_user_mls = MP_Mailinglists::get_object_terms($mp_user_id);
 		}
 
@@ -198,7 +197,6 @@ class MailPress_mailinglist
 				array_push($mp_user_mls, $mailinglist_ID);
 			}
 		}
-		MailPress::require_class('Mailinglists');
 		MP_Mailinglists::set_object_terms( $mp_user_id, $mp_user_mls);
 	}
 
@@ -220,8 +218,6 @@ class MailPress_mailinglist
 
 	public static function user_register($wp_user_id)
 	{
-		MailPress::require_class('Users');
-
 		$user 	= get_userdata($wp_user_id);
 		$email 	= $user->user_email;
 		$mp_user_id	= MP_Users::get_id_by_email($email);
@@ -258,8 +254,6 @@ class MailPress_mailinglist
 		if (!isset($_POST['mailinglist'])) return $shortcode_message;
 		$shortcode = 'shortcode_mailinglists';
 
-		MailPress::require_class('Users');
-		MailPress::require_class('Mailinglists');
 		$mp_user_id = MP_Users::get_id_by_email($email);
 		$_POST[$shortcode] = MP_Mailinglists::get_object_terms($mp_user_id);
 
@@ -274,7 +268,6 @@ class MailPress_mailinglist
 	{
 		if (!$options['mailinglist']) return;
 
-		MailPress::require_class('Mailinglists');
 		$x = array();
 		foreach (array_map(trim, explode(',', $options['mailinglist'])) as $k => $v) if (MP_Mailinglists::get_name($v)) $x[] = $v;
 		if (empty($x)) return;
@@ -286,7 +279,6 @@ class MailPress_mailinglist
 
 	public static function mailinglists( $draft_dest = array() ) 
 	{
-		MailPress::require_class('Mailinglists');
 		$args = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'name' => 'default_mailinglist' );
 		foreach (MP_Mailinglists::array_tree($args) as $k => $v) $draft_dest[$k] = $v;
 		return $draft_dest;
@@ -299,8 +291,6 @@ class MailPress_mailinglist
 		$id = str_replace('MailPress_mailinglist~', '', $draft_toemail, $count);
 		if (0 == $count) return $query;
 		if (empty($id))  return $query;
-
-		MailPress::require_class('Mailinglists');
 
 		$children = MP_Mailinglists::get_children($id, ', ', '');
 		$ids = ('' == $children) ? ' = ' . $id : ' IN (' . $id . $children . ') ';
@@ -315,13 +305,11 @@ class MailPress_mailinglist
 
 	public static function set_user_mailinglists( $mp_user_id, $user_mailinglists = array() )
 	{
-		MailPress::require_class('Mailinglists');
 		MP_Mailinglists::set_object_terms( $mp_user_id, $user_mailinglists );
 	}
 
 	public static function delete_user( $mp_user_id )
 	{
-		MailPress::require_class('Mailinglists');
 		MP_Mailinglists::delete_object( $mp_user_id );
 
 	}
@@ -330,13 +318,12 @@ class MailPress_mailinglist
 
 	public static function load_Autoresponders_events()
 	{
-		MailPress::load_options('Autoresponders_events_mailinglist');
+		new MP_Autoresponders_events_mailinglist();
 	}
 
 // Sync wordpress user
 	public static function has_subscriptions($has, $mp_user_id)
 	{
-		MailPress::require_class('Mailinglists');
 		$x = MP_Mailinglists::get_object_terms($mp_user_id);
 
 		if (empty($x)) return $has;
@@ -345,7 +332,6 @@ class MailPress_mailinglist
 
 	public static function sync_subscriptions($oldid, $newid)
 	{
-		MailPress::require_class('Mailinglists');
 		$old = MP_Mailinglists::get_object_terms($oldid);
 		if (empty($old)) return;
 		$new = MP_Mailinglists::get_object_terms($newid);
@@ -366,7 +352,7 @@ class MailPress_mailinglist
 		{
 	// Default mailing list
 			$name = $wpdb->escape(__('Uncategorized', MP_TXTDOM));
-			$slug = sanitize_title(sanitize_term_field('slug', _c('Uncategorized', MP_TXTDOM), 0, self::taxonomy, 'db'));
+			$slug = sanitize_title(sanitize_term_field('slug', __('Uncategorized', MP_TXTDOM), 0, self::taxonomy, 'db'));
 			$wpdb->query("INSERT INTO $wpdb->terms (name, slug, term_group) VALUES ('$name', '$slug', '0')");
 			$term_id = $wpdb->get_var("SELECT term_id FROM $wpdb->terms WHERE slug = '$slug' ");
 			$wpdb->query("INSERT INTO $wpdb->term_taxonomy (term_id, taxonomy, description, parent, count) VALUES ($term_id, '" . self::taxonomy . "', '', '0', '0')");
@@ -378,7 +364,6 @@ class MailPress_mailinglist
 		$unmatches = $wpdb->get_results($wpdb->prepare( "SELECT DISTINCT a.id FROM $wpdb->mp_users a WHERE NOT EXISTS (SELECT DISTINCT b.id FROM $wpdb->term_taxonomy c, $wpdb->term_relationships d, $wpdb->mp_users b WHERE c.taxonomy = %s AND c.term_taxonomy_id = d.term_taxonomy_id AND b.id = d.object_id AND b.id = a.id)", self::taxonomy));
 		if ($unmatches) foreach ($unmatches as $unmatch)
 		{
-			MailPress::require_class('Mailinglists');
 			MP_Mailinglists::set_object_terms($unmatch->id, array($default_mailinglist));
 		}
 	}
@@ -421,7 +406,6 @@ class MailPress_mailinglist
 // for settings general
 	public static function settings_general()
 	{
-		MailPress::require_class('Mailinglists');
 		$default_mailinglist	= get_option(self::option_name_default);
 		$dropdown_options = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'selected' => $default_mailinglist, 'name' => 'default_mailinglist' );
 ?>
@@ -451,8 +435,6 @@ class MailPress_mailinglist
 	{
 		if (!isset($_POST['id'])) return;
 		if (!isset($_POST['mp_user_mailinglist'])) $_POST['mp_user_mailinglist'] = array();
-
-		MailPress::require_class('Mailinglists');
 
 		MP_Mailinglists::set_object_terms($_POST['id'], $_POST['mp_user_mailinglist']);
 	}
@@ -486,7 +468,6 @@ class MailPress_mailinglist
 
 	public static function meta_box($mp_user)
 	{ 
-		MailPress::require_class('Mailinglists');
 ?>
 <ul id="mailinglist-tabs">
 	<li class="tabs">
@@ -549,7 +530,7 @@ class MailPress_mailinglist
 		<li id="<?php echo $id; ?>" class="popular-mailinglist">
 			<label class="selectit" for="in-<?php echo $id; ?>">
 			<input id="in-<?php echo $id; ?>" type="checkbox" value="<?php echo (int) $mailinglist->term_id; ?>" />
-				<?php echo wp_specialchars( $mailinglist->name ); ?>
+				<?php echo esc_html( $mailinglist->name ); ?>
 			</label>
 		</li>
 <?php
@@ -559,10 +540,7 @@ class MailPress_mailinglist
 
 	public static function all_mailinglists_checkboxes( $mp_user_id = 0, $descendants_and_self = 0, $selected_mailinglists = false, $popular_mailinglists = false ) 
 	{
-		MailPress::require_class('Mailinglists_Walker_Checklist');
 		$walker = new MP_Mailinglists_Walker_Checklist;
-
-		MailPress::require_class('Mailinglists');
 
 		$descendants_and_self = (int) $descendants_and_self;
 		$args = array();
@@ -612,7 +590,6 @@ class MailPress_mailinglist
 // for mp_users list
 	public static function users_restrict($url_parms)
 	{
-		MailPress::require_class('Mailinglists');
 		$x = (isset($url_parms['mailinglist'])) ? $url_parms['mailinglist'] : '';
 		$dropdown_options = array('show_option_all' => __('View all mailing lists', MP_TXTDOM), 'hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'selected' => $x );
 		MP_Mailinglists::dropdown($dropdown_options);
@@ -631,7 +608,6 @@ class MailPress_mailinglist
 	{
 		if (!isset($url_parms['mailinglist']) || empty($url_parms['mailinglist'])) return $array;
 
-		MailPress::require_class('Mailinglists');
 		global $wpdb;
 
 		list($where, $tables) = $array;
@@ -653,8 +629,6 @@ class MailPress_mailinglist
 	{
 		if ('mailinglists' != $column_name) return;
 
-		MailPress::require_class('Mailinglists');
-
 		$args = array('orderby' => 'name', 'order' => 'ASC', 'fields' => 'all');
 		$mp_user_mls = MP_Mailinglists::get_object_terms( $mp_user->id, $args);
 
@@ -662,7 +636,7 @@ class MailPress_mailinglist
 		{
 			$out = array();
 			foreach ( $mp_user_mls as $m )
-				$out[] = "<a href='" . MailPress_users . "&amp;mailinglist=$m->term_id'>" . wp_specialchars(sanitize_term_field('name', $m->name, $m->term_id, self::taxonomy, 'display')) . "</a>";
+				$out[] = "<a href='" . MailPress_users . "&amp;mailinglist=$m->term_id'>" . esc_html(sanitize_term_field('name', $m->name, $m->term_id, self::taxonomy, 'display')) . "</a>";
 			echo join( ', ', $out );
 		}
 		else
@@ -674,8 +648,6 @@ class MailPress_mailinglist
 // for form page (visitor subscription options)
 	public static function form_visitor_subscription($form)
 	{
-		MailPress::require_class('Mailinglists');
-
 		$selected = get_option(self::option_name_default);
 		if (isset($form->settings['visitor']['mailinglist']))
 			if (MP_Mailinglists::get($form->settings['visitor']['mailinglist'])) $selected = $form->settings['visitor']['mailinglist'];
@@ -691,10 +663,8 @@ class MailPress_mailinglist
 	{
 		$mailinglist_ID = $form->settings['visitor']['mailinglist'];
 
-		MailPress::require_class('Mailinglists');
 		if (!MP_Mailinglists::get($mailinglist_ID)) return;
 
-		MailPress::require_class('Users');
 		if (!$mp_user_id = MP_Users::get_id_by_email($email)) return;
 
 		$user_mailinglists = MP_Mailinglists::get_object_terms($mp_user_id);
@@ -725,7 +695,6 @@ class MailPress_mailinglist
 			$x->send();
 		}
 
-		MailPress::require_class('Mailinglists');
 		if ( MP_Mailinglists::exists( trim( $_POST['name'] ) ) ) 
 		{
 			$x = new WP_Ajax_Response( array(	'what' => 'mailinglist', 
@@ -755,7 +724,7 @@ class MailPress_mailinglist
 			$mailinglist_full_name 	= $_mailinglist->name . ' &#8212; ' . $mailinglist_full_name;
 			$level++;
 		}
-		$mailinglist_full_name = attribute_escape($mailinglist_full_name);
+		$mailinglist_full_name = esc_attr($mailinglist_full_name);
 
 		include (MP_ABSPATH . 'mp-admin/mailinglists.php');
 		$x = new WP_Ajax_Response( array(	'what' => 'mailinglist', 
@@ -769,14 +738,12 @@ class MailPress_mailinglist
 
 	public static function mp_action_delete_mlnglst() 
 	{
-		MailPress::require_class('Mailinglists');
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
 		MailPress::mp_die( MP_Mailinglists::delete($id) ? '1' : '0' );
 	}
 
 	public static function mp_action_add_mailinglist()
 	{
-		MailPress::require_class('Mailinglists');
 		$names = explode(',', $_POST['newmailinglist']);
 		$parent = (int) $_POST['newmailinglist_parent'];
 		if ($parent < 0) $parent = 0;

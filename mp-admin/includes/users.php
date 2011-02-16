@@ -13,18 +13,17 @@ if (isset($url_parms['startwith']))
 if (isset($url_parms['newsletter']) && !empty($url_parms['newsletter'])) 
 {
 	$newsletter = MP_Newsletters::get( $url_parms['newsletter'] );
-	$subtitle .= ' ' . sprintf(__('in &#8220;%s&#8221;', MP_TXTDOM), wp_specialchars( $newsletter['descriptions']['admin']));
+	$subtitle .= ' ' . sprintf(__('in &#8220;%s&#8221;', MP_TXTDOM), esc_html( $newsletter['descriptions']['admin']));
 }
 if (isset($url_parms['mailinglist']) && !empty($url_parms['mailinglist'])) 
 {
-	MP_AdminPage::require_class('Mailinglists');
 	$mailinglist = MP_Mailinglists::get( $url_parms['mailinglist'] );
-	$subtitle .= ' ' . sprintf(__('in &#8220;%s&#8221;', MP_TXTDOM), wp_specialchars( $mailinglist->name ));
+	$subtitle .= ' ' . sprintf(__('in &#8220;%s&#8221;', MP_TXTDOM), esc_html( $mailinglist->name ));
 }
 if (isset($url_parms['author'])) 
 {
 	$author_user = get_userdata( $url_parms['author'] );
-	$subtitle .= ' ' . sprintf(__('by %s'), wp_specialchars( $author_user->display_name ));
+	$subtitle .= ' ' . sprintf(__('by %s'), esc_html( $author_user->display_name ));
 }
 
 //
@@ -70,7 +69,7 @@ foreach ($results as $k => $v)
 	if (isset($_GET[$k]) && $_GET[$k])
 	{
 		if (!isset($message)) $message = '';
-		$message .= sprintf( __ngettext( $v['s'], $v['p'], $_GET[$k] ), $_GET[$k] );
+		$message .= sprintf( _n( $v['s'], $v['p'], $_GET[$k] ), $_GET[$k] );
 		$message .=  '<br />';
 	}
 }

@@ -3,8 +3,6 @@ class MP_Mail_links
 {
 	public static function process() 
 	{
-		MailPress::require_class('Users');
-
 		$errs[1] = __('unknown user', MP_TXTDOM);
 		$errs[2] = __('unknown user', MP_TXTDOM);
 		$errs[3] = __('cannot activate user', MP_TXTDOM);
@@ -207,7 +205,6 @@ class MP_Mail_links
 
 		$email 	= MP_Users::get_email($mp_user_id);
 
-		MailPress::require_class('Mails');
 		$mail_id = $_GET['id'];
 		$mail = MP_Mails::get($mail_id);
 		if (!$mail)								return 8;
@@ -225,9 +222,8 @@ class MP_Mail_links
 				$title    = $mail->subject;
 				$content .= sprintf(__('<p> From : <b>%1$s</b></p>', MP_TXTDOM), MP_Mails::display_name_email($mail->fromname, $mail->fromemail));
 				$content .= sprintf(__('<p> To   : <b>%1$s</b></p>', MP_TXTDOM), MP_Mails::display_name_email($mail->toname, $mail->toemail));
-				$content .= "<p><iframe id='mp' name='mp' style='width:800px;height:600px;border:none;' src='" . clean_url($view_url) . "'></iframe></p>";
+				$content .= "<p><iframe id='mp' name='mp' style='width:800px;height:600px;border:none;' src='" . esc_url($view_url) . "'></iframe></p>";
 
-				MailPress::require_class('Mailmeta');
 				$metas = MP_Mailmeta::has( $mail_id, '_MailPress_attached_file');
 				if ($metas)
 				{
@@ -251,7 +247,6 @@ class MP_Mail_links
 			}
 			else
 			{
-				MailPress::require_class('Mailmeta');
 				$m = MP_Mailmeta::get($mail_id, '_MailPress_replacements');
 				if (!is_array($m)) $m = array();
 
@@ -262,7 +257,7 @@ class MP_Mail_links
 				foreach ($recipient as $k => $v) $title = str_replace($k, $v, $title);
 				$content .= sprintf(__('<p> From : <b>%1$s</b></p>', MP_TXTDOM), MP_Mails::display_name_email($mail->fromname, $mail->fromemail));
 				$content .= sprintf(__('<p> To   : <b>%1$s</b></p>', MP_TXTDOM), MP_Mails::display_name_email($email, $email));
-				$content .= "<p><iframe id='mp' name='mp' style='width:800px;height:600px;border:none;' src='" . clean_url($view_url) . "'></iframe></p>";
+				$content .= "<p><iframe id='mp' name='mp' style='width:800px;height:600px;border:none;' src='" . esc_url($view_url) . "'></iframe></p>";
 
 				$metas = MP_Mailmeta::has( $mail_id, '_MailPress_attached_file');
 				if ($metas)

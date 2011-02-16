@@ -98,7 +98,7 @@ if (is_dir($root))
 	<captcha>
 		<items>
 			<only_text>
-				<only_text><![CDATA[<?php if (!isset($field->id)) $field->id = 0; echo "<img src='" . clean_url(MP_Action_url . '?id=' . $field->id . '&action=1ahctpac') . "' alt='' />"; ?>]]></only_text>
+				<only_text><![CDATA[<?php if (!isset($field->id)) $field->id = 0; echo "<img src='" . esc_url(MP_Action_url . '?id=' . $field->id . '&action=1ahctpac') . "' alt='' />"; ?>]]></only_text>
 			</only_text>
 		</items>
 	</captcha>

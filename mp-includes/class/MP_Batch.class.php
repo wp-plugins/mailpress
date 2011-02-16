@@ -8,7 +8,6 @@ class MP_Batch
 		$this->config = get_option(MailPress_batch_send::option_name);
 		$this->report = array();
 
-		MailPress::require_class('Log');
 		$this->trace = new MP_Log('mp_process_batch_send', MP_ABSPATH, __CLASS__, false, 'batch_send');
 
 		$this->process();
@@ -36,8 +35,6 @@ class MP_Batch
 		$mails = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->mp_mails WHERE status = %s ;", MailPress_batch_send::status_mail() ) );
 
 		if (!$mails) { $this->alldone(); return; }
-
-		MailPress::require_class('Mailmeta');
 
 		do
 		{
@@ -213,7 +210,6 @@ class MP_Batch
 	function send()
 	{
 // instaure the context
-		MailPress::require_class('Mail');
 		$_this = new MP_Mail(__CLASS__);
 
 		$_this->trace 				= $this->trace;
@@ -229,7 +225,6 @@ class MP_Batch
 		$_this->args->replacements 		= $this->toemail;
 		$_this->get_old_recipients();
 
-		MailPress::require_class('Mailmeta');
 		$m = MP_Mailmeta::get($_this->row->id, '_MailPress_replacements');
 		if (!is_array($m)) $m = array();
 		$_this->mail->replacements = $m;

@@ -1,6 +1,4 @@
-<?php 
-MailPress::require_class('Admin_page_list');
-
+<?php
 class MP_AdminPage extends MP_Admin_page_list
 {
 	const screen 	= MailPress_page_forms;
@@ -19,8 +17,6 @@ class MP_AdminPage extends MP_Admin_page_list
 		if     ( !empty($_REQUEST['action'])  && ($_REQUEST['action']  != -1))	$action = $_REQUEST['action'];
 		elseif ( !empty($_REQUEST['action2']) && ($_REQUEST['action2'] != -1) )	$action = $_REQUEST['action2'];
 		if (!isset($action)) return;
-
-		self::require_class('Forms');
 
 		$url_parms = self::get_url_parms(array('s', 'apage', 'id'));
 		$checked	= (isset($_GET['checked'])) ? $_GET['checked'] : array();
@@ -74,7 +70,11 @@ class MP_AdminPage extends MP_Admin_page_list
 
 ////  Title  ////
 
-	public static function title() { if (isset($_GET['id'])) { global $title; $title = __('Edit Form', MP_TXTDOM); } }
+	public static function title() 
+	{ 
+		new MP_Forms_field_types();
+		if (isset($_GET['id'])) { global $title; $title = __('Edit Form', MP_TXTDOM); } 
+	}
 
 ////  Styles  ////
 
@@ -105,7 +105,6 @@ class MP_AdminPage extends MP_Admin_page_list
 
 		wp_register_script( 'mp-taxonomy', 		'/' . MP_PATH . 'mp-includes/js/mp_taxonomy.js', array('mp-lists'), false, 1);
 		wp_localize_script( 'mp-taxonomy', 		'MP_AdminPageL10n', array(
-			'errmess' => __('Enter a valid email !', MP_TXTDOM), 
 			'pending' => __('%i% pending'), 
 			'screen' => self::screen,
 			'list_id' => self::list_id,
@@ -156,8 +155,6 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function get_row( $form, $url_parms ) 
 	{
-		self::require_class('Forms');
-
 		static $row_class = '';
 
 		$form = MP_Forms::get( $form );
@@ -167,25 +164,25 @@ class MP_AdminPage extends MP_Admin_page_list
 
 		$url_parms['id'] 	= $form->id;
 
-		$edit_url = clean_url(self::url( MailPress_forms, $url_parms ));
+		$edit_url = esc_url(self::url( MailPress_forms, $url_parms ));
 		$url_parms['action'] 	= 'duplicate';
-		$duplicate_url = clean_url(self::url( MailPress_forms, $url_parms, 'duplicate-form_' . $form->id ));
+		$duplicate_url = esc_url(self::url( MailPress_forms, $url_parms, 'duplicate-form_' . $form->id ));
 
 		$url_parms['action'] 	= 'edit_fields';
 		$url_parms['form_id'] = $url_parms['id']; unset($url_parms['id']); 
-		$edit_fields_url = clean_url(self::url( MailPress_fields, $url_parms ));
+		$edit_fields_url = esc_url(self::url( MailPress_fields, $url_parms ));
 		$url_parms['id'] = $url_parms['form_id']; unset($url_parms['form_id']); 
 
-		$edit_templates_url = clean_url(self::url( MailPress_templates, array('action' => 'edit', 'template' => $form->template)));
+		$edit_templates_url = esc_url(self::url( MailPress_templates, array('action' => 'edit', 'template' => $form->template)));
 
 		$args = array();
 		$args['id'] 	= $form->id;
 		$args['action'] 	= 'ifview';
 		$args['KeepThis'] = 'true'; $args['TB_iframe']= 'true'; $args['width'] = '600'; $args['height']	= '400';
-		$view_url		= clean_url(self::url(MP_Action_url, $args));
+		$view_url		= esc_url(self::url(MP_Action_url, $args));
 
 		$url_parms['action'] 	= 'delete';
-		$delete_url = clean_url(self::url( MailPress_forms, $url_parms, 'delete-form_' . $form->id ));
+		$delete_url = esc_url(self::url( MailPress_forms, $url_parms, 'delete-form_' . $form->id ));
 
 // actions
 		$actions = array();
@@ -219,7 +216,7 @@ class MP_AdminPage extends MP_Admin_page_list
 					$out .= '<th scope="row" class="check-column"> <input type="checkbox" name="checked[]" value="' . $form->id . '" /></th>';
 				break;
 				case 'name':
-					$out .= '<td ' . $attributes . '><strong><a class="row-title" href="' . $edit_url . '" title="' . attribute_escape(sprintf(__('Edit "%s"'), $form->label)) . '">' . $form->label . '</a></strong><br />';
+					$out .= '<td ' . $attributes . '><strong><a class="row-title" href="' . $edit_url . '" title="' . esc_attr(sprintf(__('Edit "%s"'), $form->label)) . '">' . $form->label . '</a></strong><br />';
 					$out .= self::get_actions($actions);
 					$out .= '</td>';
 				break;

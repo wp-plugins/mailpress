@@ -55,7 +55,6 @@ class MP_Forms_fields
 
 		if (!$fields) return false;
 
-		MailPress::load_options('Forms_field_types');
 		$have_file = false;
 		foreach ($fields as $field) $have_file = MP_Forms_field_types::have_file($have_file, $field->type);
 		return $have_file;

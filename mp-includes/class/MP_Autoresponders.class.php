@@ -5,7 +5,7 @@ class MP_Autoresponders
 
 	public static function exists($term_name) 
 	{
-		$id = is_term($term_name, self::taxonomy);
+		$id = term_exists($term_name, self::taxonomy);
 		if ( is_array($id) )	$id = $id['term_id'];
 		return $id;
 	}
@@ -100,6 +100,21 @@ class MP_Autoresponders
 
 ////  Object  ////
 
+	public static function convert_schedule( $value, $time )
+	{
+                if (is_serialized($value)) $value = unserialize($value);
+		if (!is_array($value))     $value = array('Y' => 0, 'M' => (int) substr($value, 0, 2), 'W' => 0, 'D' => (int) substr($value, 2, 2), 'H' =>  (int) substr($value, 4, 2));
+
+		$Y = date('Y', $time) + $value['Y'];
+		$M = date('n', $time) + $value['M'];
+		$D = date('j', $time) + $value['D'] + ($value['W'] * 7);
+		$H = date('G', $time) + $value['H'];
+		$Mn= date('i', $time);
+		$S = date('s', $time);
+		$value['date'] = mktime($H, $Mn, $S, $M, $D, $Y);
+                return $value;
+	}
+
 	public static function get_object_terms( $object_id = 0, $args = array() )
 	{
 		$_terms = array();
@@ -107,19 +122,19 @@ class MP_Autoresponders
 
 		if (!$terms) return array();
 
-		MailPress::require_class('Mailmeta');
 		foreach( $terms as $term )
 		{
 			$metakey = '_MailPress_autoresponder_' . $term->term_id;
 			$metadata = MP_Mailmeta::has($object_id, $metakey);
-			if ($metadata) foreach ($metadata as $entry) 	$_terms[] =	array('term_id' 	=> $term->term_id, 
+			$time = time();
+			if ($metadata) foreach ($metadata as $entry) $_terms[] =	array('term_id' 	=> $term->term_id, 
 														'meta_id' 	=> $entry['meta_id'], 
 														'mail_id' 	=> $object_id, 
-														'schedule' 	=> $entry['meta_value']
+														'schedule' 	=> self::convert_schedule($entry['meta_value'], $time),
 													);
 		}
 
-		uasort($_terms, create_function('$a, $b', 'return strcmp($a["term_id"] . "  " . $a["schedule"], $b["term_id"] . "  " . $b["schedule"]);'));
+		uasort($_terms, create_function('$a, $b', 'return strcmp($a["schedule"]["date"], $b["schedule"]["date"]);'));
 		return $_terms;
 	}
 
@@ -132,7 +147,6 @@ class MP_Autoresponders
 		foreach( $terms as $term )
 		{
 			$metakey = '_MailPress_autoresponder_' . $term->term_id;
-			MailPress::require_class('Mailmeta');
 			$metadata = MP_Mailmeta::has($object_id, $metakey);
 			if ($metadata) return true;
 		}
@@ -146,25 +160,25 @@ class MP_Autoresponders
 		global $wpdb;
 		$metadata = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->mp_mailmeta WHERE meta_key = %s ORDER BY meta_value;", $meta_key ) );
 		if (!$metadata) return array();
+		$time = time();
 		foreach ($metadata as $entry) $_objects[] = 	array(	'term_id' 	=> $term_id, 
 												'meta_id' 	=> $entry->meta_id, 
 												'mail_id' 	=> $entry->mp_mail_id, 
-												'schedule' 	=> $entry->meta_value
+												'schedule' 	=> self::convert_schedule($entry->meta_value, $time),
 											);
+		uasort($_objects, create_function('$a, $b', 'return strcmp($a["schedule"]["date"], $b["schedule"]["date"]);'));
 		return $_objects;
 	}
 
 	public static function get_term_meta_id($meta_id)
 	{
-		MailPress::require_class('Mailmeta');
 		$entry = MP_Mailmeta::get_by_id( $meta_id );
 
 		$term_id = str_replace('_MailPress_autoresponder_', '', $entry->meta_key);
-
 		return 							array(	'term_id' 	=> $term_id, 
 												'meta_id' 	=> $entry->meta_id, 
 												'mail_id' 	=> $entry->mp_mail_id, 
-												'schedule' 	=> $entry->meta_value
+												'schedule' 	=> self::convert_schedule($entry->meta_value, time()),
 											);
 	}
 

@@ -6,7 +6,7 @@ Plugin Name: MailPress_newsletter_categories
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Newsletter_categories
 Description: This is just an add-on for MailPress to manage newsletters per categories
 Author: Andre Renaut
-Version: 5.0.1
+Version: 5.1
 Author URI: http://www.mailpress.org
 */
 
@@ -34,11 +34,11 @@ class MailPress_newsletter_categories
 		$args = array('hierarchical' => false, 'depth'=>false, 'echo'=>false, 'get'=>'all');
 		$categories = get_categories($args);
 
-		MailPress::require_class('Xml');
-
+		$root  = MP_CONTENT_DIR . 'advanced/newsletters';
+		$root  = apply_filters('MailPress_advanced_newsletters_root', $root);
+		$root .= '/categories';
 		$files = array('categories');
 
-		$root = MP_CONTENT_DIR . 'advanced/newsletters/categories';
    		$dir  = @opendir($root);
 		if ($dir) while ( ($file = readdir($dir)) !== false ) if (preg_match('/category-[0-9]*\.xml/', $file)) $files[] = substr($file, 0, -4);
 		if ($dir) @closedir($dir);

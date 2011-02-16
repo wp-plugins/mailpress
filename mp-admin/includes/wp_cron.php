@@ -165,7 +165,7 @@ foreach ($flipflops as $flipflop)
 			<tbody>
 				<tr>
 					<td>
-<input name='name' id='wpcron_name' type='text' value="<?php if (isset($wpcron['hookname'])) echo attribute_escape($wpcron['hookname']); ?>" size='40' />
+<input name='name' id='wpcron_name' type='text' value="<?php if (isset($wpcron['hookname'])) echo esc_attr($wpcron['hookname']); ?>" size='40' />
 					</td>
 					<td>
 <input name='next_run' id='wpcron_next_run' type='text' value="<?php if (isset($wpcron['next_run'])) echo date('Y/m/d H:i:s', $wpcron['next_run']); else echo "now"; ?>" size='40' />

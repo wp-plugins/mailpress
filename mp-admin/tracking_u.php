@@ -1,6 +1,4 @@
 <?php
-MailPress::require_class('Admin_page_list');
-
 class MP_AdminPage extends MP_Admin_page_list
 {
 	const screen 	= 'mailpress_tracking_u';
@@ -12,8 +10,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function title() 
 	{
-		MailPress::load_options('Tracking_modules');
-		$MP_Tracking_modules = new MP_Tracking_modules('user');
+		new MP_Tracking_modules('user');
 
 		global $title; 
 		$title = __('Tracking', MP_TXTDOM); 
@@ -89,7 +86,6 @@ class MP_AdminPage extends MP_Admin_page_list
 
 		global $mp_user;
 
-		self::require_class('Users');
 		$mp_user = $user = MP_Users::get( $id );
 		$the_user_status = $user->status;
 
@@ -101,13 +97,13 @@ class MP_AdminPage extends MP_Admin_page_list
 		$args = array();
 		$args['id'] 	= $id;
 
-		$edit_url    	= clean_url(self::url( MailPress_user, array_merge($args, $url_parms) ));
+		$edit_url    	= esc_url(self::url( MailPress_user, array_merge($args, $url_parms) ));
 
 		$author = ( 0 == $user->laststatus_user_id) ? $user->created_user_id : $user->laststatus_user_id;
 		if ($author != 0 && is_numeric($author)) {
 			unset($url_parms['author']);
 			$wp_user = get_userdata($author);
-			$author_url = clean_url(self::url( MailPress_users, array_merge( array('author'=>$author), $url_parms) ));
+			$author_url = esc_url(self::url( MailPress_users, array_merge( array('author'=>$author), $url_parms) ));
 		}
 
 // actions

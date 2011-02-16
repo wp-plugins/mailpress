@@ -1,10 +1,7 @@
 <?php
-MailPress::require_class('Options');
-
 class MP_Tracking_modules extends MP_Options
 {
 	var $path = 'tracking/';
-	var $abstract = 'Tracking_module_abstract';
 
 	function __construct($type, $settings = false)
 	{
@@ -21,6 +18,6 @@ class MP_Tracking_modules extends MP_Options
 
 	function get_all($type)
 	{
-		return apply_filters('MailPress_tracking_module_register', array(), $type);
+		return apply_filters('MailPress_tracking_modules_register', array(), $type);
 	}
 }

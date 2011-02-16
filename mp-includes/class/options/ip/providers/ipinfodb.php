@@ -1,8 +1,10 @@
 <?php
+if ( defined('MP_Ip_ipinfodb_ApiKey') )
+{
 class MP_Ip_ipinfodb extends MP_Ip_provider_abstract
 {
 	var $id 	= 'ipinfodb';
-	var $url	= 'http://ipinfodb.com/ip_query.php?ip=%1$s&timezone=true';
+	var $url	= 'http://api.ipinfodb.com/v2/ip_query.php?ip=%1$s&key=%2$s&timezone=true';
 	var $credit	= 'http://ipinfodb.com/';
 	var $type 	= 'xml';
 
@@ -11,6 +13,12 @@ class MP_Ip_ipinfodb extends MP_Ip_provider_abstract
 		if (!strpos($content, '<Status>OK</Status>')) return false;
 		if (strpos($content, '<Latitude>0</Latitude>') && strpos($content, '<Longitude>0</Longitude>')) return false;
 		return $valid;
+	}
+
+	function url($arg)
+	{
+		$arg[] = MP_Ip_ipinfodb_ApiKey;
+		return $arg;
 	}
 
 	function data($content, $ip)
@@ -36,3 +44,4 @@ class MP_Ip_ipinfodb extends MP_Ip_provider_abstract
 	}
 }
 new MP_Ip_ipinfodb();
+}

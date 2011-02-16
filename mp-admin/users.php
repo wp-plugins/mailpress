@@ -1,6 +1,4 @@
-<?php 
-MailPress::require_class('Admin_page_list');
-
+<?php
 class MP_AdminPage extends MP_Admin_page_list
 {
 	const screen 	= MailPress_page_users;
@@ -18,8 +16,6 @@ class MP_AdminPage extends MP_Admin_page_list
 		elseif ( !empty($_REQUEST['action2']) && ($_REQUEST['action2'] != -1) )	$action = $_REQUEST['action2'];
 		if (!isset($action)) return;
 
-		self::require_class('Users');
-
 		$url_parms 	= self::get_url_parms();
 		$checked	= (isset($_GET['checked'])) ? $_GET['checked'] : array();
 
@@ -36,7 +32,6 @@ class MP_AdminPage extends MP_Admin_page_list
 				foreach($checked as $id) if (MP_Users::set_status($id, 'waiting')) $$count++;
 			break;
 			case 'bulk-unbounce' :
-				self::require_class('Usermeta');
 				foreach($checked as $id) if (MP_Users::set_status($id, 'waiting'))
 				{
 					MP_Usermeta::delete($id, '_MailPress_bounce_handling');
@@ -186,7 +181,6 @@ class MP_AdminPage extends MP_Admin_page_list
 
 		global $mp_user;
 
-		self::require_class('Users');
 		$mp_user = $user = MP_Users::get( $id );
 		$the_user_status = $user->status;
 
@@ -198,16 +192,16 @@ class MP_AdminPage extends MP_Admin_page_list
 		$args = array();
 		$args['id'] 	= $id;
 
-		$edit_url    	= clean_url(self::url( MailPress_user, array_merge($args, $url_parms) ));
+		$edit_url    	= esc_url(self::url( MailPress_user, array_merge($args, $url_parms) ));
 
 		$args['action'] 	= 'activate';
-		$activate_url 	= clean_url(self::url( MailPress_user, array_merge($args, $url_parms), "activate-user_$id"));
+		$activate_url 	= esc_url(self::url( MailPress_user, array_merge($args, $url_parms), "activate-user_$id"));
 
 		$args['action'] 	= 'deactivate';
-		$deactivate_url 	= clean_url(self::url( MailPress_user, array_merge($args, $url_parms), "deactivate-user_$id"));
+		$deactivate_url 	= esc_url(self::url( MailPress_user, array_merge($args, $url_parms), "deactivate-user_$id"));
 
 		$args['action'] 	= 'delete';
-		$delete_url  	= clean_url(self::url( MailPress_user, array_merge($args, $url_parms), "delete-user_$id"));
+		$delete_url  	= esc_url(self::url( MailPress_user, array_merge($args, $url_parms), "delete-user_$id"));
 
 		unset($args['action']);
 
@@ -224,8 +218,8 @@ class MP_AdminPage extends MP_Admin_page_list
 		{
 			unset($actions['approve'], $actions['unapprove']);
 			$args['action'] = 'unbounce';
-			$unbounce_url   =	clean_url(self::url( MailPress_user, array_merge($args, $url_parms) ));
-			$unbounce_click = "onclick=\"return (confirm('" . js_escape(sprintf( __("You are about to unbounce this MailPress user '%s'\n  'Cancel' to stop, 'OK' to unbounce.", MP_TXTDOM), $id )) . "'));\"";
+			$unbounce_url   =	esc_url(self::url( MailPress_user, array_merge($args, $url_parms) ));
+			$unbounce_click = "onclick=\"return (confirm('" . esc_js(sprintf( __("You are about to unbounce this MailPress user '%s'\n  'Cancel' to stop, 'OK' to unbounce.", MP_TXTDOM), $id )) . "'));\"";
 			$actions['unbounce'] = "<a href='$unbounce_url' $unbounce_click title='" . sprintf( __('Unbounce "%1$s"', MP_TXTDOM), $user->email ) . "'>" . __('Unbounce', MP_TXTDOM) . '</a>';
 		}
 
@@ -252,14 +246,14 @@ class MP_AdminPage extends MP_Admin_page_list
 //	author
 		$x 			= (isset($url_parms['s'])) ? $url_parms['s'] : '';
 		$url_parms['s'] 	= self::get_user_author_IP();
-		$ip_url 		= clean_url(self::url( MailPress_users, $url_parms ));
+		$ip_url 		= esc_url(self::url( MailPress_users, $url_parms ));
 		$url_parms['s'] 	= $x;
 
 		$author = ( 0 == $user->laststatus_user_id) ? $user->created_user_id : $user->laststatus_user_id;
 		if ($author != 0 && is_numeric($author)) {
 			unset($url_parms['author']);
 			$wp_user = get_userdata($author);
-			$author_url = clean_url(self::url( MailPress_users, array_merge( array('author'=>$author), $url_parms) ));
+			$author_url = esc_url(self::url( MailPress_users, array_merge( array('author'=>$author), $url_parms) ));
 		}
 //	date
 

@@ -141,7 +141,7 @@ class MP_import_subscribe_to_comments extends MP_Import_importer_abstract
 
 		 	$foot1 = "</table>\n";
 			$foot1 .= "<p class='submit'>\n";
-			$foot1 .= "<input type='submit' value='" . attribute_escape( __('Submit')) . "' />\n";
+			$foot1 .= "<input type='submit' value='" . esc_attr( __('Submit')) . "' />\n";
 			$foot1 .= "</p>\n";
 			$foot1 .= "</form>\n";
 

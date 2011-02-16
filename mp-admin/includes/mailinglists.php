@@ -1,6 +1,4 @@
 <?php
-MP_AdminPage::require_class('Mailinglists');
-
 $url_parms = MP_AdminPage::get_url_parms();
 
 $h2 = __('Mailing lists', MP_TXTDOM); 
@@ -150,12 +148,12 @@ else
 						<?php wp_nonce_field('update-' . MP_AdminPage::tr_prefix_id); ?>
 						<div class="form-field form-required" style='margin:0;padding:0;'>
 							<label for='mailinglist_name'><?php _e('Name', MP_TXTDOM); ?></label>
-							<input name='name' id='mailinglist_name' type='text'<?php echo $disabled; ?> value="<?php if (isset($mailinglist->name)) echo attribute_escape($mailinglist->name); ?>" size='40' aria-required='true' />
+							<input name='name' id='mailinglist_name' type='text'<?php echo $disabled; ?> value="<?php if (isset($mailinglist->name)) echo esc_attr($mailinglist->name); ?>" size='40' aria-required='true' />
 							<p><?php _e('The name is used to identify the mailinglist almost everywhere.', MP_TXTDOM); ?></p>
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>
 							<label for='mailinglist_slug'><?php _e('Slug', MP_TXTDOM) ?></label>
-							<input name='slug' id='mailinglist_slug' type='text' value="<?php if (isset($mailinglist->slug)) echo attribute_escape($mailinglist->slug); ?>" size='40' />
+							<input name='slug' id='mailinglist_slug' type='text' value="<?php if (isset($mailinglist->slug)) echo esc_attr($mailinglist->slug); ?>" size='40' />
 							<p><?php _e('The &#8220;slug&#8221; is a unique id for the mailing list (not so friendly !).', MP_TXTDOM); ?></p>
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>

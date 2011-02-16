@@ -1,6 +1,4 @@
-<?php 
-MailPress::require_class('Admin_page_list');
-
+<?php
 class MP_AdminPage extends MP_Admin_page_list
 {
 	const screen 	= MailPress_page_wp_cron;
@@ -195,11 +193,11 @@ class MP_AdminPage extends MP_Admin_page_list
 		$id = $args['id'] . '::' . $args['sig'] . '::' . $args['next_run'];
 
 		$args['action'] = 'delete';
-		$delete_url = clean_url(self::url( MailPress_wp_cron, array_merge($args, $url_parms), 'delete-cron_' . $args['id'] . '_' . $args['sig'] . '_' . $args['next_run']));
+		$delete_url = esc_url(self::url( MailPress_wp_cron, array_merge($args, $url_parms), 'delete-cron_' . $args['id'] . '_' . $args['sig'] . '_' . $args['next_run']));
 		$args['action'] = 'do_now';
-		$do_now_url = clean_url(self::url( MailPress_wp_cron, array_merge($args, $url_parms)));
+		$do_now_url = esc_url(self::url( MailPress_wp_cron, array_merge($args, $url_parms)));
 		$args['action'] = 'edit';
-		$edit_url = clean_url(self::url( MailPress_wp_cron, array_merge($args, $url_parms)));
+		$edit_url = esc_url(self::url( MailPress_wp_cron, array_merge($args, $url_parms)));
 
 // actions
 		$actions = array();
@@ -289,7 +287,7 @@ class MP_AdminPage extends MP_Admin_page_list
 			$total += $count * $chunk[0];
 
 			if ($done) $output .= ' ';
-			$output .= sprintf(__ngettext($chunk[1], $chunk[2], $count), $count);
+			$output .= sprintf(_n($chunk[1], $chunk[2], $count), $count);
 			$done++;
 			if ($done == $max) break;
 		}

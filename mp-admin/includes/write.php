@@ -9,9 +9,7 @@ $url_parms 	= MP_AdminPage::get_url_parms();
 
 if (isset($_GET['id']))
 {
-	MP_AdminPage::require_class('Mails');
 	$draft 	= MP_Mails::get($_GET['id']);
-	MP_AdminPage::require_class('Mailmeta');
 	$rev_ids 	= MP_Mailmeta::get($draft->id, '_MailPress_mail_revisions');
 }
 
@@ -26,10 +24,10 @@ if (isset($draft))
 {
 	$h2 		= sprintf( __('Edit Draft # %1$s', MP_TXTDOM), $draft->id);
 	$hidden  	= "\t\t\t<input type='hidden' id='mail_id' name='id' value='$draft->id' />\n";
-	$delete_url = clean_url(MailPress_write ."&amp;action=delete&amp;id=$draft->id");
+	$delete_url = esc_url(MailPress_write ."&amp;action=delete&amp;id=$draft->id");
 
 	$last_user 	= get_userdata($draft->created_user_id);
-	$lastedited	= sprintf(__('Last edited by %1$s on %2$s at %3$s', MP_TXTDOM), wp_specialchars( $last_user->display_name ), mysql2date(get_option('date_format'), $draft->created), mysql2date(get_option('time_format'), $draft->created));
+	$lastedited	= sprintf(__('Last edited by %1$s on %2$s at %3$s', MP_TXTDOM), esc_html( $last_user->display_name ), mysql2date(get_option('date_format'), $draft->created), mysql2date(get_option('time_format'), $draft->created));
 
 /* revisions */
 	if (is_array($rev_ids))
@@ -69,7 +67,7 @@ if (isset($draft))
 				{
 					$autosave = false;
 
-					$notice = sprintf( __( 'There is an autosave of this mail that is more recent than the version below.  <a href="%s">View the autosave</a>.', MP_TXTDOM ), clean_url(MailPress_revision . "&id=$draft->id&revision=$revision->id") );
+					$notice = sprintf( __( 'There is an autosave of this mail that is more recent than the version below.  <a href="%s">View the autosave</a>.', MP_TXTDOM ), esc_url(MailPress_revision . "&id=$draft->id&revision=$revision->id") );
 					break;
 				}
 			}
@@ -92,7 +90,7 @@ if (isset($draft))
 	{
 		$lock_user 	= get_userdata($last);
 		$lock_user_name = $lock_user ? $lock_user->display_name : __('Somebody');
-		$lock = sprintf( __( 'Warning: %s is currently editing this mail' ), wp_specialchars( $lock_user_name ) );
+		$lock = sprintf( __( 'Warning: %s is currently editing this mail' ), esc_html( $lock_user_name ) );
 	}
 	else
 	{
@@ -109,7 +107,7 @@ else
 $draft->_scheduled = ( !isset($draft->sent) || '0000-00-00 00:00:00' == $draft->sent ) ? false : true;
 
 if (isset($_SERVER['HTTP_REFERER']))
-	$hidden .= "<input type='hidden' name='referredby' value='" . clean_url($_SERVER['HTTP_REFERER']) . "' />";
+	$hidden .= "<input type='hidden' name='referredby' value='" . esc_url($_SERVER['HTTP_REFERER']) . "' />";
 
 // what else ?
 	do_action('MailPress_update_meta_boxes_write');
@@ -117,14 +115,14 @@ if (isset($_SERVER['HTTP_REFERER']))
 // messages
 $class = 'fromto';
 $message = ''; $err = 0;
-if (isset($_GET['sched'])) 	{$err += 0; if (!empty($message)) $message .= '<br />'; $message .= sprintf( __('Mail scheduled for: <strong>%1$s</strong>. <a class="thickbox" href="%2$s">Preview mail</a>',  MP_TXTDOM), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $draft->sent ) ), clean_url(add_query_arg( array('action' => 'iview', 'id' => $draft->id, 'KeepThis' => 'true', 'TB_iframe' => 'true'), MP_Action_url )));}
+if (isset($_GET['sched'])) 	{$err += 0; if (!empty($message)) $message .= '<br />'; $message .= sprintf( __('Mail scheduled for: <strong>%1$s</strong>. <a class="thickbox" href="%2$s">Preview mail</a>',  MP_TXTDOM), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $draft->sent ) ), esc_url(add_query_arg( array('action' => 'iview', 'id' => $draft->id, 'KeepThis' => 'true', 'TB_iframe' => 'true'), MP_Action_url )));}
 if (isset($_GET['saved'])) 	{$err += 0; if (!empty($message)) $message .= '<br />'; $message .= __('Mail saved', MP_TXTDOM); }
 if (isset($_GET['notsent'])) 	{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= __('Mail NOT sent', MP_TXTDOM); }
 if (isset($_GET['nomail'])) 	{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= __('Please, enter a valid email',  MP_TXTDOM); $class = "TO"; }
 if (isset($_GET['nodest'])) 	{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= __('Mail NOT sent, no recipient',  MP_TXTDOM); $class = "TO"; }
 if (isset($lock))			{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= $lock; }
 if ($notice)			{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= $notice; } 	
-if (isset($_GET['sent'])) 	{$err += 0; if (!empty($message)) $message .= '<br />'; $message .= sprintf( __ngettext( __('%s mail sent', MP_TXTDOM), __('%s mails sent', MP_TXTDOM), $_GET['sent']), $_GET['sent']); }
+if (isset($_GET['sent'])) 	{$err += 0; if (!empty($message)) $message .= '<br />'; $message .= sprintf( _n( __('%s mail sent', MP_TXTDOM), __('%s mails sent', MP_TXTDOM), $_GET['sent']), $_GET['sent']); }
 if (isset($_GET['revision'])) {$err += 0; if (!empty($message)) $message .= '<br />'; $message .= sprintf( __('Mail restored to revision from %s', MP_TXTDOM), MP_Mails::mail_revision_title( (int) $_GET['revision'], false, $_GET['time']) ); }
 $mp_general	= get_option(MailPress::option_name_general);
 
@@ -149,7 +147,6 @@ else
 	$draft->toemail = $draft->toname = '';
 
 // or to
-MP_AdminPage::require_class('Users');
 $draft_dest = MP_Users::get_mailinglists();
 
 ?>

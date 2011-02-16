@@ -134,7 +134,7 @@ class MP_Dashboard_users_activity extends MP_Dashboard_widget_abstract
 		$args['chm']  = join('|', $lines);
 		$args['chco'] = join(',', $colors);
 		$args['chd']  = 't:' . join('|', $values);
-		$url = clean_url(add_query_arg($args, $this->url));
+		$url = esc_url(add_query_arg($args, $this->url));
 
 ?>
 <div style='text-align:center;'><img style='width:100%;' src="<?php echo $url; ?>" alt="<?php _e( 'Subscribers - Activity', MP_TXTDOM ); ?>" />

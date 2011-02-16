@@ -50,7 +50,7 @@ class MP_Dashboard_mails_activity extends MP_Dashboard_widget_abstract
 		$args['chl']  = join('|', $chl_m);
 		$args['chco'] = '0000ff';
 		$args['chd']  = 't:' . join(',', $chd_m);
-		$url = clean_url(add_query_arg($args, $this->url));
+		$url = esc_url(add_query_arg($args, $this->url));
 
 ?>
 <div style='text-align:center;'>

@@ -110,7 +110,7 @@ class MP_Log
 		if ($level <= $this->level) $this->data .= date_i18n('Y-m-d H:i:s u') . " -- " . $x . "\n";
 	}
 
-	function logError($error_level, $error_message, $error_file, $error_line, $error_context)
+	function logError($error_level, $error_message, $error_file, $error_line, $error_context=false)
 	{ 
 		if (strpos($error_message, 'Deprecated') == true) return;
 		$this->log ("PHP [" . $this->errors[$error_level] . "] $error_level : $error_message in $error_file at line $error_line ", $error_level);

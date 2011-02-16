@@ -1,6 +1,4 @@
 <?php
-MailPress::require_class('Db_connect');
-
 class MP_Bounce extends MP_Db_connect
 {
 	const bt = 132;
@@ -10,7 +8,6 @@ class MP_Bounce extends MP_Db_connect
 		$this->config = get_option(MailPress_bounce_handling::option_name);
 		if (!$this->config) return;
 
-		MailPress::require_class('Log');
 		$this->trace = new MP_Log('mp_process_bounce_handling', MP_ABSPATH, __CLASS__, false, 'bounce_handling');
 
 		$xmailboxstatus = array(	0	=>	'no changes',
@@ -38,7 +35,6 @@ class MP_Bounce extends MP_Db_connect
 		$return = true;
 		$pop3 = get_option(MailPress_bounce_handling::option_name_pop3);
 
-		MailPress::require_class('Pop3');
 		$this->pop3 = new MP_Pop3($pop3['server'], $pop3['port'], $pop3['username'], $pop3['password'], $this->trace);
 
 		$bm = ' connecting ! ' . $pop3['server'] . ':' . $pop3['port'];
@@ -73,6 +69,7 @@ class MP_Bounce extends MP_Db_connect
 	function process_message($message_id)
 	{
 		if (!list($mail_id, $mp_user_id, $bounce_email) = $this->is_bounce($message_id)) return;
+		if (!isset($mail_id, $mp_user_id, $bounce_email)) return;
 
 		$this->mysql_disconnect(__CLASS__);
 		$this->mysql_connect(__CLASS__);
@@ -84,8 +81,6 @@ class MP_Bounce extends MP_Db_connect
 		$user_logmess = $mail_logmess = '';
 		$already_processed = $already_stored = false;
 
-		MailPress::require_class('Users');
-
 		if (!$mp_user = MP_Users::get($mp_user_id))
 		{
 			$user_logmess = '** WARNING ** user not in database'; 
@@ -95,7 +90,6 @@ class MP_Bounce extends MP_Db_connect
 		{
 			$bounce = array( 'message' => $this->pop3->message );
 
-			MailPress::require_class('Usermeta');
 			$usermeta = MP_Usermeta::get($mp_user_id, MailPress_bounce_handling::metakey);
 			if (!$usermeta)
 			{
@@ -162,24 +156,24 @@ class MP_Bounce extends MP_Db_connect
 		$mailmeta = '';
 		if (!$already_processed)
 		{
-			MailPress::require_class('Mails');
-			if (!$mail = MP_Mails::get($mail_id))
+			switch (true)
 			{
-				$mail_logmess = '** WARNING ** mail not in database';
-			}
-			else
-			{
-				MailPress::require_class('Mailmeta');
-
-				$mailmeta = MP_Mailmeta::get($mail_id, MailPress_bounce_handling::metakey);
-				$mailmeta = ($mailmeta) ? $mailmeta++ : 1;	
-				if (!MP_Mailmeta::add($mail_id, MailPress_bounce_handling::metakey, $mailmeta , true))
-					MP_Mailmeta::update($mail_id, MailPress_bounce_handling::metakey, $mailmeta );
-		
-				$metas = MP_Mailmeta::get( $mail_id, '_MailPress_replacements');
-				$mail_logmess = $mail->subject;
-				if ($metas) foreach($metas as $k => $v) $mail_logmess = str_replace($k, $v, $mail_logmess);
-				if ( strlen($mail_logmess) > 50 )	$mail_logmess = substr($mail_logmess, 0, 49) . '...';
+				case (-1 == $mail_id) :
+					$mail_logmess = '** WARNING ** mail unknown';
+				break;
+				case (!$mail = MP_Mails::get($mail_id)) :
+					$mail_logmess = '** WARNING ** mail not in database';
+				break;
+				default :
+					$mailmeta = MP_Mailmeta::get($mail_id, MailPress_bounce_handling::metakey);
+					$mailmeta = ($mailmeta) ? $mailmeta++ : 1;
+					if (!MP_Mailmeta::add($mail_id, MailPress_bounce_handling::metakey, $mailmeta , true))
+						MP_Mailmeta::update($mail_id, MailPress_bounce_handling::metakey, $mailmeta );
+					$metas = MP_Mailmeta::get( $mail_id, '_MailPress_replacements');
+					$mail_logmess = $mail->subject;
+					if ($metas) foreach($metas as $k => $v) $mail_logmess = str_replace($k, $v, $mail_logmess);
+					if ( strlen($mail_logmess) > 50 )	$mail_logmess = substr($mail_logmess, 0, 49) . '...';
+				break;
 			}
 		}
 		$bm  = ' mail       ! ';
@@ -193,67 +187,56 @@ class MP_Bounce extends MP_Db_connect
 
 	function is_bounce($message_id)
 	{
-		$this->pop3->get_headers_deep($message_id);
-
-		if (isset($this->pop3->headers['To']))
-		{
-			if (is_array($this->pop3->headers['To']))
-			{ 
-				foreach($this->pop3->headers['To'] as $To) if (strpos ($To, $this->config['Return-Path']) !== false) return false;
-			}
-			else if (strpos ( $this->pop3->headers['To'], $this->config['Return-Path'] ) !== false) return false;
-		}
+		$tags = array('Return-Path', 'Return-path', 'Received', 'To', 'X-Failed-Recipients', 'Final-Recipient');
+		$this->pop3->get_headers_deep($message_id, $tags);
 
 		$prefix 	= preg_quote(substr($this->config['Return-Path'], 0, strpos($this->config['Return-Path'], '@')) . '+');
 		$domain 	= preg_quote(substr($this->config['Return-Path'], strpos($this->config['Return-Path'], '@') + 1 ));
-
 		$user_mask	= preg_quote('{{_user_id}}');
 
-		$headers = array('Return-Path', 'To', 'Received');
-		$_headers = array();
-		
-		foreach ($headers as $header)
+		foreach($this->pop3->headers as $tag => $headers)
 		{
-			if (isset($this->pop3->headers[$header]))
+			foreach($headers as $header)
 			{
-				if (!is_array($this->pop3->headers[$header])) 			$_headers[] = $this->pop3->headers[$header];
-				else foreach($this->pop3->headers[$header] as $_header) 	$_headers[] = $_header;
-			}
-		}
+				if (strpos($header, $this->config['Return-Path']) !== false) continue;
 
-		foreach($_headers as $_header)
-		{
-			$pattern = $prefix . "[0-9]*\+[0-9]*@$domain";
-			if (preg_match("#$pattern#", $_header))
-			{
-				$pattern = "/$prefix([0-9]*)\+([0-9]*)@$domain/";
-				preg_match_all($pattern, $_header, $matches, PREG_SET_ORDER);
-				if (empty($matches)) continue;
-				$mail_id    = $matches[0][1];
-				$mp_user_id = $matches[0][2];
-			}
-			else
-			{
-				$pattern = $prefix . "[0-9]*\+$user_mask@$domain";
-
-				if (!preg_match("#$pattern#", $_header)) continue;
-
-				$pattern = "/$prefix([0-9]*)\+$user_mask@$domain/";
-				preg_match_all($pattern, $_header, $matches, PREG_SET_ORDER);
-
-				if (empty($matches)) continue;
-
-		        	$mail_id = $matches[0][1];
-				MailPress::require_class('Mails');
-
-				if (!$mail = MP_Mails::get($mail_id)) continue;
-
-				if (!is_email($mail->toemail)) continue;
-
-				MailPress::require_class('Users');
-				$mp_user_id = MP_Users::get_id_by_email($mail->toemail);
-                
-				if (!$mp_user_id) continue;
+				switch (true)
+				{
+					case (preg_match("#{$prefix}[0-9]*\+[0-9]*@{$domain}#", $header)) :
+						preg_match_all("/{$prefix}([0-9]*)\+([0-9]*)@{$domain}/", $header, $matches, PREG_SET_ORDER);
+						if (empty($matches)) continue;
+						$bounce_email	= $matches[0][0];
+						$mail_id		= $matches[0][1];
+						$mp_user_id		= $matches[0][2];
+					break;
+					case (preg_match("#{$prefix}[0-9]*\+$user_mask@{$domain}#", $header)) :
+						preg_match_all("/$prefix([0-9]*)\+$user_mask@$domain/", $header, $matches, PREG_SET_ORDER);
+						if (empty($matches)) continue;
+						$bounce_email	= $matches[0][0];
+						$mail_id		= $matches[0][1];
+						if (!$mail = MP_Mails::get($mail_id)) continue;
+						if (!is_email($mail->toemail)) continue;
+						$mp_user_id 	= MP_Users::get_id_by_email($mail->toemail);
+						if (!$mp_user_id) continue;
+					break;
+					case (preg_match_all("/[a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~\.-]+@[\._a-zA-Z0-9-]{2,}+/i", $header, $matches, PREG_SET_ORDER) && ($bounce_email = is_email($matches[0][0])) ) :
+						switch($tag)
+						{
+							case 'X-Failed-Recipients' :
+							case 'Final-Recipient' :
+								$mail_id = -1;
+								$mp_user_id = MP_Users::get_id_by_email($bounce_email);
+								if (!$mp_user_id) continue;
+							break;
+							default :
+								continue;
+							break;
+						}
+					break;
+					default :
+						continue;
+					break;
+				}
 			}
 
 			switch ($this->config['mailbox_status'])
@@ -267,7 +250,7 @@ class MP_Bounce extends MP_Db_connect
 				default :
 				break;
 			}
-			return array($mail_id, $mp_user_id, $matches[0][0]);
+			return array($mail_id, $mp_user_id, $bounce_email);
 			break;
 		}
 		return false;

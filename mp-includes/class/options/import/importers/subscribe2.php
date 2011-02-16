@@ -149,7 +149,7 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 
 		 	$foot1 = "</table>\n";
 			$foot1 .= "<p class='submit'>\n";
-			$foot1 .= "<input class='button-primary' type='submit' value='" . attribute_escape( __('Submit')) . "' />\n";
+			$foot1 .= "<input class='button-primary' type='submit' value='" . esc_attr( __('Submit')) . "' />\n";
 			$foot1 .= "</p>\n";
 			$foot1 .= "</form>\n";
 
@@ -417,7 +417,6 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 
 		if ($metas) 
 		{
-			MP_AdminPage::require_class('Users');
 			$this->message_report(" IMPORTING  ! " . $wpdb->usermeta);
 
 			foreach ($metas as $meta)
@@ -466,7 +465,6 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 			$this->message_report(" IMPORTING  ! " .$this->maintable );
 			foreach ($subs as $sub)
 			{
-				MP_AdminPage::require_class('Users');
 				switch ($sub->active)
 				{
 					case 1 :

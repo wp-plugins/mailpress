@@ -90,7 +90,10 @@ abstract class MP_Admin_page extends MP_abstract
 
 	public static function deregister_scripts()
 	{
-		$file	= MP_CONTENT_DIR . 'advanced/scripts/deregister.xml';
+		$root = MP_CONTENT_DIR . 'advanced/scripts';
+		$root = apply_filters('MailPress_advanced_scripts_root', $root);
+		$file	= "$root/deregister.xml";
+
 		$y = '';
 
 		if (file_exists($file))

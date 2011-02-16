@@ -6,7 +6,7 @@ Plugin Name: MailPress_batch_send
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Batch_send
 Description: This is just an add-on for MailPress to send mail in batch mode.
 Author: Andre Renaut
-Version: 5.0.1
+Version: 5.1
 Author URI: http://www.mailpress.org
 */
 
@@ -74,8 +74,7 @@ class MailPress_batch_send
 	{
 		MailPress::no_abort_limit();
 
-		MailPress::require_class('Batch');
-		$MP_Batch = new MP_Batch();
+		new MP_Batch();
 	}
 
 // schedule
@@ -152,7 +151,6 @@ class MailPress_batch_send
 
 	public static function autorefresh_js($scripts)
 	{
-		MailPress::require_class('AutoRefresh_js');
 		return MP_AutoRefresh_js::register_scripts($scripts);
 	}
 
@@ -162,7 +160,6 @@ class MailPress_batch_send
 		if ('mailpress_tracking_m' != $screen) return;
 		if (!isset($_GET['id'])) return;
 
-		MailPress::require_class('Mailmeta');
 		if (!MP_Mailmeta::get( $_GET['id'], self::metakey)) return;
 
 		add_meta_box('batchsenddiv', __('Batch current status', MP_TXTDOM), array(__CLASS__, 'meta_box_status'), $screen, 'normal', 'core');
@@ -170,7 +167,6 @@ class MailPress_batch_send
 
 	public static function meta_box_status($mail)
 	{ 
-		MailPress::require_class('Mailmeta');
 		$mailmeta = MP_Mailmeta::get( $mail->id , self::metakey);
 ?>
 		<table style='width:100%;'>
@@ -196,7 +192,7 @@ class MailPress_batch_send
 			<tr><td colspan='4'>&nbsp;</td></tr>
 			<tr>
 				<td><?php printf(__('Failed (%1$s)', MP_TXTDOM), count($mailmeta['failed'])); ?></td>
-				<td colspan='3'><select><?php MailPress::select_option(array_keys($mailmeta['failed']),''); ?></select></td>
+				<td colspan='3'><select><?php MP_AdminPage::select_option(array_keys($mailmeta['failed']),''); ?></select></td>
 			</tr>
 <?php 		endif; ?>
 
@@ -208,12 +204,11 @@ class MailPress_batch_send
 // for mails list
 	public static function to_mails_column($to, $mail)
 	{
-		MailPress::require_class('Mailmeta');
 		$mailmeta = MP_Mailmeta::get( $mail->id , self::metakey);
 
 		if ($mailmeta)
 		{
-			if ($mailmeta['sent'] != $mailmeta['count']) return sprintf( __ngettext( _c('%1$s of %2$s sent| Singular', MP_TXTDOM), _c('%1$s of %2$s sent| Plural', MP_TXTDOM), $mailmeta['sent'] ), $mailmeta['sent'], $mailmeta['count'] );
+			if ($mailmeta['sent'] != $mailmeta['count']) return sprintf( _n( _x('%1$s of %2$s sent| Singular', null, MP_TXTDOM), _x('%1$s of %2$s sent| Plural', MP_TXTDOM), $mailmeta['sent'] ), $mailmeta['sent'], $mailmeta['count'] );
 		}
 		else
 		{

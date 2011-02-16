@@ -151,12 +151,12 @@ else
 						<?php wp_nonce_field('update-' . MP_AdminPage::tr_prefix_id); ?>
 						<div class="form-field form-required" style='margin:0;padding:0;'>
 							<label for='autoresponder_name'><?php _e('Name', MP_TXTDOM); ?></label>
-							<input name='name' id='autoresponder_name' type='text'<?php echo $disabled; ?> value="<?php if (isset($autoresponder->name)) echo attribute_escape($autoresponder->name); ?>" size='40' aria-required='true' />
+							<input name='name' id='autoresponder_name' type='text'<?php echo $disabled; ?> value="<?php if (isset($autoresponder->name)) echo esc_attr($autoresponder->name); ?>" size='40' aria-required='true' />
 							<p><?php _e('The name is used to identify the autoresponder almost everywhere.', MP_TXTDOM); ?></p>
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>
 							<label for='autoresponder_slug'><?php _e('Slug', MP_TXTDOM) ?></label>
-							<input name='slug' id='autoresponder_slug' type='text' value="<?php if (isset($autoresponder->slug)) echo attribute_escape($autoresponder->slug); ?>" size='40' />
+							<input name='slug' id='autoresponder_slug' type='text' value="<?php if (isset($autoresponder->slug)) echo esc_attr($autoresponder->slug); ?>" size='40' />
 							<p><?php _e('The &#8220;slug&#8221; is a unique id for the autoresponder (not so friendly !).', MP_TXTDOM); ?></p>
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>
@@ -190,23 +190,22 @@ else
 									<tr>
 										<th><?php _e('mail', MP_TXTDOM); ?></th>
 										<th><?php _e('subject', MP_TXTDOM); ?></th>
-										<th><?php _e('m/d/h', MP_TXTDOM); ?></th>
+										<th><?php _e('y/m/w/d/h', MP_TXTDOM); ?></th>
 									</tr>
 								</thead>
 								<tbody>
 <?php 	foreach($_mails as $_mail) 
 		{ 
-			$id = $_mail['mail_id'];
-			MP_AdminPage::require_class('Mails');
-			$mail 	= MP_Mails::get( $id );
+			$id   = $_mail['mail_id'];
+			$mail = MP_Mails::get( $id );
 			$subject_display = htmlspecialchars($mail->subject,ENT_QUOTES);
 			if ( strlen($subject_display) > 40 )	$subject_display = substr($subject_display, 0, 39) . '...';
 			if ( '' == $mail->subject)  			$subject_display = $mail->subject = htmlspecialchars(__('(no subject)', MP_TXTDOM),ENT_QUOTES);
 
-			$edit_url    	= clean_url(MailPress_edit . "&id=$id");
+			$edit_url    	= esc_url(MailPress_edit . "&id=$id");
 			$actions['edit']    = "<a href='$edit_url'   title='" . sprintf( __('Edit "%1$s"', MP_TXTDOM) , $subject_display ) . "'>" . $_mail['mail_id'] . '</a>';
 
-			$view_url		= clean_url(add_query_arg( array('action' => 'iview', 'id' => $id, 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400'), MP_Action_url ));
+			$view_url		= esc_url(add_query_arg( array('action' => 'iview', 'id' => $id, 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400'), MP_Action_url ));
 			$actions['view'] = "<a href='$view_url' class='thickbox'  title='" . sprintf( __('View "%1$s"', MP_TXTDOM) , $subject_display ) . "'>" . $subject_display . '</a>';
 ?>
 									<tr>
@@ -217,7 +216,7 @@ else
 											<?php echo $actions['view']; ?>
 										</td>
 										<td>
-											<?php echo substr($_mail['schedule'],0,2) . '/' . substr($_mail['schedule'],2,2) . '/' . substr($_mail['schedule'],4,2) ; ?>
+											<?php unset($_mail['schedule']['date']); echo implode('/', $_mail['schedule']); ?>
 										</td>
 									</tr>
 <?php 	} ?>

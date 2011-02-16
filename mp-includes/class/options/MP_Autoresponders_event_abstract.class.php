@@ -40,10 +40,8 @@ abstract class MP_Autoresponders_event_abstract
 
 			$time = time();
 			$schedule = $this->schedule($time, $_mails[0]['schedule']);
-			MailPress::require_class('Usermeta');
 			$meta_id = MP_Usermeta::add($this->mp_user_id, '_MailPress_autoresponder_' . $term_id, $time);
 
-			MailPress::require_class('Log');
 			$this->trace = new MP_Log('autoresponder', MP_ABSPATH, 'MP_Autoresponder_' . $term_id, false, 'autoresponder');
 
 			$this->trace->log('!' . str_repeat( '-', self::bt) . '!');
@@ -75,15 +73,14 @@ abstract class MP_Autoresponders_event_abstract
 		return true;
 	}
 
-	function schedule($time, $schedule)
+	function schedule($time, $value)
 	{
-		$Y = date('Y', $time);
-		$M = date('n', $time) + substr($schedule, 0, 2);
-		$D = date('j', $time) + substr($schedule, 2, 2);
-		$H = date('G', $time) + substr($schedule, 4, 2);
+		$Y = date('Y', $time) + $value['Y'];
+		$M = date('n', $time) + $value['M'];
+		$D = date('j', $time) + $value['D'] + ($value['W'] * 7);
+		$H = date('G', $time) + $value['H'];
 		$Mn= date('i', $time);
 		$S = date('s', $time);
-		$U = date('u', $time);
 
 		return mktime($H, $Mn, $S, $M, $D, $Y);
 	}
@@ -95,11 +92,9 @@ abstract class MP_Autoresponders_event_abstract
 		extract($args);		// $meta_id, $mail_order
 		$meta_id = (isset($umeta_id)) ? $umeta_id : $meta_id;
 
-		MailPress::require_class('Usermeta');
 		$meta = MP_Usermeta::get_by_id($meta_id);
 		$term_id 	= (!$meta) ? 'unknown' : str_replace('_MailPress_autoresponder_', '', $meta->meta_key);
 
-		MailPress::require_class('Log');
 		$this->trace = new MP_Log('autoresponder', MP_ABSPATH, 'MP_Autoresponder_' . $term_id, false, 'autoresponder');
 
 		$this->trace->log('!' . str_repeat( '-', self::bt) . '!');
@@ -126,7 +121,6 @@ abstract class MP_Autoresponders_event_abstract
 		extract($args);		// $meta_id, $mail_order
 		$meta_id = (isset($umeta_id)) ? $umeta_id : $meta_id;
 
-		MailPress::require_class('Usermeta');
 		$meta = MP_Usermeta::get_by_id($meta_id);
 		if (!$meta)
 		{
@@ -142,7 +136,6 @@ abstract class MP_Autoresponders_event_abstract
 		$term_id 	= str_replace('_MailPress_autoresponder_', '', $meta->meta_key);
 		$time		= $meta->meta_value;
 
-		MailPress::require_class('Autoresponders');
 		$autoresponder = MP_Autoresponders::get($term_id);
 		if (!isset($autoresponder->description['active']))
 		{
@@ -154,7 +147,6 @@ abstract class MP_Autoresponders_event_abstract
 			return false;
 		}
 
-		MailPress::require_class('Users');
 		$mp_user = MP_Users::get($mp_user_id);
 		if (!$mp_user)
 		{
@@ -188,7 +180,6 @@ abstract class MP_Autoresponders_event_abstract
 
 		$_mail = $_mails[$mail_order];
 
-		MailPress::require_class('Mails');
 		$draft = MP_Mails::get($_mail['mail_id']);
 		if (!$draft)
 		{

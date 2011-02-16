@@ -120,7 +120,7 @@ class MP_Dashboard_users_per_post extends MP_Dashboard_widget_abstract
 		$args['chdl'] = join('|', $item_ids);
 		$args['chco'] = join(',', $colors);
 		$args['chd']  = 't:' . join('|', $values);
-		$url = clean_url(add_query_arg($args, $this->url));
+		$url = esc_url(add_query_arg($args, $this->url));
 
 ?>
 <div style='text-align:center;'>

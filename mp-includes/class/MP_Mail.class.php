@@ -1,6 +1,4 @@
 <?php
-MailPress::require_class('Mail_api');
-
 class MP_Mail extends MP_Mail_api
 {
 	const option_name_smtp 	= 'MailPress_smtp_config';
@@ -12,7 +10,6 @@ class MP_Mail extends MP_Mail_api
 	{
 		$this->plug = $plug;
 
-		MailPress::require_class('Themes');
 		$this->theme = new MP_Themes();
 
 		$this->message 	= null;
@@ -26,7 +23,6 @@ class MP_Mail extends MP_Mail_api
 	{
 		if (is_numeric($args))
 		{
-			MailPress::require_class('Mails');
 			$this->args = MP_Mails::get($args);
 		}
 		else
@@ -48,7 +44,6 @@ class MP_Mail extends MP_Mail_api
 
 ////  Log it  ////
 
-		MailPress::require_class('Log');
 		$f = (isset($this->args->forcelog)) ? true : false; 
 		$this->trace = new MP_Log($this->plug, MP_ABSPATH, __CLASS__, $f, 'general');
 
@@ -62,7 +57,6 @@ class MP_Mail extends MP_Mail_api
 
 		if (!isset($this->args->id))
 		{
-			MailPress::require_class('Mails');
 			$this->row->id = $this->args->id = MP_Mails::get_id( 'MP_Mail::start' );
 		}
 		else
@@ -102,7 +96,6 @@ class MP_Mail extends MP_Mail_api
 		$this->mail->attachements = false;
 		if (isset($this->args->main_id))
 		{
-			MailPress::require_class('Mailmeta');
 			$metas = MP_Mailmeta::has( $this->args->main_id, '_MailPress_attached_file');
 			if ($metas)
 			{
@@ -204,7 +197,6 @@ class MP_Mail extends MP_Mail_api
 		if (isset($this->args->noarchive))
 		{
 			$this->trace->log('MAILPRESS [NOTICE] - :::: Mail not saved as required ::::');
-			MailPress::require_class('Mails');
 			MP_Mails::delete($this->row->id);
 		}
 		else
@@ -289,7 +281,6 @@ class MP_Mail extends MP_Mail_api
 		$unsets = array( '{{subject}}', '{{content}}', '{{html}}', '{{plaintext}}', '{{id}}', '{{main_id}}', '{{recipients_query}}', '{{draft}}', '{{advanced}}' );
 		foreach ($unsets as $unset) unset($mail_replacements[$unset]);
 
-		MailPress::require_class('Mailmeta');
 		$mail_main_id = (!isset($this->args->main_id)) ? 0 : $this->args->main_id;
 		$_mail_id = ($mail_main_id) ? $mail_main_id : $this->row->id;
 		$m = MP_Mailmeta::get_replacements($_mail_id);
@@ -343,7 +334,6 @@ class MP_Mail extends MP_Mail_api
 		{
 			if (is_email($this->args->toemail))
 			{
-				MailPress::require_class('Users');
 				$mp_user_id = MP_Users::get_id_by_email($this->args->toemail);
 				if ($mp_user_id)
 				{
@@ -357,7 +347,6 @@ class MP_Mail extends MP_Mail_api
 		{
 			$this->get_recipients($this->args->recipients_query);
 
-			MailPress::require_class('Users');
 			$this->args->viewhtml = MP_Users::get_view_url('{{_confkey}}', $this->row->id);
 			if (isset($this->args->subscribe)) 	$this->args->subscribe   = MP_Users::get_subscribe_url('{{_confkey}}');
 			else						$this->args->unsubscribe = MP_Users::get_unsubscribe_url('{{_confkey}}');
@@ -440,11 +429,9 @@ class MP_Mail extends MP_Mail_api
 	function get_user_replacements($mp_user)
 	{
 		if (!$mp_user) return array();
-		MailPress::require_class('Usermeta');
 
 		if (is_numeric($mp_user))
 		{
-			MailPress::require_class('Users');
 			$mp_user = MP_Users::get($mp_user);
 			if (!$mp_user) return array();
 		}
@@ -704,7 +691,6 @@ class MP_Mail extends MP_Mail_api
 
 
 	//¤ attachements ¤//
-		MailPress::require_class('Mailmeta');
 		$metas = MP_Mailmeta::has( $this->row->id, '_MailPress_attached_file');
 		if ($metas)
 		{
@@ -847,14 +833,12 @@ class MP_Mail extends MP_Mail_api
 
 	function get_replacements($id, $main_id = false, $mp_user_id = false)
 	{
-		MailPress::require_class('Mailmeta');
 		$mail_r = MP_Mailmeta::get( $id, '_MailPress_replacements' );
 		if (!$mail_r && $main_id) $mail_r = MP_Mailmeta::get( $main_id, '_MailPress_replacements' );
 		if (!$mail_r) $mail_r = array();
 
 		if (!$mp_user_id) return $mail_r;
 
-		MailPress::require_class('Mails');
 		$mail = MP_Mails::get($id);
 
 		if (!$mail)  return $mail_r;
@@ -862,7 +846,6 @@ class MP_Mail extends MP_Mail_api
 
 		$mail->toemail = unserialize($mail->toemail);
 
-		MailPress::require_class('Users');
 		$mp_user = MP_Users::get($mp_user_id);
 
 		if (!$mp_user) return $mail_r;
@@ -881,7 +864,6 @@ class MP_Mail extends MP_Mail_api
 
 	function viewhtml($id, $main_id, $theme = false, $template = false, $mp_user_id = false)
 	{
-		MailPress::require_class('Mails');
 		$x = MP_Mails::get($id);
 		$y = array('sent', 'unsent', 'archived');
 		if (!in_array($x->status, $y))
@@ -909,7 +891,6 @@ class MP_Mail extends MP_Mail_api
 
 	function viewplaintext($id, $main_id, $theme = false, $template = false, $mp_user_id = false)
 	{
-		MailPress::require_class('Mails');
 		$x = MP_Mails::get($id);
 		$y = array('sent', 'unsent', 'archived');
 		if (!in_array($x->status, $y))

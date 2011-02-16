@@ -55,21 +55,13 @@ class MP_Forms_field_type_captcha_gd1 extends MP_Forms_field_type_abstract
 		$tag_input 	= parent::build_tag();
 
 		$id_img 	= $id_input . '_img';
-		$tag_img 	= "<img id='$id_img' src='" . clean_url(MP_Action_url . '?id=' . $this->field->id . '&action=1ahctpac') . "' alt='' />";
+		$tag_img 	= "<img id='$id_img' src='" . esc_url(MP_Action_url . '?id=' . $this->field->id . '&action=1ahctpac') . "' alt='' />";
 
 		$this->field->type = $this->id;
 
 		$form_format =  '{{img}}<br />{{input}}';
 
-		MailPress::require_class('Forms');
-		$form_template = MP_Forms::get_template($this->field->form_id);
-		if ($form_template)
-		{
-			MailPress::require_class('Forms_templates');
-			$form_templates = new MP_Forms_templates();
-			$f = $form_templates->get_composite_template($form_template, $this->id);
-			if (!empty($f)) $form_format = $f;
-		}
+		$form_formats = $this->get_formats($form_formats);
 
 		$search[] = '{{img}}';		$replace[] = '%1$s';
 		$search[] = '{{id_img}}'; 	$replace[] = '%2$s';

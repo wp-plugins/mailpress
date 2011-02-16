@@ -6,7 +6,7 @@ Plugin Name: MailPress_connection_php_mail
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Phpmail
 Description: This is just an add-on for MailPress to use native php mail connection.
 Author: Andre Renaut
-Version: 5.0.1
+Version: 5.1
 Author URI: http://www.mailpress.org
 */
 

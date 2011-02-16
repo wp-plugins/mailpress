@@ -1,6 +1,4 @@
-<?php 
-MailPress::require_class('Admin_page_list');
-
+<?php
 class MP_AdminPage extends MP_Admin_page_list
 {
 	const screen 	= MailPress_page_view_logs;
@@ -124,7 +122,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		static $row_class = '';
 
 		$f 		= substr($file, strpos($file, str_replace( ABSPATH, '', WP_CONTENT_DIR )));
-		$view_url 	= clean_url(MailPress_view_log . "&id=$f");
+		$view_url 	= esc_url(MailPress_view_log . "&id=$f");
 		$browse_url = '../' . self::get_path() . '/' . $f;
 		$actions['view']   = "<a href='$view_url' title='" . sprintf( __('View "%1$s"', MP_TXTDOM) , $file ) . "'>"	. __('View', MP_TXTDOM) . '</a>';
 		$actions['browse'] = "<a href='$browse_url' target='_blank' title='" . sprintf( __('Browse "%1$s"', MP_TXTDOM) , $file ) . "'>"	. __('Browse', MP_TXTDOM) . '</a>';

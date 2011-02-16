@@ -118,7 +118,6 @@ class MP_Widget extends WP_Widget
 
 		if (is_email($email))
 		{
-			MailPress::require_class('Users');
 			$key = MP_Users::get_key_by_email($email);
 			if ($key) $url = MP_Users::get_unsubscribe_url($key);
 		}
@@ -158,7 +157,6 @@ class MP_Widget extends WP_Widget
 			$email = apply_filters('MailPress_form_email', $email);
 			$name  = apply_filters('MailPress_form_name',  $name);
 
-			MailPress::require_class('Users');
 			if ( MP_Users::is_user($email) ) $email = $name = ''; 
 		}
 		if ('' == $email) $email = $options['txtfield'];
@@ -172,7 +170,8 @@ class MP_Widget extends WP_Widget
 			$wp_head = true;
 			if (!$options['css']) 
 			{
-				$root = apply_filters('MailPress_advanced_subscription-form_root', MP_CONTENT_DIR . 'advanced/subscription-form');
+				$root = MP_CONTENT_DIR . 'advanced/subscription-form';
+				$root = apply_filters('MailPress_advanced_subscription-form_root', $root);
 				echo "<style  type='text/css'>\n"; include "$root/style.css"; echo "\n</style>\n"; 
 			}
 			if (!$options['jq'])
@@ -216,15 +215,15 @@ class MP_Widget extends WP_Widget
 			<form class='mp-form' method='post' action=''>
 				<input type='hidden' name='action' 	value='add_user_fo' />
 				<input type='hidden' name='id' 	value='<?php echo '_MP_' . $id; ?>' />
-				<input type='text'   name='email'  	value="<?php echo $email; ?>" class='MailPressFormEmail' size='25' onfocus="if(this.value=='<?php echo js_escape($options['txtfield']); ?>') this.value='';" onblur="if(this.value=='') this.value='<?php echo js_escape($email); ?>';" /><br />
-				<input type='text'   name='name'  	value="<?php echo $name;  ?>" class='MailPressFormName'  size='25' onfocus="if(this.value=='<?php echo js_escape($options['txtfieldname']); ?>') this.value='';" onblur="if(this.value=='') this.value='<?php echo js_escape($name); ?>';" /><br />
+				<input type='text'   name='email'  	value="<?php echo $email; ?>" class='MailPressFormEmail' size='25' onfocus="if(this.value=='<?php echo esc_js($options['txtfield']); ?>') this.value='';" onblur="if(this.value=='') this.value='<?php echo esc_js($email); ?>';" /><br />
+				<input type='text'   name='name'  	value="<?php echo $name;  ?>" class='MailPressFormName'  size='25' onfocus="if(this.value=='<?php echo esc_js($options['txtfieldname']); ?>') this.value='';" onblur="if(this.value=='') this.value='<?php echo esc_js($name); ?>';" /><br />
 <?php do_action('MailPress_form', $email, $options); ?>
 				<input class='MailPressFormSubmit mp_submit' type='submit' name='MailPress_submit' value="<?php echo esc_attr($options['txtbutton']); ?>" />
 			</form>
 		</div>
 	</div>
 <?php 
-$url = ($options['urlsubmgt']) ? clean_url(self::get_wp_user_unsubscribe_url()) : false;
+$url = ($options['urlsubmgt']) ? esc_url(self::get_wp_user_unsubscribe_url()) : false;
 if ($url) :
 ?>
 	<div id='mp-urlsubmgt'><a href='<?php echo $url; ?>'><?php echo (!empty($options['txtsubmgt'])) ? esc_attr($options['txtsubmgt']) : __('Manage your subscription', MP_TXTDOM); ?></a></div>
@@ -257,7 +256,6 @@ endif;
 		else
 		{
 			$name = ( '' == $name || $options['txtfieldname'] == $name ) ? '' : $name;
-			MailPress::require_class('Users');
 			$add = MP_Users::add($email, $name);
 			$shortcode_message = apply_filters('MailPress_form_submit', '', $email);
 			$message = ($add['result']) ? "<span class='success'>" . $add['message'] . $shortcode_message . "</span><br />" : "<span class='error'>" . $add['message']  . $shortcode_message . "</span><br />";
@@ -279,4 +277,3 @@ endif;
 		return array($message, $email, $name);
 	}
 }
-register_widget('MP_Widget');

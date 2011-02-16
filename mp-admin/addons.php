@@ -1,6 +1,4 @@
-<?php 
-MailPress::require_class('Admin_page_list');
-
+<?php
 class MP_AdminPage extends MP_Admin_page_list
 {
 	const screen 	= MailPress_page_addons;
@@ -147,7 +145,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		{
 			$row_class 		= '';
 			$args['action'] 	= 'deactivate';
-			$deactivate_url 	= clean_url(self::url( MailPress_addons, array_merge($args, $url_parms) ));
+			$deactivate_url 	= esc_url(self::url( MailPress_addons, array_merge($args, $url_parms) ));
 			$actions['deactivate']	= "<a href='$deactivate_url'   	title='" .  __('Deactivate') . "'>" . __('Deactivate') . '</a>';
 			$actions = apply_filters('plugin_action_links', $actions, $addon['file'], '', '' );
 		}
@@ -155,7 +153,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		{
 			$row_class 		= 'inactive';
 			$args['action'] 	= 'activate';
-			$activate_url 	= clean_url(self::url( MailPress_addons, array_merge($args, $url_parms) ));
+			$activate_url 	= esc_url(self::url( MailPress_addons, array_merge($args, $url_parms) ));
 			$actions['activate']	= "<a href='$activate_url'   	title='" .  __('Activate') . "'>" . __('Activate') . '</a>';
 		}
 ?>

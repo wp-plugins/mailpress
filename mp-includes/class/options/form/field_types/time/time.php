@@ -43,8 +43,6 @@ class MP_Forms_field_type_time extends MP_Forms_field_type_abstract
 		{
         		$this->field->settings['options']['form_time_init_value'] = '0';
 
-			MailPress::require_class('Ip');
-
 			if ($x = MP_Ip::get_latlng($_SERVER['REMOTE_ADDR']))
 			{
 				$ip_url = 'http://ws.geonames.org/timezone?lat=' . $x['lat'] . '&lng=' .  $x['lng'] ;
@@ -191,15 +189,7 @@ class MP_Forms_field_type_time extends MP_Forms_field_type_abstract
 		$form_formats['tz'] 		= '{{h}}&nbsp;:&nbsp;{{mn}}&nbsp;{{tz}}';
 		$form_formats['ampm_tz'] 	= '{{h}}&nbsp;:&nbsp;{{mn}}&nbsp;{{am}}&nbsp;<label id="{{id_am}}_label" for="{{id_am}}">{{text_am}}</label>&nbsp;{{pm}}&nbsp;<label id="{{id_pm}}_label" for="{{id_pm}}">{{text_pm}}</label>&nbsp;{{tz}}';
 
-		MailPress::require_class('Forms');
-		$form_template = MP_Forms::get_template($this->field->form_id);
-		if ($form_template)
-		{
-			MailPress::require_class('Forms_templates');
-			$form_templates = new MP_Forms_templates();
-			$f = $form_templates->get_composite_template($form_template, $this->id);
-			if (is_array($f)) $form_formats = array_merge($form_formats, $f);
-		}
+		$form_formats = $this->get_formats($form_formats);
 
 		$search[] = '{{h}}';		$replace[] = '%1$s';
 		$search[] = '{{id_h}}'; 	$replace[] = '%2$s';

@@ -6,7 +6,7 @@ Plugin Name: MailPress_autoresponder
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Autoresponder
 Description: This is just an add-on for MailPress to manage autoresponders (based on wp-cron)
 Author: Andre Renaut
-Version: 5.0.1
+Version: 5.1
 Author URI: http://www.mailpress.org
 */
 
@@ -81,10 +81,7 @@ class MailPress_autoresponder
 
 	public static function plugins_loaded()
 	{
-		MailPress::require_class('Autoresponders');
-		MailPress::load_options('Autoresponders_events');
-
-		do_action('MailPress_load_Autoresponders_events');
+		new MP_Autoresponders_events();
 	}
 
 ////  Autoresponder  ////
@@ -96,7 +93,6 @@ class MailPress_autoresponder
 		extract($args);		// $umeta_id, $mail_order
 		$meta_id = (isset($umeta_id)) ? $umeta_id : $meta_id;
 
-		MailPress::require_class('Usermeta');
 		$meta = MP_Usermeta::get_by_id($meta_id);
 		$term_id 	= (!$meta) ? false : str_replace('_MailPress_autoresponder_', '', $meta->meta_key);
 		if (!$term_id) return;
@@ -159,7 +155,6 @@ class MailPress_autoresponder
 			$x->send();
 		}
 
-		MailPress::require_class('Autoresponders');
 		if ( MP_Autoresponders::exists( trim( $_POST['name'] ) ) ) 
 		{
 			$x = new WP_Ajax_Response( array(	'what' => 'autoresponder', 
@@ -195,14 +190,12 @@ class MailPress_autoresponder
 	public static function mp_action_delete_atrspndr() 
 	{
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
-		MailPress::require_class('Autoresponders');
 		MailPress::mp_die( MP_Autoresponders::delete($id) ? '1' : '0' );
 	}
 
 // for mails list
 	public static function get_icon_mails($mail_id)
 	{
-		MailPress::require_class('Autoresponders');
 		if (!MP_Autoresponders::object_have_relations($mail_id)) return;
 ?>
 			<img class='attach' alt="<?php _e('Autoresponder', MP_TXTDOM); ?>" title="<?php _e('Autoresponder', MP_TXTDOM); ?>" src='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>mp-admin/images/autoresponder.png' />
@@ -253,12 +246,12 @@ class MailPress_autoresponder
 
 	public static function add_meta_boxes_write($mail_id, $mp_screen)
 	{
+		if ( !current_user_can( 'MailPress_manage_autoresponders') )	return;
 		add_meta_box('write_autoresponder', __('Autoresponders', MP_TXTDOM), array(__CLASS__, 'meta_box'), MP_AdminPage::screen, 'normal', 'core');
 	}
 /**/
 	public static function meta_box($mail)
 	{
-		MP_AdminPage::require_class('Autoresponders');
 		$parms = self::meta_box_write_parms();
 ?>
 <div id='postcustomstuff'>
@@ -285,7 +278,7 @@ class MailPress_autoresponder
 		<thead>
 			<tr>
 				<th class='left'><?php _e( 'Autoresponder', MP_TXTDOM ) ?></th>
-				<th><?php _e( 'Schedule', MP_TXTDOM ) ?></th>
+				<th><?php _e( 'Schedule', MP_TXTDOM ); ?></th>
 			</tr>
 		</thead>
 		<tbody id='<?php echo $parms['table_body_id'] ?>' class='list:<?php echo $parms['tr_prefix_id'] ?>'>
@@ -331,21 +324,33 @@ class MailPress_autoresponder
 						<tbody>
 							<tr>
 								<td class='arschedule'>
+									<?php _e('Year', MP_TXTDOM);?><br />
+									<select style='width:auto;margin:0;padding:0;' name='autoresponder[schedule][Y]' >
+<?php MP_AdminPage::select_number(0, 99, 0); ?>
+									</select>
+								</td>
+								<td class='arschedule'>
 									<?php _e('Month', MP_TXTDOM);?><br />
-									<select style='width:auto;margin:0;padding:0;' name='autoresponder[schedule][MM]' >
-<?php MP_AdminPage::select_number(0, 12, (isset($month)) ? $month : 0); ?>
+									<select style='width:auto;margin:0;padding:0;' name='autoresponder[schedule][M]' >
+<?php MP_AdminPage::select_number(0, 99, 0); ?>
+									</select>
+								</td>
+								<td class='arschedule'>
+									<?php _e('Week', MP_TXTDOM);?><br />
+									<select style='width:auto;margin:0;padding:0;' name='autoresponder[schedule][W]' >
+<?php MP_AdminPage::select_number(0, 99, 0); ?>
 									</select>
 								</td>
 								<td class='arschedule'>
 									<?php _e('Day', MP_TXTDOM);?><br />
-									<select style='width:auto;margin:0;padding:0;' name='autoresponder[schedule][DD]' >
-<?php MP_AdminPage::select_number(0, 31, (isset($days)) ? $days : 0); ?>
+									<select style='width:auto;margin:0;padding:0;' name='autoresponder[schedule][D]' >
+<?php MP_AdminPage::select_number(0, 99, 0); ?>
 									</select>
 								</td>
 								<td class='arschedule'>
 									<?php _e('Hour', MP_TXTDOM);?><br />
-									<select style='width:auto;margin:0;padding:0;' name='autoresponder[schedule][HH]' >
-<?php MP_AdminPage::select_number(0, 23, (isset($hours)) ? $hours : 0); ?>
+									<select style='width:auto;margin:0;padding:0;' name='autoresponder[schedule][H]' >
+<?php MP_AdminPage::select_number(0, 99, 0); ?>
 									</select>
 								</td>
 							</tr>
@@ -354,8 +359,11 @@ class MailPress_autoresponder
 				</td>
 			</tr>
 			<tr>
-				<td colspan='2' class='submit'>
+				<td class='submit'>
 					<input type='submit' id='addmetasub' name='addwrite_autoresponder' class='add:<?php echo $parms['table_body_id']; ?>:add_<?php echo $parms['tr_prefix_id']; ?>' tabindex='9' value="<?php _e( 'Add', MP_TXTDOM ) ?>" />
+				</td>
+				<td>
+					<p class='description'><?php _e('Not more than one year between two scheduled mails.', MP_TXTDOM); ?></p>
 					<?php wp_nonce_field( 'add-write-autoresponder', '_ajax_nonce', false ); ?>
 				</td>
 			</tr>
@@ -368,7 +376,6 @@ class MailPress_autoresponder
 	//¤ for ajax
 	public static function meta_box_autoresponder_row( $entry, &$count ) 
 	{
-		MailPress::require_class('Autoresponders');
 		$parms = self::meta_box_write_parms();
 
 		static $update_nonce = false;
@@ -396,8 +403,8 @@ class MailPress_autoresponder
 " . MailPress::select_option($_autoresponders, $entry['term_id'], false) . "
 					</select>
 					<div class='submit'>
-						<input name='delete_wa-{$entry['meta_id']}' type='submit' class='delete:{$parms['table_body_id']}:{$parms['tr_prefix_id']}-{$entry['meta_id']}::_ajax_nonce=$delete_nonce delete_wa' tabindex='6' value='".attribute_escape(__( 'Delete' ))."' />
-						<input name='update_wa-{$entry['meta_id']}' type='submit' tabindex='6' value='".attribute_escape(__( 'Update' ))."' class='add:{$parms['table_body_id']}:{$parms['tr_prefix_id']}-{$entry['meta_id']}::_ajax_nonce=$update_nonce update_wa' />
+						<input name='delete_wa-{$entry['meta_id']}' type='submit' class='delete:{$parms['table_body_id']}:{$parms['tr_prefix_id']}-{$entry['meta_id']}::_ajax_nonce=$delete_nonce delete_wa' tabindex='6' value='".esc_attr(__( 'Delete' ))."' />
+						<input name='update_wa-{$entry['meta_id']}' type='submit' tabindex='6' value='".esc_attr(__( 'Update' ))."' class='add:{$parms['table_body_id']}:{$parms['tr_prefix_id']}-{$entry['meta_id']}::_ajax_nonce=$update_nonce update_wa' />
 					" . wp_nonce_field( 'change-write_autoresponder', '_ajax_nonce', false, false ) . "
 					</div>
 				</td>
@@ -406,21 +413,33 @@ class MailPress_autoresponder
 						<tbody>
 							<tr>
 								<td class='arschedule'>
+									" . __('Year', MP_TXTDOM) . "<br />
+									<select style='width:auto;margin:0;padding:0;' name='write_autoresponder[" . $entry['meta_id'] . "][value][Y]' >
+" . MailPress::select_number(0, 99, $entry['schedule']['Y'], 1, false) . "
+									</select>
+								</td>
+								<td class='arschedule'>
 									" . __('Month', MP_TXTDOM) . "<br />
-									<select style='width:auto;margin:0;padding:0;' name='write_autoresponder[" . $entry['meta_id'] . "][value][MM]' >
-" . MailPress::select_number(0, 12, substr($entry['schedule'], 0, 2), 1, false) . "
+									<select style='width:auto;margin:0;padding:0;' name='write_autoresponder[" . $entry['meta_id'] . "][value][M]' >
+" . MailPress::select_number(0, 99, $entry['schedule']['M'], 1, false) . "
+									</select>
+								</td>
+								<td class='arschedule'>
+									" . __('Week', MP_TXTDOM) . "<br />
+									<select style='width:auto;margin:0;padding:0;' name='write_autoresponder[" . $entry['meta_id'] . "][value][W]' >
+" . MailPress::select_number(0, 99, $entry['schedule']['W'], 1, false) . "
 									</select>
 								</td>
 								<td class='arschedule'>
 									" . __('Day', MP_TXTDOM) . "<br />
-									<select style='width:auto;margin:0;padding:0;' name='write_autoresponder[" . $entry['meta_id'] . "][value][DD]' >
-" . MailPress::select_number(0, 31, substr($entry['schedule'], 2, 2), 1, false) . "
+									<select style='width:auto;margin:0;padding:0;' name='write_autoresponder[" . $entry['meta_id'] . "][value][D]' >
+" . MailPress::select_number(0, 99, $entry['schedule']['D'], 1, false) . "
 									</select>
 								</td>
 								<td class='arschedule'>
 									" . __('Hour', MP_TXTDOM) . "<br />
-									<select style='width:auto;margin:0;padding:0;' name='write_autoresponder[" . $entry['meta_id'] . "][value][HH]' >
-" . MailPress::select_number(0, 23, substr($entry['schedule'], 4, 2), 1, false) . "
+									<select style='width:auto;margin:0;padding:0;' name='write_autoresponder[" . $entry['meta_id'] . "][value][H]' >
+" . MailPress::select_number(0, 99, $entry['schedule']['H'], 1, false) . "
 									</select>
 								</td>
 							</tr>
@@ -444,7 +463,7 @@ class MailPress_autoresponder
 
 		if ( isset($_POST['autoresponderselect']) || isset($_POST['autoresponder']['schedule']) ) 
 		{
-			if ( !$meta_id = self::add_meta( $object_id ) ) 	MailPress::mp_die();
+			if ( !$meta_id = self::add_meta( $object_id ) ) MailPress::mp_die();
 
 			$response = array('position' 	=> 1);
 		}
@@ -452,22 +471,17 @@ class MailPress_autoresponder
 		{
 			$meta_id   = (int) array_pop(array_keys($_POST['write_autoresponder']));
 			$key   = '_MailPress_autoresponder_' . $_POST['write_autoresponder'][$meta_id]['key'];
-			if (isset($_POST['write_autoresponder'][$meta_id]['value'])) foreach ($_POST['write_autoresponder'][$meta_id]['value'] as $k => $v) if ($v <10) $_POST['write_autoresponder'][$meta_id]['value'][$k] = '0' . $v;
-			$value = implode('', $_POST['write_autoresponder'][$meta_id]['value']);
+			$value = $_POST['write_autoresponder'][$meta_id]['value'];
 
-			MailPress::require_class('Mailmeta');
 			if ( !$meta = MP_Mailmeta::get_by_id( $meta_id ) )		MailPress::mp_die();
 			if ( !MP_Mailmeta::update_by_id($meta_id , $key, $value) )	MailPress::mp_die(1);
 
 			$response = array('old_id' 	=> $meta_id, 'position' 	=> 0);
 		}
 
-		MailPress::require_class('Mailmeta');
 		$meta = MP_Mailmeta::get_by_id( $meta_id );
 		$object_id = (int) $meta->mp_mail_id;
 		$meta = get_object_vars( $meta );
-
-		MailPress::require_class('Autoresponders');
 
 		$response = array_merge($response, array('what' => 'write-autoresponder', 'id' => $meta_id, 'data' => self::meta_box_autoresponder_row( MP_Autoresponders::get_term_meta_id($meta_id), $c ), 'supplemental' => array('mail_id' => $object_id) ) );
 
@@ -483,14 +497,11 @@ class MailPress_autoresponder
 		if (isset($_POST['autoresponder']['schedule'])) foreach ($_POST['autoresponder']['schedule'] as $k => $v) if ($v <10) $_POST['autoresponder']['schedule'][$k] = '0' . $v;
 
 		$metakey 	= isset($_POST['autoresponderselect']) ? '_MailPress_autoresponder_' . trim( $_POST['autoresponderselect'] ) : '';
-		$metavalue 	= isset($_POST['autoresponder']['schedule']) ? implode('', $_POST['autoresponder']['schedule']) : '';
+		$metavalue 	= isset($_POST['autoresponder']['schedule']) ? $_POST['autoresponder']['schedule'] : array();
 
-		if ( !empty($metavalue)  && !empty ($metakey) ) 
-		{
-			MailPress::require_class('Mailmeta');
-			return MP_Mailmeta::add( $mail_id, $metakey, $metavalue );
-		}
-		return false;
+		if ( empty($metavalue) || empty ($metakey) ) return false;
+
+		return MP_Mailmeta::add( $mail_id, $metakey, $metavalue );
 	}
 
 	public static function mp_action_delete_wa()
@@ -499,7 +510,6 @@ class MailPress_autoresponder
 
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
 
-		MailPress::require_class('Mailmeta');
 		if ( !$meta = MP_Mailmeta::get_by_id( $id ) ) 				MailPress::mp_die('1');
 		if ( MP_Mailmeta::delete_by_id( $meta->meta_id ) )			MailPress::mp_die('1');
 		MailPress::mp_die('0');

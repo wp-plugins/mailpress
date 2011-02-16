@@ -77,7 +77,6 @@ class MP_Forms_field_type_select extends MP_Forms_field_type_abstract
 	}
 	public static function no_reset($options, $post_value)
 	{
-		MailPress::require_class('Xml');
 		$xml = MP_Xml::sanitize($options, 'select');
 		if (!$xml) return false;
 
