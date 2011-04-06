@@ -33,7 +33,7 @@ abstract class MP_Newsletters_abstract
 
 	function get_wday() 
 	{
-		$w = (isset($this->newsletter[$this->args]['wday']) && is_numeric($this->newsletter[$this->args]['wday'])) ? $this->newsletter[$this->args]['wday'] : get_option('start_of_week');
+		$w = (isset($this->newsletter[$this->args]['args']['wday']) && is_numeric($this->newsletter[$this->args]['args']['wday'])) ? $this->newsletter[$this->args]['args']['wday'] : get_option('start_of_week');
 		if ( $w === false) 	$w = 1;
 		if ( $w == 7 ) 		$w = 0;
 		return (!is_numeric($w) || $w < 0 || $w > 6) ? 1 : $w;
