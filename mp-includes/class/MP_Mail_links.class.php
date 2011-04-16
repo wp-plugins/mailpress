@@ -227,7 +227,7 @@ class MP_Mail_links
 				$metas = MP_Mailmeta::has( $mail_id, '_MailPress_attached_file');
 				if ($metas)
 				{
-					$content .= "<div id='attachements'><table><tr><td style='vertical-align:top;'>" . __('Attachements', MP_TXTDOM) . "</td><td><table>";
+					$content .= "<div id='attachements'><table><tr><td style='vertical-align:top;'>" . __('Attachments', MP_TXTDOM) . "</td><td><table>";
 					foreach($metas as $meta) $content .= "<tr><td>&nbsp;" . MP_Mails::get_attachement_link($meta, $mail->status) . "</td></tr>";
 					$content .= "</table></td></tr></table></div>\n";
 				}
@@ -262,7 +262,7 @@ class MP_Mail_links
 				$metas = MP_Mailmeta::has( $mail_id, '_MailPress_attached_file');
 				if ($metas)
 				{
-					$content .= "<div id='attachements'><table><tr><td style='vertical-align:top;'>" . __('Attachements', MP_TXTDOM) . "</td><td><table>";
+					$content .= "<div id='attachements'><table><tr><td style='vertical-align:top;'>" . __('Attachments', MP_TXTDOM) . "</td><td><table>";
 					foreach($metas as $meta)
 					{
 						$meta_value = unserialize( $meta['meta_value'] );

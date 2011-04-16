@@ -73,7 +73,7 @@ if ($addons) {
 		</div>
 		<div class="clear"></div>
 
-		<table class='widefat' cellspacing='0'>
+		<table class='widefat plugins' cellspacing='0'>
 			<thead>
 				<tr>
 <?php MP_AdminPage::columns_list(); ?>

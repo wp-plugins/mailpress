@@ -270,7 +270,7 @@ class MP_AdminPage extends MP_Admin_page
 		$id = (isset($_GET['id'])) ? $_GET['id'] : 0;
 		add_meta_box('submitdiv', 		__('Send', MP_TXTDOM), 			array('MP_AdminPage', 'meta_box_submit'), 		self::screen, 'side', 'core');
 		add_meta_box('plaintextbox', 		__('Plain Text', MP_TXTDOM), 		array('MP_AdminPage', 'meta_box_plaintext'), 		self::screen, 'normal', 'high');
-		add_meta_box('attachementsdiv', 	__('Attachements', MP_TXTDOM),	array('MP_AdminPage', 'meta_box_attachements'), 	self::screen, 'side', 'core');
+		add_meta_box('attachementsdiv', 	__('Attachments', MP_TXTDOM),		array('MP_AdminPage', 'meta_box_attachements'), 	self::screen, 'side', 'core');
 
 		if ( current_user_can('MailPress_mail_custom_fields') )
 			add_meta_box('customfieldsdiv', 	__('Custom Fields'), 		array('MP_AdminPage', 'meta_box_customfields'), 	self::screen, 'normal', 'core');

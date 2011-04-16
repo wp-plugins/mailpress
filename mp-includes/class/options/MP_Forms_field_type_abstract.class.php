@@ -45,7 +45,7 @@ abstract class MP_Forms_field_type_abstract
 		return $this->build_tag();
 	}
 
-	function get_formats($default)
+	function get_formats($default = '')
 	{
 		$form_template = MP_Forms::get_template($this->field->form_id);
 		if ($form_template)

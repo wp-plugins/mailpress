@@ -735,8 +735,8 @@ class MP_Actions
 
 		$meta = MP_Mailmeta::get_by_id($meta_id);
 
-		if (!$meta) MailPress::mp_die(__('Cannot Open Attachement 1!', MP_TXTDOM));
-		if (!is_file($meta->meta_value['file_fullpath']))	MailPress::mp_die(__('Cannot Open Attachement 2! ' . $meta->meta_value['file_fullpath'], MP_TXTDOM));
+		if (!$meta) MailPress::mp_die(__('Cannot Open Attachment 1!', MP_TXTDOM));
+		if (!is_file($meta->meta_value['file_fullpath']))	MailPress::mp_die(__('Cannot Open Attachment 2! ' . $meta->meta_value['file_fullpath'], MP_TXTDOM));
 
 		self::download($meta->meta_value['name'], $meta->meta_value['file_fullpath'], $meta->meta_value['mime_type']);
 	}

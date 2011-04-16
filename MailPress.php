@@ -4,8 +4,8 @@ Plugin Name: MailPress
 Plugin URI: http://www.mailpress.org
 Description: The WordPress mailing platform. <b>(do not use automatic upgrade!)</b>
 Author: Andre Renaut
-Requires at least: 3.1
-Tested up to: 3.1
+Requires at least: 3.1.1
+Tested up to: 3.1.1
 Version: 5.1
 Author URI: http://www.mailpress.org
 */
@@ -173,7 +173,7 @@ class MailPress extends MP_abstract
 		global $wp_version; 
 
 		$min_ver_php = '5.2.0';
-		$min_ver_wp  = '3.0';
+		$min_ver_wp  = '3.1.1';
 		$m = array();
 
 		if (version_compare(PHP_VERSION, $min_ver_php, '<')) 	$m[] = sprintf(__('Your %1$s version is \'%2$s\', at least version \'%3$s\' required.', MP_TXTDOM), __('PHP'), PHP_VERSION, $min_ver_php );
@@ -239,7 +239,7 @@ class MailPress extends MP_abstract
 
 	public static function capability_groups()
 	{
-		return array('admin' => __('Admin', MP_TXTDOM), 'mails' => __('Mails', MP_TXTDOM), 'users' => __('Users', MP_TXTDOM));
+		return apply_filters('MailPress_capability_groups', array('admin' => __('Admin', MP_TXTDOM), 'mails' => __('Mails', MP_TXTDOM), 'users' => __('Users', MP_TXTDOM)));
 	}
 
 ////	Menu	////

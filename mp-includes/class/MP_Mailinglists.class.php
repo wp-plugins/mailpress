@@ -112,7 +112,7 @@ class MP_Mailinglists
 
 ////  Hierarchy  ////
 
-	function is_ancestor_of($parent, $child) 
+	public static function is_ancestor_of($parent, $child) 
 	{
 		if ( is_int($parent) )	$parent = self::get($parent);
 		if ( is_int($child) )	$child  = self::get($child);

@@ -206,7 +206,7 @@ class MP_Mail extends MP_Mail_api
 			if (!isset($this->args->nostats)) MailPress::update_stats('t', isset($this->args->Template) ? $this->args->Template : '', $this->mail->recipients_count);
 
 			$now		= current_time( 'mysql' );
-			$user_id 	= MailPress::get_wp_user_id();
+			$user_id 	= (empty($this->args->wp_user_id)) ?  MailPress::get_wp_user_id() : $this->args->wp_user_id;
 
 			if ($this->mail->swift_batchSend) 
 			{
@@ -714,6 +714,8 @@ class MP_Mail extends MP_Mail_api
 		$fprefix 	= ('mail' == $dest) ? ABSPATH : $siteurl;
 
 		$output = preg_match_all('/<img[^>]*>/Ui', $html, $imgtags, PREG_SET_ORDER); // all img tag
+
+		if (empty($imgtags)) return $html;
 
 		foreach ($imgtags as $imgtag)
 		{

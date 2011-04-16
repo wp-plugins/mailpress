@@ -190,7 +190,7 @@ class MP_AdminPage extends MP_Admin_page_list
 <?php
 			if ($attach) :
 ?>
-			<img class='attach' alt="<?php _e('Attachements', MP_TXTDOM); ?>" title="<?php _e('Attachements', MP_TXTDOM); ?>"  src='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>mp-admin/images/clip.gif' />
+			<img class='attach' alt="<?php _e('Attachments', MP_TXTDOM); ?>" title="<?php _e('Attachments', MP_TXTDOM); ?>"  src='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>mp-admin/images/clip.gif' />
 <?php
 			endif;
 			do_action('MailPress_get_icon_mails', $id);

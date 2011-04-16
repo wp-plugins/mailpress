@@ -37,13 +37,13 @@ Some technical stuff :
 Some bugs fixed of course (see changelog)
 
 Please report any bug in the mailpress google group http://groups.google.com/group/mailpress
-starting your subject title with : "(MailPress 5.0)".
+starting your subject title with : "(MailPress 5.1)".
 
 Thank you
 
 == Installation ==
 
-1. Make sure you have already installed WordPress 3.0 or above.
+1. Make sure you have already installed WordPress 3.1 or above.
 1. Unzip the MailPress package.
 1. Upload the mailpress folder into wp-content/plugins.
 1. Make sure the wp-content/plugins/mailpress/tmp folder is writable.
@@ -100,9 +100,10 @@ Changes & Enhancements :
 
 * autoresponders can be scheduled with year, month, week, day, hour.
 
-1. Bounce
+1. Bounce & Batch
 
 * code review.
+* better support for W3 Total Cache
 
 1. Form
 
@@ -110,6 +111,10 @@ Changes & Enhancements :
 * code review on composite field types merging default template formats with customized ones.
 * (bug fix) control of recipient email when creating/modifying a new form...
 * (bug fix) creating some mysql tables on install can be usefull ...
+
+1. Newsletter
+
+* (bug fix) changing wday for weekly newsletter for scheduler and/or processor in xml files was not working ...
 
 ** 5.0.1 ** 01/12/2010
 

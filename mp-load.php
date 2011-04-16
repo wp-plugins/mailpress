@@ -43,16 +43,13 @@ foreach (array(MP_ABSPATH . $mp_config, dirname(MP_ABSPATH) . '/' . $mp_config) 
 }
 
 /** Folder name of MailPress 'mp-content'. */
-if ( !defined('MP_CONTENT_FOLDER') )
-	define ('MP_CONTENT_FOLDER', 	'mp-content');
+defined('MP_CONTENT_FOLDER') 	or define ('MP_CONTENT_FOLDER', 	'mp-content');
 
 /** Absolute path to the MailPress 'mp-content' folder. */
-if ( !defined('MP_CONTENT_DIR') )
-	define ('MP_CONTENT_DIR', 	MP_ABSPATH . MP_CONTENT_FOLDER . '/');
+defined('MP_CONTENT_DIR')	or define ('MP_CONTENT_DIR', 		MP_ABSPATH . MP_CONTENT_FOLDER . '/');
 
 /** Relative path to the MailPress 'mp-content' folder. */
-if ( !defined('MP_PATH_CONTENT') )
-	define ('MP_PATH_CONTENT', 	MP_PATH    . MP_CONTENT_FOLDER . '/');
+defined('MP_PATH_CONTENT')	or define ('MP_PATH_CONTENT', 	MP_PATH    . MP_CONTENT_FOLDER . '/');
 
 // 3.
 
@@ -89,7 +86,6 @@ define ('MP_Help_url', 'http://www.mailpress.org/wiki/');
 // 4.
 
 /** for gettext */
-//load_plugin_textdomain(MP_TXTDOM, MP_PATH_CONTENT . 'languages');
 load_plugin_textdomain(MP_TXTDOM, false, MP_FOLDER . '/' . MP_CONTENT_FOLDER . '/' . 'languages');
 
 // 5.

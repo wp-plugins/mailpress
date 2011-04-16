@@ -89,7 +89,7 @@ do_action('admin_print_scripts' );
 							<table>
 								<tr>
 									<td style='vertical-align:top;'>
-										<?php _e('Attachements', MP_TXTDOM); ?>
+										<?php _e('Attachments', MP_TXTDOM); ?>
 									</td>
 									<td>
 										<table>

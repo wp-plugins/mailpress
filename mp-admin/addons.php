@@ -143,7 +143,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		$actions = array();
 		if ($addon['active'])
 		{
-			$row_class 		= '';
+			$row_class 		= 'active';
 			$args['action'] 	= 'deactivate';
 			$deactivate_url 	= esc_url(self::url( MailPress_addons, array_merge($args, $url_parms) ));
 			$actions['deactivate']	= "<a href='$deactivate_url'   	title='" .  __('Deactivate') . "'>" . __('Deactivate') . '</a>';
@@ -193,8 +193,8 @@ class MP_AdminPage extends MP_Admin_page_list
 ?>
 		<td  <?php echo $attributes ?>>
 <?php
-					echo "<p><strong>{$haystack}</strong></p>";
-					echo self::get_actions($actions, ''); ?>
+					echo "<strong>{$haystack}</strong>";
+					echo self::get_actions($actions, 'row-actions-visible'); ?>
 		</td>
 <?php
 				break;

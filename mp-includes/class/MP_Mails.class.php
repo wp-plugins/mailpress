@@ -289,6 +289,8 @@ class MP_Mails
 		$mail->html		= $draft->html;
 		$mail->plaintext	= $draft->plaintext;
 
+		$mail->wp_user_id	= $draft->created_user_id;
+
 		$mail->draft 	= true;
 
 		$count = MailPress::mail($mail);
