@@ -55,7 +55,7 @@ class MP_Forms_field_type_captcha_gd2 extends MP_Forms_field_type_abstract
 
 		$form_format =  '{{img}}<br />{{input}}';
 
-		$form_formats = $this->get_formats();
+		$form_format = $this->get_formats($form_format);
 
 		$search[] = '{{img}}';		$replace[] = '%1$s';
 		$search[] = '{{id_img}}'; 	$replace[] = '%2$s';

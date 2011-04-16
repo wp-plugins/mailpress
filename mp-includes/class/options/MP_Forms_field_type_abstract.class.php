@@ -48,12 +48,11 @@ abstract class MP_Forms_field_type_abstract
 	function get_formats($default = '')
 	{
 		$form_template = MP_Forms::get_template($this->field->form_id);
-		if ($form_template)
-		{
-			$form_templates = new MP_Forms_templates();
-			$f = $form_templates->get_composite_template($form_template, $this->id);
-			return (is_array($f)) ? array_merge($default, $f) : ((!empty($f)) ? $f : $default);
-		}
+		if (!$form_template) return $default;
+
+		$form_templates = new MP_Forms_templates();
+		$f = $form_templates->get_composite_template($form_template, $this->id);
+		return (is_array($f)) ? array_merge($default, $f) : ((!empty($f)) ? $f : $default);
 	}
 
 	function attributes_filter($no_reset) 
