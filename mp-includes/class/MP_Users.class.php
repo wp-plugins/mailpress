@@ -264,6 +264,11 @@ class MP_Users
 		$data['created_country']= MP_Ip::get_country($data['created_IP']);			$format[] = '%s';
 		$data['created_US_state']= ('US' == $data['created_country']) ? MP_Ip::get_USstate($data['created_IP']) : 'ZZ'; $format[] = '%s';
 
+		$data['laststatus']	   = $created;		$format[] = '%s';
+		$data['laststatus_IP'] 	   = $created_IP;		$format[] = '%s';
+		$data['laststatus_agent']  = $created_agent; 	$format[] = '%s';
+		$data['laststatus_user_id']= $created_user_id;	$format[] = '%d';
+
 		global $wpdb;
 		if (!$wpdb->insert($wpdb->mp_users, $data, $format)) return false;
 

@@ -159,13 +159,13 @@ $queries[] =
  confkey           varchar(100)     NOT NULL,
  created           timestamp        NOT NULL default '0000-00-00 00:00:00',
  created_IP        varchar(100)     NOT NULL default '',
- created_agent     varchar(1024)    NOT NULL default '',
+ created_agent     text             NOT NULL,
  created_user_id   bigint(20)       UNSIGNED NOT NULL default 0,
  created_country   char(2)          NOT NULL default 'ZZ',
  created_US_state  char(2)          NOT NULL default 'ZZ',
  laststatus        timestamp        NOT NULL default '0000-00-00 00:00:00',
  laststatus_IP     varchar(100)     NOT NULL default '',
- laststatus_agent  varchar(1024)    NOT NULL default '',
+ laststatus_agent  text             NOT NULL,
  laststatus_user_id bigint(20)      UNSIGNED NOT NULL default 0,
  PRIMARY KEY (id),
  KEY status (status)
@@ -199,5 +199,6 @@ dbDelta($queries);
 $wpdb->query( "DELETE FROM $wpdb->mp_mails    WHERE status = '' AND theme <> '';" );
 $wpdb->query( "DELETE FROM $wpdb->mp_mailmeta WHERE mp_mail_id NOT IN ( SELECT id FROM $wpdb->mp_mails );" );
 $wpdb->query( "DELETE FROM $wpdb->mp_usermeta WHERE mp_user_id NOT IN ( SELECT id FROM $wpdb->mp_users );" );
+$wpdb->query( "DELETE FROM $wpdb->mp_usermeta WHERE meta_value NOT IN ( SELECT id FROM $wpdb->mp_mails ) AND meta_key = '_MailPress_mail_sent' ;" );
 
 $wpdb->query( "UPDATE $wpdb->mp_mailmeta SET meta_key = '_MailPress_attached_file' WHERE meta_key = '_mp_attached_file';" );
