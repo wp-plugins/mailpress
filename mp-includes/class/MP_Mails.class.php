@@ -40,10 +40,15 @@ class MP_Mails
 		}
 	}
 
+	public static function get_var($var, $key_col, $key, $format = '%s') 
+	{
+		global $wpdb;
+		return $wpdb->get_var( $wpdb->prepare("SELECT $var FROM $wpdb->mp_mails WHERE $key_col = $format LIMIT 1;", $key) );
+	}
+
 	public static function get_status($id) 
 	{
-      	global $wpdb;
-	      $result = $wpdb->get_var( $wpdb->prepare("SELECT status FROM $wpdb->mp_mails WHERE id = %s LIMIT 1;", $id) );
+		$result = self::get_var('status', 'id', $id);
 		return ($result == NULL) ? self::status_deleted : $result;
 	}
 

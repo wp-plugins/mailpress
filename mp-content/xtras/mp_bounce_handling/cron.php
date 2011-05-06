@@ -1,4 +1,5 @@
 <?php
+
 define('DOING_CRON', true);
 
 $path = substr(dirname(__FILE__),0,strpos(dirname(__FILE__),'wp-content'));

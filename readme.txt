@@ -102,7 +102,7 @@ Changes & Enhancements :
 
 1. Bounce & Batch
 
-* code review.
+* code review, new Bounce_api class.
 * better support for W3 Total Cache
 
 1. Form

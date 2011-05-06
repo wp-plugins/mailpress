@@ -40,10 +40,15 @@ class MP_Users
 		}
 	}
 
+	public static function get_var($var, $key_col, $key, $format = '%s') 
+	{
+		global $wpdb;
+		return $wpdb->get_var( $wpdb->prepare("SELECT $var FROM $wpdb->mp_users WHERE $key_col = $format LIMIT 1;", $key) );
+	}
+
 	public static function get_status($id) 
 	{
-      	global $wpdb;
-	      $result = $wpdb->get_var( $wpdb->prepare("SELECT status FROM $wpdb->mp_users WHERE id = %s LIMIT 1;", $id) );
+		$result = self::get_var('status', 'id', $id);
 		return ($result == NULL) ? self::status_deleted : $result;
 	}
 
@@ -191,42 +196,35 @@ class MP_Users
 		return $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->mp_users WHERE id = %d ; ", $id ) );
 	}
 
-
 	public static function is_user($email = '') 
 	{
 		return ( is_email($email) && self::status_deleted != self::get_status_by_email($email) ) ; 
 	}
 
-
 	public static function get_id($key) 
 	{
-		global $wpdb;
-		return $wpdb->get_var( $wpdb->prepare("SELECT id FROM $wpdb->mp_users WHERE confkey = %s ;", $key) );
+		return self::get_var('id', 'confkey', $key);
 	}
 
 	public static function get_id_by_email($email) 
 	{
-		global $wpdb;
-		return $wpdb->get_var( $wpdb->prepare("SELECT id FROM $wpdb->mp_users WHERE email = %s ;", $email) );
+		return self::get_var('id', 'email', $email);
 	}
 
 	public static function get_email($id) 
 	{
-		global $wpdb;
-		return $wpdb->get_var( $wpdb->prepare("SELECT email FROM $wpdb->mp_users WHERE id = %s ;", $id) );
+		return self::get_var('email', 'id', $id);
 	}
 
 	public static function get_status_by_email($email) 
 	{
-		global $wpdb;
-	      $result = $wpdb->get_var( $wpdb->prepare("SELECT status FROM $wpdb->mp_users WHERE email = %s ;", $email) );
+	      $result = self::get_var('status', 'email', $email);
 		return ($result == NULL) ? self::status_deleted : $result;
 	}
 
 	public static function get_key_by_email($email) 
 	{
-		global $wpdb;
-		return $wpdb->get_var( $wpdb->prepare("SELECT confkey FROM $wpdb->mp_users WHERE email = %s ;", $email) );
+		return self::get_var('confkey', 'email', $email);
 	}
 
 	public static function get_flag_IP() 
