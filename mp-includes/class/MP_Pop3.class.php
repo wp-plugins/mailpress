@@ -139,7 +139,7 @@ class MP_Pop3
 			$k = substr($value, 0, $pos = strpos($value, ':'));
 			$v = ltrim(substr($value, $pos + 1));
 			if (empty($k)) continue;
-			if (empty($v)) continue;
+			if ($v == '')  continue;
 			if (empty($headers) || in_array($k, $headers)) $this->headers[$k][] = $v;
 		}
 		if (!empty($headers)) $this->sort_headers($headers);

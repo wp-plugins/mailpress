@@ -218,7 +218,7 @@ class MP_Bounce_api extends MP_Db_connect
 
 	function get_body($length = 8192)
 	{
-		$body = substr($this->pop3->message, 0, $length);
+		$body = ($length) ? substr($this->pop3->message, 0, $length) : $this->pop3->message;
                         
 		// Microsoft Exchange Base 64 decoding
 		if (preg_match('/\r?\n(.*?)\r?\nContent-Type\:\s*text\/plain.*?Content-Transfer-Encoding\:\sbase64\r?\n\r?\n(.*?)\1/is', $body, $matches))
@@ -227,6 +227,7 @@ class MP_Bounce_api extends MP_Db_connect
 		// clean up
 		$body = preg_replace('%--- Below this line is a copy of the message.(.*)%is', '', $body);
 		$body = preg_replace('%------ This is a copy (.*)%is', '', $body);
+		$body = preg_replace('%----- Original message -----(.*)%is', '', $body); 
 		$body = preg_replace('%Content-Type: message/rfc822.*%is', '', $body);
 		$body = preg_replace('%Content-Description: Delivery report.*\s*?%i', '', $body);
 		$body = str_replace("\r", "", $body);

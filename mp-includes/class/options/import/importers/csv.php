@@ -33,7 +33,7 @@ class MP_import_csv extends MP_Import_importer_abstract
 			break;
 			case 2:
 				$this->start_trace($step);
-					$import = $this->import( $_GET['id'] );
+				$import = $this->import( $_GET['id'] );
 				$this->end_trace(true);
 				if ($import)
 					$this->success('<p>' . sprintf(__("<b>File imported</b> : <i>%s</i>", MP_TXTDOM), $this->file) . '</p><p><strong>' . sprintf(__("<b>Number of records</b> : <i>%s</i>", MP_TXTDOM), $import) . '</strong></p>');

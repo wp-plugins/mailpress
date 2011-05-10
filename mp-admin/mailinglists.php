@@ -192,14 +192,9 @@ class MP_AdminPage extends MP_Admin_page_list
 		$actions['delete'] = "<a class='delete:" . self::list_id . ":" . self::tr_prefix_id . "-" . $mailinglist->term_id . " submitdelete' href='$delete_url'>" . __('Delete') . "</a>";
 
 		if ( $default_mailinglist_id == $mailinglist->term_id ) 
-		{
-			$mailinglist->allowed = false;
 			unset($actions['delete']);
-		}
-		else
-		{
-			$mailinglist->allowed = (isset($mp_subscriptions['display_mailinglists'][$mailinglist->term_id]));
-		}
+
+		$mailinglist->allowed = (isset($mp_subscriptions['display_mailinglists'][$mailinglist->term_id]));
 
 		$tr_style = (isset($mailinglist->_found)) ? '' : " style='background-color:#EBEEEF;'"; 
 
