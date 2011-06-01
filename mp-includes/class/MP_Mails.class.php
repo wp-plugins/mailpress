@@ -428,7 +428,7 @@ class MP_Mails
 	{
 		if ( !$revision = self::get( $revision ) ) return $revision;
 
-		$datef = _c( 'j F, Y @ G:i|revision date format', MP_TXTDOM);
+		$datef = _x( 'j F, Y @ G:i', 'revision date format', MP_TXTDOM);
 		$autosavef = __( '%s [Autosave]' , MP_TXTDOM);
 		$currentf  = __( '%s [Current Revision]' , MP_TXTDOM);
 
@@ -470,7 +470,7 @@ class MP_Mails
 				break;
 		}
 
-		$titlef = _c( '%1$s by %2$s|mail revision 1:datetime, 2:name', MP_TXTDOM);
+		$titlef = _x( '%1$s by %2$s', 'mail revision 1:datetime, 2:name', MP_TXTDOM);
 
 		$rev_ids[0] = $mail->id;
 		ksort($rev_ids);

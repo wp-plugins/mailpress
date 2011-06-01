@@ -49,6 +49,7 @@ class MailPress_tracking
 		add_action('MailPress_unsubscribe_user',		array(__CLASS__, 'unsubscribe_user'), 1, 1);
 // prepare mail
 		add_filter('MailPress_is_tracking',  		array(__CLASS__, 'is_tracking'), 1, 1);
+		add_filter('MailPress_header_url',			array(__CLASS__, 'header_url'), 8, 2);
 		add_filter('MailPress_mail',				array(__CLASS__, 'mail'), 8, 1);
 // process link
 		add_action('mp_action_tracking', 			array(__CLASS__, 'tracking'), 8, 1);
@@ -177,6 +178,17 @@ class MailPress_tracking
 	public static function is_tracking($x)
 	{
 		return true;
+	}
+
+	public static function header_url($url, $mail)
+	{
+		$MP_Tracking_url = MP_Action_url;
+		$MP_Tracking_url_args = '?tg=%1$s&mm=%2$s&co=%3$s&us={{_confkey}}';
+
+		$meta_id = self::get_mmid($mail->id, '_MailPress_mail_link', str_replace('&amp;', '&', $url));
+		$t_url = $MP_Tracking_url . sprintf($MP_Tracking_url_args, 'l', $meta_id, 'h');
+		$t_url = apply_filters('MailPress_tracking_url', $t_url, $mail);
+		return $t_url;
 	}
 
 	public static function mail($mail)

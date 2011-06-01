@@ -661,10 +661,33 @@ class MP_Mail extends MP_Mail_api
 
 	//¤ to & replacements ¤//
 		if (!$this->mail->swift_batchSend) 
-			$this->message->setTo(array($this->row->toemail => $this->row->toname));
+		{
+			try
+			{
+				$this->message->addTo($this->row->toemail, $this->row->toname);
+			}
+			catch (Swift_RfcComplianceException $e)
+			{
+				$this->trace->log('SWIFTMAILER [ERROR] - ' . "Recipient do not comply RFC rules (discarded) :\n\n" . $e->getMessage() . "\n\n");
+				return false;
+			}
+			//$this->message->setTo(array($this->row->toemail => $this->row->toname));
+		}
 		else
 		{
-			$this->message->setTo($this->row->recipients);
+			foreach($this->row->recipients as $toemail => $toname)
+			{
+				try
+				{
+					$this->message->addTo($toemail, $toname);
+				}
+				catch (Swift_RfcComplianceException $e)
+				{
+					$this->trace->log('SWIFTMAILER [WARNING] - ' . "Recipient do not comply RFC rules (discarded) :\n\n" . $e->getMessage() . "\n\n");	
+					unset($this->row->replacements[$toemail]);
+				}
+			}
+			//$this->message->setTo($this->row->recipients);
 			foreach($this->row->replacements as $k => $v) $this->row->replacements[$k] = array_merge($this->mail->replacements, $this->row->replacements[$k]);
 		}
 

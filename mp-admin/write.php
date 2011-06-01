@@ -98,7 +98,19 @@ class MP_AdminPage extends MP_Admin_page
 
 ////  Title  ////
 
-	public static function title() { global $title; $title = (isset($_GET['file']) && ('write' == $_GET['file'])) ? __('Edit Mail', MP_TXTDOM) : __('Add New Mail', MP_TXTDOM); }
+	public static function title() 
+	{ 
+		global $title; 
+		$title = (isset($_GET['file']) && ('write' == $_GET['file'])) ? __('Edit Mail', MP_TXTDOM) : __('Add New Mail', MP_TXTDOM);
+
+		add_filter('tiny_mce_before_init', array(__CLASS__, 'tiny_mce_before_init'));
+	}
+
+	public static function tiny_mce_before_init($initArray)
+	{
+		$initArray['plugins'] = str_replace( array('wpfullscreen', ',,') , array('', ',') , $initArray['plugins'] );
+		return $initArray;
+	}
 
 ////  Styles  ////
 

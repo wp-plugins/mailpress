@@ -1,5 +1,9 @@
 <?php
-if (!isset($connection_pop3)) $connection_pop3 = get_option(MailPress_bounce_handling::option_name_pop3);
+if (class_exists('MailPress_bounce_handling'))
+	if (!isset($connection_pop3)) $connection_pop3 = get_option(MailPress_bounce_handling::option_name_pop3);
+
+if (class_exists('MailPress_bounce_handling_II'))
+	if (!isset($connection_pop3)) $connection_pop3 = get_option(MailPress_bounce_handling_II::option_name_pop3);
 
 $formname = substr(basename(__FILE__), 0, -4); 
 ?>

@@ -100,10 +100,10 @@ class MP_Pop3
 		$response = $this->get_response('LIST');
 		if (!$response) return false;
 
-                $r = explode(' ', $response);
+		$r = explode(' ', $response);
 		if (!$r[1])	return false; // list is empty
 
-                if ($string = $this->fetch()) do { $datas = explode(' ', $string); $this->messages[] = $datas[0]; $string = $this->fetch(); } while(".\r\n" != substr($string, -3 ));
+		if ($string = $this->fetch()) do { $datas = explode(' ', $string); $this->messages[] = $datas[0]; $string = $this->fetch(); } while(".\r\n" != substr($string, -3 ));
 		return true;
 	}
 
@@ -135,11 +135,11 @@ class MP_Pop3
 		$this->headers = array();
 		foreach ($raw_headers as $value) 
 		{
-			if ($value == '') continue;
+			if ('' == $value) continue;
 			$k = substr($value, 0, $pos = strpos($value, ':'));
 			$v = ltrim(substr($value, $pos + 1));
 			if (empty($k)) continue;
-			if ($v == '')  continue;
+			if ('' == $v)  continue;
 			if (empty($headers) || in_array($k, $headers)) $this->headers[$k][] = $v;
 		}
 		if (!empty($headers)) $this->sort_headers($headers);
