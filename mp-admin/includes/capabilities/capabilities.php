@@ -23,7 +23,7 @@ $capabilities	= array(	'MailPress_edit_dashboard' 	=> array(	'name'	=> __('Dashb
 
 												'parent'	=> false,
 												'page_title'=> __('Mails', MP_TXTDOM),
-												'menu_title'=> __('Mails'),
+												'menu_title'=> __('All Mails', MP_TXTDOM),
 												'page'	=> MailPress_page_mails,
 												'func'	=> array('MP_AdminPage', 'body')
 											),
@@ -60,7 +60,7 @@ $capabilities	= array(	'MailPress_edit_dashboard' 	=> array(	'name'	=> __('Dashb
 
 												'parent'	=> false,
 												'page_title'=> __('MailPress Users', MP_TXTDOM),
-												'menu_title'=> __('Users', MP_TXTDOM),
+												'menu_title'=> __('All Users', MP_TXTDOM),
 												'page'	=> MailPress_page_users,
 												'func'	=> array('MP_AdminPage', 'body')
 											),
