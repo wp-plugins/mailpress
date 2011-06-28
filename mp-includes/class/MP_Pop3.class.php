@@ -8,7 +8,7 @@ class MP_Pop3
 	function __construct($server, $port, $username, $password, $trace = false)
 	{
 		$this->server 	= $server;
-		$this->port 	= $port;
+		$this->port 	= (int) $port;
 		$this->username 	= $username;
 		$this->password 	= $password;
 		$this->trace	= $trace;
