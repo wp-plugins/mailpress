@@ -46,7 +46,8 @@ class MailPress_mailinglist
 		add_filter('MailPress_query_mailinglist', array(__CLASS__, 'query_mailinglist'), 8, 2);
 
 // for mp_user
-		add_action('MailPress_insert_user', 	array(__CLASS__, 'set_user_mailinglists'), 1, 1);
+		add_action('MailPress_activate_user_1st',	array(__CLASS__, 'set_user_mailinglists'), 1, 1);
+//		add_action('MailPress_insert_user', 	array(__CLASS__, 'set_user_mailinglists'), 1, 1);
 		add_action('MailPress_delete_user', 	array(__CLASS__, 'delete_user'), 1, 1);
 
 // for autoresponder
