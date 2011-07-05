@@ -8,13 +8,7 @@ Stable tag: 5.0.1
 
 The WordPress mailing platform 
 
-as of 2010/10/26 reported by wordpress.org, you are around 15 000 to use this plugin 
-
-Your donations are welcomed !
-
 == Description ==
-
-**since 5.0.1, mp-content/advanced/newsletters : xml format has changed**
 
 1. Style your html and plain text mails with dedicated themes and templates.
 1. Double opt-in subscription.
@@ -24,15 +18,12 @@ Your donations are welcomed !
 
 **Follow Installation or Upgrade guidelines**
 
-**Never use WordPress automatic upgrade :** you will loose the customized content of mailpress/mp-content and mailpress/tmp folders !
-
 Some technical stuff :
 
 1. Switmailer 4.0.6
-1. jQuery 1.4 supported.
+1. jQuery 1.6 supported.
 1. Google Map API V3 supported.
-1. Code Mirror 0.9
-1. Optional : possibility to externalize and/or rename the mp-content folder using an optional mailpress-config.php file.
+1. Code Mirror 0.9 (2.2)
 
 Some bugs fixed of course (see changelog)
 
@@ -43,7 +34,7 @@ Thank you
 
 == Installation ==
 
-1. Make sure you have already installed WordPress 3.1 or above.
+1. Make sure you have already installed WordPress 3.2 or above.
 1. Unzip the MailPress package.
 1. Upload the mailpress folder into wp-content/plugins.
 1. Make sure the wp-content/plugins/mailpress/tmp folder is writable.
@@ -53,11 +44,11 @@ Thank you
 1. Point your browser to "Settings > MailPress", fill and save the settings for each tab (General, (Connection to your mail server), Test, ... add-ons).
 1. Once everything is installed, use the Test tab in "Settings > MailPress" to validate your settings.
 
+**Never use WordPress automatic upgrade** : you will loose the content of mailpress/mp-content and mailpress/tmp folders !
+
 == Upgrade Notice ==
 
 **Never use WordPress automatic upgrade** : you will loose the content of mailpress/mp-content and mailpress/tmp folders !
-
-**since 5.0.1, mp-content/advanced/newsletters : xml format has changed**
 
 1. Point your browser to "Plugins > MailPress Add-ons" page and deactivate all add ons.
 1. Point your browser to "Plugins" page and deactivate MailPress plugin.
@@ -87,8 +78,6 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 Changes & Enhancements :
 
-**since 5.0.1, mp-content/advanced/newsletters : xml format has changed**
-
 * MailPress::require_class deprecated, replaced by an autoloader.
 * modifying some code due to WordPress deprecated functions.
 
@@ -104,6 +93,7 @@ Changes & Enhancements :
 
 * code review, new Bounce_api class.
 * better support for W3 Total Cache
+* new add on for detecting bounces on mail content
 
 1. Form
 

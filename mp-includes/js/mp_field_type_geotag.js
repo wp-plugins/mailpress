@@ -56,7 +56,7 @@ function mp_field_type_geotag(settings)
 		ControlDiv = document.createElement('DIV');
 		ControlDiv.setAttribute('style', 'top:auto !important;left:auto !important;right: 0px !important;bottom: 8px !important;z-index:1;');
 		if (this.settings.rgeocode  	== '1') this.reverseGeocode(ControlDiv);
-		this.map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(ControlDiv);
+		this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(ControlDiv);
 	}
 
 	this.map_type = function(maptype) {
@@ -189,7 +189,7 @@ function mp_field_type_geotag(settings)
 		});
 	}
 
-	this.reverseGeocode = function(div) // BOTTOM_RIGHT
+	this.reverseGeocode = function(div) // TOP_LEFT
 	{
 		var map 	= this.map;
 		var marker 	= this.marker;
