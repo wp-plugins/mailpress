@@ -4,7 +4,7 @@ Plugin Name: MailPress
 Plugin URI: http://www.mailpress.org
 Description: The WordPress mailing platform. <b>(do not use automatic upgrade!)</b>
 Author: Andre Renaut
-Requires at least: 3.1.1
+Requires at least: 3.1
 Tested up to: 3.2
 Version: 5.1
 Author URI: http://www.mailpress.org
@@ -173,12 +173,12 @@ class MailPress extends MP_abstract
 		global $wp_version; 
 
 		$min_ver_php = '5.2.0';
-		$min_ver_wp  = '3.1.1';
+		$min_ver_wp  = '3.1';
 		$m = array();
 
 		if (version_compare(PHP_VERSION, $min_ver_php, '<')) 	$m[] = sprintf(__('Your %1$s version is \'%2$s\', at least version \'%3$s\' required.', MP_TXTDOM), __('PHP'), PHP_VERSION, $min_ver_php );
 		if (version_compare($wp_version, $min_ver_wp , '<'))	$m[] = sprintf(__('Your %1$s version is \'%2$s\', at least version \'%3$s\' required.', MP_TXTDOM), __('WordPress'), $wp_version , $min_ver_wp );
-		if (!is_writable(MP_ABSPATH . 'tmp'))				$m[] = sprintf(__('The directory \'%1$s\' is not writable.', MP_TXTDOM), MP_ABSPATH . 'tmp');
+		if (!is_writable(MP_ABSPATH . 'tmp'))			$m[] = sprintf(__('The directory \'%1$s\' is not writable.', MP_TXTDOM), MP_ABSPATH . 'tmp');
 		if (!extension_loaded('simplexml'))				$m[] = __("Default php extension 'simplexml' not loaded.", MP_TXTDOM);
 
 		if (!empty($m))

@@ -109,7 +109,7 @@ class MP_Users
 			if ($update) 	
 			{
 				MailPress::update_stats('u', $the_status, 1);
-				do_action('MailPress_activate_user', $id, 'MailPress_activate_user');
+				do_action('MailPress_activate_user', $id, 'MailPress_activate_user'); 
 				if ($first) do_action('MailPress_activate_user_1st', $id, 'MailPress_activate_user_1st'); 
 				self::send_succesfull_subscription($mp_user->email, $mp_user->name, $mp_user->confkey);
 			}
@@ -278,11 +278,11 @@ class MP_Users
 		if ('active' == $status) MailPress::update_stats('u', 'active', 1);
  
 		do_action('MailPress_insert_user', $mp_user_id);
-		if (('active' == $status) && !$stopPropagation)
+		if (('active' == $status) && !$stopPropagation) 
 		{
-			do_action('MailPress_activate_user', $mp_user_id, 'MailPress_activate_user');
-			do_action('MailPress_activate_user_1st', $mp_user_id, 'MailPress_activate_user_1st');
-		}
+                    do_action('MailPress_activate_user', $mp_user_id, 'MailPress_activate_user');
+                    do_action('MailPress_activate_user_1st', $mp_user_id, 'MailPress_activate_user_1st'); 
+                }
 
 		return $mp_user_id;
 	}
