@@ -64,7 +64,9 @@ if ('edit' == $action)
 	$id = (int) $url_parms['id'];
 	$form = MP_Forms::get($id);
 
-	$h3 = sprintf(__('Update form # %1$s', MP_TXTDOM), $id);
+	$h3 = sprintf(__('Edit Form # %1$s', MP_TXTDOM), $id);
+	$hb3= __('Update');
+	$hbclass = '-primary';
 }
 else
 {
@@ -73,7 +75,8 @@ else
 
 	$form = new stdClass();
 
-	$h3 = __('Add a form', MP_TXTDOM);
+	$h3 = $hb3 = __('Add Form', MP_TXTDOM);
+	$hbclass = '';
 }
 
 // Form settings tab
@@ -330,7 +333,7 @@ if (isset($form->settings['visitor']['template']) && $key == $form->settings['vi
 							</div>
 						</div>
 						<p style='margin:15px 0;'>
-							<input type='submit' class='button-primary' name='submit' id='form_submit' value="<?php echo $h3; ?>" />
+							<input type='submit' class='button<?php echo $hbclass; ?>' name='submit' id='form_submit' value="<?php echo $hb3; ?>" />
 							<?php echo $cancel; ?>	
 						</p>
 					</form>

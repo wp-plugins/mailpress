@@ -102,6 +102,9 @@ class MP_Log
 
 	function log($x, $level=0)
 	{
+		if (stripos($x, 'simplepie') == true) return;
+		if (strpos($x, ' WP_Http') == true)   return;
+
 		if (self::noMP_Log    == $this->level) return;
 		if ($level <= $this->level) $this->data .= date_i18n('Y-m-d H:i:s u') . " -- " . $x . "\n";
 	}

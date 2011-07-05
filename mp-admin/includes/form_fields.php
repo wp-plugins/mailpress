@@ -76,7 +76,9 @@ if ('edit' == $action)
 	$id = (int) $url_parms['id'];
 	$field = MP_Forms_fields::get($id);
 
-	$h3 = sprintf(__('Update field # %1$s', MP_TXTDOM), $id);
+	$h3 = sprintf(__('Edit Form Field # %1$s', MP_TXTDOM), $id);
+	$hb3= __('Update');
+	$hbclass = '-primary';
 
 // protected
 	$disabled = '';
@@ -90,7 +92,8 @@ else
 	$field = new stdClass();
 	$field->type = 'text';
 
-	$h3 = __('Add a field', MP_TXTDOM);
+	$h3 = $hb3 = __('Add Form Field', MP_TXTDOM);
+	$hbclass = '';
 
 	$disabled = '';
 }
@@ -225,7 +228,7 @@ if ($tr) echo "\t\t\t\t\t\t\t\t</tr>\n";
 <?php foreach ($field_types as $key => $field_type) MP_Forms_field_types::settings_form($key, $field); ?>
 						</div>
 						<p class='submit'>
-							<input type='submit' class='button-primary' name='submit' id='form_submit' value="<?php echo $h3; ?>" />
+							<input type='submit' class='button<?php echo $hbclass; ?>' name='submit' id='form_submit' value="<?php echo $hb3; ?>" />
 							<?php echo $cancel; ?>
 						</p>
 					</form>
