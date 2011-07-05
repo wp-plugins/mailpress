@@ -4,10 +4,10 @@ Plugin Name: MailPress
 Plugin URI: http://www.mailpress.org
 Description: The WordPress mailing platform. <b>(do not use automatic upgrade!)</b>
 Author: Andre Renaut
+Author URI: http://www.mailpress.org
 Requires at least: 3.1
 Tested up to: 3.2
 Version: 5.1
-Author URI: http://www.mailpress.org
 */
 
 require_once('mp-load.php');

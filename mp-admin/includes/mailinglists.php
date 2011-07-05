@@ -54,7 +54,9 @@ if ('edit' == $action)
 	$id = (int) $_GET['id'];
 	$mailinglist = MP_Mailinglists::get( $id, OBJECT, 'edit' );
 
-	$h3 = __('Update the mailing list', MP_TXTDOM);
+	$h3 = __('Edit Mailing List', MP_TXTDOM);
+	$hb3= __('Update');
+	$hbclass = '-primary';
 
 //	$disabled = " disabled='disabled'";
 	$disabled = '';
@@ -69,7 +71,8 @@ else
 
 	$mailinglist = new stdClass();
 
-	$h3 = __('Add a mailing list', MP_TXTDOM);
+	$h3 = $hb3 = __('Add Mailing List', MP_TXTDOM);
+	$hbclass = '';
 
 	$disabled = '';
 	$hidden = '';
@@ -167,7 +170,7 @@ else
 							<p><?php _e("Mailing list can have a hierarchy. You might have a Rock'n roll mailing list, and under that have children mailing lists for Elvis and The Beatles. Totally optional !", MP_TXTDOM); ?></p>
 						</div>
 						<p class='submit'>
-							<input type='submit' class='button' name='submit' id='mailinglist_submit' value="<?php echo $h3; ?>" />
+							<input type='submit' class='button<?php echo $hbclass; ?>' name='submit' id='mailinglist_submit' value="<?php echo $hb3; ?>" />
 							<?php echo $cancel; ?>
 						</p>
 					</form>

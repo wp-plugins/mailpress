@@ -56,7 +56,9 @@ if ('edit' == $action)
 	$id = (int) $_GET['id'];
 	$autoresponder = MP_Autoresponders::get($id);
 
-	$h3 = __('Update the autoresponder', MP_TXTDOM);
+	$h3 = __('Edit Autoresponder', MP_TXTDOM);
+	$hb3= __('Update');
+	$hbclass = '-primary';
 
 //	$disabled = " disabled='disabled'";
 	$disabled = '';
@@ -73,7 +75,8 @@ else
 
 	$autoresponder = new stdClass();
 
-	$h3 = __('Add an autoresponder', MP_TXTDOM);
+	$h3 = $hb3 = __('Add Autoresponder', MP_TXTDOM);
+	$hbclass = '';
 
 	$disabled = '';
 	$hidden = '';
@@ -226,7 +229,7 @@ else
 						</div>
 <?php endif; ?>
 						<p class='submit'>
-							<input type='submit' class='button' name='submit' id='autoresponder_submit' value="<?php echo $h3; ?>" />
+							<input type='submit' class='button<?php echo $hbclass; ?>' name='submit' id='autoresponder_submit' value="<?php echo $hb3; ?>" />
 							<?php echo $cancel; ?>
 						</p>
 					</form>
