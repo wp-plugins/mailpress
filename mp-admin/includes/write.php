@@ -169,11 +169,11 @@ $draft_dest = MP_Users::get_mailinglists();
 
 		<div id='poststuff' class='metabox-holder has-right-sidebar'>
 			<div id="side-info-column" class="inner-sidebar">
-<?php $side_meta_boxes = do_meta_boxes(MP_AdminPage::screen, 'side', $draft); ?>
+<?php do_meta_boxes(MP_AdminPage::screen, 'side', $draft); ?>
 			</div>
 
-			<div id="post-body" class="<?php echo $side_meta_boxes ? 'has-sidebar' : ''; ?>">
-				<div id="post-body-content" class="has-sidebar-content">
+			<div id='post-body'>
+				<div id='post-body-content'>
 					<div id='fromtodiv'>
 						<table class='widefat'><tr><td style='border:none;'>
 							<table class='form-table' style='margin:0;'>

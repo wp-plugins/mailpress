@@ -42,11 +42,13 @@ var autosave = {
 
 // buttons
 	enable_buttons : function() {
-		jQuery("#submitpost :button:disabled, #submitpost :submit:disabled").attr('disabled', '');
+		//jQuery("#submitpost :button:disabled, #submitpost :submit:disabled").attr('disabled', '');
+		jQuery(':button, :submit', '#submitpost').removeAttr('disabled');
 	},
 
 	disable_buttons : function() {
-		jQuery("#submitpost :button:enabled, #submitpost :submit:enabled").attr('disabled', 'disabled');
+		//jQuery("#submitpost :button:enabled, #submitpost :submit:enabled").attr('disabled', 'disabled');
+		jQuery(':button, :submit', '#submitpost').prop('disabled', true);
 		setTimeout(autosave.enable_buttons, 5000); // Re-enable 5 sec later.  Just gives autosave a head start to avoid collisions.
 	},
 
