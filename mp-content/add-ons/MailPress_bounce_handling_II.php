@@ -6,7 +6,7 @@ Plugin Name: MailPress_bounce_handling_II
 Plugin URI: 
 Description: This is just an add-on for MailPress to handle bounce mails (based on mail headers & string detection in mail body).
 Author: 
-Version: 5.0.1
+Version: 5.1.1
 Author URI:
 */
 
@@ -78,6 +78,12 @@ class MailPress_bounce_handling_II
 // prepare mail
 	public static function swift_message_headers($message, $row)
 	{
+		if (!class_exists('MailPress_bounce_handling'))
+		{
+			$config = get_option(self::option_name);
+			if (isset($config['Return-Path']) && is_email($config['Return-Path'])) $message->setReturnPath($config['Return-Path']);
+		}
+
 		global $wpdb;
 		$headers = array(
 					array(	'type' => Swift_Mime_Header::TYPE_TEXT , 
@@ -93,7 +99,6 @@ class MailPress_bounce_handling_II
 							'value' => (isset($row->mp_user_id)) ? $row->mp_user_id : '{{_user_id}}'
 					),
 				);
-
 
 		$_headers = $message->getHeaders();
 		foreach ($headers as $header)

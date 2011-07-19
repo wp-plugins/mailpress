@@ -19,6 +19,15 @@ if (!isset($bounce_handling_II)) $bounce_handling_II = get_option(MailPress_boun
 	<th style='padding:0;'><strong><?php _e('Handling Bounces', MP_TXTDOM); ?> II</strong></th>
 	<td></td>
 </tr>
+<?php if (!class_exists('MailPress_bounce_handling')) : ?>
+<tr valign='top'>
+	<th scope='row'><?php _e('Return-Path', MP_TXTDOM); ?></th>
+	<td class='field'>
+		<input type='text' size='25' name='bounce_handling_II[Return-Path]' value="<?php if (isset($bounce_handling_II['Return-Path'])) echo $bounce_handling_II['Return-Path']; ?>" />
+		<br /><?php _e('optional', MP_TXTDOM); ?>
+	</td>
+</tr>
+<?php endif; ?>
 <tr valign='top'>
 	<th scope='row'><?php _e('Max bounces per user', MP_TXTDOM); ?></th>
 	<td class='field'>
