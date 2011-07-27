@@ -106,8 +106,10 @@ class MP_Pluggable
 
 		if (is_array($message))
 		{
-			$mail->plaintext = $message['plaintext'];
-			$mail->html      = $message['html'];
+			if (isset($message['plaintext']))  	$mail->plaintext = $message['plaintext'];
+			if (isset($message['text/plain'])) 	$mail->plaintext = $message['text/plain'];
+			if (isset($message['html']))  	$mail->html = $message['html'];
+			if (isset($message['text/html']))  	$mail->html = $message['text/html'];
 		}
 		else
 		{

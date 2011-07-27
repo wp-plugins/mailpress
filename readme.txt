@@ -74,6 +74,16 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 == Changelog ==
 
+** 5.1.1 ** //2011
+
+07/28/11
+* MP_Bounce.class.php    : code review fixing bugs detected by ovidiu
+* MP_Pluggable.class.php : support of $message as an array
+
+07/19/11
+* New settings in bounce_handling_II when bounce_handling not active : Return-Path
+* Fixing uninstall bug
+
 ** 5.1 ** 07/06/2011
 
 Changes & Enhancements :

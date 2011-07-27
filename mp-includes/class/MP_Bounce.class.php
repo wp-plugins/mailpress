@@ -31,20 +31,20 @@ class MP_Bounce extends MP_Bounce_api
 				{
 					case (preg_match("#{$prefix}[0-9]*\+[0-9]*@{$domain}#", $header)) :
 						preg_match_all("/{$prefix}([0-9]*)\+([0-9]*)@{$domain}/", $header, $matches, PREG_SET_ORDER);
-						if (empty($matches)) continue;
+						if (empty($matches)) continue 2;
 						$bounce_email	= $matches[0][0];
 						$mail_id		= $matches[0][1];
 						$mp_user_id		= $matches[0][2];
 					break;
 					case (preg_match("#{$prefix}[0-9]*\+$user_mask@{$domain}#", $header)) :
 						preg_match_all("/$prefix([0-9]*)\+$user_mask@$domain/", $header, $matches, PREG_SET_ORDER);
-						if (empty($matches)) continue;
+						if (empty($matches)) continue 2;
 						$bounce_email	= $matches[0][0];
 						$mail_id		= $matches[0][1];
-						if (!$mail = MP_Mails::get($mail_id)) continue;
-						if (!is_email($mail->toemail)) continue;
+						if (!$mail = MP_Mails::get($mail_id)) continue 2;
+						if (!is_email($mail->toemail))        continue 2;
 						$mp_user_id 	= MP_Users::get_id_by_email($mail->toemail);
-						if (!$mp_user_id) continue;
+						if (!$mp_user_id) continue 2;
 					break;
 					case (preg_match_all("/[a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~\.-]+@[\._a-zA-Z0-9-]{2,}+/i", $header, $matches, PREG_SET_ORDER) && ($bounce_email = is_email($matches[0][0])) ) :
 						switch($tag)
@@ -53,23 +53,25 @@ class MP_Bounce extends MP_Bounce_api
 							case 'Final-Recipient' :
 								$mail_id = -1;
 								$mp_user_id = MP_Users::get_id_by_email($bounce_email);
-								if (!$mp_user_id) continue;
+								if (!$mp_user_id) continue 3;
 							break;
 							default :
-								continue;
+								continue 3;
 							break;
 						}
 					break;
 					default :
-						continue;
+						continue 2;
 					break;
 				}
 			}
 
-			$this->process_mailbox_status();
-
-			return array($mail_id, $mp_user_id, $bounce_email);
-			break;
+			if (isset($mail_id, $mp_user_id, $bounce_email))
+			{
+				$this->process_mailbox_status();
+				return array($mail_id, $mp_user_id, $bounce_email);
+				break;
+			}
 		}
 		return false;
 	}
