@@ -36,10 +36,8 @@ class MailPress extends MP_abstract
 		$wpdb->mp_usermeta  = $wpdb->prefix . 'mailpress_usermeta';
 		$wpdb->mp_stats     = $wpdb->prefix . 'mailpress_stats';
 
-// for add-ons
+// for add-ons & gettext
 		add_action('plugins_loaded', 	array(__CLASS__, 'plugins_loaded'));
-// for gettext & MP_Action urls
-		add_action('plugins_loaded', 	array(__CLASS__, 'plugins_loaded_999', 999));
 // for widget
 		add_action('widgets_init', 	array(__CLASS__, 'widgets_init'));
 // for shutdown
@@ -72,16 +70,12 @@ class MailPress extends MP_abstract
 
 ////	Add-ons   ////
 
-	public static function plugins_loaded() {	MP_Addons::load_all(); }
-
-////	Gettext & MP_Action urls   ////
-
-	public static function plugins_loaded_999() 
-	{
-	// can and should be loaded after WPML. Recommended to be loaded on Init
+	public static function plugins_loaded() 
+	{	
 		load_plugin_textdomain(MP_TXTDOM, false, MP_FOLDER . '/' . MP_CONTENT_FOLDER . '/' . 'languages');
 
-	// for ajax & actions
+		MP_Addons::load_all();
+
 		defined('MP_Action_url')  or define('MP_Action_url',   add_query_arg(apply_filters('MailPress_action_url_arg', array() ),  get_option('siteurl') . '/' . MP_PATH . 'mp-includes/action.php'  ) );
 		defined('MP_Action_home') or define('MP_Action_home',  add_query_arg(apply_filters('MailPress_action_url_arg', array() ),  get_option('home')    . '/' . MP_PATH . 'mp-includes/action.php'  ) );
 	}
