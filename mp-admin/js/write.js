@@ -18,6 +18,7 @@ var mp_write = {
 
 		//autosave
 		autosave.init();
+
 		if ( jQuery('#title').val() == '' )
 			jQuery('#title').siblings('#title-prompt-text').css('visibility', '');
 		jQuery('#title-prompt-text').click(function(){

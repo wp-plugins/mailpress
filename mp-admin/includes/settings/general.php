@@ -27,8 +27,14 @@ switch (true)
 
 		if (isset($_POST['default_mailinglist_on']))	// so we don't delete settings if addon deactivated !
 		{
-			$default_mailinglist 	= $_POST['default_mailinglist'];
+			$default_mailinglist = $_POST['default_mailinglist'];
 			update_option (MailPress_mailinglist::option_name_default, $default_mailinglist);
+		}
+
+		if (isset($_POST['mailinglist_per_lang_on']))   // so we don't delete settings if addon deactivated !
+		{
+			$default_mailinglist_lang = $_POST['default_mailinglist_lang'];
+			update_option (MailPress_WPML::option_name_default, $default_mailinglist_lang);
 		}
 
 		if ('ajax' == $mp_general['subscription_mngt']) $mp_general['id'] = '';

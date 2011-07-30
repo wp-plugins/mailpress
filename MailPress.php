@@ -5,9 +5,9 @@ Plugin URI: http://www.mailpress.org
 Description: The WordPress mailing platform. <b>(do not use automatic upgrade!)</b>
 Author: Andre Renaut
 Author URI: http://www.mailpress.org
-Requires at least: 3.1
+Requires at least: 3.2
 Tested up to: 3.2
-Version: 5.1
+Version: 5.1.1
 */
 
 require_once('mp-load.php');
@@ -37,7 +37,9 @@ class MailPress extends MP_abstract
 		$wpdb->mp_stats     = $wpdb->prefix . 'mailpress_stats';
 
 // for add-ons
-		add_action('plugins_loaded', 	array(__CLASS__, 'plugins_loaded'));
+		add_action('plugins_loaded', 	array(__CLASS__, 'plugins_loaded', 0));
+// for gettext & MP_Action urls
+		add_action('plugins_loaded', 	array(__CLASS__, 'plugins_loaded_999', 999));
 // for widget
 		add_action('widgets_init', 	array(__CLASS__, 'widgets_init'));
 // for shutdown
@@ -71,6 +73,18 @@ class MailPress extends MP_abstract
 ////	Add-ons   ////
 
 	public static function plugins_loaded() {	MP_Addons::load_all(); }
+
+////	Gettext & MP_Action urls   ////
+
+	public static function plugins_loaded_999() 
+	{
+	// can and should be loaded after WPML. Recommended to be loaded on Init
+		load_plugin_textdomain(MP_TXTDOM, false, MP_FOLDER . '/' . MP_CONTENT_FOLDER . '/' . 'languages');
+
+	// for ajax & actions
+		defined('MP_Action_url')  or define('MP_Action_url',   add_query_arg(apply_filters('MailPress_action_url_arg', array() ),  get_option('siteurl') . '/' . MP_PATH . 'mp-includes/action.php'  ) );
+		defined('MP_Action_home') or define('MP_Action_home',  add_query_arg(apply_filters('MailPress_action_url_arg', array() ),  get_option('home')    . '/' . MP_PATH . 'mp-includes/action.php'  ) );
+	}
 
 ////  Widget ////
 
@@ -173,7 +187,7 @@ class MailPress extends MP_abstract
 		global $wp_version; 
 
 		$min_ver_php = '5.2.0';
-		$min_ver_wp  = '3.1';
+		$min_ver_wp  = '3.2';
 		$m = array();
 
 		if (version_compare(PHP_VERSION, $min_ver_php, '<')) 	$m[] = sprintf(__('Your %1$s version is \'%2$s\', at least version \'%3$s\' required.', MP_TXTDOM), __('PHP'), PHP_VERSION, $min_ver_php );

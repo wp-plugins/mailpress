@@ -36,6 +36,9 @@ class MP_Widget extends WP_Widget
 		else unset($instance['js']);
 		if (isset($new_instance['urlsubmgt'])) $instance['urlsubmgt'] = true;
 		else {unset($instance['urlsubmgt']); $instance['txtsubmgt'] = '';}
+
+		$instance = apply_filters('MP_Widget_save_instance',$instance);
+
 		return $instance;
 	}
 

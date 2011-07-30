@@ -108,7 +108,11 @@ class MP_AdminPage extends MP_Admin_page
 
 	public static function tiny_mce_before_init($initArray)
 	{
-		$initArray['plugins'] = str_replace( array('wpfullscreen', ',,') , array('', ',') , $initArray['plugins'] );
+		$x = array(	'theme_advanced_buttons1'	=> 'fullscreen',
+				'plugins'				=> 'wpfullscreen',
+		     );
+
+		foreach($x as $k => $v) if (isset($initArray[$k])) $initArray[$k] = str_replace( array($v, ',,') , array('', ',') , $initArray[$k] );
 		return $initArray;
 	}
 
@@ -211,15 +215,10 @@ class MP_AdminPage extends MP_Admin_page
 		$scripts[] = self::screen;
 		parent::print_scripts($scripts);
 
-		$_footer_enabled = ($GLOBALS['wp_version'] >= '2.8') ? true : false;
-		if ($_footer_enabled && !$is_footer) return;
+		if (!$is_footer) return;
 
 		global $hook_suffix;
-		global $wp_version; 
-		$action = ($_footer_enabled && $is_footer) ? "admin_footer-$hook_suffix" : "admin_head-$hook_suffix" ;
-		add_action($action, 'wp_tiny_mce', 25);
-		if (version_compare($wp_version, '3.1' , 'ge')) add_action($action, 'wp_tiny_mce_preload_dialogs', 30 );
-		if (self::flash()) add_action($action, array('MP_AdminPage', 'swfupload'));
+		if (self::flash()) add_action("admin_footer-$hook_suffix", array('MP_AdminPage', 'swfupload'));
 	}
 
 	public static function flash() 

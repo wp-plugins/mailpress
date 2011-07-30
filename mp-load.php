@@ -77,8 +77,8 @@ define ('MailPress_user', 		$mp_file . '?page=' 	. MailPress_page_user);
 define ('MailPress_addons', 		'plugins.php' . '?page=' 	. MailPress_page_addons);
 
 /** for ajax & actions */
-define ('MP_Action_url', get_option('siteurl') . '/' . MP_PATH . 'mp-includes/action.php');
-define ('MP_Action_home', get_option('home') . '/' . MP_PATH . 'mp-includes/action.php');
+//define ('MP_Action_url', get_option('siteurl') . '/' . MP_PATH . 'mp-includes/action.php');
+//define ('MP_Action_home', get_option('home') . '/' . MP_PATH . 'mp-includes/action.php');
 
 /** for contextual help */
 define ('MP_Help_url', 'http://www.mailpress.org/wiki/');
@@ -86,7 +86,7 @@ define ('MP_Help_url', 'http://www.mailpress.org/wiki/');
 // 4.
 
 /** for gettext */
-load_plugin_textdomain(MP_TXTDOM, false, MP_FOLDER . '/' . MP_CONTENT_FOLDER . '/' . 'languages');
+//load_plugin_textdomain(MP_TXTDOM, false, MP_FOLDER . '/' . MP_CONTENT_FOLDER . '/' . 'languages');
 
 // 5.
 

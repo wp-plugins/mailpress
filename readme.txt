@@ -76,6 +76,10 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 ** 5.1.1 ** //2011
 
+07/30/11
+* Integration of WPML add on
+* mp-admin/write.php code clean up
+
 07/28/11
 * MP_Bounce.class.php    : code review fixing bugs detected by ovidiu
 * MP_Pluggable.class.php : support of $message as an array

@@ -403,16 +403,23 @@ class MP_Users
 		{
 			case 'ajax':
 				return add_query_arg( array('action' => 'mail_link', $action => $key), MP_Action_url );
+			break;
 			case 'page_id':
 				$p = get_post($mp_general['id']);
 				$s = ($wp_rewrite->get_page_permastruct() != '' && isset($p->post_status) && 'draft' != $p->post_status)? '?':'&';
-				return get_permalink($mp_general['id']) . $s . $action . '=' . $key ;
+				$id = apply_filters('MP_Users_get_url_general_id', $mp_general['id'], 'page');
+				return get_permalink($id) . $s . $action . '=' . $key ;
+			break;
 			case 'cat':
 				$a = $wp_rewrite->get_category_permastruct();
 				$s = (!empty($a))? '?':'&';
-				return get_category_link($mp_general['id']) . $s . $action . '=' . $key ;
+				$id = apply_filters('MP_Users_get_url_general_id', $mp_general['id'], 'category');
+				return get_category_link($id) . $s . $action . '=' . $key ;
+			break;
 			default:
-				return get_option('home') . '/?' . $mp_general['subscription_mngt'] . '=' . $mp_general['id'] . '&' . $action . '=' . $key ;
+				$id = apply_filters('MP_Users_get_url_general_id', $mp_general['id'], $mp_general['subscription_mngt']);
+				return get_option('home') . '/?' . $mp_general['subscription_mngt'] . '=' . $id . '&' . $action . '=' . $key ;
+			break;
 		}
 	}
  
