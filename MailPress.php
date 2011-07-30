@@ -37,7 +37,7 @@ class MailPress extends MP_abstract
 		$wpdb->mp_stats     = $wpdb->prefix . 'mailpress_stats';
 
 // for add-ons
-		add_action('plugins_loaded', 	array(__CLASS__, 'plugins_loaded', 0));
+		add_action('plugins_loaded', 	array(__CLASS__, 'plugins_loaded'));
 // for gettext & MP_Action urls
 		add_action('plugins_loaded', 	array(__CLASS__, 'plugins_loaded_999', 999));
 // for widget
