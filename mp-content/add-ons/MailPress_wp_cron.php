@@ -27,9 +27,9 @@ class MailPress_wp_cron
 		if (is_admin())
 		{
 		// for role & capabilities
-			add_filter('MailPress_capabilities', 		array('MailPress_wp_cron', 'capabilities'), 1, 1);
+			add_filter('MailPress_capabilities', 		array(__CLASS__, 'capabilities'), 1, 1);
 		// for load admin page
-			add_filter('MailPress_load_admin_page', 		array('MailPress_wp_cron', 'load_admin_page'), 10, 1);
+			add_filter('MailPress_load_admin_page', 		array(__CLASS__, 'load_admin_page'), 10, 1);
 		}
 	}
 

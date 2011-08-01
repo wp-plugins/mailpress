@@ -4,26 +4,32 @@ var autosave = {
 	oldmessage  : '',
 	periodical	: null,
 
+	tinyMCE_triggerSave : function() {
+		if ( (typeof tinyMCE != "undefined") && tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden() ) 	
+		{
+			if ( 'mce_fullscreen' == tinyMCE.activeEditor.id ) 
+				tinyMCE.get('content').setContent(tinyMCE.activeEditor.getContent({format : 'raw'}), {format : 'raw'});
+			tinyMCE.triggerSave();
+			return true;
+		}
+		return false;
+	},
+
+	tinyMCE_spellcheckerOn : function() {
+		return ( autosave.tinyMCE_triggerSave() && tinyMCE.activeEditor.plugins.spellchecker && tinyMCE.activeEditor.plugins.spellchecker.active );
+	},
+
 	init : function() {
 		if (jQuery('#autosavenonce').val())
 		{
-
-/* when tinyMCE is in use */
-
-			if ( (typeof tinyMCE != "undefined") && tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden() ) 	
-			{
-				var ed = tinyMCE.activeEditor;
-				if ( 'mce_fullscreen' == ed.id )	tinyMCE.get('content').setContent(ed.getContent({format : 'raw'}), {format : 'raw'});
-				tinyMCE.get('content').save();
-			}
-																	// (bool) is TinyMCE spellcheck is on
-/* when tinyMCE is in use */
+			autosave.tinyMCE_triggerSave();
 
 			autosave.periodical 	= jQuery.schedule({	time: autosaveL10n.autosaveInterval * 1000, 
-										func: function() { autosave.show_preview = false; autosave.main(); }, 
-										repeat: true, 
-										protect: true
-									});
+											func: function() { autosave.show_preview = false; autosave.main(); }, 
+											repeat: true, 
+											protect: true
+			});
+
 			jQuery("#mail_newform").submit(function() { jQuery.cancel(autosave.periodical); });	// Disable autosave after the form has been submitted
 
 			autosave.init_html2txt();
@@ -42,12 +48,10 @@ var autosave = {
 
 // buttons
 	enable_buttons : function() {
-		//jQuery("#submitpost :button:disabled, #submitpost :submit:disabled").attr('disabled', '');
 		jQuery(':button, :submit', '#submitpost').removeAttr('disabled');
 	},
 
 	disable_buttons : function() {
-		//jQuery("#submitpost :button:enabled, #submitpost :submit:enabled").attr('disabled', 'disabled');
 		jQuery(':button, :submit', '#submitpost').prop('disabled', true);
 		setTimeout(autosave.enable_buttons, 5000); // Re-enable 5 sec later.  Just gives autosave a head start to avoid collisions.
 	},
@@ -100,7 +104,7 @@ var autosave = {
 	display_preview : function () {
 		var href = jQuery('#preview-button a').attr("href");
 
-		var selectedtheme = jQuery('#theme').val();		//var currenttheme = jQuery('#hidden_theme').val();
+		var selectedtheme = jQuery('#theme').val();
 
 		if (selectedtheme != '')
 		{
@@ -131,12 +135,6 @@ var autosave = {
 		href = hrefnew;
 
 		tb_show(null,href,null);
-/*
-		jQuery('#TB_title').css({'background-color':'#222','color':'#cfcfcf'});
-		jQuery('#TB_closeAjaxWindow').css({'float':'right'});
-		jQuery('#TB_ajaxWindowTitle').css({'float':'left'});
-		jQuery('#TB_iframeContent').width('100%');
-*/
 	},
 
 // attachements
@@ -198,12 +196,9 @@ var autosave = {
 
 	click_html2txt : function() {
 		jQuery('a.html2txt').click(function() {
-			if ( (typeof tinyMCE != "undefined") && tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden() ) 	
-			{
-				var ed = tinyMCE.activeEditor;
-				if ( 'mce_fullscreen' == ed.id )	tinyMCE.get('content').setContent(ed.getContent({format : 'raw'}), {format : 'raw'});
-				tinyMCE.get('content').save();
-			}
+
+			autosave.tinyMCE_triggerSave();
+
 			if (jQuery("#content").val()   == '') return;
 			if (jQuery("#plaintext").val() != '' && !confirm(MP_AdminPageL10n.html2txt) ) return;
 
@@ -313,23 +308,9 @@ var autosave = {
 	},
 
 
-
-
 	main : function() {
 
-/*when tinyMCE is in use */
-
-		var rich  = false;												// (bool) is rich editor enabled and active
-		if ( (typeof tinyMCE != "undefined") && tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden() ) 	
-		{
-			var rich = true;
-			var ed = tinyMCE.activeEditor;
-			if ( 'mce_fullscreen' == ed.id )	tinyMCE.get('content').setContent(ed.getContent({format : 'raw'}), {format : 'raw'});
-			tinyMCE.get('content').save();
-		}
-																	// (bool) is TinyMCE spellcheck is on
-		autosave.bool['spell'] = ( rich && tinyMCE.activeEditor.plugins.spellchecker && tinyMCE.activeEditor.plugins.spellchecker.active ) ? true : false;
-/* when tinyMCE is in use */
+		autosave.bool['spell'] = autosave.tinyMCE_spellcheckerOn();
 
 		var mail_data = 	{	action: 		"autosave",
 						autosavenonce: 	jQuery('#autosavenonce').val(),

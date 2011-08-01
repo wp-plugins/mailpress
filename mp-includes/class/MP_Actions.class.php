@@ -559,7 +559,7 @@ class MP_Actions
 				if (!$working_id) $working_id = $main_id = MP_Mails::get_id(__CLASS__ . ' 1 ' . __METHOD__);
 
 				MP_Mails::update_draft($working_id);
-				$data = sprintf( __('Draft saved at %s.', MP_TXTDOM), date( __('g:i:s a'), current_time( 'timestamp', true ) ) );
+				$data = sprintf( __('Draft saved at %s.', MP_TXTDOM), date( __('g:i:s a'), current_time( 'timestamp' ) ) );
 				$supplemental['tipe'] = 'mail';
 			}
 		}
