@@ -161,7 +161,7 @@ abstract class MP_Import_importer_abstract
 
 	function success($text = '', $echo = true)
 	{
-		$x  = '<div><h3>'.__('Import successful', MP_TXTDOM).'</h3>';
+		$x  = '<div><h3>' . __('Process successful', MP_TXTDOM) . '</h3>';
 		$x .= $text;
 		$x .= $this->link_trace();
 		$x .= '</div>';

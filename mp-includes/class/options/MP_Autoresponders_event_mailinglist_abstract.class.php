@@ -1,5 +1,5 @@
 <?php
-class MP_Autoresponders_event_mailinglist_abstract extends MP_Autoresponders_event_abstract
+abstract class MP_Autoresponders_event_mailinglist_abstract extends MP_Autoresponders_event_abstract
 {
 	function to_do($autoresponder, $args)
 	{

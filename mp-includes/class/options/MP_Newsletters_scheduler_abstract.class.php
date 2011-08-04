@@ -1,5 +1,5 @@
 <?php
-class MP_Newsletters_scheduler_abstract extends MP_Newsletters_abstract
+abstract class MP_Newsletters_scheduler_abstract extends MP_Newsletters_abstract
 {
 	public $args = 'scheduler';
 	public static $delta = 1;

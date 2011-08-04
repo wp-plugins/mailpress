@@ -1,5 +1,5 @@
 <?php
-class MP_Dashboard_widget_abstract
+abstract class MP_Dashboard_widget_abstract
 {
 	var $url = 'http://chart.apis.google.com/chart';
 

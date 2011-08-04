@@ -1,5 +1,5 @@
 <?php
-class MP_Newsletters_scheduler_post_abstract extends MP_Newsletters_scheduler_abstract
+abstract class MP_Newsletters_scheduler_post_abstract extends MP_Newsletters_scheduler_abstract
 {
 	function __construct($description)
 	{

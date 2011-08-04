@@ -76,9 +76,13 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 ** 5.1.1 ** //2011
 
+08/04/11
+* new exporter to allow export of a mailinglist into another mailinglist
+* set abstract class as abstract class
+
 07/30/11
 * Integration of WPML add on
-* mp-admin/write.php code clean up
+* mp-admin/write.php + mp-admin/js/write.js + mp-includes/js/autosave.js : code review
 
 07/28/11
 * MP_Bounce.class.php    : code review fixing bugs detected by ovidiu

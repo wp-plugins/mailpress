@@ -1,5 +1,5 @@
 <?php
-class MP_Newsletters_processor_abstract extends MP_Newsletters_abstract
+abstract class MP_Newsletters_processor_abstract extends MP_Newsletters_abstract
 {
 	public $args = 'processor';
 
