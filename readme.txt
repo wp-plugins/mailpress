@@ -76,6 +76,11 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 ** 5.1.1 ** //2011
 
+08/14/11
+* shortcode mailinglist(bug fix) autoresponder mailinglist waiting/active bug still not fixed !
+* mp twentyten ten header image when wp twenty ten is not active (bug fix)
+* Mails Activity pie chart (bug fix)
+
 08/04/11
 * new exporter to allow export of a mailinglist into another mailinglist
 * set abstract class as abstract class

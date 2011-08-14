@@ -9,11 +9,11 @@ class MP_theme_html
 		if (!is_numeric($post_id)) $post_id = false;
 		switch (true)
 		{
-			case ( function_exists('has_post_thumbnail') && function_exists('get_post_thumbnail_id') && function_exists('wp_get_attachment_image_src') && $post_id && has_post_thumbnail( $post_id ) && ($image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'post-thumbnail')) && ($image[1] >= MP_theme_html::HEADER_IMAGE_WIDTH) ) :
+			case ( $post_id && function_exists('has_post_thumbnail') && function_exists('get_post_thumbnail_id') && function_exists('wp_get_attachment_image_src') && $post_id && has_post_thumbnail( $post_id ) && ($image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'post-thumbnail')) && ($image[1] >= MP_theme_html::HEADER_IMAGE_WIDTH) ) :
 				echo $image[0];
 			break;
-			case ( function_exists('header_image') ) :
-				header_image();
+			case ( function_exists('get_header_image') && get_header_image() ) :
+				echo get_header_image();
 			break;
 			default:
 				echo $default;

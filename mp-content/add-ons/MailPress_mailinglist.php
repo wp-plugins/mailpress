@@ -48,7 +48,6 @@ class MailPress_mailinglist
 // for mp_user
 
 		add_action('MailPress_activate_user_1st',	array(__CLASS__, 'set_user_mailinglists'), 1, 1);
-//		add_action('MailPress_insert_user', 	array(__CLASS__, 'set_user_mailinglists'), 1, 1);
 		add_action('MailPress_delete_user', 	array(__CLASS__, 'delete_user'), 1, 1);
 
 // for autoresponder
@@ -307,6 +306,7 @@ class MailPress_mailinglist
 
 	public static function set_user_mailinglists( $mp_user_id, $user_mailinglists = array() )
 	{
+		if (empty($user_mailinglists)) $user_mailinglists = MP_Mailinglists::get_object_terms( $mp_user_id );
 		MP_Mailinglists::set_object_terms( $mp_user_id, $user_mailinglists );
 	}
 
