@@ -6,7 +6,7 @@ Plugin Name: MailPress_upload_media
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Upload_media
 Description: This is just an add-on for MailPress to allow upload media button on MailPress write admin page
 Author: Andre Renaut
-Version: 5.1
+Version: 5.1.1
 Author URI: http://www.mailpress.org
 */
 

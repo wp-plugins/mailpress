@@ -6,7 +6,7 @@ Plugin Name: MailPress_Headers_specific
 Plugin URI: http://swiftmailer.org/docs/headers
 Description: This is just an add-on for MailPress to add specific headers in mail (sample).
 Author: Andre Renaut
-Version: 5.1
+Version: 5.1.1
 Author URI: http://www.mailpress.org
 */
 

@@ -322,6 +322,10 @@ class MP_Mails
            		global $wpdb;
 				return "SELECT id, email, name, status, confkey FROM $wpdb->mp_users WHERE status IN ('active', 'waiting');";
 			break;
+			case '5' :
+			global $wpdb;
+				return "SELECT id, email, name, status, confkey FROM $wpdb->mp_users WHERE status IN ('waiting');";
+			break;
 			default :
 				return apply_filters('MailPress_query_mailinglist', false, $draft_toemail);
 			break;

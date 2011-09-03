@@ -388,7 +388,8 @@ class MP_Users
 	{
 		$draft_dest = array (	''  => '&nbsp;', 
 						'1' => __('to blog', MP_TXTDOM), 
-						'4' => __('all (active + waiting)', MP_TXTDOM) 
+						'4' => __('all (active + waiting)', MP_TXTDOM),
+						'5' => __('waiting', MP_TXTDOM),
 					  );
 		return apply_filters('MailPress_mailinglists', $draft_dest);
 	}

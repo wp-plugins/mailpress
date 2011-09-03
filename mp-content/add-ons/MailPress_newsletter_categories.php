@@ -6,7 +6,7 @@ Plugin Name: MailPress_newsletter_categories
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Newsletter_categories
 Description: This is just an add-on for MailPress to manage newsletters per categories
 Author: Andre Renaut
-Version: 5.1
+Version: 5.1.1
 Author URI: http://www.mailpress.org
 */
 

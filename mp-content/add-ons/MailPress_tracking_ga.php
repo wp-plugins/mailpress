@@ -6,7 +6,7 @@ Plugin Name: MailPress_tracking_ga
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Tracking_ga
 Description: This is just an add-on for MailPress to track mails activity to your site with <a href='http://www.google.com/support/googleanalytics/bin/answer.py?hl=en&amp;answer=55540'>google analytics</a> : <span style='color:#D54E21;'>Not compatible with Tracking add-on</span>.
 Author: Andre Renaut
-Version: 5.1
+Version: 5.1.1
 Author URI: http://www.mailpress.org
 */
 

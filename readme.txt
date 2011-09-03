@@ -4,7 +4,7 @@ Donate link: http://www.mailpress.org/wiki
 Tags: mail, mails, comments, comment, subscribe, newsletters, newsletter, Wordpress, Plugin, swiftmailer, post, posts, smtp, sendmail, phpmail, notification, notifications, mail, mails, contact form
 Requires at least: 3.1
 Tested up to: 3.2
-Stable tag: 5.1
+Stable tag: 5.1.1
 
 The WordPress mailing platform 
 
@@ -74,7 +74,10 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 == Changelog ==
 
-** 5.1.1 ** //2011
+** 5.1.1 ** 09/03/2011
+
+09/03/11
+* adding 'waiting' list in New Mail
 
 08/14/11
 * shortcode mailinglist(bug fix) autoresponder mailinglist waiting/active bug still not fixed !

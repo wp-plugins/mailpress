@@ -59,7 +59,7 @@ switch (true)
 			$message .= "<br /><br /></div>";
 			$mail->html       = $message;
 
-			if (class_exists('MP_Newsletters'))
+			if (class_exists('MailPress_newsletter'))
 			{
 				if (isset($mail->Template) && in_array($mail->Template, MP_Newsletters::get_templates()))
 				{
