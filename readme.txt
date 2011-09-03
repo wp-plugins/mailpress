@@ -77,7 +77,7 @@ MailPress themes and templates do not need to be changed if customized in a prev
 ** 5.1.1 ** 09/03/2011
 
 09/03/11
-* adding 'waiting' list in New Mail
+* add 'waiting' list in New Mail
 
 08/14/11
 * shortcode mailinglist(bug fix) autoresponder mailinglist waiting/active bug still not fixed !
