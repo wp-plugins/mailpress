@@ -6,7 +6,7 @@ Plugin Name: MailPress_WPML
 Plugin URI: http://www.mailpress.org
 Description: This is just an add-on for MailPress for WPML plugin compatibility.
 Author: Charles St-Pierre & Andre Renaut
-Version: 5.1.1
+Version: 5.1
 Author URI: http://www.mailpress.org
 */
 class MailPress_WPML

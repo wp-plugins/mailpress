@@ -49,6 +49,22 @@ if (class_exists('MailPress_bounce_handling_II'))
 	}
 }
 
+if (class_exists('MailPress_delete_old_mails'))
+{
+	$batch_delete_old_mails	= $_POST['batch_delete_old_mails'];
+
+	$old_delete_old_mails = get_option(MailPress_delete_old_mails::option_name);
+
+	update_option(MailPress_delete_old_mails::option_name, $batch_delete_old_mails);
+
+	if (!isset($old_delete_old_mails['batch_mode'])) $old_delete_old_mails['batch_mode'] = '';
+	if ($old_delete_old_mails['batch_mode'] != $batch_delete_old_mails['batch_mode'])
+	{
+		if ('wpcron' != $batch_delete_old_mails['batch_mode']) 	wp_clear_scheduled_hook('mp_process_delete_old_mails');
+		else 										MailPress_delete_old_mails::schedule();
+	}
+}
+
 update_option(MailPress::option_name_general, $mp_general);
 
 $message = __("'Batches' settings saved", MP_TXTDOM);

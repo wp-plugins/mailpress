@@ -38,3 +38,8 @@ $queries[] =
 
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 dbDelta($queries);
+
+
+
+// some clean up
+$wpdb->query( "DELETE FROM $wpdb->mp_tracks WHERE mail_id NOT IN ( SELECT id FROM $wpdb->mp_mails );" );
