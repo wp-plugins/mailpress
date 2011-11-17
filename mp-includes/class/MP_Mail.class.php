@@ -826,10 +826,18 @@ class MP_Mail extends MP_Mail_api
 			$conn->setEncryption($connection_smtp ['ssl']);
 
 		if (empty($connection_smtp['username']) && empty($connection_smtp['password']))
-			$y->log("**** Empty user/password for SMTP connection ****");	
+		{
+			$y->log("**** Empty user/password for SMTP connection ****");
+		}
 		else
-			$conn->setUsername($connection_smtp ['username']);
-			$conn->setPassword($connection_smtp ['password']);
+		{
+			if (!empty($connection_smtp['username']))
+			{
+				$conn->setUsername($connection_smtp ['username']);
+				if (!empty($connection_smtp['password']))
+					$conn->setPassword($connection_smtp ['password']);
+			}
+		}
 
 		// eventually popb4smtp (other authentications are detected automatically)
 		if (isset($connection_smtp['smtp-auth']) && (!empty($connection_smtp['smtp-auth'])))

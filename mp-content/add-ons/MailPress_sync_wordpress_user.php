@@ -143,7 +143,7 @@ class MailPress_sync_wordpress_user
 
 	public static function profile_update($wid)
 	{
-		$id = get_user_meta( $wid, self::meta_key );
+		$id = get_user_meta( $wid, self::meta_key, true );
 		if ($id)
 		{
 			$mp_user = MP_Users::get($id);

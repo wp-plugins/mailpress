@@ -181,6 +181,46 @@ abstract class MP_Import_importer_abstract
 		return $x;
 	}
 
+////  ATTACHMENTS ////
+
+	function insert_attachment($file)
+	{
+		$uploads = wp_upload_dir();
+		if ( isset($uploads['error']) )
+		{
+			$this->message_report(' **WARNING* ! ' . $uploads['error']);
+			return false;
+		}
+
+		$filename = wp_unique_filename( $uploads['path'], $file['name'] );
+
+		$new_file = $uploads['path'] . "/$filename";
+
+		if ( copy($file['tmp_name'], $new_file) ) 
+		{
+			unlink($file['tmp_name']);
+			
+		// Set correct file permissions
+			$stat = stat( dirname( $new_file ));
+			$perms = $stat['mode'] & 0000666;
+			@ chmod( $new_file, $perms );
+
+		// Compute the URL
+			$url = $uploads['url'] . "/$filename";
+
+			$object = array( 	'post_title' => $filename,
+						'post_content' => $url,
+						'post_mime_type' => $file['type'],
+						'guid' => $url,
+						'context' => 'export',
+						'post_status' => 'private'
+			);
+			wp_insert_attachment($object);
+			return $url;
+		}
+		return false;
+	}
+
 ////  IMPORT API  ////
 
 	function sync_mp_user($email, $name, $status = 'active')

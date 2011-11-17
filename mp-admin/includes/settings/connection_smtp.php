@@ -12,7 +12,7 @@ switch (true)
 		$serverclass = true;
 		$message = __('field should not be empty', MP_TXTDOM); $no_error = false;
 	break;
-	case ( empty($connection_smtp['username'] ) ) :
+	case ( empty($connection_smtp['username']) && !empty($connection_smtp['password']) ) :
 		$usernameclass = true;
 		$message = __('field should not be empty', MP_TXTDOM); $no_error = false;
 	break;

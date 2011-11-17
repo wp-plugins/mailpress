@@ -314,16 +314,16 @@ class MP_Mails
 		switch ($draft_toemail)
 		{
 			case '1' :
-           		global $wpdb;
+           			global $wpdb;
 				return "SELECT id, email, name, status, confkey FROM $wpdb->mp_users WHERE status = 'active';";
 			break;
 /* 2 & 3 used by comments */
 			case '4' :
-           		global $wpdb;
+           			global $wpdb;
 				return "SELECT id, email, name, status, confkey FROM $wpdb->mp_users WHERE status IN ('active', 'waiting');";
 			break;
 			case '5' :
-			global $wpdb;
+           			global $wpdb;
 				return "SELECT id, email, name, status, confkey FROM $wpdb->mp_users WHERE status IN ('waiting');";
 			break;
 			default :

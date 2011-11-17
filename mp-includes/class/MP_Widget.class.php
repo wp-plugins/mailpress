@@ -193,7 +193,7 @@ class MP_Widget extends WP_Widget
 				$js = '/' . MP_PATH . 'mp-includes/js/mp_form.js';
 				if (defined('MP_wp_enqueue_script') && MP_wp_enqueue_script)
 				{
-					wp_register_script( 'mailpress_widget',	$js, false, false, 1);
+					wp_register_script( 'mailpress_widget',	$js);
 					wp_localize_script( 'mailpress_widget', 	'MP_Widget', array(
 						'url' => MP_Action_url
 					));

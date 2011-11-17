@@ -22,7 +22,7 @@ class MP_export_mailinglist extends MP_Import_importer_abstract
 				$this->end_trace(true);
 				if ($export)
 				{
-					$file = get_option('siteurl') . '/' . MP_PATH . 'tmp/' . $this->file;
+					$file = $this->url;
 					$this->success('<p>' . sprintf(__("<b>File exported</b> : <i>%s</i>", MP_TXTDOM), "<a href='$file'>$file</a>") . '</p><p><strong>' . sprintf(__("<b>Number of records</b> : <i>%s</i>", MP_TXTDOM), $export) . '</strong></p>');
 				}
 				else 
@@ -94,7 +94,15 @@ class MP_export_mailinglist extends MP_Import_importer_abstract
 			return false;
 		}
 
-		$this->message_report('   SUCCESS  ! file available at ' . MP_ABSPATH . 'tmp/' . $this->file);
+		$file['name'] = $this->file;
+		$file['tmp_name'] = MP_ABSPATH . 'tmp/' . $this->file;
+		$file['type'] = 'txt';
+
+		$this->url = $this->insert_attachment($file);
+
+		if (!$this->url) $this->url = get_option('siteurl') . '/' . MP_PATH . 'tmp/' . $this->file;
+
+		$this->message_report('   SUCCESS  ! file available at ' . $this->url);
 		return count($users);
 	}
 }

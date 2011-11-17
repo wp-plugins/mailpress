@@ -2,6 +2,7 @@
 class MP_Bounce_api extends MP_Db_connect
 {
 	public $bt = 132;
+	public static $count = array();
 
 	function __construct()
 	{
@@ -165,10 +166,17 @@ class MP_Bounce_api extends MP_Db_connect
 					$mail_logmess = '** WARNING ** mail not in database';
 				break;
 				default :
+					if (!isset(self::$count[$mail_id])) self::$count[$mail_id] = MP_Mailmeta::get($mail_id, $this->metakey);
+					self::$count[$mail_id] = ( is_numeric(self::$count[$mail_id]) ) ? ( self::$count[$mail_id] + 1 ) : 1;
+					if (!MP_Mailmeta::add($mail_id, $this->metakey, self::$count[$mail_id] , true))
+						MP_Mailmeta::update($mail_id, $this->metakey, self::$count[$mail_id] );
+					$mailmeta = self::$count[$mail_id];
+/*
 					$mailmeta = MP_Mailmeta::get($mail_id, $this->metakey);
 					$mailmeta = ($mailmeta) ? $mailmeta++ : 1;
 					if (!MP_Mailmeta::add($mail_id, $this->metakey, $mailmeta , true))
 						MP_Mailmeta::update($mail_id, $this->metakey, $mailmeta );
+*/
 					$metas = MP_Mailmeta::get( $mail_id, '_MailPress_replacements');
 					$mail_logmess = $mail->subject;
 					if ($metas) foreach($metas as $k => $v) $mail_logmess = str_replace($k, $v, $mail_logmess);
