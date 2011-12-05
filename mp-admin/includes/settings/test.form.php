@@ -3,24 +3,27 @@ if (!isset($test)) $test = get_option(MailPress::option_name_test);
 
 $th = new MP_Themes();
 $themes = $th->themes; 
-if (empty($test['theme'])) $test['theme'] = $themes[$th->current_theme]['Template']; 
+if (empty($test['theme'])) $test['theme'] = $themes[$th->current_theme]['Stylesheet']; 
 
 $xtheme = $xtemplates = array();
-foreach ($themes as $theme)
+foreach ($themes as $key => $theme)
 {
-	if ( 'plaintext' == $theme['Template'] ) continue;
+	if ( 'plaintext' == $theme['Stylesheet']) unset($themes[$key]);
+	if ( '_' == $theme['Stylesheet'][0] )     unset($themes[$key]);
+}
+foreach ($themes as $key => $theme)
+{
+	$xtheme[$theme['Stylesheet']] = $theme['Stylesheet'];
+	if (!$templates = $th->get_page_templates($theme['Stylesheet'])) $templates = $th->get_page_templates($theme['Stylesheet'], true);
 
-	$xtheme[$theme['Template']] = $theme['Template'];
-	$templates = $th->get_page_templates_from($theme['Template']);
-
-	$xtemplates[$theme['Template']] = array();
+	$xtemplates[$theme['Stylesheet']] = array();
 	foreach ($templates as $key => $value)
 	{
-		$xtemplates[$theme['Template']][$key] = $key;
+		$xtemplates[$theme['Stylesheet']][$key] = $key;
 	}
-	if (!empty($xtemplates[$theme['Template']])) ksort($xtemplates[$theme['Template']]);
+	if (!empty($xtemplates[$theme['Stylesheet']])) ksort($xtemplates[$theme['Stylesheet']]);
 
-	array_unshift($xtemplates[$theme['Template']], __('none', MP_TXTDOM));
+	array_unshift($xtemplates[$theme['Stylesheet']], __('none', MP_TXTDOM));
 }
 
 $formname = substr(basename(__FILE__), 0, -4); 
@@ -51,13 +54,13 @@ $formname = substr(basename(__FILE__), 0, -4);
 			</th>
 			<td> 
 				<?php _e('Theme', MP_TXTDOM); ?>
-				&nbsp;
+				&#160;
 				<select name='test[theme]'    id='theme'>
 <?php MP_AdminPage::select_option($xtheme,$test['theme']);?>
 				</select>
-				&nbsp;
+				&#160;
 				<?php _e('Template', MP_TXTDOM); ?>
-				&nbsp;
+				&#160;
 <?php 
 foreach ($xtemplates as $key => $xtemplate)
 {
@@ -75,7 +78,7 @@ $count = 0;
 $checks = array('forcelog' => __('Log it', MP_TXTDOM), 'fakeit' => __('Send it', MP_TXTDOM), 'archive' => __('Archive it', MP_TXTDOM), 'stats' => __('Include it in statistics', MP_TXTDOM) );
 foreach($checks as $k => $v) {
 	$count++;
-	echo "\t\t\t\t<input name='test[$k]' id='$k' type='checkbox' " . ( (isset($test[$k])) ? "checked='checked'" : '' ) . " />\n\t\t\t\t&nbsp;\n\t\t\t\t<label for='$k'>$v</label>\n";
+	echo "\t\t\t\t<input name='test[$k]' id='$k' type='checkbox' " . ( (isset($test[$k])) ? "checked='checked'" : '' ) . " />\n\t\t\t\t&#160;\n\t\t\t\t<label for='$k'>$v</label>\n";
 	if ($count != count($checks)) echo "\t\t\t\t<br />\n";
 }
 ?>

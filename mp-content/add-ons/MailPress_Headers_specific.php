@@ -6,7 +6,7 @@ Plugin Name: MailPress_Headers_specific
 Plugin URI: http://swiftmailer.org/docs/headers
 Description: This is just an add-on for MailPress to add specific headers in mail (sample).
 Author: Andre Renaut
-Version: 5.1.1
+Version: 5.2
 Author URI: http://www.mailpress.org
 */
 
@@ -23,7 +23,7 @@ class MailPress_Headers_specific
 	{
 		if ($row->template == 'new_subscriber') return $message;
 
-		$url = MP_Users::get_unsubscribe_url( (isset($row->mp_user_id)) ? MP_Users::get_key_by_email(MP_Users::get_email($row->mp_user_id)) : '{{_confkey}}' );
+		$url = MP_User::get_unsubscribe_url( (isset($row->mp_user_id)) ? MP_User::get_key_by_email(MP_User::get_email($row->mp_user_id)) : '{{_confkey}}' );
 		$url = apply_filters('MailPress_header_url', $url, $row);
 
 		global $wpdb;

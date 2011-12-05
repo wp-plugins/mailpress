@@ -1,5 +1,5 @@
 <?php
-class MP_AdminPage extends MP_Admin_page
+class MP_AdminPage extends MP_adminpage_
 {
 	const screen 	= 'mailpress_user';
 	const capability 	= 'MailPress_edit_users';
@@ -20,23 +20,23 @@ class MP_AdminPage extends MP_Admin_page
 		switch($action) 
 		{
 			case 'activate' :
-				if (MP_Users::set_status($id, 'active'))  $list_url .= '&activated=1';
+				if (MP_User::set_status($id, 'active'))  $list_url .= '&activated=1';
 				self::mp_redirect($list_url);
 			break;
 			case 'deactivate' :
-				if (MP_Users::set_status($id, 'waiting'))	$list_url .= '&deactivated=1';
+				if (MP_User::set_status($id, 'waiting'))	$list_url .= '&deactivated=1';
 				self::mp_redirect($list_url);
 			break;
 			case 'unbounce' :
-				if (MP_Users::set_status($id, 'waiting'))
+				if (MP_User::set_status($id, 'waiting'))
 				{
-					MP_Usermeta::delete($id, '_MailPress_bounce_handling');
+					MP_User_meta::delete($id, '_MailPress_bounce_handling');
 					$list_url .= '&unbounced=1';
 				}
 				self::mp_redirect($list_url);
 			break;
 			case 'delete' :
-				if (MP_Users::set_status($id, 'delete'))	$list_url .= '&deleted=1';
+				if (MP_User::set_status($id, 'delete'))	$list_url .= '&deleted=1';
 				self::mp_redirect($list_url);
 			break;
 
@@ -45,25 +45,25 @@ class MP_AdminPage extends MP_Admin_page
 
 				if ($_POST['mp_user_name'] != $_POST['mp_user_old_name'])
 				{
-					MP_Users::update_name($id, $_POST['mp_user_name']);
+					MP_User::update_name($id, $_POST['mp_user_name']);
 				}
 
 				switch (true)
 				{
 					case isset($_POST['addmeta']) :
-						MP_Usermeta::add_meta($id);
+						MP_User_meta::add_meta($id);
 					break;
 					case isset($_POST['updatemeta']) :
 						foreach ($_POST['meta'] as $meta_id => $meta)
 						{
 							$meta_key = $meta['key'];
 							$meta_value = $meta['value'];
-							MP_Usermeta::update_by_id($meta_id , $meta_key, $meta_value);
+							MP_User_meta::update_by_id($meta_id , $meta_key, $meta_value);
 						}
 					break;
 					case isset($_POST['deletemeta']) :
 						foreach ($_POST['deletemeta'] as $meta_id => $x)
-							MP_Usermeta::delete_by_id( $meta_id );
+							MP_User_meta::delete_by_id( $meta_id );
 					break;
 				}
 
@@ -105,7 +105,7 @@ class MP_AdminPage extends MP_Admin_page
 			wp_localize_script( 'mp-gmap3', 	'mp_gmapL10n', array(
 				'id'		=> $_GET['id'],
 				'type'	=> 'mp_user',
-				'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/',
+				'url'		=> site_url() . '/' . MP_PATH . 'mp-admin/images/',
 				'ajaxurl'	=> MP_Action_url,
 				'center'	=> esc_js(__('center', MP_TXTDOM)),
 				'changemap'	=> esc_js(__('change map', MP_TXTDOM))
@@ -155,7 +155,7 @@ class MP_AdminPage extends MP_Admin_page
 		{
 			if ($id)
 			{
-				$metas = MP_Usermeta::get($id);
+				$metas = MP_User_meta::get($id);
 				if ($metas) 
 				{
 					if (!is_array($metas)) $metas = array($metas);
@@ -220,7 +220,7 @@ class MP_AdminPage extends MP_Admin_page
 <div id="user-import">
 <?php
 		$header = true;
-		$metas = MP_Usermeta::get($mp_user->id);
+		$metas = MP_User_meta::get($mp_user->id);
 
 		if ($metas)
 		{
@@ -269,7 +269,7 @@ class MP_AdminPage extends MP_Admin_page
 		{
 ?>
 			<tr>
-				<td style='border-bottom:none;padding:0px;width:20px;'>&nbsp;</td>
+				<td style='border-bottom:none;padding:0px;width:20px;'>&#160;</td>
 				<td style='border-bottom:none;padding:0px;width:20px;'></td>
 				<td style='border-bottom:none;padding:0px;width:20px;'></td>
 			</tr>
@@ -288,7 +288,7 @@ class MP_AdminPage extends MP_Admin_page
 <div id='postcustomstuff'>
 	<div id='ajax-response'></div>
 <?php
-		$metadata = MP_Usermeta::has($mp_user->id);
+		$metadata = MP_User_meta::has($mp_user->id);
 		$count = 0;
 		if ( !$metadata ) : $metadata = array(); 
 ?>
@@ -443,7 +443,7 @@ class MP_AdminPage extends MP_Admin_page
 		$x  = MP_Ip::get_all($ip);
 
 	// meta_box_IP_info_user_settings
-		$u['meta_box_IP_info_user_settings'] = MP_Usermeta::get($mp_user->id, '_MailPress_meta_box_IP_info');
+		$u['meta_box_IP_info_user_settings'] = MP_User_meta::get($mp_user->id, '_MailPress_meta_box_IP_info');
 		if (!$u['meta_box_IP_info_user_settings']) $u['meta_box_IP_info_user_settings'] = get_user_option('_MailPress_meta_box_IP_info');
 		$def_lat = (isset($x['geo']['lat']))? $x['geo']['lat'] : 48.8352;
 		$def_lng = (isset($x['geo']['lng']))? $x['geo']['lng'] : 2.4718;

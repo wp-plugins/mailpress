@@ -1,11 +1,13 @@
 <?php
 /*
 Template Name: new_subscriber
+Subject: [<?php bloginfo('name');?>] <?php printf( 'Waiting for : %s', '{{toemail}}'); ?>
 */
 
-$_the_title 	= sprintf('Subscription to %1$s', get_option('blogname'));
+$this->build->_the_title = 'Email validation';
 
-$_the_content 	= sprintf('Confirm your subscription by activating the following link : %1$s ', '{{subscribe}}');
+$this->build->_the_content 	= sprintf('Please confirm your email address : %s', '{{subscribe}}');
+$this->build->_the_content  .= "\n\n";
 
 unset($this->args->unsubscribe);
-include('_mail.php');
+$this->get_template_part('_mail');

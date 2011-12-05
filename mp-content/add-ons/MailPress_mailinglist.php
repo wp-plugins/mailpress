@@ -6,7 +6,7 @@ Plugin Name: MailPress_mailinglist
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Mailinglist
 Description: This is just an add-on for MailPress to manage mailing lists
 Author: Andre Renaut
-Version: 5.1.1
+Version: 5.2
 Author URI: http://www.mailpress.org
 */
 
@@ -119,7 +119,7 @@ class MailPress_mailinglist
 						'type'	=> 'checkbox', 
 						'show_option_all' => false,
 						'htmlstart'	=> '', 
-						'htmlmiddle'=> '&nbsp;&nbsp;', 
+						'htmlmiddle'=> '&#160;&#160;', 
 						'htmlend'	=> "<br />\n"
 					);
 		$r = wp_parse_args( $args, $defaults );
@@ -127,7 +127,7 @@ class MailPress_mailinglist
 
 		if ($mp_user_id)
 		{
-			$mp_user_mls = MP_Mailinglists::get_object_terms($mp_user_id);
+			$mp_user_mls = MP_Mailinglist::get_object_terms($mp_user_id);
 		}
 
 		$default_mailing_list = get_option(self::option_name_default);
@@ -139,7 +139,7 @@ class MailPress_mailinglist
 			$x = str_replace('MailPress_mailinglist~', '', $k, $count);
 			if (0 == $count) 	continue;	
 			if (empty($x)) 	continue;
-			//if ($x == $default_mailing_list) continue;
+
 			$mls[$x] = $v;
 		}
 
@@ -160,7 +160,7 @@ class MailPress_mailinglist
 
 					$tag 		 = "<input type='$_type' id='{$name}_{$k}' name='{$name}[{$k}]'$checked />";
 					$htmlstart2  = ('checkbox' == $_type) ? str_replace('{{id}}', "{$name}_{$k}", $htmlstart) : '';
-					$htmlmiddle2 = ('checkbox' == $_type) ? $htmlmiddle . str_replace('&nbsp;', '', $v) : "<!-- " . str_replace('&nbsp;', '', $v) . "-->";
+					$htmlmiddle2 = ('checkbox' == $_type) ? $htmlmiddle . str_replace('&#160;', '', $v) : "<!-- " . str_replace('&#160;', '', $v) . "-->";
 					$htmlend2    = ('checkbox' == $_type) ? $htmlend    : "\n";
 
 					$checklist .= "$htmlstart2$tag$htmlmiddle2$htmlend2";
@@ -174,7 +174,7 @@ class MailPress_mailinglist
 						$show_option_all = false;
 					}
 					$sel = ($k == $selected) ? " selected='selected'" : '';
-					$checklist .= "<option value=\"$k\"$sel>" . str_replace('&nbsp;', '', $v) . "</option>\n";
+					$checklist .= "<option value=\"$k\"$sel>" . str_replace('&#160;', '', $v) . "</option>\n";
 				break;
 			}
 		}
@@ -198,7 +198,7 @@ class MailPress_mailinglist
 				array_push($mp_user_mls, $mailinglist_ID);
 			}
 		}
-		MP_Mailinglists::set_object_terms( $mp_user_id, $mp_user_mls);
+		MP_Mailinglist::set_object_terms( $mp_user_id, $mp_user_mls);
 	}
 
 //// Plugin ////
@@ -221,7 +221,7 @@ class MailPress_mailinglist
 	{
 		$user 	= get_userdata($wp_user_id);
 		$email 	= $user->user_email;
-		$mp_user_id	= MP_Users::get_id_by_email($email);
+		$mp_user_id	= MP_User::get_id_by_email($email);
 
 		self::update_checklist($mp_user_id);
 	}
@@ -252,11 +252,12 @@ class MailPress_mailinglist
 
 	public static function form_submit($shortcode_message, $email) 
 	{ 
-		if (!isset($_POST['mailinglist'])) return $shortcode_message;
+		if (!isset($_POST['mailinglist'])) 	return $shortcode_message;
+		if (!$_POST['mailinglist']) 		return $shortcode_message;
 		$shortcode = 'shortcode_mailinglists';
 
-		$mp_user_id = MP_Users::get_id_by_email($email);
-		$_POST[$shortcode] = MP_Mailinglists::get_object_terms($mp_user_id);
+		$mp_user_id = MP_User::get_id_by_email($email);
+		$_POST[$shortcode] = MP_Mailinglist::get_object_terms($mp_user_id);
 
 		$_POST[$shortcode] = array_flip(array_map(trim, explode(',', $_POST['mailinglist'])));
 
@@ -270,7 +271,7 @@ class MailPress_mailinglist
 		if (!$options['mailinglist']) return;
 
 		$x = array();
-		foreach (array_map(trim, explode(',', $options['mailinglist'])) as $k => $v) if (MP_Mailinglists::get_name($v)) $x[] = $v;
+		foreach (array_map(trim, explode(',', $options['mailinglist'])) as $k => $v) if (MP_Mailinglist::get_name($v)) $x[] = $v;
 		if (empty($x)) return;
 
 		echo "<input type='hidden' name='mailinglist' value='" . join(', ', $x) . "' />\n";
@@ -281,7 +282,7 @@ class MailPress_mailinglist
 	public static function mailinglists( $draft_dest = array() ) 
 	{
 		$args = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'name' => 'default_mailinglist' );
-		foreach (MP_Mailinglists::array_tree($args) as $k => $v) $draft_dest[$k] = $v;
+		foreach (MP_Mailinglist::array_tree($args) as $k => $v) $draft_dest[$k] = $v;
 		return $draft_dest;
 	}
 
@@ -293,7 +294,7 @@ class MailPress_mailinglist
 		if (0 == $count) return $query;
 		if (empty($id))  return $query;
 
-		$children = MP_Mailinglists::get_children($id, ', ', '');
+		$children = MP_Mailinglist::get_children($id, ', ', '');
 		$ids = ('' == $children) ? ' = ' . $id : ' IN (' . $id . $children . ') ';
 
 		if (empty($ids)) return $query;
@@ -306,13 +307,13 @@ class MailPress_mailinglist
 
 	public static function set_user_mailinglists( $mp_user_id, $user_mailinglists = array() )
 	{
-		if (empty($user_mailinglists)) $user_mailinglists = MP_Mailinglists::get_object_terms( $mp_user_id );
-		MP_Mailinglists::set_object_terms( $mp_user_id, $user_mailinglists );
+		if (empty($user_mailinglists)) $user_mailinglists = MP_Mailinglist::get_object_terms( $mp_user_id );
+		MP_Mailinglist::set_object_terms( $mp_user_id, $user_mailinglists );
 	}
 
 	public static function delete_user( $mp_user_id )
 	{
-		MP_Mailinglists::delete_object( $mp_user_id );
+		MP_Mailinglist::delete_object( $mp_user_id );
 
 	}
 
@@ -320,13 +321,13 @@ class MailPress_mailinglist
 
 	public static function load_Autoresponders_events()
 	{
-		new MP_Autoresponders_events_mailinglist();
+		new MP_Autoresponder_events_mailinglist();
 	}
 
 // Sync wordpress user
 	public static function has_subscriptions($has, $mp_user_id)
 	{
-		$x = MP_Mailinglists::get_object_terms($mp_user_id);
+		$x = MP_Mailinglist::get_object_terms($mp_user_id);
 
 		if (empty($x)) return $has;
 		return true;
@@ -334,11 +335,11 @@ class MailPress_mailinglist
 
 	public static function sync_subscriptions($oldid, $newid)
 	{
-		$old = MP_Mailinglists::get_object_terms($oldid);
+		$old = MP_Mailinglist::get_object_terms($oldid);
 		if (empty($old)) return;
-		$new = MP_Mailinglists::get_object_terms($newid);
+		$new = MP_Mailinglist::get_object_terms($newid);
 
-		MP_Mailinglists::set_object_terms($newid, array_merge($old, $new));
+		MP_Mailinglist::set_object_terms($newid, array_merge($old, $new));
 	}
 
 ////  ADMIN  ////
@@ -366,7 +367,7 @@ class MailPress_mailinglist
 		$unmatches = $wpdb->get_results($wpdb->prepare( "SELECT DISTINCT a.id FROM $wpdb->mp_users a WHERE NOT EXISTS (SELECT DISTINCT b.id FROM $wpdb->term_taxonomy c, $wpdb->term_relationships d, $wpdb->mp_users b WHERE c.taxonomy = %s AND c.term_taxonomy_id = d.term_taxonomy_id AND b.id = d.object_id AND b.id = a.id)", self::taxonomy));
 		if ($unmatches) foreach ($unmatches as $unmatch)
 		{
-			MP_Mailinglists::set_object_terms($unmatch->id, array($default_mailinglist));
+			MP_Mailinglist::set_object_terms($unmatch->id, array($default_mailinglist));
 		}
 	}
 
@@ -385,7 +386,7 @@ class MailPress_mailinglist
 
 												'parent'		=> false, 
 												'page_title'	=> __('MailPress Mailing lists', MP_TXTDOM), 
-												'menu_title'   	=> '&nbsp;' . __('Mailing lists', MP_TXTDOM), 
+												'menu_title'   	=> '&#160;' . __('Mailing lists', MP_TXTDOM), 
 												'page'  		=> MailPress_page_mailinglists, 
 												'func'  		=> array('MP_AdminPage', 'body')
 										);
@@ -420,7 +421,7 @@ class MailPress_mailinglist
 				<th scope='row'><?php _e('Default Mailing list', MP_TXTDOM); ?></th>
 				<td style='padding:0;'>
 					<input type='hidden' name='default_mailinglist_on' value='on' />
-					<?php	MP_Mailinglists::dropdown($dropdown_options); ?>
+					<?php	MP_Mailinglist::dropdown($dropdown_options); ?>
 				</td>
 			</tr>
 <?php
@@ -438,7 +439,7 @@ class MailPress_mailinglist
 		if (!isset($_POST['id'])) return;
 		if (!isset($_POST['mp_user_mailinglist'])) $_POST['mp_user_mailinglist'] = array();
 
-		MP_Mailinglists::set_object_terms($_POST['id'], $_POST['mp_user_mailinglist']);
+		MP_Mailinglist::set_object_terms($_POST['id'], $_POST['mp_user_mailinglist']);
 	}
 
 	public static function styles($styles, $screen) 
@@ -508,7 +509,7 @@ class MailPress_mailinglist
 		<label class="screen-reader-text">
 			<?php _e('Parent Mailing list', MP_TXTDOM); ?> :
 		</label>
-		<?php MP_Mailinglists::dropdown( array( 'hide_empty' => 0, 'name' => 'newmailinglist_parent', 'orderby' => 'name', 'hierarchical' => 1, 'show_option_none' => __('Parent Mailing list', MP_TXTDOM), 'tab_index' => 3 ) ); ?>
+		<?php MP_Mailinglist::dropdown( array( 'hide_empty' => 0, 'name' => 'newmailinglist_parent', 'orderby' => 'name', 'hierarchical' => 1, 'show_option_none' => __('Parent Mailing list', MP_TXTDOM), 'tab_index' => 3 ) ); ?>
 		<input type="button" id="mailinglist-add-submit" class="add:mailinglistchecklist:mailinglist-add button" value="<?php esc_attr_e( 'Add', MP_TXTDOM  ); ?>" tabindex="3" />
 <?php	wp_nonce_field( 'add-mailinglist', '_ajax_nonce', false ); ?>
 		<span id="mailinglist-ajax-response"></span>
@@ -550,24 +551,24 @@ class MailPress_mailinglist
 		if ( is_array( $selected_mailinglists ) )
 			$args['selected_mailinglists'] = $selected_mailinglists;
 		elseif ( $mp_user_id )
-			$args['selected_mailinglists'] = MP_Mailinglists::get_object_terms($mp_user_id);
+			$args['selected_mailinglists'] = MP_Mailinglist::get_object_terms($mp_user_id);
 		else
 			$args['selected_mailinglists'] = array();
 
 		if ( is_array( $popular_mailinglists ) )
 			$args['popular_mailinglists'] = $popular_mailinglists;
 		else
-			$args['popular_mailinglists'] = MP_Mailinglists::get_all( array( 'fields' => 'ids', 'orderby' => 'count', 'order' => 'DESC', 'number' => 10, 'hierarchical' => false ) );
+			$args['popular_mailinglists'] = MP_Mailinglist::get_all( array( 'fields' => 'ids', 'orderby' => 'count', 'order' => 'DESC', 'number' => 10, 'hierarchical' => false ) );
 
 		if ( $descendants_and_self ) 
 		{
-			$mailinglists = MP_Mailinglists::get_all( array('child_of' => $descendants_and_self, 'hierarchical' => 0, 'hide_empty' => 0) );
-			$self = MP_Mailinglists::get( $descendants_and_self );
+			$mailinglists = MP_Mailinglist::get_all( array('child_of' => $descendants_and_self, 'hierarchical' => 0, 'hide_empty' => 0) );
+			$self = MP_Mailinglist::get( $descendants_and_self );
 			array_unshift( $mailinglists, $self );
 		}
 		else
 		{
-			$mailinglists = MP_Mailinglists::get_all( array('get' => 'all') );
+			$mailinglists = MP_Mailinglist::get_all( array('get' => 'all') );
 		}
 
 		$all_mailinglists_ids = array();
@@ -594,8 +595,7 @@ class MailPress_mailinglist
 	{
 		$x = (isset($url_parms['mailinglist'])) ? $url_parms['mailinglist'] : '';
 		$dropdown_options = array('show_option_all' => __('View all mailing lists', MP_TXTDOM), 'hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'selected' => $x );
-		MP_Mailinglists::dropdown($dropdown_options);
-		//echo "<input type='submit' id='mailinglistsub' value=\"" . __('Filter', MP_TXTDOM) . "\" class='button-secondary' />";
+		MP_Mailinglist::dropdown($dropdown_options);
 	}
 
 	public static function users_columns($x)
@@ -614,7 +614,7 @@ class MailPress_mailinglist
 
 		list($where, $tables) = $array;
 
-		$mailinglists = MP_Mailinglists::get_children($url_parms['mailinglist'], ', ', '');
+		$mailinglists = MP_Mailinglist::get_children($url_parms['mailinglist'], ', ', '');
 		$in = ('' == $mailinglists) ? ' = ' . $url_parms['mailinglist'] : ' IN (' . $url_parms['mailinglist'] . $mailinglists . ') ';
 
 		$where .= " AND (      b.taxonomy = '" . self::taxonomy . "' 
@@ -632,7 +632,7 @@ class MailPress_mailinglist
 		if ('mailinglists' != $column_name) return;
 
 		$args = array('orderby' => 'name', 'order' => 'ASC', 'fields' => 'all');
-		$mp_user_mls = MP_Mailinglists::get_object_terms( $mp_user->id, $args);
+		$mp_user_mls = MP_Mailinglist::get_object_terms( $mp_user->id, $args);
 
 		if ( !empty( $mp_user_mls ) ) 
 		{
@@ -652,34 +652,34 @@ class MailPress_mailinglist
 	{
 		$selected = get_option(self::option_name_default);
 		if (isset($form->settings['visitor']['mailinglist']))
-			if (MP_Mailinglists::get($form->settings['visitor']['mailinglist'])) $selected = $form->settings['visitor']['mailinglist'];
+			if (MP_Mailinglist::get($form->settings['visitor']['mailinglist'])) $selected = $form->settings['visitor']['mailinglist'];
 
 ?>
 										<label for='visitor_mailinglist'><small><?php _e('Mailing list', MP_TXTDOM); ?></small></label>
 <?php
 		$dropdown_options = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'selected' => $selected, 'name' => 'settings[visitor][mailinglist]', 'htmlid' => 'visitor_mailinglist' );
-		MP_Mailinglists::dropdown($dropdown_options);
+		MP_Mailinglist::dropdown($dropdown_options);
 	}
 
 	public static function visitor_subscription($action, $email, $form)
 	{
 		$mailinglist_ID = $form->settings['visitor']['mailinglist'];
 
-		if (!MP_Mailinglists::get($mailinglist_ID)) return;
+		if (!MP_Mailinglist::get($mailinglist_ID)) return;
 
-		if (!$mp_user_id = MP_Users::get_id_by_email($email)) return;
+		if (!$mp_user_id = MP_User::get_id_by_email($email)) return;
 
-		$user_mailinglists = MP_Mailinglists::get_object_terms($mp_user_id);
+		$user_mailinglists = MP_Mailinglist::get_object_terms($mp_user_id);
 		if (in_array($mailinglist_ID, $user_mailinglists)) return;
 
 		switch ($action)
 		{
 			case 'init' :
-				MP_Mailinglists::set_object_terms( $mp_user_id, array($mailinglist_ID) );
+				MP_Mailinglist::set_object_terms( $mp_user_id, array($mailinglist_ID) );
 			break;
 			case 'add' :
 				array_push($user_mailinglists, $mailinglist_ID);
-				MP_Mailinglists::set_object_terms( $mp_user_id, $user_mailinglists );
+				MP_Mailinglist::set_object_terms( $mp_user_id, $user_mailinglists );
 			break;
 		}
 	}
@@ -687,7 +687,7 @@ class MailPress_mailinglist
 // for ajax	
 	public static function mp_action_add_mlnglst()
 	{
-		if (!current_user_can('MailPress_manage_mailinglists')) MailPress::mp_die('-1');
+		if (!current_user_can('MailPress_manage_mailinglists')) MP_::mp_die('-1');
 
 		if ( '' === trim($_POST['name']) ) 
 		{
@@ -697,7 +697,7 @@ class MailPress_mailinglist
 			$x->send();
 		}
 
-		if ( MP_Mailinglists::exists( trim( $_POST['name'] ) ) ) 
+		if ( MP_Mailinglist::exists( trim( $_POST['name'] ) ) ) 
 		{
 			$x = new WP_Ajax_Response( array(	'what' => 'mailinglist', 
 									'id' => new WP_Error( __CLASS__ . '::exists', __('The mailing list you are trying to create already exists.', MP_TXTDOM), array( 'form-field' => 'name' ) ), 
@@ -705,7 +705,7 @@ class MailPress_mailinglist
 			$x->send();
 		}
 	
-		$mailinglist = MP_Mailinglists::insert( $_POST, true );
+		$mailinglist = MP_Mailinglist::insert( $_POST, true );
 
 		if ( is_wp_error($mailinglist) ) 
 		{
@@ -715,14 +715,14 @@ class MailPress_mailinglist
 			$x->send();
 		}
 
-		if ( !$mailinglist || (!$mailinglist = MP_Mailinglists::get( $mailinglist )) ) 	MailPress::mp_die('0');
+		if ( !$mailinglist || (!$mailinglist = MP_Mailinglist::get( $mailinglist )) ) 	MP_::mp_die('0');
 
 		$level 			= 0;
 		$mailinglist_full_name 	= $mailinglist->name;
 		$_mailinglist 		= $mailinglist;
 		while ( $_mailinglist->parent ) 
 		{
-			$_mailinglist 		= MP_Mailinglists::get( $_mailinglist->parent );
+			$_mailinglist 		= MP_Mailinglist::get( $_mailinglist->parent );
 			$mailinglist_full_name 	= $_mailinglist->name . ' &#8212; ' . $mailinglist_full_name;
 			$level++;
 		}
@@ -741,7 +741,7 @@ class MailPress_mailinglist
 	public static function mp_action_delete_mlnglst() 
 	{
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
-		MailPress::mp_die( MP_Mailinglists::delete($id) ? '1' : '0' );
+		MP_::mp_die( MP_Mailinglist::delete($id) ? '1' : '0' );
 	}
 
 	public static function mp_action_add_mailinglist()
@@ -758,10 +758,10 @@ class MailPress_mailinglist
 		foreach ( $names as $name )
 		{
 			$name = trim($name);
-			$id = MP_Mailinglists::create( $name, $parent );
+			$id = MP_Mailinglist::create( $name, $parent );
 			$all_mailinglists_ids[] = $id;
 			if ( $parent ) continue;										// Do these all at once in a second
-			$mailinglist = MP_Mailinglists::get( $id );
+			$mailinglist = MP_Mailinglist::get( $id );
 			ob_start();
 				self::all_mailinglists_checkboxes( 0, $id, $all_mailinglists_ids, $most_used_ids );
 				$data = ob_get_contents();

@@ -3,6 +3,6 @@
 Template Name: form_visiteur
 */
 
-$_the_title = "Copie du formulaire";
+$this->build->_the_title = "Copie du formulaire";
 
-include('_mail.php');
+$this->get_template_part('_mail');

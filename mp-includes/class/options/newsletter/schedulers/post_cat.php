@@ -1,5 +1,5 @@
 <?php
-class MP_Newsletter_scheduler_post_cat extends MP_Newsletters_scheduler_post_abstract
+class MP_Newsletter_scheduler_post_cat extends MP_newsletter_scheduler_post_
 {
 	public $id = 'post_cat';
 

@@ -12,7 +12,7 @@ if (class_exists('MailPress_batch_send'))
 	if (!isset($old_batch_send['batch_mode'])) $old_batch_send['batch_mode'] = '';
 	if ($old_batch_send['batch_mode'] != $batch_send['batch_mode'])
 	{
-		if ('wpcron' != $batch_send['batch_mode']) { wp_clear_scheduled_hook('mp_action_batchsend'); wp_clear_scheduled_hook('mp_process_batch_send'); }
+		if ('wpcron' != $batch_send['batch_mode']) wp_clear_scheduled_hook('mp_process_batch_send');
 		else							 MailPress_batch_send::schedule();
 	}
 }

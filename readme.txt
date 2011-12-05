@@ -2,8 +2,8 @@
 Contributors: andre renaut
 Donate link: http://www.mailpress.org/wiki
 Tags: mail, mails, comments, comment, subscribe, newsletters, newsletter, Wordpress, Plugin, swiftmailer, post, posts, smtp, sendmail, phpmail, notification, notifications, mail, mails, contact form
-Requires at least: 3.1
-Tested up to: 3.2
+Requires at least: 3.3
+Tested up to: 3.3
 Stable tag: 5.1.1
 
 The WordPress mailing platform 
@@ -20,21 +20,21 @@ The WordPress mailing platform
 
 Some technical stuff :
 
-1. Switmailer 4.0.6
-1. jQuery 1.6 supported.
+1. Switmailer 4.1.3
+1. jQuery 1.7.1 supported.
 1. Google Map API V3 supported.
 1. Code Mirror 0.9 (2.2)
 
 Some bugs fixed of course (see changelog)
 
 Please report any bug in the mailpress google group http://groups.google.com/group/mailpress
-starting your subject title with : "(MailPress 5.1)".
+starting your subject title with : "(MailPress 5.2)".
 
 Thank you
 
 == Installation ==
 
-1. Make sure you have already installed WordPress 3.2 or above.
+1. Make sure you have already installed WordPress 3.3 or above.
 1. Unzip the MailPress package.
 1. Upload the mailpress folder into wp-content/plugins.
 1. Make sure the wp-content/plugins/mailpress/tmp folder is writable.
@@ -73,6 +73,35 @@ MailPress themes and templates do not need to be changed if customized in a prev
 1. none
 
 == Changelog ==
+
+** 5.2 ** xx/xx/2011
+* Child themes
+   - A MailPress child theme is a theme that inherits the functionality of another theme, called the parent theme, and allows you to modify, or add to, the functionality of that parent theme.
+   - All mp themes reviewed
+   - more on Child themes at http://blog.mailpress.org/2011/11/16/child-themes/
+* Help admin bar
+   - adding per_page parameter on all mailpress admin lists
+   - contextual help
+* Add-Ons
+   - (bug fix) MP_Bounce_api.class.php not tallying bounces correctly
+   - MailPress_Import : 'export' files are now included in media list
+   - MailPress_Upload_media : support 'Upload/Insert' new media button on editor
+   - MailPress_delete_old_mails : new add-on
+   - MailPress_WPML : not tested in 5.2 and not supported by me !
+   - smtp, sendmail, php_mail connections reviewed
+* Miscellaneous
+   - new design for some setting tabs
+   - new design for pagination block on lists (same as wp)
+   - logs : automatically activated on first activation (plugin & add-ons), files named changed, purge reviewed
+   - css reviewed, list icons reviewed.
+   - some javascript changes for mp-ajax-response, mp-lists, thickbox, markerclusterer ...
+   - pluggable functions reviewed
+   - tracking deprecated functions ...
+   - lot of mailpress classes renamed (mostly abstract ones)
+   - file_exists() replaced by is_file()
+   - upgrade to SwiftMailer 4.1.3 + specific batchSend()
+   - commented code removed
+   - MP_Mail viewhtml() and viewplaintext() merged in view()
 
 ** 5.1.1 ** 09/03/2011
 

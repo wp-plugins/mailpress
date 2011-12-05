@@ -1,5 +1,5 @@
 <?php
-class MP_AdminPage extends MP_Admin_page
+class MP_AdminPage extends MP_adminpage_
 {
 	const screen 	= MailPress_page_themes;
 	const capability 	= 'MailPress_switch_themes';
@@ -14,7 +14,7 @@ class MP_AdminPage extends MP_Admin_page
 
 		if ( isset($_GET['action']) ) 
 		{
-			check_admin_referer('switch-theme_' . $_GET['template']);
+			check_admin_referer('switch-theme_' . $_GET['stylesheet']);
 			if ('activate' == $_GET['action']) 
 			{
 				$th->switch_theme($_GET['template'], $_GET['stylesheet']);
@@ -49,7 +49,12 @@ class MP_AdminPage extends MP_Admin_page
 
 		$themes = $th->themes;
 
-		unset($themes['plaintext']);
+		foreach($themes as $key => $theme)
+		{
+			if ( 'plaintext' == $theme['Stylesheet']) unset($themes[$key]);
+			if ( '_' == $theme['Stylesheet'][0] )     unset($themes[$key]);
+		}
+
 		ksort( $themes );
 
 		return array(array_slice( $themes, $start, $num ), count( $themes ), $th);
@@ -70,12 +75,11 @@ class MP_AdminPage extends MP_Admin_page
 		$args['action'] 		= 'activate';
 		$args['template'] 	= $theme['Template'];
 		$args['stylesheet'] 	= $theme['Stylesheet'];
-		$activate_url = esc_url(self::url( MailPress_themes, $args, 'switch-theme_' . $theme['Template'] ));
+		$activate_url = esc_url(self::url( MailPress_themes, $args, 'switch-theme_' . $theme['Stylesheet'] ));
 
 		$args['action'] 		= 'theme-preview';
+		$args['preview_iframe']	= 1;
 		$args['TB_iframe'] 	= 'true';
-		$args['width'] 		= 600;
-		$args['height'] 		= 400;
 		$preview_url =  esc_url(self::url( MP_Action_url, $args));
 
 // titles's
@@ -84,35 +88,26 @@ class MP_AdminPage extends MP_Admin_page
 // actions
 		$actions = array();
 
-		$activate['link1']	= "<a class='thickbox screenshot' href='$activate_url'>";
-		if ( $theme['Screenshot'] ) $activate['link1'] .= "<img src='" . get_option('siteurl') . '/' . $theme['Stylesheet Dir'] . '/' . $theme['Screenshot'] . "' alt='" . esc_attr($theme['Title']) . "' />";
-		$activate['link1']     .= '</a>';
+		$preview['link1']	= "<a class='thickbox thickbox-preview screenshot' href='$preview_url'>";
+		if ( $theme['Screenshot'] ) $preview['link1'] .= "<img src='" . $theme['Theme Root URI'] . '/' . $theme['Stylesheet'] . '/' . $theme['Screenshot'] . "' alt='" . esc_attr($theme['Title']) . "' />";
+		$preview['link1']     .= '</a>';
 
-		$activate['link2']	= "<a class='thickbox' href='$activate_url'>" . esc_attr($theme['Title']) . '</a>';
-
-		$activate['link3']	= "<a href='$activate_url' title='$activate_title'>" . __('Activate') . '</a>';
-		$preview['link3']		= "<a class='thickbox'  href='$preview_url' title='$preview_title'>"  . __('Preview')  . '</a>';
-
-		$activate['link4']	= "<a class='activatelink' href='$activate_url'>$activate_title</a>";
-		$preview['link4']		= "<a class='previewlink'  href='$preview_url' >$preview_title </a>";
+		$activate['link2']	= "<a class='activatelink' href='$activate_url' title='$activate_title'>" . __('Activate') . '</a>';
+		$preview['link2']		= "<a class='thickbox thickbox-preview'  href='$preview_url' title='$preview_title'>"  . __('Preview')  . '</a>';
 ?>
 			<td class="<?php echo join(' ', $class); ?>">
-				<?php echo $activate['link1']; ?>
-				<h3><?php echo $activate['link2']; ?></h3>
+				<?php echo $preview['link1']; ?>
+				<h3><?php echo esc_attr($theme['Title']); ?></h3>
 <?php if ( $theme['Description'] ) : ?>
-				<p><?php echo $theme['Description']; ?></p>
+				<p class='description'><?php echo $theme['Description']; ?></p>
 <?php endif; ?>
+				<span class='action-links'>
+					<?php echo $activate['link2']; ?> | 
+					<?php echo $preview['link2']; ?>
+				</span>
 <?php if ( $theme['Tags'] ) : ?>
 				<p><?php _e('Tags:'); ?> <?php echo join(', ', $theme['Tags']); ?></p>
 <?php endif; ?>
-				<p class='themeactions'>
-					<?php echo $activate['link3']; ?> | 
-					<?php echo $preview['link3']; ?>
-				</p>
-				<div style='display:none;'>
-					<?php echo $preview['link4']; ?>
-					<?php echo $activate['link4']; ?>
-				</div>
 			</td>
 <?php
 	}

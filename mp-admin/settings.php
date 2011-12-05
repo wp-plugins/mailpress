@@ -1,10 +1,12 @@
 <?php
-class MP_AdminPage extends MP_Admin_page
+class MP_AdminPage extends MP_adminpage_
 {
 	const screen 	= MailPress_page_settings;
 	const capability 	= 'MailPress_manage_options';
 	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Manual:MailPress:Settings';
 	const file        = __FILE__;
+
+	public static $first = true;
 
 ////  Styles  ////
 
@@ -40,12 +42,12 @@ class MP_AdminPage extends MP_Admin_page
 <?php
 	}
 
-	public static function logs_sub_form ($name, $data, $headertext, $optiontext, $foralltext, $numbertext)
+	public static function logs_sub_form ($name, $data, $headertext)
 	{
-		if (!isset($data[$name])) $data[$name] = array('level' => 123456789, 'lognbr' => 0, 'lastpurge' => '');
+		if (!isset($data[$name])) $data[$name] = array('level' => 8191, 'lognbr' => 10, 'lastpurge' => '');
 
 		$xlevel = array (		123456789	=> __('No logging', MP_TXTDOM) , 
-							0	=> $optiontext , 
+							0	=> __('simple log', MP_TXTDOM) , 
 							1 	=> 'E_ERROR', 
 							2 	=> 'E_WARNING', 
 							4 	=> 'E_PARSE', 
@@ -60,26 +62,34 @@ class MP_AdminPage extends MP_Admin_page
 							2048 	=> 'E_STRICT', 
 							4096 	=> 'E_RECOVERABLE_ERROR', 
 							8191 	=> 'E_ALL' );
+		if (self::$first)
+		{
+			self::$first = false;
 ?>
-<tr><th></th><td></td></tr>
+<tr><th></th><td colspan='4'></td></tr>
+<tr valign='top' class='mp_sep'>
+	<th scope='row'><strong><?php _e('Logs', MP_TXTDOM); ?></strong></th>
+	<td><strong><?php _e('Level', MP_TXTDOM); ?></strong></td>
+	<td><strong><?php _e('Days', MP_TXTDOM); ?></strong></td>
+	<td><strong><?php _e('Last purge', MP_TXTDOM); ?></strong></td>
+</tr>
+<?php
+		}
+?>
 <tr valign='top' class='mp_sep'>
 	<th scope='row'><strong><?php echo $headertext; ?></strong></th>
 	<td>
-		<?php _e('Logging level : ', MP_TXTDOM); ?>
 		<select name='logs[<?php echo $name ?>][level]'>
 <?php self::select_option($xlevel, $data[$name]['level']);?>
 		</select> 
-		&nbsp;&nbsp;
-		<i><?php echo $foralltext; ?></i>
-		<br />
-		<?php echo $numbertext; ?>
+	</td>
+	<td>
 		<select name='logs[<?php echo $name ?>][lognbr]'>
 <?php self::select_number(1, 10, $data[$name]['lognbr']);?>
 		</select>
-		<i><?php _e('(one log file per day)', MP_TXTDOM); ?></i>
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		<?php _e('Date of last purge', MP_TXTDOM); ?>
-		<input type='text' size='9' value='<?php echo $data[$name]['lastpurge']; ?>' disabled='disabled' />
+	</td>
+	<td>
+		<?php if (!empty($data[$name]['lastpurge'])) echo substr($data[$name]['lastpurge'],0 , 4) . '/' . substr($data[$name]['lastpurge'],4, 2) . '/' . substr($data[$name]['lastpurge'],6, 2); ?>
 		<input type='hidden' name='logs[<?php echo $name ?>][lastpurge]' value='<?php echo $data[$name]['lastpurge']; ?>' />
 	</td>
 </tr>

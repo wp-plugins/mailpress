@@ -1,5 +1,5 @@
 <?php
-class MP_AdminPage extends MP_Admin_page_list
+class MP_AdminPage extends MP_adminpage_list_
 {
 	const screen 	= MailPress_page_wp_cron;
 	const capability	= 'MailPress_manage_wp_cron';
@@ -18,7 +18,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		elseif ( !empty($_REQUEST['action2']) && ($_REQUEST['action2'] != -1) )	$action = $_REQUEST['action2'];
 		if (!isset($action)) return;
 
-		$url_parms = self::get_url_parms(array('apage', 'id', 'sig', 'next_run'));
+		$url_parms = self::get_url_parms(array('paged', 'id', 'sig', 'next_run'));
 		$checked	= (isset($_GET['checked'])) ? $_GET['checked'] : array();
 
 		$count	= str_replace('bulk-', '', $action);
@@ -141,7 +141,7 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		$columns = array(	'cb' 		=> "<input type='checkbox' />", 
 					'name'	=> __('Hook name', MP_TXTDOM),
-					'next'	=> __('Next&nbsp;run',  MP_TXTDOM),
+					'next'	=> __('Next&#160;run',  MP_TXTDOM),
 					'rec'		=> __('Recurrence',MP_TXTDOM),
 					'args'	=> __('Arguments', MP_TXTDOM),
 		);
@@ -241,7 +241,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 					$time_since = self::time_since($timestamp);
 					$next_date = date_i18n( 'D Y/m/d H:i:s', strtotime(get_date_from_gmt(gmdate('Y-m-d H:i:s', $timestamp))));
-					$next_date = str_replace(' ', '&nbsp;', $next_date);
+					$next_date = str_replace(' ', '&#160;', $next_date);
 					
 					$out .= "$timestamp <abbr title=\"{$time_since}\">{$next_date}</abbr>";
 				break;

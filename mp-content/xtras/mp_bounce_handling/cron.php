@@ -9,4 +9,4 @@ include($path . 'wp-admin/includes/admin.php');
 
 do_action('mp_process_bounce_handling');
 
-MailPress::mp_die();
+MP_::mp_die();

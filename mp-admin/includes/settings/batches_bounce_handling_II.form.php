@@ -50,15 +50,15 @@ if (!isset($bounce_handling_II)) $bounce_handling_II = get_option(MailPress_boun
 		<table class='general'>
 			<tr>
 				<td class='pr10'>
-					<label for='bounce_handling_wp_cron'>
-						<input value='wpcron' name='bounce_handling_II[batch_mode]' id='bounce_handling_wp_cron' class='submit_batch_bounce_II tog' type='radio' <?php checked('wpcron', $bounce_handling_II['batch_mode']); ?> />
-						&nbsp;&nbsp;
+					<label for='bounce_handling_II_wp_cron'>
+						<input value='wpcron' name='bounce_handling_II[batch_mode]' id='bounce_handling_II_wp_cron' class='submit_batch_bounce_II tog' type='radio' <?php checked('wpcron', $bounce_handling_II['batch_mode']); ?> />
+						&#160;&#160;
 						<?php _e('WP_Cron', MP_TXTDOM); ?>
 					</label>
 				</td>
 				<td class='bounce_II_wpcron pr10 toggl3_II<?php if ('wpcron' != $bounce_handling_II['batch_mode']) echo ' hide'; ?>' style='padding-left:10px;vertical-align:bottom;'>
 					<?php _e('Every', MP_TXTDOM); ?>
-					&nbsp;&nbsp;
+					&#160;&#160;
 					<select name='bounce_handling_II[every]' id='every_bounce' >
 <?php MP_AdminPage::select_option($xevery, $bounce_handling_II['every']);?>
 					</select>
@@ -66,19 +66,19 @@ if (!isset($bounce_handling_II)) $bounce_handling_II = get_option(MailPress_boun
 			</tr>
 			<tr>
 				<td class='pr10'>
-					<label for='bounce_handling_other'>
-						<input value='other' name='bounce_handling_II[batch_mode]' id='bounce_handling_other' class='submit_batch_bounce_II tog' type='radio' <?php checked('other', $bounce_handling_II['batch_mode']); ?> />
-						&nbsp;&nbsp;
+					<label for='bounce_handling_II_other'>
+						<input value='other' name='bounce_handling_II[batch_mode]' id='bounce_handling_II_other' class='submit_batch_bounce_II tog' type='radio' <?php checked('other', $bounce_handling_II['batch_mode']); ?> />
+						&#160;&#160;
 						<?php _e('Other', MP_TXTDOM); ?>
 					</label>
 				</td>
 				<td class='bounce_II_other pr10 toggl3_II<?php if ('other' != $bounce_handling_II['batch_mode']) echo ' hide'; ?>'>
-					<?php printf(__('see sample in "%1$s"', MP_TXTDOM), MP_CONTENT_DIR . 'xtras/mp_bounce_handling_II'); ?>
+					<?php printf(__('see sample in "%1$s"', MP_TXTDOM), '<code>' . MP_CONTENT_DIR . 'xtras/mp_bounce_handling_II' . '</code>'); ?>
 				</td>
 			</tr>
 		</table>
 	</td>
 </tr>
-<tr valign='top' style='line-height:10px;padding:0;'><td style='line-height:10px;padding:0;'>&nbsp;</td></tr>
+<tr valign='top' style='line-height:10px;padding:0;'><td style='line-height:10px;padding:0;'>&#160;</td></tr>
 <tr valign='top' class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>
 <tr><th></th><td colspan='4'></td></tr>

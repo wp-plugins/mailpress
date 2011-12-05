@@ -1,5 +1,5 @@
 <?php
-class MP_Newsletter_processor_previous_day extends MP_Newsletters_processor_abstract
+class MP_Newsletter_processor_day_1 extends MP_newsletter_processor_
 {
 	const day_in_sec  = 86400;  // 24*60*60
 
@@ -51,4 +51,4 @@ class MP_Newsletter_processor_previous_day extends MP_Newsletters_processor_abst
 		return $query_posts;
 	}
 }
-new MP_Newsletter_processor_previous_day(__('Previous day', MP_TXTDOM));
+new MP_Newsletter_processor_day_1(__('Previous day', MP_TXTDOM));

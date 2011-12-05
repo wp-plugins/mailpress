@@ -6,20 +6,20 @@ Plugin Name: MailPress_newsletter
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Newsletter
 Description: This is just an add-on for MailPress to manage newsletters
 Author: Andre Renaut
-Version: 5.1.1
+Version: 5.2
 Author URI: http://www.mailpress.org
 */
 
 class MailPress_newsletter
 {
 	const meta_key = '_MailPress_newsletter';
+	const log_name = 'newsletter';
 
 	function __construct()
 	{
 // for wordpress hooks
 // for plugin
-		add_action('plugins_loaded', 			array(__CLASS__, 'plugins_loaded'));
-		add_action('MailPress_add-ons_loaded', 	array(__CLASS__, 'plugins_loaded'));
+		add_action('MailPress_addons_loaded', 	array(__CLASS__, 'addons_loaded'));
 
 // register form
 		add_action('user_register', 			array(__CLASS__, 'user_register'), 10, 1);
@@ -60,9 +60,9 @@ class MailPress_newsletter
 		// for settings
 			add_filter('MailPress_settings_tab', 		array(__CLASS__, 'settings_tab'), 10, 1);
 		// for settings general
-			add_action('MailPress_settings_general', 		array(__CLASS__, 'settings_general'), 10);
+			add_action('MailPress_settings_general', 		array(__CLASS__, 'settings_general'), 30);
 		// for settings subscriptions
-			add_action('MailPress_settings_subscriptions', 	array(__CLASS__, 'settings_subscriptions'), 10);
+			add_action('MailPress_settings_subscriptions', 	array(__CLASS__, 'settings_subscriptions'), 30);
 		// for settings logs
 			add_action('MailPress_settings_logs', 		array(__CLASS__, 'settings_logs'), 50);
 		// for meta box in user page
@@ -101,7 +101,7 @@ class MailPress_newsletter
 						'type'	=> 'checkbox', 
 						'show_option_all' => false, 
    						'htmlstart'=> '', 
-						'htmlmiddle'=> '&nbsp;&nbsp;', 
+						'htmlmiddle'=> '&#160;&#160;', 
 						'htmlend'	=> "<br />\n"
 					);
 		$r = wp_parse_args( $args, $defaults );
@@ -109,11 +109,11 @@ class MailPress_newsletter
 
 		$lib_nl = ($admin) ? 'admin' : 'blog';
 
-		if ($mp_user_id) 	$in = MP_Newsletters::get_object_terms($mp_user_id);
-		else			$in = MP_Newsletters::get_defaults();
+		if ($mp_user_id) 	$in = MP_Newsletter::get_object_terms($mp_user_id);
+		else			$in = MP_Newsletter::get_defaults();
 
 		global $mp_registered_newsletters;
-		$nls = MP_Newsletters::get_active();
+		$nls = MP_Newsletter::get_active();
 
 		foreach ($nls as $k => $v)
 		{
@@ -128,7 +128,7 @@ class MailPress_newsletter
 
 						$tag 		 = "<input type='$_type' id='{$name}_{$k}' name='{$name}[{$k}]'$checked />";
 						$htmlstart2  = str_replace('{{id}}', "{$name}_{$k}", $htmlstart);
-						$htmlmiddle2 = $htmlmiddle . str_replace('&nbsp;', '', $v);
+						$htmlmiddle2 = $htmlmiddle . str_replace('&#160;', '', $v);
 						$htmlend2    = $htmlend;
 
 						$checklist .= "$htmlstart2$tag$htmlmiddle2$htmlend2";
@@ -151,17 +151,17 @@ class MailPress_newsletter
 
 	public static function update_checklist($mp_user_id, $name = 'keep_newsletters') 
 	{
-		MP_Newsletters::set_object_terms( $mp_user_id, $_POST[$name] );
+		MP_Newsletter::set_object_terms( $mp_user_id, $_POST[$name] );
 	}
 
 //// Plugin ////
 
-	public static function plugins_loaded()
+	public static function addons_loaded()
 	{
 		do_action('MailPress_register_newsletter');
 		do_action('MailPress_registered_newsletters');
 
-		new MP_Newsletters_schedulers();
+		new MP_Newsletter_schedulers();
 	}
 
 //// Register form ////
@@ -170,7 +170,9 @@ class MailPress_newsletter
 	{
 		$user 	= get_userdata($wp_user_id);
 		$email 	= $user->user_email;
-		$mp_user_id	= MP_Users::get_id_by_email($email);
+		$mp_user_id	= MP_User::get_id_by_email($email);
+                
+		if(!isset($_POST['keep_newsletters'])) $_POST['keep_newsletters'] = MP_Newsletter::get_defaults();
 
 		self::update_checklist($mp_user_id);
 	}
@@ -201,11 +203,12 @@ class MailPress_newsletter
 
 	public static function form_submit($shortcode_message, $email)  
 	{ 
-		if (!isset($_POST['newsletter'])) return $shortcode_message;
+		if (!isset($_POST['newsletter'])) 	return $shortcode_message;
+		if (!$_POST['newsletter']) 		return $shortcode_message;
 		$shortcode = 'shortcode_newsletters';
 
-		$mp_user_id = MP_Users::get_id_by_email($email);
-		$_POST[$shortcode] = MP_Newsletters::get_object_terms($mp_user_id);
+		$mp_user_id = MP_User::get_id_by_email($email);
+		$_POST[$shortcode] = MP_Newsletter::get_object_terms($mp_user_id);
 
 		$_POST[$shortcode] = array_flip(array_map(trim, explode(',', $_POST['newsletter'])));
 
@@ -247,7 +250,7 @@ class MailPress_newsletter
 		}
 		$xml = '<?xml version="1.0" encoding="UTF-8"?><newsletters>' . $xml . '</newsletters>';
 		$newsletters = new MP_Xml($xml);
-		foreach($newsletters->object->children as $newsletter) MP_Newsletters::register(self::convert($newsletter));
+		foreach($newsletters->object->children as $newsletter) MP_Newsletter::register(self::convert($newsletter));
 	}
 
 	public static function convert($child)
@@ -275,23 +278,23 @@ class MailPress_newsletter
 		extract($args);
 
 		self::unschedule_hook('mp_process_newsletter');
-		MP_Newsletters_schedulers::schedule($event);
+		MP_Newsletter_schedulers::schedule($event);
 	}
 
 	public static function process($args)
 	{
 		extract($args);
 
-		new MP_Newsletters_processors();
+		new MP_Newsletter_processors();
 
-		MP_Newsletters_processors::process($newsletter);
+		MP_Newsletter_processors::process($newsletter);
 	}
 
 //// Sending Mails ////
 
 	public static function mailinglists( $draft_dest = array() )
 	{
-		$x = MP_Newsletters::get_active();
+		$x = MP_Newsletter::get_active();
 		foreach ($x as $k => $v) $draft_dest["MailPress_newsletter~$k"] = $v;
 		return $draft_dest;
 	}
@@ -309,14 +312,14 @@ class MailPress_newsletter
 
 		$in = ($mp_registered_newsletters[$id]['default']) ? 'NOT' : '';
 
-		return MP_Newsletters::get_query_newsletter($id, $in);
+		return MP_Newsletter::get_query_newsletter($id, $in);
 	}
 
 // Sync wordpress user
 
 	public static function has_subscriptions($has, $mp_user_id)
 	{
-		$x = MP_Newsletters::get_object_terms($mp_user_id);
+		$x = MP_Newsletter::get_object_terms($mp_user_id);
 
 		if (empty($x)) return $has;
 		return true;
@@ -324,11 +327,11 @@ class MailPress_newsletter
 
 	public static function sync_subscriptions($oldid, $newid)
 	{
-		$old = MP_Newsletters::get_object_terms($oldid);
+		$old = MP_Newsletter::get_object_terms($oldid);
 		if (empty($old)) return;
-		$new = MP_Newsletters::get_object_terms($newid);
+		$new = MP_Newsletter::get_object_terms($newid);
 
-		MP_Newsletters::set_object_terms($newid, array_merge($old, $new));
+		MP_Newsletter::set_object_terms($newid, array_merge($old, $new));
 	}
 
 ////  ADMIN  ////
@@ -340,6 +343,13 @@ class MailPress_newsletter
 	public static function install() 
 	{
 		self::uninstall();
+
+		$logs = get_option(MailPress::option_name_logs);
+		if (!isset($logs[self::log_name]))
+		{
+			$logs[self::log_name] = array('level' => 8191, 'lognbr' => 10, 'lastpurge' => '');
+			update_option(MailPress::option_name_logs, $logs );
+		}
 
 		include (MP_ABSPATH . 'mp-admin/includes/install/newsletter.php');
 
@@ -406,10 +416,10 @@ class MailPress_newsletter
 				<th scope='row'><?php _e('Newsletters show at most', MP_TXTDOM); ?></th>
 				<td style='padding:0;'>
 					<select name='general[post_limits]'>
-<option value="0">&nbsp;</option>
+<option value="0">&#160;</option>
 <?php MP_AdminPage::select_number(1, 30, (isset($mp_general['post_limits'])) ? $mp_general['post_limits'] : ''); ?>
 					</select>
-					&nbsp;<?php _e('posts <i>(blank = WordPress Reading setting)</i>', MP_TXTDOM); ?>
+					&#160;<?php _e('posts <i>(blank = WordPress Reading setting)</i>', MP_TXTDOM); ?>
 				</td>
 			</tr>
 <?php
@@ -424,7 +434,7 @@ class MailPress_newsletter
 // for settings logs
 	public static function settings_logs($logs)
 	{
-		MP_AdminPage::logs_sub_form('newsletter', $logs, __('Newsletter', MP_TXTDOM), __('Newsletter log', MP_TXTDOM), __('(for <b>ALL</b> Newsletters through MailPress)', MP_TXTDOM), __('Number of Newsletter log files : ', MP_TXTDOM));
+		MP_AdminPage::logs_sub_form(self::log_name, $logs, __('Newsletter', MP_TXTDOM));
 	}
 
 // for meta box in user page
@@ -518,7 +528,7 @@ class MailPress_newsletter
 		if ('newsletters' != $column_name) return;
 		$out = array();
 
-		$newsletters = MP_Newsletters::get_object_terms($mp_user->id);
+		$newsletters = MP_Newsletter::get_object_terms($mp_user->id);
 		if (!empty($newsletters))
 		{
 			foreach($newsletters as $k => $v)
@@ -544,7 +554,7 @@ class MailPress_newsletter
 		$r = wp_parse_args( $args, $defaults );
 		extract( $r );
 
-		$x = MP_Newsletters::get_active();
+		$x = MP_Newsletter::get_active();
 
 		$output = '';
 		if ( ! empty($x) )
@@ -554,7 +564,7 @@ class MailPress_newsletter
 
 			$htmlid = ($htmlid === true) ? "id='$name'" : "id='$htmlid'" ;
 			$output = "<select name='$name' $htmlid class='$class'>\n";
-			$output .= MailPress::select_option($list, $selected, false);
+			$output .= MP_::select_option($list, $selected, false);
 			$output .= "</select>\n";
 		}
 
@@ -573,13 +583,13 @@ class MailPress_newsletter
 		$post = &get_post($post_id);
 		if (!$post)					return new WP_Error( 'post', __('post not saved', MP_TXTDOM) );
 
-		$newsletter = MP_Newsletters::get($_POST['newsletter']);
+		$newsletter = MP_Newsletter::get($_POST['newsletter']);
 		if (!$newsletter)				return new WP_Error( 'newsletter', __('unknown newsletter', MP_TXTDOM) );
 
 		$theme = $_POST['theme'];
 		if (empty($theme) && isset($newsletter['mail']['Theme'])) $theme = $newsletter['mail']['Theme'];
 
-		update_user_meta(MailPress::get_wp_user_id(), "_MailPress_post_$post_id", array('toemail' => $_POST['toemail'], 'theme' => $theme, 'newsletter' => $_POST['newsletter']));	
+		update_user_meta(MP_WP_User::get_id(), "_MailPress_post_$post_id", array('toemail' => $_POST['toemail'], 'theme' => $theme, 'newsletter' => $_POST['newsletter']));	
 
 		$newsletter['mail']['Theme'] 		= $theme;
 		$newsletter['mail']['subject']	= __('(Test)', MP_TXTDOM) . ' ' . $newsletter['mail']['subject'];
@@ -588,17 +598,17 @@ class MailPress_newsletter
 		$newsletter['query_posts'] 	= array( 'p'	=>	$post_id );
 
 		$mail			= new stdClass();
-		$mail->id		= MP_Mails::get_id('send_post_ajax');
+		$mail->id		= MP_Mail::get_id('send_post_ajax');
 		$mail->toemail 	= $_POST['toemail'];
 
-		$rc = MP_Newsletters::send($newsletter, false, $mail);
+		$rc = MP_Newsletter::send($newsletter, false, $mail);
 
-		if (!$rc) MP_Mails::delete($mail->id);
+		if (!$rc) MP_Mail::delete($mail->id);
 
 		$x = new WP_Ajax_Response( array	(
 						'what' => 'mp_post_test', 
 						'id' => $mail->id, 
-						'data' => !$rc ? __('Sending mail failed !', MP_TXTDOM) : sprintf('<span id="mail-%1$s">%2$s</span>', $mail->id , sprintf(__('%1$sView%2$s sent mail', MP_TXTDOM), sprintf('<a href="%1$s" class="thickbox">', esc_url(MailPress::url( MP_Action_url, array('action' => 'iview', 'id' => $mail->id, 'KeepThis' => 'true', 'TB_iframe' => 'true')))), '</a>'))
+						'data' => !$rc ? __('Sending mail failed !', MP_TXTDOM) : sprintf('<span id="mail-%1$s">%2$s</span>', $mail->id , sprintf(__('%1$sView%2$s sent mail', MP_TXTDOM), sprintf('<a href="%1$s" class="thickbox thickbox-preview">', esc_url(MP_::url( MP_Action_url, array('action' => 'iview', 'id' => $mail->id, 'preview_iframe' => 1, 'TB_iframe' => 'true')))), '</a>'))
 						)
 		);
 		$x->send();

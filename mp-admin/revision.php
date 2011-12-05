@@ -1,5 +1,5 @@
 <?php
-class MP_AdminPage extends MP_Admin_page
+class MP_AdminPage extends MP_adminpage_
 {
 	const screen 	= 'mailpress_revision';
 	const capability 	= 'MailPress_edit_mails';
@@ -27,17 +27,17 @@ class MP_AdminPage extends MP_Admin_page
 			case 'edit' :
 			break;
 			case 'restore' :
-				if (!$revision = MP_Mails::get($revision_id)) break;
-				if (!$mail     = MP_Mails::get($id))          break;
+				if (!$revision = MP_Mail::get($revision_id)) break;
+				if (!$mail     = MP_Mail::get($id))          break;
 
 				$_POST = get_object_vars($mail);
 				foreach(array('toname', 'subject', 'html', 'plaintext') as $k) if ($_POST[$k]) $_POST[$k] = addcslashes($_POST[$k], "'");
-				MP_Mails::update_draft($revision_id, '');
+				MP_Mail_draft::update($revision_id, '');
 
 				$_POST = get_object_vars($revision);
 				unset($_POST['created']);
 				foreach(array('toname', 'subject', 'html', 'plaintext') as $k) if ($_POST[$k]) $_POST[$k] = addcslashes($_POST[$k], "'");
-				MP_Mails::update_draft($id);
+				MP_Mail_draft::update($id);
 
 				$redirect_to .= "&id=$id&revision=$revision_id&message=5&time=" . urlencode($revision->created);
 			break;
@@ -51,9 +51,9 @@ class MP_AdminPage extends MP_Admin_page
 					break;
 				}
 
-				if ( !$left_revision  = MP_Mails::get( $left ) )
+				if ( !$left_revision  = MP_Mail::get( $left ) )
 					break;
-				if ( !$right_revision = MP_Mails::get( $right ) )
+				if ( !$right_revision = MP_Mail::get( $right ) )
 					break;
 
 				if ( strtotime($right_revision->created) < strtotime($left_revision->created) ) 
@@ -65,7 +65,7 @@ class MP_AdminPage extends MP_Admin_page
 
 				if ($left_revision->id  == $id) $left_ok = true;
 				if ($right_revision->id == $id) $right_ok = true;
-				$rev_ids = MP_Mailmeta::get($id, '_MailPress_mail_revisions');
+				$rev_ids = MP_Mail_meta::get($id, '_MailPress_mail_revisions');
 				foreach ($rev_ids as $v) if ($left_revision->id  == $v) $left_ok = true;
 				foreach ($rev_ids as $v) if ($right_revision->id == $v) $right_ok = true;
 				if (!($left_ok && $right_ok)) break;
@@ -73,9 +73,9 @@ class MP_AdminPage extends MP_Admin_page
 			break;
 			case 'view' :
 			default :
- 				if ( !$revision = MP_Mails::get( $revision_id ) )
+ 				if ( !$revision = MP_Mail::get( $revision_id ) )
 					break;
-				if ( !$mail = MP_Mails::get( $id ) )
+				if ( !$mail = MP_Mail::get( $id ) )
 					break;
 
 				$redirect_to = false;

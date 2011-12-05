@@ -6,11 +6,9 @@ Plugin Name: MailPress_form
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Form
 Description: This is just an add-on for MailPress to manage Contact forms
 Author: Andre Renaut
-Version: 5.1.1
+Version: 5.2
 Author URI: http://www.mailpress.org
 */
-
-// 3.
 
 /** for admin plugin pages */
 define ('MailPress_page_forms',	'mailpress_forms');
@@ -23,16 +21,17 @@ define ('MailPress_forms',  	$mp_file . '?page=' . MailPress_page_forms);
 define ('MailPress_fields', 	$mp_file . '?page=' . MailPress_page_fields);
 define ('MailPress_templates',$mp_file . '?page=' . MailPress_page_templates);
 
+/** for mysql */
+global $wpdb;
+$wpdb->mp_forms  = $wpdb->prefix . 'mailpress_forms';
+$wpdb->mp_fields = $wpdb->prefix . 'mailpress_formfields';
+
 class MailPress_form
 {
 	const prefix = 'mp_';
 
 	function __construct()
 	{
-// for mysql
-		global $wpdb;
-		$wpdb->mp_forms  = $wpdb->prefix . 'mailpress_forms';
-		$wpdb->mp_fields = $wpdb->prefix . 'mailpress_formfields';
 
 // for shortcode
 		add_shortcode('mailpress_form', 	array(__CLASS__, 'shortcode'));
@@ -67,7 +66,7 @@ class MailPress_form
 
 	public static function shortcode($options=false)
 	{
-		return MP_Forms::form($options['id']);
+		return MP_Form::form($options['id']);
 	}
 
 ////  Captcha's  ////
@@ -138,7 +137,7 @@ class MailPress_form
 			$x->send();
 		}
 
-		$form = MP_Forms::insert( $_POST );
+		$form = MP_Form::insert( $_POST );
 
 		if ( !$form )
 		{
@@ -148,9 +147,9 @@ class MailPress_form
 			$x->send();
 		}
 
-		if ( !$form || (!$form = MP_Forms::get( $form )) ) 	MailPress::mp_die('0');
+		if ( !$form || (!$form = MP_Form::get( $form )) ) 	MP_::mp_die('0');
 
-		$form = MP_Forms::get($form->id);
+		$form = MP_Form::get($form->id);
 
 		include (MP_ABSPATH . 'mp-admin/forms.php');
 		$x = new WP_Ajax_Response( array(	'what' => 'form', 
@@ -166,7 +165,7 @@ class MailPress_form
 	{
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
 
-		$form = MP_Forms::duplicate($id);
+		$form = MP_Form::duplicate($id);
 
 		if ( !$form )
 		{
@@ -176,7 +175,7 @@ class MailPress_form
 			$x->send();
 		}
 
-		if ( !$form || (!$form = MP_Forms::get( $form )) ) 	MailPress::mp_die('0');
+		if ( !$form || (!$form = MP_Form::get( $form )) ) 	MP_::mp_die('0');
 
 		include (MP_ABSPATH . 'mp-admin/forms.php');
 		$x = new WP_Ajax_Response( array(	'what' => 'form', 
@@ -191,7 +190,7 @@ class MailPress_form
 	public static function mp_action_delete_form() 
 	{
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
-		MailPress::mp_die( MP_Forms::delete($id) ? '1' : '0' );
+		MP_::mp_die( MP_Form::delete($id) ? '1' : '0' );
 	}
 
 // for ajax in fields page
@@ -207,7 +206,7 @@ class MailPress_form
 			$x->send();
 		}
 
-		$field = MP_Forms_fields::insert( $_POST );
+		$field = MP_Form_field::insert( $_POST );
 
 		if ( !$field )
 		{
@@ -217,13 +216,13 @@ class MailPress_form
 			$x->send();
 		}
 
-		if ( !$field || (!$field = MP_Forms_fields::get( $field )) ) 	MailPress::mp_die('0');
+		if ( !$field || (!$field = MP_Form_field::get( $field )) ) 	MP_::mp_die('0');
 
-		$form = MP_Forms::get($field->form_id);
+		$form = MP_Form::get($field->form_id);
 		if (isset($form->settings['visitor']['mail']) && ($form->settings['visitor']['mail'] != '0'))
 			add_filter('MailPress_form_columns_form_fields', array('MP_AdminPage', 'add_incopy_column'), 1, 1);
 
-		new MP_Forms_field_types();
+		new MP_Form_field_types();
 		include (MP_ABSPATH . 'mp-admin/form_fields.php');
 		$x = new WP_Ajax_Response( array(	'what' => 'field', 
 								'id' => $field->id, 
@@ -238,7 +237,7 @@ class MailPress_form
 	{
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
 
-		$field = MP_Forms_fields::duplicate($id);
+		$field = MP_Form_field::duplicate($id);
 
 		if ( is_wp_error($field) )  
 		{
@@ -248,7 +247,7 @@ class MailPress_form
 			$x->send();
 		}
 
-		if ( !$field || (!$field = MP_Forms_fields::get( $field )) ) 	MailPress::mp_die('0');
+		if ( !$field || (!$field = MP_Form_field::get( $field )) ) 	MP_::mp_die('0');
 
 		include (MP_ABSPATH . 'mp-admin/form_fields.php');
 		$x = new WP_Ajax_Response( array(	'what' => 'field', 
@@ -263,13 +262,13 @@ class MailPress_form
 	public static function mp_action_delete_field() 
 	{
 		$id = isset($_POST['id'])? (int) $_POST['id'] : 0;
-		MailPress::mp_die( MP_Forms_fields::delete($id) ? '1' : '0' );
+		MP_::mp_die( MP_Form_field::delete($id) ? '1' : '0' );
 	}
 
 // for preview
 	public static function mp_action_ifview()
 	{
-		$form = MP_Forms::get($_GET['id']);
+		$form = MP_Form::get($_GET['id']);
 
 		$form_url = esc_url(admin_url(MailPress_forms . '&action=edit&id=' . $form->id));
 		$field_url = esc_url(admin_url(MailPress_fields . '&form_id=' . $form->id));
@@ -287,7 +286,7 @@ class MailPress_form
 
 	public static function ifview_title()
 	{
-		$form = MP_Forms::get($_GET['id']);
+		$form = MP_Form::get($_GET['id']);
 		global $title; $title = sprintf(__('Preview "%1$s"', MP_TXTDOM), $form->label);
 	}
 }

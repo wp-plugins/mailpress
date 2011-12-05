@@ -108,8 +108,8 @@ var autosave = {
 
 		if (selectedtheme != '')
 		{
-			var KeepThis = href.indexOf('&KeepThis');
-			hrefnew = href.substring(0,KeepThis)+'&theme='+selectedtheme+href.substring(KeepThis);
+			var preview_iframe = href.indexOf('&preview_iframe');
+			hrefnew = href.substring(0,preview_iframe)+'&theme='+selectedtheme+href.substring(preview_iframe);
 			href = hrefnew;
 		}
 
@@ -178,24 +178,22 @@ var autosave = {
 // html2txt
 	init_html2txt : function() {
 		var dest ; 
-		var html2txt = jQuery('div#html2txt');
+		var html2txt = jQuery('div#div_html2txt');
 
-		dest = jQuery('a#edButtonPreview');
-		if (dest.length) {
-			 dest.after(html2txt.html());
+		dest = jQuery('div#wp-content-media-buttons');
+		if (!dest.length) 
+		{
+			jQuery('div#wp-content-editor-tools').append("<div class='hide-if-no-js wp-media-buttons' id='wp-content-media-buttons'></div>");
+			dest = jQuery('div#wp-content-media-buttons');
 		}
-		else {
-			dest = jQuery('div#editor-toolbar');
-			if (dest.length) dest.prepend(html2txt.html());
-			else jQuery('#postdiv').prepend('<div id="editor-toolbar">' + html2txt.html() + '</div>');
-		}
-
+		dest.append(html2txt.html());
 		html2txt.remove();
+
 		jQuery('#plaintextbox>h3.hndle').append(" <img alt='' id='html2txt_loading' src='images/wpspin_light.gif' />");
 	},
 
 	click_html2txt : function() {
-		jQuery('a.html2txt').click(function() {
+		jQuery('a#html2txt').click(function() {
 
 			autosave.tinyMCE_triggerSave();
 

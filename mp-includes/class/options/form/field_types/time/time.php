@@ -1,5 +1,5 @@
 <?php
-class MP_Forms_field_type_time extends MP_Forms_field_type_abstract
+class MP_Form_field_type_time extends MP_form_field_type_
 {
 	var $id			= 'time';
 	var $order			= 71;
@@ -93,7 +93,7 @@ class MP_Forms_field_type_time extends MP_Forms_field_type_abstract
 		do { $start++; $k = $start; if ($k < 10) $k = '0' . $k; $v = $k; $list[$k] = $v; } while ($start < $max);
 
    		$selectedh	= ('0' == $this->field->settings['options']['form_time_format']) ? date('H', $timestamp) : date('h', $timestamp);
-		$this->field->settings['options']['tag_content_h'] = MailPress::select_option($list, $selectedh, false);
+		$this->field->settings['options']['tag_content_h'] = MP_::select_option($list, $selectedh, false);
 // minutes
 		$list 	= array();
 		$start	= -1;
@@ -101,7 +101,7 @@ class MP_Forms_field_type_time extends MP_Forms_field_type_abstract
 		do { $start++; $k = $start; if ($k < 10) $k = '0' . $k; $v = $k; $list[$k] = $v; } while ($start < $max);
 
    		$selectedmn	= date('i');
-		$this->field->settings['options']['tag_content_mn'] = MailPress::select_option($list, $selectedmn, false);
+		$this->field->settings['options']['tag_content_mn'] = MP_::select_option($list, $selectedmn, false);
 // timezones
 		if (isset($this->field->settings['options']['form_timezones'])) 
 		{
@@ -112,13 +112,13 @@ class MP_Forms_field_type_time extends MP_Forms_field_type_abstract
 		
 		$this->field->settings['options']['value'] = $_POST[$this->prefix][$this->field->form_id][$this->field->id];
 
-		$html = MP_Forms_field_type_select::no_reset( $this->field->settings['options']['tag_content_h'], $this->field->settings['options']['value']['h'] );
+		$html = MP_Form_field_type_select::no_reset( $this->field->settings['options']['tag_content_h'], $this->field->settings['options']['value']['h'] );
 		$this->field->settings['options']['tag_content_h'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', MP_TXTDOM) ) . ' -->';
-		$html = MP_Forms_field_type_select::no_reset( $this->field->settings['options']['tag_content_mn'], $this->field->settings['options']['value']['mn'] );
+		$html = MP_Form_field_type_select::no_reset( $this->field->settings['options']['tag_content_mn'], $this->field->settings['options']['value']['mn'] );
 		$this->field->settings['options']['tag_content_mn'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', MP_TXTDOM) ) . ' -->';
 		if (isset($this->field->settings['options']['form_timezones']))
 		{	
-			$html = MP_Forms_field_type_select::no_reset( $this->field->settings['options']['tag_content_tz'], $this->field->settings['options']['value']['tz'] );
+			$html = MP_Form_field_type_select::no_reset( $this->field->settings['options']['tag_content_tz'], $this->field->settings['options']['value']['tz'] );
 			$this->field->settings['options']['tag_content_tz'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', MP_TXTDOM) ) . ' -->';
 		}
 
@@ -184,10 +184,10 @@ class MP_Forms_field_type_time extends MP_Forms_field_type_abstract
 		$sf .= (isset($this->field->settings['options']['form_timezones']))   ? ( (empty($sf)) ? 'tz' : '_tz' ) : '';
 		if (empty($sf)) $sf = 'alone';
 
-		$form_formats['alone'] 		= '{{h}}&nbsp;:&nbsp;{{mn}}';
-		$form_formats['ampm'] 		= '{{h}}&nbsp;:&nbsp;{{mn}}&nbsp;{{am}}&nbsp;<label id="{{id_am}}_label" for="{{id_am}}">{{text_am}}</label>&nbsp;{{pm}}&nbsp;<label id="{{id_pm}}_label" for="{{id_pm}}">{{text_pm}}</label>';
-		$form_formats['tz'] 		= '{{h}}&nbsp;:&nbsp;{{mn}}&nbsp;{{tz}}';
-		$form_formats['ampm_tz'] 	= '{{h}}&nbsp;:&nbsp;{{mn}}&nbsp;{{am}}&nbsp;<label id="{{id_am}}_label" for="{{id_am}}">{{text_am}}</label>&nbsp;{{pm}}&nbsp;<label id="{{id_pm}}_label" for="{{id_pm}}">{{text_pm}}</label>&nbsp;{{tz}}';
+		$form_formats['alone'] 		= '{{h}}&#160;:&#160;{{mn}}';
+		$form_formats['ampm'] 		= '{{h}}&#160;:&#160;{{mn}}&#160;{{am}}&#160;<label id="{{id_am}}_label" for="{{id_am}}">{{text_am}}</label>&#160;{{pm}}&#160;<label id="{{id_pm}}_label" for="{{id_pm}}">{{text_pm}}</label>';
+		$form_formats['tz'] 		= '{{h}}&#160;:&#160;{{mn}}&#160;{{tz}}';
+		$form_formats['ampm_tz'] 	= '{{h}}&#160;:&#160;{{mn}}&#160;{{am}}&#160;<label id="{{id_am}}_label" for="{{id_am}}">{{text_am}}</label>&#160;{{pm}}&#160;<label id="{{id_pm}}_label" for="{{id_pm}}">{{text_pm}}</label>&#160;{{tz}}';
 
 		$form_formats = $this->get_formats($form_formats);
 
@@ -211,4 +211,4 @@ class MP_Forms_field_type_time extends MP_Forms_field_type_abstract
 		return sprintf($html, $tag_h, $id_h, $tag_mn, $id_mn, $tag_am, $id_am, $text_am, $tag_pm, $id_pm, $text_pm, $tag_tz, $id_tz);
 	}
 }
-new MP_Forms_field_type_time(__('Time', MP_TXTDOM));
+new MP_Form_field_type_time(__('Time', MP_TXTDOM));

@@ -1,5 +1,5 @@
 <?php
-class MP_Newsletter_scheduler_day extends MP_Newsletters_scheduler_abstract
+class MP_Newsletter_scheduler_day extends MP_newsletter_scheduler_
 {
 	public $id = 'day';
 

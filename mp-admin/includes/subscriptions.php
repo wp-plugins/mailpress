@@ -1,15 +1,15 @@
 <?php
 global $mp_subscriptions;
 
-$email	= MailPress::get_wp_user_email();
-$mp_user	= MP_Users::get(MP_Users::get_id_by_email($email));
+$email	= MP_WP_User::get_email();
+$mp_user	= MP_User::get(MP_User::get_id_by_email($email));
 $active 	= ('active' == $mp_user->status) ? true : false;
 
 if (isset($_POST['formname']) && ('sync_wordpress_user_subscriptions' == $_POST['formname']))
 {
 	if ($mp_user->name != $_POST['mp_user_name'])
 	{
-		MP_Users::update_name($mp_user->id, $_POST['mp_user_name']);
+		MP_User::update_name($mp_user->id, $_POST['mp_user_name']);
 		$mp_user->name = stripslashes($_POST['mp_user_name']);
 	}
 

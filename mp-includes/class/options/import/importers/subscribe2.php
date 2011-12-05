@@ -1,5 +1,5 @@
 <?php
-class MP_import_subscribe2 extends MP_Import_importer_abstract
+class MP_import_subscribe2 extends MP_import_importer_
 {
 	var $id = 'subscribe2';
 
@@ -289,7 +289,7 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 					{
 						$this->step1 .= "<td style='text-align:center;'>\n";
 						$dropdown_options = array('show_option_all' => __('None', MP_TXTDOM), 'echo' => 0, 'type' => 'select', 'name' => 'usermeta_nl_' . $cat_id, 'admin' => true, 'selected' => $this->get_newsletter_id($cat_id));
-						$this->step1 .= MP_Newsletters::get_checklist(false, $dropdown_options) . "\n";
+						$this->step1 .= MP_Newsletter::get_checklist(false, $dropdown_options) . "\n";
 						$this->step1 .= "</td>\n";
 					}
 					if (class_exists('MailPress_mailinglist')) 
@@ -423,9 +423,9 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 			{
 				$user 	= get_userdata($meta->user_id);
 				$email 	= $user->user_email;
-				$mp_user_id	= MP_Users::get_id_by_email($email);
+				$mp_user_id	= MP_User::get_id_by_email($email);
 
-				if ( 'deleted' != MP_Users::get_status_by_email($email) )
+				if ( 'deleted' != MP_User::get_status_by_email($email) )
 				{
 					$xl = strlen($email);
 					$xl = ((25 - $xl) < 0) ? 0 : 25 - $xl;
@@ -468,7 +468,7 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 				switch ($sub->active)
 				{
 					case 1 :
-						if ( 'deleted' != MP_Users::get_status_by_email($sub->email) )
+						if ( 'deleted' != MP_User::get_status_by_email($sub->email) )
 						{
 							$xl = strlen($sub->email);
 							$xl = ((25 - $xl) < 0) ? 0 : 25 - $xl;
@@ -486,7 +486,7 @@ class MP_import_subscribe2 extends MP_Import_importer_abstract
 						}
 					break;
 					default :
-						if ( 'deleted' != MP_Users::get_status_by_email($sub->email) ) break;
+						if ( 'deleted' != MP_User::get_status_by_email($sub->email) ) break;
 
 						$mp_user_id = $this->sync_mp_user($sub->email, 'waiting');
 					break;

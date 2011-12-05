@@ -1,6 +1,6 @@
 <?php
 /* based on http://www.chuggnutt.com/html2text.php */
-class MP_Html2txt extends MP_Html2txt_api
+class MP_Html2txt extends MP_html2txt_
 {
 	var   $files = array();
 

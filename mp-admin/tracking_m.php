@@ -1,5 +1,5 @@
 <?php
-class MP_AdminPage extends MP_Admin_page_list
+class MP_AdminPage extends MP_adminpage_list_
 {
 	const screen 	= 'mailpress_tracking_m';
 	const capability 	= 'MailPress_tracking_mails';
@@ -90,19 +90,19 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		global $mp_mail;
 
-		$mp_mail = $mail = MP_Mails::get( $id );
+		$mp_mail = $mail = MP_Mail::get( $id );
 		$the_mail_status = $mail->status;
 
 // url's
 		$args = array();
 		$args['id'] 	= $id;
 		$args['action'] 	= 'iview';
-		$args['KeepThis'] = 'true'; $args['TB_iframe']= 'true'; $args['width'] = '600'; $args['height']	= '400';
+		$args['preview_iframe'] = 1; $args['TB_iframe']= 'true';
 		$view_url		= esc_url(self::url(MP_Action_url, $args));
 
 // table row 
 //	to
-		$draft_dest = MP_Users::get_mailinglists();
+		$draft_dest = MP_User::get_mailinglists();
 
 		switch (true)
 		{
@@ -115,10 +115,10 @@ class MP_AdminPage extends MP_Admin_page_list
 				$mail_url = esc_url( $mail_url . '&s=' . $mail->toemail );
 
 				$email_display = '';
+
 				if ( get_option('show_avatars') ) 
 				{
 					$email_display .= "<div style='float:left;margin-right:10px;'>";
-					$email_display .= $mail_url2;
 					$email_display .= get_avatar( $mail->toemail, 32 );
 					$email_display .= '</div>';
 				}
@@ -149,12 +149,12 @@ class MP_AdminPage extends MP_Admin_page_list
 			$wp_user 		= get_userdata($author);
 		}
 //	subject
-		$metas = MP_Mailmeta::get( $id, '_MailPress_replacements');
+		$metas = MP_Mail_meta::get( $id, '_MailPress_replacements');
 		$subject_display = $mail->subject;
 		if ($metas) foreach($metas as $k => $v) $subject_display = str_replace($k, $v, $subject_display);
 //	attachements
 		$attach = false;
-		$metas = MP_Mailmeta::has( $id, '_MailPress_attached_file');
+		$metas = MP_Mail_meta::has( $id, '_MailPress_attached_file');
 		if ($metas)
 		{
 			foreach($metas as $meta)
@@ -190,13 +190,13 @@ class MP_AdminPage extends MP_Admin_page_list
 <?php
 			if ($attach) :
 ?>
-			<img class='attach' alt="<?php _e('Attachments', MP_TXTDOM); ?>" title="<?php _e('Attachments', MP_TXTDOM); ?>"  src='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>mp-admin/images/clip.gif' />
+			<span class='icon attachement' title="<?php _e('Attachments', MP_TXTDOM); ?>"></span>
 <?php
 			endif;
 			do_action('MailPress_get_icon_mails', $id);
 ?>
 			<strong>
-				<a class='row-title thickbox' href='<?php echo $view_url; ?>' title='<?php printf( __('View "%1$s"', MP_TXTDOM) , ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : htmlspecialchars($subject_display, ENT_QUOTES) ); ?>'>
+				<a class='row-title thickbox thickbox-preview' href='<?php echo $view_url; ?>' title='<?php printf( __('View "%1$s"', MP_TXTDOM) , ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : htmlspecialchars($subject_display, ENT_QUOTES) ); ?>'>
 					<?php echo ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : (( strlen($subject_display) > 40 ) ? $subject_display = substr($subject_display, 0, 39) . '...' : $subject_display); ?>
 				</a>
 			</strong>

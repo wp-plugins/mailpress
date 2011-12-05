@@ -6,7 +6,7 @@ Plugin Name: MailPress_connection_php_mail
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Phpmail
 Description: This is just an add-on for MailPress to use native php mail connection.
 Author: Andre Renaut
-Version: 5.1.1
+Version: 5.2
 Author URI: http://www.mailpress.org
 */
 
@@ -16,11 +16,7 @@ class MailPress_connection_php_mail
 
 	function __construct()
 	{
-// for connection type
-		add_filter('MailPress_Swift_Connection_type', 		array(__CLASS__, 'Swift_Connection_type'), 8, 1);
-
-// for connection 
-		add_filter('MailPress_Swift_Connection_PHP_MAIL', 	array(__CLASS__, 'connect'), 8, 1);
+		new MP_Connection_php_mail();
 
 // for wp admin
 		if (is_admin())
@@ -29,27 +25,6 @@ class MailPress_connection_php_mail
 			add_filter('plugin_action_links', 			array(__CLASS__, 'plugin_action_links'), 10, 2 );
 		}
 
-	}
-
-////  Connection type & settings  ////
-
-	public static function Swift_Connection_type($x)
-	{
-		return 'PHP_MAIL';
-	}
-
-////  Connection  ////
-
-	public static function connect($x)
-	{
-//		if ( ini_get('safe_mode') ) return Swift_MailTransport::newInstance();
-
-		$php_mail_settings = get_option(self::option_name);
-		$addparm = $php_mail_settings['addparm'];
-
-		$conn = (empty($addparm)) ? Swift_MailTransport::newInstance() : Swift_MailTransport::newInstance($addparm);
-
-		return $conn;
 	}
 
 ////  ADMIN  ////

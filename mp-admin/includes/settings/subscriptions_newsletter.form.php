@@ -4,12 +4,11 @@ if (!isset($subscriptions)) $subscriptions = $mp_subscriptions;
 if (!isset($subscriptions['default_newsletters'])) $subscriptions['default_newsletters'] = array();
 ?>
 <tr valign='top'>
-	<th style='padding:0;' ><strong><?php _e('Newsletters', MP_TXTDOM); ?></strong></th>
+	<th style='padding:0;' ><strong><?php printf(__('Newsletters (%s)', MP_TXTDOM), __('posts') ); ?></strong></th>
 	<td style='padding:0;' colspan='4'></td>
 </tr>
 <tr valign='top'>
 	<th scope='row'>
-		<?php _e("Allow subscriptions to", MP_TXTDOM); ?>
 		<input type='hidden'   name='newsletter[on]' value='on' />
 	</th>
 	<td colspan='4'></td>
@@ -41,13 +40,13 @@ foreach ($mp_registered_newsletters as $mp_registered_newsletter)
 ?>
 		<label for='newsletter_<?php echo $mp_registered_newsletter['id'].$blog; ?>'>
 			<input class='newsletter' id='newsletter_<?php echo $mp_registered_newsletter['id'].$blog; ?>' name='subscriptions[newsletters][<?php echo $mp_registered_newsletter['id']; ?>]' type='checkbox' <?php echo( (isset($subscriptions['newsletters'][$mp_registered_newsletter['id']])) ? "checked='checked'" : ''); ?> />
-			&nbsp;<?php echo $mp_registered_newsletter['descriptions']['admin']; ?>
+			&#160;<?php echo $mp_registered_newsletter['descriptions']['admin']; ?>
 		</label>
 		<br />
 		<label for='default_newsletter_<?php echo $mp_registered_newsletter['id'].$blog; ?>'>
 			<span id='span_default_newsletter_<?php echo $mp_registered_newsletter['id'].$blog; ?>'<?php echo $default_style; ?>>
 				<input  id='default_newsletter_<?php echo $mp_registered_newsletter['id'].$blog; ?>' name='subscriptions[default_newsletters][<?php echo $mp_registered_newsletter['id']; ?>]' type='checkbox'<?php echo "$default_checked"; ?> />
-				&nbsp;<?php _e('default', MP_TXTDOM); ?>
+				&#160;<?php _e('default', MP_TXTDOM); ?>
 			</span>
 		</label>
 <?php
@@ -63,6 +62,6 @@ if (intval ($j/$item) != $j/$item )
 }
 if (intval ($i/$row) != $i/$row)  echo "</tr>\n";
 ?>
-<tr valign='top' style='line-height:10px;padding:0;'><td colspan='5' style='line-height:10px;padding:0;'>&nbsp;</td></tr>
+<tr valign='top' style='line-height:10px;padding:0;'><td colspan='5' style='line-height:10px;padding:0;'>&#160;</td></tr>
 <tr valign='top' class='mp_sep' style='line-height:2px;padding:0;'><td colspan='5' style='line-height:2px;padding:0;'></td></tr>
 <tr><th></th><td colspan='4'></td></tr>

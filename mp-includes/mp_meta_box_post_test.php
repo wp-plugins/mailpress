@@ -2,7 +2,7 @@
 
 $fields = array('toemail' => __('Email: ', MP_TXTDOM), 'newsletter' => __('Newsletter: ', MP_TXTDOM), 'theme' => __('Theme: ', MP_TXTDOM) );
 
-$meta = get_user_meta(MailPress::get_wp_user_id(), '_MailPress_post_' . $post->ID);
+$meta = get_user_meta(MP_WP_User::get_id(), '_MailPress_post_' . $post->ID, true);
 $test	= get_option(MailPress::option_name_test);
 
 $xnewsletters = array();
@@ -11,12 +11,17 @@ foreach ($mp_registered_newsletters as $id => $data) $xnewsletters[$id] = $data[
 
 $th = new MP_Themes();
 $themes = $th->themes;
-	
-$xthemes = array('' => __('current', MP_TXTDOM));
-foreach ($themes as $theme) $xthemes[$theme['Template']] = $theme['Template'];
-unset($xthemes['plaintext']);
 
-$current_theme = $themes[$th->current_theme]['Template'];
+foreach($themes as $key => $theme)
+{
+	if ( 'plaintext' == $theme['Stylesheet']) unset($themes[$key]);
+	if ( '_' == $theme['Stylesheet'][0] )     unset($themes[$key]);
+}
+
+$xthemes = array('' => __('current', MP_TXTDOM));
+foreach ($themes as $theme) $xthemes[$theme['Stylesheet']] = $theme['Stylesheet'];
+
+$current_theme = $themes[$th->current_theme]['Stylesheet'];
 
 if ($meta)
 {
@@ -37,7 +42,7 @@ else
 			<div style='position:relative;'>
 				<div style='float:left'>
 					<div id='MailPress_post_test_loading' style='position:absolute;opacity:0;filter:alpha(opacity=0);'><img src='images/wpspin_light.gif' style='padding-right:5px;' alt='' /><?php _e('Sending ...', MP_TXTDOM); ?></div>
-					<div id='MailPress_post_test_ajax'    style='position:relative;absolute;'><br /></div>
+					<div id='MailPress_post_test_ajax'    style='position:relative;'><br /></div>
 				</div>
 			</div>
 			<div>
@@ -66,7 +71,7 @@ foreach ($fields as $field => $label)
 		case 'toemail' :
 ?>
 					<input id='mp_hidden_<?php echo $field ?>' 	name='mp_hidden_<?php echo $field ?>'	type='hidden' value='<?php echo $$field; ?>' />
-					<input id='mp_<?php echo $field ?>' 		name='mp_<?php echo $field ?>' 		type='text'   value="<?php echo $$field; ?>" /> 
+					<input id='mp_<?php echo $field ?>' 		name='mp_<?php echo $field ?>' 		type='text'   value="<?php echo $$field; ?>" style='width:240px;' /> 
 <?php
 		break;
 		case 'toname' :
@@ -81,7 +86,7 @@ foreach ($fields as $field => $label)
 					<input id='mp_hidden_<?php echo $field ?>' name='mp_hidden_<?php echo $field ?>' type='hidden' value="<?php echo esc_attr($$field); ?>" />
 					<input id='mp_hidden_lib_<?php echo $field ?>' name='mp_hidden_lib_<?php echo $field ?>' type='hidden' value="<?php echo esc_attr($xnewsletters[$$field]); ?>" />
 					<select id='mp_<?php echo $field ?>' name='mp_<?php echo $field ?>'>
-<?php MailPress::select_option($xnewsletters, $$field);?>
+<?php MP_::select_option($xnewsletters, $$field);?>
 					</select>
 <?php
 		break;
@@ -90,12 +95,13 @@ foreach ($fields as $field => $label)
 					<input id='mp_hidden_<?php echo $field ?>' name='mp_hidden_<?php echo $field ?>' type='hidden' value="<?php echo esc_attr($$field); ?>" />
 					<input id='mp_hidden_lib_<?php echo $field ?>' name='mp_hidden_lib_<?php echo $field ?>' type='hidden' value="<?php echo esc_attr($xthemes[$$field]); ?>" />
 					<select id='mp_<?php echo $field ?>' name='mp_<?php echo $field ?>'>
-<?php MailPress::select_option($xthemes, $theme);?>
+<?php MP_::select_option($xthemes, $theme);?>
 					</select>
 <?php
 		break;
 	}
 ?>
+					<br />
 					<a class='mp-save-<?php echo $field ?> hide-if-no-js button' href='#mp_<?php echo $field ?>'><?php _e('OK'); ?></a>
 					<a class='mp-cancel-<?php echo $field ?> hide-if-no-js' href='#mp_<?php echo $field ?>'><?php _e('Cancel'); ?></a>
 				</div>

@@ -1,5 +1,5 @@
 <?php
-class MP_Autoresponder_event_mailinglist_new_unsubscriber extends MP_Autoresponders_event_mailinglist_abstract
+class MP_Autoresponder_event_mailinglist_new_unsubscriber extends MP_autoresponder_event_mailinglist_
 {
 	var $id    = 4;
 	var $event = 'MailPress_mailinglist_new_unsubscriber';

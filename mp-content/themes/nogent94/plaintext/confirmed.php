@@ -3,8 +3,11 @@
 Template Name: confirmed
 */
 
-$_the_title 	= 'Félicitations !';
+$this->build->_the_title = 'Félicitations !';
 
-$_the_content 	= sprintf('Vous êtes maintenant abonné à %1$s [%2$s] ', get_option('blogname'), get_option('siteurl'));
+$_the_content  = "Vous êtes maintenant abonné à : " . get_option('blogname');
+$_the_content .= "\n";
+$_the_content .= '[' . site_url() . ']';
+$this->build->_the_content = $_the_content;
 
-include('_mail.php');
+$this->get_template_part('_mail');

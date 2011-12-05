@@ -4,60 +4,31 @@ class MP_Addons
 	const option_name = 'MailPress_add-ons';
 	const folder      = 'add-ons';
 
-	public static function get_addon_data( $addon_file ) 
+	function __construct()
 	{
-		$default_headers = array( 	'Name' 		=> 'Plugin Name', 
-							'PluginURI' 	=> 'Plugin URI', 
-							'Version' 		=> 'Version', 
-							'Description' 	=> 'Description', 
-							'Author' 		=> 'Author', 
-							'AuthorURI' 	=> 'Author URI', 
-							'TextDomain' 	=> 'Text Domain', 
-							'DomainPath' 	=> 'Domain Path'
-		);
+		$new = array();
+		$old = get_option(self::option_name);
 
-		$addon_data = self::get_file_data( $addon_file, $default_headers, 'mp_addon' );
-
-		//For backward compatibility by default Title is the same as Name.
-		$addon_data['Title'] = $addon_data['Name'];
-
-		return $addon_data;
-	}
-
-	public static function get_file_data( $file, $default_headers, $context = '' ) 
-	{
-		// We don't need to write to the file, so just open for reading.
-		$fp = fopen( $file, 'r' );
-
-		// Pull only the first 8kiB of the file in.
-		$file_data = fread( $fp, 8192 );
-
-		// PHP will close file handle, but we are good citizens.
-		fclose( $fp );
-
-		if ( $context != '' ) 
+		foreach (self::get_all() as $mp_addon)
 		{
-			$extra_headers = apply_filters("extra_$context".'_headers', array() );
+			if (!$mp_addon['active']) 		continue;
+			if (!self::load($mp_addon['file'])) continue;
 
-			$extra_headers = array_flip( $extra_headers );
-			foreach( $extra_headers as $key=>$value ) $extra_headers[$key] = $key;
-			$all_headers = array_merge($extra_headers, $default_headers);
-		} 
-		else 	$all_headers = $default_headers;
-	
-		foreach ( $all_headers as $field => $regex ) 
-		{
-			preg_match( '/' . preg_quote( $regex, '/' ) . ':(.*)$/mi', $file_data, ${$field});
-			${$field} = ( !empty( ${$field} ) ) ? self::_cleanup_header_comment( ${$field}[1] ) : '';
+			$new[$mp_addon['file']] = $mp_addon['file'];
 		}
 
-		$file_data = compact( array_keys( $all_headers ) );
-		return $file_data;
+		if ($new != $old) update_option(self::option_name, $new);
+
+		do_action('MailPress_addons_loaded');
 	}
 
-	public static function _cleanup_header_comment($str) 
+	public static function load($file)
 	{
-		return trim(preg_replace("/\s*(?:\*\/|\?>).*/", '', $str));
+		$file = ABSPATH . PLUGINDIR . "/$file";
+
+		if (!is_file($file)) return false;
+		require_once($file);
+		return true;
 	}
 
 	public static function get_all($addon_folder = '')
@@ -122,30 +93,23 @@ class MP_Addons
 		return $mp_addons;
 	}
 
-	public static function load_all()
+	public static function get_addon_data( $addon_file ) 
 	{
-		$new = array();
-		$old = get_option(self::option_name);
+		$default_headers = array( 	'Name' 		=> 'Plugin Name', 
+							'PluginURI' 	=> 'Plugin URI', 
+							'Version' 		=> 'Version', 
+							'Description' 	=> 'Description', 
+							'Author' 		=> 'Author', 
+							'AuthorURI' 	=> 'Author URI', 
+							'TextDomain' 	=> 'Text Domain', 
+							'DomainPath' 	=> 'Domain Path'
+		);
 
-		foreach (self::get_all() as $mp_addon)
-		{
-			if (!$mp_addon['active']) 		continue;
-			if (!self::load($mp_addon['file'])) continue;
+		$addon_data = get_file_data( $addon_file, $default_headers, 'mp_addon' );
 
-			$new[$mp_addon['file']] = $mp_addon['file'];
-		}
+		//For backward compatibility by default Title is the same as Name.
+		$addon_data['Title'] = $addon_data['Name'];
 
-		if ($new != $old) update_option(self::option_name, $new);
-
-		if (!empty($new)) do_action('MailPress_add-ons_loaded');
-	}
-
-	public static function load($file)
-	{
-		$file = ABSPATH . PLUGINDIR . "/$file";
-
-		if (!is_file($file)) return false;
-		require_once($file);
-		return true;
+		return $addon_data;
 	}
 }

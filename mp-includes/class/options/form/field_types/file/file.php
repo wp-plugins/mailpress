@@ -1,5 +1,5 @@
 <?php
-class MP_Forms_field_type_file extends MP_Forms_field_type_abstract
+class MP_Form_field_type_file extends MP_form_field_type_
 {
 	var $id	= 'file';
 	var $order	= 99;
@@ -49,4 +49,4 @@ class MP_Forms_field_type_file extends MP_Forms_field_type_abstract
 		$this->attributes_filter_css();
 	}
 }
-new MP_Forms_field_type_file(__('File select', MP_TXTDOM));
+new MP_Form_field_type_file(__('File select', MP_TXTDOM));

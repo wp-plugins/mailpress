@@ -6,7 +6,7 @@ Plugin Name: MailPress_connection_sendmail
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Sendmail
 Description: This is just an add-on for MailPress to use Sendmail connection.
 Author: Andre Renaut
-Version: 5.1.1
+Version: 5.2
 Author URI: http://www.mailpress.org
 */
 
@@ -16,11 +16,7 @@ class MailPress_connection_sendmail
 
 	function __construct()
 	{
-// for connection type & settings
-		add_filter('MailPress_Swift_Connection_type', 		array(__CLASS__, 'Swift_Connection_type'), 8, 1);
-
-// for connection 
-		add_filter('MailPress_Swift_Connection_SENDMAIL', 	array(__CLASS__, 'connect'), 8, 2);
+		new MP_Connection_sendmail();
 
 // for wp admin
 		if (is_admin())
@@ -30,31 +26,6 @@ class MailPress_connection_sendmail
 		// for settings
 			add_filter('MailPress_scripts', 			array(__CLASS__, 'scripts'), 8, 2);
 		}
-	}
-
-////  Connection type & settings  ////
-
-	public static function Swift_Connection_type($x)
-	{
-		return 'SENDMAIL';
-	}
-
-////  Connection  ////
-
-	public static function connect($x, $y)
-	{
-		$sendmail_settings = get_option(self::option_name);
-
-		switch ($sendmail_settings['cmd'])
-		{
-			case 'custom' :
-				$conn = Swift_SendmailTransport::newInstance($sendmail_settings['custom']);
-			break;
-			default :
-				$conn = Swift_SendmailTransport::newInstance();
-			break;
-		}
-		return $conn;
 	}
 
 ////  ADMIN  ////

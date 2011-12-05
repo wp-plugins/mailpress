@@ -1,37 +1,14 @@
 <?php
-$url_parms = MP_AdminPage::get_url_parms(array('s', 'apage', 'id', 'form_id'));
+$url_parms = MP_AdminPage::get_url_parms(array('s', 'paged', 'id', 'form_id'));
 
-$form = MP_Forms::get($url_parms['form_id']);
+$form = MP_Form::get($url_parms['form_id']);
+
+//
+// MANAGING H2
+//
 
 $h2 = sprintf(__('Fields in form &#8220;%1$s&#8221;', MP_TXTDOM), $form->label);
-$h2_preview_url = esc_url(MP_AdminPage::url(MP_Action_url, array('id' => $form->id, 'action' => 'ifview', 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400')));
-
-//
-// MANAGING PAGINATION
-//
-
-if( !isset($_per_page) || $_per_page <= 0 ) $_per_page = 20;
-$url_parms['apage'] = isset($url_parms['apage']) ? $url_parms['apage'] : 1;
-do
-{
-	$start = ( $url_parms['apage'] - 1 ) * $_per_page;
-
-	list($_fields, $total) = MP_AdminPage::get_list($start, $_per_page + 5, $url_parms); // Grab a few extra
-
-	$url_parms['apage']--;		
-} while ( $total <= $start );
-$url_parms['apage']++;
-
-$page_links = paginate_links	(array(	'base' => add_query_arg( 'apage', '%#%' ),
-							'format' => '',
-							'total' => ceil($total / $_per_page),
-							'current' => $url_parms['apage']
-						)
-					);
-if ($url_parms['apage'] <= 1) unset($url_parms['apage']);
-
-$fields 		= array_slice($_fields, 0, $_per_page);
-$extra_fields 	= array_slice($_fields, $_per_page);
+$h2_preview_url = esc_url(MP_AdminPage::url(MP_Action_url, array('id' => $form->id, 'action' => 'ifview', 'preview_iframe' => 1, 'TB_iframe' => 'true')));
 
 //
 // MANAGING MESSAGE
@@ -59,11 +36,11 @@ $bulk_actions['delete']	= __('Delete', MP_TXTDOM);
 
 // Form field types
 
-$field_types = MP_Forms_field_types::get_all();
+$field_types = MP_Form_field_types::get_all();
 
 // Form templates
 
-$form_templates = new MP_Forms_templates();
+$form_templates = new MP_Form_templates();
 $xform_subtemplates = $form_templates->get_all_fields($form->template);
 
 global $action;
@@ -74,7 +51,7 @@ if ('edit' == $action)
 	$cancel = "<input type='submit' class='button' name='cancel' value=\"" . __('Cancel', MP_TXTDOM) . "\" />\n";
 
 	$id = (int) $url_parms['id'];
-	$field = MP_Forms_fields::get($id);
+	$field = MP_Form_field::get($id);
 
 	$h3 = sprintf(__('Edit Form Field # %1$s', MP_TXTDOM), $id);
 	$hb3= __('Update');
@@ -99,12 +76,30 @@ else
 }
 
 $field->form_incopy = (isset($form->settings['visitor']['mail']) && ($form->settings['visitor']['mail'] != '0'));
+
+//
+// MANAGING PAGINATION
+//
+
+$url_parms['paged'] = isset($url_parms['paged']) ? $url_parms['paged'] : 1;
+$_per_page = MP_AdminPage::get_per_page();
+do
+{
+	$start = ( $url_parms['paged'] - 1 ) * $_per_page;
+	list($_items, $total) = MP_AdminPage::get_list($start, $_per_page + 5, $url_parms); // Grab a few extra
+	$url_parms['paged']--;		
+} while ( $total <= $start );
+$url_parms['paged']++;
+
+$items 		= array_slice($_items, 0, $_per_page);
+$extra_items 	= array_slice($_items, $_per_page);
+
 ?>
 <div class='wrap nosubsub'>
 	<div id='icon-mailpress-tools' class='icon32'><br /></div>
 	<h2>
 		<?php echo esc_html( $h2 ); ?> 
-		<?php printf('<a href="%1$s" title="%2$s" class="thickbox button add-new-h2" >%3$s</a>', $h2_preview_url, esc_attr(sprintf(__('Form preview #%1$s (%2$s)', MP_TXTDOM), $form->id, $form->label)), esc_html(__('Preview', MP_TXTDOM))); ?>
+		<?php printf('<a href="%1$s" title="%2$s" class="thickbox thickbox-preview add-new-h2" >%3$s</a>', $h2_preview_url, esc_attr(sprintf(__('Form preview #%1$s (%2$s)', MP_TXTDOM), $form->id, $form->label)), esc_html(__('Preview', MP_TXTDOM))); ?>
 <?php if ( isset($url_parms['s']) ) printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_attr( $url_parms['s'] ) ); ?>
 	</h2>
 <?php if (isset($message)) MP_AdminPage::message($message, ($_GET['message'] < 90)); ?>
@@ -126,9 +121,9 @@ $field->form_incopy = (isset($form->settings['visitor']['mail']) && ($form->sett
 				<form id='posts-filter' action='' method='get'>
 					<input type='hidden' name='page' value='<?php echo MailPress_page_forms; ?>' />
 					<input type='hidden' name='file' value='fields' />
-<?php MP_AdminPage::post_url_parms($url_parms, array('s', 'apage', 'id', 'form_id')); ?>
+<?php MP_AdminPage::post_url_parms($url_parms, array('s', 'id', 'form_id')); ?>
 					<div class='tablenav'>
-<?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>"; ?>
+<?php MP_AdminPage::pagination($total); ?>
 						<div class='alignleft actions'>
 <?php	MP_AdminPage::get_bulk_actions($bulk_actions); ?>
 						</div>
@@ -147,19 +142,19 @@ $field->form_incopy = (isset($form->settings['visitor']['mail']) && ($form->sett
 							</tr>
 						</tfoot>
 						<tbody id='<?php echo MP_AdminPage::list_id; ?>' class='list:<?php echo MP_AdminPage::tr_prefix_id; ?>'>
-<?php if ($fields) : ?>
-<?php foreach ($fields as $_field) 		echo MP_AdminPage::get_row( $_field->id, $url_parms ); ?>
+<?php if ($items) : ?>
+<?php foreach ($items as $item) 		echo MP_AdminPage::get_row( $item->id, $url_parms ); ?>
 <?php endif; ?>
 						</tbody>
-<?php if ($extra_fields) : ?>
+<?php if ($extra_items) : ?>
 						<tbody id='<?php echo MP_AdminPage::list_id; ?>-extra' class='list:<?php echo MP_AdminPage::tr_prefix_id; ?>' style='display: none;'>
 <?php
-	foreach ($extra_fields as $_field)	echo MP_AdminPage::get_row( $_field->id, $url_parms ); ?>
+	foreach ($extra_items as $item)	echo MP_AdminPage::get_row( $item->id, $url_parms ); ?>
 						</tbody>
 <?php endif; ?>
 					</table>
 					<div class='tablenav'>
-<?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>\n"; ?>
+<?php MP_AdminPage::pagination($total, 'bottom'); ?>
 						<div class='alignleft actions'>
 <?php	MP_AdminPage::get_bulk_actions($bulk_actions, 'action2'); ?>
 						</div>
@@ -181,7 +176,7 @@ $field->form_incopy = (isset($form->settings['visitor']['mail']) && ($form->sett
 						<div class="form-field form-required" style='margin:0;padding:0;'>
 							<label for='field_label'><?php _e('Label', MP_TXTDOM); ?></label>
 							<input name='label' id='field_label' type='text' value="<?php if (isset($field->label)) echo esc_attr($field->label); ?>" size='40' aria-required='true' />
-							<p>&nbsp;</p>
+							<p>&#160;</p>
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>
 							<span style='float:right'>
@@ -225,7 +220,7 @@ if ($tr) echo "\t\t\t\t\t\t\t\t</tr>\n";
 							</table>
 						</div>
 						<div id='form_fields_specs' style='margin-top:18px;'>
-<?php foreach ($field_types as $key => $field_type) MP_Forms_field_types::settings_form($key, $field); ?>
+<?php foreach ($field_types as $key => $field_type) MP_Form_field_types::settings_form($key, $field); ?>
 						</div>
 						<p class='submit'>
 							<input type='submit' class='button<?php echo $hbclass; ?>' name='submit' id='form_submit' value="<?php echo $hb3; ?>" />

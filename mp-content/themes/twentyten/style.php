@@ -1,47 +1,17 @@
-<?php
+<?php /* twentyten */
 $_classes = array(
 
-'button'		=> "	margin:0;
-				border-left:4px solid #555;
+'button'		=> "	border-left:4px solid #555;
 				border-right:4px solid #000;
 				border-top:1px solid #555;
 				border-bottom:1px solid #000;
-				border-radius: 11px;
-				-moz-border-radius: 11px;
-				-webkit-border-radius: 11px;
-				-khtml-border-radius: 11px;
-				padding:3px 10px;
-				color:#fff;
-				font-weight:bold;
-				text-decoration:none;
-				line-height:15px;
-				white-space:nowrap;
-				outline-color:-moz-use-text-color;
-				outline-style:none;
-				outline-width:0;
 				background-color:#999;
-				cursor:pointer;
-				-moz-box-sizing:content-box;",
+				color:#fff;",
 
-'mail_link'		=> "  clear:both;
-				margin:0 0 5px;
-				border:none;
-				padding:0;
-				font-family:Verdana,Arial,sans-serif;
-				font-size:10px;
-				font-style:italic;
-				line-height:10px;
-				text-align:center;",
+'mail_link'		=> "  line-height:10px;",
 
-'mail_link_a'	=> "  color:#666;",
-
-'nopmb' 		=> "	margin:0;
-				border:none;
-				padding:0;",
-
-'w100'		=> "	width:100%;",
-
-'wauto'		=> "	width:auto;",
+'a'			=> "  color:#555;
+				text-decoration:underline;",
 
 // header
 

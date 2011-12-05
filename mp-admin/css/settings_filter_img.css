@@ -1,17 +1,23 @@
+label.align {
+	height:15px;
+	padding:0 0 0 28px;
+	margin:0 1em 0 0;
+}
+
 .image-align-none-label {
-	background: url(../images/align_none.png) no-repeat center left;
+	background: url(../images/align.png) no-repeat scroll 0 0 transparent;
 }
 
 .image-align-left-label {
-	background: url(../images/align_left.png) no-repeat center left;
+	background: url(../images/align.png) no-repeat scroll 0 -15px transparent;
 }
 
 .image-align-center-label {
-	background: url(../images/align_center.png) no-repeat center left;
+	background: url(../images/align.png) no-repeat scroll 0 -30px transparent;
 }
 
 .image-align-right-label {
-	background: url(../images/align_right.png) no-repeat center left;
+	background: url(../images/align.png) no-repeat scroll 0 -45px transparent;
 }
 td.nobd {
 	border:none;

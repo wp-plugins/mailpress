@@ -1,34 +1,11 @@
 <?php
-$url_parms = MP_AdminPage::get_url_parms(array('s', 'apage', 'id'));
+$url_parms = MP_AdminPage::get_url_parms(array('s', 'paged', 'id'));
+
+//
+// MANAGING H2
+//
 
 $h2 = __('Forms', MP_TXTDOM);
-
-//
-// MANAGING PAGINATION
-//
-
-if( !isset($_per_page) || $_per_page <= 0 ) $_per_page = 20;
-$url_parms['apage'] = isset($url_parms['apage']) ? $url_parms['apage'] : 1;
-do
-{
-	$start = ( $url_parms['apage'] - 1 ) * $_per_page;
-
-	list($_forms, $total) = MP_AdminPage::get_list($start, $_per_page + 5, $url_parms); // Grab a few extra
-
-	$url_parms['apage']--;
-} while ( $total <= $start );
-$url_parms['apage']++;
-
-$page_links = paginate_links	(array(	'base' => add_query_arg( 'apage', '%#%' ),
-							'format' => '',
-							'total' => ceil( $total / $_per_page),
-							'current' => $url_parms['apage']
-						)
-					);
-if ($url_parms['apage'] <= 1) unset($url_parms['apage']);
-
-$forms 		= array_slice($_forms, 0, $_per_page);
-$extra_forms 	= array_slice($_forms, $_per_page);
 
 //
 // MANAGING MESSAGE
@@ -62,7 +39,7 @@ if ('edit' == $action)
 	$cancel = "<input type='submit' class='button' name='cancel' value=\"" . __('Cancel', MP_TXTDOM) . "\" />\n";
 
 	$id = (int) $url_parms['id'];
-	$form = MP_Forms::get($id);
+	$form = MP_Form::get($id);
 
 	$h3 = sprintf(__('Edit Form # %1$s', MP_TXTDOM), $id);
 	$hb3= __('Update');
@@ -86,7 +63,7 @@ if ( isset($_GET['action']) && ('edit' == $_GET['action']) ) $tabs['html'] = __(
 
 // Form templates
 
-$form_templates = new MP_Forms_templates();
+$form_templates = new MP_Form_templates();
 $xform_template = $form_templates->get_all();
 
 // Subscribing visitor actions
@@ -105,27 +82,51 @@ $xvisitor_mail['2'] = __('yes', MP_TXTDOM);
 $th = new MP_Themes();
 $themes = $th->themes; 
 
-if (!isset($form->settings['recipient']['theme'])) $form->settings['recipient']['theme'] = $themes[$th->current_theme]['Template'];
-if (!isset($form->settings['visitor'  ]['theme'])) $form->settings['visitor'  ]['theme'] = $themes[$th->current_theme]['Template'];
+foreach($themes as $key => $theme)
+{
+	if ( 'plaintext' == $theme['Stylesheet']) unset($themes[$key]);
+	if ( '_' == $theme['Stylesheet'][0] )     unset($themes[$key]);
+}
+
+if (!isset($form->settings['recipient']['theme'])) $form->settings['recipient']['theme'] = $themes[$th->current_theme]['Stylesheet'];
+if (!isset($form->settings['visitor'  ]['theme'])) $form->settings['visitor'  ]['theme'] = $themes[$th->current_theme]['Stylesheet'];
 
 $xtheme = $xtemplates = array();
 foreach ($themes as $theme)
 {
-	if ( 'plaintext' == $theme['Template'] ) continue;
+	if ( 'plaintext' == $theme['Stylesheet'] ) continue;
+	if ( '_'         == $theme['Stylesheet'][0] ) continue;
 
-	$xtheme[$theme['Template']] = $theme['Template'];
-	$templates = $th->get_page_templates_from($theme['Template']);
+	$xtheme[$theme['Stylesheet']] = $theme['Stylesheet'];
+	if (!$templates = $th->get_page_templates($theme['Stylesheet'])) $templates = $th->get_page_templates($theme['Stylesheet'], true);
 
-	$xtemplates[$theme['Template']] = array();
+	$xtemplates[$theme['Stylesheet']] = array();
 	foreach ($templates as $key => $value)
 	{
 		if (strpos($key, 'form') !== 0 ) continue;
-		$xtemplates[$theme['Template']][$key] = $key;
+		$xtemplates[$theme['Stylesheet']][$key] = $key;
 	}
-	if (!empty($xtemplates[$theme['Template']])) ksort($xtemplates[$theme['Template']]);
+	if (!empty($xtemplates[$theme['Stylesheet']])) ksort($xtemplates[$theme['Stylesheet']]);
 
-	array_unshift($xtemplates[$theme['Template']], __('none', MP_TXTDOM));
+	array_unshift($xtemplates[$theme['Stylesheet']], __('none', MP_TXTDOM));
 }
+
+//
+// MANAGING LIST
+//
+
+$url_parms['paged'] = isset($url_parms['paged']) ? $url_parms['paged'] : 1;
+$_per_page = MP_AdminPage::get_per_page();
+do
+{
+	$start = ( $url_parms['paged'] - 1 ) * $_per_page;
+	list($_items, $total) = MP_AdminPage::get_list($start, $_per_page + 5, $url_parms); // Grab a few extra
+	$url_parms['paged']--;
+} while ( $total <= $start );
+$url_parms['paged']++;
+
+$items 		= array_slice($_items, 0, $_per_page);
+$extra_items 	= array_slice($_items, $_per_page);
 ?>
 <div class='wrap nosubsub'>
 	<div id='icon-mailpress-tools' class='icon32'><br /></div>
@@ -150,7 +151,7 @@ foreach ($themes as $theme)
 				<form id='posts-filter' action='' method='get'>
 					<input type='hidden' name='page' value='<?php echo MP_AdminPage::screen; ?>' />
 					<div class='tablenav'>
-<?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>"; ?>
+<?php MP_AdminPage::pagination($total); ?>
 						<div class='alignleft actions'>
 <?php	MP_AdminPage::get_bulk_actions($bulk_actions); ?>
 						</div>
@@ -169,19 +170,19 @@ foreach ($themes as $theme)
 							</tr>
 						</tfoot>
 						<tbody id='<?php echo MP_AdminPage::list_id; ?>' class='list:<?php echo MP_AdminPage::tr_prefix_id; ?>'>
-<?php if ($forms) : ?>
-<?php foreach ($forms as $_form) 		echo MP_AdminPage::get_row( $_form->id, $url_parms ); ?>
+<?php if ($items) : ?>
+<?php foreach ($items as $item) 		echo MP_AdminPage::get_row( $item->id, $url_parms ); ?>
 <?php endif; ?>
 						</tbody>
-<?php if ($extra_forms) : ?>
+<?php if ($extra_items) : ?>
 						<tbody id='<?php echo MP_AdminPage::list_id; ?>-extra' class='list:<?php echo MP_AdminPage::tr_prefix_id; ?>' style='display: none;'>
 <?php
-	foreach ($extra_forms as $_form)	echo MP_AdminPage::get_row( $_form->id, $url_parms ); ?>
+	foreach ($extra_items as $item)	echo MP_AdminPage::get_row( $item->id, $url_parms ); ?>
 						</tbody>
 <?php endif; ?>
 					</table>
 					<div class='tablenav'>
-<?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>\n"; ?>
+<?php MP_AdminPage::pagination($total, 'bottom'); ?>
 						<div class='alignleft actions'>
 <?php	MP_AdminPage::get_bulk_actions($bulk_actions, 'action2'); ?>
 						</div>
@@ -198,12 +199,12 @@ foreach ($themes as $theme)
 					<div id='ajax-response'></div>
 					<form name='<?php echo $action; ?>'  id='<?php echo $action; ?>'  method='post' action='' class='<?php echo $action; ?>:<?php echo MP_AdminPage::list_id; ?>: validate'>
 						<input type='hidden' name='action'   value='<?php echo $action; ?>' />
-<?php MP_AdminPage::post_url_parms($url_parms, array('s', 'apage', 'id')); ?>
+<?php MP_AdminPage::post_url_parms($url_parms, array('s', 'paged', 'id')); ?>
 						<?php wp_nonce_field('update-' . MP_AdminPage::tr_prefix_id); ?>
 						<div class="form-field form-required" style='margin:0;padding:0;'>
 							<label for='form_label'><?php _e('Label', MP_TXTDOM); ?></label>
 							<input name='label' id='form_label' type='text' value="<?php if (isset($form->label)) echo esc_attr($form->label); ?>" size='40' aria-required='true' />
-							<p>&nbsp;</p>
+							<p>&#160;</p>
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>
 							<span style='float:right'>
@@ -316,7 +317,7 @@ if (isset($form->settings['visitor']['template']) && $key == $form->settings['vi
 				$search = $replace = array();
 				$search[] = '{{label}}'; 	$replace[] = $form->label;
 				$search[] = '{{description}}'; 	$replace[] = $form->description;
-				$search[] = '{{form}}'; 	$replace[] = sprintf('%1$s<!-- %2$s --></form>', MP_Forms::get_tag($form, MP_Forms_fields::have_file($form->id)), __('form content', MP_TXTDOM) );
+				$search[] = '{{form}}'; 	$replace[] = sprintf('%1$s<!-- %2$s --></form>', MP_Form::get_tag($form, MP_Form_field::have_file($form->id)), __('form content', MP_TXTDOM) );
 				$search[] = '{{message}}'; 	$replace[] = sprintf ('<!-- %1$s -->', __('ok/ko message', MP_TXTDOM) );
 				$html = str_replace($search, $replace, $html );
 ?>

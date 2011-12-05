@@ -1,5 +1,5 @@
 <?php
-class MP_Newsletter_processor_previous_month extends MP_Newsletters_processor_abstract
+class MP_Newsletter_processor_month_1 extends MP_newsletter_processor_
 {
 	public $id = 'month-1';
 
@@ -58,4 +58,4 @@ class MP_Newsletter_processor_previous_month extends MP_Newsletters_processor_ab
 		return $query_posts;
 	}
 }
-new MP_Newsletter_processor_previous_month(__('Previous month', MP_TXTDOM));
+new MP_Newsletter_processor_month_1(__('Previous month', MP_TXTDOM));

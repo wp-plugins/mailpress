@@ -1,5 +1,5 @@
 <?php
-class MP_AdminPage extends MP_Admin_page_list
+class MP_AdminPage extends MP_adminpage_list_
 {
 	const screen 	= MailPress_page_users;
 	const capability 	= 'MailPress_edit_users';
@@ -26,20 +26,20 @@ class MP_AdminPage extends MP_Admin_page_list
 		switch($action)
 		{
 			case 'bulk-activate' :
-				foreach($checked as $id) if (MP_Users::set_status($id, 'active'))  $$count++;
+				foreach($checked as $id) if (MP_User::set_status($id, 'active'))  $$count++;
 			break;
 			case 'bulk-deactivate' :
-				foreach($checked as $id) if (MP_Users::set_status($id, 'waiting')) $$count++;
+				foreach($checked as $id) if (MP_User::set_status($id, 'waiting')) $$count++;
 			break;
 			case 'bulk-unbounce' :
-				foreach($checked as $id) if (MP_Users::set_status($id, 'waiting'))
+				foreach($checked as $id) if (MP_User::set_status($id, 'waiting'))
 				{
-					MP_Usermeta::delete($id, '_MailPress_bounce_handling');
+					MP_User_meta::delete($id, '_MailPress_bounce_handling');
 					$$count++;
 				}
 			break;
 			case 'bulk-delete' :
-				foreach($checked as $id) if (MP_Users::set_status($id, 'delete')) $$count++;
+				foreach($checked as $id) if (MP_User::set_status($id, 'delete')) $$count++;
 			break;
 			default :
 				$$count = do_action('MailPress_do_bulk_action_' . self::screen, $action, $checked);
@@ -181,7 +181,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 		global $mp_user;
 
-		$mp_user = $user = MP_Users::get( $id );
+		$mp_user = $user = MP_User::get( $id );
 		$the_user_status = $user->status;
 
 		static $to_do_add_action = true;
@@ -228,7 +228,7 @@ class MP_AdminPage extends MP_Admin_page_list
 			unset($actions['approve']);
 		}
 
-		$actions['delete']    = "<a href='$delete_url' 		class='delete:the-user-list:user-$id submitdelete' title='" . __('Delete this user', MP_TXTDOM ) . "'>" . __('Delete', MP_TXTDOM) . '</a>';
+		$actions['delete']    = "<a href='$delete_url' 		class='submitdelete' title='" . __('Delete this user', MP_TXTDOM ) . "'>" . __('Delete', MP_TXTDOM) . '</a>';
 
 		if (!current_user_can('MailPress_delete_users')) 	unset($actions['delete']);
 
@@ -373,14 +373,14 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function get_flag_IP() {
 		global $mp_user;
-		return (('ZZ' == $mp_user->created_country) || empty($mp_user->created_country)) ? '' : "<img class='flag' alt='" . strtolower($mp_user->created_country) . "' title='" . strtolower($mp_user->created_country) . "' src='" . get_option('siteurl') . '/' . MP_PATH . 'mp-admin/images/flag/' . strtolower($mp_user->created_country) . ".gif' />\n";
+		return (('ZZ' == $mp_user->created_country) || empty($mp_user->created_country)) ? '' : "<img class='flag' alt='" . strtolower($mp_user->created_country) . "' title='" . strtolower($mp_user->created_country) . "' src='" . site_url() . '/' . MP_PATH . 'mp-admin/images/flag/' . strtolower($mp_user->created_country) . ".gif' />\n";
 	}
 
 	public static function get_icon_users($mp_user)
 	{
 		if ('unsubscribed' != $mp_user->status) return;
 ?>
-			<img class='unsubscribed' alt="<?php _e('Unsubscribed', MP_TXTDOM); ?>" title="<?php _e('Unsubscribed', MP_TXTDOM); ?>" src='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>mp-admin/images/unsubscribed.png' />
+			<span class='icon unsubscribed' title="<?php _e('Unsubscribed', MP_TXTDOM); ?>"></span>
 <?php
 	}
 

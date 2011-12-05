@@ -1,6 +1,6 @@
+﻿
+							ce mail est envoyé avec MailPress
 
-				(ce mail est transmis par MailPress)
+<?php if (isset($this->args->viewhtml)) : ?>View [{{viewhtml}}]<?php endif; ?>
 
-<?php if (isset($this->args->viewhtml)) : ?>Html [{{viewhtml}}]<?php endif; ?>
-
-<?php if (isset($this->args->unsubscribe)) : ?>Abonnements [{{unsubscribe}}]<?php endif; ?>
+<?php if (isset($this->args->unsubscribe)) : ?>Unsubscribe [{{unsubscribe}}]<?php endif; ?>

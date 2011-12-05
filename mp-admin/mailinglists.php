@@ -1,5 +1,5 @@
 <?php
-class MP_AdminPage extends MP_Admin_page_list
+class MP_AdminPage extends MP_adminpage_list_
 {
 	const screen 	= MailPress_page_mailinglists;
 	const capability 	= 'MailPress_manage_mailinglists';
@@ -20,7 +20,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		elseif ( !empty($_REQUEST['action2']) && ($_REQUEST['action2'] != -1) )	$action = $_REQUEST['action2'];
 		if (!isset($action)) return;
 
-		$url_parms = self::get_url_parms(array('s', 'apage', 'id'));
+		$url_parms = self::get_url_parms(array('s', 'paged', 'id'));
 		$checked	= (isset($_GET['checked'])) ? $_GET['checked'] : array();
 
 		$count	= str_replace('bulk-', '', $action);
@@ -33,9 +33,9 @@ class MP_AdminPage extends MP_Admin_page_list
 				foreach($checked as $id)
 				{
 					if ( $id == get_option(MailPress_mailinglist::option_name_default) )
-						wp_die(sprintf(__("Can&#8217;t delete the <strong>%s</strong> mailing list: this is the default one", MP_TXTDOM), MP_Mailinglists::get_name($id)));
+						wp_die(sprintf(__("Can&#8217;t delete the <strong>%s</strong> mailing list: this is the default one", MP_TXTDOM), MP_Mailinglist::get_name($id)));
 
-					if (MP_Mailinglists::delete($id)) $$count++;
+					if (MP_Mailinglist::delete($id)) $$count++;
 				}
 
 				if ($$count) $url_parms[$count] = $$count;
@@ -44,7 +44,7 @@ class MP_AdminPage extends MP_Admin_page_list
 			break;
 
 			case 'add':
-				$e = MP_Mailinglists::insert($_POST);
+				$e = MP_Mailinglist::insert($_POST);
 				$url_parms['message'] = ( $e && !is_wp_error( $e ) ) ? 1 : 91;
 				unset($url_parms['s']);
 				self::mp_redirect( self::url(MailPress_mailinglists, $url_parms) );
@@ -53,7 +53,7 @@ class MP_AdminPage extends MP_Admin_page_list
 				unset($_GET['action']);
 				if (!isset($_POST['cancel'])) 
 				{
-					$e = MP_Mailinglists::insert($_POST);
+					$e = MP_Mailinglist::insert($_POST);
 					$url_parms['message'] = ( $e && !is_wp_error( $e ) ) ? 2 : 92 ;
 				}
 				unset($url_parms['id']);
@@ -61,9 +61,9 @@ class MP_AdminPage extends MP_Admin_page_list
 			break;
 			case 'delete':
 				if ( $url_parms['id'] == get_option(MailPress_mailinglist::option_name_default) )
-					wp_die(sprintf(__("Can&#8217;t delete the <strong>%s</strong> mailing list: this is the default one", MP_TXTDOM), MP_Mailinglists::get_name($id)));
+					wp_die(sprintf(__("Can&#8217;t delete the <strong>%s</strong> mailing list: this is the default one", MP_TXTDOM), MP_Mailinglist::get_name($id)));
 
-				MP_Mailinglists::delete($url_parms['id']);
+				MP_Mailinglist::delete($url_parms['id']);
 				unset($url_parms['id']);
 
 				$url_parms['message'] = 3;
@@ -122,13 +122,13 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function get_list($page = 1, $pagesize = 20, $void = '', $void2 = '') 
 	{
-		$url_parms = self::get_url_parms(array('s', 'apage'));
+		$url_parms = self::get_url_parms(array('s', 'paged'));
 		$start = ($page - 1) * $pagesize;
 
 		$args = array('offset' => $start, 'number' => $pagesize, 'hide_empty' => 0);
 		if (isset($url_parms['s'])) $args['search'] = $url_parms['s'];
 
-		$_terms = MP_Mailinglists::get_all($args);
+		$_terms = MP_Mailinglist::get_all($args);
 		if (empty($_terms)) return false;
 
 		$children = _get_term_hierarchy(self::taxonomy);
@@ -173,7 +173,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 		static $row_class = '';
 
-		$mailinglist = MP_Mailinglists::get( $mailinglist );
+		$mailinglist = MP_Mailinglist::get( $mailinglist );
 
 		$default_mailinglist_id = get_option( MailPress_mailinglist::option_name_default );
 		$pad = str_repeat( '&#8212; ', $level );
@@ -189,7 +189,7 @@ class MP_AdminPage extends MP_Admin_page_list
 // actions
 		$actions = array();
 		$actions['edit'] = '<a href="' . $edit_url . '">' . __('Edit') . '</a>';
-		$actions['delete'] = "<a class='delete:" . self::list_id . ":" . self::tr_prefix_id . "-" . $mailinglist->term_id . " submitdelete' href='$delete_url'>" . __('Delete') . "</a>";
+		$actions['delete'] = "<a class='submitdelete' href='$delete_url'>" . __('Delete') . "</a>";
 
 		if ( $default_mailinglist_id == $mailinglist->term_id ) 
 			unset($actions['delete']);
@@ -221,7 +221,7 @@ class MP_AdminPage extends MP_Admin_page_list
 					if ( $default_mailinglist_id != $mailinglist->term_id ) {
 						$out .= "<input type='checkbox' name='checked[]' value='$mailinglist->term_id' />";
 					} else {
-						$out .= "&nbsp;";
+						$out .= "&#160;";
 					}
 					$out .= '</th>';
 				break;

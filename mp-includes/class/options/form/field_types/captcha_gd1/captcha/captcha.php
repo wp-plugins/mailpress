@@ -16,13 +16,13 @@ if (!extension_loaded('gd')) return;
 // -----------------------------------------------
 */
 
-class MP_Forms_field_type_captcha_gd1_cryptogra
+class MP_Form_field_type_captcha_gd1_cryptogra
 {
 	function __construct()
 	{
 		session_start();
 
-		$field = MP_Forms_fields::get($_GET['id']);
+		$field = MP_Form_field::get($_GET['id']);
 
 		$root = dirname(__FILE__) . '/cfg/';
 		if (is_dir($root)) 
@@ -153,7 +153,7 @@ class MP_Forms_field_type_captcha_gd1_cryptogra
 		if ($bgimg and is_dir($bgimg)) 
 		{
 			$dh = opendir($bgimg);
-			while (($filename = readdir($dh)) !== false) if (MailPress::is_image($filename)) $files[] = $filename;
+			while (($filename = readdir($dh)) !== false) if (MP_::is_image($filename)) $files[] = $filename;
 			closedir($dh);
 			$bgimg = "$bgimg/" . $files[array_rand($files, 1)];
 		}
@@ -275,4 +275,4 @@ class MP_Forms_field_type_captcha_gd1_cryptogra
 		return $noisecol;    
 	}
 }
-new MP_Forms_field_type_captcha_gd1_cryptogra();
+new MP_Form_field_type_captcha_gd1_cryptogra();

@@ -1,10 +1,12 @@
 <?php
-class MP_AdminPage extends MP_Admin_page_list
+class MP_AdminPage extends MP_adminpage_list_
 {
 	const screen 	= MailPress_page_addons;
 	const capability 	= 'MailPress_manage_addons';
 	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Add_ons:List';
 	const file        = __FILE__;
+
+	const per_page 	= false;
 
 ////  Redirect  ////
 

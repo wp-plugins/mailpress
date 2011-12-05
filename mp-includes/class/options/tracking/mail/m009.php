@@ -1,5 +1,5 @@
 <?php
-class MP_Tracking_module_m009 extends MP_Tracking_module_abstract
+class MP_Tracking_module_m009 extends MP_tracking_module_
 {
 	var $id	= 'm009';
 	var $context= 'normal';
@@ -67,9 +67,6 @@ class MP_Tracking_module_m009 extends MP_Tracking_module_abstract
 		$args['chds'] = "0,{$chxl_y}";
 		$args['chdlp']= 'b';
 		$args['chdl'] = __('Opened', MP_TXTDOM) . '|' . __('Clicks', MP_TXTDOM);
-
-//		$args['chco'] = '84D1F5,1E6889';
-
 		$args['chbh'] = '7,1,1';
 		$args['chco'] = '84D1F5,D54E21';
 		$args['chm']  = 'o,D54E21,1,,7,2';

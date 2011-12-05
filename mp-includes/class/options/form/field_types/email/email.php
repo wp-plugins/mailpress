@@ -1,5 +1,5 @@
 <?php
-class MP_Forms_field_type_email extends MP_Forms_field_type_abstract
+class MP_Form_field_type_email extends MP_form_field_type_
 {
 	var $id	= 'email';
 	var $order	= 15;
@@ -48,4 +48,4 @@ class MP_Forms_field_type_email extends MP_Forms_field_type_abstract
 		$this->attributes_filter_css();
 	}
 }
-new MP_Forms_field_type_email(__('Email', MP_TXTDOM));
+new MP_Form_field_type_email(__('Email', MP_TXTDOM));

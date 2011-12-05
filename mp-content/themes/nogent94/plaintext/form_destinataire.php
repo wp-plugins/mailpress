@@ -3,6 +3,6 @@
 Template Name: form_destinataire
 */
 
-$_the_title = "Mail issu de formulaire";
+$this->build->_the_title = "Mail issu de formulaire";
 
-include('_mail.php');
+$this->get_template_part('_mail');

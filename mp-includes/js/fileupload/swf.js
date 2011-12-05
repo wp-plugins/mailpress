@@ -145,7 +145,7 @@ var mp_fileupload = {
 		html += (id) ? '<input type="checkbox" class="mp_fileupload_cb" name="Files[' + hid + ']" value="' + id + '" checked="checked" />' : '<div class="mp_fileupload_cb_anim"><div class="mp_fileupload_bar_backgrnd"></div><div class="mp_fileupload_bar_foregrnd"></div></div>';
 
 		html += '</td>';
-		html += '<td>&nbsp;';
+		html += '<td>&#160;';
 
 		html += (id) ? '<a href="' + url + '" style="text-decoration:none;">' + fileObj.name + '</a>' : '<span>' + fileObj.name + '</span>';
 

@@ -6,7 +6,7 @@ Plugin Name: MailPress_view_logs
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:View_logs
 Description: This is just an add-on for MailPress to view logs
 Author: Andre Renaut
-Version: 5.1.1
+Version: 5.2
 Author URI: http://www.mailpress.org
 */
 

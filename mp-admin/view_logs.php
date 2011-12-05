@@ -1,5 +1,5 @@
 <?php
-class MP_AdminPage extends MP_Admin_page_list
+class MP_AdminPage extends MP_adminpage_list_
 {
 	const screen 	= MailPress_page_view_logs;
 	const capability	= 'MailPress_view_logs';
@@ -44,7 +44,7 @@ class MP_AdminPage extends MP_Admin_page_list
 	public static function get_file_template()
 	{
 		global $wpdb;
-		return (isset($wpdb->blogid)) ? 'MP_Log_' . $wpdb->blogid . '_' : 'MP_Log_' ;
+		return 'MP_Log_' . $wpdb->blogid . '_';
 	}
 
 ////  Columns  ////

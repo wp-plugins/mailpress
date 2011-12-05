@@ -12,7 +12,7 @@ if (!extension_loaded('gd')) return;
  *
  */
 
-class MP_Forms_field_type_captcha_gd2_googlelike
+class MP_Form_field_type_captcha_gd2_googlelike
 {
 	public $width  = 200;														/** Width of the image */
 	public $height = 70;														/** Height of the image */
@@ -270,4 +270,4 @@ class MP_Forms_field_type_captcha_gd2_googlelike
 		$this->im = $imResampled;
 	}
 }
-new MP_Forms_field_type_captcha_gd2_googlelike();
+new MP_Form_field_type_captcha_gd2_googlelike();

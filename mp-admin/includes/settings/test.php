@@ -25,14 +25,14 @@ switch (true)
 		}
 		else
 		{
-			$url   = get_option('home');
+			$url   = home_url();
 			$title = get_bloginfo('name');
 
 			$mail = new stdClass();
 			$mail->Theme = $test['theme'];
 			if ('0' != $test['template']) $mail->Template = $test['template'];
 
-			$mail->id		= MP_Mails::get_id('settings test');
+			$mail->id		= MP_Mail::get_id('settings test');
 
 		// Set the from name and email
 			$mail->fromemail 	= $mp_general['fromemail'];
@@ -40,13 +40,13 @@ switch (true)
 
 		// Set destination address
 			$mail->toemail 	= $test['toemail'];
-			$mail->toname	= MP_Mails::display_name($test['toname']);
-			$key = MP_Users::get_key_by_email($mail->toemail);
+			$mail->toname	= MP_Mail::display_name($test['toname']);
+			$key = MP_User::get_key_by_email($mail->toemail);
 			if ($key)
 			{
-				$mail->viewhtml	 = MP_Users::get_view_url($key, $mail->id);
-				$mail->unsubscribe = MP_Users::get_unsubscribe_url($key);
-				$mail->subscribe 	 = MP_Users::get_subscribe_url($key);
+				$mail->viewhtml	 = MP_User::get_view_url($key, $mail->id);
+				$mail->unsubscribe = MP_User::get_unsubscribe_url($key);
+				$mail->subscribe 	 = MP_User::get_subscribe_url($key);
 			}
 
 		// Set mail's subject and body
@@ -61,7 +61,7 @@ switch (true)
 
 			if (class_exists('MailPress_newsletter'))
 			{
-				if (isset($mail->Template) && in_array($mail->Template, MP_Newsletters::get_templates()))
+				if (isset($mail->Template) && in_array($mail->Template, MP_Newsletter::get_templates()))
 				{
 					$posts = $wpdb->get_results( "SELECT ID, post_title FROM $wpdb->posts WHERE post_status = 'publish' AND post_type = 'post' ORDER BY RAND() LIMIT 1;" );
 					if ($posts)

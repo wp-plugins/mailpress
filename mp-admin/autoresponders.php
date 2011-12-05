@@ -1,5 +1,5 @@
 <?php
-class MP_AdminPage extends MP_Admin_page_list
+class MP_AdminPage extends MP_adminpage_list_
 {
 	const screen 	= MailPress_page_autoresponders;
 	const capability 	= 'MailPress_manage_autoresponders';
@@ -20,7 +20,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		elseif ( !empty($_REQUEST['action2']) && ($_REQUEST['action2'] != -1) )	$action = $_REQUEST['action2'];
 		if (!isset($action)) return;
 
-		$url_parms 	= self::get_url_parms(array('s', 'apage', 'id'));
+		$url_parms 	= self::get_url_parms(array('s', 'paged', 'id'));
 		$checked	= (isset($_GET['checked'])) ? $_GET['checked'] : array();
 
 		$count	= str_replace('bulk-', '', $action);
@@ -30,7 +30,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		switch($action) 
 		{
 			case 'bulk-delete' :
-				foreach($checked as $id) if (MP_Autoresponders::delete($id)) $$count++;
+				foreach($checked as $id) if (MP_Autoresponder::delete($id)) $$count++;
 
 				if ($$count) $url_parms[$count] = $$count;
 				$url_parms['message'] = ($$count <= 1) ? 3 : 4;
@@ -38,7 +38,7 @@ class MP_AdminPage extends MP_Admin_page_list
 			break;
 
 			case 'add':
-				$e = MP_Autoresponders::insert($_POST);
+				$e = MP_Autoresponder::insert($_POST);
 				$url_parms['message'] = ( $e && !is_wp_error( $e ) ) ? 1 : 91;
 				unset($url_parms['s']);
 				self::mp_redirect( self::url(MailPress_autoresponders, $url_parms) );
@@ -47,14 +47,14 @@ class MP_AdminPage extends MP_Admin_page_list
 				unset($_GET['action']);
 				if (!isset($_POST['cancel'])) 
 				{
-					$e = MP_Autoresponders::insert($_POST);
+					$e = MP_Autoresponder::insert($_POST);
 					$url_parms['message'] = ( $e && !is_wp_error( $e ) ) ? 2 : 92 ;
 				}
 				unset($url_parms['id']);
 				self::mp_redirect( self::url(MailPress_autoresponders, $url_parms) );
 			break;
 			case 'delete':
-				MP_Autoresponders::delete($url_parms['id']);
+				MP_Autoresponder::delete($url_parms['id']);
 				unset($url_parms['id']);
 
 				$url_parms['message'] = 3;
@@ -126,11 +126,11 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function get_list($page = 1, $pagesize = 20, $void = '', $void2 = '') 
 	{
-		$url_parms = self::get_url_parms(array('s', 'apage'));
+		$url_parms = self::get_url_parms(array('s', 'paged'));
 
 		$args = (isset($url_parms['s'])) ? array('search' => $url_parms['s']) : array();
 
-		$_autoresp = MP_Autoresponders::get_all($args);
+		$_autoresp = MP_Autoresponder::get_all($args);
 
 		$autoresponders = array_slice($_autoresp, ($page - 1) * $pagesize, $pagesize, true); 
 
@@ -153,11 +153,11 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function get_row( $autoresponder, $url_parms ) 
 	{
-		$mp_autoresponder_registered_events = MP_Autoresponders_events::get_all();
+		$mp_autoresponder_registered_events = MP_Autoresponder_events::get_all();
 
 		static $row_class = '';
 
-		$autoresponder = MP_Autoresponders::get( $autoresponder );
+		$autoresponder = MP_Autoresponder::get( $autoresponder );
 
 		$name = $autoresponder->name ;
 
@@ -171,7 +171,7 @@ class MP_AdminPage extends MP_Admin_page_list
 // actions
 		$actions = array();
 		$actions['edit'] = '<a href="' . $edit_url . '">' . __('Edit') . '</a>';
-		$actions['delete'] = "<a class='delete:" . self::list_id . ":" . self::tr_prefix_id . "-" . $autoresponder->term_id . " submitdelete' href='$delete_url'>" . __('Delete') . "</a>";
+		$actions['delete'] = "<a class='submitdelete' href='$delete_url'>" . __('Delete') . "</a>";
 
 		$row_class = 'alternate' == $row_class ? '' : 'alternate';
 

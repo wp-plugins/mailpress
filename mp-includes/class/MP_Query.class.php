@@ -515,7 +515,7 @@ class MP_Query
 	}
 	function get_the_subject() 
 	{
-		$metas = MP_Mailmeta::get( $this->mail->id, '_MailPress_replacements' );
+		$metas = MP_Mail_meta::get( $this->mail->id, '_MailPress_replacements' );
 
 		$subject_display = $this->mail->subject;
 		if ($metas) foreach($metas as $k => $v) $subject_display = str_replace($k, $v, $subject_display);
@@ -577,7 +577,7 @@ class MP_Query
 	}
 	function get_the_permalink($action = 'view', $key = 1)
 	{
-		return MailPress::url(  MP_Action_url , array('action' => 'view', 'id' => $this->mail->id, 'key' => '0'));
+		return MP_::url(  MP_Action_url , array('action' => 'view', 'id' => $this->mail->id, 'key' => '0'));
 	}
 
 	function get_mp_query_var($var) 

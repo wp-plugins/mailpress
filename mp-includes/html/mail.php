@@ -1,13 +1,11 @@
 <?php include('header.php'); ?>
 <style type="text/css">* html { overflow-x: hidden; }</style>
 <?php
-wp_admin_css_color('classic', __('Classic'), admin_url("css/colors-classic.css"), array('#07273E', '#14568A', '#D54E21', '#2683AE'));
-wp_admin_css_color('fresh', __('Fresh'), admin_url("css/colors-fresh.css"), array('#464646', '#CEE1EF', '#D54E21', '#2683AE'));
+register_admin_color_schemes();
 
-wp_admin_css( 'css/global' );
-wp_admin_css();
-wp_admin_css( 'css/colors' );
-wp_admin_css( 'css/ie' );
+wp_enqueue_style( 'colors' );
+wp_enqueue_style( 'ie' );
+wp_enqueue_script('utils');
 
 do_action('admin_print_styles' );
 ?>
@@ -20,11 +18,11 @@ addLoadEvent = function(func) {if (typeof jQuery != "undefined") jQuery(document
 wp_enqueue_script('jquery-ui-tabs');
 do_action('admin_print_scripts' );
 ?>
-<link rel='stylesheet' href='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>mp-admin/css/mail.css' type='text/css' title='MailPress' media='all' />
+<link rel='stylesheet' href='<?php echo site_url() . '/' . MP_PATH; ?>mp-admin/css/mail.css' type='text/css' title='MailPress' media='all' />
 	</head>
 	<body id="media-upload">
 		<div id="wpwrap">
-			<div id="wpcontent">
+			<div id="wpcontent" style="margin:0;">
 				<div id="wpbody" style='background-color:#fff;margin-left:15px;'>
 					<div class='wrap'>
 <?php if (isset($view)) : ?>

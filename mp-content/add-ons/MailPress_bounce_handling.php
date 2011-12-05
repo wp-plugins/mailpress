@@ -6,7 +6,7 @@ Plugin Name: MailPress_bounce_handling
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Bounces
 Description: This is just an add-on for MailPress to handle bounce mails (based on <a href='http://en.wikipedia.org/wiki/VERP'>VERP</a>).
 Author: Andre Renaut
-Version: 5.1.1
+Version: 5.2
 Author URI: http://www.mailpress.org
 */
 
@@ -15,6 +15,7 @@ class MailPress_bounce_handling
 	const metakey     	= '_MailPress_bounce_handling';
 	const option_name 	= 'MailPress_bounce_handling';
 	const option_name_pop3 	= 'MailPress_connection_pop3';
+	const log_name = 'bounce_handling';
 
 	const bt = 132;
 
@@ -91,7 +92,7 @@ class MailPress_bounce_handling
 // process
 	public static function process()
 	{
-		MailPress::no_abort_limit();
+		MP_::no_abort_limit();
 
 		new MP_Bounce();
 	}
@@ -122,6 +123,14 @@ class MailPress_bounce_handling
 			$pop3 = get_option(self::option_name);
 			if ($pop3) update_option(self::option_name_pop3, $pop3);
 		}
+
+		$logs = get_option(MailPress::option_name_logs);
+		if (!isset($logs[self::log_name]))
+		{
+			$logs[self::log_name] = array('level' => 8191, 'lognbr' => 10, 'lastpurge' => '');
+			update_option(MailPress::option_name_logs, $logs );
+		}
+
 		do_action('MailPress_schedule_bounce_handling');
 	}
 
@@ -165,7 +174,7 @@ class MailPress_bounce_handling
 
 	public static function settings_logs($logs)
 	{
-		MP_AdminPage::logs_sub_form('bounce_handling', $logs, __('Bounces', MP_TXTDOM), __('Bounces log', MP_TXTDOM), __('(for <b>ALL</b> mails send through MailPress)', MP_TXTDOM), __('Number of Bounces log files : ', MP_TXTDOM));
+		MP_AdminPage::logs_sub_form(self::log_name, $logs, __('Bounce', MP_TXTDOM));
 	}
 
 	public static function autorefresh_every($every = 30)
@@ -186,14 +195,14 @@ class MailPress_bounce_handling
 	{
 		if ('bounced' != $mp_user->status) return;
 ?>
-			<img class='bounced' alt="<?php _e('Bounced', MP_TXTDOM); ?>" title="<?php _e('Bounced', MP_TXTDOM); ?>" src='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>mp-admin/images/bounce_handling.png' />
+			<span class='icon bounce_handling' title="<?php _e('Bounced', MP_TXTDOM); ?>"></span>
 <?php
 	}
 
 // for user page
 	public static function meta_boxes_user($mp_user_id, $screen)
 	{
-		$usermeta = MP_Usermeta::get($mp_user_id, self::metakey);
+		$usermeta = MP_User_meta::get($mp_user_id, self::metakey);
 		if (!$usermeta) return;
 
 		add_meta_box('bouncehandlingdiv', __('Bounces', MP_TXTDOM), array(__CLASS__, 'meta_box_user'), $screen, 'side', 'core');
@@ -201,11 +210,11 @@ class MailPress_bounce_handling
 
 	public static function meta_box_user($mp_user)
 	{
-		$usermeta = MP_Usermeta::get($mp_user->id, self::metakey);
+		$usermeta = MP_User_meta::get($mp_user->id, self::metakey);
 		if (!$usermeta) return;
 
 		global $wpdb;
-		echo '<b>' . __('Bounces', MP_TXTDOM) . '</b> : &nbsp;' . $usermeta['bounce'] . '<br />';
+		echo '<b>' . __('Bounces', MP_TXTDOM) . '</b> : &#160;' . $usermeta['bounce'] . '<br />';
 		foreach($usermeta['bounces'] as $mail_id => $messages)
 		{
 			foreach($messages as $k => $message)
@@ -214,8 +223,8 @@ class MailPress_bounce_handling
 				$subject = $wpdb->get_var("SELECT subject FROM $wpdb->mp_mails WHERE id = " . $mail_id . ';');
 				$subject = ($subject) ? $subject : __('(deleted)', MP_TXTDOM);
 
-				$view_url		= esc_url(add_query_arg( array('action' => 'view_bounce', 'user_id' => $mp_user->id, 'mail_id' => $mail_id, 'id' => $k, 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400'), MP_Action_url ));
-				$actions['view'] = "<a href='$view_url' class='thickbox'  title='" . __('View', MP_TXTDOM) . "'>" . $subject . '</a>';
+				$view_url		= esc_url(add_query_arg( array('action' => 'view_bounce', 'user_id' => $mp_user->id, 'mail_id' => $mail_id, 'id' => $k, 'preview_iframe' => 1, 'TB_iframe' => 'true'), MP_Action_url ));
+				$actions['view'] = "<a href='$view_url' class='thickbox thickbox-preview'  title='" . __('View', MP_TXTDOM) . "'>" . $subject . '</a>';
 
 				echo '(' . $mail_id . ') ' . $actions['view'];
 			}
@@ -241,7 +250,7 @@ class MailPress_bounce_handling
 				elseif(is_serialized($mail->toemail)) $total = count(unserialize($mail->toemail));
 				else return;
 
-				$result = MP_Mailmeta::get($mail->id, self::metakey);
+				$result = MP_Mail_meta::get($mail->id, self::metakey);
 				if ($result) if ($total > 0) printf("%01.2f %%", 100 * $result/$total );
 			break;
 		}
@@ -254,11 +263,10 @@ class MailPress_bounce_handling
 		$mail_id    = $_GET['mail_id'];
 		$bounce_id  = $_GET['id'];
 
-		$usermeta = MP_Usermeta::get($mp_user_id, self::metakey);
+		$usermeta = MP_User_meta::get($mp_user_id, self::metakey);
 		if (!$usermeta) return;
 
-		$x = new stdClass();
-		$x->plaintext = htmlspecialchars($usermeta['bounces'][$mail_id][$bounce_id]['message']);
+		$plaintext = $usermeta['bounces'][$mail_id][$bounce_id]['message'];
 
 		include(MP_ABSPATH . 'mp-includes/html/plaintext.php');
 	}

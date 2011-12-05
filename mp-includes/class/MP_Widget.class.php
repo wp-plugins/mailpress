@@ -117,12 +117,12 @@ class MP_Widget extends WP_Widget
 	public static function get_wp_user_unsubscribe_url()
 	{
 		$url = false;
-		$email = MailPress::get_wp_user_email();
+		$email = MP_WP_User::get_email();
 
 		if (is_email($email))
 		{
-			$key = MP_Users::get_key_by_email($email);
-			if ($key) $url = MP_Users::get_unsubscribe_url($key);
+			$key = MP_User::get_key_by_email($email);
+			if ($key) $url = MP_User::get_unsubscribe_url($key);
 		}
 		return $url;
 	}
@@ -160,7 +160,7 @@ class MP_Widget extends WP_Widget
 			$email = apply_filters('MailPress_form_email', $email);
 			$name  = apply_filters('MailPress_form_name',  $name);
 
-			if ( MP_Users::is_user($email) ) $email = $name = ''; 
+			if ( MP_User::is_user($email) ) $email = $name = ''; 
 		}
 		if ('' == $email) $email = $options['txtfield'];
 		if ('' == $name)  $name  = $options['txtfieldname'];
@@ -185,7 +185,7 @@ class MP_Widget extends WP_Widget
 				}
 				else
 				{
-					echo "<script type='text/javascript' src='" . get_option('siteurl') . "/wp-includes/js/jquery/jquery.js'></script>\n";
+					echo "<script type='text/javascript' src='" . site_url() . "/wp-includes/js/jquery/jquery.js'></script>\n";
 				}
 			}
 			if (!$options['js'])
@@ -202,12 +202,12 @@ class MP_Widget extends WP_Widget
 				else
 				{
 					echo "<script type='text/javascript'>\n/* <![CDATA[ */\nvar MP_Widget = {\n\turl: '" . MP_Action_url . "'\n};\n/* ]]> */\n</script>\n";
-					echo "<script type='text/javascript' src='" . get_option('siteurl') . $js . "'></script>\n";
+					echo "<script type='text/javascript' src='" . site_url() . $js . "'></script>\n";
 				}
 			}
 		}
 
-		$imgloading = apply_filters('MailPress_form_imgloading', get_option('siteurl') . '/' . MP_PATH . 'mp-includes/images/loading.gif');
+		$imgloading = apply_filters('MailPress_form_imgloading', site_url() . '/' . MP_PATH . 'mp-includes/images/loading.gif');
 ?>
 <div class='MailPress' id='_MP_<?php echo $id; ?>'>
 	<div class='mp-container'>
@@ -226,7 +226,7 @@ class MP_Widget extends WP_Widget
 		</div>
 	</div>
 <?php 
-$url = ($options['urlsubmgt']) ? esc_url(self::get_wp_user_unsubscribe_url()) : false;
+$url = ($options['urlsubmgt']) ? esc_url(MP_WP_User::get_unsubscribe_url()) : false;
 if ($url) :
 ?>
 	<div id='mp-urlsubmgt'><a href='<?php echo $url; ?>'><?php echo (!empty($options['txtsubmgt'])) ? esc_attr($options['txtsubmgt']) : __('Manage your subscription', MP_TXTDOM); ?></a></div>
@@ -259,7 +259,7 @@ endif;
 		else
 		{
 			$name = ( '' == $name || $options['txtfieldname'] == $name ) ? '' : $name;
-			$add = MP_Users::add($email, $name);
+			$add = MP_User::add($email, $name);
 			$shortcode_message = apply_filters('MailPress_form_submit', '', $email);
 			$message = ($add['result']) ? "<span class='success'>" . $add['message'] . $shortcode_message . "</span><br />" : "<span class='error'>" . $add['message']  . $shortcode_message . "</span><br />";
 			$email   = ($add['result']) ? $email : $options['txtfield'];

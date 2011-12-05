@@ -27,16 +27,35 @@ $formname = substr(basename(__FILE__), 0, -4);
 					<tr>
 						<td class='pr10<?php if (isset($fromemailclass)) echo " $form_invalid"; ?>'>
 							<?php _e('Email : ', MP_TXTDOM); ?> 
-							<input type='text' size='25' name='general[fromemail]' value='<?php echo $mp_general['fromemail']; ?>' />
+							<input type='text' size='25' name='general[fromemail]' value='<?php echo (isset($mp_general['fromemail'])) ? $mp_general['fromemail'] : ''; ?>' />
 						</td>
 						<td class='pr10<?php if (isset($fromnameclass)) echo " $form_invalid"; ?>'>
 							<?php _e('Name : ', MP_TXTDOM); ?> 
-							<input type='text' size='25' name='general[fromname]'  value="<?php echo esc_attr($mp_general['fromname']); ?>" />
+							<input type='text' size='25' name='general[fromname]'  value="<?php echo (isset($mp_general['fromname'])) ? esc_attr($mp_general['fromname']) : ''; ?>" />
 						</td>
 					</tr>
 				</table>
 			</td>
 		</tr>
+<!-- Admin -->
+		<tr><th></th><td></td></tr>
+		<tr>
+			<th style='padding:0;'><strong><?php _e('Admin', MP_TXTDOM); ?></strong></th>
+			<td style='padding:0;'></td>
+		</tr>
+		<tr valign='top'>
+			<th scope='row'><?php _e('Options', MP_TXTDOM); ?></th>
+			<td>
+				<input id='wpmail' name='general[wp_mail]' type='checkbox' <?php echo( (isset($mp_general['wp_mail'])) ? "checked='checked'" : ''); ?> />
+				&#160;<label for='wpmail'><?php _e('MailPress version of wp_mail', MP_TXTDOM); ?></label>
+				<br />
+				<input id='dshbrd' name='general[dashboard]' type='checkbox' <?php echo( (isset($mp_general['dashboard'])) ? "checked='checked'" : ''); ?> />
+				&#160;<label for='dshbrd'><?php _e('Dashboard widgets', MP_TXTDOM); ?></label>
+				<br />
+			</td>
+		</tr>
+<?php do_action('MailPress_settings_general_admin'); ?>
+		<tr valign='top' class='mp_sep' style='line-height:2px;padding:0;'><th style='line-height:2px;padding:0;'></th><td style='line-height:2px;padding:0;'></td></tr>
 <!-- Forms -->
 		<tr><th></th><td></td></tr>
 		<tr valign='top'>
@@ -67,30 +86,11 @@ $formname = substr(basename(__FILE__), 0, -4);
 			<th scope='row'><?php _e('View mail', MP_TXTDOM); ?></th>
 			<td>
 				<input id='fullscreen' name='general[fullscreen]' type='checkbox' <?php echo( (isset($mp_general['fullscreen'])) ? "checked='checked'" : ''); ?> />
-				&nbsp;<label for='fullscreen'><?php _e('View mail in fullscreen', MP_TXTDOM); ?></label>
+				&#160;<label for='fullscreen'><?php _e('View mail in fullscreen', MP_TXTDOM); ?></label>
 			</td>
 		</tr>
 <!-- Add ons -->
 <?php do_action('MailPress_settings_general'); ?>
-<!-- Admin -->
-		<tr><th></th><td></td></tr>
-		<tr>
-			<th style='padding:0;'><strong><?php _e('Admin', MP_TXTDOM); ?></strong></th>
-			<td style='padding:0;'></td>
-		</tr>
-		<tr valign='top'>
-			<th scope='row'><?php _e('Options', MP_TXTDOM); ?></th>
-			<td>
-				<input id='wpmail' name='general[wp_mail]' type='checkbox' <?php echo( (isset($mp_general['wp_mail'])) ? "checked='checked'" : ''); ?> />
-				&nbsp;<label for='wpmail'><?php _e('MailPress version of wp_mail', MP_TXTDOM); ?></label>
-				<br />
-				<input id='dshbrd' name='general[dashboard]' type='checkbox' <?php echo( (isset($mp_general['dashboard'])) ? "checked='checked'" : ''); ?> />
-				&nbsp;<label for='dshbrd'><?php _e('Dashboard widgets', MP_TXTDOM); ?></label>
-				<br />
-			</td>
-		</tr>
-<?php do_action('MailPress_settings_general_admin'); ?>
-		<tr valign='top' class='mp_sep' style='line-height:2px;padding:0;'><th style='line-height:2px;padding:0;'></th><td style='line-height:2px;padding:0;'></td></tr>
 	</table>
 <?php if(!$mp_general) { ?>
 	<span class='startmsg'><?php _e('You can start to update your SMTP config, once you have saved your General settings', MP_TXTDOM); ?></span>

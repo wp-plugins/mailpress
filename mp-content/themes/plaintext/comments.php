@@ -5,8 +5,8 @@ Template Name: comments
 $comment = $this->args->advanced->comment;
 $post    = $this->args->advanced->post;
 
-$_the_title = 'Comment # ' . $comment->comment_ID . ' in "{{the_title}}"';
+$this->build->_the_title = sprintf( 'Comment # %s in "{{the_title}}"', $comment->comment_ID );
 
-$_the_actions 	= __('Reply') . " [{$post->guid}#comment-{$comment->comment_ID}]";
+$this->build->_the_actions 	= __('Reply') . " [{$post->guid}&replytocom={$comment->comment_ID}#respond]";
 
-include('_mail.php');
+$this->get_template_part('_mail');

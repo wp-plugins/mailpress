@@ -1,24 +1,11 @@
 <?php
 $url_parms = MP_AdminPage::get_url_parms();
 
+//
+// MANAGING H2
+//
+
 $h2 = __('Mailing lists', MP_TXTDOM); 
-
-//
-// MANAGING PAGINATION
-//
-
-if( !isset($_per_page) || $_per_page <= 0 ) $_per_page = 20;
-$url_parms['apage'] = (isset($url_parms['apage']) && $url_parms['apage']) ? $url_parms['apage'] : 1;
-
-$total = ( isset($url_parms['s']) ) ? count(MP_Mailinglists::get_all(array('hide_empty' => 0, 'search' => $url_parms['s']))) : wp_count_terms(MP_AdminPage::taxonomy);
-
-$page_links = paginate_links	(array(	'base' => add_query_arg( 'apage', '%#%' ),
-							'format' => '',
-							'total' => ceil( $total / $_per_page),
-							'current' => $url_parms['apage']
-						)
-					);
-if ($url_parms['apage'] <= 1) unset($url_parms['apage']);
 
 //
 // MANAGING MESSAGE
@@ -52,13 +39,12 @@ if ('edit' == $action)
 	$cancel = "<input type='submit' class='button' name='cancel' value=\"" . __('Cancel', MP_TXTDOM) . "\" />\n";
 
 	$id = (int) $_GET['id'];
-	$mailinglist = MP_Mailinglists::get( $id, OBJECT, 'edit' );
+	$mailinglist = MP_Mailinglist::get( $id, OBJECT, 'edit' );
 
 	$h3 = __('Edit Mailing List', MP_TXTDOM);
 	$hb3= __('Update');
 	$hbclass = '-primary';
 
-//	$disabled = " disabled='disabled'";
 	$disabled = '';
 
 	$hidden = "<input type='hidden' name='id'   value=\"" . $id . "\" />\n";
@@ -77,6 +63,15 @@ else
 	$disabled = '';
 	$hidden = '';
 }
+
+//
+// MANAGING LIST
+//
+
+$url_parms['paged'] = isset($url_parms['paged']) ? $url_parms['paged'] : 1;
+$_per_page = MP_AdminPage::get_per_page();
+
+$total = ( isset($url_parms['s']) ) ? count(MP_Mailinglist::get_all(array('hide_empty' => 0, 'search' => $url_parms['s']))) : wp_count_terms(MP_AdminPage::taxonomy);
 
 ?>
 <div class='wrap nosubsub'>
@@ -101,9 +96,9 @@ else
 			<div class='col-wrap'>
 				<form id='posts-filter' action='' method='get'>
 					<input type='hidden' name='page' value='<?php echo MP_AdminPage::screen; ?>' />
-<?php MP_AdminPage::post_url_parms($url_parms); ?>
+
 					<div class='tablenav'>
-<?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>"; ?>
+<?php MP_AdminPage::pagination($total); ?>
 						<div class='alignleft actions'>
 <?php	MP_AdminPage::get_bulk_actions($bulk_actions); ?>
 						</div>
@@ -122,11 +117,11 @@ else
 							</tr>
 						</tfoot>
 						<tbody id='<?php echo MP_AdminPage::list_id; ?>' class='list:<?php echo MP_AdminPage::tr_prefix_id; ?> mailinglists'>
-<?php MP_AdminPage::get_list((isset($url_parms['apage']) && $url_parms['apage']) ? $url_parms['apage'] : 1, $_per_page ); ?>
+<?php MP_AdminPage::get_list( $url_parms['paged'], $_per_page ); ?>
 						</tbody>
 					</table>
 					<div class='tablenav'>
-<?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>\n"; ?>
+<?php MP_AdminPage::pagination($total, 'bottom'); ?>
 						<div class='alignleft actions'>
 <?php	MP_AdminPage::get_bulk_actions($bulk_actions, 'action2'); ?>
 						</div>
@@ -135,7 +130,7 @@ else
 					<br class='clear' />
 				</form>
 				<div class='form-wrap'>
-					<p><?php printf(__('<strong>Note:</strong><br />Deleting a mailing list does not delete the MailPress users in that mailing list. Instead, MailPress users that were only assigned to the deleted mailing list are set to the mailing list <strong>%s</strong>.', MP_TXTDOM), MP_Mailinglists::get_name(get_option(MailPress_mailinglist::option_name_default))) ?></p>
+					<p><?php printf(__('<strong>Note:</strong><br />Deleting a mailing list does not delete the MailPress users in that mailing list. Instead, MailPress users that were only assigned to the deleted mailing list are set to the mailing list <strong>%s</strong>.', MP_TXTDOM), MP_Mailinglist::get_name(get_option(MailPress_mailinglist::option_name_default))) ?></p>
 				</div>
 			</div>
 		</div><!-- /col-right -->
@@ -166,7 +161,7 @@ else
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>
 							<label for='mailinglist_parent'><?php _e('Mailing list Parent', MP_TXTDOM) ?></label>
-							<?php MP_Mailinglists::dropdown(array('hide_empty' => 0, 'name' => 'parent', 'orderby' => 'name', 'htmlid' => 'mailinglist_parent', 'selected' => (isset($mailinglist->parent)) ? $mailinglist->parent : '', 'exclude' => (isset($id)) ? $id : '', 'hierarchical' => true, 'show_option_none' => __('None', MP_TXTDOM))); ?>
+							<?php MP_Mailinglist::dropdown(array('hide_empty' => 0, 'name' => 'parent', 'orderby' => 'name', 'htmlid' => 'mailinglist_parent', 'selected' => (isset($mailinglist->parent)) ? $mailinglist->parent : '', 'exclude' => (isset($id)) ? $id : '', 'hierarchical' => true, 'show_option_none' => __('None', MP_TXTDOM))); ?>
 							<p><?php _e("Mailing list can have a hierarchy. You might have a Rock'n roll mailing list, and under that have children mailing lists for Elvis and The Beatles. Totally optional !", MP_TXTDOM); ?></p>
 						</div>
 						<p class='submit'>

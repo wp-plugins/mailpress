@@ -6,7 +6,7 @@ Plugin Name: MailPress_bulk_import
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Bulk_import
 Description: This is just an add-on for MailPress to import users
 Author: Daniel Caleb &amp; Andre Renaut
-Version: 5.1.1
+Version: 5.2
 Author URI: http://galerie-eigenheim.de
 */
 
@@ -29,7 +29,7 @@ class MailPress_bulk_import
 <?php 
 if (class_exists('MailPress_mailinglist'))
 {
-	MP_Mailinglists::dropdown(array('name' => 'bulk_import_mailinglist', 'htmlid' => 'bulk_import_mailinglist', 'selected' => get_option(MailPress_mailinglist::option_name_default), 'hierarchical' => true, 'orderby' => 'name', 'hide_empty' => '0'));
+	MP_Mailinglist::dropdown(array('name' => 'bulk_import_mailinglist', 'htmlid' => 'bulk_import_mailinglist', 'selected' => get_option(MailPress_mailinglist::option_name_default), 'hierarchical' => true, 'orderby' => 'name', 'hide_empty' => '0'));
 }
 ?>
 		<label for='bulki-activate'><input type='radio' id='bulki-activate' name='activate' value='activate' /><?php _e('Activate', MP_TXTDOM); ?></label>
@@ -38,7 +38,7 @@ if (class_exists('MailPress_mailinglist'))
 			<?php _e('email,name;email,name;...', MP_TXTDOM); ?>
 		</span>
 	</div>
-<?php MP_AdminPage::post_url_parms($url_parms, array('mode', 'status', 'apage', 'author', 'mailinglist', 'newsletter')); ?>
+<?php MP_AdminPage::post_url_parms($url_parms, array('mode', 'status', 'paged', 'author', 'mailinglist', 'newsletter')); ?>
 </form>
 <br />
 <!-- MailPress_bulk_import -->
@@ -69,23 +69,23 @@ if (class_exists('MailPress_mailinglist'))
 			$email = trim($x[0]);
 			$name = (isset($x[1])) ? trim($x[1]) : '';
 
-			if (is_email($email) && ('deleted' == MP_Users::get_status_by_email($email)))
+			if (is_email($email) && ('deleted' == MP_User::get_status_by_email($email)))
 			{
 				if ('activate' == $type) 
 				{
-					MP_Users::insert($email, $name, array('status' => 'active'));
+					MP_User::insert($email, $name, array('status' => 'active'));
 					$count++;
 				}
 				else
 				{
-					$return = MP_Users::add($email, $name);
+					$return = MP_User::add($email, $name);
 					if ($return['result']) $count++;
 				}
 
 				if (class_exists('MailPress_mailinglist'))
 				{
-					$mp_user_id  = MP_Users::get_id_by_email($email);
-					MP_Mailinglists::set_object_terms(MP_Users::get_id_by_email($email), (is_array($_POST['bulk_import_mailinglist'])) ? $_POST['bulk_import_mailinglist'] : array($_POST['bulk_import_mailinglist']) );
+					$mp_user_id  = MP_User::get_id_by_email($email);
+					MP_Mailinglist::set_object_terms(MP_User::get_id_by_email($email), (is_array($_POST['bulk_import_mailinglist'])) ? $_POST['bulk_import_mailinglist'] : array($_POST['bulk_import_mailinglist']) );
 				}
 			}
 		}

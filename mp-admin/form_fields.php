@@ -1,7 +1,7 @@
 <?php
-class MP_AdminPage extends MP_Admin_page_list
+class MP_AdminPage extends MP_adminpage_list_
 {
-	const screen 	= 'MailPress_page_form_fields';
+	const screen 	= 'mailpress_page_form_fields';
 	const capability 	= 'MailPress_manage_forms';
 	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Add_ons:Form:Form_fields';
 	const file        = __FILE__;
@@ -18,7 +18,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		elseif ( !empty($_REQUEST['action2']) && ($_REQUEST['action2'] != -1) )	$action = $_REQUEST['action2'];
 		if (!isset($action)) return;
 
-		$url_parms = self::get_url_parms(array('s', 'apage', 'id', 'form_id'));
+		$url_parms = self::get_url_parms(array('s', 'paged', 'id', 'form_id'));
 		$checked	= (isset($_GET['checked'])) ? $_GET['checked'] : array();
 
 		$count	= str_replace('bulk-', '', $action);
@@ -28,7 +28,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		switch($action) 
 		{
 			case 'bulk-delete' :
-				foreach($checked as $id) if (MP_Forms_fields::delete($id, $url_parms['form_id'])) $$count++;
+				foreach($checked as $id) if (MP_Form_field::delete($id, $url_parms['form_id'])) $$count++;
 
 				if ($$count) $url_parms[$count] = $$count;
 				$url_parms['message'] = ($$count <= 1) ? 3 : 4;
@@ -36,20 +36,20 @@ class MP_AdminPage extends MP_Admin_page_list
 			break;
 
 			case 'add':
-				$e = MP_Forms_fields::insert($_POST);
+				$e = MP_Form_field::insert($_POST);
 				$url_parms['message'] = ( $e  ) ? 1 : 91;
 				unset($url_parms['s']);
 				self::mp_redirect( self::url(MailPress_fields, $url_parms) );
 			break;
 			case 'duplicate' :
-				MP_Forms_fields::duplicate($url_parms['id'], $url_parms['form_id']);
+				MP_Form_field::duplicate($url_parms['id'], $url_parms['form_id']);
 				self::mp_redirect( self::url(MailPress_fields, $url_parms) );
 			break;
 			case 'edited':
 				unset($_GET['action']);
 				if (!isset($_POST['cancel'])) 
 				{
-					$e = MP_Forms_fields::insert($_POST);
+					$e = MP_Form_field::insert($_POST);
 					$url_parms['message'] = ( $e ) ? 2 : 92 ;
 					$url_parms['action']  = 'edit';
 				}
@@ -58,7 +58,7 @@ class MP_AdminPage extends MP_Admin_page_list
 				self::mp_redirect( self::url(MailPress_fields, $url_parms) );
 			break;
 			case 'delete':
-				MP_Forms_fields::delete($url_parms['id'], $url_parms['form_id']);
+				MP_Form_field::delete($url_parms['id'], $url_parms['form_id']);
 				unset($url_parms['id']);
 
 				$url_parms['message'] = 3;
@@ -71,7 +71,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function title() 
 	{ 
-		new MP_Forms_field_types();
+		new MP_Form_field_types();
 		if (isset($_GET['form_id'])) { global $title; $title = __('MailPress Forms Edit Fields', MP_TXTDOM); } 
 	}
 
@@ -95,7 +95,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function print_scripts($scripts = array())  
 	{
-		wp_register_script( 'mp-ajax-response',	'/' . MP_PATH . 'mp-includes/js/mp_ajax_response.js', array('jquery'), false, 1);
+		wp_register_script( 'mp-ajax-response',	'/' . MP_PATH . 'mp-includes/js/mp_ajax_response.js', array('jquery', 'jquery-ui-tabs'), false, 1);
 		wp_localize_script( 'mp-ajax-response', 	'wpAjax', array(
 			'noPerm' => __('An unidentified error has occurred.'), 
 			'broken' => __('An unidentified error has occurred.'), 
@@ -119,7 +119,7 @@ class MP_AdminPage extends MP_Admin_page_list
 			'l10n_print_after' => 'try{convertEntities(MP_AdminPageL10n);}catch(e){};' 
 		));
 
-		wp_register_script( self::screen, 		'/' . MP_PATH . 'mp-admin/js/form_fields.js', array('mp-taxonomy', 'mp-thickbox', 'jquery-ui-tabs'), false, 1);
+		wp_register_script( self::screen, 		'/' . MP_PATH . 'mp-admin/js/form_fields.js', array('mp-taxonomy', 'mp-thickbox'), false, 1);
 
 		$scripts[] = self::screen;
 		parent::print_scripts($scripts);
@@ -131,14 +131,13 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		if (isset($_GET['form_id'])) 
 		{
-			$form = MP_Forms::get($_GET['form_id']);
+			$form = MP_Form::get($_GET['form_id']);
 			if (isset($form->settings['visitor']['mail']) && ($form->settings['visitor']['mail'] != '0'))
 				add_filter('MailPress_form_columns_form_fields', array(__CLASS__, 'add_incopy_column'), 1, 1);
 		}
 
 		$columns = array(	'cb'		=> '<input type="checkbox" />',
 					'name' 	=> __('Label', MP_TXTDOM),
-				//	'description'=> __('Description', MP_TXTDOM),
 					'type' 	=> __('Type', MP_TXTDOM),
 					'order' 	=> __('Order', MP_TXTDOM),
 					'required' 	=> __('Required', MP_TXTDOM),
@@ -150,7 +149,7 @@ class MP_AdminPage extends MP_Admin_page_list
 	public static function add_incopy_column($columns)
 	{
 		$template 			= array_pop($columns);
-		$columns['incopy']	= __('In&nbsp;copy', MP_TXTDOM);
+		$columns['incopy']	= __('In&#160;copy', MP_TXTDOM);
         	$columns['template'] 	= $template;
 		return $columns;
     }
@@ -183,9 +182,9 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		static $row_class = '';
 
-		$field = MP_Forms_fields::get( $id );
+		$field = MP_Form_field::get( $id );
 
-		$field_types = MP_Forms_field_types::get_all();
+		$field_types = MP_Form_field_types::get_all();
 
 // url's
 		$url_parms['action'] 	= 'edit';
@@ -201,7 +200,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		$actions = array();
 		$actions['edit'] = '<a href="' . $edit_url . '">' . __('Edit') . '</a>';
 		$actions['duplicate'] = "<a class='dim:" . self::list_id . ":" . self::tr_prefix_id . "-" . $field->id . ":unapproved:e7e7d3:e7e7d3' href='$duplicate_url'>" . __('Duplicate', MP_TXTDOM) . "</a>";
-		$actions['delete'] = "<a class='delete:" . self::list_id . ":" . self::tr_prefix_id . "-" . $field->id . " submitdelete' href='$delete_url'>" . __('Delete') . "</a>";
+		$actions['delete'] = "<a class='submitdelete' href='$delete_url'>" . __('Delete') . "</a>";
 
 		$row_class = 'alternate' == $row_class ? '' : 'alternate';
 

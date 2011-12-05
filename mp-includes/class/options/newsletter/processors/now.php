@@ -1,5 +1,5 @@
 <?php
-class MP_Newsletter_processor_now extends MP_Newsletters_processor_abstract
+class MP_Newsletter_processor_now extends MP_newsletter_processor_
 {
 	public $id = 'now';
 
@@ -14,7 +14,7 @@ class MP_Newsletter_processor_now extends MP_Newsletters_processor_abstract
 	// detect if post already processed
 		if ($this->already_processed()) 
 		{
-			MP_Newsletters_processors::message_report($this->newsletter, "Post {$this->post_id} already processed", $this->trace);
+			MP_Newsletter_processors::message_report($this->newsletter, "Post {$this->post_id} already processed", $this->trace);
 			return false;
 		}
 
@@ -48,9 +48,9 @@ class MP_Newsletter_processor_now extends MP_Newsletters_processor_abstract
 			$intersect  = array_intersect($post_categories, $cats_in);
 			if (empty($intersect))
 			{
-				MP_Newsletters_processors::message_report($this->newsletter, "newsletter categories (in) : " 	. join(',', $cats_in), $this->trace);
-				MP_Newsletters_processors::message_report(false, "post categories : " . join(',', $post_categories), $this->trace);
-				MP_Newsletters_processors::message_report(false, "Post {$this->post_id} not in required categories", $this->trace);
+				MP_Newsletter_processors::message_report($this->newsletter, "newsletter categories (in) : " 	. join(',', $cats_in), $this->trace);
+				MP_Newsletter_processors::message_report(false, "post categories : " . join(',', $post_categories), $this->trace);
+				MP_Newsletter_processors::message_report(false, "Post {$this->post_id} not in required categories", $this->trace);
 				return false;
 			}
 		}
@@ -68,16 +68,16 @@ class MP_Newsletter_processor_now extends MP_Newsletters_processor_abstract
 			$diff  = array_diff($post_categories, $cats_out);
 			if (empty($diff))
 			{
-				MP_Newsletters_processors::message_report($this->newsletter, "newsletter categories (out) : " 	. join(',', $cats_out), $this->trace);
-				MP_Newsletters_processors::message_report(false, "post categories : " . join(',', $post_categories), $this->trace);
-				MP_Newsletters_processors::message_report(false, "Post {$this->post_id} in excluding categories", $this->trace);
+				MP_Newsletter_processors::message_report($this->newsletter, "newsletter categories (out) : " 	. join(',', $cats_out), $this->trace);
+				MP_Newsletter_processors::message_report(false, "post categories : " . join(',', $post_categories), $this->trace);
+				MP_Newsletter_processors::message_report(false, "Post {$this->post_id} in excluding categories", $this->trace);
 				return false;
 			}
 		}
 
 		$this->newsletter['query_posts'] = isset($this->newsletter[$this->args]['query_posts']) ? $this->newsletter[$this->args]['query_posts'] : array();
 
-		MP_Newsletters_processors::send($this->newsletter, $this->trace);
+		MP_Newsletter_processors::send($this->newsletter, $this->trace);
 	}
 
 	function already_processed()

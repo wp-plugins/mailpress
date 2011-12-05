@@ -1,7 +1,7 @@
 <?php
-class MP_AdminPage extends MP_Admin_page
+class MP_AdminPage extends MP_adminpage_
 {
-	const screen 	= 'MailPress_page_templates';
+	const screen 	= 'mailpress_page_templates';
 	const capability 	= 'MailPress_manage_forms';
 	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Add_ons:Form:Form_Templates';
 	const file        = __FILE__;
@@ -72,8 +72,8 @@ jQuery(document).ready(function(){
 		{
 			height	: '450px',
 			parserfile	: ['parsexml.js'],
-			stylesheet	: ['<?php echo get_option('siteurl') . '/' . MP_PATH; ?>mp-includes/js/codemirror/css/xmlcolors.css'],
-			path		:  '<?php echo get_option('siteurl') . '/' . MP_PATH; ?>mp-includes/js/codemirror/js/',
+			stylesheet	: ['<?php echo site_url() . '/' . MP_PATH; ?>mp-includes/js/codemirror/css/xmlcolors.css'],
+			path		:  '<?php echo site_url() . '/' . MP_PATH; ?>mp-includes/js/codemirror/js/',
 			continuousScanning: 500,
 			lineNumbers	: true,
 			textWrapping: false

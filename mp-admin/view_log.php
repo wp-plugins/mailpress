@@ -1,5 +1,5 @@
 <?php
-class MP_AdminPage extends MP_Admin_page
+class MP_AdminPage extends MP_adminpage_
 {
 	const screen 	= 'mailpress_viewlog';
 	const capability	= 'MailPress_view_logs';

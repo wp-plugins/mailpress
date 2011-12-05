@@ -17,7 +17,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 foreach($wp_roles->role_names as $role => $name)
 {
 	if ('administrator' == $role) continue;
-	$name = translate_with_context($name);
+	$name = __($name);
 ?>
 			<th scope='row'><strong><?php echo $name; ?></strong></th>
 <?php

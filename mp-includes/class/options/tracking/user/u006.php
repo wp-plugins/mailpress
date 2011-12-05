@@ -1,5 +1,5 @@
 <?php
-class MP_Tracking_module_u006 extends MP_Tracking_module_abstract
+class MP_Tracking_module_u006 extends MP_tracking_module_
 {
 	const prefix = 'tracking_u006';
 
@@ -24,7 +24,7 @@ class MP_Tracking_module_u006 extends MP_Tracking_module_abstract
 		wp_localize_script( 'mp-gmap3', 	'mp_gmapL10n', array(
 			'id'		=> $_GET['id'],
 			'type'	=> 'mp_user',
-			'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/',
+			'url'		=> site_url() . '/' . MP_PATH . 'mp-admin/images/',
 			'ajaxurl'	=> MP_Action_url,
 			'center'	=> esc_js(__('center', MP_TXTDOM)),
 			'changemap'	=> esc_js(__('change map', MP_TXTDOM))
@@ -32,7 +32,7 @@ class MP_Tracking_module_u006 extends MP_Tracking_module_abstract
 		$scripts[] = 'mp-gmap3';
 
 	// markerclusterer
-		wp_register_script( 'mp-markerclusterer',	'/' . MP_PATH . 'mp-includes/js/markerclusterer/markerclusterer_packed.js', false, false, 1);
+		wp_register_script( 'mp-markerclusterer',	'/' . MP_PATH . 'mp-includes/js/markerclusterer/markerclusterer_compiled.js', false, false, 1);
 		$scripts[] = 'mp-markerclusterer';
 
 		return $scripts;
@@ -70,7 +70,7 @@ class MP_Tracking_module_u006 extends MP_Tracking_module_abstract
 /* <![CDATA[ */
 <?php
 	// t006_user_settings
-		$u['t006_user_settings'] = MP_Usermeta::get($mp_user->id, '_MailPress_' . self::prefix);
+		$u['t006_user_settings'] = MP_User_meta::get($mp_user->id, '_MailPress_' . self::prefix);
 		if (!$u['t006_user_settings']) $u['t006_user_settings'] = get_user_option('_MailPress_' . self::prefix);
 		if (!isset($def_lat)) $def_lat = 48.8352;
 		if (!isset($def_lng)) $def_lng = 2.4718;

@@ -1,18 +1,1 @@
-/*
-
-			      *~**~**~**~**~**~**~**~**~**~**~**~**~**~**~**~**~**~*
-			      *~*                                                *~*
-                        *~*                                                *~*
-                        *~*                                                *~*
-                        *~*                    MailPress                   *~*
-                        *~*                                                *~*
-                        *~*                                                *~*
-                        *~*                                                *~*
-			      *~**~**~**~**~**~**~**~**~**~**~**~**~**~**~**~**~**~*
-
-			       We need this file for the MailPress Theme management.
-
-						so do not delete it !
-
-
-*/
+/* DO NOT DELETE ! file required for mailpress theme management */

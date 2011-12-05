@@ -1,33 +1,11 @@
 <?php
 $url_parms = MP_AdminPage::get_url_parms();
 
+//
+// MANAGING H2
+//
+
 $h2 = __('Logs', MP_TXTDOM);
-
-//
-// MANAGING RESULTS/SUBSUBSUB URL/PAGINATION/
-//
-
-if( !isset($_per_page) || $_per_page <= 0 ) $_per_page = 20;
-$url_parms['apage'] = isset($url_parms['apage']) ? $url_parms['apage'] : 1;
-do
-{
-	$start = ( $url_parms['apage'] - 1 ) * $_per_page;
-
-	list($_logs, $total, $subsubsub_urls) = MP_AdminPage::get_list($start, $_per_page, $url_parms);
-
-	$url_parms['apage']--;
-} while ( $total <= $start );
-$url_parms['apage']++;
-
-$page_links = paginate_links	(array(	'base' => add_query_arg( 'apage', '%#%' ),
-							'format' => '',
-							'total' => ceil($total / $_per_page),
-							'current' => $url_parms['apage']
-						)
-					);
-if ($url_parms['apage'] <= 1) unset($url_parms['apage']);
-
-$files 		= array_slice($_logs, 0, $_per_page);
 
 //
 // MANAGING MESSAGE / CHECKBOX RESULTS
@@ -53,6 +31,23 @@ foreach ($results as $k => $v)
 $bulk_actions[''] 	= __('Bulk Actions');
 $bulk_actions['delete']	= __('Delete', MP_TXTDOM);
 
+//
+// MANAGING LIST
+//
+
+$url_parms['paged'] = isset($url_parms['paged']) ? $url_parms['paged'] : 1;
+$_per_page = MP_AdminPage::get_per_page();
+
+do
+{
+	$start = ( $url_parms['paged'] - 1 ) * $_per_page;
+	list($_items, $total, $subsubsub_urls) = MP_AdminPage::get_list($start, $_per_page, $url_parms);
+	$url_parms['paged']--;
+} while ( $total <= $start );
+$url_parms['paged']++;
+
+$items 		= array_slice($_items, 0, $_per_page);
+
 ?>
 <div class='wrap'>
 	<div id="icon-mailpress-tools" class="icon32"><br /></div>
@@ -66,7 +61,6 @@ $bulk_actions['delete']	= __('Delete', MP_TXTDOM);
 
 	<form id='posts-filter' action='' method='get'>
 		<input type='hidden' name='page' value='<?php echo MP_AdminPage::screen; ?>' />
-		<?php MP_AdminPage::post_url_parms((array) $url_parms); ?>
 
 		<p class='search-box'>
 			<input type='text' name='s' value="<?php if (isset($url_parms['s'])) echo esc_attr( $url_parms['s'] ); ?>" class="search-input" />
@@ -74,14 +68,14 @@ $bulk_actions['delete']	= __('Delete', MP_TXTDOM);
 		</p>
 
 <?php
-if ($files) {
+if ($items) {
 ?>
 		<div class='tablenav'>
 			<div class='alignleft actions'>
 <?php	MP_AdminPage::get_bulk_actions($bulk_actions); ?>
 			</div>
 
-<?php if ( $page_links ) echo "\n<div class='tablenav-pages'>$page_links</div>\n"; ?>
+<?php MP_AdminPage::pagination($total); ?>
 
 			<br class="clear" />
 		</div>
@@ -99,11 +93,11 @@ if ($files) {
 				  </tr>
 			</tfoot>
 			<tbody id='the-file-list' class='list:file'>
-<?php	foreach ($files as $file) MP_AdminPage::get_row( $file, $url_parms ); ?>
+<?php	foreach ($items as $item) MP_AdminPage::get_row( $item, $url_parms ); ?>
 			</tbody>
 		</table>
 		<div class='tablenav'>
-<?php 	if ( $page_links ) echo "			<div class='tablenav-pages'>$page_links</div>"; ?>
+<?php MP_AdminPage::pagination($total, 'bottom'); ?>
 			<div class='alignleft actions'>
 <?php	MP_AdminPage::get_bulk_actions($bulk_actions, 'action2'); ?>
 			</div>

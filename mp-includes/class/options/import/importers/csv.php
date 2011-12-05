@@ -1,5 +1,5 @@
 <?php
-class MP_import_csv extends MP_Import_importer_abstract
+class MP_import_csv extends MP_import_importer_
 {
 	var $id = 'csv';
 
@@ -94,7 +94,7 @@ class MP_import_csv extends MP_Import_importer_abstract
 <?php 	if (class_exists('MailPress_mailinglist')) : ?>
 		<h3><?php _e('Mailing list', MP_TXTDOM); ?></h3>
 		<p><?php _e('Optional, you can import the MailPress users in a specific mailing list ...', MP_TXTDOM); ?></p>
-<?php		MP_Mailinglists::dropdown(array('name' => 'mailinglist', 'htmlid' => 'mailinglist', 'selected' => get_option(MailPress_mailinglist::option_name_default), 'hierarchical' => true, 'orderby' => 'name', 'hide_empty' => '0', 'show_option_none' => ' ')); ?>
+<?php		MP_Mailinglist::dropdown(array('name' => 'mailinglist', 'htmlid' => 'mailinglist', 'selected' => get_option(MailPress_mailinglist::option_name_default), 'hierarchical' => true, 'orderby' => 'name', 'hide_empty' => '0', 'show_option_none' => ' ')); ?>
 <?php endif; ?>
 <?php if (class_exists('MailPress_newsletter')) : ?>
 		<h3><?php _e('Newsletter', MP_TXTDOM); ?></h3>
@@ -185,7 +185,7 @@ class MP_import_csv extends MP_Import_importer_abstract
 
 		$this->sniff(2, false);
 
-		if ( !file_exists( $this->file) ) {	$this->message_report("File not found" . $this->file); return false;}
+		if ( !is_file($this->file) ) {	$this->message_report("File not found" . $this->file); return false;}
 
 		$this->emailcol = $_POST['is_email'];
 		$this->namecol  = $_POST['is_name'];
@@ -198,7 +198,7 @@ class MP_import_csv extends MP_Import_importer_abstract
 				$this->mailinglist_ID = $_POST['mailinglist'];
 				add_filter('MailPress_mailinglist_default', array(&$this, 'mailinglist_default'), 8, 1);
 
-				$mailinglist_name = MP_Mailinglists::get_name($this->mailinglist_ID);
+				$mailinglist_name = MP_Mailinglist::get_name($this->mailinglist_ID);
 			}
 		}
 

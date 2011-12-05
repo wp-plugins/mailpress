@@ -1,1 +1,1 @@
-<?php include('_mail.php');
+<?php $this->get_template_part('_mail');

@@ -87,7 +87,7 @@ $xformat_date['mdy'] = __('m d y', MP_TXTDOM);
 		<items>
 			<year_end>
 				<select_num>
-					<text><![CDATA[<?php _e('&nbsp;ending at : ', MP_TXTDOM); ?>]]></text>
+					<text><![CDATA[<?php _e('&#160;ending at : ', MP_TXTDOM); ?>]]></text>
 					<min><?php echo( date('Y') - 120 ); ?></min>
 					<max><?php echo( date('Y') +  50 ); ?></max>
 					<default><?php echo(date('Y')); ?></default>

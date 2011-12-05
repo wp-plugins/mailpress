@@ -50,7 +50,7 @@ var mp_refresh = {
 
 	stop : function() {
 		jQuery('#MP_Refresh').attr('checked',false);
-		jQuery('div#mp_message').html('<div><p>&nbsp;</p></div>');
+		jQuery('div#mp_message').html('<div><p>&#160;</p></div>');
 		jQuery.cancel( 'mp_refresh.update' );
 	},
 

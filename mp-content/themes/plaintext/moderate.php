@@ -24,7 +24,8 @@ $_the_content .= "\n\n";
 
 $moderator = (isset($mail->p->title)) ? true : false;
 
-$_the_actions .= (isset($url['approve'])) 
+$_the_actions  = '';
+$_the_actions .= (isset($url['approve']))
 						? __('Approve')  . " [{$url['approve']}]\n"
 						: __('View all') . " [{$url['comments']}#comments\n";
 $_the_actions .= ( EMPTY_TRASH_DAYS ) 
@@ -32,4 +33,4 @@ $_the_actions .= ( EMPTY_TRASH_DAYS )
 						: __('Delete')   . " [{$url['delete']}]\n";
 $_the_actions .=				  __('Spam')     . " [{$url['spam']}]\n";
 
-include('_mail.php');
+$this->get_template_part('_mail');

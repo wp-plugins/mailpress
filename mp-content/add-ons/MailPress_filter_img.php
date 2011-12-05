@@ -6,7 +6,7 @@ Plugin Name: MailPress_filter_img
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Filter_img
 Description: This is just an add-on for MailPress to filter ALL html img tags before mailing them.
 Author: Andre Renaut
-Version: 5.1.1
+Version: 5.2
 Author URI: http://www.mailpress.org
 */
 
@@ -48,8 +48,8 @@ class MailPress_filter_img
 
 		if (isset($option['align']))
 		{
-			if ('center' == $option['align']) 	$default_attr['align'] = 'middle';
-			elseif ('none' != $option['align']) $default_attr['align'] = $option['align'];
+			if ('center' == $option['align']) 	$default_style['text-align'] = 'center';
+			elseif ('none' != $option['align']) $default_style['float']      = $option['align'];
 		}
 
 		if (!empty($option['extra_style']))
@@ -79,9 +79,6 @@ class MailPress_filter_img
 
 		$inline_attr  = array_merge($wattr , $default_attr , $inline_attr );
 		$inline_style = array_merge($wstyle, $default_style, $inline_style);
-
-// solve possible conflicts between align and float
-		//if (isset($inline_attr['align']) && isset($inline_style['float'])) unset($inline_attr['align']);		
 
 // format style
 		$wstyle = '';

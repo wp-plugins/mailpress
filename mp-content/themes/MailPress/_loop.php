@@ -1,4 +1,4 @@
-<table <?php $this->classes('nopmb ctable'); ?> cellspacing='0' cellpadding='0'>
+<table <?php $this->classes('nopmb ctable'); ?>>
 <?php while (have_posts()) : the_post(); ?>
 	<tr>
 		<td <?php $this->classes('nopmb ctd'); ?>>
@@ -12,9 +12,7 @@
 <?php the_time('F j, Y') ?>
 				</small>
 				<div <?php $this->classes('nopmb'); ?>>
-					<p <?php $this->classes('nopmb cp'); ?>>
 <?php $this->the_content( __( '(more...)' ) ); ?>
-					</p>
 				</div>
 			</div>
 		</td>

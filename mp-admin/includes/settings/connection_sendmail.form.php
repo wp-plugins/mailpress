@@ -19,7 +19,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 					<input name='connection_sendmail[cmd]' id='sendmail-custom' type='radio'<?php checked($connection_sendmail['cmd'],'custom'); ?>  value='custom' class='connection_sendmail' />
 					<?php _e('using a custom command', MP_TXTDOM); ?>
 				</label>
-				&nbsp;&nbsp;
+				&#160;&#160;
 				<span id='sendmail-custom-cmd' <?php if ('custom' != $connection_sendmail['cmd']) echo " style='display:none;'"; ?>>
 					<input type='text' size='40' name='connection_sendmail[custom]' value="<?php echo $connection_sendmail['custom']; ?>" />					
 				</span>

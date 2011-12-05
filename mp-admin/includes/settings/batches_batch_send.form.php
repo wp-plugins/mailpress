@@ -42,13 +42,13 @@ if (!isset($batch_send)) $batch_send = get_option(MailPress_batch_send::option_n
 				<td class='pr10'>
 					<label for='batch_send_wp_cron'>
 						<input value='wpcron' name='batch_send[batch_mode]' id='batch_send_wp_cron' class='submit_batch tog' type='radio' <?php checked('wpcron', $batch_send['batch_mode']); ?> />
-						&nbsp;&nbsp;
+						&#160;&#160;
 						<?php _e('WP_Cron', MP_TXTDOM); ?>
 					</label>
 				</td>
 				<td class='wpcron pr10 toggl2<?php if ('wpcron' != $batch_send['batch_mode']) echo ' hide'; ?>' style='padding-left:10px;vertical-align:bottom;'>
 					<?php _e('Every', MP_TXTDOM); ?>
-					&nbsp;&nbsp;
+					&#160;&#160;
 					<select name='batch_send[every]' id='every' >
 <?php MP_AdminPage::select_option($xevery, $batch_send['every']);?>
 					</select>
@@ -58,17 +58,17 @@ if (!isset($batch_send)) $batch_send = get_option(MailPress_batch_send::option_n
 				<td class='pr10'>
 					<label for='batch_send_other'>
 						<input value='other' name='batch_send[batch_mode]' id='batch_send_other' class='submit_batch tog' type='radio' <?php checked('other', $batch_send['batch_mode']); ?> />
-						&nbsp;&nbsp;
+						&#160;&#160;
 						<?php _e('Other', MP_TXTDOM); ?>
 					</label>
 				</td>
 				<td class='other pr10 toggl2<?php if ('other' != $batch_send['batch_mode']) echo ' hide'; ?>' >
-					<?php printf(__('see sample in "%1$s"', MP_TXTDOM), MP_CONTENT_DIR . 'xtras/mp_batch_send'); ?>
+					<?php printf(__('see sample in "%1$s"', MP_TXTDOM), '<code>' . MP_CONTENT_DIR . 'xtras/mp_batch_send' . '</code>'); ?>
 				</td>
 			</tr>
 		</table>
 	</td>
 </tr>
-<tr valign='top' style='line-height:10px;padding:0;'><td style='line-height:10px;padding:0;'>&nbsp;</td></tr>
+<tr valign='top' style='line-height:10px;padding:0;'><td style='line-height:10px;padding:0;'>&#160;</td></tr>
 <tr valign='top' class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>
 <tr><th></th><td colspan='4'></td></tr>

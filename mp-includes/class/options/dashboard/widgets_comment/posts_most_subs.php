@@ -1,5 +1,5 @@
 <?php
-class MP_Dashboard_posts_most_subs extends MP_Dashboard_widget_abstract
+class MP_Dashboard_posts_most_subs extends MP_dashboard_widget_
 {
 	var $id = 'mp_posts_most_subs';
 

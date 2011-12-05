@@ -8,10 +8,10 @@ $xport = array (	'25'		=> __('Default SMTP Port', MP_TXTDOM),
 			'custom'	=> __('Custom Port: (Use Box)', MP_TXTDOM)
 ); 
 
-if (!isset($connection_smtp)) $connection_smtp = get_option('MailPress_smtp_config');
+if (!isset($connection_smtp)) $connection_smtp = get_option(MailPress::option_name_smtp);
 
 $connection_smtp['customport']='';
-if (!in_array($connection_smtp['port'], array(25, 465))) 
+if (isset($connection_smtp['port']) && !in_array($connection_smtp['port'], array(25, 465))) 
 {
 	$connection_smtp['customport'] = $connection_smtp['port']; 
 	$connection_smtp['port'] = 'custom';
@@ -29,7 +29,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 				<?php _e('SMTP Server', MP_TXTDOM); ?>  
 			</th>
 			<td colspan='2'>
-				<input type='text' size='25' name='connection_smtp[server]' value='<?php echo esc_attr($connection_smtp['server']); ?>' />
+				<input type='text' size='25' name='connection_smtp[server]' value='<?php echo (isset($connection_smtp['server'])) ? esc_attr($connection_smtp['server']) : ''; ?>' />
 			</td>
 		</tr>
 		<tr<?php if (isset($usernameclass)) echo " class='form-invalid'"; ?>>
@@ -37,7 +37,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 				<?php _e('Username', MP_TXTDOM); ?>  
 			</th>
 			<td colspan='2'>
-				<input type='text' size='25' name='connection_smtp[username]' value='<?php echo esc_attr($connection_smtp['username']); ?>' />
+				<input type='text' size='25' name='connection_smtp[username]' value='<?php echo (isset($connection_smtp['username'])) ? esc_attr($connection_smtp['username']) : ''; ?>' />
 			</td>
 		</tr>
 		<tr>
@@ -45,7 +45,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 				<?php _e('Password', MP_TXTDOM); ?>   
 			</th>
 			<td colspan='2'>
-				<input type='password' size='25' name='connection_smtp[password]' value="<?php echo esc_attr($connection_smtp['password']); ?>" />
+				<input type='password' size='25' name='connection_smtp[password]' value="<?php echo (isset($connection_smtp['password'])) ? esc_attr($connection_smtp['password']) : ''; ?>" />
 			</td>
 		</tr>
 		<tr>
@@ -56,7 +56,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 				<select name='connection_smtp[ssl]'>
 <?php MP_AdminPage::select_option($xssl,$connection_smtp['ssl']);?>
 				</select>
-				&nbsp;
+				&#160;
 <i><?php printf( __('Site registered socket transports are : <b>%1$s</b>', MP_TXTDOM), (array() == stream_get_transports()) ? __('none', MP_TXTDOM) : implode('</b>, <b>',stream_get_transports())); ?></i>
 			</td>
 		</tr>
@@ -68,7 +68,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 				<select name='connection_smtp[port]'>
 <?php MP_AdminPage::select_option($xport,$connection_smtp['port']);?>
 				</select>
-				&nbsp;
+				&#160;
 				<input type='text' size='4' name='connection_smtp[customport]' value='<?php echo $connection_smtp['customport']; ?>' />
 			</td>
 		</tr>
@@ -81,10 +81,10 @@ $formname = substr(basename(__FILE__), 0, -4);
 			</td>
 			<td id='POP3'<?php  echo (isset($connection_smtp['smtp-auth']) && ('@PopB4Smtp' == $connection_smtp['smtp-auth'])) ? '' : " style='display:none;'"; if (isset($pophostclass)) echo " class='form-invalid'"; ?>> 
 				<?php _e("POP3 hostname", MP_TXTDOM); ?>
-				&nbsp;&nbsp;
+				&#160;&#160;
 				<input type='text' size='25' name='connection_smtp[pophost]' value='<?php if (isset($connection_smtp['pophost'])) echo esc_attr($connection_smtp['pophost']); ?>' />
 				<?php _e("port", MP_TXTDOM); ?>
-				&nbsp;&nbsp;
+				&#160;&#160;
 				<input type='text' size='4' name='connection_smtp[popport]'  value='<?php if (isset($connection_smtp['popport'])) echo $connection_smtp['popport']; ?>' />
 			</td>
 		</tr>

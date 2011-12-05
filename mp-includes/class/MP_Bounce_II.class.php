@@ -1,5 +1,5 @@
 <?php
-class MP_Bounce_II extends MP_Bounce_api
+class MP_Bounce_II extends MP_bounce_
 {
 	public $option_name 	= MailPress_bounce_handling_II::option_name;
 	public $option_name_pop3= MailPress_bounce_handling_II::option_name_pop3;
@@ -528,11 +528,11 @@ class MP_Bounce_II extends MP_Bounce_api
 		$mp_user_id = $this->get_tag('X-MailPress-user-id', 1);
 		if (false === $mp_user_id)
 		{
-			if (!$mail = MP_Mails::get($mail_id)) return false;
+			if (!$mail = MP_Mail::get($mail_id)) return false;
 
 			if (!is_email($mail->toemail)) return false;
 
-			$mp_user_id = MP_Users::get_id_by_email($mail->toemail);
+			$mp_user_id = MP_User::get_id_by_email($mail->toemail);
                 
 			if (!$mp_user_id) return false;
 		}

@@ -1,5 +1,5 @@
 <?php
-class MP_Forms_field_type_textarea extends MP_Forms_field_type_abstract
+class MP_Form_field_type_textarea extends MP_form_field_type_
 {
 	var $id			= 'textarea';
 	var $order 			= 20;
@@ -33,4 +33,4 @@ class MP_Forms_field_type_textarea extends MP_Forms_field_type_abstract
 		$this->attributes_filter_css();
 	}
 }
-new MP_Forms_field_type_textarea(__('Multi-line Input', MP_TXTDOM));
+new MP_Form_field_type_textarea(__('Multi-line Input', MP_TXTDOM));

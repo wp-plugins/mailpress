@@ -2,7 +2,7 @@
 if (class_exists('MailPress_mailinglist'))
 {
 
-class MP_export_mailinglist_mailinglist extends MP_Import_importer_abstract
+class MP_export_mailinglist_mailinglist extends MP_import_importer_
 {
 	var $id = 'mailinglist_export_mailinglist';
 
@@ -50,7 +50,7 @@ class MP_export_mailinglist_mailinglist extends MP_Import_importer_abstract
 			<label for='download'><?php _e( "Choose the 'From' mailing list :", MP_TXTDOM ); ?></label>
 <?php
 			$dropdown_options = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'htmlid' => 'export_mailinglist', 'name' => 'export_mailinglist', 'selected' => get_option(MailPress_mailinglist::option_name_default));
-			MP_Mailinglists::dropdown($dropdown_options);
+			MP_Mailinglist::dropdown($dropdown_options);
 ?>
 		</p>
 		<p class='submit'>
@@ -76,7 +76,7 @@ class MP_export_mailinglist_mailinglist extends MP_Import_importer_abstract
 			<input type='hidden' name='from_mailinglist' value='<?php echo $_POST['export_mailinglist']; ?>' />
 <?php
 			$dropdown_options = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'htmlid' => 'to_mailinglist', 'name' => 'to_mailinglist', 'exclude' => $_POST['export_mailinglist'] );
-			MP_Mailinglists::dropdown($dropdown_options);
+			MP_Mailinglist::dropdown($dropdown_options);
 ?>
 		</p>
 		<p class='submit'>
@@ -104,11 +104,11 @@ class MP_export_mailinglist_mailinglist extends MP_Import_importer_abstract
 		{
 			$count++;
 
-			$mp_user_mls = MP_Mailinglists::get_object_terms($user->id);
+			$mp_user_mls = MP_Mailinglist::get_object_terms($user->id);
 			if (!in_array($to, $mp_user_mls)) 
 			{
 				$mp_user_mls[] = $to;
-				if (MP_Mailinglists::set_object_terms($user->id, $mp_user_mls)) $exported++;
+				if (MP_Mailinglist::set_object_terms($user->id, $mp_user_mls)) $exported++;
 				continue;
 			}
 			$this->message_report(" **WARNING* ! mp_user #{$user->id} already in mailing list #{$to} !");

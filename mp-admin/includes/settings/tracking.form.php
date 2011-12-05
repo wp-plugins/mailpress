@@ -24,7 +24,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 foreach ($tracking_reports['user'] as $k => $v)
 {
 ?>
-<input type='checkbox' id='<?php echo $k; ?>' name='tracking[<?php echo $k; ?>]' value='<?php echo $k; ?>' <?php if (isset($tracking[$k])) checked($k,$tracking[$k]); ?> /><label for='<?php echo $k; ?>'>&nbsp;<?php echo $v['title']; ?></label><br />
+<input type='checkbox' id='<?php echo $k; ?>' name='tracking[<?php echo $k; ?>]' value='<?php echo $k; ?>' <?php if (isset($tracking[$k])) checked($k,$tracking[$k]); ?> /><label for='<?php echo $k; ?>'>&#160;<?php echo $v['title']; ?></label><br />
 <?php
 }
 ?>
@@ -34,7 +34,7 @@ foreach ($tracking_reports['user'] as $k => $v)
 foreach ($tracking_reports['mail'] as $k => $v)
 {
 ?>
-<input type='checkbox' id='<?php echo $k; ?>' name='tracking[<?php echo $k; ?>]' value='<?php echo $k; ?>' <?php if (isset($tracking[$k])) checked($k,$tracking[$k]); ?> /><label for='<?php echo $k; ?>'>&nbsp;<?php echo $v['title']; ?></label><br />
+<input type='checkbox' id='<?php echo $k; ?>' name='tracking[<?php echo $k; ?>]' value='<?php echo $k; ?>' <?php if (isset($tracking[$k])) checked($k,$tracking[$k]); ?> /><label for='<?php echo $k; ?>'>&#160;<?php echo $v['title']; ?></label><br />
 <?php
 }
 ?>

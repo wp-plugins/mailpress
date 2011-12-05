@@ -1,5 +1,5 @@
 <?php
-class MP_Tracking_module_m001 extends MP_Tracking_module_abstract
+class MP_Tracking_module_m001 extends MP_tracking_module_
 {
 	var $id	= 'm001';
 	var $context= 'normal';
@@ -15,9 +15,9 @@ class MP_Tracking_module_m001 extends MP_Tracking_module_abstract
 
 			foreach($tracks as $track) 
 			{
-				$tracking_url = esc_url(MailPress::url( MailPress_tracking_u, array('id' => $track->user_id) ));
-				$action = "<a href='$tracking_url' target='_blank' title='" . __('See tracking results', MP_TXTDOM ) . "'>" . MP_Users::get_email($track->user_id) . '</a>';
-				echo '<tr><td><abbr title="' . $track->tmstp . '">' . substr($track->tmstp, 0, 10) . '</abbr></td><td>&nbsp;' . $action . '</td><td>&nbsp;' . MailPress_tracking::translate_track($track->track, $track->mail_id) . '</td></tr>';
+				$tracking_url = esc_url(MP_::url( MailPress_tracking_u, array('id' => $track->user_id) ));
+				$action = "<a href='$tracking_url' target='_blank' title='" . __('See tracking results', MP_TXTDOM ) . "'>" . MP_User::get_email($track->user_id) . '</a>';
+				echo '<tr><td><abbr title="' . $track->tmstp . '">' . substr($track->tmstp, 0, 10) . '</abbr></td><td>&#160;' . $action . '</td><td>&#160;' . MailPress_tracking::translate_track($track->track, $track->mail_id) . '</td></tr>';
 			}
 			echo '</table>';
 		}

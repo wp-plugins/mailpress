@@ -3,7 +3,7 @@ class MP_Log
 {
 	const noMP_Log	= 123456789;
 
-	function __construct($name, $path, $plug = '', $force = false, $option_name = 'general' )
+	function __construct($name, $args = array())
 	{
 		$this->errors 	= array (	1 	=> 'E_ERROR', 
 							2 	=> 'E_WARNING', 
@@ -20,19 +20,26 @@ class MP_Log
 							4096 	=> 'E_RECOVERABLE_ERROR', 
 							8191 	=> 'E_ALL' ); 
 
+
+		$defaults = array(	'path'		=> MP_ABSPATH,
+						'force'		=> false,
+						'option_name'	=> 'general',
+		);
+		$r = wp_parse_args( $args, $defaults );
+		extract( $r );
+
 		$this->name 	= $name;
 		$this->path 	= $path . 'tmp';
-		$this->plug 	= $plug;
 		$this->option_name= $option_name;
 
 		global $wpdb;
-		$this->ftmplt	= (isset($wpdb->blogid)) ? 'MP_Log' . '_' . $wpdb->blogid . '_' . $this->plug . '_' . $this->name . '_' : 'MP_Log' . '_' . $this->plug . '_' . $this->name . '_';
+		$this->ftmplt	= 'MP_Log' . '_' . $wpdb->blogid . '_' . $this->name . '_';
 
 		$this->file 	= $this->path . '/' . $this->ftmplt . gmdate('Ymd', current_time('timestamp')) . '.txt';
 
 		$logs = get_option(MailPress::option_name_logs);
 
-		$this->log_options = $logs[$this->option_name];
+		$this->log_options = (isset($logs[$this->option_name])) ? $logs[$this->option_name] : array();
 
 		$this->level 	= (isset($this->log_options['level']))    ? (int) $this->log_options['level'] 	: self::noMP_Log ;
 		$this->levels	= array (	1 	=> 1, 
@@ -63,7 +70,7 @@ class MP_Log
 
 	function start($force = false)
 	{
-		$plugin_version = '**** (' . MP_Version . ')';
+		$plugin_version = ' **** (' . MP_Version . ')';
 
 		$page = '';
 		$page = $_SERVER['REQUEST_URI'];
@@ -71,11 +78,11 @@ class MP_Log
 		$this->data = "\n";
 
 		if ($force) 
-			$this->log (" **** Start logging **** {$this->plug}_{$this->name} *** log forced$plugin_version");
+			$this->log (" **** Start logging **** {$this->name} *** log forced$plugin_version");
 		elseif (!empty($page))
-			$this->log (" **** Start logging **** {$this->plug}_{$this->name} *** level : {$this->level}$plugin_version **** $page");
+			$this->log (" **** Start logging **** {$this->name} *** level : {$this->level}$plugin_version **** $page");
 		else
-			$this->log (" **** Start logging **** {$this->plug}_{$this->name} *** level : {$this->level}$plugin_version");
+			$this->log (" **** Start logging **** {$this->name} *** level : {$this->level}$plugin_version");
 
 // purge log
 		$now = date_i18n('Ymd', current_time('timestamp'));
@@ -84,7 +91,7 @@ class MP_Log
 		
 		if ($now != $this->lastpurge) 
 		{
-			$this->dopurge ();
+			$this->dopurge();
 			$logs = get_option(MailPress::option_name_logs);
 			$logs[$this->option_name]['lastpurge'] = $now;
 			update_option (MailPress::option_name_logs, $logs);
@@ -140,7 +147,7 @@ class MP_Log
 
 		$y = ($y) ? "TRUE" : "FALSE";
 
-		$this->log (" **** End   logging **** {$this->plug}_{$this->name} *** level : $this->level **** status : $y ");
+		$this->log (" **** End   logging **** {$this->name} *** level : $this->level **** status : $y ");
 
 		$this->fh = fopen($this->file , 'a+');
 		fputs($this->fh, $this->data); 
@@ -151,29 +158,24 @@ class MP_Log
 		foreach ($xs as $x) if (isset($$x)) unset($$x);
 	}
 
-	function dopurge ()
+	function dopurge()
 	{
 		$xs = array();
 		$l = opendir($this->path);
 		if ($l) 
 		{
-			while ( ($file = readdir($l)) !== false ) if (strstr($file, $this->ftmplt) !== false ) $xs[] = $file;
+			while ( ($file = readdir($l)) !== false ) if ( preg_match('#' . $this->ftmplt . '[0-9]#', $file) ) $xs[] = $file;
 			@closedir($l);
 		}
 
-		if (count($xs) > $this->lognbr)
+		sort($xs);
+		$y = count($xs) - $this->lognbr + 1;
+
+		while ($y > 0)
 		{
-			$y = count($xs) - $this->lognbr;
-			sort($xs);
-		 	foreach ($xs as $x)
-			{
-				unlink($this->path . '/' . $x);
-
-				$this->log (" **** Purged log file **** " . $this->path . '/' . $x);
-
-				if (0 == $y) break; 
-				$y--;
-			}
+			@unlink($file = $this->path . '/' . array_shift($xs));
+			$this->log (" **** Purged log file **** " . $file);
+			$y--;
 		}
 	}
 }

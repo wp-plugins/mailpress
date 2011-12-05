@@ -1,5 +1,5 @@
 <?php
-class MP_AdminPage extends MP_Admin_page_list
+class MP_AdminPage extends MP_adminpage_list_
 {
 	const screen 	= MailPress_page_forms;
 	const capability 	= 'MailPress_manage_forms';
@@ -18,7 +18,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		elseif ( !empty($_REQUEST['action2']) && ($_REQUEST['action2'] != -1) )	$action = $_REQUEST['action2'];
 		if (!isset($action)) return;
 
-		$url_parms = self::get_url_parms(array('s', 'apage', 'id'));
+		$url_parms = self::get_url_parms(array('s', 'paged', 'id'));
 		$checked	= (isset($_GET['checked'])) ? $_GET['checked'] : array();
 
 		$count	= str_replace('bulk-', '', $action);
@@ -28,7 +28,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		switch($action) 
 		{
 			case 'bulk-delete' :
-				foreach($checked as $id) if (MP_Forms::delete($id)) $$count++;
+				foreach($checked as $id) if (MP_Form::delete($id)) $$count++;
 
 				if ($$count) $url_parms[$count] = $$count;
 				$url_parms['message'] = ($$count <= 1) ? 3 : 4;
@@ -36,20 +36,20 @@ class MP_AdminPage extends MP_Admin_page_list
 			break;
 
 			case 'add':
-				$e = MP_Forms::insert($_POST);
+				$e = MP_Form::insert($_POST);
 				$url_parms['message'] = ( $e ) ? 1 : 91;
 				unset($url_parms['s']);
 				self::mp_redirect( self::url(MailPress_forms, $url_parms) );
 			break;
 			case 'duplicate' :
-				MP_Forms::duplicate($url_parms['id']);
+				MP_Form::duplicate($url_parms['id']);
 				self::mp_redirect( self::url(MailPress_forms, $url_parms) );
 			break;
 			case 'edited':
 				unset($_GET['action']);
 				if (!isset($_POST['cancel'])) 
 				{
-					$e = MP_Forms::insert($_POST);
+					$e = MP_Form::insert($_POST);
 					$url_parms['message'] = ( $e ) ? 2 : 92 ;
 					$url_parms['action']  = 'edit';
 				}
@@ -59,7 +59,7 @@ class MP_AdminPage extends MP_Admin_page_list
 			break;
 
 			case 'delete':
-				MP_Forms::delete($url_parms['id']);
+				MP_Form::delete($url_parms['id']);
 				unset($url_parms['id']);
 
 				$url_parms['message'] = 3;
@@ -72,7 +72,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function title() 
 	{ 
-		new MP_Forms_field_types();
+		new MP_Form_field_types();
 		if (isset($_GET['id'])) { global $title; $title = __('Edit Form', MP_TXTDOM); } 
 	}
 
@@ -89,7 +89,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function print_scripts($scripts = array())  
 	{
-		wp_register_script( 'mp-ajax-response',	'/' . MP_PATH . 'mp-includes/js/mp_ajax_response.js', array('jquery'), false, 1);
+		wp_register_script( 'mp-ajax-response',	'/' . MP_PATH . 'mp-includes/js/mp_ajax_response.js', array('jquery', 'jquery-ui-tabs'), false, 1);
 		wp_localize_script( 'mp-ajax-response', 	'wpAjax', array(
 			'noPerm' => __('An unidentified error has occurred.'), 
 			'broken' => __('An unidentified error has occurred.'), 
@@ -113,7 +113,7 @@ class MP_AdminPage extends MP_Admin_page_list
 			'l10n_print_after' => 'try{convertEntities(MP_AdminPageL10n);}catch(e){};' 
 		));
 
-		wp_register_script( self::screen, 		'/' . MP_PATH . 'mp-admin/js/forms.js', array('mp-taxonomy', 'mp-thickbox', 'jquery-ui-tabs'), false, 1);
+		wp_register_script( self::screen, 		'/' . MP_PATH . 'mp-admin/js/forms.js', array('mp-taxonomy', 'mp-thickbox'), false, 1);
 
 		$scripts[] = self::screen;
 		parent::print_scripts($scripts);
@@ -157,7 +157,7 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		static $row_class = '';
 
-		$form = MP_Forms::get( $form );
+		$form = MP_Form::get( $form );
 
 // url's
 		$url_parms['action'] 	= 'edit';
@@ -178,7 +178,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		$args = array();
 		$args['id'] 	= $form->id;
 		$args['action'] 	= 'ifview';
-		$args['KeepThis'] = 'true'; $args['TB_iframe']= 'true'; $args['width'] = '600'; $args['height']	= '400';
+		$args['preview_iframe'] = 1; $args['TB_iframe']= 'true';
 		$view_url		= esc_url(self::url(MP_Action_url, $args));
 
 		$url_parms['action'] 	= 'delete';
@@ -190,8 +190,8 @@ class MP_AdminPage extends MP_Admin_page_list
 		$actions['edit_templates'] = '<a href="' . $edit_templates_url . '">' . __('Templates', MP_TXTDOM) . '</a>';
 		$actions['edit_fields'] = '<a href="' . $edit_fields_url . '">' . __('Fields', MP_TXTDOM) . '</a>';
 		$actions['duplicate'] = "<a class='dim:" . self::list_id . ":" . self::tr_prefix_id . "-" . $form->id . ":unapproved:e7e7d3:e7e7d3' href='$duplicate_url'>" . __('Duplicate', MP_TXTDOM) . "</a>";
-		$actions['delete'] = "<a class='delete:" . self::list_id . ":" . self::tr_prefix_id . "-" . $form->id . " submitdelete' href='$delete_url'>" . __('Delete') . "</a>";
-		$actions['view'] = "<a class='thickbox' href='$view_url' title=\"" . esc_attr(sprintf(__('Form preview #%1$s (%2$s)', MP_TXTDOM), $form->id, $form->label)) . "\" >" . __('Preview', MP_TXTDOM) . "</a>";
+		$actions['delete'] = "<a class='submitdelete' href='$delete_url'>" . __('Delete') . "</a>";
+		$actions['view'] = "<a class='thickbox thickbox-preview' href='$view_url' title=\"" . esc_attr(sprintf(__('Form preview #%1$s (%2$s)', MP_TXTDOM), $form->id, $form->label)) . "\" >" . __('Preview', MP_TXTDOM) . "</a>";
 
 		$row_class = 'alternate' == $row_class ? '' : 'alternate';
 

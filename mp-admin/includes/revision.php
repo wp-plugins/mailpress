@@ -1,5 +1,5 @@
 <?php
-$autosave_data = MP_Mails::autosave_data();
+$autosave_data = MP_Mail_revision::autosave_data();
 
 $x = array('revision', 'id', 'left', 'right', 'action');
 foreach($x as $xx) global $$xx;
@@ -14,9 +14,9 @@ $right	= (isset($right)) 	? absint($right) : false;
 switch ( $action )
 {
 	case 'diff' :
-		$left_revision  	= MP_Mails::get( $left );
-		$right_revision 	= MP_Mails::get( $right);
-		$mail    		= MP_Mails::get($id);
+		$left_revision  	= MP_Mail::get( $left );
+		$right_revision 	= MP_Mail::get( $right);
+		$mail    		= MP_Mail::get($id);
 
 		$edit_url  = MailPress_edit . '&id=' . $id;
 		$edit_url  = esc_url($edit_url);
@@ -31,13 +31,13 @@ switch ( $action )
 
 	break;
 	default :
-		$revision 	= MP_Mails::get( $revision_id );
-		$mail 	= MP_Mails::get( $id );
+		$revision 	= MP_Mail::get( $revision_id );
+		$mail 	= MP_Mail::get( $id );
 
 		$edit_url  = esc_url(MailPress_edit . '&id=' . $id);
 		$mail_title = '<a href="' . $edit_url . '">' . $mail->subject . '</a>';
 
-		$revision_title = MP_Mails::mail_revision_title( $revision_id , false );
+		$revision_title = MP_Mail_revision::title( $revision_id , false );
 		$h2 = sprintf( __( 'Mail Revision for &#8220;%1$s&#8221; created on %2$s', MP_TXTDOM ), $mail_title, $revision_title );
 
 		$left  = $revision->id;
@@ -56,8 +56,8 @@ switch ( $action )
 		<tr id="revision">
 			<th scope="row"></th>
 			<th scope="col" class="th-full">
-				<span class="alignleft"><?php  printf( __('Older: %s', MP_TXTDOM), MP_Mails::mail_revision_title( $left_revision, $left_link ) ); ?></span>
-				<span class="alignright"><?php printf( __('Newer: %s', MP_TXTDOM), MP_Mails::mail_revision_title( $right_revision, $right_link ) ); ?></span>
+				<span class="alignleft"><?php  printf( __('Older: %s', MP_TXTDOM), MP_Mail_revision::title( $left_revision, $left_link ) ); ?></span>
+				<span class="alignright"><?php printf( __('Newer: %s', MP_TXTDOM), MP_Mail_revision::title( $right_revision, $right_link ) ); ?></span>
 			</th>
 		</tr>
 <?php endif;
@@ -66,7 +66,7 @@ foreach ( $autosave_data as $field => $field_title ) :
 
 	if ( 'diff' == $action ) 
 	{
-		add_filter('_mp_mail_revision_field_toemail', array('MP_Mails', 'display_toemail'), 8, 2);
+		add_filter('_mp_mail_revision_field_toemail', array('MP_Mail', 'display_toemail'), 8, 2);
 
 		$left_content  = apply_filters("_mp_mail_revision_field_$field", $left_revision->$field, $field );
 		$right_content = apply_filters("_mp_mail_revision_field_$field", $right_revision->$field, $field );
@@ -77,7 +77,7 @@ foreach ( $autosave_data as $field => $field_title ) :
 	else 
 	{
 		add_filter("_mp_mail_revision_field_$field", 'htmlspecialchars' );
-		$content = ('toemail' == $field) ? MP_Mails::display_toemail($revision->$field, $revision->toname) : apply_filters("_mp_mail_revision_field_$field", $revision->$field, $field, $revision->toname );
+		$content = ('toemail' == $field) ? MP_Mail::display_toemail($revision->$field, $revision->toname) : apply_filters("_mp_mail_revision_field_$field", $revision->$field, $field, $revision->toname );
 	}
 	?>
 		<tr id="revision-field-<?php echo $field; ?>">
@@ -92,9 +92,9 @@ if ( 'diff' == $action && $identical ) :
 <?php endif; ?>
 	</table>
 	<br class="clear" />
-	<h2><?php //echo $title; ?></h2>
+	<h2>&#160;</h2>
 <?php
 $args = array( 'format' => 'form-table', 'parent' => true, 'right' => $right, 'left' => $left, 'type' => 'autosave' );
-MP_Mails::list_mail_revisions( $mail, $args );
+MP_Mail_revision::listing( $mail, $args );
 ?>
 </div>

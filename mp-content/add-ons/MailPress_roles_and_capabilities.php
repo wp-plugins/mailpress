@@ -6,7 +6,7 @@ Plugin Name: MailPress_roles_and_capabilities
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Roles_and_capabilities
 Description: This is just an add-on for MailPress to manage roles &amp; capabilities.
 Author: Andre Renaut
-Version: 5.1.1
+Version: 5.2
 Author URI: http://www.mailpress.org
 */
 
@@ -107,7 +107,7 @@ class MailPress_roles_and_capabilities
 		}
 		if (!add_option ($rcs_option, $rcs )) update_option ($rcs_option, $rcs);
 
-		MailPress::mp_die(1);
+		MP_::mp_die(1);
 	}
 }
 new MailPress_roles_and_capabilities();

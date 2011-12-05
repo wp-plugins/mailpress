@@ -1,5 +1,5 @@
 <?php
-class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
+class MP_Form_field_type_geotag extends MP_form_field_type_
 {
 	var $id	= 'geotag';
 	var $order	= 96;
@@ -223,18 +223,18 @@ class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
 		{
 			define ('MP_FORM_GEOTAG', true);
 			if (!isset($options['gmap']))   $js .= "\n<script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=false'></script>";
-			if (!isset($options['jQuery'])) $js .= "\n<script type='text/javascript' src='" . get_option('siteurl') . "/wp-includes/js/jquery/jquery.js'></script>";
+			if (!isset($options['jQuery'])) $js .= "\n<script type='text/javascript' src='" . site_url() . "/wp-includes/js/jquery/jquery.js'></script>";
 
-			$m = array( 'mp_gmapL10n'	=> array(	'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/', 
+			$m = array( 'mp_gmapL10n'	=> array(	'url'		=> site_url() . '/' . MP_PATH . 'mp-admin/images/', 
 										'center'	=> esc_js(__('center', MP_TXTDOM)), 
 										'rgeocode'	=> esc_js(__('find place', MP_TXTDOM)), 
 										'changemap'	=> esc_js(__('change map', MP_TXTDOM))
 								)
 				);
 			$js .= "\n<script type='text/javascript'>\n/* <![CDATA[ */\n";
-			foreach ( $m as $var => $val ) $js .= "var $var = " . MailPress::print_scripts_l10n_val($val);
+			foreach ( $m as $var => $val ) $js .= "var $var = " . MP_::print_scripts_l10n_val($val);
 			$js .= ";\n/* ]]> */\n</script>";
-			$js .= "\n<script type='text/javascript' src='" . get_option('siteurl') . '/' . MP_PATH . "mp-includes/js/mp_field_type_geotag.js'></script>\n";
+			$js .= "\n<script type='text/javascript' src='" . site_url() . '/' . MP_PATH . "mp-includes/js/mp_field_type_geotag.js'></script>\n";
 		}
 
 		$x = array();
@@ -242,7 +242,7 @@ class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
 		foreach (array('lat', 'lng', 'center_lat', 'center_lng', 'maptype', 'zoomlevel', 'zoom', 'changemap', 'center', 'lat_lng', 'lat_lng_disabled', 'rgeocode') as $opt) $x[$opt] = (isset($options[$opt])) ? $options[$opt] : '0';
 		$m = array( 'mp_field_type_geotag_' . $this->field->form_id .  '_'. $this->field->id => $x );
 		$js .= "\n<script type='text/javascript'>\n/* <![CDATA[ */\n";
-		foreach ( $m as $var => $val ) $js .= "var $var = " . MailPress::print_scripts_l10n_val($val);
+		foreach ( $m as $var => $val ) $js .= "var $var = " . MP_::print_scripts_l10n_val($val);
 		$js .= ";\njQuery(document).ready( function() { var mp_form_" . $this->field->form_id . '_' . $this->field->id  . " = new mp_field_type_geotag(mp_field_type_geotag_" . $this->field->form_id .  '_'. $this->field->id . "); } );\n/* ]]> */\n</script>";
 
 	//end
@@ -254,9 +254,9 @@ class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
 		if (empty($sf)) $sf = 'alone';
 
 		$form_formats['alone']		=  '{{map}}';
-		$form_formats['latlng']		=  '{{map}}lat:{{lat}}&nbsp;lng:{{lng}}';
-		$form_formats['geocode']	=  '{{map}}{{geocode}}&nbsp;{{geocode_button}}';
-		$form_formats['latlng_geocode']=  '{{map}}lat:{{lat}}&nbsp;lng:{{lng}}<br />{{geocode}}&nbsp;{{geocode_button}}';
+		$form_formats['latlng']		=  '{{map}}lat:{{lat}}&#160;lng:{{lng}}';
+		$form_formats['geocode']	=  '{{map}}{{geocode}}&#160;{{geocode_button}}';
+		$form_formats['latlng_geocode']=  '{{map}}lat:{{lat}}&#160;lng:{{lng}}<br />{{geocode}}&#160;{{geocode_button}}';
 
 		$form_formats = $this->get_formats($form_formats);
 
@@ -277,4 +277,4 @@ class MP_Forms_field_type_geotag extends MP_Forms_field_type_abstract
 		return sprintf($html, $tag_map, $id_map, $tag_lat, $id_lat, $tag_lng, $id_lng, $tag_geocode, $id_geocode, $tag_geocode_button, $id_geocode_button, $id_lat_d, $id_lng_d) . "\n$js\n";
 	}
 }
-new MP_Forms_field_type_geotag(__('Geotag', MP_TXTDOM));
+new MP_Form_field_type_geotag(__('Geotag', MP_TXTDOM));

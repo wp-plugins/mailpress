@@ -6,7 +6,7 @@ Plugin Name: MailPress_tracking_rewrite_url
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Tracking_rewrite_url
 Description: This is just an add-on for MailPress to rewrite tracking urls : See <span style='color:#D54E21;'>.htaccess</span> in mp-content/xtras/mp_tracking_rewrite_url + <span style='color:#D54E21;'>Requires Tracking add-on</span>.
 Author: Andre Renaut
-Version: 5.1.1
+Version: 5.2
 Author URI: http://www.mailpress.org
 */
 

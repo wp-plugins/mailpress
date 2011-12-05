@@ -52,7 +52,7 @@ var mp_fileupload = {
 		html += (url) ? '<input type="checkbox" class="mp_fileupload_cb" name="Files[' + id + ']" value="' + id + '" checked="checked" />' : maybe;
 
 		html += '</td>';
-		html += '<td>&nbsp;';
+		html += '<td>&#160;';
 
 		html += (url) ? '<a href="' + url + '" style="text-decoration:none;">' + name + '</a>' : '<span>' + name + '</span>';
 		html += '<div id="mp_htmlupload_input_file_' + id + '" style="display:none;"></div>';

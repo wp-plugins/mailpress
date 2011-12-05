@@ -1,6 +1,10 @@
 <?php
 $url_parms = MP_AdminPage::get_url_parms();
 
+//
+// MANAGING H2
+//
+
 $h2 = __('Edit Mails', MP_TXTDOM);
 $subtitle = '';
 
@@ -9,33 +13,6 @@ if (isset($url_parms['author']))
 	$author_user = get_userdata( $url_parms['author'] );
 	$subtitle .= ' ' . sprintf(__('by %s'), esc_html( $author_user->display_name ));
 }
-
-//
-// MANAGING PAGINATION + SUBSUBSUB URL
-//
-
-if( !isset($_per_page) || $_per_page <= 0 ) $_per_page = 20;
-$url_parms['apage'] = isset($url_parms['apage']) ? $url_parms['apage'] : 1;
-do
-{
-	$start = ( $url_parms['apage'] - 1 ) * $_per_page;
-
-	list($_mails, $total, $subsubsub_urls) = MP_AdminPage::get_list($start, $_per_page + 5, $url_parms); // Grab a few extra
-
-	$url_parms['apage']--;		
-} while ( $total <= $start );
-$url_parms['apage']++;
-
-$page_links = paginate_links	(array(	'base' => add_query_arg( 'apage', '%#%' ), 
-							'format' => '', 
-							'total' => ceil($total / $_per_page), 
-							'current' => $url_parms['apage']
-						)
-					);
-if ($url_parms['apage'] <= 1) unset($url_parms['apage']);
-
-$mails 		= array_slice($_mails, 0, $_per_page);
-$extra_mails 	= array_slice($_mails, $_per_page);
 
 //
 // MANAGING MESSAGE / CHECKBOX RESULTS
@@ -92,38 +69,56 @@ if (isset($url_parms['status']))
 }
 if (current_user_can('MailPress_delete_mails')) $bulk_actions['delete']  	= __('Delete', MP_TXTDOM);
 
+//
+// MANAGING LIST
+//
+
+$url_parms['paged'] = isset($url_parms['paged']) ? $url_parms['paged'] : 1;
+$_per_page = MP_AdminPage::get_per_page();
+
+do
+{
+	$start = ( $url_parms['paged'] - 1 ) * $_per_page;
+	list($_items, $total, $subsubsub_urls) = MP_AdminPage::get_list($start, $_per_page + 5, $url_parms); // Grab a few extra
+	$url_parms['paged']--;		
+} while ( $total <= $start );
+$url_parms['paged']++;
+
+$items 		= array_slice($_items, 0, $_per_page);
+$extra_items 	= array_slice($_items, $_per_page);
+
 ?>
 <div class='wrap'>
 	<div id="icon-mailpress-mails" class="icon32"><br /></div>
 	<div id='mp_message'></div>
 	<h2>
 		<?php echo esc_html( $h2 ); ?> 
-		<a href='<?php echo MailPress_write; ?>' class="button add-new-h2"><?php echo esc_html(__('Add New')); ?></a> 
+		<a href='<?php echo MailPress_write; ?>' class="add-new-h2"><?php echo esc_html(__('Add New')); ?></a> 
 <?php if ( isset($url_parms['s']) ) printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_attr( $url_parms['s'] ) ); ?>
 <?php if ( !empty($subtitle) )      echo    "<span class='subtitle'>$subtitle</span>"; ?>
 	</h2>
 <?php if (isset($message)) MP_AdminPage::message($message); ?>
 
+	<ul class='subsubsub'><?php echo $subsubsub_urls; ?></ul>
+
 	<form id='posts-filter' action='' method='get'>
-		<input type='hidden' name='page' value='<?php echo MP_AdminPage::screen; ?>' />
-		<?php MP_AdminPage::post_url_parms($url_parms, array('mode', 'status')); ?>
-
-		<ul class='subsubsub'><?php echo $subsubsub_urls; ?></ul>
-
 		<p class='search-box'>
 			<input type='text' name='s' value="<?php if (isset($url_parms['s'])) echo esc_attr( $url_parms['s'] ); ?>" class="search-input" />
 			<input type='submit' value="<?php _e( 'Search', MP_TXTDOM ); ?>" class='button' />
 		</p>
 
+		<input type='hidden' name='page' value='<?php echo MP_AdminPage::screen; ?>' />
+<?php MP_AdminPage::post_url_parms($url_parms, array('mode', 'status')); ?>
+
 <?php
-if ($mails) {
+if ($items) {
 ?>
 		<div class='tablenav'>
 			<div class='alignleft actions'>
 <?php	MP_AdminPage::get_bulk_actions($bulk_actions); ?>
 			</div>
 
-<?php if ( $page_links ) echo "\n<div class='tablenav-pages'>$page_links</div>\n"; ?>
+<?php MP_AdminPage::pagination($total); ?>
 
 			<div class='view-switch'>
 				<a href="<?php echo $list_url;   ?>"><img id="view-switch-list"    height="20" width="20" <?php if ( 'list'   == $url_parms['mode'] ) echo "class='current'" ?> alt="<?php _e('List View', MP_TXTDOM)   ?>" title="<?php _e('List View', MP_TXTDOM)   ?>" src="../wp-includes/images/blank.gif" /></a>
@@ -145,16 +140,16 @@ if ($mails) {
 				</tr>
 			</tfoot>
 			<tbody id='the-mail-list' class='list:mail'>
-<?php foreach ($mails as $mail) 		MP_AdminPage::get_row( $mail->id, $url_parms ); ?>
+<?php foreach ($items as $item) 		MP_AdminPage::get_row( $item->id, $url_parms ); ?>
 			</tbody>
-<?php if ($extra_mails) : ?>
+<?php if ($extra_items) : ?>
 			<tbody id='the-extra-mail-list' class='list:mail' style='display: none;'>
-<?php foreach ($extra_mails as $mail) 	MP_AdminPage::get_row( $mail->id, $url_parms ); ?>
+<?php foreach ($extra_items as $item) 	MP_AdminPage::get_row( $item->id, $url_parms ); ?>
 			</tbody>
 <?php endif; ?>
 		</table>
 		<div class='tablenav'>
-<?php if ( $page_links ) echo "\n<div class='tablenav-pages'>$page_links</div>\n"; ?>
+<?php MP_AdminPage::pagination($total, 'bottom'); ?>
 			<div class='alignleft actions'>
 <?php	MP_AdminPage::get_bulk_actions($bulk_actions, 'action2'); ?>
 			</div>

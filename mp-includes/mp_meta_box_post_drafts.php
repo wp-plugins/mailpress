@@ -13,7 +13,7 @@ foreach($results as $draft) $drafts[$draft->id] = $x->viewsubject($draft->subjec
 unset($results);
 
 // posts in drafts
-$post_drafts = MP_Posts::get_term_objects($post->ID);
+$post_drafts = MP_Post::get_term_objects($post->ID);
 
 ?>
 <div id='mpdrafts'>

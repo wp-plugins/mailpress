@@ -1,5 +1,5 @@
 <?php
-class MP_AdminPage extends MP_Admin_page_list
+class MP_AdminPage extends MP_adminpage_list_
 {
 	const screen 	= 'mailpress_tracking_u';
 	const capability 	= 'MailPress_tracking_users';
@@ -21,6 +21,9 @@ class MP_AdminPage extends MP_Admin_page_list
 	public static function print_styles($styles = array()) 
 	{
 		$styles[] = 'dashboard';
+
+		wp_register_style ('mp_user', 	'/' . MP_PATH . 'mp-admin/css/users.css' );
+		$styles[] = 'mp_user';
 
 		wp_register_style ( self::screen, 	'/' . MP_PATH . 'mp-admin/css/tracking_u.css' );
 
@@ -86,7 +89,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 		global $mp_user;
 
-		$mp_user = $user = MP_Users::get( $id );
+		$mp_user = $user = MP_User::get( $id );
 		$the_user_status = $user->status;
 
 		static $to_do_add_action = true;
@@ -109,8 +112,15 @@ class MP_AdminPage extends MP_Admin_page_list
 // actions
 		$actions = array();
 		$actions['edit']      = "<a href='$edit_url'  title='" . sprintf( __('Edit "%1$s"', MP_TXTDOM), $mp_user->email ) . "'>" . __('Edit') . '</a>';
+
+// table row 
+//	class
+		$row_class = '';
+		if ('waiting' == $the_user_status) $row_class = 'unapproved';
+		if ('bounced' == $the_user_status) $row_class = 'bounced';
+		if ('unsubscribed' == $the_user_status) $row_class = 'unsubscribed';
 ?>
-	<tr id="user-<?php echo $mp_user->id; ?>">
+	<tr id="user-<?php echo $id; ?>" class='<?php echo $row_class; ?>'>
 <?php
 		$columns = self::get_columns();
 
@@ -214,14 +224,14 @@ class MP_AdminPage extends MP_Admin_page_list
 
 	public static function get_flag_IP() {
 		global $mp_user;
-		return (('ZZ' == $mp_user->created_country) || empty($mp_user->created_country)) ? '' : "<img class='flag' alt='" . strtolower($mp_user->created_country) . "' title='" . strtolower($mp_user->created_country) . "' src='" . get_option('siteurl') . '/' . MP_PATH . 'mp-admin/images/flag/' . strtolower($mp_user->created_country) . ".gif' />\n";
+		return (('ZZ' == $mp_user->created_country) || empty($mp_user->created_country)) ? '' : "<img class='flag' alt='" . strtolower($mp_user->created_country) . "' title='" . strtolower($mp_user->created_country) . "' src='" . site_url() . '/' . MP_PATH . 'mp-admin/images/flag/' . strtolower($mp_user->created_country) . ".gif' />\n";
 	}
 
 	public static function get_icon_users($mp_user)
 	{
 		if ('unsubscribed' != $mp_user->status) return;
 ?>
-			<img class='unsubscribed' alt="<?php _e('Unsubscribed', MP_TXTDOM); ?>" title="<?php _e('Unsubscribed', MP_TXTDOM); ?>" src='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>mp-admin/images/unsubscribed.png' />
+			<span class='icon unsubscribed' title="<?php _e('Unsubscribed', MP_TXTDOM); ?>"></span>
 <?php
 	}
 }

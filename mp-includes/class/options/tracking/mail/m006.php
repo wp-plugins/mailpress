@@ -1,5 +1,5 @@
 <?php
-class MP_Tracking_module_m006 extends MP_Tracking_module_abstract
+class MP_Tracking_module_m006 extends MP_tracking_module_
 {
 	const prefix = 'tracking_m006';
 
@@ -24,7 +24,7 @@ class MP_Tracking_module_m006 extends MP_Tracking_module_abstract
 		wp_localize_script( 'mp-gmap3', 	'mp_gmapL10n', array(
 			'id'		=> $_GET['id'],
 			'type'	=> 'mp_mail',
-			'url'		=> get_option( 'siteurl' ) . '/' . MP_PATH . 'mp-admin/images/',
+			'url'		=> site_url() . '/' . MP_PATH . 'mp-admin/images/',
 			'ajaxurl'	=> MP_Action_url,
 			'center'	=> esc_js(__('center', MP_TXTDOM)),
 			'changemap'	=> esc_js(__('change map', MP_TXTDOM))
@@ -32,7 +32,7 @@ class MP_Tracking_module_m006 extends MP_Tracking_module_abstract
 		$scripts[] = 'mp-gmap3';
 
 	// markerclusterer
-		wp_register_script( 'mp-markerclusterer',	'/' . MP_PATH . 'mp-includes/js/markerclusterer/markerclusterer_packed.js', false, false, 1);
+		wp_register_script( 'mp-markerclusterer',	'/' . MP_PATH . 'mp-includes/js/markerclusterer/markerclusterer_compiled.js', false, false, 1);
 		$scripts[] = 'mp-markerclusterer';
 
 		return $scripts;
@@ -57,9 +57,9 @@ class MP_Tracking_module_m006 extends MP_Tracking_module_abstract
 					if (!isset($def_lng) && isset($x['lng'])) $def_lng = $x['lng'];
 					$x['ip'] = $track->ip;
 
-					$user = MP_Users::get($track->user_id);
+					$user = MP_User::get($track->user_id);
 					if (get_option('show_avatars')) $x['info'] = get_avatar( $user->email, 32 );
-					$flag   = (('ZZ' == $user->created_country) || empty($user->created_country)) ? '' : "<img class='flag' alt='" . strtolower($user->created_country) . "' title='" . strtolower($user->created_country) . "' src='" . get_option('siteurl') . '/' . MP_PATH . 'mp-admin/images/flag/' . strtolower($user->created_country) . ".gif' />";
+					$flag   = (('ZZ' == $user->created_country) || empty($user->created_country)) ? '' : "<img class='flag' alt='" . strtolower($user->created_country) . "' title='" . strtolower($user->created_country) . "' src='" . site_url() . '/' . MP_PATH . 'mp-admin/images/flag/' . strtolower($user->created_country) . ".gif' />";
  					$x['info'] = "<table cellspacing='0' cellpadding='0'><tr><td style='text-align:center;'>" . ((get_option('show_avatars')) ? get_avatar( $user->email, 32 ) : '') . "<br style='line-height:0;' /><br style='line-height:3px;' />{$flag}</td><td style='text-align:center;padding-left:5px;'>{$user->email}<br />" . esc_js($user->name) . "<br />{$track->ip}</td></tr></table>";
 
 					$m['t006'][] = $x;
@@ -71,7 +71,7 @@ class MP_Tracking_module_m006 extends MP_Tracking_module_abstract
 /* <![CDATA[ */
 <?php
 	// t006_user_settings
-		$u['t006_user_settings'] = MP_Mailmeta::get($mail->id, '_MailPress_' . self::prefix);
+		$u['t006_user_settings'] = MP_Mail_meta::get($mail->id, '_MailPress_' . self::prefix);
 		if (!$u['t006_user_settings']) $u['t006_user_settings'] = get_user_option('_MailPress_' . self::prefix);
 		if (!isset($def_lat)) $def_lat = 48.8352;
 		if (!isset($def_lng)) $def_lng = 2.4718;

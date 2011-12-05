@@ -1,8 +1,8 @@
 <?php 
 
-require_once('../MP_Iframe_abstract.class.php');
+require_once('../MP_iframe_.class.php');
 
-class MP_Std extends MP_Iframe_abstract
+class MP_Std extends MP_Iframe_
 {
 	function init()
 	{
@@ -13,7 +13,7 @@ class MP_Std extends MP_Iframe_abstract
 
 	function print_styles()
 	{
-		wp_register_style( 'mp_form',    get_option('siteurl') . '/' . MP_PATH_CONTENT . 'advanced/subscription-form/style.css' );
+		wp_register_style( 'mp_form',    site_url() . '/' . MP_PATH_CONTENT . 'advanced/subscription-form/style.css' );
 		wp_enqueue_style(  'mp_form');
 	}
 

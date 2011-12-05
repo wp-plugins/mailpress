@@ -34,7 +34,7 @@ $divs = array();
 	foreach($_tabs as $_tab => $desc)
 	{
 		$class = (isset($mp_general['tab']) && ($mp_general['tab'] == $_tab)) ? " class='ui-tabs-selected'" : '';
-		echo "\t\t\t<li$class><a href='#fragment-$_tab'><span class='button-secondary'>$desc</span></a></li>\n";
+		echo "\t\t\t<li$class><a href='#fragment-$_tab' title='" . esc_attr($desc) . "'><span class='button-secondary'>$desc</span></a></li>\n";
 	}
 ?>
 		</ul>

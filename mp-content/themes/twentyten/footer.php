@@ -4,7 +4,7 @@
 				</div>
 				<div <?php $this->classes('nopmb w100'); ?>>
 					<div <?php $this->classes('colophon'); ?>>
-						<table cellspacing='0' cellpadding='0' <?php $this->classes('nopmb w100'); ?>>
+						<table <?php $this->classes('nopmb w100'); ?>>
 							<tr>
 								<td <?php $this->classes('nopmb'); ?>>
 									<div <?php $this->classes('nopmb site-info'); ?>>
@@ -12,7 +12,7 @@
 									</div>
 								</td>
 								<td <?php $this->classes('nopmb'); ?>>
-									<table cellspacing='0' cellpadding='0' style='width:auto;float:right'>
+									<table style='width:auto;float:right'>
 										<tr>
 											<td <?php $this->classes('nopmb wauto'); ?>>
 												<span <?php $this->classes('nopmb site-generator'); ?>>
@@ -20,10 +20,10 @@ Proudly mailed by
 												</span>
 											</td>
 											<td <?php $this->classes('nopmb wauto'); ?>>
-												<img src='images/mailpress.png' <?php $this->classes('powered_img'); ?> />
+												<img src='images/mailpress.png' <?php $this->classes('powered_img'); ?> alt='img' />
 											</td>
 											<td <?php $this->classes('nopmb wauto'); ?>>
-												<a <?php $this->classes('powered_a'); ?> href="http://mailpress.org/" title="The WordPress Mailing plugin" rel="generator">
+												<a <?php $this->classes('powered_a'); ?> href="http://mailpress.org/" title="The WordPress Mailing plugin">
 MailPress
 												</a>
 											</td>
@@ -35,9 +35,9 @@ MailPress
 					</div>
 				</div>
 <?php if (isset($this->args->unsubscribe)) { ?>
-				<div <?php $this->classes('mail_link'); ?>>
-					<a href='{{unsubscribe}}'  <?php $this->classes('mail_link_a'); ?>>Manage your subscriptions</a>
-				</div>
+			<div <?php $this->classes('mail_link'); ?>>
+				<a href='{{unsubscribe}}'  <?php $this->classes('mail_link_a a'); ?>>Manage your subscriptions</a>
+			</div>
 <?php } ?>
 			</div>
 		</div>

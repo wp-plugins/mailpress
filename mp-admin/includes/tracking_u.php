@@ -12,7 +12,7 @@ global $title, $mp_user;
 <?php MP_AdminPage::columns_list(); ?>
 			</tr>
 		</thead>
-		<tbody id='the-mail-list'>
+		<tbody id='the-user-list'>
 <?php MP_AdminPage::get_row( $_GET['id'], array(), false, true); ?>
 		</tbody>
 	</table>

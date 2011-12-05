@@ -1,5 +1,5 @@
 <?php
-class MP_export extends MP_Import_importer_abstract
+class MP_export extends MP_import_importer_
 {
 	var $id = 'csv_export';
 
@@ -82,11 +82,11 @@ class MP_export extends MP_Import_importer_abstract
 
 		$file['name'] = $this->file;
 		$file['tmp_name'] = MP_ABSPATH . 'tmp/' . $this->file;
-		$file['type'] = 'txt';
+		$file['type'] = 'csv';
 
 		$this->url = $this->insert_attachment($file);
 
-		if (!$this->url) $this->url = get_option('siteurl') . '/' . MP_PATH . 'tmp/' . $this->file;
+		if (!$this->url) $this->url = site_url() . '/' . MP_PATH . 'tmp/' . $this->file;
 
 		$this->message_report('   SUCCESS  ! file available at ' . $this->url);
 		return count($users);

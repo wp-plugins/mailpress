@@ -11,24 +11,24 @@ $max_rows = 5;
 //
 
 $_per_page = $max_cols * $max_rows;
-$url_parms['apage'] = isset($url_parms['apage']) ? $url_parms['apage'] : 1;
+$url_parms['paged'] = isset($url_parms['paged']) ? $url_parms['paged'] : 1;
 do
 {
-	$start = ( $url_parms['apage'] - 1 ) * $_per_page;
+	$start = ( $url_parms['paged'] - 1 ) * $_per_page;
 
 	list($themes, $total, $th) = MP_AdminPage::get_list($start, $_per_page, $url_parms);
 
-	$url_parms['apage']--;		
+	$url_parms['paged']--;		
 } while ( $total <= $start );
-$url_parms['apage']++;
+$url_parms['paged']++;
 
-$page_links = paginate_links	(array(	'base' => add_query_arg( 'apage', '%#%' ), 
+$page_links = paginate_links	(array(	'base' => add_query_arg( 'paged', '%#%' ), 
 							'format' => '', 
 							'total' => ceil($total / $_per_page), 
-							'current' => $url_parms['apage']
+							'current' => $url_parms['paged']
 						)
 					);
-if ($url_parms['apage'] <= 1) unset($url_parms['apage']);
+if ($url_parms['paged'] <= 1) unset($url_parms['paged']);
 
 ?>
 <div class='wrap'>
@@ -44,7 +44,7 @@ if ($url_parms['apage'] <= 1) unset($url_parms['apage']);
 		elseif ( isset($_GET['activated']) ) 
 		{
 ?>
-<div id='message2' class='updated fade'><p><?php printf(__('New MailPress theme activated.', MP_TXTDOM), get_option('home') . '/'); ?></p></div>
+<div id='message2' class='updated fade'><p><?php printf(__('New MailPress theme activated.', MP_TXTDOM), home_url() . '/'); ?></p></div>
 <?php 
 		}
 ?>
@@ -56,7 +56,7 @@ $ct = $th->current_theme_info();
 
 if ( $ct->screenshot ) : 
 ?>
-		<img src='<?php echo get_option('siteurl') . '/' . $ct->stylesheet_dir . '/' . $ct->screenshot; ?>' alt='<?php _e('Current MailPress theme preview', MP_TXTDOM); ?>' />
+		<img src='<?php echo $ct->theme_root_uri . '/' .  $ct->stylesheet . '/' . $ct->screenshot; ?>' alt='<?php _e('Current MailPress theme preview', MP_TXTDOM); ?>' />
 <?php endif; ?>
 		<h4><?php printf(__('%1$s %2$s by %3$s'), $ct->title, $ct->version, $ct->author); ?></h4>
 		<p class="description"><?php echo $ct->description; ?></p>

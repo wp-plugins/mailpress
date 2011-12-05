@@ -6,7 +6,7 @@ Plugin Name: MailPress_sync_wordpress_user
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Sync_wordpress_user
 Description: This is just an add-on for MailPress to synchronise with WordPress users
 Author: Andre Renaut
-Version: 5.1.1
+Version: 5.2
 Author URI: http://www.mailpress.org
 */
 
@@ -24,8 +24,7 @@ class MailPress_sync_wordpress_user
 	{
 // for wordpress hooks
 // for plugin
-		add_action('plugins_loaded', 			array(__CLASS__, 'plugins_loaded'));
-		add_action('MailPress_add-ons_loaded', 	array(__CLASS__, 'plugins_loaded'));
+		add_action('MailPress_addons_loaded', 	array(__CLASS__, 'addons_loaded'));
 
 // WP user management
 		$settings = get_option(self::option_name);
@@ -68,7 +67,7 @@ class MailPress_sync_wordpress_user
 
 //// Plugin ////
 
-	public static function plugins_loaded()
+	public static function addons_loaded()
 	{
 	// for role & capabilities
 		$_tabs = apply_filters('MailPress_settings_tab', array());
@@ -100,19 +99,19 @@ class MailPress_sync_wordpress_user
 		$wp_user = self::get_wp_user($wp_user_id);
 		if ($wp_user)
 		{
-			$oldid = get_user_meta( $wp_user->ID, self::meta_key);
+			$oldid = get_user_meta( $wp_user->ID, self::meta_key, true);
 			if ($oldid)
 			{
-				$oldemail = MP_Users::get_email($oldid);
+				$oldemail = MP_User::get_email($oldid);
 				if ($oldemail == $wp_user->user_email) return true;
 				else
 				{
 					self::sync($wp_user);
-					$newid =  MP_Users::get_id_by_email($wp_user->user_email);
+					$newid =  MP_User::get_id_by_email($wp_user->user_email);
 
 					if (apply_filters('MailPress_has_subscriptions', false, $oldid)) do_action('MailPress_sync_subscriptions', $oldid, $newid);
 					$count = self::count_emails($oldemail);
-					if (0 == $count)							MP_Users::delete($oldid);
+					if (0 == $count)							MP_User::delete($oldid);
 				}
 			}
 			else
@@ -127,14 +126,14 @@ class MailPress_sync_wordpress_user
 		$wp_user = self::get_wp_user($wp_user_id);
 		if ($wp_user) 
 		{
-			$id = get_user_meta( $wp_user->ID, self::meta_key);
+			$id = get_user_meta( $wp_user->ID, self::meta_key, true);
 			if ($id)
 			{
-				$email = MP_Users::get_email($id);
+				$email = MP_User::get_email($id);
 				if ($email)
 				{
 					$count = self::count_emails($email);
-					if ((1 == $count) && !apply_filters('MailPress_has_subscriptions', false, $id)) MP_Users::delete($id);
+					if ((1 == $count) && !apply_filters('MailPress_has_subscriptions', false, $id)) MP_User::delete($id);
 				}
 			}
 		}
@@ -146,10 +145,10 @@ class MailPress_sync_wordpress_user
 		$id = get_user_meta( $wid, self::meta_key, true );
 		if ($id)
 		{
-			$mp_user = MP_Users::get($id);
+			$mp_user = MP_User::get($id);
 			if (stripslashes($_POST['display_name']) != $mp_user->name)
 			{
-				MP_Users::update_name($id, $_POST['display_name']);
+				MP_User::update_name($id, $_POST['display_name']);
 			}
 			if ($_POST['email'] != $mp_user->email)
 			{
@@ -168,7 +167,7 @@ class MailPress_sync_wordpress_user
 
 	public static function mp_insert_user($mp_user_id)
 	{
-		$mp_email	= MP_Users::get_email($mp_user_id);
+		$mp_email	= MP_User::get_email($mp_user_id);
 		$wp_users  	= self::get_wp_users_by_email($mp_email);
 		if (is_array($wp_users)) foreach ($wp_users as $wp_user) update_user_meta( $wp_user->ID, self::meta_key, $mp_user_id);
 	}
@@ -186,19 +185,19 @@ class MailPress_sync_wordpress_user
 
  // Already a MailPress user ?
 
-		$id = get_user_meta( $wp_user->ID, self::meta_key);
+		$id = get_user_meta( $wp_user->ID, self::meta_key, true);
 		if ($id)
 		{
-			if (MP_Users::get_email($id) == $wp_user->user_email) return true;
+			if (MP_User::get_email($id) == $wp_user->user_email) return true;
 		}
 
 // Mail already in MailPress table ?
 
-		$id =  MP_Users::get_id_by_email($wp_user->user_email);
+		$id =  MP_User::get_id_by_email($wp_user->user_email);
 		if ($id) 
 		{
 			update_user_meta( $wp_user->ID, self::meta_key, $id );
-			MP_Users::set_status($id, 'active');
+			MP_User::set_status($id, 'active');
 			return true;										  
 		}
 
@@ -213,14 +212,14 @@ class MailPress_sync_wordpress_user
 
 		if ('activate' == $type) 
 		{
-			if (!MP_Users::insert($wp_user->user_email, $wp_user->display_name, array('status' => 'active')))	return false; // user not inserted
+			if (!MP_User::insert($wp_user->user_email, $wp_user->display_name, array('status' => 'active')))	return false; // user not inserted
 		}
 		else
 		{
-			$return = MP_Users::add($wp_user->user_email, $wp_user->display_name);
+			$return = MP_User::add($wp_user->user_email, $wp_user->display_name);
 			if (!$return['result']) 				return false; // user not inserted
 		}
-		$id = MP_Users::get_id_by_email($wp_user->user_email);
+		$id = MP_User::get_id_by_email($wp_user->user_email);
 		update_user_meta( $wp_user->ID, self::meta_key, $id );
 		return true;
 	}
@@ -260,7 +259,7 @@ class MailPress_sync_wordpress_user
 // for install
 	public static function install()
 	{
-		$users = get_users_of_blog();
+		$users = get_users();
 		if ($users) foreach($users as $user) self::sync($user);
 	}
 
@@ -316,7 +315,7 @@ class MailPress_sync_wordpress_user
 	<td>
 		<label for='sync_wordpress_user_register_form'>
 			<input type='hidden' name='sync_wordpress_user_on' value='on' />
-			<input type='checkbox' name='sync_wordpress_user[register_form]' id='sync_wordpress_user_register_form'<?php if (isset($sync_wordpress_user['register_form'])) checked($sync_wordpress_user['register_form'], 'on'); ?> />&nbsp;&nbsp;<?php _e('Registration Form', MP_TXTDOM); ?><br />
+			<input type='checkbox' name='sync_wordpress_user[register_form]' id='sync_wordpress_user_register_form'<?php if (isset($sync_wordpress_user['register_form'])) checked($sync_wordpress_user['register_form'], 'on'); ?> />&#160;&#160;<?php _e('Registration Form', MP_TXTDOM); ?><br />
 		</label>
 	</td>
 </tr>

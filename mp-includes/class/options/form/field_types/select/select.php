@@ -1,5 +1,5 @@
 <?php
-class MP_Forms_field_type_select extends MP_Forms_field_type_abstract
+class MP_Form_field_type_select extends MP_form_field_type_
 {
 	var $id			= 'select';
 	var $order			= 30;
@@ -73,7 +73,7 @@ class MP_Forms_field_type_select extends MP_Forms_field_type_abstract
 				if (isset($ys[2]) && ('selected' == trim($ys[2]))) $selected[] = $k;
 			}
 		}
-		return (isset($options)) ? MailPress::select_option($options, $selected, false) : false;
+		return (isset($options)) ? MP_::select_option($options, $selected, false) : false;
 	}
 	public static function no_reset($options, $post_value)
 	{
@@ -107,4 +107,4 @@ class MP_Forms_field_type_select extends MP_Forms_field_type_abstract
 		return $options;
 	}
 }
-new MP_Forms_field_type_select(__('Drop-down list', MP_TXTDOM));
+new MP_Form_field_type_select(__('Drop-down list', MP_TXTDOM));

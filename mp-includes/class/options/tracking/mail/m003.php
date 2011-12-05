@@ -1,5 +1,5 @@
 <?php
-class MP_Tracking_module_m003 extends MP_Tracking_module_abstract
+class MP_Tracking_module_m003 extends MP_tracking_module_
 {
 	var $id 	= 'm003';
 	var $context= 'normal';

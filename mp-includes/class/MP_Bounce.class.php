@@ -1,5 +1,5 @@
 <?php
-class MP_Bounce extends MP_Bounce_api
+class MP_Bounce extends MP_bounce_
 {
 	public $option_name 	= MailPress_bounce_handling::option_name;
 	public $option_name_pop3= MailPress_bounce_handling::option_name_pop3;
@@ -41,9 +41,9 @@ class MP_Bounce extends MP_Bounce_api
 						if (empty($matches)) continue 2;
 						$bounce_email	= $matches[0][0];
 						$mail_id		= $matches[0][1];
-						if (!$mail = MP_Mails::get($mail_id)) continue 2;
+						if (!$mail = MP_Mail::get($mail_id)) continue 2;
 						if (!is_email($mail->toemail))        continue 2;
-						$mp_user_id 	= MP_Users::get_id_by_email($mail->toemail);
+						$mp_user_id 	= MP_User::get_id_by_email($mail->toemail);
 						if (!$mp_user_id) continue 2;
 					break;
 					case (preg_match_all("/[a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~\.-]+@[\._a-zA-Z0-9-]{2,}+/i", $header, $matches, PREG_SET_ORDER) && ($bounce_email = is_email($matches[0][0])) ) :
@@ -52,7 +52,7 @@ class MP_Bounce extends MP_Bounce_api
 							case 'X-Failed-Recipients' :
 							case 'Final-Recipient' :
 								$mail_id = -1;
-								$mp_user_id = MP_Users::get_id_by_email($bounce_email);
+								$mp_user_id = MP_User::get_id_by_email($bounce_email);
 								if (!$mp_user_id) continue 3;
 							break;
 							default :

@@ -1,7 +1,7 @@
 <?php
 global $mp_user;
 
-$url_parms = MP_AdminPage::get_url_parms(array('mode', 'status', 's', 'apage', 'author', 'mailinglist', 'newsletter', 'startwith'));
+$url_parms = MP_AdminPage::get_url_parms(array('mode', 'status', 's', 'paged', 'author', 'mailinglist', 'newsletter', 'startwith'));
 
 //
 // MANAGING RESULTS
@@ -9,7 +9,7 @@ $url_parms = MP_AdminPage::get_url_parms(array('mode', 'status', 's', 'apage', '
 
 if (!isset($_GET['id'])) MP_AdminPage::mp_redirect( MP_AdminPage::url(MailPress_users, $url_parms) );
 
-$mp_user = MP_Users::get( $_GET['id'] );
+$mp_user = MP_User::get( $_GET['id'] );
 $active  = ('active' == $mp_user->status) ? true : false;
 
 $h2 = sprintf( __('Edit MailPress User # %1$s', MP_TXTDOM), $mp_user->id);
@@ -49,7 +49,7 @@ if (isset($_GET['saved'])) 	{$err += 0; if (!empty($message)) $message .= '<br /
 								</td>
 								<td class='mp_avatar' rowspan='2'>
 <?php if (get_option('show_avatars')) echo get_avatar( $mp_user->email, 64 ) . '<br /><br />'; ?>
-<?php echo MP_Users::get_flag_IP(); ?>
+<?php echo MP_User::get_flag_IP(); ?>
 								</td>
 							</tr>
 							<tr valign='top'>

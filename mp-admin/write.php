@@ -1,5 +1,5 @@
 <?php
-class MP_AdminPage extends MP_Admin_page
+class MP_AdminPage extends MP_adminpage_
 {
 	const screen 	= MailPress_page_write;
 	const capability 	= 'MailPress_edit_mails';
@@ -20,32 +20,32 @@ class MP_AdminPage extends MP_Admin_page
 		switch($action) 
 		{
 			case 'archive' :
-				if (MP_Mails::set_status($id, 'archived'))	$list_url .= '&archived=1';
+				if (MP_Mail::set_status($id, 'archived'))	$list_url .= '&archived=1';
 				self::mp_redirect($list_url);
 			break;
 			case 'unarchive' :
-				if (MP_Mails::set_status($id, 'sent'))		$list_url .= '&unarchived=1';
+				if (MP_Mail::set_status($id, 'sent'))		$list_url .= '&unarchived=1';
 				self::mp_redirect($list_url);
 			break;
 			case 'send' :
-				if ('draft' != MP_Mails::get_status($id)) break;
-				$x = MP_Mails::send_draft($id);
+				if ('draft' != MP_Mail::get_status($id)) break;
+				$x = MP_Mail_draft::send($id);
 				$list_url .= (is_numeric($x))	? '&sent=' . $x : '&notsent=1';
 				self::mp_redirect($list_url);
 			break;
 			case 'delete' :
-				if (MP_Mails::set_status($id, 'delete'))		$list_url .= '&deleted=1';
+				if (MP_Mail::set_status($id, 'delete'))		$list_url .= '&deleted=1';
 				self::mp_redirect($list_url);
 			break;
 
 			case 'draft' :
-				$id = (0 == $_POST['id']) ? MP_Mails::get_id(__CLASS__ . ' ' . __METHOD__ . ' ' . self::screen) : (int) $_POST['id'];
+				$id = (0 == $_POST['id']) ? MP_Mail::get_id(__CLASS__ . ' ' . __METHOD__ . ' ' . self::screen) : (int) $_POST['id'];
 
 				switch (true)
 				{
 				// process attachements
 					case isset($_POST['addmeta']) :
-						MP_Mailmeta::add_meta($id);
+						MP_Mail_meta::add_meta($id);
 						$parm = "&cfsaved=1";
 					break;
 					case isset($_POST['updatemailmeta']) :
@@ -54,7 +54,7 @@ class MP_AdminPage extends MP_Admin_page
 						{
 							$meta_key = $meta['key'];
 							$meta_value = $meta['value'];
-							MP_Mailmeta::update_by_id($meta_id , $meta_key, $meta_value);
+							MP_Mail_meta::update_by_id($meta_id , $meta_key, $meta_value);
 							$cfsaved++;
 						}
 						$parm = "&cfsaved=$cfsaved";
@@ -63,16 +63,16 @@ class MP_AdminPage extends MP_Admin_page
 						$cfdeleted = 0;
 						foreach ($_POST['deletemailmeta'] as $meta_id => $x)
 						{
-							MP_Mailmeta::delete_by_id( $meta_id );
+							MP_Mail_meta::delete_by_id( $meta_id );
 							$cfdeleted++;
 						}
 						$parm = "&cfdeleted=$cfdeleted";
 					break;
 				// process mail
 					default :
-						$id = (0 == $_POST['id']) ? MP_Mails::get_id(__CLASS__ . ' ' . __METHOD__ . ' ' . self::screen) : $_POST['id'];
+						$id = (0 == $_POST['id']) ? MP_Mail::get_id(__CLASS__ . ' ' . __METHOD__ . ' ' . self::screen) : $_POST['id'];
 
-						$scheduled = MP_Mails::update_draft($id);
+						$scheduled = MP_Mail_draft::update($id);
 
 					// what else ?
 						do_action('MailPress_update_meta_boxes_write');
@@ -81,7 +81,7 @@ class MP_AdminPage extends MP_Admin_page
 						if (!$scheduled && isset($_POST['send']))
 						{
 							wp_cache_delete($id, 'mp_mail');
-							$x = MP_Mails::send_draft($id);
+							$x = MP_Mail_draft::send($id);
 							if (is_numeric($x))
 								if (0 == $x)	$parm = "&sent=0";
 								else			$parm = "&sent=$x";
@@ -175,7 +175,7 @@ class MP_AdminPage extends MP_Admin_page
 		wp_register_script( 'mp_html_sifiles', 	'/' . MP_PATH . 'mp-includes/js/fileupload/si.files.js', array(), false, 1);
 		wp_register_script( 'mp_html_upload', 	'/' . MP_PATH . 'mp-includes/js/fileupload/htm.js', array('mp_html_sifiles'), false, 1);
 		wp_localize_script( 'mp_html_upload', 'htmuploadL10n', array(
-			'img' => 'images/wpspin_light.gif', //get_option('siteurl') . '/' . MP_PATH . 'mp-admin/images/loading_small.gif', 
+			'img' => 'images/wpspin_light.gif',
 			'iframeurl' 	=> MP_Action_url, 
 			'uploading' 	=> __('Uploading ...', MP_TXTDOM), 
 			'attachfirst' 	=> __('Attach a file', MP_TXTDOM), 
@@ -242,7 +242,7 @@ class MP_AdminPage extends MP_Admin_page
 
 				'button_height'			=> '24', 
 				'button_width'			=> '132', 
-				'button_image_url'		=> get_option('siteurl') . '/' . MP_PATH . 'mp-includes/images/upload.png', 
+				'button_image_url'		=> site_url() . '/' . MP_PATH . 'mp-includes/images/upload.png', 
 				'button_placeholder_id'		=> 'flash-browse-button', 
 
 				'upload_url' 			=> MP_Action_url, 
@@ -288,7 +288,7 @@ class MP_AdminPage extends MP_Admin_page
 
 		if ($id)
 		{
-			$rev_ids 	= MP_Mailmeta::get($id, '_MailPress_mail_revisions');
+			$rev_ids 	= MP_Mail_meta::get($id, '_MailPress_mail_revisions');
 		}
 		if (isset($rev_ids) && $rev_ids)
 			add_meta_box('revisionbox', 	__('Mail Revisions', MP_TXTDOM), 	array('MP_AdminPage', 'meta_box_revision'), 		self::screen, 'normal', 'high');
@@ -315,7 +315,7 @@ class MP_AdminPage extends MP_Admin_page
 		if ($draft && isset($draft->id))
 		{
 			if (current_user_can('MailPress_delete_mails')) $delete_url = esc_url(MailPress_write  ."&amp;action=delete&amp;id=$draft->id");
-			$preview_url= esc_url(add_query_arg( array('action' => 'iview', 'id' => $draft->id, 'KeepThis' => 'true', 'TB_iframe' => 'true'), MP_Action_url ));
+			$preview_url= esc_url(add_query_arg( array('action' => 'iview', 'id' => $draft->id, 'preview_iframe' => 1, 'TB_iframe' => 'true'), MP_Action_url ));
 			$preview	= "<a class='preview button' target='_blank' href='$preview_url'>" . __('Preview') . "</a>";
 
 	            if ($draft->_scheduled)
@@ -355,11 +355,16 @@ class MP_AdminPage extends MP_Admin_page
 		$th = new MP_Themes();
 		$themes = $th->themes;
 
-		$xthemes = array('' => __('current', MP_TXTDOM));
-		foreach ($themes as $theme) $xthemes[$theme['Template']] = $theme['Template'];
-		unset($xthemes['plaintext']);
+		foreach($themes as $key => $theme)
+		{
+			if ( 'plaintext' == $theme['Stylesheet']) unset($themes[$key]);
+			if ( '_' == $theme['Stylesheet'][0] )     unset($themes[$key]);
+		}
 
-		$current_theme = $themes[$th->current_theme]['Template'];
+		$xthemes = array('' => __('current', MP_TXTDOM));
+		foreach ($themes as $theme) $xthemes[$theme['Stylesheet']] = $theme['Stylesheet'];
+
+		$current_theme = $themes[$th->current_theme]['Stylesheet'];
 		$theme = (isset($draft->theme)) ? $draft->theme : '';
 ?>
 			<div class="misc-pub-section mp_theme">
@@ -411,7 +416,6 @@ class MP_AdminPage extends MP_Admin_page
 
 		$time_adj = current_time('timestamp');
 
-		//$draft_date = ($draft->_scheduled) ? $draft->sent : date('Y-m-d H:i');
 		$draft_date = ($draft->_scheduled) ? $draft->sent : date_i18n('Y-m-d H:i');
 
 		$jj = ($edit) ? mysql2date( 'd', $draft_date, false ) : gmdate( 'd', $time_adj );
@@ -462,19 +466,18 @@ class MP_AdminPage extends MP_Admin_page
 	{
 ?>
 <textarea id='plaintext' name='plaintext' cols='40' rows='1'><?php echo (isset($draft->plaintext)) ? str_replace('&', '&amp;', $draft->plaintext) : ''; ?></textarea>
-<div id='html2txt' class='hidden'>
-	<div id='html2txt-button' class='hide-if-no-js'>
-		<?php _e('Synchronize', MP_TXTDOM); ?><a onclick="return false;" title="<?php echo esc_attr(__('Plaintext from Html', MP_TXTDOM)); ?>" class="html2txt" href="#">
-				<img alt="<?php echo esc_attr(__('Plaintext from Html', MP_TXTDOM)); ?>" src="<?php echo get_option('siteurl') . '/' . MP_PATH; ?>mp-admin/images/html2txt.png" />
-			</a>
-	</div>
+<div id='div_html2txt' class='hidden'>
+	<a id='html2txt' class='hide-if-no-js' onclick="return false;" title="<?php echo esc_attr(__('Plaintext from Html', MP_TXTDOM)); ?>" href="#">
+		<?php _e('Synchronize', MP_TXTDOM); ?> 
+		<img alt="<?php echo esc_attr(__('Plaintext from Html', MP_TXTDOM)); ?>" src="<?php echo site_url() . '/' . MP_PATH; ?>mp-admin/images/html2txt.png" />
+	</a>
 </div>
 <?php
 	}
 /**/
 	public static function meta_box_revision($draft)
 	{
-		MP_Mails::list_mail_revisions($draft->id);
+		MP_Mail_revision::listing($draft->id);
 	}
 /**/
 	public static function meta_box_attachements($draft) 
@@ -517,7 +520,7 @@ var draft_id = <?php echo $draft_id; ?>;
 
 	public static function get_attachements_list($draft_id)
 	{
-		$metas = MP_Mailmeta::has( $draft_id, '_MailPress_attached_file');
+		$metas = MP_Mail_meta::has( $draft_id, '_MailPress_attached_file');
 		if ($metas) foreach($metas as $meta) self::get_attachement_row($meta);
 	}
 
@@ -534,7 +537,7 @@ var draft_id = <?php echo $draft_id; ?>;
 				<td>
 					<input type='checkbox' class='mp_fileupload_cb' checked='checked' name='Files[<?php echo $meta['meta_id']; ?>]' value='<?php echo $meta['meta_id']; ?>' />
 				</td>
-				<td>&nbsp;<a href='<?php echo $href; ?>' style='text-decoration:none;'><?php echo $meta_value['name']; ?></a></td>
+				<td>&#160;<a href='<?php echo $href; ?>' style='text-decoration:none;'><?php echo $meta_value['name']; ?></a></td>
 			</tr>
 		</table>
 	</div>
@@ -549,7 +552,7 @@ var draft_id = <?php echo $draft_id; ?>;
 	<div id='ajax-response'></div>
 <?php
         $id = (isset($draft->id)) ? $draft->id : '';
-		$metadata = MP_Mailmeta::has($id);
+		$metadata = MP_Mail_meta::has($id);
 		$count = 0;
 		if ( !$metadata ) : $metadata = array(); 
 ?>

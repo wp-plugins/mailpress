@@ -4,8 +4,8 @@ Template Name: confirmed
 Subject: [<?php bloginfo('name');?>] <?php printf('%s confirmed', '{{toemail}}'); ?>
 */
 
-$_the_title = 'Congratulations !';
+$this->build->_the_title = 'Congratulations !';
 
-$_the_content = 'You are now a subscriber of ' . get_option('blogname') . ' [' . get_option('siteurl') . ']';
+$this->build->_the_content = sprintf('You are now a subscriber of : %s.', ' [' . site_url() . ']');
 
-include('_mail.php');
+$this->get_template_part('_mail');

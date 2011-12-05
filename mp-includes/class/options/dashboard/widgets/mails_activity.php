@@ -1,5 +1,5 @@
 <?php
-class MP_Dashboard_mails_activity extends MP_Dashboard_widget_abstract
+class MP_Dashboard_mails_activity extends MP_dashboard_widget_
 {
 	var $id = 'mp_mails_activity';
 

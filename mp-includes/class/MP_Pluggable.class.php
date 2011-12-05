@@ -22,7 +22,7 @@ class MP_Pluggable
 			{
 				if (@is_file($attachment))
 				{
-					if ($f) $mail->id = MP_Mails::get_id('wp_mail_3.0');
+					if ($f) $mail->id = MP_Mail::get_id('wp_mail_3.0');
 
 					$object = array(	'name' 	=> basename($attachment), 
 								'mime_type'	=> 'application/octet-stream', 
@@ -30,7 +30,7 @@ class MP_Pluggable
 								'file_fullpath'	=> $attachment, 
 								'guid' 	=> ''
 					);
-					MP_Mailmeta::add( $mail->id, '_MailPress_attached_file', $object );
+					MP_Mail_meta::add( $mail->id, '_MailPress_attached_file', $object );
 				}
 				$f = false;
 			}
@@ -123,20 +123,28 @@ class MP_Pluggable
 
 	public static function wp_notify_postauthor($comment_id, $comment_type='') 
 	{
-		$comment = get_comment($comment_id);
-		$post    = get_post($comment->comment_post_ID);
-		$user    = get_userdata( $post->post_author );
-		$current_user = wp_get_current_user();
+		$comment = get_comment( $comment_id );
+		$post    = get_post( $comment->comment_post_ID );
+		$author  = get_userdata( $post->post_author );
 
-		if ( $comment->user_id == $post->post_author ) return false; 		// The author moderated a comment on his own post
+		// The comment was left by the author
+		if ( $comment->user_id == $post->post_author )
+			return false;
 
-		if ('' == $user->user_email) return false; 					// If there's no email to send the comment to
+		// The author moderated a comment on his own post
+		if ( $post->post_author == get_current_user_id() )
+			return false;
+
+		// If there's no email to send the comment to
+		if ( '' == $author->user_email )
+			return false;
 
 		$comment->author_domain = @gethostbyaddr($comment->comment_author_IP);
 
-		$blogname = get_option('blogname');
+		$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 
 		$url['comments'] = get_permalink($comment->comment_post_ID) . '#comments';
+		$url['permalink']= get_permalink( $comment->comment_post_ID ) . '#comment-' . $comment_id;
 		$url['trash']  = admin_url("comment.php?action=trash&c={$comment->comment_ID}");
 		$url['delete'] = admin_url("comment.php?action=delete&c={$comment->comment_ID}");
 		$url['spam']   = admin_url("comment.php?action=spam&c={$comment->comment_ID}");
@@ -174,6 +182,7 @@ class MP_Pluggable
 			break;
 		}
 		$notify_message .= $url['comments'] . "<br />\r\n<br />\r\n";
+		$notify_message .= sprintf( __('Permalink: %s'), $url['comments']) . "<br />\r\n";
 
 		if ( EMPTY_TRASH_DAYS )
 			$notify_message .= sprintf( __('Trash it: %s'), $url['trash'] ) . "<br />\r\n";
@@ -183,14 +192,14 @@ class MP_Pluggable
 
 		$mail = new stdClass();
 		$mail->Template	= 'moderate';
-		$mail->toemail 	= $user->user_email;
-		$mail->toname     = $user->display_name;
+		$mail->toemail 	= $author->user_email;
+		$mail->toname     = $author->display_name;
 		$mail->subject 	= $subject;
 		$mail->content 	= $notify_message;
 
 		$mail->advanced = new stdClass();
 		$mail->advanced->comment       = $comment;
-		$mail->advanced->user          = $user;
+		$mail->advanced->user          = $author;
 		unset ($post->post_content, $post->post_excerpt);
 		$mail->advanced->post          = $post;
 		$mail->advanced->url           = $url;
@@ -217,29 +226,32 @@ class MP_Pluggable
 	{
 		global $wpdb;
 
-		if( get_option( "moderation_notify" ) == 0 )
+		if ( 0 == get_option( 'moderation_notify' ) )
 			return true;
 
 		$comment = get_comment($comment_id);
-		$post    = get_post($comment->comment_post_ID);
-		$user    = get_userdata( $post->post_author );
-		$current_user = wp_get_current_user();
+		$post = get_post($comment->comment_post_ID);
+		$user = get_userdata( $post->post_author );
+		// Send to the administration and to the post author if the author can modify the comment.
+		$email_to = array( get_option('admin_email') );
+		if ( user_can($user->ID, 'edit_comment', $comment_id) && !empty($user->user_email) && ( get_option('admin_email') != $user->user_email) )
+			$email_to[] = $user->user_email;
 
 		$comment->author_domain = @gethostbyaddr($comment->comment_author_IP);
 		$comment->waiting       = $wpdb->get_var("SELECT count(comment_ID) FROM $wpdb->comments WHERE comment_approved = '0'");
 
-		$blogname = get_option('blogname');
+		$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 
-		$url['approve']  = admin_url("comment.php?action=approve&c={$comment->comment_ID}");
-		$url['trash']  = admin_url("comment.php?action=trash&c={$comment->comment_ID}");
-		$url['delete'] = admin_url("comment.php?action=delete&c={$comment->comment_ID}");
-		$url['spam']   = admin_url("comment.php?action=spam&c={$comment->comment_ID}");
+		$url['approve']= admin_url("comment.php?action=approve&c=$comment_id");
+		$url['trash']  = admin_url("comment.php?action=trash&c=$comment_id");
+		$url['delete'] = admin_url("comment.php?action=delete&c=$comment_id");
+		$url['spam']   = admin_url("comment.php?action=spam&c=$comment_id");
 		$url['moderate'] = admin_url("edit-comments.php?comment_status=moderated");
 
 		switch ($comment->comment_type)
 		{
 			case 'trackback':
-				$notify_message  = sprintf( __('A new trackback on the post"%s" is waiting for your approval'), $post->post_title ) . "<br />\r\n";
+				$notify_message  = sprintf( __('A new trackback on the post "%s" is waiting for your approval'), $post->post_title ) . "<br />\r\n";
 				$notify_message .= get_permalink($comment->comment_post_ID) . "<br />\r\n<br />\r\n";
 				$notify_message .= sprintf( __('Website : %1$s (IP: %2$s , %3$s)'), $comment->comment_author, $comment->comment_author_IP, $comment->author_domain ) . "<br />\r\n";
 				$notify_message .= sprintf( __('URL    : %s'), $comment->comment_author_url ) . "<br />\r\n";
@@ -275,7 +287,6 @@ class MP_Pluggable
 		$notify_message .= $url['moderate'] . "<br />\r\n";
 	
 		$subject = sprintf( __('[%1$s] Please moderate: "%2$s"'), $blogname, $post->post_title );
-		$user    = get_user_by_email( get_option('admin_email') );
 
 		$notify_message = apply_filters('comment_moderation_text', $notify_message, $comment->comment_ID);
 		$subject = apply_filters('comment_moderation_subject', $subject, $comment->comment_ID);
@@ -311,7 +322,12 @@ class MP_Pluggable
 				$mail->p->title		= $post->post_title;
 			/* deprecated */
 	
-		return MailPress::mail($mail);
+		foreach ( $email_to as $email )
+		{
+			$mail->toemail = $email;
+			MailPress::mail($mail);
+		}
+		return true;
 	}
 
 	public static function wp_password_change_notification(&$user) 
@@ -320,19 +336,17 @@ class MP_Pluggable
 	// but check to see if it's the admin whose password we're changing, and skip this
 		if ( $user->user_email == get_option('admin_email') ) return;
 
-		$admin = get_user_by_email( get_option('admin_email') );
-
-		$blogname = get_option('blogname');
+		$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 
 		$mail = new stdClass();
 		$mail->Template	= 'changed_pwd';
-		$mail->toemail 	= $admin->user_email;
-		$mail->toname     = $admin->display_name;
+		$mail->toemail 	= get_option('admin_email');
+		$mail->toname     = '';
 		$mail->subject 	= sprintf(__('[%s] Password Lost/Changed'), $blogname);
 		$mail->content 	= sprintf(__('Password Lost and Changed for user: %s'), $user->user_login) . "<br />\r\n";
 
 			$mail->advanced = new stdClass();
-			$mail->advanced->admin   = $admin;
+			$mail->advanced->admin   = $mail->toemail;
 			$mail->advanced->user    = $user;
 
 		return MailPress::mail($mail);
@@ -340,13 +354,12 @@ class MP_Pluggable
 
 	public static function wp_new_user_notification($user_id, $plaintext_pass = '') 
 	{
-	    	$admin = get_user_by_email( get_option('admin_email') );
 		$user = new WP_User($user_id);
 
 		$user_login = stripslashes($user->user_login);
 		$user_email = stripslashes($user->user_email);
 
-		$blogname = get_option('blogname');
+		$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 
 		$message  = sprintf(__('New user registration on your site %s:'), $blogname) . "<br />\r\n<br />\r\n";
 		$message .= sprintf(__('Username: %s'), $user_login) . "<br />\r\n<br />\r\n";
@@ -354,13 +367,13 @@ class MP_Pluggable
 
 		$mail = new stdClass();
 		$mail->Template	= 'new_user';
-		$mail->toemail 	= $admin->user_email;
-		$mail->toname     = $admin->display_name;
+		$mail->toemail 	= get_option('admin_email');
+		$mail->toname     = '';
 		$mail->subject 	= sprintf(__('[%s] New User Registration'), $blogname);
 		$mail->content 	= $message;
 
 			$mail->advanced = new stdClass();
-	       	$mail->advanced->admin   = $admin;
+	       	$mail->advanced->admin   = $mail->toemail;
 			$mail->advanced->user    = $user;
 
 		/* deprecated */
@@ -369,9 +382,9 @@ class MP_Pluggable
 			$mail->u->email	= $user_email;
 		/* deprecated */
 
-		$ret = MailPress::mail($mail);
+		MailPress::mail($mail);
 
-		if ( empty($plaintext_pass) ) return $ret;
+		if ( empty($plaintext_pass) ) return;
 
 		$user->plaintext_pass = $plaintext_pass;
 
@@ -395,30 +408,30 @@ class MP_Pluggable
 			$mail->u->pwd	= $plaintext_pass;
 		/* deprecated */
 
-		return MailPress::mail($mail);
+		MailPress::mail($mail);
 	}
 
 	public static function retrieve_password_message($message, $key)
 	{
-		$user = ( strpos($_POST['user_login'], '@') ) ? get_user_by_email(trim($_POST['user_login'])) : get_userdatabylogin(trim($_POST['user_login']));
-		if (!$user) return $message;
+		$user = ( strpos($_POST['user_login'], '@') ) ? get_user_by('email', trim( $_POST['user_login'])) : get_user_by('login', trim($_POST['user_login']));
 
 		$user_login = $user->user_login;
 		$user_email = $user->user_email;
 		$url['site']   = network_site_url();
 		$url['reset']  = network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login');
 
-		$_message = __('Someone has asked to reset the password for the following site and username.') . "<br />\r\n<br />\r\n";
+		$_message = __('Someone requested that the password be reset for the following account:') . "<br />\r\n<br />\r\n";
 		$_message .= $url['site'] . "<br />\r\n<br />\r\n";
 		$_message .= sprintf(__('Username: %s'), $user_login) . "<br />\r\n<br />\r\n";
-		$_message .= __('To reset your password visit the following address, otherwise just ignore this email and nothing will happen.') . "<br />\r\n<br />\r\n";	
+		$_message .= __('If this was a mistake, just ignore this email and nothing will happen.') . "<br />\r\n<br />\r\n";	
+		$_message .= __('To reset your password, visit the following address:') . "<br />\r\n<br />\r\n";	
 		$_message .= $url['reset'] . "<br />\r\n";
 
-		$blogname = get_option('blogname');
+		$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 
 		$mail = new stdClass();
 		$mail->Template	= 'retrieve_pwd';
-		$mail->toemail 	= $user->user_email;
+		$mail->toemail 	= $user_email;
 		$mail->toname     = $user->display_name;
 		$mail->subject 	= sprintf( __('[%s] Password Reset'), $blogname );
 		$mail->content 	= $_message;
@@ -432,37 +445,6 @@ class MP_Pluggable
 			$mail->u->login	= $user_login;
 			$mail->u->key	= $key;
 			$mail->u->url	= $url['reset'];
-		/* deprecated */
-
-		if (MailPress::mail($mail)) return false;
-		return $message;
-	}
-
-	public static function password_reset_message($message, $new_pass)
-	{
-		$user->new_pass = $new_pass;
-
-		$_message  = sprintf(__('Username: %s'), $user->user_login) . "<br />\r\n";
-		$_message .= sprintf(__('Password: %s'), $new_pass) . "<br />\r\n";
-		$_message .= wp_login_url() . "<br />\r\n";
-
-		$blogname = get_option('blogname');
-
-		$mail = new stdClass();
-		$mail->Template	= 'reset_pwd';
-		$mail->toemail 	= $user->user_email;
-		$mail->toname     = $user->display_name;
-		$mail->subject 	= sprintf( __('[%s] Your new password'), $blogname );
-		$mail->content 	= $_message;
-
-			$mail->advanced = new stdClass();
-			$mail->advanced->user = $user;
-
-		/* deprecated */
-			$mail->u = new stdClass();
-			$mail->u->login	= $user->user_login;
-			$mail->u->new_pass= $new_pass;
-			$mail->u->url	= wp_login_url();
 		/* deprecated */
 
 		if (MailPress::mail($mail)) return false;

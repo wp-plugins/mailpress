@@ -20,6 +20,7 @@ $capabilities	= array(	'MailPress_edit_dashboard' 	=> array(	'name'	=> __('Dashb
 					'MailPress_edit_mails'		=> array(	'name'	=> __('Mails', MP_TXTDOM),
 												'group'	=> 'mails',
 												'menu'	=> 1,
+												'admin_bar'	=> __('Mails', MP_TXTDOM),
 
 												'parent'	=> false,
 												'page_title'=> __('Mails', MP_TXTDOM),
@@ -49,7 +50,7 @@ $capabilities	= array(	'MailPress_edit_dashboard' 	=> array(	'name'	=> __('Dashb
 
 												'parent'	=> false,
 												'page_title'=> __('MailPress Themes', MP_TXTDOM),
-												'menu_title'=> '&nbsp;' . __('Themes', MP_TXTDOM),
+												'menu_title'=> '&#160;' . __('Themes', MP_TXTDOM),
 												'page'	=> MailPress_page_themes,
 												'func'	=> array('MP_AdminPage', 'body')
 											),
@@ -57,6 +58,7 @@ $capabilities	= array(	'MailPress_edit_dashboard' 	=> array(	'name'	=> __('Dashb
 					'MailPress_edit_users'		=> array(	'name'	=> __('Edit users', MP_TXTDOM),
 												'group'	=> 'users',
 												'menu'	=> 50,
+												'admin_bar'	=> __('Users', MP_TXTDOM),
 
 												'parent'	=> false,
 												'page_title'=> __('MailPress Users', MP_TXTDOM),

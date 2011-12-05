@@ -2,7 +2,7 @@
 
 // Form templates
 
-$form_templates = new MP_Forms_templates();
+$form_templates = new MP_Form_templates();
 $templates = $form_templates->get_all();
 
 if (isset($_GET['template']))	$template = $_GET['template'];

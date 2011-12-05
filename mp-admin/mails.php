@@ -1,5 +1,5 @@
 <?php
-class MP_AdminPage extends MP_Admin_page_list
+class MP_AdminPage extends MP_adminpage_list_
 {
 	const screen 	= MailPress_page_mails;
 	const capability 	= 'MailPress_edit_mails';
@@ -24,24 +24,24 @@ class MP_AdminPage extends MP_Admin_page_list
 		switch($action)
 		{
 			case 'bulk-archive' :
-				foreach($checked as $id) if (MP_Mails::set_status($id, 'archived'))  $$count++;
+				foreach($checked as $id) if (MP_Mail::set_status($id, 'archived'))  $$count++;
 			break;
 			case 'bulk-unarchive' :
-				foreach($checked as $id) if (MP_Mails::set_status($id, 'sent')) 	$$count++;
+				foreach($checked as $id) if (MP_Mail::set_status($id, 'sent')) 	$$count++;
 			break;
 			case 'bulk-send' :
 				$sent = $notsent = 0;
 				foreach($checked as $id)
 				{
-					if ('draft' != MP_Mails::get_status($id)) continue;
-					$x = MP_Mails::send_draft($id);
+					if ('draft' != MP_Mail::get_status($id)) continue;
+					$x = MP_Mail_draft::send($id);
 					$url = (is_numeric($x))	? $sent += $x : $notsent++ ;
 				}
 				if ($sent)    $url_parms['sent']    = $sent;
 				if ($notsent) $url_parms['notsent'] = $notsent;
 			break;
 			case 'bulk-delete' :
-				foreach($checked as $id) if (MP_Mails::set_status($id, 'delete')) $$count++;
+				foreach($checked as $id) if (MP_Mail::set_status($id, 'delete')) $$count++;
 			break;
 		}
 
@@ -125,7 +125,7 @@ class MP_AdminPage extends MP_Admin_page_list
 		if (isset($url_parms['author']) && !empty($url_parms['author']))
 			$where .= " AND ( created_user_id = " . $url_parms['author'] . "  OR sent_user_id = " . $url_parms['author'] . " ) ";
 		if (!current_user_can('MailPress_edit_others_mails'))
-			$where .= " AND ( created_user_id = " . MailPress::get_wp_user_id() . " ) ";
+			$where .= " AND ( created_user_id = " . MP_WP_User::get_id() . " ) ";
 
 		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM $wpdb->mp_mails WHERE 1=1 $where ORDER BY created DESC";
 
@@ -177,7 +177,7 @@ class MP_AdminPage extends MP_Admin_page_list
 	{
 		global $mp_mail;
 
-		$mp_mail = $mail = MP_Mails::get( $id );
+		$mp_mail = $mail = MP_Mail::get( $id );
 		$the_mail_status = $mail->status;
 
 // url's
@@ -187,10 +187,10 @@ class MP_AdminPage extends MP_Admin_page_list
 		$edit_url    	= esc_url(self::url( MailPress_edit, array_merge($args, $url_parms) ));
 
 		$args['action'] 	= 'archive';
-		$archive_url 	= esc_url(MailPress::url( MailPress_write, array_merge($args, $url_parms), "archive-mail_{$mail->id}" ));
+		$archive_url 	= esc_url(MP_AdminPage::url( MailPress_write, array_merge($args, $url_parms), "archive-mail_{$mail->id}" ));
 
 		$args['action'] 	= 'unarchive';
-		$unarchive_url 	= esc_url(MailPress::url( MailPress_write, array_merge($args, $url_parms), "unarchive-mail_{$mail->id}" ));
+		$unarchive_url 	= esc_url(MP_AdminPage::url( MailPress_write, array_merge($args, $url_parms), "unarchive-mail_{$mail->id}" ));
 
 		$args['action'] 	= 'send';
 		$send_url    	= esc_url(self::url( MailPress_write, array_merge($args, $url_parms) ));
@@ -200,7 +200,7 @@ class MP_AdminPage extends MP_Admin_page_list
 
 		$args['action'] 	= 'iview';
 		if ('draft' == $mail->status) if (!empty($mail->theme)) $args['theme'] 	= $mail->theme;
-		$args['KeepThis'] = 'true'; $args['TB_iframe']= 'true'; $args['width'] = '600'; $args['height']	= '400';
+		$args['preview_iframe'] = 1; $args['TB_iframe']= 'true';
 		$view_url		= esc_url(self::url(MP_Action_url, $args));
 
 
@@ -214,8 +214,8 @@ class MP_AdminPage extends MP_Admin_page_list
 		$actions['approve']   = "<a href='$unarchive_url' 	class='dim:the-mail-list:mail-$id:unapproved:e7e7d3:e7e7d3:?mode=" . $url_parms['mode'] . "' title='" . __('Unarchive this mail', MP_TXTDOM ) . "'>" . __( 'Unarchive', MP_TXTDOM ) . '</a>';
 		$actions['unapprove'] = "<a href='$archive_url' 	class='dim:the-mail-list:mail-$id:unapproved:e7e7d3:e7e7d3:?mode=" . $url_parms['mode'] . "' title='" . __('Archive this mail', MP_TXTDOM )   . "'>" . __( 'Archive', MP_TXTDOM ) 	. '</a>';
 
-		$actions['delete']= "<a href='$delete_url' 	class='delete:the-mail-list:mail-$id submitdelete' title='" . __('Delete this mail', MP_TXTDOM ) . "'>" 	. __('Delete', MP_TXTDOM) . '</a>';
-		$actions['view'] 	= "<a href='$view_url' 		class='thickbox'  title='" . __('View', MP_TXTDOM ) . "'>"								. __('View', MP_TXTDOM) . '</a>';
+		$actions['delete']= "<a href='$delete_url' 	class='submitdelete' title='" . __('Delete this mail', MP_TXTDOM ) . "'>" 	. __('Delete', MP_TXTDOM) . '</a>';
+		$actions['view'] 	= "<a href='$view_url' 		class='thickbox thickbox-preview'  title='" . __('View', MP_TXTDOM ) . "'>"								. __('View', MP_TXTDOM) . '</a>';
 
 		switch($mail->status)
 		{
@@ -251,7 +251,7 @@ class MP_AdminPage extends MP_Admin_page_list
 // 	checkbox
 		$disabled = (!current_user_can('MailPress_delete_mails') && !current_user_can('MailPress_send_mails')) ? " disabled='disabled'" : '';
 //	to
-		$draft_dest = MP_Users::get_mailinglists();
+		$draft_dest = MP_User::get_mailinglists();
 
 		switch (true)
 		{
@@ -303,12 +303,12 @@ class MP_AdminPage extends MP_Admin_page_list
 			$author_url 	= esc_url(self::url( MailPress_mails . "&author=" . $author, $url_parms ));
 		}
 //	subject
-		$metas = MP_Mailmeta::get( $id, '_MailPress_replacements' );
+		$metas = MP_Mail_meta::get( $id, '_MailPress_replacements' );
 		$subject_display = $mail->subject;
 		if ($metas) foreach($metas as $k => $v) $subject_display = str_replace($k, $v, $subject_display);
 //	attachements
 		$attach = false;
-		$metas = MP_Mailmeta::has( $id, '_MailPress_attached_file' );
+		$metas = MP_Mail_meta::has( $id, '_MailPress_attached_file' );
 		if ($metas)
 		{
 			foreach($metas as $meta)
@@ -370,18 +370,18 @@ class MP_AdminPage extends MP_Admin_page_list
 <?php
 			if ($attach) :
 ?>
-			<img class='attach' alt="<?php _e('Attachments', MP_TXTDOM); ?>" title="<?php _e('Attachments', MP_TXTDOM); ?>"  src='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>mp-admin/images/clip.gif' />
+			<span class='icon attachement' title="<?php _e('Attachments', MP_TXTDOM); ?>"></span>
 <?php
 			endif;
 			if (('draft' == $mail->status) && ($mp_mail->sent >= $mp_mail->created)) :
 ?>
-			<img class='attach' alt="<?php _e('Scheduled', MP_TXTDOM); ?>" title="<?php _e('Scheduled', MP_TXTDOM); ?>"  src='<?php echo get_option('siteurl') . '/' . MP_PATH; ?>mp-admin/images/scheduled.png' />
+			<span class='icon scheduled' title="<?php _e('Scheduled', MP_TXTDOM); ?>"></span>
 <?php
 			endif;
 			do_action('MailPress_get_icon_mails', $id);
 ?>
 			<strong>
-				<a class='row-title<?php echo ('draft' == $mail->status) ? '' : ' thickbox'; ?>' href='<?php echo ('draft' == $mail->status) ? $edit_url : $view_url; ?>' title='<?php printf( ('draft' == $mail->status) ?  __('Edit "%1$s"', MP_TXTDOM) : __('View "%1$s"', MP_TXTDOM) , ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : htmlspecialchars($subject_display, ENT_QUOTES) ); ?>'>
+				<a class='row-title<?php echo ('draft' == $mail->status) ? '' : ' thickbox thickbox-preview'; ?>' href='<?php echo ('draft' == $mail->status) ? $edit_url : $view_url; ?>' title='<?php printf( ('draft' == $mail->status) ?  __('Edit "%1$s"', MP_TXTDOM) : __('View "%1$s"', MP_TXTDOM) , ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : htmlspecialchars($subject_display, ENT_QUOTES) ); ?>'>
 					<?php echo ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : (( strlen($subject_display) > 40 ) ? $subject_display = substr($subject_display, 0, 39) . '...' : $subject_display); ?>
 				</a>
 <?php if ('draft' == $mail->status) echo ' - ' . __('Draft'); ?>

@@ -9,8 +9,8 @@ $url_parms 	= MP_AdminPage::get_url_parms();
 
 if (isset($_GET['id']))
 {
-	$draft 	= MP_Mails::get($_GET['id']);
-	$rev_ids 	= MP_Mailmeta::get($draft->id, '_MailPress_mail_revisions');
+	$draft 	= MP_Mail::get($_GET['id']);
+	$rev_ids 	= MP_Mail_meta::get($draft->id, '_MailPress_mail_revisions');
 }
 
 $autosave	= true;
@@ -37,12 +37,12 @@ if (isset($draft))
 			global $current_user ;
 			if ($current_user->ID == $rev_user)
 			{
-				$revision = MP_Mails::get($rev_id);
+				$revision = MP_Mail::get($rev_id);
 				break;
 			}
 			else
 			{
-				$x = MP_Mails::get($rev_id);
+				$x = MP_Mail::get($rev_id);
 				if ($x)
 				{
 					if ($x->created > $revision->created)
@@ -59,7 +59,7 @@ if (isset($draft))
 	{
 		if ($revision->created > $draft->created)
 		{
-			$autosave_data = MP_Mails::autosave_data();
+			$autosave_data = MP_Mail_revision::autosave_data();
 
 			foreach ($autosave_data as $k => $v)
 			{
@@ -86,7 +86,7 @@ if (isset($draft))
 
 /* lock */
 
-	if ($last = MP_Mails::check_mail_lock($draft->id))
+	if ($last = MP_Mail_lock::check($draft->id))
 	{
 		$lock_user 	= get_userdata($last);
 		$lock_user_name = $lock_user ? $lock_user->display_name : __('Somebody');
@@ -94,7 +94,7 @@ if (isset($draft))
 	}
 	else
 	{
-		MP_Mails::set_mail_lock($draft->id);
+		MP_Mail_lock::set($draft->id);
 	}
 /* end of lock */
 }
@@ -115,7 +115,7 @@ if (isset($_SERVER['HTTP_REFERER']))
 // messages
 $class = 'fromto';
 $message = ''; $err = 0;
-if (isset($_GET['sched'])) 	{$err += 0; if (!empty($message)) $message .= '<br />'; $message .= sprintf( __('Mail scheduled for: <strong>%1$s</strong>. <a class="thickbox" href="%2$s">Preview mail</a>',  MP_TXTDOM), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $draft->sent ) ), esc_url(add_query_arg( array('action' => 'iview', 'id' => $draft->id, 'KeepThis' => 'true', 'TB_iframe' => 'true'), MP_Action_url )));}
+if (isset($_GET['sched'])) 	{$err += 0; if (!empty($message)) $message .= '<br />'; $message .= sprintf( __('Mail scheduled for: <strong>%1$s</strong>. <a class="thickbox thickbox-preview" href="%2$s">Preview mail</a>',  MP_TXTDOM), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $draft->sent ) ), esc_url(add_query_arg( array('action' => 'iview', 'id' => $draft->id, 'preview_iframe' => 1, 'TB_iframe' => 'true'), MP_Action_url )));}
 if (isset($_GET['saved'])) 	{$err += 0; if (!empty($message)) $message .= '<br />'; $message .= __('Mail saved', MP_TXTDOM); }
 if (isset($_GET['notsent'])) 	{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= __('Mail NOT sent', MP_TXTDOM); }
 if (isset($_GET['nomail'])) 	{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= __('Please, enter a valid email',  MP_TXTDOM); $class = "TO"; }
@@ -123,7 +123,7 @@ if (isset($_GET['nodest'])) 	{$err += 1; if (!empty($message)) $message .= '<br 
 if (isset($lock))			{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= $lock; }
 if ($notice)			{$err += 1; if (!empty($message)) $message .= '<br />'; $message .= $notice; } 	
 if (isset($_GET['sent'])) 	{$err += 0; if (!empty($message)) $message .= '<br />'; $message .= sprintf( _n( __('%s mail sent', MP_TXTDOM), __('%s mails sent', MP_TXTDOM), $_GET['sent']), $_GET['sent']); }
-if (isset($_GET['revision'])) {$err += 0; if (!empty($message)) $message .= '<br />'; $message .= sprintf( __('Mail restored to revision from %s', MP_TXTDOM), MP_Mails::mail_revision_title( (int) $_GET['revision'], false, $_GET['time']) ); }
+if (isset($_GET['revision'])) {$err += 0; if (!empty($message)) $message .= '<br />'; $message .= sprintf( __('Mail restored to revision from %s', MP_TXTDOM), MP_Mail_revision::title( (int) $_GET['revision'], false, $_GET['time']) ); }
 $mp_general	= get_option(MailPress::option_name_general);
 
 // from
@@ -147,7 +147,7 @@ else
 	$draft->toemail = $draft->toname = '';
 
 // or to
-$draft_dest = MP_Users::get_mailinglists();
+$draft_dest = MP_User::get_mailinglists();
 
 ?>
 	<div class='wrap'>
@@ -158,7 +158,7 @@ $draft_dest = MP_Users::get_mailinglists();
 
 		<input type='hidden' 				name='action'  		value='draft' />
 <?php echo $hidden; ?>
-		<input type='hidden' id='user-id' 		name='user_ID' 		value="<?php echo MailPress::get_wp_user_id(); ?>" />
+		<input type='hidden' id='user-id' 		name='user_ID' 		value="<?php echo MP_WP_User::get_id(); ?>" />
 
 		<?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); echo ("\n"); ?>
 <?php if ( $autosave ) : ?>
@@ -186,7 +186,7 @@ $draft_dest = MP_Users::get_mailinglists();
 									</td>
 									<td class='nombp' >
 										<?php _e('OR all', MP_TXTDOM); ?>
-										&nbsp;&nbsp;
+										&#160;&#160;
 										<select name='to_list' id='to_list'  class='<?php echo $class; ?>'>
 <?php MP_AdminPage::select_optgroup($draft_dest, (isset($draft->to_list)) ? $draft->to_list : '') ?>
 										</select>
@@ -216,7 +216,7 @@ $draft_dest = MP_Users::get_mailinglists();
 						<div id="post-status-info">
 							<span id="wp-word-count" class="alignleft"></span>
 							<span class="alignright">
-								<span id="autosave">&nbsp;</span>
+								<span id="autosave">&#160;</span>
 								<span id="last-edit">
 <?php if (isset($lastedited)) : ?>
 									<?php echo $lastedited; ?>

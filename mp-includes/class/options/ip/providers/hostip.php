@@ -1,5 +1,5 @@
 <?php
-class MP_Ip_hostip extends MP_Ip_provider_abstract
+class MP_Ip_hostip extends MP_ip_provider_
 {
 	var $id 	= 'hostip';
 	var $url	= 'http://api.hostip.info/get_xml.php?ip=%1$s&position=true';

@@ -1,5 +1,5 @@
 <?php
-class MP_Newsletter_processor_previous_week extends MP_Newsletters_processor_abstract
+class MP_Newsletter_processor_week_1 extends MP_newsletter_processor_
 {
 	const day_in_sec  = 86400;  // 24*60*60
 	const week_in_sec = 604800; // 7*24*60*60
@@ -57,4 +57,4 @@ class MP_Newsletter_processor_previous_week extends MP_Newsletters_processor_abs
 		return $query_posts;
 	}
 }
-new MP_Newsletter_processor_previous_week(__('Previous week', MP_TXTDOM));
+new MP_Newsletter_processor_week_1(__('Previous week', MP_TXTDOM));

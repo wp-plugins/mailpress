@@ -10,6 +10,6 @@
 		</style>
 	</head>
 	<body>
-		<pre><?php echo $x->plaintext; ?></pre>
+		<pre><?php echo htmlspecialchars($plaintext, ENT_NOQUOTES); ?></pre>
 	</body>
 </html>

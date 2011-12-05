@@ -1,5 +1,5 @@
 <?php
-class MP_Forms_field_type_radio extends MP_Forms_field_type_abstract
+class MP_Form_field_type_radio extends MP_form_field_type_
 {
 	var $id	= 'radio';
 	var $order	= 50;
@@ -38,4 +38,4 @@ class MP_Forms_field_type_radio extends MP_Forms_field_type_abstract
 		$this->attributes_filter_css();
 	}
 }
-new MP_Forms_field_type_radio(__('Radio Button', MP_TXTDOM));
+new MP_Form_field_type_radio(__('Radio Button', MP_TXTDOM));

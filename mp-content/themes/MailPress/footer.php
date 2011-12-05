@@ -3,7 +3,7 @@
 <?php //$this->get_sidebar(); ?>
 			</div>
 			<div style='clear:both;'></div>
-			<table <?php $this->classes('ftable'); ?> cellspacing='0' cellpadding='0'>
+			<table <?php $this->classes('nopmb ftable'); ?>>
 				<tr>	
 					<td <?php $this->classes('fltd'); ?>>
 						<b>
@@ -19,9 +19,9 @@
 			</table>
 		</div>
 <?php if (isset($this->args->unsubscribe)) { ?>
-		<div <?php $this->classes('mail_link'); ?>>
-			<a href='{{unsubscribe}}'  <?php $this->classes('mail_link_a'); ?>>Manage your subscriptions</a>
-		</div>
+			<div <?php $this->classes('mail_link'); ?>>
+				<a href='{{unsubscribe}}'  <?php $this->classes('mail_link_a a'); ?>>Manage your subscriptions</a>
+			</div>
 <?php } ?>
 		</div>
 	</body>

@@ -18,13 +18,13 @@ $formname = substr(basename(__FILE__), 0, -4);
 						<td class='nobd'><?php _e('Alignment'); ?></td>
 						<td class='nobd'>
 							<input name='filter_img[align]' type='radio'<?php checked($filter_img['align'],'none'); ?> id='align-none' value='none' />
-							<label for='align-none'   class='align image-align-none-label'   style='padding-left:28px; margin-right:1em;'><?php _e('None'); ?></label>
+							<label for='align-none'   class='align image-align-none-label'><?php _e('None'); ?></label>
 							<input name='filter_img[align]' type='radio'<?php checked($filter_img['align'],'left'); ?>  id='align-left' value='left' />
-							<label for='align-left'   class='align image-align-left-label'   style='padding-left:28px; margin-right:1em;'><?php _e('Left'); ?></label>
+							<label for='align-left'   class='align image-align-left-label'><?php _e('Left'); ?></label>
 							<input name='filter_img[align]' type='radio'<?php checked($filter_img['align'],'center'); ?>  id='align-center' value='center' />
-							<label for='align-center' class='align image-align-center-label' style='padding-left:28px; margin-right:1em;'><?php _e('Center'); ?></label>
+							<label for='align-center' class='align image-align-center-label'><?php _e('Center'); ?></label>
 							<input name='filter_img[align]' type='radio'<?php checked($filter_img['align'],'right'); ?> id='align-right' value='right' />
-							<label for='align-right'  class='align image-align-right-label'  style='padding-left:28px; margin-right:1em;'><?php _e('Right'); ?></label>
+							<label for='align-right'  class='align image-align-right-label'><?php _e('Right'); ?></label>
 						</td>
 					</tr>
 					<tr>
@@ -68,7 +68,7 @@ if (!empty($filter_img['img']))
 			<th scope='row'><?php _e('Keep url', MP_TXTDOM); ?></th>
 			<td class='field'>
 				<input name='filter_img[keepurl]' type='checkbox'<?php if (isset($filter_img['keepurl'])) checked($filter_img['keepurl'],'on'); ?>  id='attach-none' value='on' style='margin-right:10px;' />
-				<label for='attach-none'><?php printf(__('NO mail attachements with site images when full url (<i>&lt;img src="<b>%1$s/...</b>"</i>) is provided.', MP_TXTDOM),get_option('siteurl')); ?></label>
+				<label for='attach-none'><?php printf(__('NO mail attachements with site images when full url (<i>&lt;img src="<b>%1$s/...</b>"</i>) is provided.', MP_TXTDOM), site_url()); ?></label>
 			</td>
 		</tr>
 	</table>

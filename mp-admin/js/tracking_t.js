@@ -2,7 +2,7 @@
 
 var mp_tracking = {
 
-	max : 10,
+	max : 30,
 	infowindow : false,
 
 	init : function() {

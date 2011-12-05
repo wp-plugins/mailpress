@@ -8,7 +8,7 @@ class MP_Batch
 		$this->config = get_option(MailPress_batch_send::option_name);
 		$this->report = array();
 
-		$this->trace = new MP_Log('mp_process_batch_send', MP_ABSPATH, __CLASS__, false, 'batch_send');
+		$this->trace = new MP_Log('mp_process_batch_send', array('option_name' => 'batch_send'));
 
 		$this->process();
 		if ($this->have_batch()) do_action('MailPress_schedule_batch_send');
@@ -36,39 +36,22 @@ class MP_Batch
 
 		if (!$mails) { $this->alldone(); return; }
 
-		do
+		$mail = $mailmeta = $this->mail = $this->mailmeta = false;
+		$this->mailmeta['try'] = 10000;
+
+		foreach ($mails as $mail)
 		{
-			$mail = $mailmeta = $this->mail = $this->mailmeta = $this->mailkey = false;
-			$this->mailmeta['try'] = 10000;
+			$mailmeta = $this->get_mailmeta($mail);
+			if (!$mailmeta) continue;
 
-			foreach ($mails as $key => $mail)
+			if ($mailmeta['try'] < $this->mailmeta['try'])
 			{
-				$mailmeta = $this->get_mailmeta($mail);
-				if (!$mailmeta) continue;
-
-				if ($mailmeta['try'] < $this->mailmeta['try'])
-				{
-					$this->mailkey 	= $key;
-					$this->mail 	= $mail;
-					$this->mailmeta	= $mailmeta;
-				}
+				$this->mail 	= $mail;
+				$this->mailmeta	= $mailmeta;
 			}
+		}
 
-			if (!$this->mail) return;
-
-			if (MailPress::lock("MailPress_Batch_send_{$this->mail->id}")) break;
-
-			$this->report['header2'] = 'Batch Report';
-			$this->report['locked']  = "MailPress_Batch_send_{$this->mail->id}";
-			$this->write_report();
-			unset($this->report);
-
-			unset($mails[$this->mailkey]);
-
-			if (empty($mails)) return;
-
-		} while (true);
-
+		if (!$this->mail) { $this->alldone(); return; }
 		unset($mails, $mail, $mailmeta);
 
 		$this->mailmeta['pass']++;
@@ -108,8 +91,8 @@ class MP_Batch
 			if ($this->mailmeta['try']) 	$this->mailmeta['failed'] = array_merge($maybe_failures, $this->mailmeta['failed']);
 			else  				$this->mailmeta['failed'] = array_merge($this->mailmeta['failed'], $maybe_failures);
 
-			if (!MP_Mailmeta::add($this->mail->id, MailPress_batch_send::metakey, $this->mailmeta, true))
-				MP_Mailmeta::update($this->mail->id, MailPress_batch_send::metakey, $this->mailmeta);
+			if (!MP_Mail_meta::add($this->mail->id, MailPress_batch_send::metakey, $this->mailmeta, true))
+				MP_Mail_meta::update($this->mail->id, MailPress_batch_send::metakey, $this->mailmeta);
 			$this->trace->restart();
 
 	// sending
@@ -146,8 +129,8 @@ class MP_Batch
 		}
 	// saving context
 		$this->report['end']  = $this->mailmeta;
-		if (!MP_Mailmeta::add($this->mail->id, MailPress_batch_send::metakey, $this->mailmeta, true))
-			MP_Mailmeta::update($this->mail->id, MailPress_batch_send::metakey, $this->mailmeta);
+		if (!MP_Mail_meta::add($this->mail->id, MailPress_batch_send::metakey, $this->mailmeta, true))
+			MP_Mail_meta::update($this->mail->id, MailPress_batch_send::metakey, $this->mailmeta);
 
 	// the end for this mail ?
 		if ($this->mailmeta['sent'] == $this->mailmeta['count']) 				self::update_mail($this->mail->id);
@@ -157,7 +140,7 @@ class MP_Batch
 // get mailmeta
 	function get_mailmeta($mail)
 	{
-		$mailmeta = MP_Mailmeta::get( $mail->id , MailPress_batch_send::metakey);
+		$mailmeta = MP_Mail_meta::get( $mail->id , MailPress_batch_send::metakey);
 
 		if (!$mailmeta)
 		{
@@ -203,7 +186,7 @@ class MP_Batch
 		global $wpdb;
 				
 		$x = $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->mp_mails SET status = 'sent' WHERE id = %d ", $id) );
-		if (!$failed) MP_Mailmeta::delete( $id , MailPress_batch_send::metakey);
+		if (!$failed) MP_Mail_meta::delete( $id , MailPress_batch_send::metakey);
 	}
 
 // batch sending
@@ -225,7 +208,7 @@ class MP_Batch
 		$_this->args->replacements 		= $this->toemail;
 		$_this->get_old_recipients();
 
-		$m = MP_Mailmeta::get($_this->row->id, '_MailPress_replacements');
+		$m = MP_Mail_meta::get($_this->row->id, '_MailPress_replacements');
 		if (!is_array($m)) $m = array();
 		$_this->mail->replacements = $m;
 
@@ -241,7 +224,7 @@ class MP_Batch
 			$_this->mysql_disconnect(__CLASS__);
 
 			$_this->swift->registerPlugin(new Swift_Plugins_DecoratorPlugin($_this->row->replacements));
-			if (!$_this->swift->batchSend($_this->message, $failures))
+			if (!$_this->swift_batchSend($failures))
 			{
 				$_this->mysql_connect(__CLASS__ . ' 2');
 				return false;

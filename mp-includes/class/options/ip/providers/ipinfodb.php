@@ -1,7 +1,7 @@
 <?php
 if ( defined('MP_Ip_ipinfodb_ApiKey') )
 {
-class MP_Ip_ipinfodb extends MP_Ip_provider_abstract
+class MP_Ip_ipinfodb extends MP_ip_provider_
 {
 	var $id 	= 'ipinfodb';
 	var $url	= 'http://api.ipinfodb.com/v2/ip_query.php?ip=%1$s&key=%2$s&timezone=true';

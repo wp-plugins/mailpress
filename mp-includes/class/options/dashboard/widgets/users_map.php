@@ -1,5 +1,5 @@
 <?php
-class MP_Dashboard_users_map extends MP_Dashboard_widget_abstract
+class MP_Dashboard_users_map extends MP_dashboard_widget_
 {
 	const option_name = 'MailPress_dashboard_mp_map';
 
@@ -74,7 +74,7 @@ class MP_Dashboard_users_map extends MP_Dashboard_widget_abstract
 ?>
 			<select id='code' name='code'>
 <?php
-			MailPress::select_option($c, $options['code']);
+			MP_::select_option($c, $options['code']);
 ?>
 			</select>
 <?php

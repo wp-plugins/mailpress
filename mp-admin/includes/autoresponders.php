@@ -1,24 +1,11 @@
 <?php
 $url_parms = MP_AdminPage::get_url_parms();
 
+//
+// MANAGING H2
+//
+
 $h2 = __('Autoresponders', MP_TXTDOM);
-
-//
-// MANAGING PAGINATION
-//
-
-if( !isset($_per_page) || $_per_page <= 0 ) $_per_page = 20;
-$url_parms['apage'] = isset($url_parms['apage']) ? $url_parms['apage'] : 1;
-
-$total = ( isset($url_parms['s']) ) ? count(MP_Autoresponders::get_all(array('hide_empty' => 0, 'search' => $url_parms['s']))) : wp_count_terms(MP_AdminPage::taxonomy);
-
-$page_links = paginate_links	(array(	'base' => add_query_arg( 'apage', '%#%' ),
-							'format' => '',
-							'total' => ceil( $total / $_per_page),
-							'current' => $url_parms['apage']
-						)
-					);
-if ($url_parms['apage'] <= 1) unset($url_parms['apage']);
 
 //
 // MANAGING MESSAGE
@@ -44,7 +31,7 @@ if (isset($_GET['message']))
 $bulk_actions[''] 	= __('Bulk Actions');
 $bulk_actions['delete']	= __('Delete', MP_TXTDOM);
 
-$mp_autoresponder_registered_events = MP_Autoresponders_events::get_all();
+$mp_autoresponder_registered_events = MP_Autoresponder_events::get_all();
 
 global $action;
 wp_reset_vars(array('action'));
@@ -54,19 +41,18 @@ if ('edit' == $action)
 	$cancel = "<input type='submit' class='button' name='cancel' value=\"" . __('Cancel', MP_TXTDOM) . "\" />\n";
 
 	$id = (int) $_GET['id'];
-	$autoresponder = MP_Autoresponders::get($id);
+	$autoresponder = MP_Autoresponder::get($id);
 
 	$h3 = __('Edit Autoresponder', MP_TXTDOM);
 	$hb3= __('Update');
 	$hbclass = '-primary';
 
-//	$disabled = " disabled='disabled'";
 	$disabled = '';
 		
 	$hidden = "<input type='hidden' name='id'   value=\"" . $id . "\" />\n";
 	$hidden .="<input name='name' type='hidden' value=\"" . esc_attr($autoresponder->name) . "\"/>";
 	
-	$_mails = MP_Autoresponders::get_term_objects($id);
+	$_mails = MP_Autoresponder::get_term_objects($id);
 }
 else 
 {
@@ -83,6 +69,15 @@ else
 
 	$_mails = false;
 }
+
+//
+// MANAGING LIST
+//
+
+$url_parms['paged'] = isset($url_parms['paged']) ? $url_parms['paged'] : 1;
+$_per_page = MP_AdminPage::get_per_page();
+
+$total = ( isset($url_parms['s']) ) ? count(MP_Autoresponder::get_all(array('hide_empty' => 0, 'search' => $url_parms['s']))) : wp_count_terms(MP_AdminPage::taxonomy);
 
 ?>
 <div class='wrap nosubsub'>
@@ -107,9 +102,9 @@ else
 			<div class='col-wrap'>
 				<form id='posts-filter' action='' method='get'>
 					<input type='hidden' name='page' value='<?php echo MP_AdminPage::screen; ?>' />
-<?php MP_AdminPage::post_url_parms($url_parms); ?>
+
 					<div class='tablenav'>
-<?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>"; ?>
+<?php MP_AdminPage::pagination($total); ?>
 						<div class='alignleft actions'>
 <?php	MP_AdminPage::get_bulk_actions($bulk_actions); ?>
 						</div>
@@ -128,11 +123,11 @@ else
 							</tr>
 						</tfoot>
 						<tbody id='<?php echo MP_AdminPage::list_id; ?>' class='list:<?php echo MP_AdminPage::tr_prefix_id; ?>'>
-<?php MP_AdminPage::get_list( (isset($url_parms['apage'])) ? $url_parms['apage'] : 1, $_per_page ); ?>
+<?php MP_AdminPage::get_list( $url_parms['paged'], $_per_page ); ?>
 						</tbody>
 					</table>
 					<div class='tablenav'>
-<?php 	if ( $page_links ) echo "						<div class='tablenav-pages'>$page_links</div>\n"; ?>
+<?php MP_AdminPage::pagination($total, 'bottom'); ?>
 						<div class='alignleft actions'>
 <?php	MP_AdminPage::get_bulk_actions($bulk_actions, 'action2'); ?>
 						</div>
@@ -200,7 +195,7 @@ else
 <?php 	foreach($_mails as $_mail) 
 		{ 
 			$id   = $_mail['mail_id'];
-			$mail = MP_Mails::get( $id );
+			$mail = MP_Mail::get( $id );
 			$subject_display = htmlspecialchars($mail->subject,ENT_QUOTES);
 			if ( strlen($subject_display) > 40 )	$subject_display = substr($subject_display, 0, 39) . '...';
 			if ( '' == $mail->subject)  			$subject_display = $mail->subject = htmlspecialchars(__('(no subject)', MP_TXTDOM),ENT_QUOTES);
@@ -208,8 +203,8 @@ else
 			$edit_url    	= esc_url(MailPress_edit . "&id=$id");
 			$actions['edit']    = "<a href='$edit_url'   title='" . sprintf( __('Edit "%1$s"', MP_TXTDOM) , $subject_display ) . "'>" . $_mail['mail_id'] . '</a>';
 
-			$view_url		= esc_url(add_query_arg( array('action' => 'iview', 'id' => $id, 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400'), MP_Action_url ));
-			$actions['view'] = "<a href='$view_url' class='thickbox'  title='" . sprintf( __('View "%1$s"', MP_TXTDOM) , $subject_display ) . "'>" . $subject_display . '</a>';
+			$view_url		= esc_url(add_query_arg( array('action' => 'iview', 'id' => $id, 'preview_iframe' => 1, 'TB_iframe' => 'true'), MP_Action_url ));
+			$actions['view'] = "<a href='$view_url' class='thickbox thickbox-preview'  title='" . sprintf( __('View "%1$s"', MP_TXTDOM) , $subject_display ) . "'>" . $subject_display . '</a>';
 ?>
 									<tr>
 										<td>

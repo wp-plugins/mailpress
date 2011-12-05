@@ -1,5 +1,5 @@
 <?php
-class MP_Tracking_module_u002 extends MP_Tracking_module_abstract
+class MP_Tracking_module_u002 extends MP_tracking_module_
 {
 	var $id	= 'u002';
 	var $context= 'side';
@@ -47,15 +47,15 @@ class MP_Tracking_module_u002 extends MP_Tracking_module_abstract
 				{
 					$subject 	= $x->viewsubject($subject, $track->meta_value, $track->meta_value, $mp_user->id);
 
-					$view_url	= esc_url(add_query_arg( array('action' => 'iview', 'id' => $track->meta_value, 'user' => $mp_user->id, 'key' => $mp_user->confkey, 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400'), MP_Action_url ));
-					$track->meta_value = "<a href='$view_url' class='thickbox'  title='" . sprintf( __('View "%1$s"', MP_TXTDOM) , $subject) . "'>" . $track->meta_value . '</a>';
+					$view_url	= esc_url(add_query_arg( array('action' => 'iview', 'id' => $track->meta_value, 'mp_user_id' => $mp_user->id, 'key' => $mp_user->confkey, 'preview_iframe' => 1, 'TB_iframe' => 'true'), MP_Action_url ));
+					$track->meta_value = "<a href='$view_url' class='thickbox thickbox-preview'  title='" . sprintf( __('View "%1$s"', MP_TXTDOM) , $subject) . "'>" . $track->meta_value . '</a>';
 				}
 				else
 				{
 					$date = '';
 					$subject = __('(deleted)', MP_TXTDOM);
 				}
-				echo '<tr><td><abbr title="' . $date . '">' . substr($date, 0, 10) . '</abbr></td><td>&nbsp;(' . $track->meta_value . ')</td><td>&nbsp;' . $subject . '</td></tr>';
+				echo '<tr><td><abbr title="' . $date . '">' . substr($date, 0, 10) . '</abbr></td><td>&#160;(' . $track->meta_value . ')</td><td>&#160;' . $subject . '</td></tr>';
 			}
 			echo '</table>'; 
 		}

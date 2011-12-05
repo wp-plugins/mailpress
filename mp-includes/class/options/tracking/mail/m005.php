@@ -1,5 +1,5 @@
 <?php
-class MP_Tracking_module_m005 extends MP_Tracking_module_abstract
+class MP_Tracking_module_m005 extends MP_tracking_module_
 {
 	var $id	= 'm005';
 	var $context= 'normal';
@@ -20,7 +20,7 @@ class MP_Tracking_module_m005 extends MP_Tracking_module_abstract
 			}
 			foreach($context as $k => $v)
 			{
-				echo '<b>' . $k . '</b> : &nbsp;' . sprintf("%01.2f %%",100 * $v/$total ) . '&nbsp;&nbsp;&nbsp;&nbsp;';
+				echo '<b>' . $k . '</b> : &#160;' . sprintf("%01.2f %%",100 * $v/$total ) . '&#160;&#160;&#160;&#160;';
 			}
 			echo '<br />';
 		}

@@ -1,5 +1,5 @@
 <?php
-class MP_import_subscribe_to_comments extends MP_Import_importer_abstract
+class MP_import_subscribe_to_comments extends MP_import_importer_
 {
 	var $id = 'subscribe_to_comments';
 
@@ -214,7 +214,7 @@ class MP_import_subscribe_to_comments extends MP_Import_importer_abstract
 				{
 					$postid = $sub->post_ID; 
 					update_post_meta($postid, '_MailPress_subscribe_to_comments_', $mp_user_id);
-					MailPress::update_stats('c', $postid, 1);
+					new MP_Stat('c', $postid, 1);
 					$this->message_report(" meta       ! user [18]=>  subscribed to post #" . $postid);
 				}
 			}

@@ -6,7 +6,7 @@ Plugin Name: MailPress_batch_send
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Batch_send
 Description: This is just an add-on for MailPress to send mail in batch mode.
 Author: Andre Renaut
-Version: 5.1.1
+Version: 5.2
 Author URI: http://www.mailpress.org
 */
 
@@ -14,6 +14,7 @@ class MailPress_batch_send
 {
 	const metakey = '_MailPress_batch_send';
 	const option_name = 'MailPress_batch_send';
+	const log_name = 'batch_send';
 
 	const bt = 132;
 
@@ -23,7 +24,6 @@ class MailPress_batch_send
 		add_filter('MailPress_status_mail', 		array(__CLASS__, 'status_mail'));
 
 // for batch mode
-		add_action('mp_action_batchsend', 			array(&$this, 'process'));
 		add_action('mp_process_batch_send', 		array(&$this, 'process'));
 
 		$config = get_option(self::option_name);
@@ -72,7 +72,7 @@ class MailPress_batch_send
 // process
 	public static function process()
 	{
-		MailPress::no_abort_limit();
+		MP_::no_abort_limit();
 
 		new MP_Batch();
 	}
@@ -84,7 +84,6 @@ class MailPress_batch_send
 		$now4cron = current_time('timestamp', 'gmt');
 
 		if (!wp_next_scheduled( 'mp_process_batch_send' )) 
-		if (!wp_next_scheduled( 'mp_action_batchsend' ))
 			wp_schedule_single_event($now4cron + $config['every'], 'mp_process_batch_send');
 	}
 
@@ -100,12 +99,19 @@ class MailPress_batch_send
 
 		global $wpdb;
 		$wpdb->query( $wpdb->prepare("UPDATE $wpdb->mp_mailmeta SET meta_key = %s WHERE meta_key = %s;", self::metakey, 'batch_send') );
+
+		$logs = get_option(MailPress::option_name_logs);
+		if (!isset($logs[self::log_name]))
+		{
+			$logs[self::log_name] = array('level' => 8191, 'lognbr' => 10, 'lastpurge' => '');
+			update_option(MailPress::option_name_logs, $logs );
+		}
+
 		do_action('MailPress_schedule_batch_send');
 	}
 
 	public static function uninstall() 
 	{
-		wp_clear_scheduled_hook('mp_action_batchsend');
 		wp_clear_scheduled_hook('mp_process_batch_send');
 	}
 
@@ -138,7 +144,7 @@ class MailPress_batch_send
 
 	public static function settings_logs($logs)
 	{
-		MP_AdminPage::logs_sub_form('batch_send', $logs, __('Batch', MP_TXTDOM), __('Batch log', MP_TXTDOM), __('(for <b>ALL</b> mails send through MailPress)', MP_TXTDOM), __('Number of Batch log files : ', MP_TXTDOM));
+		MP_AdminPage::logs_sub_form(self::log_name, $logs, __('Batch', MP_TXTDOM));
 	}
 
 	public static function autorefresh_every($every = 30)
@@ -160,14 +166,14 @@ class MailPress_batch_send
 		if ('mailpress_tracking_m' != $screen) return;
 		if (!isset($_GET['id'])) return;
 
-		if (!MP_Mailmeta::get( $_GET['id'], self::metakey)) return;
+		if (!MP_Mail_meta::get( $_GET['id'], self::metakey)) return;
 
 		add_meta_box('batchsenddiv', __('Batch current status', MP_TXTDOM), array(__CLASS__, 'meta_box_status'), $screen, 'normal', 'core');
 	}
 
 	public static function meta_box_status($mail)
 	{ 
-		$mailmeta = MP_Mailmeta::get( $mail->id , self::metakey);
+		$mailmeta = MP_Mail_meta::get( $mail->id , self::metakey);
 ?>
 		<table style='width:100%;'>
 			<tr>
@@ -175,7 +181,7 @@ class MailPress_batch_send
 				<td colspan='3'><?php echo $mail->status; ?></td>
 			</tr>
 <?php 	if (is_array($mailmeta)) : ?>
-			<tr><td colspan='4'>&nbsp;</td></tr>
+			<tr><td colspan='4'>&#160;</td></tr>
 			<tr>
 				<td style='width:25%;text-align:center;'><?php _e('Total recipients', MP_TXTDOM); ?></td>
 				<td style='width:25%;text-align:center;'><?php _e('Sent', MP_TXTDOM); ?></td>
@@ -189,7 +195,7 @@ class MailPress_batch_send
 				<td style='width:25%;text-align:center;'><?php echo $mailmeta['processed']; ?></td>
 			</tr>
 <?php 		if (!empty($mailmeta['failed'])) : ?>
-			<tr><td colspan='4'>&nbsp;</td></tr>
+			<tr><td colspan='4'>&#160;</td></tr>
 			<tr>
 				<td><?php printf(__('Failed (%1$s)', MP_TXTDOM), count($mailmeta['failed'])); ?></td>
 				<td colspan='3'><select><?php MP_AdminPage::select_option(array_keys($mailmeta['failed']),''); ?></select></td>
@@ -204,7 +210,7 @@ class MailPress_batch_send
 // for mails list
 	public static function to_mails_column($to, $mail)
 	{
-		$mailmeta = MP_Mailmeta::get( $mail->id , self::metakey);
+		$mailmeta = MP_Mail_meta::get( $mail->id , self::metakey);
 
 		if ($mailmeta)
 		{

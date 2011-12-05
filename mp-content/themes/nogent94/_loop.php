@@ -1,5 +1,5 @@
 <div>
-	<table <?php $this->classes('nopmb w100'); ?> cellspacing='0' cellpadding='0'>
+	<table <?php $this->classes('nopmb w100'); ?>>
 <?php while (have_posts()) : the_post(); ?>
 		<tr>
 			<td <?php $this->classes('nopmb w100 333'); ?>>
@@ -13,9 +13,7 @@
 <?php the_time('F j, Y') ?>
 					</small>
 					<div style='font-size:1em;'>
-						<p style='line-height:1.2em;'>
 <?php $this->the_content( ' (suite...)' ); ?>
-						</p>
 					</div>
 				</div>
 			</td>

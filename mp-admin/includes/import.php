@@ -6,10 +6,10 @@ if (isset($_GET['mp_import']))
 	$importer = $_GET['mp_import'];
 
 	// Allow plugins to define importers as well
-	if (! is_callable($importers[$importer][2]))
+	if (!is_callable($importers[$importer][2]))
 	{
 		$_file = MP_ABSPATH . "mp-includes/class/options/import/importers/$importer.php";
-		if (! file_exists($_file)) wp_die(__('Cannot load importer.', MP_TXTDOM));
+		if (!is_file($_file)) wp_die(__('Cannot load importer.', MP_TXTDOM));
 		include($_file);
 	}
 
@@ -20,13 +20,13 @@ if (isset($_GET['mp_import']))
 	return;
 }
 
-$importers = MP_AdminPage::get_list(); 
+$items = MP_AdminPage::get_list(); 
 ?>
 <div class='wrap'>
 	<div id="icon-mailpress-tools" class="icon32"><br /></div>
 	<h2><?php _e('Import/Export'); ?></h2>
 <?php
-if ($importers)
+if ($items)
 {
 ?>
 		<p>
@@ -48,7 +48,7 @@ if ($importers)
 				</tr>
 			</tfoot>
 			<tbody>
-<?php 	foreach ($importers as $id => $data) echo MP_AdminPage::get_row( $id, $data ); ?>
+<?php 	foreach ($items as $id => $data) echo MP_AdminPage::get_row( $id, $data ); ?>
 			</tbody>
 		</table>
 <?php

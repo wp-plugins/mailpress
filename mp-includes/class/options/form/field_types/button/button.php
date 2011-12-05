@@ -1,5 +1,5 @@
 <?php
-class MP_Forms_field_type_button extends MP_Forms_field_type_abstract
+class MP_Form_field_type_button extends MP_form_field_type_
 {
 	var $id 	= 'button';
 	var $order	= 100;
@@ -16,4 +16,4 @@ class MP_Forms_field_type_button extends MP_Forms_field_type_abstract
 		return parent::submitted($field);
 	}
 }
-new MP_Forms_field_type_button(__('Button', MP_TXTDOM));
+new MP_Form_field_type_button(__('Button', MP_TXTDOM));

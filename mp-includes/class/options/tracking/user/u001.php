@@ -1,5 +1,5 @@
 <?php
-class MP_Tracking_module_u001 extends MP_Tracking_module_abstract
+class MP_Tracking_module_u001 extends MP_tracking_module_
 {
 	var $id	= 'u001';
 	var $context= 'side';
@@ -36,19 +36,18 @@ class MP_Tracking_module_u001 extends MP_Tracking_module_abstract
 			echo '<table cellpadding="0" cellspacing="0">';
 			foreach($tracks as $track) 
 			{
-				$view_url	= esc_url(add_query_arg( array('action' => 'iview', 'id' => $track->mail_id, 'user' => $mp_user->id, 'key' => $mp_user->confkey, 'KeepThis' => 'true', 'TB_iframe' => 'true', 'width' => '600', 'height' => '400'), MP_Action_url ));
+				$view_url	= esc_url(add_query_arg( array('action' => 'iview', 'id' => $track->mail_id, 'mp_user_id' => $mp_user->id, 'key' => $mp_user->confkey, 'preview_iframe' => 1, 'TB_iframe' => 'true'), MP_Action_url ));
 				$subject    = $wpdb->get_var($wpdb->prepare( "SELECT subject FROM $wpdb->mp_mails WHERE id = %d ;", $track->mail_id));
 				if ($subject)
 				{
 					$subject 	= $x->viewsubject($subject, $track->mail_id, $track->mail_id, $mp_user->id);
-					$action 	= "<a href='$view_url' class='thickbox'  title=\"" . esc_attr(sprintf( __('View "%1$s"', MP_TXTDOM) , ($subject) ? $subject : $track->mail_id )) . "\">" . $track->mail_id . '</a>';
+					$action 	= "<a href='$view_url' class='thickbox thickbox-preview'  title=\"" . esc_attr(sprintf( __('View "%1$s"', MP_TXTDOM) , ($subject) ? $subject : $track->mail_id )) . "\">" . $track->mail_id . '</a>';
 				}
 				else
 				{	
 					$action     = $track->mail_id;
 				}
-				//echo $track->tmstp . (($track->mail_id) ? ' (' . $action . ') ' : ' ') . MailPress_tracking::translate_track($track->track, $track->mail_id) . '<br />';
-				echo '<tr><td><abbr title="' . $track->tmstp . '">' . substr($track->tmstp, 0, 10) . '</abbr></td><td>&nbsp;' . (($track->mail_id) ? ' (' . $action . ') ' : ' ') . '</td><td>&nbsp;' . MailPress_tracking::translate_track($track->track, $track->mail_id) . '</td></tr>';
+				echo '<tr><td><abbr title="' . $track->tmstp . '">' . substr($track->tmstp, 0, 10) . '</abbr></td><td>&#160;' . (($track->mail_id) ? ' (' . $action . ') ' : ' ') . '</td><td>&#160;' . MailPress_tracking::translate_track($track->track, $track->mail_id) . '</td></tr>';
 			}
 			echo '</table>';
 		}

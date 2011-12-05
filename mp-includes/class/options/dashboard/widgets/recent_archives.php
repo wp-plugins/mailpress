@@ -4,7 +4,7 @@ $mp_mails = new MP_Query();
 $mp_mails->query();
 if ($mp_mails->mail_count)
 {
-class MP_Dashboard_recent_archives extends MP_Dashboard_widget_abstract
+class MP_Dashboard_recent_archives extends MP_dashboard_widget_
 {
 	var $id = 'mp_recent_archives';
 
@@ -27,12 +27,12 @@ class MP_Dashboard_recent_archives extends MP_Dashboard_widget_abstract
 			$args = array();
 			$args['id'] 	= $mp_mails->get_the_ID();
 			$args['action'] 	= 'iview';
-			$args['KeepThis'] = 'true'; $args['TB_iframe']= 'true'; $args['width'] = '600'; $args['height']	= '400';
-			$view_url		= esc_url(MailPress::url(MP_Action_url, $args));
+			$args['preview_iframe'] = 1; $args['TB_iframe']= 'true';
+			$view_url		= esc_url(MP_::url(MP_Action_url, $args));
 ?>
 	<li id='mail-<?php $mp_mails->the_ID(); ?>'>
 		<h4 style='font-weight:normal;'>
-			<a class='thickbox' title="<?php _e('View', MP_TXTDOM ); ?>" href="<?php echo $view_url; ?>" >
+			<a class='thickbox thickbox-preview' title="<?php _e('View', MP_TXTDOM ); ?>" href="<?php echo $view_url; ?>" >
 				<?php $mp_mails->the_subject(); ?>
 			</a>
 			<abbr title='<?php $mp_mails->the_date('Y/m/d g:i:s A'); ?>' style='color:#999;font-family:"Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;font-size:11px;margin-left:3px;'>

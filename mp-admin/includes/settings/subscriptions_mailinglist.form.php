@@ -8,13 +8,11 @@ if (!isset($subscriptions)) $subscriptions = $mp_subscriptions;
 </tr>
 <tr valign='top' class="rc_role">
 	<th scope='row'>
-		<?php _e('Allow subscriptions to', MP_TXTDOM); ?>
 		<input type='hidden'   name='mailinglist[on]' value='on' />
 	</th>
 	<td colspan='4'>
 		<table id='mailinglists' class='general'>
 			<tr>
-				<td style='width:50px;vertical-align:top;'>&nbsp;</td>
 				<td>
 <?php
 $default_mailing_list = get_option(MailPress_mailinglist::option_name_default);
@@ -39,7 +37,7 @@ else
 	foreach ($mls as $k => $v)
 	{
 ?>
-						<label for='subscriptions_display_mailinglists_<?php echo $k; ?>'><input type='checkbox' id='subscriptions_display_mailinglists_<?php echo $k; ?>' name='subscriptions[display_mailinglists][<?php echo $k; ?>]'<?php if (isset($mp_subscriptions['display_mailinglists'][$k])) checked($mp_subscriptions['display_mailinglists'][$k], 'on'); ?> />&nbsp;&nbsp;<?php echo $v; ?></label><br />
+						<label for='subscriptions_display_mailinglists_<?php echo $k; ?>'><input type='checkbox' id='subscriptions_display_mailinglists_<?php echo $k; ?>' name='subscriptions[display_mailinglists][<?php echo $k; ?>]'<?php if (isset($mp_subscriptions['display_mailinglists'][$k])) checked($mp_subscriptions['display_mailinglists'][$k], 'on'); ?> />&#160;&#160;<?php echo $v; ?></label><br />
 <?php
 	}
 }
@@ -49,6 +47,6 @@ else
 		</table>
 	</td>
 </tr>
-<tr valign='top' style='line-height:10px;padding:0;'><td colspan='5' style='line-height:10px;padding:0;'>&nbsp;</td></tr>
+<tr valign='top' style='line-height:10px;padding:0;'><td colspan='5' style='line-height:10px;padding:0;'>&#160;</td></tr>
 <tr valign='top' class='mp_sep' style='line-height:2px;padding:0;'><td colspan='5' style='line-height:2px;padding:0;'></td></tr>
 <tr><th></th><td colspan='4'></td></tr>

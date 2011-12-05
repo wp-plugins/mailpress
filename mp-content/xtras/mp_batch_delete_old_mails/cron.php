@@ -9,4 +9,4 @@ include($path . 'wp-admin/includes/admin.php');
 
 do_action('mp_process_delete_old_mails');
 
-MailPress::mp_die();
+MP_::mp_die();

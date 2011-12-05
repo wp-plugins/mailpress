@@ -110,11 +110,11 @@ class MP_Ip
 		$file  = $ip_url = vsprintf( $pdata['url'], apply_filters('MailPress_ip_url_' . $pdata['id'] , array($ip)) );
 		$cache = MP_ABSPATH . 'tmp/' . ((!isset($pdata['md5'])) ?  md5($ip_url) : $ip_url) . '.spc';
 
-		if (file_exists($cache))
+		if (is_file($cache))
 		{
 			$cache_days = ( (isset($pdata['cache_days'])) ? $pdata['cache_days'] : self::cache_days )*24*60*60;
 			if (filemtime($cache) >= (time() - $cache_days))	$file = $cache;
-			else									unlink($cache);
+			else									@unlink($cache);
 		}
 		return array($file, $ip_url, $cache);
 	}

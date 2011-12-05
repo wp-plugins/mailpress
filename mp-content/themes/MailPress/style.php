@@ -1,51 +1,25 @@
-<?php
+<?php /* MailPress */
 $_classes = array(
 
 'body'		=> "	color:#000;
 				font-family: verdana,geneva;
 				background:none repeat scroll 0 0 #f0f0f0;",
 
-'button'		=> "	min-width:80px;
-				text-align:center;
-				text-shadow:0 -1px 0 rgba(0, 0, 0, 0.3);
-				font-weight:bold;
-				background-color:#6D8C82;
+'button'		=> "	background-color:#6D8C82;
 				border-color:#6D8C82;
-				color:#FFFFFF;
-				font-weight:bold;
-				-moz-border-radius: 11px;
-				-webkit-border-top-left-radius: 11px;
-				-khtml-border-top-left-radius: 11px;
-				border-top-left-radius: 11px;
-				border-style:solid;
-				border-width:1px;
-				cursor:pointer;
-				font-size:11px !important;
+				color:#fff;
+				text-shadow:0 -1px 0 rgba(0, 0, 0, 0.3);
+				font-size:13px;
 				line-height:16px;
-				padding:2px 8px;
-				text-decoration:none;
 				margin:1px;
 				font-family:'Lucida Grande',Verdana,Arial,'Bitstream Vera Sans',sans-serif;",
 
-'mail_link'		=> "  background:none repeat scroll 0 0 transparent;
-				color:#666;
-				border:0 none;
-				font-size:10px;
-				font-style:italic;
-				line-height:5px;
-				margin:0 0 5px;
-				padding:0;
-				text-align:center;
-				font-family:Verdana,Arial,sans-serif;
-				vertical-align:baseline;",
-
-'mail_link_a'	=> "  color:#666;",
-
-'nopmb' 		=> "	padding:0;
-				margin:0;
-				border:none;",
+'mail_link'		=> "  margin:0 0 5px;",
 
 'txtleft'		=> "	text-align:left;",
+
+'a'			=> "  color:#6D8C82;
+				text-decoration:underline;",
 
 // header
 

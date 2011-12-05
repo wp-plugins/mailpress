@@ -1,5 +1,5 @@
 <?php
-class MP_Forms_field_type_date extends MP_Forms_field_type_abstract
+class MP_Form_field_type_date extends MP_form_field_type_
 {
 	var $id			= 'date';
 	var $order			= 70;
@@ -59,30 +59,30 @@ class MP_Forms_field_type_date extends MP_Forms_field_type_abstract
 		$start	= (isset($this->field->settings['options']['year_start_c'])) ? date('Y') : $this->field->settings['options']['year_start'];
 		$max		= (isset($this->field->settings['options']['year_end_c']))   ? date('Y') : $this->field->settings['options']['year_end'];
    		$selected_y	= (isset($this->field->settings['options']['value']['y']))   ? $this->field->settings['options']['value']['y'] : date('Y');
-		$this->field->settings['options']['tag_content_y'] = MailPress::select_number($start, $max, $selected_y, 1, false);
+		$this->field->settings['options']['tag_content_y'] = MP_::select_number($start, $max, $selected_y, 1, false);
 // months
 		$start	= 0;
 		$month_f	= $this->field->settings['options']['form_month_format'];
    		$selected_m 	= (isset($this->field->settings['options']['value']['m']))   ? $this->field->settings['options']['value']['m'] : date('m');
 		if ($month_f != 'n') $wpl = new WP_Locale();
 		do { $start++; $k = $start; if ($k < 10) $k = '0' . $k; $v = $k; if ('s' == $month_f) $v = $wpl->get_month_abbrev($wpl->get_month($start)); if ('f' == $month_f) $v = $wpl->get_month($start); $list[$k] = $v; } while ($start < 12);
-		$this->field->settings['options']['tag_content_m'] = MailPress::select_option($list, $selected_m, false);
+		$this->field->settings['options']['tag_content_m'] = MP_::select_option($list, $selected_m, false);
 // days
 		$start = 0; $days = '';
 		$selected_d = (isset($this->field->settings['options']['value']['d']))   ? $this->field->settings['options']['value']['d'] : date('d');
 		$feb = ((($selected_y % 4 == 0) && ( (!($selected_y % 100 == 0)) || ($selected_y % 400 == 0))) ? 29 : 28 ); $maxd = array(31,$feb,31,30,31,30,31,31,30,31,30,31); if ($selected_d > $maxd[$selected_m - 1]) $selected_d = $maxd[$selected_m - 1] - 1;
-		do { $start++; $k = $start; if ($k < 10) $k = '0' . $k; $v = $k; $style = ($start > $maxd[$selected_m - 1]) ? " style='display:none;'" : ''; $days .="<option id=\"" . $id_d . '_' . $k . "\" value=\"$k\"" . MailPress::selected($selected_d, $k, false)  . "$style>$k</option>"; } while ($start < 31); $days = "\n$days\n";
+		do { $start++; $k = $start; if ($k < 10) $k = '0' . $k; $v = $k; $style = ($start > $maxd[$selected_m - 1]) ? " style='display:none;'" : ''; $days .="<option id=\"" . $id_d . '_' . $k . "\" value=\"$k\"" . MP_::selected($selected_d, $k, false)  . "$style>$k</option>"; } while ($start < 31); $days = "\n$days\n";
 		$this->field->settings['options']['tag_content_d'] = $days;
 
 		if (!$no_reset) return;
 		
 		$this->field->settings['options']['value'] = $_POST[$this->prefix][$this->field->form_id][$this->field->id];
 
-		$html = MP_Forms_field_type_select::no_reset( $this->field->settings['options']['tag_content_y'], $this->field->settings['options']['value']['y'] );
+		$html = MP_Form_field_type_select::no_reset( $this->field->settings['options']['tag_content_y'], $this->field->settings['options']['value']['y'] );
 		$this->field->settings['options']['tag_content_y'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', MP_TXTDOM) ) . ' -->';
-		$html = MP_Forms_field_type_select::no_reset( $this->field->settings['options']['tag_content_m'], $this->field->settings['options']['value']['m'] );
+		$html = MP_Form_field_type_select::no_reset( $this->field->settings['options']['tag_content_m'], $this->field->settings['options']['value']['m'] );
 		$this->field->settings['options']['tag_content_m'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', MP_TXTDOM) ) . ' -->';
-		$html = MP_Forms_field_type_select::no_reset( $this->field->settings['options']['tag_content_d'], $this->field->settings['options']['value']['d'] );
+		$html = MP_Form_field_type_select::no_reset( $this->field->settings['options']['tag_content_d'], $this->field->settings['options']['value']['d'] );
 		$this->field->settings['options']['tag_content_d'] = ($html) ? $html : '<!-- ' . htmlspecialchars( __('invalid select options', MP_TXTDOM) ) . ' -->';
 
 		$this->attributes_filter_css();
@@ -110,9 +110,9 @@ class MP_Forms_field_type_date extends MP_Forms_field_type_abstract
 
 		$this->field->type = $this->id;
 
-		$form_formats['ymd'] = '{{y}}&nbsp;{{m}}&nbsp;{{d}}';
-		$form_formats['dmy'] = '{{d}}&nbsp;{{m}}&nbsp;{{y}}';
-		$form_formats['mdy'] = '{{m}}&nbsp;{{d}}&nbsp;{{y}}';
+		$form_formats['ymd'] = '{{y}}&#160;{{m}}&#160;{{d}}';
+		$form_formats['dmy'] = '{{d}}&#160;{{m}}&#160;{{y}}';
+		$form_formats['mdy'] = '{{m}}&#160;{{d}}&#160;{{y}}';
 
 		$form_formats = $this->get_formats($form_formats);
 
@@ -127,4 +127,4 @@ class MP_Forms_field_type_date extends MP_Forms_field_type_abstract
 		return sprintf($html, $tag_y, $id_y, $tag_m, $id_m, $tag_d, $id_d);
 	}
 }
-new MP_Forms_field_type_date(__('Date', MP_TXTDOM));
+new MP_Form_field_type_date(__('Date', MP_TXTDOM));

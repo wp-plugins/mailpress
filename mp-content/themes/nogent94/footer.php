@@ -1,10 +1,10 @@
 <!-- start footer -->
-						<div style='clear:both;'></div>
 						</div>
+						<div style='clear:both;'></div>
 					</div>
 				</div>
 
-				<div align='center' style='color:#D07B40;background-color:#e9e9e9;margin:20px;padding:5px;'>
+				<div style='text-align:center;color:#D07B40;background-color:#e9e9e9;margin:20px;padding:5px;'>
 					<small>
 						Vous recevez cet e-mail car vous avez donn&eacute; votre accord pour recevoir des informations sur support &eacute;lectronique de la part de <?php bloginfo( 'name' ); ?>.
 						<br />
@@ -19,7 +19,7 @@
 						Pour se d&eacute;sinscrire :
 						<br />
 						Il vous suffit d'activer 
-						<a href='{{unsubscribe}}'>
+						<a href='{{unsubscribe}}' <?php $this->classes('mail_link_a a'); ?>>
 							ce lien
 						</a>.
 					</small>

@@ -1,5 +1,5 @@
 <?php
-class MP_Ip_geoplugin extends MP_Ip_provider_abstract
+class MP_Ip_geoplugin extends MP_ip_provider_
 {
 	var $id 	= 'geoplugin';
 	var $url	= 'http://www.geoplugin.net/xml.gp?ip=%1$s';

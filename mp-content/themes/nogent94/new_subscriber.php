@@ -1,13 +1,14 @@
 <?php
 /*
 Template Name: new_subscriber
-Subject: [<?php bloginfo('name');?>] <?php printf( __('En attente de : %s', MP_TXTDOM), '{{toemail}}'); ?>
+Subject: [<?php bloginfo('name');?>] <?php printf( 'En attente de : %s', '{{toemail}}'); ?>
 */
 
-$_the_title = "Validation de votre adresse mail";
+$this->build->_the_title = "Validation de votre adresse mail";
 
 $_the_content = "Merci <a " . $this->classes('button', false) . "href='{{subscribe}}'>de confirmer</a> votre addresse mail.";
 $_the_content .= '<br />';
+$this->build->_the_content = $_the_content;
 
 unset($this->args->unsubscribe);
-include('_mail.php');
+$this->get_template_part('_mail');

@@ -1,13 +1,11 @@
 <?php
 $url_parms = MP_AdminPage::get_url_parms();
 
+//
+// MANAGING H2
+//
+
 $h2 = __('MailPress Add-ons', MP_TXTDOM);
-
-//
-// MANAGING SUBSUBSUB URL + LIST
-//
-
-list($addons, $subsubsub_urls) = MP_AdminPage::get_list(0, 0, $url_parms); // Grab a few extra
 
 //
 // MANAGING MESSAGE / CHECKBOX RESULTS
@@ -28,18 +26,19 @@ foreach ($results as $k => $v)
 }
 
 //
-// MANAGING CONTENT
-//
-
-$context = (isset($url_parms['status'])) ? $url_parms['status'] : false;
-
-//
 // MANAGING BULK ACTIONS
 //
 
 $bulk_actions[''] = __('Bulk Actions');
+$context = (isset($url_parms['status'])) ? $url_parms['status'] : false;
 if ( 'active' != $context )		$bulk_actions['activate']   = __('Activate');
 if ( 'inactive' != $context )		$bulk_actions['deactivate'] = __('Deactivate');
+
+//
+// MANAGING LIST
+//
+
+list($items, $subsubsub_urls) = MP_AdminPage::get_list(0, 0, $url_parms); // Grab a few extra
 
 ?>
 <div class='wrap'>
@@ -63,7 +62,7 @@ if ( 'inactive' != $context )		$bulk_actions['deactivate'] = __('Deactivate');
 		<input type='hidden' name='page' value='<?php echo MP_AdminPage::screen; ?>' />
 		<?php MP_AdminPage::post_url_parms($url_parms, array('status')); ?>
 <?php
-if ($addons) {
+if ($items) {
 ?>
 		<div class='tablenav'>
 			<div class='alignleft actions'>
@@ -85,7 +84,7 @@ if ($addons) {
 				</tr>
 			</tfoot>
 			<tbody class='addons'>
-<?php foreach ($addons as $addon) 		MP_AdminPage::get_row( $addon, $url_parms ); ?>
+<?php foreach ($items as $item) 		MP_AdminPage::get_row( $item, $url_parms ); ?>
 			</tbody>
 		</table>
 		<div class='tablenav'>

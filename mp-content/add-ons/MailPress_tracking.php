@@ -6,11 +6,9 @@ Plugin Name: MailPress_tracking
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Tracking
 Description: This is just an add-on for MailPress to track the mails/users activity.
 Author: Andre Renaut
-Version: 5.1.1
+Version: 5.2
 Author URI: http://www.mailpress.org
 */
-
-// 3.
 
 /** for admin plugin pages */
 define ('MailPress_page_tracking_m', MailPress_page_mails . '&file=tracking');
@@ -21,7 +19,9 @@ $mp_file = 'admin.php';
 define ('MailPress_tracking_m', 	$mp_file . '?page=' 	. MailPress_page_tracking_m);
 define ('MailPress_tracking_u', 	$mp_file . '?page=' 	. MailPress_page_tracking_u);
 
-// 
+/** for mysql */ 
+global $wpdb;
+$wpdb->mp_tracks = $wpdb->prefix . 'mailpress_tracks';
 
 define ('MailPress_tracking_openedmail', 	'_MailPress_mail_opened');
 
@@ -31,10 +31,6 @@ class MailPress_tracking
 
 	function __construct()
 	{
-// for mysql
-		global $wpdb;
-		$wpdb->mp_tracks = $wpdb->prefix . 'mailpress_tracks';
-
 // for wordpress hooks
 		add_action('init',  					array(__CLASS__, 'init'), 100);
 // for mails list
@@ -91,7 +87,7 @@ class MailPress_tracking
 		$args = array();
 		$args['id'] 	= $mail->id;
 
-		$tracking_url 	= esc_url(MailPress::url( MailPress_tracking_m, array_merge($args, $url_parms)));
+		$tracking_url 	= esc_url(MP_::url( MailPress_tracking_m, array_merge($args, $url_parms)));
 
 	// actions
 		$actions['tracking'] = "<a href='$tracking_url' title='" . __('See tracking results', MP_TXTDOM ) . "'>" . __('Tracking', MP_TXTDOM) . '</a>';
@@ -108,7 +104,7 @@ class MailPress_tracking
 		$args = array();
 		$args['id'] 	= $user->id;
 
-		$tracking_url 	= esc_url(MailPress::url( MailPress_tracking_u, array_merge($args, $url_parms)));
+		$tracking_url 	= esc_url(MP_::url( MailPress_tracking_u, array_merge($args, $url_parms)));
 
 	// actions
 		$actions['tracking'] = "<a href='$tracking_url' title='" . __('See tracking results', MP_TXTDOM ) . "'>" . __('Tracking', MP_TXTDOM) . '</a>';
@@ -137,7 +133,7 @@ class MailPress_tracking
 		$ip = $wpdb->get_var( $wpdb->prepare( "SELECT ip FROM $wpdb->mp_tracks WHERE user_id = %d AND ip <> '' ORDER BY tmstp DESC LIMIT 1;", $id) );
 		if (!$ip) return false;
 
-		return MP_Users::set_ip($id, $ip);
+		return MP_User::set_ip($id, $ip);
 	}
 
 // for referential integrity
@@ -201,7 +197,7 @@ class MailPress_tracking
 			$toemail = (is_email($k)) ? $k : $v;
 			if (isset($mail->replacements[$toemail]['{{_confkey}}']))
 			{
-				MP_Usermeta::add(MP_Users::get_id_by_email($toemail), '_MailPress_mail_sent', $mail->id);
+				MP_User_meta::add(MP_User::get_id_by_email($toemail), '_MailPress_mail_sent', $mail->id);
 			}
 		}
 
@@ -272,7 +268,7 @@ class MailPress_tracking
 		global $wpdb;
 		$meta_id = $wpdb->get_var( $wpdb->prepare( "SELECT meta_id FROM $wpdb->mp_mailmeta WHERE mp_mail_id = %d AND meta_key = %s AND meta_value = %s ;", $mail_id, $meta_key, $meta_value ) );
 		if ($meta_id) return $meta_id;
-		return MP_Mailmeta::add( $mail_id, $meta_key, $meta_value);
+		return MP_Mail_meta::add( $mail_id, $meta_key, $meta_value);
 	}
 
 // process link
@@ -297,7 +293,7 @@ class MailPress_tracking
 	{
 		global $wpdb;
 
-		$mp_user_id = MP_Users::get_id($_GET['us']);
+		$mp_user_id = MP_User::get_id($_GET['us']);
 
 		if (!$mp_user_id) return;
 		if (0 == $mp_user_id) return;
@@ -470,11 +466,11 @@ class MailPress_tracking
 					}
 					$version = ($version) ? $i->name . " $version" : $i->name;
 					if (!empty($icon))
-						$txt .= "<img src='" . get_option('siteurl') . '/' . MP_PATH . 'mp-admin/images' . $icon . "' alt='' />";
+						$txt .= "<img src='" . site_url() . '/' . MP_PATH . 'mp-admin/images' . $icon . "' alt='' />";
 					if (isset($i->link))
 						$txt .= "&nbsp<a href='" . $i->link . "' title='" . $version . "' >" . $i->name . '</a>';
 					else
-						$txt .= '&nbsp;' . $version;
+						$txt .= '&#160;' . $version;
 					break;
 				}
 			}
@@ -503,13 +499,13 @@ class MailPress_tracking
 			break;
 			default :
 				$confkey = '#µ$&$µ#';
-				$url = MP_Users::get_subscribe_url($confkey);
+				$url = MP_User::get_subscribe_url($confkey);
 				$url = str_replace($confkey, '', $url);
 				if (stripos($track, $url) !== false) {return __('subscribe', MP_TXTDOM);}
-				$url = MP_Users::get_unsubscribe_url($confkey);
+				$url = MP_User::get_unsubscribe_url($confkey);
 				$url = str_replace($confkey, '', $url);
 				if (stripos($track, $url) !== false) {return __('unsubscribe', MP_TXTDOM);}
-				$url = MP_Users::get_view_url($confkey, $mail_id);
+				$url = MP_User::get_view_url($confkey, $mail_id);
 				$url = str_replace($confkey . '&id=' . $mail_id, '', $url);
 				if (stripos($track, $url) !== false) {return __('view html', MP_TXTDOM);}
 			break;

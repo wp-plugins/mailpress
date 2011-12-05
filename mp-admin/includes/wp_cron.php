@@ -1,33 +1,11 @@
 <?php
 $url_parms = MP_AdminPage::get_url_parms();
 
+//
+// MANAGING H2
+//
+
 $h2 = __('Wp_cron', MP_TXTDOM);
-
-//
-// MANAGING PAGINATION
-//
-
-$url_parms['apage'] = $page	= isset($_GET['apage'])	? $_GET['apage'] : 1;
-do
-{
-	$start = ( $url_parms['apage'] - 1 ) * 20;
-
-	list($_wp_crons, $total) = MP_AdminPage::get_list($start, 25, $url_parms); // Grab a few extra
-
-	$url_parms['apage']--;
-} while ( $total <= $start );
-$url_parms['apage']++;
-
-$page_links = paginate_links	(array(	'base' => add_query_arg( 'apage', '%#%' ),
-							'format' => '',
-							'total' => ceil($total / 20),
-							'current' => $url_parms['apage']
-						)
-					);
-if ($url_parms['apage'] <= 1) unset($url_parms['apage']);
-
-$wp_crons 		= array_slice($_wp_crons, 0, 20);
-$extra_wp_crons 	= array_slice($_wp_crons, 20);
 
 //
 // MANAGING MESSAGE
@@ -90,6 +68,24 @@ else
 $bulk_actions[''] 	= __('Bulk Actions');
 $bulk_actions['delete']	= __('Delete', MP_TXTDOM);
 
+//
+// MANAGING LIST
+//
+
+$url_parms['paged'] = isset($url_parms['paged']) ? $url_parms['paged'] : 1;
+$_per_page = MP_AdminPage::get_per_page();
+
+do
+{
+	$start = ( $url_parms['paged'] - 1 ) * $_per_page;
+	list($_items, $total) = MP_AdminPage::get_list($start, 25, $url_parms); // Grab a few extra
+	$url_parms['paged']--;
+} while ( $total <= $start );
+$url_parms['paged']++;
+
+$items 		= array_slice($_items, 0, $_per_page);
+$extra_items 	= array_slice($_items, $_per_page);
+
 ?>
 <div class='wrap'>
 	<div id="icon-mailpress-tools" class="icon32"><br /></div>
@@ -108,14 +104,13 @@ foreach ($flipflops as $flipflop)
 ?>
 	<form id='posts-filter' action='' method='get'>
 		<input type='hidden' name='page' value='<?php echo MP_AdminPage::screen; ?>' />
-		<?php MP_AdminPage::post_url_parms($url_parms); ?>
 
 		<div class='tablenav'>
 			<div class='alignleft actions'>
 <?php	MP_AdminPage::get_bulk_actions($bulk_actions); ?>
 			</div>
 
-<?php if ( $page_links ) echo "			<div class='tablenav-pages'>$page_links</div>"; ?>
+<?php MP_AdminPage::pagination($total); ?>
 
 			<br class='clear' />
 		</div>
@@ -133,11 +128,11 @@ foreach ($flipflops as $flipflop)
 				  </tr>
 			</tfoot>
 			<tbody id='<?php echo MP_AdminPage::list_id; ?>' class='list:<?php echo MP_AdminPage::tr_prefix_id; ?>'>
-<?php	foreach ($wp_crons as $wp_cron) echo MP_AdminPage::get_row( $wp_cron, $url_parms ); ?>
+<?php	foreach ($items as $item) echo MP_AdminPage::get_row( $item, $url_parms ); ?>
 			</tbody>
 		</table>
 		<div class='tablenav'>
-<?php if ( $page_links ) echo "			<div class='tablenav-pages'>$page_links</div>"; ?>
+<?php MP_AdminPage::pagination($total, 'bottom'); ?>
 			<div class='alignleft actions'>
 <?php	MP_AdminPage::get_bulk_actions($bulk_actions, 'action2'); ?>
 			</div>
@@ -153,7 +148,7 @@ foreach ($flipflops as $flipflop)
 			<thead>
 				<tr>
 <?php
-	foreach ( array('name' => __('Hook name', MP_TXTDOM), 'next' => __('Next&nbsp;run',  MP_TXTDOM), 'rec' => __('Recurrence',MP_TXTDOM), 'args' => __('Arguments', MP_TXTDOM)) as $key => $display_name ) 
+	foreach ( array('name' => __('Hook name', MP_TXTDOM), 'next' => __('Next&#160;run',  MP_TXTDOM), 'rec' => __('Recurrence',MP_TXTDOM), 'args' => __('Arguments', MP_TXTDOM)) as $key => $display_name ) 
 	{
 		$display_name = ('next' != $key) ? $display_name : "<abbr title='" . __('e.g., "now", "tomorrow", "+2 days", or "06/04/08 15:27:09"', MP_TXTDOM) . "'>$display_name</abbr>";
 		$display_name = ('args' != $key) ? $display_name : "<abbr title='" . __('JSON encoded string', MP_TXTDOM) . "'>$display_name</abbr>";

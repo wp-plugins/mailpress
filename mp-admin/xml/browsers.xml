@@ -161,6 +161,13 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[BlackHawk]]></name>
+		<link><![CDATA[http://www.netgate.sk/blackhawk/help/welcome-to-blackhawk-web-browser.html]]></link>
+		<icon><![CDATA[/browser/blackhawk.png]]></icon>
+		<pattern><![CDATA[#BlackHawk([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Blazer]]></name>
 		<link><![CDATA[http://en.wikipedia.org/wiki/Blazer_(web_browser)]]></link>
 		<icon><![CDATA[/browser/blazer.png]]></icon>
@@ -180,6 +187,12 @@
 		<icon><![CDATA[/browser/paradiso.png]]></icon>
 		<pattern><![CDATA[#BonEcho/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[BrowseX]]></name>
+		<link><![CDATA[http://pdqi.com/browsex/]]></link>
+		<icon><![CDATA[/browser/browsex.png]]></icon>
+		<pattern><![CDATA[#BrowseX#i]]></pattern>
 	 </browser>
 	 <browser>
 		<name><![CDATA[Browzar]]></name>
@@ -207,6 +220,13 @@
 		<link><![CDATA[http://www.caymanbrowser.com/]]></link>
 		<icon><![CDATA[/browser/caymanbrowser.png]]></icon>
 		<pattern><![CDATA[#Cayman\ Browser/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Charon]]></name>
+		<link><![CDATA[http://en.wikipedia.org/wiki/Charon_(web_browser)]]></link>
+		<icon><![CDATA[/browser/null.png]]></icon>
+		<pattern><![CDATA[#Charon/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -238,6 +258,13 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[CometBird]]></name>
+		<link><![CDATA[http://www.cometbird.com/]]></link>
+		<icon><![CDATA[/browser/cometbird.png]]></icon>
+		<pattern><![CDATA[#CometBird/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Comodo Dragon]]></name>
 		<link><![CDATA[http://www.comodo.com/home/internet-security/browser.php]]></link>
 		<icon><![CDATA[/browser/comodo-dragon.png]]></icon>
@@ -245,10 +272,10 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
-		<name><![CDATA[CometBird]]></name>
-		<link><![CDATA[http://www.cometbird.com/]]></link>
-		<icon><![CDATA[/browser/cometbird.png]]></icon>
-		<pattern><![CDATA[#CometBird/([.0-9a-zA-Z]+)#i]]></pattern>
+		<name><![CDATA[Conkeror]]></name>
+		<link><![CDATA[http://www.conkeror.org/]]></link>
+		<icon><![CDATA[/browser/conkeror.png]]></icon>
+		<pattern><![CDATA[#Conkeror/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -308,6 +335,13 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[DoCoMo]]></name>
+		<link><![CDATA[http://www.nttdocomo.com/]]></link>
+		<icon><![CDATA[/browser/null.png]]></icon>
+		<pattern><![CDATA[#DoCoMo/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[DocZilla]]></name>
 		<link><![CDATA[http://www.doczilla.com/]]></link>
 		<icon><![CDATA[/browser/doczilla.png]]></icon>
@@ -336,10 +370,24 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[Dorothy]]></name>
+		<link><![CDATA[http://www.dorothybrowser.com/]]></link>
+		<icon><![CDATA[/browser/dorothybrowser.png]]></icon>
+		<pattern><![CDATA[#Dorothy/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Edbrowse]]></name>
 		<link><![CDATA[http://edbrowse.sourceforge.net/]]></link>
 		<icon><![CDATA[/browser/edbrowse.png]]></icon>
 		<pattern><![CDATA[#Edbrowse/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Element]]></name>
+		<link><![CDATA[http://www.elementsoftware.co.uk/software/elementbrowser/]]></link>
+		<icon><![CDATA[/browser/elementbrowser.png]]></icon>
+		<pattern><![CDATA[#Element\ Browser/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -371,6 +419,13 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[Escape TV Borwser]]></name>
+		<link><![CDATA[http://www.espial.com/products/evo_browser/]]></link>
+		<icon><![CDATA[/browser/espialtvbrowser.png]]></icon>
+		<pattern><![CDATA[#Escape/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Fennec]]></name>
 		<link><![CDATA[https://wiki.mozilla.org/Fennec]]></link>
 		<icon><![CDATA[/browser/fennec.png]]></icon>
@@ -384,7 +439,13 @@
 		<pattern><![CDATA[#Firebird/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
-
+	 <browser>
+		<name><![CDATA[Fireweb]]></name>
+		<link><![CDATA[http://www.arsslensoft.tk/?q=node/7]]></link>
+		<icon><![CDATA[/browser/firewebnavigator.png]]></icon>
+		<pattern><![CDATA[#Fireweb\ Navigator/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
 	 <browser>
 		<name><![CDATA[Flock]]></name>
 		<link><![CDATA[http://www.flock.com/]]></link>
@@ -419,6 +480,19 @@
 		<icon><![CDATA[/browser/globalmojo.png]]></icon>
 		<pattern><![CDATA[#GlobalMojo/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Go]]></name>
+		<link><![CDATA[http://www.gobrowser.cn/]]></link>
+		<icon><![CDATA[/browser/gobrowser.png]]></icon>
+		<pattern><![CDATA[#GoBrowser/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Google Wireless Transcoder]]></name>
+		<link><![CDATA[http://google.com/gwt/n]]></link>
+		<icon><![CDATA[/browser/google.png]]></icon>
+		<pattern><![CDATA[#Google\ Wireless\ Transcoder#i]]></pattern>
 	 </browser>
 	 <browser>
 		<name><![CDATA[GoSurf]]></name>
@@ -483,7 +557,7 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
-		<name><![CDATA[iCabe]]></name>
+		<name><![CDATA[iCab]]></name>
 		<link><![CDATA[http://www.icab.de/]]></link>
 		<icon><![CDATA[/browser/icab.png]]></icon>
 		<pattern><![CDATA[#iCab/([.0-9a-zA-Z]+)#i]]></pattern>
@@ -522,6 +596,13 @@
 		<link><![CDATA[http://www.microsoft.com/windowsmobile/en-us/downloads/microsoft/internet-explorer-mobile.mspx]]></link>
 		<icon><![CDATA[/browser/msie-mobile.png]]></icon>
 		<pattern><![CDATA[#IEMobile/([.a-zA-Z0-9]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[InternetSurfboard]]></name>
+		<link><![CDATA[http://inetsurfboard.sourceforge.net/]]></link>
+		<icon><![CDATA[/browser/internetsurfboard.png]]></icon>
+		<pattern><![CDATA[#InternetSurfboard/([.a-zA-Z0-9]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -615,6 +696,13 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[Kylo]]></name>
+		<link><![CDATA[http://kylo.tv/]]></link>
+		<icon><![CDATA[/browser/kylo.png]]></icon>
+		<pattern><![CDATA[#Kylo/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[LBrowser]]></name>
 		<link><![CDATA[http://wiki.freespire.org/index.php/Web_Browser]]></link>
 		<icon><![CDATA[/browser/lbrowser.png]]></icon>
@@ -622,10 +710,17 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[LeechCraft]]></name>
+		<link><![CDATA[http://leechcraft.org/]]></link>
+		<icon><![CDATA[/browser/null.png]]></icon>
+		<pattern><![CDATA[/LeechCraft/i]]></pattern>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Links]]></name>
 		<link><![CDATA[http://links.sourceforge.net/]]></link>
 		<icon><![CDATA[/browser/links.png]]></icon>
-		<pattern><![CDATA[/Links/i]]></pattern>
+		<pattern><![CDATA[#Links/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
 		<name><![CDATA[Lobo]]></name>
@@ -642,6 +737,13 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[Lorentz]]></name>
+		<link><![CDATA[http://news.softpedia.com/news/Firefox-Codenamed-Lorentz-Drops-in-March-2010-130855.shtml]]></link>
+		<icon><![CDATA[/browser/firefoxdevpre.png]]></icon>
+		<pattern><![CDATA[#Lorentz/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Lunascape]]></name>
 		<link><![CDATA[http://www.lunascape.tv]]></link>
 		<icon><![CDATA[/browser/lunascape.png]]></icon>
@@ -653,6 +755,20 @@
 		<link><![CDATA[http://lynx.browser.org/]]></link>
 		<icon><![CDATA[/browser/lynx.png]]></icon>
 		<pattern><![CDATA[#Lynx/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Madfox]]></name>
+		<link><![CDATA[http://en.wikipedia.org/wiki/Madfox]]></link>
+		<icon><![CDATA[/browser/madfox.png]]></icon>
+		<pattern><![CDATA[#Madfox/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Maemo]]></name>
+		<link><![CDATA[http://maemo.nokia.com/features/maemo-browser/]]></link>
+		<icon><![CDATA[/browser/maemo.png]]></icon>
+		<pattern><![CDATA[#Maemo\ Browser/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -680,6 +796,13 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[MiniBrowser]]></name>
+		<link><![CDATA[http://dmkho.tripod.com/]]></link>
+		<icon><![CDATA[/browser/minibrowser.png]]></icon>
+		<pattern><![CDATA[#MiniBrowser/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Minimo]]></name>
 		<link><![CDATA[http://www-archive.mozilla.org/projects/minimo/]]></link>
 		<icon><![CDATA[/browser/minimo.png]]></icon>
@@ -694,10 +817,24 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[Multi Browser]]></name>
+		<link><![CDATA[http://www.multibrowser.de/]]></link>
+		<icon><![CDATA[/browser/multi-browserxp.png]]></icon>
+		<pattern><![CDATA[#Multi-Browser/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[MultiZilla]]></name>
 		<link><![CDATA[http://multizilla.mozdev.org/]]></link>
 		<icon><![CDATA[/browser/mozilla.png]]></icon>
 		<pattern><![CDATA[#MultiZilla/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[myibrow]]></name>
+		<link><![CDATA[http://myinternetbrowser.webove-stranky.org/]]></link>
+		<icon><![CDATA[/browser/my-internet-browser.png]]></icon>
+		<pattern><![CDATA[#myibrow/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -708,10 +845,31 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[Namoroka]]></name>
+		<link><![CDATA[https://wiki.mozilla.org/Firefox/Namoroka]]></link>
+		<icon><![CDATA[/browser/firefoxdevpre.png]]></icon>
+		<pattern><![CDATA[#Namoroka/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Navigator]]></name>
 		<link><![CDATA[http://netscape.aol.com/]]></link>
 		<icon><![CDATA[/browser/netscape.png]]></icon>
 		<pattern><![CDATA[#Navigator/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[NetBox]]></name>
+		<link><![CDATA[http://www.netgem.com/]]></link>
+		<icon><![CDATA[/browser/netbox.png]]></icon>
+		<pattern><![CDATA[#NetBox/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[NetCaptor]]></name>
+		<link><![CDATA[http://www.netcaptor.com/]]></link>
+		<icon><![CDATA[/browser/netcaptor.png]]></icon>
+		<pattern><![CDATA[#NetCaptor/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -757,6 +915,13 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[Nokia-Browser]]></name>
+		<link><![CDATA[http://browser.nokia.com/]]></link>
+		<icon><![CDATA[/browser/nokia.png]]></icon>
+		<pattern><![CDATA[#NokiaBrowser/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Novarra]]></name>
 		<link><![CDATA[http://www.novarra.com/]]></link>
 		<icon><![CDATA[/browser/novarra.png]]></icon>
@@ -769,6 +934,12 @@
 		<icon><![CDATA[/browser/obigo.png]]></icon>
 		<pattern><![CDATA[#Obigo/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[OffByOne]]></name>
+		<link><![CDATA[http://www.offbyone.com/]]></link>
+		<icon><![CDATA[/browser/offbyone.png]]></icon>
+		<pattern><![CDATA[#OffByOne#i]]></pattern>
 	 </browser>
 	 <browser>
 		<name><![CDATA[OmniWeb]]></name>
@@ -792,10 +963,31 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[osb-browser]]></name>
+		<link><![CDATA[http://gtk-webcore.sourceforge.net/]]></link>
+		<icon><![CDATA[/browser/null.png]]></icon>
+		<pattern><![CDATA[#osb-browser/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Palm]]></name>
 		<link><![CDATA[http://www.palm.com/us/products/phones/pre/index.html]]></link>
 		<icon><![CDATA[/browser/palmpre.png]]></icon>
 		<pattern><![CDATA[#\ Pre/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Palemoon]]></name>
+		<link><![CDATA[http://www.palemoon.org/]]></link>
+		<icon><![CDATA[/browser/palemoon.png]]></icon>
+		<pattern><![CDATA[#Palemoon/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Phaseout]]></name>
+		<link><![CDATA[http://www.phaseout.net/]]></link>
+		<icon><![CDATA[/browser/phaseout.png]]></icon>
+		<pattern><![CDATA[#Phaseout#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -806,10 +998,24 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[Pogo]]></name>
+		<link><![CDATA[http://en.wikipedia.org/wiki/AT%26T_Pogo]]></link>
+		<icon><![CDATA[/browser/pogo.png]]></icon>
+		<pattern><![CDATA[#Pogo/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Polaris]]></name>
 		<link><![CDATA[http://www.infraware.co.kr/eng/01_product/product02.asp]]></link>
 		<icon><![CDATA[/browser/polaris.png]]></icon>
 		<pattern><![CDATA[#Polaris/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Prism]]></name>
+		<link><![CDATA[http://prism.mozillalabs.com/]]></link>
+		<icon><![CDATA[/browser/prism.png]]></icon>
+		<pattern><![CDATA[#Prism/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -820,10 +1026,50 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[rekonq]]></name>
+		<link><![CDATA[http://rekonq.sourceforge.net/]]></link>
+		<icon><![CDATA[/browser/rekonq.png]]></icon>
+		<pattern><![CDATA[#rekonq#i]]></pattern>
+	 </browser>
+	 <browser>
 		<name><![CDATA[retawq]]></name>
 		<link><![CDATA[http://retawq.sourceforge.net/]]></link>
 		<icon><![CDATA[/browser/null.png]]></icon>
 		<pattern><![CDATA[#retawq/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[RockMelt]]></name>
+		<link><![CDATA[http://www.rockmelt.com/]]></link>
+		<icon><![CDATA[/browser/rockmelt.png]]></icon>
+		<pattern><![CDATA[#RockMelt/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[SaaYaa Explorer]]></name>
+		<link><![CDATA[http://www.saayaa.com/]]></link>
+		<icon><![CDATA[/browser/saayaa.png]]></icon>
+		<pattern><![CDATA[#SaaYaa#i]]></pattern>
+	 </browser>
+	 <browser>
+		<name><![CDATA[SeaMonkey]]></name>
+		<link><![CDATA[http://www.seamonkey-project.org/]]></link>
+		<icon><![CDATA[/browser/seamonkey.png]]></icon>
+		<pattern><![CDATA[#SeaMonkey/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[SEMC-Browser]]></name>
+		<link><![CDATA[http://www.sonyericsson.com/]]></link>
+		<icon><![CDATA[/browser/semcbrowser.png]]></icon>
+		<pattern><![CDATA[#SEMC-Browser/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[SEMC-java]]></name>
+		<link><![CDATA[http://www.sonyericsson.com/]]></link>
+		<icon><![CDATA[/browser/semcbrowser.png]]></icon>
+		<pattern><![CDATA[#SEMC-java/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -841,20 +1087,6 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
-		<name><![CDATA[SeaMonkey]]></name>
-		<link><![CDATA[http://www.seamonkey-project.org/]]></link>
-		<icon><![CDATA[/browser/seamonkey.png]]></icon>
-		<pattern><![CDATA[#SeaMonkey/([.0-9a-zA-Z]+)#i]]></pattern>
-		<versions pattern="1"></versions>
-	 </browser>
-	 <browser>
-		<name><![CDATA[SEMC-Browser]]></name>
-		<link><![CDATA[http://www.sonyericsson.com/]]></link>
-		<icon><![CDATA[/browser/semcbrowser.png]]></icon>
-		<pattern><![CDATA[#SEMC-Browser/([.0-9a-zA-Z]+)#i]]></pattern>
-		<versions pattern="1"></versions>
-	 </browser>
-	 <browser>
 		<name><![CDATA[Shiira]]></name>
 		<link><![CDATA[http://shiira.jp/en.php]]></link>
 		<icon><![CDATA[/browser/shiira.png]]></icon>
@@ -866,6 +1098,27 @@
 		<link><![CDATA[http://mozilla.org]]></link>
 		<icon><![CDATA[/browser/paradiso.png]]></icon>
 		<pattern><![CDATA[#Shiretoko/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[SiteKiosk]]></name>
+		<link><![CDATA[http://www.sitekiosk.com/SiteKiosk/Default.aspx]]></link>
+		<icon><![CDATA[/browser/sitekiosk.png]]></icon>
+		<pattern><![CDATA[#SiteKiosk/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[SkipStone]]></name>
+		<link><![CDATA[http://www.muhri.net/skipstone/]]></link>
+		<icon><![CDATA[/browser/skipstone.png]]></icon>
+		<pattern><![CDATA[#SkipStone/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Skyfire]]></name>
+		<link><![CDATA[http://www.skyfire.com/]]></link>
+		<icon><![CDATA[/browser/skyfire.png]]></icon>
+		<pattern><![CDATA[#Skyfire/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -897,6 +1150,20 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[Flock]]></name>
+		<link><![CDATA[http://www.flock.com/]]></link>
+		<icon><![CDATA[/browser/flock.png]]></icon>
+		<pattern><![CDATA[#Sulfur/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Sundance]]></name>
+		<link><![CDATA[http://digola.com/sundance.html]]></link>
+		<icon><![CDATA[/browser/sundance.png]]></icon>
+		<pattern><![CDATA[#Sundance/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Sunrise]]></name>
 		<link><![CDATA[http://www.sunrisebrowser.com/]]></link>
 		<icon><![CDATA[/browser/sunrise.png]]></icon>
@@ -904,17 +1171,58 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[Surf]]></name>
+		<link><![CDATA[http://surf.suckless.org/]]></link>
+		<icon><![CDATA[/browser/surf.png]]></icon>
+		<pattern><![CDATA[#Surf/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Swiftfox]]></name>
 		<link><![CDATA[http://getswiftfox.com/]]></link>
 		<icon><![CDATA[/browser/swiftfox.png]]></icon>
-		<pattern><![CDATA[#Swiftfox#i]]></pattern>
+		<pattern><![CDATA[#Swiftfox/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Swiftweasel]]></name>
+		<link><![CDATA[http://swiftweasel.tuxfamily.org/]]></link>
+		<icon><![CDATA[/browser/swiftweasel.png]]></icon>
+		<pattern><![CDATA[#Swiftweasel/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Sylera]]></name>
+		<link><![CDATA[http://dombla.net/sylera/]]></link>
+		<icon><![CDATA[/browser/null.png]]></icon>
+		<pattern><![CDATA[#Sylera/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[tear]]></name>
+		<link><![CDATA[http://wiki.maemo.org/Tear]]></link>
+		<icon><![CDATA[/browser/tear.png]]></icon>
+		<pattern><![CDATA[#tear#i]]></pattern>
 	 </browser>
 	 <browser>
 		<name><![CDATA[TeaShark]]></name>
 		<link><![CDATA[http://www.teashark.com/]]></link>
 		<icon><![CDATA[/browser/teashark.png]]></icon>
 		<pattern><![CDATA[#TeaShark/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Teleca]]></name>
+		<link><![CDATA[http://en.wikipedia.org/wiki/Obigo_Browser/]]></link>
+		<icon><![CDATA[/browser/obigo.png]]></icon>
+		<pattern><![CDATA[#Teleca/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[TencentTraveler]]></name>
+		<link><![CDATA[http://www.tencent.com/en-us/index.shtml]]></link>
+		<icon><![CDATA[/browser/tencenttraveler.png]]></icon>
+		<pattern><![CDATA[#TencentTraveler/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -929,6 +1237,13 @@
 		<link><![CDATA[http://www.mozilla.com/thunderbird/]]></link>
 		<icon><![CDATA[/browser/thunderbird.png]]></icon>
 		<pattern><![CDATA[#Thunderbird/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Tjusig]]></name>
+		<link><![CDATA[http://www.tjusig.cz/]]></link>
+		<icon><![CDATA[/browser/tjusig.png]]></icon>
+		<pattern><![CDATA[#Tjusig/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -953,10 +1268,58 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[UltraBrowser]]></name>
+		<link><![CDATA[http://www.ultrabrowser.com/]]></link>
+		<icon><![CDATA[/browser/ultrabrowser.png]]></icon>
+		<pattern><![CDATA[#UltraBrowser/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[UP.Browser]]></name>
 		<link><![CDATA[http://www.openwave.com/]]></link>
 		<icon><![CDATA[/browser/openwave.png]]></icon>
 		<pattern><![CDATA[#UP\.Browser/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[UP.Link]]></name>
+		<link><![CDATA[http://www.openwave.com/]]></link>
+		<icon><![CDATA[/browser/openwave.png]]></icon>
+		<pattern><![CDATA[#UP\.Link/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[uZardWeb]]></name>
+		<link><![CDATA[http://en.wikipedia.org/wiki/UZard_Web]]></link>
+		<icon><![CDATA[/browser/uzardweb.png]]></icon>
+		<pattern><![CDATA[#uZardWeb/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[uZard]]></name>
+		<link><![CDATA[http://en.wikipedia.org/wiki/UZard_Web]]></link>
+		<icon><![CDATA[/browser/uzardweb.png]]></icon>
+		<pattern><![CDATA[#uZard/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[uzbl]]></name>
+		<link><![CDATA[http://www.uzbl.org/]]></link>
+		<icon><![CDATA[/browser/uzbl.png]]></icon>
+		<pattern><![CDATA[#uzbl#i]]></pattern>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Vimprobable]]></name>
+		<link><![CDATA[http://www.vimprobable.org/]]></link>
+		<icon><![CDATA[/browser/null.png]]></icon>
+		<pattern><![CDATA[#Vimprobable/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Vonkeror]]></name>
+		<link><![CDATA[http://zzo38computer.cjb.net/vonkeror/]]></link>
+		<icon><![CDATA[/browser/null.png]]></icon>
+		<pattern><![CDATA[#Vonkeror/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -965,6 +1328,26 @@
 		<icon><![CDATA[/browser/w3m.png]]></icon>
 		<pattern><![CDATA[#w3m/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Webian]]></name>
+		<link><![CDATA[http://webian.org/shell/]]></link>
+		<icon><![CDATA[/browser/webianshell.png]]></icon>
+		<pattern><![CDATA[#WebianShell/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Weltweitimnetz]]></name>
+		<link><![CDATA[http://weltweitimnetz.de/software/Browser.en.page]]></link>
+		<icon><![CDATA[/browser/weltweitimnetzbrowser.png]]></icon>
+		<pattern><![CDATA[#WeltweitimnetzBrowser/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[wKiosk]]></name>
+		<link><![CDATA[http://www.app4mac.com/store/index.php?target=products&product_id=9]]></link>
+		<icon><![CDATA[/browser/wkiosk.png]]></icon>
+		<pattern><![CDATA[#wKiosk#i]]></pattern>
 	 </browser>
 	 <browser>
 		<name><![CDATA[WorldWideWeb]]></name>
@@ -978,6 +1361,13 @@
 		<link><![CDATA[http://www.wyzo.com/]]></link>
 		<icon><![CDATA[/browser/wyzo.png]]></icon>
 		<pattern><![CDATA[#Wyzo/([.0-9a-zA-Z]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[X-Smiles]]></name>
+		<link><![CDATA[http://www.xsmiles.org/]]></link>
+		<icon><![CDATA[/browser/x-smiles.png]]></icon>
+		<pattern><![CDATA[#X-Smiles/([.0-9a-zA-Z]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 

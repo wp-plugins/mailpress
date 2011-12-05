@@ -2,10 +2,16 @@
 Theme Name: MailPress Theme
 Theme URI: 
 Description: theme from an original idea of David Potter.
-Version: 0.1beta
+Version: beta
 Author: Andre Renaut
 Author URI: http://dpotter.net/Technical/2008/11/mailpress-review-introduction/
+Template: _template
 */
-p {margin:0;}
+p {
+	line-height:1.4em;
+	font-size:0.85em;
+}
 
-a.more-link {color:#6D8C82;}
+a.more-link {
+	color:#6D8C82;
+}
