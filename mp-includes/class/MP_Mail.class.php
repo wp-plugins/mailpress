@@ -516,7 +516,7 @@ class MP_Mail extends MP_mail_
 			if (is_file($file)) $content .= "<?php require_once ('{$file}'); ?>";
 
 	//¤ call template or default ¤//
-		$content .= (is_file($template_name)) ? '<?php $this->load_template("' . $template_name . '"); ?>' : '<?php $this->get_header(); $this->the_content(); $this->get_footer(); ?>';
+		$content .= (is_file($template_name)) ? '<?php $this->load_template(\'' . $template_name . '\'); ?>' : '<?php $this->get_header(); $this->the_content(); $this->get_footer(); ?>';
 
 	//¤ build the mail ¤//
 		$x = $this->do_eval($content);
