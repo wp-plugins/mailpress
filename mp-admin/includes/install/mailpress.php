@@ -42,7 +42,7 @@ if ( $x = get_option('MailPress_widget') )
 	delete_option('MailPress_widget');
 }
 
-if ( !get_option('MailPress_logs') )
+if ( !get_option(MailPress::option_name_logs) )
 {
 	$parms = array('level', 'lognbr', 'lastpurge');
 	$_settings = array('MailPress_general' => 'general', 'MailPress_batch_send' => 'batch_send', 'MailPress_import' => 'import', 'MailPress_autoresponder' => 'autoresponder');	
@@ -61,7 +61,8 @@ if ( !get_option('MailPress_logs') )
 			else			update_option($_setting, $x);
 		}
 	}
-	if (!empty($logs)) add_option('MailPress_logs', $logs);
+	if (empty($logs)) $logs['general'] = array('level' => 8191, 'lognbr' => 10, 'lastpurge' => '');
+	add_option(MailPress::option_name_logs, $logs);
 }
 
 global $mp_general, $mp_subscriptions;
