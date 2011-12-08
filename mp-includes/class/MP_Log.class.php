@@ -39,7 +39,7 @@ class MP_Log
 
 		$logs = get_option(MailPress::option_name_logs);
 
-		$this->log_options = (isset($logs[$this->option_name])) ? $logs[$this->option_name] : array();
+		$this->log_options = (isset($logs[$this->option_name])) ? $logs[$this->option_name] : MailPress::$default_option_logs;
 
 		$this->level 	= (isset($this->log_options['level']))    ? (int) $this->log_options['level'] 	: self::noMP_Log ;
 		$this->levels	= array (	1 	=> 1, 
@@ -118,7 +118,7 @@ class MP_Log
 
 	function logError($error_level, $error_message, $error_file, $error_line, $error_context=false)
 	{ 
-		if (strpos($error_message, 'Deprecated') == true) return;
+		if (strpos($error_message, 'Please use the instanceof operator') == true) return;
 		$this->log ("PHP [" . $this->errors[$error_level] . "] $error_level : $error_message in $error_file at line $error_line ", $error_level);
 	}
 

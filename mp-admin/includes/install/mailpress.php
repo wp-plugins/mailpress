@@ -61,7 +61,7 @@ if ( !get_option(MailPress::option_name_logs) )
 			else			update_option($_setting, $x);
 		}
 	}
-	if (empty($logs)) $logs['general'] = array('level' => 8191, 'lognbr' => 10, 'lastpurge' => '');
+	if (empty($logs)) $logs['general'] = MailPress::$default_option_logs;
 	add_option(MailPress::option_name_logs, $logs);
 }
 

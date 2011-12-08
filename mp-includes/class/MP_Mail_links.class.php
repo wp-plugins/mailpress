@@ -47,9 +47,6 @@ class MP_Mail_links
 		$content .= "<br />\n";
 
 		return array('title' => $title, 'content' => $content);
-
-//		$results = self::del($mp_confkey);
-//		return array('title' => $title, 'content' => $content . $results['content']);
 	}
 
 	public static function del($mp_confkey)

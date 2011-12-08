@@ -51,6 +51,8 @@ class MailPress
 
 	const option_name_smtp    = 'MailPress_smtp_config';
 
+	public static $default_option_logs = array('level' => 8191, 'lognbr' => 10, 'lastpurge' => '');
+
 	function __construct() 
 	{
 		require_once('mp-load.php');

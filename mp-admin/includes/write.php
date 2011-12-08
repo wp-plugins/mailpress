@@ -212,7 +212,7 @@ $draft_dest = MP_User::get_mailinglists();
 						</div>
 					</div>
 					<div id="<?php echo user_can_richedit() ? 'postdivrich' : 'postdiv'; ?>" class="postarea">
-<?php the_editor((isset($draft->html)) ? $draft->html : '', 'content', 'title', apply_filters('MailPress_upload_media', false), 5); ?>
+<?php wp_editor( (isset($draft->html)) ? $draft->html : '', 'content', array( 'media_buttons' => apply_filters('MailPress_upload_media', false), 'tabindex' => 5 ) ); ?>
 						<div id="post-status-info">
 							<span id="wp-word-count" class="alignleft"></span>
 							<span class="alignright">
