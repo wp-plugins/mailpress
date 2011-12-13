@@ -326,7 +326,7 @@ class MP_AdminPage extends MP_adminpage_
 ?>
 	<p>
 		<strong>
-			<?php _e( 'Add new custom field:' ) ?>
+			<?php _e( 'Add New Custom Field:' ) ?>
 		</strong>
 	</p>
 	<table id='newmeta'>

@@ -4,7 +4,7 @@ Donate link: http://www.mailpress.org/wiki
 Tags: mail, mails, comments, comment, subscribe, newsletters, newsletter, Wordpress, Plugin, swiftmailer, post, posts, smtp, sendmail, phpmail, notification, notifications, mail, mails, contact form
 Requires at least: 3.3
 Tested up to: 3.3
-Stable tag: 5.1.1
+Stable tag: 5.2
 
 The WordPress mailing platform 
 
