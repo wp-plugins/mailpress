@@ -31,6 +31,6 @@ jQuery(document).ready( function() {
 		},
 		delAfter: function( r, settings ) {
 			jQuery('#mppost-' + r).remove();
-		},
+		}
 	});
 });

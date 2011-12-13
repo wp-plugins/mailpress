@@ -16,7 +16,7 @@ jQuery(document).ready( function() {
 		},
 		delAfter:  function( r, settings ) {
 			jQuery('#mpdraft-' + r).remove();
-		},
+		}
 	} );
 
 	jQuery('#mpdraft-add-toggle').click( function() {
