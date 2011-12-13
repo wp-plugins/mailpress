@@ -53,7 +53,7 @@ class MailPress_import
 		$logs = get_option(MailPress::option_name_logs);
 		if (!isset($logs[self::log_name]))
 		{
-			$logs[self::log_name] = array('level' => 8191, 'lognbr' => 10, 'lastpurge' => '');
+			$logs[self::log_name] = MailPress::$default_option_logs;
 			update_option(MailPress::option_name_logs, $logs );
 		}
 	}

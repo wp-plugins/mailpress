@@ -39,7 +39,7 @@ class MP_Log
 
 		$logs = get_option(MailPress::option_name_logs);
 
-		$this->log_options = (isset($logs[$this->option_name])) ? $logs[$this->option_name] : array();
+		$this->log_options = (isset($logs[$this->option_name])) ? $logs[$this->option_name] : MailPress::$default_option_logs;
 
 		$this->level 	= (isset($this->log_options['level']))    ? (int) $this->log_options['level'] 	: self::noMP_Log ;
 		$this->levels	= array (	1 	=> 1, 

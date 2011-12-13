@@ -44,7 +44,7 @@ class MP_AdminPage extends MP_adminpage_
 
 	public static function logs_sub_form ($name, $data, $headertext)
 	{
-		if (!isset($data[$name])) $data[$name] = array('level' => 8191, 'lognbr' => 10, 'lastpurge' => '');
+		if (!isset($data[$name])) $data[$name] = MailPress::$default_option_logs;
 
 		$xlevel = array (		123456789	=> __('No logging', MP_TXTDOM) , 
 							0	=> __('simple log', MP_TXTDOM) , 

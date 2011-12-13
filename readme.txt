@@ -4,7 +4,7 @@ Donate link: http://www.mailpress.org/wiki
 Tags: mail, mails, comments, comment, subscribe, newsletters, newsletter, Wordpress, Plugin, swiftmailer, post, posts, smtp, sendmail, phpmail, notification, notifications, mail, mails, contact form
 Requires at least: 3.3
 Tested up to: 3.3
-Stable tag: 5.1.1
+Stable tag: 5.2
 
 The WordPress mailing platform 
 
@@ -74,7 +74,7 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 == Changelog ==
 
-** 5.2 ** xx/xx/2011
+** 5.2 ** 12/13/2011
 * Child themes
    - A MailPress child theme is a theme that inherits the functionality of another theme, called the parent theme, and allows you to modify, or add to, the functionality of that parent theme.
    - All mp themes reviewed
