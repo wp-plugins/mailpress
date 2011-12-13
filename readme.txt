@@ -74,7 +74,7 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 == Changelog ==
 
-** 5.2 ** xx/xx/2011
+** 5.2 ** 12/13/2011
 * Child themes
    - A MailPress child theme is a theme that inherits the functionality of another theme, called the parent theme, and allows you to modify, or add to, the functionality of that parent theme.
    - All mp themes reviewed
