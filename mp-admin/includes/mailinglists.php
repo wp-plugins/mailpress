@@ -117,7 +117,7 @@ $total = ( isset($url_parms['s']) ) ? count(MP_Mailinglist::get_all(array('hide_
 							</tr>
 						</tfoot>
 						<tbody id='<?php echo MP_AdminPage::list_id; ?>' class='list:<?php echo MP_AdminPage::tr_prefix_id; ?> mailinglists'>
-<?php MP_AdminPage::get_list( $url_parms['paged'], $_per_page ); ?>
+<?php MP_AdminPage::get_list(array('start' => $url_parms['paged'], '_per_page' => $_per_page)); ?>
 						</tbody>
 					</table>
 					<div class='tablenav'>

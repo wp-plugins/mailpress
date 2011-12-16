@@ -107,8 +107,10 @@ class MP_AdminPage extends MP_adminpage_list_
 
 //// List ////
 
-	public static function get_list($start, $num, $url_parms, $void = '') 
+	public static function get_list($args) 
 	{
+		extract($args);
+
 		global $wpdb;
 
 		$where = " AND status <> '' ";
@@ -127,9 +129,10 @@ class MP_AdminPage extends MP_adminpage_list_
 		if (!current_user_can('MailPress_edit_others_mails'))
 			$where .= " AND ( created_user_id = " . MP_WP_User::get_id() . " ) ";
 
-		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM $wpdb->mp_mails WHERE 1=1 $where ORDER BY created DESC";
+		$args['query'] = "SELECT SQL_CALC_FOUND_ROWS * FROM $wpdb->mp_mails WHERE 1=1 $where ORDER BY created DESC";
+		$args['cache_name'] = 'mp_mail';
 
-		list($_mails, $total) = parent::get_list($start, $num, $query, 'mp_mail');
+		list($_mails, $total) = parent::get_list($args);
 
 		$subsubsub_urls = false;
 

@@ -25,11 +25,13 @@ class MP_Form
 				elseif ( ! $_form = wp_cache_get($form, 'mp_form') ) 
 				{
 					$_form = $wpdb->get_row($wpdb->prepare("SELECT * FROM $wpdb->mp_forms WHERE id = %d LIMIT 1", $form));
-					$_form->settings = unserialize($_form->settings);
 					if ($_form) wp_cache_add($_form->id, $_form, 'mp_form');
 				}
 			break;
 		}
+
+		if ($_form && isset($_form->settings)) $_form->settings = unserialize($_form->settings);
+
 		if ( $output == OBJECT ) {
 			return $_form;
 		} elseif ( $output == ARRAY_A ) {

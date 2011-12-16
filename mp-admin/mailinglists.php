@@ -120,15 +120,16 @@ class MP_AdminPage extends MP_adminpage_list_
 
 //// List ////
 
-	public static function get_list($page = 1, $pagesize = 20, $void = '', $void2 = '') 
+	public static function get_list($args)
 	{
+		extract($args);
+
 		$url_parms = self::get_url_parms(array('s', 'paged'));
-		$start = ($page - 1) * $pagesize;
 
-		$args = array('offset' => $start, 'number' => $pagesize, 'hide_empty' => 0);
-		if (isset($url_parms['s'])) $args['search'] = $url_parms['s'];
+		$_args = array('offset' => ($start - 1) * $_per_page, 'number' => $_per_page, 'hide_empty' => 0);
+		if (isset($url_parms['s'])) $_args['search'] = $url_parms['s'];
 
-		$_terms = MP_Mailinglist::get_all($args);
+		$_terms = MP_Mailinglist::get_all($_args);
 		if (empty($_terms)) return false;
 
 		$children = _get_term_hierarchy(self::taxonomy);
@@ -138,8 +139,7 @@ class MP_AdminPage extends MP_adminpage_list_
 
 		foreach($terms as $term)
 		{
-			$my_parent = $term->parent; 
-			if (!$my_parent) continue; 
+			if (!$my_parent = $term->parent) continue; 
 
 			do {  
 				if (!isset($terms[$my_parent])) $terms[$my_parent] = get_term( $my_parent, self::taxonomy );  
@@ -149,7 +149,7 @@ class MP_AdminPage extends MP_adminpage_list_
 		echo self::_get_list($url_parms, $terms, $children);
 	}
 
-	public static function _get_list($url_parms, $mailinglists, $children, $level = 0, $parent = 0 )
+	public static function _get_list($url_parms, $mailinglists, &$children, $level = 0, $parent = 0 )
 	{
 		$out = ''; 
 		foreach ( $mailinglists as $key => $mailinglist )  

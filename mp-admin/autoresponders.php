@@ -124,19 +124,19 @@ class MP_AdminPage extends MP_adminpage_list_
 
 //// List ////
 
-	public static function get_list($page = 1, $pagesize = 20, $void = '', $void2 = '') 
+	public static function get_list($args)
 	{
+		extract($args);
+
 		$url_parms = self::get_url_parms(array('s', 'paged'));
 
-		$args = (isset($url_parms['s'])) ? array('search' => $url_parms['s']) : array();
+		$_args = array('offset' => ($start - 1) * $_per_page, 'number' => $_per_page, 'hide_empty' => 0);
+		if (isset($url_parms['s'])) $_args['search'] = $url_parms['s'];
 
-		$_autoresp = MP_Autoresponder::get_all($args);
+		$terms = MP_Autoresponder::get_all($_args);
+		if (empty($terms)) return false;
 
-		$autoresponders = array_slice($_autoresp, ($page - 1) * $pagesize, $pagesize, true); 
-
-		if (empty($autoresponders)) return false;
-
-		echo self::_get_list($url_parms, $autoresponders);
+		echo self::_get_list($url_parms, $terms);
 	}
 
 	public static function _get_list($url_parms, $autoresponders)

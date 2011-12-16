@@ -58,8 +58,10 @@ class MP_AdminPage extends MP_adminpage_list_
 
 ////  List  ////
 
-	public static function get_list($start, $num, $url_parms, $void = '')
+	public static function get_list($args)
 	{
+		extract($args);
+
 		$ftmplt	= self::get_file_template();
 		$path 	= '../' . self::get_path();
 		$all		= 0;
@@ -85,7 +87,7 @@ class MP_AdminPage extends MP_adminpage_list_
 		krsort($logs);
 
 		$total = count($logs);
-		$rows  = array_slice ($logs, $start, 25); // Grab a few extra
+		$rows  = array_slice ($logs, $start, $_per_page + 5);
 
 	// subsubsub
 		$subsubsub_urls = false;

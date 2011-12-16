@@ -88,8 +88,10 @@ class MP_AdminPage extends MP_adminpage_list_
 
 //// List ////
 
-	public static function get_list($start, $num, $url_parms, $void='') 
+	public static function get_list($args) 
 	{
+		extract( $args );
+
 		$addons = MP_Addons::get_all();
 
 		$counts['active'] = $counts['inactive'] = $counts['search'] = 0;

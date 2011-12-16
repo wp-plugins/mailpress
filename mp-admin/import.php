@@ -26,7 +26,7 @@ class MP_AdminPage extends MP_adminpage_list_
 
 //// List ////
 
-	public static function get_list($void = '', $void2 = '',$void3 = '', $void4 = '') 
+	public static function get_list($args = array()) 
 	{
 		$importers = MP_Import_importers::get_all();
 

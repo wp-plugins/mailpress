@@ -150,14 +150,16 @@ abstract class MP_adminpage_list_ extends MP_adminpage_
 		return ' AND (' . join(' OR ', $sc) . ') '; 
 	}
 
-	public static function get_list($start, $num, $query, $cache_name)
+	public static function get_list($args) 
 	{
+		extract($args);
+
 		global $wpdb;
 
 		$start = abs( (int) $start );
-		$num = (int) $num;
+		$_per_page = (int) $_per_page;
 
-		$rows = $wpdb->get_results( "$query LIMIT $start, $num" );
+		$rows = $wpdb->get_results( "$query LIMIT $start, $_per_page" );
 
 		self::update_cache($rows, $cache_name);
 

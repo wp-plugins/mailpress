@@ -102,8 +102,10 @@ class MP_AdminPage extends MP_adminpage_list_
 
 //// List ////
 
-	public static function get_list($start, $num, $url_parms, $void = '') 
+	public static function get_list($args) 
 	{
+		extract($args);
+
 		global $wpdb;
 
 		$where = $tables = '';
@@ -130,9 +132,10 @@ class MP_AdminPage extends MP_adminpage_list_
 			$no_cls = true;
 		}
 
-		$query = "SELECT DISTINCT SQL_CALC_FOUND_ROWS a.id, a.email, a.name, a.status, a.confkey, a.created, a.created_IP, a.created_agent, a.created_user_id, a.created_country, a.created_US_state, a.laststatus, a.laststatus_IP, a.laststatus_agent, a.laststatus_user_id FROM $wpdb->mp_users a $tables WHERE 1=1 $where ORDER BY $order";
+		$args['query'] = "SELECT DISTINCT SQL_CALC_FOUND_ROWS a.id, a.email, a.name, a.status, a.confkey, a.created, a.created_IP, a.created_agent, a.created_user_id, a.created_country, a.created_US_state, a.laststatus, a.laststatus_IP, a.laststatus_agent, a.laststatus_user_id FROM $wpdb->mp_users a $tables WHERE 1=1 $where ORDER BY $order";
+		$args['cache_name'] = 'mp_user';
 
-		list($_users, $total) = parent::get_list($start, $num, $query, 'mp_user');
+		list($_users, $total) = parent::get_list($args);
 
 		$subsubsub_urls = false;
 

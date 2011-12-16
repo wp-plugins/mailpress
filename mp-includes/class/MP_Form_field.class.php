@@ -23,11 +23,13 @@ class MP_Form_field
 				elseif ( ! $_field = wp_cache_get($field, 'mp_field') ) 
 				{
 					$_field = $wpdb->get_row($wpdb->prepare("SELECT * FROM $wpdb->mp_fields WHERE id = %d LIMIT 1", $field));
-					$_field->settings = unserialize($_field->settings);
 					if ($_field) wp_cache_add($_field->id, $_field, 'mp_field');
 				}
 			break;
 		}
+
+		if ($_field && isset($_field->settings)) $_field->settings = unserialize($_field->settings);
+
 		if ( $output == OBJECT ) {
 			return $_field;
 		} elseif ( $output == ARRAY_A ) {

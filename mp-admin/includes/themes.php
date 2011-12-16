@@ -16,7 +16,7 @@ do
 {
 	$start = ( $url_parms['paged'] - 1 ) * $_per_page;
 
-	list($themes, $total, $th) = MP_AdminPage::get_list($start, $_per_page, $url_parms);
+	list($themes, $total, $th) = MP_AdminPage::get_list(array('start' => $start, '_per_page' => $_per_page, 'url_parms' => $url_parms));
 
 	$url_parms['paged']--;		
 } while ( $total <= $start );

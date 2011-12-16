@@ -212,11 +212,12 @@ class MP_Actions
 	{
 		require_once(MP_ABSPATH . 'mp-admin/mails.php');
 
-		$url_parms = MP_AdminPage::get_url_parms(array('mode', 'status', 's'));
+		$url_parms = MP_AdminPage::get_url_parms();
+		$url_parms['paged'] = isset($url_parms['paged']) ? $url_parms['paged'] : 1;
+		$_per_page = MP_AdminPage::get_per_page();
+		$start = ( $url_parms['paged'] - 1 ) * $_per_page;
 
-		$start = (isset($_POST['paged'])) ? intval($_POST['paged']) * 25 - 1 : 24;
-
-		list($mails, $total) = MP_AdminPage::get_list( $start, 1, $url_parms );
+		list($mails, $total) = MP_AdminPage::get_list(array('start' => $start, '_per_page' => 1, 'url_parms' => $url_parms));
 
 		if ( !$mails ) MP_::mp_die(1);
 
@@ -241,11 +242,12 @@ class MP_Actions
 	{
 		require_once(MP_ABSPATH . 'mp-admin/users.php');
 
-		$url_parms = MP_AdminPage::get_url_parms(array('mode', 'status', 's'));
+		$url_parms = MP_AdminPage::get_url_parms();
+		$url_parms['paged'] = isset($url_parms['paged']) ? $url_parms['paged'] : 1;
+		$_per_page = MP_AdminPage::get_per_page();
+		$start = ( $url_parms['paged'] - 1 ) * $_per_page;
 
-		$start = isset($_POST['paged']) ? intval($_POST['paged']) * 25 - 1: 24;
-
-		list($users, $total) = MP_AdminPage::get_list( $start, 1, $url_parms );
+		list($users, $total) = MP_AdminPage::get_list(array('start' => $start, '_per_page' => 1, 'url_parms' => $url_parms));
 
 		if ( !$users ) MP_::mp_die(1);
 

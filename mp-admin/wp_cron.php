@@ -150,8 +150,10 @@ class MP_AdminPage extends MP_adminpage_list_
 
 ////  List  ////
 
-	public static function get_list($start, $num, $url_parms, $void = '')
+	public static function get_list($args)
 	{
+		extract($args);
+
 		$wp_crons = array();
 
 		$crons = _get_cron_array();
@@ -173,7 +175,7 @@ class MP_AdminPage extends MP_adminpage_list_
 		}
 
 		$total = count($wp_crons);
-		$rows  = array_slice ($wp_crons, $start, 25); // Grab a few extra
+		$rows  = array_slice ($wp_crons, $start, $_per_page);
 
 		return array($rows, $total);
 	}

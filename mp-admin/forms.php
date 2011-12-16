@@ -133,8 +133,10 @@ class MP_AdminPage extends MP_adminpage_list_
 
 //// List ////
 
-	public static function get_list($start, $num, $url_parms, $void = '') 
+	public static function get_list($args)
 	{
+		extract($args);
+
 		global $wpdb;
 
 		$where = '';
@@ -146,9 +148,10 @@ class MP_AdminPage extends MP_adminpage_list_
 			$where .= self::get_search_clause($url_parms['s'], $sc);
 		}
 
-		$query = "SELECT DISTINCT SQL_CALC_FOUND_ROWS a.id FROM $wpdb->mp_forms a WHERE 1=1 $where ";
+		$args['query'] = "SELECT DISTINCT SQL_CALC_FOUND_ROWS a.id, a.label, a.description, a.template, a.settings FROM $wpdb->mp_forms a WHERE 1=1 $where ";
+		$args['cache_name'] = 'mp_form';
 
-		return parent::get_list($start, $num, $query, 'mp_forms');
+		return parent::get_list($args);
 	}
 
 ////  Row  ////

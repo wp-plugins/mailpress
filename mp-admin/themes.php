@@ -43,8 +43,10 @@ class MP_AdminPage extends MP_adminpage_
 
 //// List ////
 
-	public static function get_list($start, $num, $url_parms, $void = '') 
+	public static function get_list($args) 
 	{
+		extract($args);
+
 		$th = new MP_Themes();
 
 		$themes = $th->themes;
@@ -57,7 +59,7 @@ class MP_AdminPage extends MP_adminpage_
 
 		ksort( $themes );
 
-		return array(array_slice( $themes, $start, $num ), count( $themes ), $th);
+		return array(array_slice( $themes, $start, $_per_page ), count( $themes ), $th);
 	}
 
 ////  Row  ////

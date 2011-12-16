@@ -38,7 +38,7 @@ if ( 'inactive' != $context )		$bulk_actions['deactivate'] = __('Deactivate');
 // MANAGING LIST
 //
 
-list($items, $subsubsub_urls) = MP_AdminPage::get_list(0, 0, $url_parms); // Grab a few extra
+list($items, $subsubsub_urls) = MP_AdminPage::get_list(array('url_parms' => $url_parms));
 
 ?>
 <div class='wrap'>
