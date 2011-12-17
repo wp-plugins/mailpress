@@ -78,7 +78,7 @@ class MP_AdminPage extends MP_adminpage_list_
 					case (strstr($file, $ftmplt)) :
 						$all++;
 						if (isset($url_parms['s']) && (!strstr($file, $url_parms['s']))) continue;
-						$logs[filemtime("$path/$file")] = $file;
+						$logs[filemtime("$path/$file") . $all] = $file;
 					break;
 				}
 			}
