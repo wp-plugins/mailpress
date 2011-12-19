@@ -87,7 +87,7 @@ class MP_AdminPage extends MP_adminpage_list_
 		krsort($logs);
 
 		$total = count($logs);
-		$rows  = array_slice ($logs, $start, $_per_page + 5);
+		$rows  = array_slice ($logs, $start, $_per_page);
 
 	// subsubsub
 		$subsubsub_urls = false;

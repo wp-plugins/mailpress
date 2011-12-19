@@ -5,9 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_delete_old_mails'))
 Plugin Name: MailPress_delete_old_mails
 Plugin URI: http://www.mailpress.org/wiki/index.php?
 Description: This is just an add-on for MailPress to delete old mails.
-Author: Andre Renaut
 Version: 5.2
-Author URI: http://www.mailpress.org
 */
 
 class MailPress_delete_old_mails

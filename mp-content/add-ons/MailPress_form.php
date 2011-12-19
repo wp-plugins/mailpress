@@ -5,9 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_form') )
 Plugin Name: MailPress_form
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Form
 Description: This is just an add-on for MailPress to manage Contact forms
-Author: Andre Renaut
 Version: 5.2
-Author URI: http://www.mailpress.org
 */
 
 /** for admin plugin pages */

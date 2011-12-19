@@ -5,9 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_import') && (is_admin(
 Plugin Name: MailPress_import
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Import
 Description: This is just an add-on for MailPress to provide an import/export API for files.
-Author: Andre Renaut
 Version: 5.2
-Author URI: http://www.mailpress.org
 */
 
 // 3.

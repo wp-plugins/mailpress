@@ -5,9 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_comment') )
 Plugin Name: MailPress_comment
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Comment
 Description: This is just an add-on for MailPress to subscribe to comments
-Author: Andre Renaut
 Version: 5.2
-Author URI: http://www.mailpress.org
 */
 
 class MailPress_comment

@@ -78,13 +78,10 @@ $_per_page = MP_AdminPage::get_per_page();
 do
 {
 	$start = ( $url_parms['paged'] - 1 ) * $_per_page;
-	list($_items, $total) = MP_AdminPage::get_list(array('start' => $start, '_per_page' => $_per_page + 5, 'url_parms' => $url_parms));
+	list($items, $total) = MP_AdminPage::get_list(array('start' => $start, '_per_page' => $_per_page, 'url_parms' => $url_parms));
 	$url_parms['paged']--;
 } while ( $total <= $start );
 $url_parms['paged']++;
-
-$items 		= array_slice($_items, 0, $_per_page);
-$extra_items 	= array_slice($_items, $_per_page);
 
 ?>
 <div class='wrap'>

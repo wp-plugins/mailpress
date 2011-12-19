@@ -5,9 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_upload_media') && (is_
 Plugin Name: MailPress_upload_media
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Upload_media
 Description: This is just an add-on for MailPress to allow upload media button on MailPress write admin page
-Author: Andre Renaut
 Version: 5.2
-Author URI: http://www.mailpress.org
 */
 
 class MailPress_upload_media

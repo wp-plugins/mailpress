@@ -4,9 +4,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_name_fields'))
 /*
 Plugin Name: MailPress_name_fields
 Description: This is just an add-on for MailPress to generate custom fields based on subscriber's name (original idea of Graham)
-Author: Andre Renaut
 Version: 5.2
-Author URI: http://www.mailpress.org
 */
 
 class MailPress_name_fields

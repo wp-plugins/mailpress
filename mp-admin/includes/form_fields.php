@@ -86,13 +86,10 @@ $_per_page = MP_AdminPage::get_per_page();
 do
 {
 	$start = ( $url_parms['paged'] - 1 ) * $_per_page;
-	list($_items, $total) = MP_AdminPage::get_list(array('start' => $start, '_per_page' => $_per_page + 5, 'url_parms' => $url_parms));
+	list($items, $total) = MP_AdminPage::get_list(array('start' => $start, '_per_page' => $_per_page, 'url_parms' => $url_parms));
 	$url_parms['paged']--;		
 } while ( $total <= $start );
 $url_parms['paged']++;
-
-$items 		= array_slice($_items, 0, $_per_page);
-$extra_items 	= array_slice($_items, $_per_page);
 
 ?>
 <div class='wrap nosubsub'>
@@ -146,12 +143,6 @@ $extra_items 	= array_slice($_items, $_per_page);
 <?php foreach ($items as $item) 		echo MP_AdminPage::get_row( $item->id, $url_parms ); ?>
 <?php endif; ?>
 						</tbody>
-<?php if ($extra_items) : ?>
-						<tbody id='<?php echo MP_AdminPage::list_id; ?>-extra' class='list:<?php echo MP_AdminPage::tr_prefix_id; ?>' style='display: none;'>
-<?php
-	foreach ($extra_items as $item)	echo MP_AdminPage::get_row( $item->id, $url_parms ); ?>
-						</tbody>
-<?php endif; ?>
 					</table>
 					<div class='tablenav'>
 <?php MP_AdminPage::pagination($total, 'bottom'); ?>

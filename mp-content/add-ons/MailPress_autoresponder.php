@@ -5,9 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_autoresponder'))
 Plugin Name: MailPress_autoresponder
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Autoresponder
 Description: This is just an add-on for MailPress to manage autoresponders (based on wp-cron)
-Author: Andre Renaut
 Version: 5.2
-Author URI: http://www.mailpress.org
 */
 
 // 3.

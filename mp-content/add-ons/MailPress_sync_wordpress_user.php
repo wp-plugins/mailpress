@@ -5,9 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_sync_wordpress_user'))
 Plugin Name: MailPress_sync_wordpress_user
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Sync_wordpress_user
 Description: This is just an add-on for MailPress to synchronise with WordPress users
-Author: Andre Renaut
 Version: 5.2
-Author URI: http://www.mailpress.org
 */
 
 // 3.
