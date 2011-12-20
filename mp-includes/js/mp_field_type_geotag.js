@@ -19,14 +19,16 @@ function mp_field_type_geotag(settings)
 	this.init = function() {
 
 		var myOptions = {
-			zoom: 	parseInt(this.zoomlevel.val()),
-			center: 	this.center,
+			center: 		this.center,
+			draggable:		true,
+			mapTypeControl:	false,
 			mapTypeId: 	this.map_type(this.maptype.val()),
+			panControl:	false,
+			zoom: 		parseInt(this.zoomlevel.val()),
 			streetViewControl:	false,
-			mapTypeControl:		false,
-			navigationControlOptions: {style:'SMALL'}
+			zoomControl:	(this.settings.zoom 	== '1'),
+			zoomControlOptions: {style:'SMALL'}
 		};
-		if (this.settings.zoom 	== '0') myOptions['navigationControl'] = false;
 
 		this.map = new google.maps.Map(this.div, myOptions);
 
@@ -48,15 +50,11 @@ function mp_field_type_geotag(settings)
 		this.geocoder_events();
 //
 		var ControlDiv = document.createElement('DIV');
-		ControlDiv.setAttribute('style', 'margin:5px 5px 0 0;');
-		if (this.settings.center 	!= '0') this.setCenter(ControlDiv);
-		if (this.settings.changemap 	!= '0') this.changeMapType(ControlDiv);
-		this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(ControlDiv);
-
-		ControlDiv = document.createElement('DIV');
-		ControlDiv.setAttribute('style', 'top:auto !important;left:auto !important;right: 0px !important;bottom: 8px !important;z-index:1;');
+		ControlDiv.setAttribute('style', 'margin:10px 5px 0 0;');
+		if (this.settings.center 		== '1') this.setCenter(ControlDiv);
+		if (this.settings.changemap 	== '1') this.changeMapType(ControlDiv);
 		if (this.settings.rgeocode  	== '1') this.reverseGeocode(ControlDiv);
-		this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(ControlDiv);
+		this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(ControlDiv);
 	}
 
 	this.map_type = function(maptype) {
@@ -140,7 +138,6 @@ function mp_field_type_geotag(settings)
 		img.setAttribute('src', mp_gmapL10n.url+'map_center'+'.png');
 		img.setAttribute('alt', mp_gmapL10n.center);
 		img.setAttribute('title', mp_gmapL10n.center);
-		img.setAttribute('style', 'margin-bottom:-1px;');
 	 	container.appendChild(img);
 		div.appendChild(container);
 
@@ -205,7 +202,6 @@ function mp_field_type_geotag(settings)
 		img.setAttribute('src', mp_gmapL10n.url+'map_geocode'+'.png');
 		img.setAttribute('alt', mp_gmapL10n.rgeocode);
 		img.setAttribute('title', mp_gmapL10n.rgeocode);
-		img.setAttribute('style', 'margin:0 5px 5px 0;');
 	 	container.appendChild(img);
 		div.appendChild(container);
 

@@ -3,7 +3,7 @@ class MP_Mailinglists_Walker_Dropdown extends Walker
 {
 	var $db_fields = array ('parent' => 'parent', 'id' => 'term_id'); //TODO: decouple this
 	
-	function start_el(&$output, $mailinglist, $depth, $args, $current_page = 0) 
+	function start_el(&$output, $mailinglist, $depth, $args) 
 	{
 		$pad = str_repeat('&#160;', $depth * 3);
 

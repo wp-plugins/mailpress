@@ -16,7 +16,7 @@ class MP_Mailinglists_Walker_Checklist extends Walker
 		$output .= "$indent</ul>\n";
 	}
 
-	function start_el(&$output, $mailinglist, $depth, $args, $current_page = 0) 
+	function start_el(&$output, $mailinglist, $depth, $args) 
 	{
 		extract($args);
 
