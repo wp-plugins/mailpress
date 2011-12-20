@@ -9,7 +9,7 @@ abstract class MP_theme_html_template_
 
 		$width  = 300;
 		$height = 300;
-		$src  = 'http://maps.google.com/staticmap?';
+		$src  = 'http://maps.googleapis.com/maps/api/staticmap?';
 		$src .= 'center=' . $x['geo']['lat'] . ',' . $x['geo']['lng'];
 		$src .= '&zoom=4';
 		$src .= "&size=$width" . 'x' . $height;

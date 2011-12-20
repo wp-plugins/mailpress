@@ -38,7 +38,7 @@ class MP_Form_field_type_geotag extends MP_form_field_type_
 		$height = (float) $field->settings['googlemap']['height'];
 		if ($width  > 640) $width  = 640;
 		if ($height > 640) $height = 640;
-		$static_map  = 'http://maps.google.com/staticmap?';
+		$static_map  = 'http://maps.googleapis.com/maps/api/staticmap?';
 		$static_map .= 'center=' . $value['center_lat'] . ',' . $value['center_lng'];
 		$static_map .= '&zoom=' . $value['zoomlevel'];
 		$static_map .= "&size=$width" . 'x' . $height;
@@ -222,7 +222,7 @@ class MP_Form_field_type_geotag extends MP_form_field_type_
 		if (!defined('MP_FORM_GEOTAG'))
 		{
 			define ('MP_FORM_GEOTAG', true);
-			if (!isset($options['gmap']))   $js .= "\n<script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=false'></script>";
+			if (!isset($options['gmap']))   $js .= "\n<script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?sensor=false'></script>";
 			if (!isset($options['jQuery'])) $js .= "\n<script type='text/javascript' src='" . site_url() . "/wp-includes/js/jquery/jquery.js'></script>";
 
 			$m = array( 'mp_gmapL10n'	=> array(	'url'		=> site_url() . '/' . MP_PATH . 'mp-admin/images/', 

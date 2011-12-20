@@ -125,7 +125,7 @@ function mp_field_type_geotag(settings)
 		});
 	}
 
-	this.changeMapType = function(div, first) // TOP_RIGHT
+	this.changeMapType = function(div, first)
 	{
 		var map = this.map;
 		var maptype = this.maptype;
@@ -164,7 +164,7 @@ function mp_field_type_geotag(settings)
 		});
 	}
 
-	this.setCenter = function(div, first) // TOP_RIGHT
+	this.setCenter = function(div, first)
 	{
 		var map = this.map;
 		var marker = this.marker;
@@ -190,7 +190,7 @@ function mp_field_type_geotag(settings)
 		});
 	}
 
-	this.reverseGeocode = function(div, first) // TOP_LEFT
+	this.reverseGeocode = function(div, first)
 	{
 		var map 	= this.map;
 		var marker 	= this.marker;

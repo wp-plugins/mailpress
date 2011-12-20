@@ -98,7 +98,7 @@ class MP_AdminPage extends MP_adminpage_
 	public static function print_scripts($scripts = array()) 
 	{
 		// google map
-			wp_register_script( 'google-map',	'http://maps.google.com/maps/api/js?sensor=false', false, false, 1);
+			wp_register_script( 'google-map',	'http://maps.googleapis.com/maps/api/js?sensor=false', false, false, 1);
 
 		// mp-gmap3
 			wp_register_script( 'mp-gmap3',	'/' . MP_PATH . 'mp-includes/js/mp_gmap3.js', array('google-map', 'schedule'), false, 1);

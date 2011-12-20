@@ -17,7 +17,7 @@ class MP_Tracking_module_m006 extends MP_tracking_module_
 	{
         if (!isset($_GET['id'])) return;
 	// google map
-		wp_register_script( 'google-map',	'http://maps.google.com/maps/api/js?sensor=false', false, false, 1);
+		wp_register_script( 'google-map',	'http://maps.googleapis.com/maps/api/js?sensor=false', false, false, 1);
 
 	// mp-gmap3
 		wp_register_script( 'mp-gmap3',	'/' . MP_PATH . 'mp-includes/js/mp_gmap3.js', array('google-map', 'schedule'), false, 1);
