@@ -51,9 +51,9 @@ function mp_field_type_geotag(settings)
 //
 		var ControlDiv = document.createElement('DIV');
 		ControlDiv.setAttribute('style', 'margin:10px 5px 0 0;');
-		if (this.settings.center 		== '1') this.setCenter(ControlDiv);
-		if (this.settings.changemap 	== '1') this.changeMapType(ControlDiv);
-		if (this.settings.rgeocode  	== '1') this.reverseGeocode(ControlDiv);
+		if (this.settings.changemap 	== '1') this.changeMapType(ControlDiv, true);
+		if (this.settings.center 		== '1') this.setCenter(ControlDiv, !(this.settings.changemap == '1'));
+		if (this.settings.rgeocode  	== '1') this.reverseGeocode(ControlDiv, !((this.settings.changemap == '1') || (this.settings.center == '1')));
 		this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(ControlDiv);
 	}
 
@@ -125,40 +125,18 @@ function mp_field_type_geotag(settings)
 		});
 	}
 
-	this.setCenter = function(div) // TOP_RIGHT
-	{
-		var map = this.map;
-		var marker = this.marker;
-
-		var center_lat  = this.center_lat;
-		var center_lng  = this.center_lng;
-
-		var container = document.createElement('div');
-		var img = document.createElement('img');
-		img.setAttribute('src', mp_gmapL10n.url+'map_center'+'.png');
-		img.setAttribute('alt', mp_gmapL10n.center);
-		img.setAttribute('title', mp_gmapL10n.center);
-	 	container.appendChild(img);
-		div.appendChild(container);
-
-	  	google.maps.event.addDomListener(img, 'click', function() { 
-			var LatLng = marker.getPosition();
-			center_lat.val(LatLng.lat());
-			center_lng.val(LatLng.lng());
-			map.setCenter(LatLng);
-		});
-	}
-
-	this.changeMapType = function(div) // TOP_RIGHT
+	this.changeMapType = function(div, first) // TOP_RIGHT
 	{
 		var map = this.map;
 		var maptype = this.maptype;
 
 		var container = document.createElement('div');
+		if (!first) container.setAttribute('style', 'margin-top:-10px;');
 		var img = document.createElement('img');
 		img.setAttribute('src', mp_gmapL10n.url+'map_control'+'.png');
 		img.setAttribute('alt', mp_gmapL10n.changemap);
-		img.setAttribute('title', mp_gmapL10n.changemap);	
+		img.setAttribute('title', mp_gmapL10n.changemap);
+		img.setAttribute('style', ' cursor:pointer;');
 	  	container.appendChild(img);
 		div.appendChild(container);
 
@@ -186,7 +164,33 @@ function mp_field_type_geotag(settings)
 		});
 	}
 
-	this.reverseGeocode = function(div) // TOP_LEFT
+	this.setCenter = function(div, first) // TOP_RIGHT
+	{
+		var map = this.map;
+		var marker = this.marker;
+
+		var center_lat  = this.center_lat;
+		var center_lng  = this.center_lng;
+
+		var container = document.createElement('div');
+		if (!first) container.setAttribute('style', 'margin-top:-10px;');
+		var img = document.createElement('img');
+		img.setAttribute('src', mp_gmapL10n.url+'map_center'+'.png');
+		img.setAttribute('alt', mp_gmapL10n.center);
+		img.setAttribute('title', mp_gmapL10n.center);
+		img.setAttribute('style', ' cursor:pointer;');
+	 	container.appendChild(img);
+		div.appendChild(container);
+
+	  	google.maps.event.addDomListener(img, 'click', function() { 
+			var LatLng = marker.getPosition();
+			center_lat.val(LatLng.lat());
+			center_lng.val(LatLng.lng());
+			map.setCenter(LatLng);
+		});
+	}
+
+	this.reverseGeocode = function(div, first) // TOP_LEFT
 	{
 		var map 	= this.map;
 		var marker 	= this.marker;
@@ -198,10 +202,12 @@ function mp_field_type_geotag(settings)
 		var rgeocode= this.rgeocode;
 		
 		var container = document.createElement('div');
+		if (!first) container.setAttribute('style', 'margin-top:-10px;');
 		var img = document.createElement('img');
 		img.setAttribute('src', mp_gmapL10n.url+'map_geocode'+'.png');
 		img.setAttribute('alt', mp_gmapL10n.rgeocode);
 		img.setAttribute('title', mp_gmapL10n.rgeocode);
+		img.setAttribute('style', ' cursor:pointer;');
 	 	container.appendChild(img);
 		div.appendChild(container);
 

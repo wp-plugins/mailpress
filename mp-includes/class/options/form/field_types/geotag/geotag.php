@@ -226,9 +226,9 @@ class MP_Form_field_type_geotag extends MP_form_field_type_
 			if (!isset($options['jQuery'])) $js .= "\n<script type='text/javascript' src='" . site_url() . "/wp-includes/js/jquery/jquery.js'></script>";
 
 			$m = array( 'mp_gmapL10n'	=> array(	'url'		=> site_url() . '/' . MP_PATH . 'mp-admin/images/', 
-										'center'	=> esc_js(__('center', MP_TXTDOM)), 
-										'rgeocode'	=> esc_js(__('find place', MP_TXTDOM)), 
-										'changemap'	=> esc_js(__('change map', MP_TXTDOM))
+										'center'	=> esc_js(__('Center on marker', MP_TXTDOM)), 
+										'rgeocode'	=> esc_js(__('Find marker address', MP_TXTDOM)), 
+										'changemap'	=> esc_js(__('Change map', MP_TXTDOM))
 								)
 				);
 			$js .= "\n<script type='text/javascript'>\n/* <![CDATA[ */\n";

@@ -77,6 +77,8 @@ MailPress themes and templates do not need to be changed if customized in a prev
 ** 5.3 ** xx/xx/2012
 * some code optimizations and fixes on admin lists
 * Switmailer 4.1.4
+* Walker args consistancy (avoid E_STRICT php errors)
+* Geotag form field type : change icons + fixing js bugs due to Google Map Api V3 changes
 
 ** 5.2 ** 12/13/2011
 * Child themes
