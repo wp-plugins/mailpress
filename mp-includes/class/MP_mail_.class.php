@@ -354,7 +354,7 @@ abstract class MP_mail_ extends MP_db_connect_
 		return $located;
 	}
 
-	function load_template( $_template_file, $require_once = true ) 
+	function load_template( $_template_file, $require_once = false ) 
 	{
 		global $posts, $post, $wp_did_header, $wp_did_template_redirect, $wp_query, $wp_rewrite, $wpdb, $wp_version, $wp, $id, $comment, $user_ID;
 
