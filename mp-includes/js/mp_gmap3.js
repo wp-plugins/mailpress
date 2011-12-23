@@ -15,25 +15,25 @@ function mp_gmap3(settings)
 	this.init = function() {
 
 		var myOptions = {
-			zoom: 	parseInt(this.zoomlevel.val()),
-			center: 	this.center,
+			center: 		this.center,
+			draggable:		true,
+			mapTypeControl:	false,
 			mapTypeId: 	this.map_type(this.maptype.val()),
+			panControl:	false,
+			zoom: 		parseInt(this.zoomlevel.val()),
 			streetViewControl:	false,
-			mapTypeControl:		false,
-			navigationControlOptions: {
-				style: google.maps.NavigationControlStyle.SMALL,
-				position: google.maps.ControlPosition.TOP_LEFT
-			}
+			zoomControlOptions: {style:'SMALL'}
 		};
 
 		this.map = new google.maps.Map(this.div, myOptions);
 
 		this.map_events();
 //
+		var first = true;
 		var ControlDiv = document.createElement('DIV');
-		ControlDiv.setAttribute('style', 'margin:5px 5px 0 0;');
-		this.setCenter(ControlDiv);
-		this.changeMapType(ControlDiv);
+		ControlDiv.setAttribute('style', 'margin:10px 5px 0 0;');
+		this.changeMapType(ControlDiv, first); first = false;
+		this.setCenter(ControlDiv, first);     first = false;
 		this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(ControlDiv);
 
 		var schedule_id = this.prefix + '_schedule';
@@ -94,29 +94,13 @@ function mp_gmap3(settings)
 		});
 	}
 
-	this.setCenter = function(div) // TOP_RIGHT
-	{
-		var map = this.map;
-		var center = this.center;
-
-		var container = document.createElement('div');
-		var img = document.createElement('img');
-		img.setAttribute('src', mp_gmapL10n.url+'map_center'+'.png');
-		img.setAttribute('alt', mp_gmapL10n.center);
-		img.setAttribute('title', mp_gmapL10n.center);
-		img.setAttribute('style', 'margin-bottom:-1px;');
-	 	container.appendChild(img);
-		div.appendChild(container);
-
-	  	google.maps.event.addDomListener(img, 'click', function() { map.setCenter(center); });
-	}
-
-	this.changeMapType = function(div) // TOP_RIGHT
+	this.changeMapType = function(div, first)
 	{
 		var map = this.map;
 		var maptype = this.maptype;
 
 		var container = document.createElement('div');
+		if (!first) container.setAttribute('style', 'margin-top:-10px;');
 		var img = document.createElement('img');
 		img.setAttribute('src', mp_gmapL10n.url+'map_control'+'.png');
 		img.setAttribute('alt', mp_gmapL10n.changemap);
@@ -146,6 +130,24 @@ function mp_gmap3(settings)
 				break;
 			}
 		});
+	}
+
+	this.setCenter = function(div, first)
+	{
+		var map = this.map;
+		var center = this.center;
+
+		var container = document.createElement('div');
+		if (!first) container.setAttribute('style', 'margin-top:-10px;');
+		var img = document.createElement('img');
+		img.setAttribute('src', mp_gmapL10n.url+'map_center'+'.png');
+		img.setAttribute('alt', mp_gmapL10n.center);
+		img.setAttribute('title', mp_gmapL10n.center);
+		img.setAttribute('style', 'margin-bottom:-1px;');
+	 	container.appendChild(img);
+		div.appendChild(container);
+
+	  	google.maps.event.addDomListener(img, 'click', function() { map.setCenter(center); });
 	}
 
 	this.init();

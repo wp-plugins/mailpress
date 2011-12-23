@@ -49,11 +49,12 @@ function mp_field_type_geotag(settings)
 
 		this.geocoder_events();
 //
+		var first = true;
 		var ControlDiv = document.createElement('DIV');
 		ControlDiv.setAttribute('style', 'margin:10px 5px 0 0;');
-		if (this.settings.changemap 	== '1') this.changeMapType(ControlDiv, true);
-		if (this.settings.center 		== '1') this.setCenter(ControlDiv, !(this.settings.changemap == '1'));
-		if (this.settings.rgeocode  	== '1') this.reverseGeocode(ControlDiv, !((this.settings.changemap == '1') || (this.settings.center == '1')));
+		if (this.settings.changemap 	== '1') {this.changeMapType(ControlDiv, first);  first = false;}
+		if (this.settings.center 		== '1') {this.setCenter(ControlDiv, first); 	 first = false;}
+		if (this.settings.rgeocode  	== '1') {this.reverseGeocode(ControlDiv, first); first = false;}
 		this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(ControlDiv);
 	}
 
