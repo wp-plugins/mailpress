@@ -5,7 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_connection_php_mail') 
 Plugin Name: MailPress_connection_php_mail 
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Phpmail
 Description: This is just an add-on for MailPress to use native php mail connection.
-Version: 5.2
+Version: 5.2.1
 */
 
 class MailPress_connection_php_mail

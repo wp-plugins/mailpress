@@ -6,7 +6,7 @@ Plugin Name: MailPress_post
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Post
 Description: This is just an add-on for MailPress to select posts for draft mails
 Author: Roberto Morales O., Andre Renaut
-Version: 5.2
+Version: 5.2.1
 Author URI: http://www.mailpress.org
 */
 

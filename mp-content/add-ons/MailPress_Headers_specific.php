@@ -5,7 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_Headers_specific'))
 Plugin Name: MailPress_Headers_specific
 Plugin URI: http://swiftmailer.org/docs/headers
 Description: This is just an add-on for MailPress to add specific headers in mail (sample).
-Version: 5.2
+Version: 5.2.1
 */
 
 class MailPress_Headers_specific

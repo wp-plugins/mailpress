@@ -107,8 +107,8 @@ class MP_AdminPage extends MP_adminpage_
 				'type'	=> 'mp_user',
 				'url'		=> site_url() . '/' . MP_PATH . 'mp-admin/images/',
 				'ajaxurl'	=> MP_Action_url,
-				'center'	=> esc_js(__('center', MP_TXTDOM)),
-				'changemap'	=> esc_js(__('change map', MP_TXTDOM))
+				'center'	=> esc_js(__('Center', MP_TXTDOM)),
+				'changemap'	=> esc_js(__('Change map', MP_TXTDOM))
 			));
 
 			$deps[] = 'mp-gmap3';

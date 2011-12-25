@@ -5,7 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_tracking'))
 Plugin Name: MailPress_tracking
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Tracking
 Description: This is just an add-on for MailPress to track the mails/users activity.
-Version: 5.2
+Version: 5.2.1
 */
 
 /** for admin plugin pages */

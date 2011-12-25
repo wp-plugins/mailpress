@@ -4,7 +4,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_bounce_handling_II'))
 /*
 Plugin Name: MailPress_bounce_handling_II
 Description: This is just an add-on for MailPress to handle bounce mails (based on mail headers & string detection in mail body).
-Version: 5.2
+Version: 5.2.1
 */
 
 class MailPress_bounce_handling_II

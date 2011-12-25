@@ -5,7 +5,7 @@ if (class_exists('MailPress_newsletter') && !class_exists('MailPress_newsletter_
 Plugin Name: MailPress_newsletter_categories
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Newsletter_categories
 Description: This is just an add-on for MailPress to manage newsletters per categories
-Version: 5.2
+Version: 5.2.1
 */
 
 class MailPress_newsletter_categories

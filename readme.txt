@@ -4,7 +4,7 @@ Donate link: http://www.mailpress.org/wiki
 Tags: mail, mails, comments, comment, subscribe, newsletters, newsletter, Wordpress, Plugin, swiftmailer, post, posts, smtp, sendmail, phpmail, notification, notifications, mail, mails, contact form
 Requires at least: 3.3
 Tested up to: 3.3
-Stable tag: 5.2
+Stable tag: 5.2.1
 
 The WordPress mailing platform 
 
@@ -74,11 +74,12 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 == Changelog ==
 
-** 5.3 ** xx/xx/2012
+** 5.2.1 ** 12/25/2012
 * some code optimizations and fixes on admin lists
 * Switmailer 4.1.4
 * Walker args consistancy (avoid E_STRICT php errors)
-* Geotag form field type : change icons + fixing js bugs due to Google Map Api V3 changes
+* Google Map Api V3 changes : fixing js bugs +  change icons
+* bug fix : http://blog.mailpress.org/2011/12/21/bug-notification-mailpress-5-2/
 
 ** 5.2 ** 12/13/2011
 * Child themes

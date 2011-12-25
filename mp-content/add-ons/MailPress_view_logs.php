@@ -5,7 +5,7 @@ if ( (class_exists('MailPress')) && !class_exists('MailPress_view_logs') && (is_
 Plugin Name: MailPress_view_logs
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:View_logs
 Description: This is just an add-on for MailPress to view logs
-Version: 5.2
+Version: 5.2.1
 */
 
 // 3.
