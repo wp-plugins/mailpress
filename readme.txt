@@ -74,7 +74,7 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 == Changelog ==
 
-** 5.2.1 ** 12/25/2012
+** 5.2.1 ** 12/25/2011
 * some code optimizations and fixes on admin lists
 * Switmailer 4.1.4
 * Walker args consistancy (avoid E_STRICT php errors)
