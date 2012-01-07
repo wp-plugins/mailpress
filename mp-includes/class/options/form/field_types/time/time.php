@@ -1,10 +1,13 @@
 <?php
 class MP_Form_field_type_time extends MP_form_field_type_
 {
-	var $id			= 'time';
-	var $order			= 71;
 	var $file			= __FILE__;
+
+	var $id			= 'time';
 	var $field_not_input 	= true;
+
+	var $category 		= 'composite';
+	var $order			= 71;
 
 	function get_name($field) { return $this->prefix.'['.$field->form_id . ']['. $field->id . ']' .  ( (isset($field->settings['options']['is'])) ? ( '[' . ( ($field->settings['options']['is'] == 'am_pm') ? $this->prefix . $field->settings['options']['is'] : $field->settings['options']['is'] ) . ']' ) : '' ) ; }
 	function get_id($field)   { return $this->prefix  .  $field->form_id . '_' . $field->id .        ( (isset($field->settings['options']['is'])) ? ( '_' . ( ($field->settings['options']['is'] == 'am_pm') ? $field->settings['attributes']['value']           : $field->settings['options']['is'] )       ) : '' ) ; }

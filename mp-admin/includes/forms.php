@@ -309,7 +309,7 @@ if (isset($form->settings['visitor']['template']) && $key == $form->settings['vi
 				$search = $replace = array();
 				$search[] = '{{label}}'; 	$replace[] = $form->label;
 				$search[] = '{{description}}'; 	$replace[] = $form->description;
-				$search[] = '{{form}}'; 	$replace[] = sprintf('%1$s<!-- %2$s --></form>', MP_Form::get_tag($form, MP_Form_field::have_file($form->id)), __('form content', MP_TXTDOM) );
+				$search[] = '{{form}}'; 	$replace[] = sprintf('%1$s<!-- %2$s --></form>', MP_Form::get_tag( $form ), __('form content', MP_TXTDOM) );
 				$search[] = '{{message}}'; 	$replace[] = sprintf ('<!-- %1$s -->', __('ok/ko message', MP_TXTDOM) );
 				$html = str_replace($search, $replace, $html );
 ?>

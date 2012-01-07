@@ -387,12 +387,20 @@ class MP_User
 
 	public static function get_mailinglists()
 	{
+		add_filter('MailPress_mailinglists_optgroup', 	array(__CLASS__, 'mailinglists_optgroup'), 8, 2);
+
 		$draft_dest = array (	''  => '&#160;', 
 						'1' => __('to blog', MP_TXTDOM), 
 						'4' => __('all (active + waiting)', MP_TXTDOM),
 						'5' => __('waiting', MP_TXTDOM),
 					  );
 		return apply_filters('MailPress_mailinglists', $draft_dest);
+	}
+
+	public static function mailinglists_optgroup( $label, $optgroup ) 
+	{
+		if (__CLASS__ == $optgroup) return __('Subscribers', MP_TXTDOM);
+		return $label;
 	}
 
 /// MAIL URLs ///

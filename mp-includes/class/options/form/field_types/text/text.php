@@ -1,9 +1,12 @@
 <?php
 class MP_Form_field_type_text extends MP_form_field_type_
 {
-	var $id	= 'text';
-	var $order	= 10;
 	var $file	= __FILE__;
+
+	var $id	= 'text';
+
+	var $category = 'html';
+	var $order	= 10;
 
 	function submitted($field)
 	{

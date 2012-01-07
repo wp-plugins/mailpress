@@ -3,9 +3,12 @@ if (!extension_loaded('gd')) return;
 
 class MP_Form_field_type_captcha_gd1 extends MP_form_field_type_
 {
-	var $id	= 'captcha_gd1';
-	var $order	= 90;
 	var $file	= __FILE__;
+
+	var $id	= 'captcha_gd1';
+
+	var $category = 'composite';
+	var $order	= 90;
 
 	function submitted($field)
 	{

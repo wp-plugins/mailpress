@@ -477,10 +477,10 @@ class MP_Form
 			}
 		}
 
-		return sprintf('%2$s%1$s%3$s%1$s%4$s', "\n", self::get_tag( $form, MP_Form_field::have_file($form->id) ), implode("\n", $htmls), '</form>');
+		return sprintf('%2$s%1$s%3$s%1$s%4$s', "\n", self::get_tag( $form ), implode("\n", $htmls), '</form>');
 	}
 
-	public static function get_tag( $form, $have_file = false )
+	public static function get_tag( $form )
 	{
 		$attributes = $form->settings['attributes'];
 	// misc
@@ -496,7 +496,7 @@ class MP_Form
 	// action
 		if (false === strpos($misc, 'action=')) $attributes['action'] = '';
 	// enctype
-		if (!empty($have_file)) $attributes['enctype'] = 'multipart/form-data';
+		if (MP_Form_field::have_file($form->id)) $attributes['enctype'] = 'multipart/form-data';
 	// other attributes
 		foreach ($attributes as $attribute => $value)
 		{

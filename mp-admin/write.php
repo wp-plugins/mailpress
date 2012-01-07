@@ -708,7 +708,7 @@ var draft_id = <?php echo $draft_id; ?>;
 			$list[$value] = "<option " . self::selected( (string) $value, (string) $_selected, false, false ) . " value=\"" . esc_attr($value) . "\">$label</option>";
 		}
 
-		$opened = $numeric_done = $comment_done = $mailinglist_done = $newsletter_done = false;
+		$opened = false;
 
 		foreach( $list as $value => $html )
 		{
@@ -716,26 +716,18 @@ var draft_id = <?php echo $draft_id; ?>;
 			switch (true)
 			{
 				case (in_array($value , array('2', '3'))) :
-					if ($comment_done) continue;
-					$list[$value] = (($opened) ? '</optgroup>' : '') . '<optgroup label=\'' . __('Comments', MP_TXTDOM) . '\'>' . $html;
-					$opened = $comment_done = true;
+					$optgroup = 'MailPress_comment';
 				break;
 				case (is_numeric($value)) :
-					if ($numeric_done) continue;
-					$list[$value] = (($opened) ? '</optgroup>' : '') . '<optgroup label=\'' . __('Subscribers', MP_TXTDOM) . '\'>' . $html;
-					$opened = $numeric_done = true;
+					$optgroup = 'MP_User';
 				break;
-				case (strpos($value, 'MailPress_mailinglist~') !== false) :
-					if ($mailinglist_done) continue;
-					$list[$value] = (($opened) ? '</optgroup>' : '') . '<optgroup label=\'' . __('Mailinglists', MP_TXTDOM) . '\'>' . $html;
-					$opened = $mailinglist_done = true;
-				break;
-				case (strpos($value, 'MailPress_newsletter~') !== false) :
-					if ($newsletter_done) continue;
-					$list[$value] = (($opened) ? '</optgroup>' : '') . '<optgroup label=\'' . __('Newsletters', MP_TXTDOM) . '\'>' . $html;
-					$opened = $newsletter_done = true;
+				default :
+					$optgroup = ($pos = strpos($value, '~')) ? substr($value, 0, $pos) : null;
 				break;
 			}
+			if (isset($$optgroup)) continue;
+			$list[$value] = (($opened) ? '</optgroup>' : '') . '<optgroup label=\'' . apply_filters('MailPress_mailinglists_optgroup', __('(unknown)', MP_TXTDOM), $optgroup) . '\'>' . $html;
+			$opened = $$optgroup = true;
 		}
 
 		$x = implode('', $list) . (($opened) ? '</optgroup>' : '');

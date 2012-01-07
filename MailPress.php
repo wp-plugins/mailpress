@@ -7,7 +7,7 @@ Author: Andre Renaut
 Author URI: http://www.mailpress.org
 Requires at least: 3.3
 Tested up to: 3.3
-Version: 5.2.1
+Version: 5.3-alpha
 */
 
 /** for admin plugin pages */
@@ -62,11 +62,11 @@ class MailPress
 		if (defined('MP_DEBUG_LOG')) { global $mp_debug_log; $mp_debug_log = new MP_Log('debug_mailpress'); }
 
 		add_action('plugins_loaded', 		array(__CLASS__, 'plugins_loaded'));		// for add-ons & gettext
-		add_action('init', 			array(__CLASS__, 'init'));				// for init
-		add_action('widgets_init', 		array(__CLASS__, 'widgets_init'));			// for widget
-		add_action('shutdown', 			array(__CLASS__, 'shutdown'), 999);			// for shutdown
+		add_action('init', 				array(__CLASS__, 'init'));				// for init
+		add_action('widgets_init', 		array(__CLASS__, 'widgets_init'));		// for widget
+		add_action('shutdown', 			array(__CLASS__, 'shutdown'), 999);		// for shutdown
 
-		add_action('mp_process_send_draft',	array(__CLASS__, 'process'));				// for scheduled draft
+		add_action('mp_process_send_draft',	array(__CLASS__, 'process'));			// for scheduled draft
 
 		if (is_admin())
 		{

@@ -32,7 +32,9 @@ abstract class MP_options_
 	{
 		if (substr($file, -4) != '.php') return;
 //if (defined('MP_DEBUG_LOG')) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤ loading " . basename($file) . " ..." ); }
+//echo "\n ** loading ** " . basename($file) . " ...";
 		require_once($file);
 //if (defined('MP_DEBUG_LOG')) { global $mp_debug_log; if (isset($mp_debug_log)) $mp_debug_log->log(" ¤¤¤ loaded " . basename($file) ); }
+//echo "\n *** loaded ** " . basename($file);
 	}
 }

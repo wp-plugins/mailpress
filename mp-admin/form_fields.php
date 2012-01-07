@@ -80,9 +80,9 @@ class MP_AdminPage extends MP_adminpage_list_
 	public static function print_styles($styles = array()) 
 	{
 // for specific css
-		$pathcss		= MP_ABSPATH . 'mp-includes/class/options/form/field_types/field_types_' . get_user_option('admin_color') . '.css';
-		$css_url		= '/' . MP_PATH . 'mp-includes/class/options/form/field_types/field_types_' . get_user_option('admin_color') . '.css';
-		$css_url_default 	= '/' . MP_PATH . 'mp-includes/class/options/form/field_types/field_types_fresh.css';
+		$pathcss		= MP_ABSPATH . 'mp-includes/class/options/form/field_types_' . get_user_option('admin_color') . '.css';
+		$css_url		= '/' . MP_PATH . 'mp-includes/class/options/form/field_types_' . get_user_option('admin_color') . '.css';
+		$css_url_default 	= '/' . MP_PATH . 'mp-includes/class/options/form/field_types_fresh.css';
 		$css_url		= (is_file($pathcss)) ? $css_url : $css_url_default;
 		wp_register_style ( 'mp_field_types', 	$css_url);
 

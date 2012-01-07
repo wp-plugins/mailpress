@@ -1,9 +1,12 @@
 <?php
 class MP_Form_field_type_email extends MP_form_field_type_
 {
-	var $id	= 'email';
-	var $order	= 15;
 	var $file	= __FILE__;
+
+	var $id	= 'email';
+
+	var $category = 'html';
+	var $order	= 15;
 
 	function submitted($field)
 	{

@@ -1,9 +1,12 @@
 <?php
 class MP_Form_field_type_radio extends MP_form_field_type_
 {
-	var $id	= 'radio';
-	var $order	= 50;
 	var $file	= __FILE__;
+
+	var $id	= 'radio';
+
+	var $category = 'html';
+	var $order	= 50;
 
 	function submitted($field)
 	{

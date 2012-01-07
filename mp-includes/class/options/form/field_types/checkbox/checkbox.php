@@ -1,9 +1,12 @@
 <?php
 class MP_Form_field_type_checkbox extends MP_form_field_type_
 {
-	var $id	= 'checkbox';
-	var $order	= 40;
 	var $file	= __FILE__;
+
+	var $id	= 'checkbox';
+
+	var $category = 'html';
+	var $order	= 40;
 
 	function submitted($field)
 	{

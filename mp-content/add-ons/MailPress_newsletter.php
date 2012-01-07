@@ -25,8 +25,8 @@ class MailPress_newsletter
 
 // for shortcode
 		add_filter('MailPress_form_defaults', 	array(__CLASS__, 'form_defaults'), 8, 1);
-		add_filter('MailPress_form_options', 	array(__CLASS__, 'form_options'), 8, 1);
-		add_filter('MailPress_form_submit', 	array(__CLASS__, 'form_submit'), 8, 2);
+		add_filter('MailPress_form_options', 		array(__CLASS__, 'form_options'), 8, 1);
+		add_filter('MailPress_form_submit', 		array(__CLASS__, 'form_submit'), 8, 2);
 		add_action('MailPress_form', 		  	array(__CLASS__, 'form'), 1, 2);
 
 // for newsletter
@@ -34,12 +34,16 @@ class MailPress_newsletter
 
 // for scheduling and processing newsletters
 		add_action('mp_schedule_newsletters', 	array(__CLASS__, 'schedule'), 8, 1);
-		add_action('mp_process_newsletter', 	array(__CLASS__, 'process'));
+		add_action('mp_process_newsletter', 		array(__CLASS__, 'process'));
 		add_action('mp_process_post_newsletter', 	array(__CLASS__, 'process'));
 
 // for sending mails
-		add_filter('MailPress_mailinglists', 	array(__CLASS__, 'mailinglists'), 8, 1);
-		add_filter('MailPress_query_mailinglist', array(__CLASS__, 'query_mailinglist'), 8, 2);
+		add_filter('MailPress_mailinglists_optgroup', 	array(__CLASS__, 'mailinglists_optgroup'), 8, 2);
+		add_filter('MailPress_mailinglists', 			array(__CLASS__, 'mailinglists'), 8, 1);
+		add_filter('MailPress_query_mailinglist', 		array(__CLASS__, 'query_mailinglist'), 8, 2);
+
+// for form
+		//add_action('MailPress_load_Form_field_types',	array(__CLASS__, 'load_Form_field_types'));
 
 // for sync wordpress user
 		add_filter('MailPress_has_subscriptions', array(__CLASS__, 'has_subscriptions'), 8, 2);
@@ -290,10 +294,16 @@ class MailPress_newsletter
 
 //// Sending Mails ////
 
+	public static function mailinglists_optgroup( $label, $optgroup ) 
+	{
+		if (__CLASS__ == $optgroup) return __('Newsletters', MP_TXTDOM);
+		return $label;
+	}
+
 	public static function mailinglists( $draft_dest = array() )
 	{
 		$x = MP_Newsletter::get_active();
-		foreach ($x as $k => $v) $draft_dest["MailPress_newsletter~$k"] = $v;
+		foreach ($x as $k => $v) $draft_dest[__CLASS__ . '~' . $k] = $v;
 		return $draft_dest;
 	}
 
@@ -301,7 +311,7 @@ class MailPress_newsletter
 	{
 		if ($query) return $query;
 
-		$id = str_replace('MailPress_newsletter~', '', $draft_toemail, $count);
+		$id = str_replace(__CLASS__ . '~', '', $draft_toemail, $count);
 		if (0 == $count) return $query;
 		if (empty($id)) return $query;
 
@@ -330,6 +340,14 @@ class MailPress_newsletter
 		$new = MP_Newsletter::get_object_terms($newid);
 
 		MP_Newsletter::set_object_terms($newid, array_merge($old, $new));
+	}
+
+
+// Forms
+
+	public static function load_Form_field_types()
+	{
+		new MP_Form_field_types_newsletter();
 	}
 
 ////  ADMIN  ////

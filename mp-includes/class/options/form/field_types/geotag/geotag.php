@@ -1,9 +1,12 @@
 <?php
 class MP_Form_field_type_geotag extends MP_form_field_type_
 {
-	var $id	= 'geotag';
-	var $order	= 96;
 	var $file	= __FILE__;
+
+	var $id	= 'geotag';
+
+	var $category = 'composite';
+	var $order	= 96;
 
 	function get_name($field) { return (isset($field->settings['options']['is'])) ? $this->prefix . '[' . $field->form_id . ']['. $field->id . '][' . $field->settings['options']['is'] . ']' : $this->prefix . '[' . $field->form_id . ']['. $field->id . ']'; }
 	function get_id($field)   { return (isset($field->settings['options']['is'])) ? $this->prefix .       $field->form_id .  '_'. $field->id .  '_' . $field->settings['options']['is']       : $this->prefix .       $field->form_id .  '_'. $field->id; }

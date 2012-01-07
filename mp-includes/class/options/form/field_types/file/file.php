@@ -1,9 +1,12 @@
 <?php
 class MP_Form_field_type_file extends MP_form_field_type_
 {
-	var $id	= 'file';
-	var $order	= 99;
 	var $file	= __FILE__;
+
+	var $id	= 'file';
+
+	var $category = 'html';
+	var $order	= 99;
 
 	function get_name($field) { return $this->prefix . $field->form_id . '_' . $field->id; }
 	function have_file($have_file) { return true; } // have file loading ?

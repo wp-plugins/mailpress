@@ -24,7 +24,6 @@ abstract class MP_form_field_type_
 	function register($field_types) { $field_types[$this->id] = array( 'desc' => $this->description, 'order' => $this->order ); return $field_types; }
 	function have_file($have_file) { return $have_file; }
 
-
 	function submitted($field)
 	{
 		if (!isset($_POST[$this->prefix][$field->form_id][$field->id])) return $field;
@@ -118,7 +117,6 @@ abstract class MP_form_field_type_
 			$xml = trim(ob_get_contents());
 		ob_end_clean();
 		$xml = '<?xml version="1.0" ?>' . $xml;
-
 		$xml = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
 		foreach ($xml->tabs->children() as $child) $tabs[$child->getName()] = (string) $child;
 		if (isset($_GET['action']) && ('edit' == $_GET['action']) && $this->type_ok) { $tabs['html'] = __('Html', MP_TXTDOM); }

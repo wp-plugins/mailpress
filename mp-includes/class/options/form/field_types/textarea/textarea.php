@@ -1,10 +1,13 @@
 <?php
 class MP_Form_field_type_textarea extends MP_form_field_type_
 {
-	var $id			= 'textarea';
-	var $order 			= 20;
 	var $file			= __FILE__;
+
+	var $id			= 'textarea';
 	var $field_not_input 	= true;
+
+	var $category 		= 'html';
+	var $order 		= 20;
 
 	function submitted($field)
 	{

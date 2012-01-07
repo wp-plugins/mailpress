@@ -1,9 +1,12 @@
 <?php
 class MP_Form_field_type_button extends MP_form_field_type_
 {
-	var $id 	= 'button';
-	var $order	= 100;
 	var $file	= __FILE__;
+
+	var $id 	= 'button';
+
+	var $category = 'html';
+	var $order	= 100;
 
 	function submitted($field)
 	{

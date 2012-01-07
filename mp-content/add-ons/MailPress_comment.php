@@ -24,6 +24,7 @@ class MailPress_comment
 		add_action('delete_post', 					array(__CLASS__, 'delete_post'));
 
 // for sending mails
+		add_filter('MailPress_mailinglists_optgroup', 	array(__CLASS__, 'mailinglists_optgroup'), 5, 2);
 		add_filter('MailPress_mailinglists', 			array(__CLASS__, 'mailinglists'), 5, 1);
 		add_filter('MailPress_query_mailinglist', 		array(__CLASS__, 'query_mailinglist'), 5, 2);
 
@@ -255,6 +256,12 @@ class MailPress_comment
 	}
 
 //// Sending Mails ////
+
+	public static function mailinglists_optgroup( $label, $optgroup ) 
+	{
+		if (__CLASS__ == $optgroup) return __('Comments', MP_TXTDOM);
+		return $label;
+	}
 
 	public static function mailinglists( $draft_dest = array() ) 
 	{

@@ -1,10 +1,13 @@
 <?php
 class MP_Form_field_type_select extends MP_form_field_type_
 {
-	var $id			= 'select';
-	var $order			= 30;
 	var $file			= __FILE__;
+
+	var $id			= 'select';
 	var $field_not_input 	= true;
+
+	var $category 		= 'html';
+	var $order			= 30;
 
 	const sep			= '::';
 

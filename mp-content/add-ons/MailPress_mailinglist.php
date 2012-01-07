@@ -40,8 +40,9 @@ class MailPress_mailinglist
 		add_action('MailPress_form', 		  	array(__CLASS__, 'form'), 1, 2); 
 
 // for sending mails
-		add_filter('MailPress_mailinglists', 	array(__CLASS__, 'mailinglists'), 8, 1);
-		add_filter('MailPress_query_mailinglist', array(__CLASS__, 'query_mailinglist'), 8, 2);
+		add_filter('MailPress_mailinglists_optgroup', 	array(__CLASS__, 'mailinglists_optgroup'), 8, 2);
+		add_filter('MailPress_mailinglists', 			array(__CLASS__, 'mailinglists'), 8, 1);
+		add_filter('MailPress_query_mailinglist', 		array(__CLASS__, 'query_mailinglist'), 8, 2);
 
 // for mp_user
 
@@ -50,6 +51,8 @@ class MailPress_mailinglist
 
 // for autoresponder
 		add_action('MailPress_load_Autoresponders_events',	array(__CLASS__, 'load_Autoresponders_events'));
+// for form
+		//add_action('MailPress_load_Form_field_types',		array(__CLASS__, 'load_Form_field_types'));
 
 // for sync wordpress user
 		add_filter('MailPress_has_subscriptions', array(__CLASS__, 'has_subscriptions'), 8, 2);
@@ -134,7 +137,7 @@ class MailPress_mailinglist
 		$mailinglists = apply_filters('MailPress_mailinglists', array());
 		foreach ($mailinglists as $k => $v) 
 		{
-			$x = str_replace('MailPress_mailinglist~', '', $k, $count);
+			$x = str_replace(__CLASS__ . '~', '', $k, $count);
 			if (0 == $count) 	continue;	
 			if (empty($x)) 	continue;
 
@@ -277,6 +280,12 @@ class MailPress_mailinglist
 
 //// Sending Mails ////
 
+	public static function mailinglists_optgroup( $label, $optgroup ) 
+	{
+		if (__CLASS__ == $optgroup) return __('Mailinglists', MP_TXTDOM);
+		return $label;
+	}
+
 	public static function mailinglists( $draft_dest = array() ) 
 	{
 		$args = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'name' => 'default_mailinglist' );
@@ -288,7 +297,7 @@ class MailPress_mailinglist
 	{
 		if ($query) return $query;
 
-		$id = str_replace('MailPress_mailinglist~', '', $draft_toemail, $count);
+		$id = str_replace(__CLASS__ . '~', '', $draft_toemail, $count);
 		if (0 == $count) return $query;
 		if (empty($id))  return $query;
 
@@ -320,6 +329,13 @@ class MailPress_mailinglist
 	public static function load_Autoresponders_events()
 	{
 		new MP_Autoresponder_events_mailinglist();
+	}
+
+//// Forms ////
+
+	public static function load_Form_field_types()
+	{
+		new MP_Form_field_types_mailinglist();
 	}
 
 // Sync wordpress user

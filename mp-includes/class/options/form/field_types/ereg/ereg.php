@@ -1,9 +1,12 @@
 <?php
 class MP_Form_field_type_ereg extends MP_form_field_type_
 {
-	var $id	= 'ereg';
-	var $order	= 95;
 	var $file	= __FILE__;
+
+	var $id	= 'ereg';
+
+	var $category = 'html';
+	var $order	= 95;
 
 	function submitted($field)
 	{

@@ -2,9 +2,12 @@
 
 class MP_Form_field_type_recaptcha extends MP_form_field_type_
 {
-	var $id 	= 'recaptcha';
-	var $order	= 92;
 	var $file	= __FILE__;
+
+	var $id 	= 'recaptcha';
+
+	var $category = 'composite';
+	var $order	= 92;
 
 	function submitted($field)
 	{
