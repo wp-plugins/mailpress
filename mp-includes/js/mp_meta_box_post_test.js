@@ -126,17 +126,12 @@ var mp_meta_box_post_test = {
 		var message = '';
 		var id = 0;
 
-		var res = wpAjax.parseAjaxResponse(response, 'mp_meta_box_post_test'); 						// parse the ajax response
+		var res = wpAjax.parseAjaxResponse(response, 'mp_meta_box_post_test'); 					// parse the ajax response
 		if ( res && res.responses && res.responses.length ) 
 		{
 			message = res.responses[0].data;
 			id	  = res.responses[0].id;
-			
 			if ( message ) { jQuery('#MailPress_post_test_ajax').html(message); } 				// display message
-
-			mp_thickbox.aclass = 'span#mail-' + id + ' a.thickbox';
-			tb_init(mp_thickbox.aclass);
-			mp_thickbox.init();
 		}
 
 	 	jQuery('div#MailPress_post_test_loading').fadeTo(500,0);
