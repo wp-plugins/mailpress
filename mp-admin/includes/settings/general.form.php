@@ -46,10 +46,10 @@ $formname = substr(basename(__FILE__), 0, -4);
 		<tr valign='top'>
 			<th scope='row'><?php _e('Options', MP_TXTDOM); ?></th>
 			<td>
-				<input id='wpmail' name='general[wp_mail]' type='checkbox' <?php echo( (isset($mp_general['wp_mail'])) ? "checked='checked'" : ''); ?> />
+				<input id='wpmail' name='general[wp_mail]' type='checkbox'<?php checked( isset($mp_general['wp_mail']) ); ?> />
 				&#160;<label for='wpmail'><?php _e('MailPress version of wp_mail', MP_TXTDOM); ?></label>
 				<br />
-				<input id='dshbrd' name='general[dashboard]' type='checkbox' <?php echo( (isset($mp_general['dashboard'])) ? "checked='checked'" : ''); ?> />
+				<input id='dshbrd' name='general[dashboard]' type='checkbox'<?php checked( isset($mp_general['dashboard']) ); ?> />
 				&#160;<label for='dshbrd'><?php _e('Dashboard widgets', MP_TXTDOM); ?></label>
 				<br />
 			</td>
@@ -85,7 +85,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 		<tr valign='top' class='mp_sep' >
 			<th scope='row'><?php _e('View mail', MP_TXTDOM); ?></th>
 			<td>
-				<input id='fullscreen' name='general[fullscreen]' type='checkbox' <?php echo( (isset($mp_general['fullscreen'])) ? "checked='checked'" : ''); ?> />
+				<input id='fullscreen' name='general[fullscreen]' type='checkbox'<?php checked( isset($mp_general['fullscreen']) ); ?> />
 				&#160;<label for='fullscreen'><?php _e('View mail in fullscreen', MP_TXTDOM); ?></label>
 			</td>
 		</tr>

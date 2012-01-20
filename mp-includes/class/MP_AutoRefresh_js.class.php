@@ -5,7 +5,7 @@ class MP_AutoRefresh_js
 	{
 		$every   = apply_filters('MailPress_autorefresh_every', 30);
 
-		$checked = (isset($_GET['autorefresh'])) ?  " checked='checked'" : '';
+		$checked = checked(isset($_GET['autorefresh']), true, false);
 		$time    = (isset($_GET['autorefresh'])) ?  $_GET['autorefresh'] : $every;
 		$time    = (is_numeric($time) && ($time > $every)) ? $time : $every;
 		$time    = "<input type='text' value='$time' maxlength='5' id='MP_Refresh_every' class='screen-per-page' style='width:5em;'/>";

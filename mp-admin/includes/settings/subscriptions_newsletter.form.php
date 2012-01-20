@@ -36,16 +36,15 @@ foreach ($mp_registered_newsletters as $mp_registered_newsletter)
 	if (intval ($j/$item) == $j/$item ) { echo "<td class='field' style=''>\n"; ++$td; }
 
 	$default_style   = (isset($subscriptions['newsletters'][$mp_registered_newsletter['id']])) ? '' : " style='display:none;'" ;
-	$default_checked = (isset($subscriptions['default_newsletters'][$mp_registered_newsletter['id']])) ? " checked='checked'" : '';
 ?>
 		<label for='newsletter_<?php echo $mp_registered_newsletter['id'].$blog; ?>'>
-			<input class='newsletter' id='newsletter_<?php echo $mp_registered_newsletter['id'].$blog; ?>' name='subscriptions[newsletters][<?php echo $mp_registered_newsletter['id']; ?>]' type='checkbox' <?php echo( (isset($subscriptions['newsletters'][$mp_registered_newsletter['id']])) ? "checked='checked'" : ''); ?> />
+			<input class='newsletter' id='newsletter_<?php echo $mp_registered_newsletter['id'].$blog; ?>' name='subscriptions[newsletters][<?php echo $mp_registered_newsletter['id']; ?>]' type='checkbox'<?php checked( isset($subscriptions['newsletters'][$mp_registered_newsletter['id']]) ); ?> />
 			&#160;<?php echo $mp_registered_newsletter['descriptions']['admin']; ?>
 		</label>
 		<br />
 		<label for='default_newsletter_<?php echo $mp_registered_newsletter['id'].$blog; ?>'>
 			<span id='span_default_newsletter_<?php echo $mp_registered_newsletter['id'].$blog; ?>'<?php echo $default_style; ?>>
-				<input  id='default_newsletter_<?php echo $mp_registered_newsletter['id'].$blog; ?>' name='subscriptions[default_newsletters][<?php echo $mp_registered_newsletter['id']; ?>]' type='checkbox'<?php echo "$default_checked"; ?> />
+				<input  id='default_newsletter_<?php echo $mp_registered_newsletter['id'].$blog; ?>' name='subscriptions[default_newsletters][<?php echo $mp_registered_newsletter['id']; ?>]' type='checkbox'<?php checked( isset($subscriptions['default_newsletters'][$mp_registered_newsletter['id']]) ); ?> />
 				&#160;<?php _e('default', MP_TXTDOM); ?>
 			</span>
 		</label>

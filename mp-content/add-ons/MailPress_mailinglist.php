@@ -149,7 +149,7 @@ class MailPress_mailinglist
 			switch ($type)
 			{
 				case 'checkbox' :
-					$checked = ($mp_user_id && in_array($k, $mp_user_mls)) ? " checked='checked'"  : '';
+					$checked = checked($mp_user_id && in_array($k, $mp_user_mls), true, false);
 					$_type   = (isset($mp_subscriptions['display_mailinglists'][$k])) ? 'checkbox' : '';
 
 					if (empty($_type) && empty($checked)) continue;

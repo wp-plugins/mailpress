@@ -139,7 +139,7 @@ class MP_Widget extends WP_Widget
 
 		$id = $options['widget_id'];
 
-		if (isset($_POST['MailPress_submit']) && ($_POST['id'] == $id))
+		if (isset($_POST['MailPress_submit']) && ($_POST['id'] == '_MP_' . $id))
 			list($message, $email, $name) = self::insert(false);
 		else
 		{

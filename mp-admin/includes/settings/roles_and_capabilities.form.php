@@ -47,7 +47,7 @@ foreach ($capability_groups as $group => $groupname)
 ?>
 			<td class='capacity'>
 				<label for='<?php echo "check_" . $role . "_" . $capability; ?>'>
-					<input id='<?php echo "check_" . $role . "_" . $capability; ?>' name='cap[<?php echo $role; ?>][<?php echo $capability; ?>]' type='checkbox'<?php echo (isset($rcs[$capability])) ? " checked='checked'" : ''; ?> />
+					<input id='<?php echo "check_" . $role . "_" . $capability; ?>' name='cap[<?php echo $role; ?>][<?php echo $capability; ?>]' type='checkbox'<?php checked( isset($rcs[$capability]) ); ?> />
 					<span id='<?php echo $role . "_" . $capability; ?>' class='<?php echo (isset($rcs[$capability])) ? 'crok' : 'crko'; ?>'><?php echo $capname; ?></span>
 				</label>
 			</td>

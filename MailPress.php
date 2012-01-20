@@ -99,7 +99,7 @@ class MailPress
 
 		new MP_Addons();
 
-		defined('MP_Action_url')  or define('MP_Action_url',   add_query_arg(apply_filters('MailPress_action_url_arg', array() ),  site_url() . '/' . MP_PATH . 'mp-includes/action.php'  ) );
+		defined('MP_Action_url')  or define('MP_Action_url',   add_query_arg(apply_filters('MailPress_action_url_arg', array() ),  ( (defined('WP_SITEURL')) ? WP_SITEURL : site_url() ) . '/' . MP_PATH . 'mp-includes/action.php'  ) );
 		defined('MP_Action_home') or define('MP_Action_home',  add_query_arg(apply_filters('MailPress_action_url_arg', array() ),  home_url() . '/' . MP_PATH . 'mp-includes/action.php'  ) );
 	}
 

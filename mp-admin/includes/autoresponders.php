@@ -164,7 +164,7 @@ $total = ( isset($url_parms['s']) ) ? count(MP_Autoresponder::get_all(array('hid
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>
 							<label for='autoresponder_active'><?php _e('Active', MP_TXTDOM) ?></label>
-							<input type="checkbox" id='autoresponder_active' name='description[active]'<?php if (isset($autoresponder->description['active'])) echo " checked='checked'"; ?> style='width:auto;'/>
+							<input type="checkbox" id='autoresponder_active' name='description[active]'<?php checked( isset($autoresponder->description['active']) ); ?> style='width:auto;'/>
 							<p><?php _e("If unchecked during a certain period of time, All mails that should have been sent on time will be cancelled. Following mails (if any) will be lost as well.", MP_TXTDOM); ?></p>
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>

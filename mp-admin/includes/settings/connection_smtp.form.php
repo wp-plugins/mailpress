@@ -77,7 +77,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 				<label for='smtp-auth'><?php _e('Pop before Smtp', MP_TXTDOM); ?></label>
 			</th>
 			<td> 
-				<input type='checkbox' name='connection_smtp[smtp-auth]' id='smtp-auth' value='@PopB4Smtp'<?php if (isset($connection_smtp['smtp-auth']) && ('@PopB4Smtp' == $connection_smtp['smtp-auth'])) checked(true); ?> />
+				<input type='checkbox' name='connection_smtp[smtp-auth]' id='smtp-auth' value='@PopB4Smtp'<?php if (isset($connection_smtp['smtp-auth'])) checked($connection_smtp['smtp-auth'], '@PopB4Smtp'); ?> />
 			</td>
 			<td id='POP3'<?php  echo (isset($connection_smtp['smtp-auth']) && ('@PopB4Smtp' == $connection_smtp['smtp-auth'])) ? '' : " style='display:none;'"; if (isset($pophostclass)) echo " class='form-invalid'"; ?>> 
 				<?php _e("POP3 hostname", MP_TXTDOM); ?>

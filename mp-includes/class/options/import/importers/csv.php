@@ -120,7 +120,7 @@ class MP_import_csv extends MP_import_importer_
 			foreach ($row as $k => $v)
 			{
 ?>
-					<td><input type='radio' name='is_email' value="<?php echo $k; ?>" <?php if ($k == $this->emailcol) echo "checked='checked'"; ?> /><span><?php echo $k; ?></span></td>
+					<td><input type='radio' name='is_email' value="<?php echo $k; ?>"<?php checked( $k, $this->emailcol ); ?> /><span><?php echo $k; ?></span></td>
 <?php
 			}
 			break;

@@ -78,7 +78,7 @@ $count = 0;
 $checks = array('forcelog' => __('Log it', MP_TXTDOM), 'fakeit' => __('Send it', MP_TXTDOM), 'archive' => __('Archive it', MP_TXTDOM), 'stats' => __('Include it in statistics', MP_TXTDOM) );
 foreach($checks as $k => $v) {
 	$count++;
-	echo "\t\t\t\t<input name='test[$k]' id='$k' type='checkbox' " . ( (isset($test[$k])) ? "checked='checked'" : '' ) . " />\n\t\t\t\t&#160;\n\t\t\t\t<label for='$k'>$v</label>\n";
+	echo "\t\t\t\t<input name='test[$k]' id='$k' type='checkbox'" . checked(isset($test[$k]), true, false) . " />\n\t\t\t\t&#160;\n\t\t\t\t<label for='$k'>$v</label>\n";
 	if ($count != count($checks)) echo "\t\t\t\t<br />\n";
 }
 ?>

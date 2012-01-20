@@ -52,7 +52,7 @@ Thank you
 
 1. Point your browser to "Plugins > MailPress Add-ons" page and deactivate all add ons.
 1. Point your browser to "Plugins" page and deactivate MailPress plugin.
-1. Save mailpress/tmp folder + your MP theme + any customized file in mailpress/mp-content/advanced (since 5.0.1, xml format in mp-content/advanced/newsletters has changed).
+1. Save or Back-up mailpress/tmp folder + your MP theme + any customized file in mailpress/mp-content/advanced (since 5.0.1, xml format in mp-content/advanced/newsletters has changed).
 1. Delete wp-content/plugins/mailpress folder.
 1. Unzip the MailPress package.
 1. Upload the mailpress folder into wp-content/plugins.
@@ -75,7 +75,7 @@ MailPress themes and templates do not need to be changed if customized in a prev
 == Changelog ==
 
 ** 5.3-alpha ** xx/xx/2012
-* 
+* now subscription to comments can be checked by default (see settings)
 
 ** 5.2.1 ** 12/25/2011
 * some code optimizations and fixes on admin lists

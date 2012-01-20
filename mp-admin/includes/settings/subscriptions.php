@@ -4,6 +4,8 @@ $old_subscriptions = get_option(MailPress::option_name_subscriptions);
 
 $subscriptions = $_POST['subscriptions'];
 
+if (isset($_POST['comment']['on'])) update_option(MailPress_comment::option, (isset($subscriptions['comment_checked'])) );  // so we don't delete settings if addon deactivated !
+
 if (!isset($_POST['mailinglist']['on']))
 {	// so we don't delete settings if addon deactivated !
 	if (isset($old_subscriptions['display_mailinglists'])) $subscriptions['display_mailinglists'] 	= $old_subscriptions['display_mailinglists'];

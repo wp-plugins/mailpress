@@ -123,7 +123,7 @@ class MailPress_newsletter
 				switch ($type)
 				{
 					case 'checkbox' :
-						$checked = (isset($in[$k])) ? " checked='checked'" : '';
+						$checked = checked(isset($in[$k]), true, false);
 						$_type   = 'checkbox';
 
 						$v		 = $mp_registered_newsletters[$k]['descriptions'][$lib_nl];

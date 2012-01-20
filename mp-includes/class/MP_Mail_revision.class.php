@@ -76,10 +76,10 @@ class MP_Mail_revision
 
 			if ( 'form-table' == $format ) {
 				if ( $left )
-					$left_checked = $left == $rev_id ? ' checked="checked"' : '';
+					$left_checked = checked( $left, $rev_id, false);
 				else
-					$left_checked = $right_checked ? ' checked="checked"' : ''; // [sic] (the next one)
-				$right_checked = $right == $rev_id ? ' checked="checked"' : '';
+					$left_checked = checked( $right_checked, true, false);  			// [sic] (the next one)
+				$right_checked = checked( $right, $rev_id, false);
 
 				$class = $class ? '' : " class='alternate'";
 
