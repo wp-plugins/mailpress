@@ -75,7 +75,10 @@ MailPress themes and templates do not need to be changed if customized in a prev
 == Changelog ==
 
 ** 5.3-alpha ** xx/xx/2012
-* now subscription to comments can be checked by default (see settings)
+* Add-Ons
+   - MailPress_comment : now subscription to comments can be checked by default (see settings)
+   - MailPress_wp_fromemail : !!NEW!! to force from email & name on New Mail by wp values
+   - MailPress_write_edit_fromemail : !!NEW!! to add new capability MailPress_write_edit_fromemail
 
 ** 5.2.1 ** 12/25/2011
 * some code optimizations and fixes on admin lists

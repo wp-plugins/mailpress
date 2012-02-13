@@ -3,7 +3,7 @@ class MP_Mail_draft
 {
 	public static function update($id, $status='draft')
 	{
-		global $wpdb;
+		global $wpdb, $mp_general;
 		$id = (int) $id;
 
 		wp_cache_delete($id, 'mp_mail');
@@ -67,18 +67,27 @@ class MP_Mail_draft
 		if (isset($_POST['content'])) $_POST['html'] = $_POST['content'];
 		unset($_POST['content']);
 
+
 		$_POST = stripslashes_deep($_POST);
+
+
+// from
+		$fromemail = trim($_POST['fromemail']);
+		$fromname  = trim($_POST['fromname']) ;
+		if ($fromemail == $mp_general['fromemail'] && $fromname == $mp_general['fromname']) $fromemail = $fromname = '';
 
 		$data = $format = $where = $where_format = array();
 
-		$data['status'] 		= $status; 								$format[] = '%s';
+		$data['status'] 	= $status; 								$format[] = '%s';
 		$data['theme'] 		= (isset($_POST['Theme'])) ? $_POST['Theme'] : '';	$format[] = '%s';
-		$data['toemail'] 		= trim($_POST['toemail']); 					$format[] = '%s';
-		$data['toname'] 		= trim($_POST['toname']) ; 					$format[] = '%s';
-		$data['subject'] 		= trim($_POST['subject']);					$format[] = '%s';
-		$data['html'] 		= trim($_POST['html']); 					$format[] = '%s';
+		$data['fromemail']	= $fromemail;		 						$format[] = '%s';
+		$data['fromname'] 	= $fromname ; 								$format[] = '%s';
+		$data['toemail'] 	= trim($_POST['toemail']); 					$format[] = '%s';
+		$data['toname'] 	= trim($_POST['toname']) ; 					$format[] = '%s';
+		$data['subject'] 	= trim($_POST['subject']);						$format[] = '%s';
+		$data['html'] 		= trim($_POST['html']); 						$format[] = '%s';
 		$data['plaintext'] 	= trim($_POST['plaintext'], " \r\n"); 			$format[] = '%s';
-		$data['created'] 		= isset($_POST['created']) ? $_POST['created'] : current_time( 'mysql' ); $format[] = '%s';
+		$data['created'] 	= isset($_POST['created']) ? $_POST['created'] : current_time( 'mysql' ); $format[] = '%s';
 		$data['created_user_id']= MP_WP_User::get_id(); 					$format[] = '%d';
 		$data['sent'] 		= $draft->sent; 							$format[] = '%s';
 
@@ -86,6 +95,7 @@ class MP_Mail_draft
 			$data['sent_user_id']   = $data['created_user_id'];				$format[] = '%d';
 
 		$where['id'] 		= $id;								$where_format[] = '%d';
+
 		$wpdb->update( $wpdb->mp_mails, $data, $where, $format, $where_format );
 
 		return ( $scheduled && $sched_time != $old_sched );
@@ -122,6 +132,7 @@ class MP_Mail_draft
 		$template = apply_filters('MailPress_draft_template', false, $id);
 
 		$draft = MP_Mail::get($id);
+
 		if ('draft' != $draft->status) return false;
 		$mail 		= new stdClass();	/* so we duplicate the draft into a new mail */
 		$mail->id 		= MP_Mail::get_id(__CLASS__ . ' ' . __METHOD__);
@@ -129,6 +140,12 @@ class MP_Mail_draft
 
 		if (!empty($draft->theme)) $mail->Theme = $draft->theme;
 		if (!empty($template))     $mail->Template = $template;
+
+		if (!empty($draft->fromemail))
+		{
+			$mail->fromemail= $draft->fromemail;
+			$mail->fromname	= $draft->fromname;
+		}
 
 		if (isset($toemail) && !empty($toemail))
 		{

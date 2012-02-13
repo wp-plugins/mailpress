@@ -59,13 +59,15 @@ var autosave = {
 // data
 	olddata 	: {},
 	newdata 	: {},
-	data 		: { 	toemail 	: 	'toemail',
+	data 		: { 	toemail : 	'toemail',
 				toname	:	'toname',
+				fromemail:	'fromemail',
+				fromname:	'fromname',
 				to_list	:	'to_list',
-				Theme		:	'Theme',
+				Theme	:	'Theme',
 				subject	:	'title',
-				html		:	'content',
-				plaintext	:	'plaintext'
+				html	:	'content',
+				plaintext:	'plaintext'
 			  },
 
 	retrieve_data : function() {

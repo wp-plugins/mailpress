@@ -3,12 +3,14 @@ class MP_Mail_revision
 {
 	public static function autosave_data()
 	{
+		$autosave_data['fromemail']= __('From', MP_TXTDOM); 
+		$autosave_data['fromname'] = __('Name (from)', MP_TXTDOM); 
 		$autosave_data['toemail'] 	= __('To', MP_TXTDOM); 
-		$autosave_data['toname'] 	= __('Name', MP_TXTDOM); 
-		$autosave_data['theme']		= __('Theme', MP_TXTDOM);
+		$autosave_data['toname'] 	= __('Name (to)', MP_TXTDOM); 
+		$autosave_data['theme']	= __('Theme', MP_TXTDOM);
 		$autosave_data['subject'] 	= __('Subject', MP_TXTDOM); 
-		$autosave_data['html'] 		= __('Html');
-		$autosave_data['plaintext']	= __('Plain Text', MP_TXTDOM);
+		$autosave_data['html'] 	= __('Html');
+		$autosave_data['plaintext']= __('Plain Text', MP_TXTDOM);
 		return $autosave_data;
 	}
 

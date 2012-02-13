@@ -44,6 +44,7 @@ $capabilities	= array(	'MailPress_edit_dashboard' 	=> array(	'name'	=> __('Dashb
 												'group'	=> 'mails'
 											),
 
+
 					'MailPress_switch_themes'	=> array(	'name'	=> __('Themes', MP_TXTDOM),
 												'group'	=> 'admin',
 												'menu'	=> 45,
@@ -72,7 +73,6 @@ $capabilities	= array(	'MailPress_edit_dashboard' 	=> array(	'name'	=> __('Dashb
 					'MailPress_user_custom_fields'=> array(	'name'	=> __('Custom fields', MP_TXTDOM), 
 												'group'	=> 'users'
 											),
-
 
 					'MailPress_manage_addons'	=> array(	'name'	=> __('Add-ons', MP_TXTDOM),
 												'group'	=> 'admin',

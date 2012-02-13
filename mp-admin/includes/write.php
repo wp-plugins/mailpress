@@ -127,8 +127,11 @@ if (isset($_GET['revision'])) {$err += 0; if (!empty($message)) $message .= '<br
 $mp_general	= get_option(MailPress::option_name_general);
 
 // from
-$draft->fromemail = $mp_general['fromemail'];
-$draft->fromname  = esc_attr($mp_general['fromname']); 
+if (empty($draft->fromemail))
+{
+	$draft->fromemail = apply_filters('MailPress_write_fromemail', $mp_general['fromemail']);
+	$draft->fromname  = apply_filters('MailPress_write_fromname',  $mp_general['fromname'] ); 
+}
 
 // to 
 if (isset($draft->toemail))

@@ -41,30 +41,40 @@ var mp_write = {
 		mp_write.submit.name   = jQuery('#publish').attr('name');
 		mp_write.submit.save_post = jQuery('#save-post').hasClass('hidden');
 
-		// timestamp
-		jQuery('#timestampdiv').siblings('a.edit-timestamp').click(function() {
-			if (jQuery('#timestampdiv').is(":hidden")) {
-				jQuery('#timestampdiv').slideDown("normal");
+		// from
+		jQuery('#fromdiv').siblings('a.edit-from').click(function() {
+			if (jQuery('#fromdiv').is(":hidden")) {
+				jQuery('#fromdiv').slideDown("normal");
 				jQuery(this).hide();
 			}
 			return false;
 		});
-		jQuery('.cancel-timestamp', '#timestampdiv').click(function() {
-			jQuery('#timestampdiv').slideUp("normal");
-			jQuery('#mm').val(jQuery('#hidden_mm').val());
-			jQuery('#jj').val(jQuery('#hidden_jj').val());
-			jQuery('#aa').val(jQuery('#hidden_aa').val());
-			jQuery('#hh').val(jQuery('#hidden_hh').val());
-			jQuery('#mn').val(jQuery('#hidden_mn').val());
-			jQuery('#timestampdiv').siblings('a.edit-timestamp').show();
-			mp_write.updateText();
+		jQuery('.cancel-from', '#fromdiv').click(function() {
+			document.writeform.fromemail.style.border='1px solid #C6D9E9';
+			jQuery('#fromdiv').slideUp("normal");
+			jQuery('#fromname').val(jQuery('#hidden_fromname').val());
+			jQuery('#fromemail').val(jQuery('#hidden_fromemail').val());
+			var val = "<b>" + jQuery('#hidden_fromname').val() + "</b> &lt;" + jQuery('#hidden_fromemail').val() + "&gt;";
+			jQuery('#span_from').html(val);
+			jQuery('#fromdiv').siblings('a.edit-from').show();
 			return false;
 		});
-		jQuery('.save-timestamp', '#timestampdiv').click(function () {
-			if ( mp_write.updateText() ) {
-				jQuery('#timestampdiv').slideUp("normal");
-				jQuery('#timestampdiv').siblings('a.edit-timestamp').show();
+		jQuery('.save-from', '#fromdiv').click(function () {
+			var fromname = jQuery('#fromname' ).val();
+			var fromemail= jQuery('#fromemail').val();
+
+			if (!mp_write.is_email(fromemail))
+			{
+				document.writeform.fromemail.style.border='1px solid #f00';
+				alert(MP_AdminPageL10n.errmess);
+				return false;
 			}
+			document.writeform.fromemail.style.border='1px solid #C6D9E9';
+
+			jQuery('#fromdiv').slideUp("normal");
+			var val = "<b>" + fromname + "</b> &lt;" + fromemail + "&gt;";
+			jQuery('#span_from').html(val);
+			jQuery('#fromdiv').siblings('a.edit-from').show();
 			return false;
 		}); 
 
@@ -89,6 +99,33 @@ var mp_write = {
 			var val = jQuery('#theme >option').filter(':selected').text();
 			jQuery('#span_theme').html(val);
 			jQuery('#themediv').siblings('a.edit-theme').show();
+			return false;
+		}); 
+
+		// timestamp
+		jQuery('#timestampdiv').siblings('a.edit-timestamp').click(function() {
+			if (jQuery('#timestampdiv').is(":hidden")) {
+				jQuery('#timestampdiv').slideDown("normal");
+				jQuery(this).hide();
+			}
+			return false;
+		});
+		jQuery('.cancel-timestamp', '#timestampdiv').click(function() {
+			jQuery('#timestampdiv').slideUp("normal");
+			jQuery('#mm').val(jQuery('#hidden_mm').val());
+			jQuery('#jj').val(jQuery('#hidden_jj').val());
+			jQuery('#aa').val(jQuery('#hidden_aa').val());
+			jQuery('#hh').val(jQuery('#hidden_hh').val());
+			jQuery('#mn').val(jQuery('#hidden_mn').val());
+			jQuery('#timestampdiv').siblings('a.edit-timestamp').show();
+			mp_write.updateText();
+			return false;
+		});
+		jQuery('.save-timestamp', '#timestampdiv').click(function () {
+			if ( mp_write.updateText() ) {
+				jQuery('#timestampdiv').slideUp("normal");
+				jQuery('#timestampdiv').siblings('a.edit-timestamp').show();
+			}
 			return false;
 		}); 
 
@@ -189,6 +226,40 @@ var mp_write = {
 	control : function() {
 		var err = 0;
 
+		// fromemail
+		var fromemail = jQuery('#fromdiv');
+		if (fromemail)
+		{
+			document.writeform.fromemail.style.border='1px solid #C6D9E9';
+
+			if (mp_write.is_empty(document.writeform.fromemail.value))
+			{
+				document.writeform.fromemail.style.border='1px solid #f00';
+				err++;
+			}
+			else if (!mp_write.is_empty(document.writeform.fromemail.value))
+			{
+				if (!mp_write.is_email(document.writeform.fromemail.value))
+				{
+					document.writeform.fromemail.style.border='1px solid #f00';
+					err++;
+				}
+			}
+
+			if (err == 0)
+			{
+				jQuery('#fromdiv').slideUp("normal");
+				var val = "<b>" + document.writeform.fromname.value + "</b> &lt;" + document.writeform.fromemail.value + "&gt;";
+				jQuery('#span_from').html(val);
+				jQuery('#fromdiv').siblings('a.edit-from').show();
+			}
+			else if (fromemail.is(":hidden")) 
+			{
+				fromemail.slideDown("normal");
+				fromemail.siblings('a.edit-from').hide();
+			}
+		}
+
 		// email or list
 		document.writeform.toemail.style.border='1px solid #C6D9E9';
 		document.writeform.to_list.style.border='1px solid #C6D9E9';
@@ -199,17 +270,15 @@ var mp_write = {
 			document.writeform.to_list.style.border='1px solid #f00';
 			err++;
 		}
-		else
+		else if (!mp_write.is_empty(document.writeform.toemail.value))
 		{
-			if (!mp_write.is_empty(document.writeform.toemail.value))
+			if (!mp_write.is_email(document.writeform.toemail.value))
 			{
-				if (!mp_write.is_email(document.writeform.toemail.value))
-				{
-					document.writeform.toemail.style.border='1px solid #f00';
-					err++;
-				}
+				document.writeform.toemail.style.border='1px solid #f00';
+				err++;
 			}
 		}
+
 		if ( err == 0 )	return true;
 
 		alert(MP_AdminPageL10n.errmess);

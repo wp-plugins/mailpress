@@ -2,9 +2,9 @@
 class MP_AdminPage extends MP_adminpage_
 {
 	const screen 	= MailPress_page_write;
-	const capability 	= 'MailPress_edit_mails';
+	const capability= 'MailPress_edit_mails';
 	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Help:Admin:New_Mail';
-	const file        = __FILE__;
+	const file		= __FILE__;
 
 ////  Redirect  ////
 
@@ -109,8 +109,8 @@ class MP_AdminPage extends MP_adminpage_
 	public static function tiny_mce_before_init($initArray)
 	{
 		$x = array(	'theme_advanced_buttons1'	=> 'fullscreen',
-				'plugins'				=> 'wpfullscreen',
-		     );
+					'plugins'				=> 'wpfullscreen',
+		);
 
 		foreach($x as $k => $v) if (isset($initArray[$k])) $initArray[$k] = str_replace( array($v, ',,') , array('', ',') , $initArray[$k] );
 		return $initArray;
@@ -303,7 +303,10 @@ class MP_AdminPage extends MP_adminpage_
    		$datef = __( 'M j, Y @ G:i' );
 
 		global $mp_general;
-		$from = "<b>{$mp_general['fromname']}</b> &lt;{$mp_general['fromemail']}&gt;";
+
+		$fromname = $draft->fromname;
+		$fromemail= $draft->fromemail;
+		$from = "<b>{$fromname}</b> &lt;{$fromemail}&gt;";
 
 		$stamp = __('Send <b>immediately</b>', MP_TXTDOM);
 		$date = date_i18n( $datef, strtotime( current_time('mysql') ) );
@@ -345,11 +348,33 @@ class MP_AdminPage extends MP_adminpage_
 		</div>
 
 		<div id="misc-publishing-actions">
-			<div class="misc-pub-section">
-				<label><?php _e('From:', MP_TXTDOM); ?></label>
-				<span id="span_fromemail"><?php echo $from; ?></span>
+			<div class="misc-pub-section mp_theme">
+				<label><?php _e('From: ', MP_TXTDOM); ?></label>
+				<b><span id='span_from'><?php echo $from; ?></span></b>
+<?php 
+		if (current_user_can('MailPress_write_edit_fromemail'))
+		{
+?>
+				<a href='#edit_from' class="edit-from hide-if-no-js"><?php _e('Edit') ?></a>
+				<div id='fromdiv' class='hide-if-js'>
+					<input id='hidden_fromname'  name='hidden_fromname'  type='hidden' value="<?php echo esc_attr($fromname); ?>" />
+					<input id='hidden_fromemail' name='hidden_fromemail' type='hidden' value='<?php echo $fromemail; ?>' />
+					<?php _e('Name: ', MP_TXTDOM); ?><input type='text' size='25' id='fromname'  name='fromname'  value="<?php echo esc_attr($fromname);  ?>" /><br />
+					<?php _e('Email: ', MP_TXTDOM); ?><input type='text' size='25' id='fromemail' name='fromemail' value="<?php echo $fromemail; ?>" /><br />
+					<a href="#edit_from" class="save-from hide-if-no-js button"><?php _e('OK'); ?></a>
+					<a href="#edit_from" class="cancel-from hide-if-no-js"><?php _e('Cancel'); ?></a>
+				</div>
+<?php
+		}
+		else
+		{
+?>
+					<input id='fromname'  name='fromname'  type='hidden' value="<?php echo esc_attr($fromname); ?>" />
+					<input id='fromemail' name='fromemail' type='hidden' value='<?php echo $fromemail; ?>' />
+<?php
+		}
+?>
 			</div>
-
 <?php
 		$xthemes = array();
 		$th = new MP_Themes();
