@@ -1,28 +1,15 @@
 <?php
-class MP_Newsletter_processor_now extends MP_newsletter_processor_
+class MP_Newsletter_processor_now extends MP_newsletter_processor_now_
 {
 	public $id = 'now';
 
-	function process($newsletter, $trace)
+	function what_else()
 	{
-		$this->newsletter = $newsletter;
-		$this->trace 	= $trace;
-
-		$this->post_id  = $this->newsletter['params']['post_id'];
-		$this->meta_key = $this->newsletter['params']['meta_key'];
-
-	// detect if post already processed
-		if ($this->already_processed()) 
-		{
-			MP_Newsletter_processors::message_report($this->newsletter, "Post {$this->post_id} already processed", $this->trace);
-			return false;
-		}
-
 	// detect if any category required
 
 		$cats		= $this->get_cats('cat',			'intval');
-		$cats_in	= $this->get_cats('category__in',     	'absint');
-		$cats_out	= $this->get_cats('category__not_in', 	'absint');
+		$cats_in	= $this->get_cats('category__in',	'absint');
+		$cats_out	= $this->get_cats('category__not_in','absint');
 
 		if (!empty($cats)) foreach ( $cats as $cat )
 		{
@@ -74,19 +61,7 @@ class MP_Newsletter_processor_now extends MP_newsletter_processor_
 				return false;
 			}
 		}
-
-		$this->newsletter['query_posts'] = isset($this->newsletter[$this->args]['query_posts']) ? $this->newsletter[$this->args]['query_posts'] : array();
-
-		MP_Newsletter_processors::send($this->newsletter, $this->trace);
-	}
-
-	function already_processed()
-	{
-		if (get_post_meta($this->post_id, $this->meta_key))
-			return true;
-
-		add_post_meta($this->post_id, $this->meta_key, true, true);
-		return false;
+		return true;
 	}
 
 	function get_cats($arg, $array_map)

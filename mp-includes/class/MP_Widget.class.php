@@ -218,8 +218,8 @@ class MP_Widget extends WP_Widget
 			<form class='mp-form' method='post' action=''>
 				<input type='hidden' name='action' 	value='add_user_fo' />
 				<input type='hidden' name='id' 	value='<?php echo '_MP_' . $id; ?>' />
-				<input type='text'   name='email'  	value="<?php echo $email; ?>" class='MailPressFormEmail' size='25' onfocus="if(this.value=='<?php echo esc_js($options['txtfield']); ?>') this.value='';" onblur="if(this.value=='') this.value='<?php echo esc_js($email); ?>';" /><br />
-				<input type='text'   name='name'  	value="<?php echo $name;  ?>" class='MailPressFormName'  size='25' onfocus="if(this.value=='<?php echo esc_js($options['txtfieldname']); ?>') this.value='';" onblur="if(this.value=='') this.value='<?php echo esc_js($name); ?>';" /><br />
+				<input type='text'   name='_MP_email'  	value="<?php echo $email; ?>" class='MailPressFormEmail' size='25' onfocus="if(this.value=='<?php echo esc_js($options['txtfield']); ?>') this.value='';" onblur="if(this.value=='') this.value='<?php echo esc_js($email); ?>';" /><br />
+				<input type='text'   name='_MP_name'  	value="<?php echo $name;  ?>" class='MailPressFormName'  size='25' onfocus="if(this.value=='<?php echo esc_js($options['txtfieldname']); ?>') this.value='';" onblur="if(this.value=='') this.value='<?php echo esc_js($name); ?>';" /><br />
 <?php do_action('MailPress_form', $email, $options); ?>
 				<input class='MailPressFormSubmit mp_submit' type='submit' name='MailPress_submit' value="<?php echo esc_attr($options['txtbutton']); ?>" />
 			</form>
@@ -248,8 +248,8 @@ endif;
 		$message = $email = $name = '';
 		$options = self::form_defaults();
 
-		$email = ( isset($_POST['email']) ) ? $_POST['email'] : '';									//has the user entered an email 
-		$name  = ( isset($_POST['name']) )  ? $_POST['name']  : '';	
+		$email = ( isset($_POST['_MP_email']) ) ? $_POST['_MP_email'] : '';									//has the user entered an email 
+		$name  = ( isset($_POST['_MP_name']) )  ? $_POST['_MP_name']  : '';	
 
 		if ( '' == $email || $options['txtfield'] == $email ) 
 		{																		// check for bot

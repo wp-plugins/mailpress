@@ -3,11 +3,13 @@ abstract class MP_newsletter_scheduler_post_ extends MP_newsletter_scheduler_
 {
 	function __construct($description)
 	{
+		if (!isset($this->post_type)) $this->post_type = 'post'; 
+
 		parent::__construct($description);
-		add_action('publish_post',	array(&$this, 'publish_post'), 8, 1);
+		add_action("publish_{$this->post_type}",	array(&$this, 'publish'), 8, 1);
 	}
 
-	function publish_post($post_id)
+	function publish($post_id)
 	{
 		if (get_post_meta($post_id, '_MailPress_prior_to_install')) return true;
 
@@ -23,7 +25,7 @@ abstract class MP_newsletter_scheduler_post_ extends MP_newsletter_scheduler_
 
 		$results = array();
 
-		$trace = MP_Newsletter_schedulers::header_report("publish_post : {$post_id}    {$this->id}");
+		$trace = MP_Newsletter_schedulers::header_report("publish_{$this->post_type} : {$post_id}    {$this->id}");
 		foreach($newsletters as $newsletter)
 		{
 			$this->newsletter = $newsletter;
@@ -31,9 +33,11 @@ abstract class MP_newsletter_scheduler_post_ extends MP_newsletter_scheduler_
 			$this->newsletter['mail']['the_title'] = $the_title;
 
 			$this->newsletter['processor']['query_posts']['p'] = $post_id;
+			if ($this->post_type != 'post') $this->newsletter['processor']['query_posts']['post_type'] = $this->post_type;
 
 			$this->newsletter['params']['post_id']  = $post_id;
 			$this->newsletter['params']['meta_key'] = $this->get_meta_key();
+			if ($this->post_type != 'post') $this->newsletter['params']['post_type']= $this->post_type;
 		
 			$h = $this->hour  + $this->get_hour();
 			$i = $this->minute+ $this->get_minute();
