@@ -22,6 +22,8 @@ class MailPress_newsletter_categories
 			register_deactivation_hook(plugin_basename(__FILE__), array(__CLASS__, 'uninstall'));
 		// for link on plugin page
 			add_filter('plugin_action_links', 		array(__CLASS__, 'plugin_action_links'), 10, 2 );
+		// settings
+			add_filter('MailPress_subscriptions_newsletter_th',	 array(__CLASS__, 'subscriptions_newsletter_th'), 10, 2 );
 		}
 	}
 
@@ -95,6 +97,13 @@ class MailPress_newsletter_categories
 	public static function plugin_action_links($links, $file)
 	{
 		return MailPress::plugin_links($links, $file, plugin_basename(__FILE__), 'subscriptions');
+	}
+
+// settings
+	public static function subscriptions_newsletter_th($th, $newsletter)
+	{
+		if (isset($newsletter['mail']['the_category'])) return $newsletter['mail']['the_category'];
+		return $th;
 	}
 }
 new MailPress_newsletter_categories();
