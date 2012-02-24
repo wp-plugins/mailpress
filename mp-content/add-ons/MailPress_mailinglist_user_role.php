@@ -3,7 +3,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_mailinglist_user_role'
 {
 /*
 Plugin Name: MailPress_mailinglist_user_role
-Description: New Mail : add mailing lists based on wp user roles (<span style='color:red;'>beware !</span> <span style='color:#D54E21;'>Sync_wordpress_user</span> add-on STRONGLY required)
+Description: New Mail : Mailing lists : based on WP user roles (<span style='color:red;'>beware !</span> <span style='color:#D54E21;'>Sync_wordpress_user</span> add-on STRONGLY required)
 Version: 5.3
 */
 

@@ -4,7 +4,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_newsletter') )
 /*
 Plugin Name: MailPress_newsletter
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Newsletter
-Description: Newsletters
+Description: Newsletters : for posts
 Version: 5.3
 */
 

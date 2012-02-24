@@ -3,7 +3,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_mailinglist_US_state')
 {
 /*
 Plugin Name: MailPress_mailinglist_US_state
-Description: New Mail : add mailing lists based on US State (<span style='color:red;'>beware !</span> IP geolocation search is not 100% accurate)
+Description: New Mail : Mailing lists : based on US State (<span style='color:red;'>beware !</span> IP geolocation search is not 100% accurate)
 Version: 5.3
 */
 

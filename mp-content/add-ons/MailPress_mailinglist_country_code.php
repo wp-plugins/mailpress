@@ -3,7 +3,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_mailinglist_country_co
 {
 /*
 Plugin Name: MailPress_mailinglist_country_code
-Description: New Mail : add mailing lists based on country code (<span style='color:red;'>beware !</span> IP geolocation search is not 100% accurate)
+Description: New Mail : Mailing lists : based on country code (<span style='color:red;'>beware !</span> IP geolocation search is not 100% accurate)
 Version: 5.3
 */
 
