@@ -1,13 +1,13 @@
 <?php
-if (class_exists('MailPress') && !class_exists('MailPress_user_role_mailinglist') )
+if (class_exists('MailPress') && !class_exists('MailPress_mailinglist_user_role') )
 {
 /*
-Plugin Name: MailPress_user_role_mailinglist
-Description: This is just an add-on for MailPress to add mailing lists based on wp user roles for new mail admin screen
-Version: 5.2.1
+Plugin Name: MailPress_mailinglist_user_role
+Description: New Mail : add mailing lists based on wp user roles (<span style='color:red;'>beware !</span> <span style='color:#D54E21;'>Sync_wordpress_user</span> add-on STRONGLY required)
+Version: 5.3
 */
 
-class MailPress_user_role_mailinglist
+class MailPress_mailinglist_user_role
 {
 	function __construct()
 	{
@@ -55,5 +55,5 @@ class MailPress_user_role_mailinglist
 		return "SELECT DISTINCT c.id, c.email, c.name, c.status, c.confkey FROM $wpdb->mp_users c WHERE c.email IN ('" . join("', '", $users) . "') AND c.status = 'active' ";
 	}
 }
-new MailPress_user_role_mailinglist();
+new MailPress_mailinglist_user_role();
 }

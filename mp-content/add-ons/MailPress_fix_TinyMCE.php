@@ -3,9 +3,9 @@ if (class_exists('MailPress') && !class_exists('MailPress_fix_TinyMCE') && (is_a
 {
 /*
 Plugin Name: MailPress_fix_TinyMCE
-Description: Fix TinyMCE with Viper Video Quicktags and Cforms
+Description: New Mail : Fix TinyMCE with Viper Video Quicktags and Cforms
 Author: Amaury Balmer, Andre Renaut
-Version: 5.2.1
+Version: 5.3
 Author URI: http://www.herewithme.fr
 */
 

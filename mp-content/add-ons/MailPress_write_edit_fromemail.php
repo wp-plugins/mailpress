@@ -4,8 +4,9 @@ if (class_exists('MailPress') && !class_exists('MailPress_write_edit_fromemail')
 /*
 Plugin Name: MailPress_write_edit_fromemail
 Plugin URI: http://www.mailpress.org/wiki/index.php
-Description: This is just an add-on for MailPress to add new capability MailPress_write_edit_fromemail
-Version: 5.2.1
+Description: New Mail : make FROM email and name editable (<span style='color:red;'>info !</span> use <span style='color:#D54E21;'>Roles_and_capabilities</span> add-on for fine tuning new capability 'MailPress_write_edit_fromemail')
+
+Version: 5.3
 */
 
 class MailPress_write_edit_fromemail

@@ -4,8 +4,8 @@ if (class_exists('MailPress') && !class_exists('MailPress_filter_img') )
 /*
 Plugin Name: MailPress_filter_img
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Filter_img
-Description: This is just an add-on for MailPress to filter ALL html img tags before mailing them.
-Version: 5.2.1
+Description: Mails : filter ALL html img tags before mailing them
+Version: 5.3
 */
 
 class MailPress_filter_img

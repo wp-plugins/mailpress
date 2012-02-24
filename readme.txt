@@ -20,7 +20,7 @@ The WordPress mailing platform
 
 Some technical stuff :
 
-1. Switmailer 4.1.4
+1. Switmailer 4.1.5
 1. jQuery 1.7.1 supported.
 1. Google Map API V3 supported.
 1. Code Mirror 0.9 (2.2)
@@ -79,8 +79,11 @@ MailPress themes and templates do not need to be changed if customized in a prev
 * some changes to have the ability to integrate custom post types dedicated newsletters ...
 * Add-Ons
    - MailPress_comment : now subscription to comments can be checked by default (see settings)
-   - MailPress_wp_fromemail : !!NEW!! to force from email & name on New Mail by current wp user values
-   - MailPress_write_edit_fromemail : !!NEW!! to add new capability MailPress_write_edit_fromemail (allows to change the from email & name on New Mail)
+   - MailPress_mailinglist_country_code : !!NEW!! New Mail : add mailing lists based on country code (beware ! IP geolocation search is not 100% accurate)
+   - MailPress_mailinglist_US_state : !!NEW!! New Mail : add mailing lists based on US State (beware ! IP geolocation search is not 100% accurate)
+   - MailPress_mailinglist_user_role : !!NEW!! New Mail : add mailing lists based on wp user roles (beware ! Sync_wordpress_user add-on STRONGLY required)
+   - MailPress_wp_fromemail : !!NEW!! New Mail : FROM email & name replaced by current user wp values
+   - MailPress_write_edit_fromemail : !!NEW!! New Mail : make FROM email and name editable (info ! use Roles_and_capabilities add-on for fine tuning new capability 'MailPress_write_edit_fromemail')
 
 ** 5.2.1 ** 12/25/2011
 * some code optimizations and fixes on admin lists

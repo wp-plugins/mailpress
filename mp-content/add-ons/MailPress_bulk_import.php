@@ -4,9 +4,9 @@ if (class_exists('MailPress') && !class_exists('MailPress_bulk_import') && (is_a
 /*
 Plugin Name: MailPress_bulk_import
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Bulk_import
-Description: This is just an add-on for MailPress to import users
+Description: Users : import from mp users list
 Author: Daniel Caleb &amp; Andre Renaut
-Version: 5.2.1
+Version: 5.3
 Author URI: http://galerie-eigenheim.de
 */
 

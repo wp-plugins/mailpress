@@ -4,8 +4,8 @@ if (class_exists('MailPress') && !class_exists('MailPress_wp_cron'))
 /*
 Plugin Name: MailPress_wp_cron
 Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Wp_cron
-Description: This is just an add-on for MailPress to manage wp_crons (based on wp-cron)
-Version: 5.2.1
+Description: Wp_cron (view jobs scheduled using WP api in your browser : Tools menu)
+Version: 5.3
 */
 
 // 3.
