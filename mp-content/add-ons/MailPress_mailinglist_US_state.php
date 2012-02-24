@@ -12,9 +12,9 @@ class MailPress_mailinglist_US_state
 	function __construct()
 	{
 // for sending mails
-		add_filter('MailPress_mailinglists_optgroup', 	array(__CLASS__, 'mailinglists_optgroup'), 8, 2);
-		add_filter('MailPress_mailinglists', 			array(__CLASS__, 'mailinglists'), 8, 1);
-		add_filter('MailPress_query_mailinglist', 		array(__CLASS__, 'query_mailinglist'), 8, 2);
+		add_filter('MailPress_mailinglists_optgroup', 	array(__CLASS__, 'mailinglists_optgroup'), 12, 2);
+		add_filter('MailPress_mailinglists', 			array(__CLASS__, 'mailinglists'), 12, 1);
+		add_filter('MailPress_query_mailinglist', 		array(__CLASS__, 'query_mailinglist'), 12, 2);
 	}
 
 //// Sending Mails ////

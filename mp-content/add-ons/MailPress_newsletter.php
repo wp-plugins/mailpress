@@ -38,9 +38,9 @@ class MailPress_newsletter
 		add_action('mp_process_post_newsletter', 	array(__CLASS__, 'process'));
 
 // for sending mails
-		add_filter('MailPress_mailinglists_optgroup', 	array(__CLASS__, 'mailinglists_optgroup'), 8, 2);
-		add_filter('MailPress_mailinglists', 			array(__CLASS__, 'mailinglists'), 8, 1);
-		add_filter('MailPress_query_mailinglist', 		array(__CLASS__, 'query_mailinglist'), 8, 2);
+		add_filter('MailPress_mailinglists_optgroup', 	array(__CLASS__, 'mailinglists_optgroup'), 50, 2);
+		add_filter('MailPress_mailinglists', 			array(__CLASS__, 'mailinglists'), 50, 1);
+		add_filter('MailPress_query_mailinglist', 		array(__CLASS__, 'query_mailinglist'), 50, 2);
 
 // for form
 		//add_action('MailPress_load_Form_field_types',	array(__CLASS__, 'load_Form_field_types'));

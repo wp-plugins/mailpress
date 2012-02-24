@@ -12,9 +12,9 @@ class MailPress_mailinglist_country_code
 	function __construct()
 	{
 // for sending mails
-		add_filter('MailPress_mailinglists_optgroup', 	array(__CLASS__, 'mailinglists_optgroup'), 8, 2);
-		add_filter('MailPress_mailinglists', 			array(__CLASS__, 'mailinglists'), 8, 1);
-		add_filter('MailPress_query_mailinglist', 		array(__CLASS__, 'query_mailinglist'), 8, 2);
+		add_filter('MailPress_mailinglists_optgroup', 	array(__CLASS__, 'mailinglists_optgroup'), 11, 2);
+		add_filter('MailPress_mailinglists', 			array(__CLASS__, 'mailinglists'), 11, 1);
+		add_filter('MailPress_query_mailinglist', 		array(__CLASS__, 'query_mailinglist'), 11, 2);
 	}
 
 //// Sending Mails ////

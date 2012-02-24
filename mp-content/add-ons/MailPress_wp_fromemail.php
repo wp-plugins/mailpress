@@ -3,7 +3,6 @@ if (class_exists('MailPress') && !class_exists('MailPress_wp_fromemail'))
 {
 /*
 Plugin Name: MailPress_wp_fromemail
-Plugin URI: http://www.mailpress.org/wiki/index.php
 Description: New Mail : FROM email & name replaced by current user wp values
 Version: 5.3
 */
