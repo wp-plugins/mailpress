@@ -19,6 +19,9 @@
 
 //define ('MP_Ip_ipinfodb_ApiKey', 	'<- get your api key here : http://www.ipinfodb.com/register.php ->');
 
+//define ('MP_Ip_quova_ApiKey', 	'<- get your api key here : http://developer.quova.com/member/register ->');
+//define ('MP_Ip_quova_Secret', 	'<- get your secret  here : http://developer.quova.com/member/register ->');
+
 // 1.
 
 /** Folder name of MailPress 'mp-content'. */

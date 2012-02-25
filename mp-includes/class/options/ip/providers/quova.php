@@ -5,7 +5,7 @@ class MP_Ip_quova extends MP_ip_provider_
 {
 	var $id 	= 'quova';
 	var $url	= 'http://api.quova.com/v1/ipinfo/%1$s?apikey=%2$s&sig=%3$s&format=xml';
-	var $credit= 'http://http://www.quova.com/';
+	var $credit= 'http://www.quova.com/';
 	var $type 	= 'xml';
 
 	function content($valid, $content)
