@@ -70,7 +70,7 @@ class MailPress_newsletter_categories
 		}
 		$xml = '<?xml version="1.0" encoding="UTF-8"?><newsletters>' . $xml . '</newsletters>';
 		$newsletters = new MP_Xml($xml);
-		foreach($newsletters->object->children as $newsletter) MP_Newsletter::register(MailPress_newsletter::convert($newsletter));
+		foreach($newsletters->object->children as $newsletter) MP_Newsletter::register(MP_Newsletter::convert($newsletter));
 	}
 
 ////  ADMIN  ////

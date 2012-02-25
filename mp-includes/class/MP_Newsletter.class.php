@@ -8,8 +8,8 @@ class MP_Newsletter
 
 		global $mp_subscriptions, $mp_registered_newsletters;
 
-		$newsletter['allowed'] 	= (isset($mp_subscriptions['newsletters'][$newsletter['id']]));
-		$newsletter['default']  = (isset($mp_subscriptions['default_newsletters'][$newsletter['id']]));
+		$newsletter['allowed'] = (isset($mp_subscriptions['newsletters'][$newsletter['id']]));
+		$newsletter['default'] = (isset($mp_subscriptions['default_newsletters'][$newsletter['id']]));
 
 		$mp_registered_newsletters[$newsletter['id']] = $newsletter;
 	}
@@ -190,5 +190,48 @@ class MP_Newsletter
 		remove_filter( 'post_limits', array(__CLASS__, 'post_limits'), 8, 1);
 
 		return $rc;
+	}
+
+////  Xml Files  ////
+
+	public static function register_files($args)
+	{
+		extract( $args );		
+
+		$root  = apply_filters($root_filter, $root);
+
+		$xml = '';
+		foreach($files as $file)
+		{
+			$fullpath = "$root/$file.xml";
+			if (!is_file($fullpath)) continue;
+
+			ob_start();
+				include($fullpath);
+				$xml .= trim(ob_get_contents());
+			ob_end_clean();
+		}
+		$xml = '<?xml version="1.0" encoding="UTF-8"?><newsletters>' . $xml . '</newsletters>';
+		$newsletters = new MP_Xml($xml);
+		foreach($newsletters->object->children as $newsletter) self::register(self::convert($newsletter));
+	}
+
+	public static function convert($child)
+	{
+		if (isset($child->textValue) && !empty($child->textValue)) $array = (is_numeric($child->textValue)) ? (int) $child->textValue : $child->textValue;
+		if (isset($child->attributes)) foreach($child->attributes as $k => $v) $array[$k] = (is_numeric($v)) ? (int) $v : $v;
+		if (isset($child->children))   foreach($child->children as $children) 
+		{
+			if (!isset($array[$children->name]))
+				$array[$children->name]   = self::convert($children);
+			elseif (is_array($array[$children->name]))
+				$array[$children->name][] = self::convert($children);
+			else
+			{
+				$array[$children->name] = array($array[$children->name]);
+				$array[$children->name][] = self::convert($children);
+			}
+		}
+		return (isset($array)) ? $array : false;
 	}
 }

@@ -235,44 +235,14 @@ class MailPress_newsletter
 
 	public static function register() 
 	{
-		$root  = MP_CONTENT_DIR . 'advanced/newsletters';
-		$root  = apply_filters('MailPress_advanced_newsletters_root', $root);
-		$files = array('new_post', 'daily', 'weekly', 'monthly');
+		$args = array(	'root' 		=> MP_CONTENT_DIR . 'advanced/newsletters',
+					'root_filter' 	=> 'MailPress_advanced_newsletters_root',
+					'files'		=> array('new_post', 'daily', 'weekly', 'monthly'),
+		);
 
-		$xml = '';
-		foreach($files as $file)
-		{
-			$fullpath = "$root/$file.xml";
-			if (!is_file($fullpath)) continue;
-
-			ob_start();
-				include($fullpath);
-				$xml .= trim(ob_get_contents());
-			ob_end_clean();
-		}
-		$xml = '<?xml version="1.0" encoding="UTF-8"?><newsletters>' . $xml . '</newsletters>';
-		$newsletters = new MP_Xml($xml);
-		foreach($newsletters->object->children as $newsletter) MP_Newsletter::register(self::convert($newsletter));
+		MP_Newsletter::register_files($args);
 	}
 
-	public static function convert($child)
-	{
-		if (isset($child->textValue) && !empty($child->textValue)) $array = (is_numeric($child->textValue)) ? (int) $child->textValue : $child->textValue;
-		if (isset($child->attributes)) foreach($child->attributes as $k => $v) $array[$k] = (is_numeric($v)) ? (int) $v : $v;
-		if (isset($child->children))   foreach($child->children as $children) 
-		{
-			if (!isset($array[$children->name]))
-				$array[$children->name]   = self::convert($children);
-			elseif (is_array($array[$children->name]))
-				$array[$children->name][] = self::convert($children);
-			else
-			{
-				$array[$children->name] = array($array[$children->name]);
-				$array[$children->name][] = self::convert($children);
-			}
-		}
-		return (isset($array)) ? $array : false;
-	}
 //// Scheduling & Processing  ////
 
 	public static function schedule($args = array())
