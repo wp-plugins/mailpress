@@ -182,6 +182,7 @@ class MailPress_comment
 		if (is_email($email))
 		{
 			$mp_user_id = MP_User::get_id_by_email($email);
+			if (!$mp_user_id) $mp_user_id = apply_filters('MailPress_user_already_inserted', false);
 
 			if ($mp_user_id)
 			{
