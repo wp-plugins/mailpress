@@ -73,6 +73,7 @@ class MailPress_mailinglist
 			add_filter('MailPress_settings_tab', 		array(__CLASS__, 'settings_tab'), 10, 1);
 		// for settings general
 			add_action('MailPress_settings_general', 		array(__CLASS__, 'settings_general'), 20);
+			add_action('MailPress_settings_general_update',	array(__CLASS__, 'settings_general_update'));
 		// for settings subscriptions
 			add_action('MailPress_settings_subscriptions', 	array(__CLASS__, 'settings_subscriptions'), 20);
 		// for meta box in user page
@@ -434,11 +435,15 @@ class MailPress_mailinglist
 			<tr valign='top' class='mp_sep'>
 				<th scope='row'><?php _e('Default Mailing list', MP_TXTDOM); ?></th>
 				<td style='padding:0;'>
-					<input type='hidden' name='default_mailinglist_on' value='on' />
 					<?php	MP_Mailinglist::dropdown($dropdown_options); ?>
 				</td>
 			</tr>
 <?php
+	}
+
+	public static function settings_general_update()
+	{
+		update_option (self::option_name_default, $_POST['default_mailinglist']);
 	}
 
 // for settings subscriptions

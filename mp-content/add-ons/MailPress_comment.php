@@ -44,6 +44,8 @@ class MailPress_comment
 // for wp admin
 		if (is_admin())
 		{
+		// for link on plugin page
+			add_filter('plugin_action_links', 			array(__CLASS__, 'plugin_action_links'), 10, 2 );
 		// for role & capabilities
 			add_filter('MailPress_capabilities', 		array(__CLASS__, 'capabilities'), 1, 1);
 		// for settings
@@ -359,6 +361,12 @@ class MailPress_comment
 ////  ADMIN  ////
 ////  ADMIN  ////
 ////  ADMIN  ////
+
+// for link on plugin page
+	public static function plugin_action_links($links, $file)
+	{
+		return MailPress::plugin_links($links, $file, plugin_basename(__FILE__), 'subscriptions');
+	}
 
 // for role & capabilities
 	public static function capabilities($capabilities) 

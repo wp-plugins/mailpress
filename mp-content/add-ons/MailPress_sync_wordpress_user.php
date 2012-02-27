@@ -57,6 +57,7 @@ class MailPress_sync_wordpress_user
 			add_filter('MailPress_load_admin_page', 		array(__CLASS__, 'load_admin_page'), 10, 1);
 		// for settings
 			add_action('MailPress_settings_general_forms', 	array(__CLASS__, 'settings_general_forms'));
+			add_action('MailPress_settings_general_update',	array(__CLASS__, 'settings_general_update'));
 
 		// for meta box in user page
 			add_action('MailPress_add_meta_boxes_user', 	array(__CLASS__, 'meta_boxes_user'), 1, 2); 
@@ -312,12 +313,16 @@ class MailPress_sync_wordpress_user
 	<th scope='row'><?php _e('Allow subscriptions from', MP_TXTDOM); ?></th>
 	<td>
 		<label for='sync_wordpress_user_register_form'>
-			<input type='hidden' name='sync_wordpress_user_on' value='on' />
 			<input type='checkbox' name='sync_wordpress_user[register_form]' id='sync_wordpress_user_register_form'<?php if (isset($sync_wordpress_user['register_form'])) checked($sync_wordpress_user['register_form'], 'on'); ?> />&#160;&#160;<?php _e('Registration Form', MP_TXTDOM); ?><br />
 		</label>
 	</td>
 </tr>
 <?php
+	}
+
+	public static function settings_general_update()
+	{
+		update_option(self::option_name, $_POST['sync_wordpress_user']);
 	}
 
 // for meta box in user page

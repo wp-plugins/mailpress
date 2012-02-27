@@ -19,23 +19,7 @@ switch (true)
 		$message = __('field should be numeric', MP_TXTDOM); $no_error = false;
 	break;
 	default :
-		if (isset($_POST['sync_wordpress_user_on']))	// so we don't delete settings if addon deactivated !
-		{
-			$sync_wordpress_user = $_POST['sync_wordpress_user'];
-			update_option(MailPress_sync_wordpress_user::option_name, $sync_wordpress_user);
-		}
-
-		if (isset($_POST['default_mailinglist_on']))	// so we don't delete settings if addon deactivated !
-		{
-			$default_mailinglist = $_POST['default_mailinglist'];
-			update_option (MailPress_mailinglist::option_name_default, $default_mailinglist);
-		}
-
-		if (isset($_POST['mailinglist_per_lang_on']))   // so we don't delete settings if addon deactivated !
-		{
-			$default_mailinglist_lang = $_POST['default_mailinglist_lang'];
-			update_option (MailPress_WPML::option_name_default, $default_mailinglist_lang);
-		}
+		do_action('MailPress_settings_general_update');
 
 		if ('ajax' == $mp_general['subscription_mngt']) $mp_general['id'] = '';
 		update_option(MailPress::option_name_general, $mp_general);

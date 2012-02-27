@@ -4,7 +4,7 @@ if (!isset($subscriptions)) $subscriptions = $mp_subscriptions;
 if (!isset($subscriptions['default_newsletters'])) $subscriptions['default_newsletters'] = array();
 ?>
 <tr valign='top'>
-	<th style='padding:0;' ><strong><?php printf(__('Newsletters (%s)', MP_TXTDOM), __('posts') ); ?></strong></th>
+	<th style='padding:0;' ><strong><?php _e('Newsletters', MP_TXTDOM); ?></strong></th>
 	<td style='padding:0;' colspan='4'></td>
 </tr>
 <tr valign='top'>
