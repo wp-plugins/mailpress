@@ -100,8 +100,8 @@ class MailPress_newsletter
 		$defaults = array (	'name' 	=> 'keep_newsletters', 
 						'admin' 	=> 0, 
 						'selected' 	=> false, 
-						'type'	=> 'checkbox', 
-						'show_option_all' => false, 
+						'type'	=> 'checkbox',
+						'show_option_all'  => false, 
    						'htmlstart'=> '', 
 						'htmlmiddle'=> '&#160;&#160;', 
 						'htmlend'	=> "<br />\n"

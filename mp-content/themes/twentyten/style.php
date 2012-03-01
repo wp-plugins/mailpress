@@ -13,6 +13,8 @@ $_classes = array(
 'a'			=> "  color:#555;
 				text-decoration:underline;",
 
+'tright'		=> "  text-align:right;",
+
 // header
 
 'body'		=> "	color:#666;
@@ -47,7 +49,7 @@ $_classes = array(
 'site-description'=> "	margin:14px 0 18px;
 				border:none;
 				padding:0;
-				width:200px;
+				padding-right:30px;
 				color:#666;
 				font-size:12px;
 				font-style:italic;",

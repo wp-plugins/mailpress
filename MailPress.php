@@ -6,7 +6,7 @@ Description: The WordPress mailing platform. <b>(do not use automatic upgrade!)<
 Author: Andre Renaut
 Author URI: http://www.mailpress.org
 Requires at least: 3.3
-Tested up to: 3.3
+Tested up to: 3.4
 Version: 5.3-alpha
 */
 
