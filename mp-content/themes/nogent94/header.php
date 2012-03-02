@@ -10,7 +10,7 @@
 <?php } ?>
 					<div>
 						<img src='Nogent94.gif' style='border:none;margin:20px 0;padding:0' alt='img' />
-						<img src='degrade.jpg' style='width:100%;height:25px;border:none;padding:5px 0;' alt='img' />
+						<img src='degrade.jpg' style='width:100%;max-height:25px;border:none;padding:5px 0;' alt='img' />
 						<span style='float:left;padding:0;margin:0;'><small><b><a href='<?php echo site_url(); ?>' style='color:#D76716;text-align:left;text-decoration:none;outline-style:none;'><?php echo site_url(); ?></a></b></small></span>
 						<span style='float:right;color:#590000'><small><b><?php echo mysql2date('l j F Y', current_time('mysql')); ?></b></small></span>
 					</div>
