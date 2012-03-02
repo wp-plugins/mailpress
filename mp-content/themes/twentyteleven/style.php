@@ -23,7 +23,7 @@ $_classes = array(
 'a'			=> "  color:#1982D1;
 				text-decoration:none;",
 
-'page'		=> "	line-height	24.3833px;
+'page'		=> "	line-height	24px;
 				margin:1em auto;
 				width:760px;
 				background:none repeat scroll 0 0 #FFFFFF;",
@@ -35,11 +35,11 @@ $_classes = array(
 				position:relative;
 				z-index:9999;",
 
-'branding_hgroup'	=> "	margin:0 7.6%;
+'branding_hgroup'	=> "	margin:0 50px;
 				display:block;",
 
 'h1'			=> "	margin-right:270px;
-				padding:3.65625em 0 0;
+				padding:50px 0 0;
 				clear:both;",
 
 'h1_a'		=> "	color:#111111;
@@ -51,7 +51,7 @@ $_classes = array(
 'h2'			=> "	color:#7A7A7A;line-height:22.75px;
 				font-size:14px;
 				clear:both;
-				margin:0 270px 3.65625em 0;",
+				margin:0 270px 50px 0;",
 
 'h_img_a'		=> "	color:#1982D1;
 				text-decoration:none;",
@@ -69,7 +69,7 @@ $_classes = array(
 'h3_assist'		=> "	clip:rect(1px, 1px, 1px, 1px);
 				position:absolute;",
 
-'skip-link'		=> "	margin:0 7.6%;",
+'skip-link'		=> "	margin:0 50px;",
 
 'a_assist'		=> "	color:#EEEEEE;
 				display:block;
@@ -84,14 +84,14 @@ $_classes = array(
 				margin:0;
 				width:100%;",
 
-'content'		=> "	margin:0 7.6% 0 7.6%;
+'content'		=> "	margin:0 50px;
 				width:80%;",
 
 /* end header */
 
 'article'		=> "	border-bottom:1px solid #DDDDDD;
-				margin:0 0 1.625em;
-				padding:0 0 1.625em;
+				margin:0 0 24px;
+				padding:0 0 24px;
 				position:relative;
 				display:block;",
 
@@ -103,7 +103,7 @@ $_classes = array(
 				font-size:26px;
 				font-weight:bold;
 				line-height:1.5em;
-				padding-bottom:0.3em;
+				padding-bottom:8px;
 				padding-top:15px;
 				padding-right:76px;",
 
@@ -118,7 +118,7 @@ $_classes = array(
 
 'entry-meta_a'	=> "	font-weight:bold;",
 
-'entry-summary'	=> "	padding:1.625em 0 0;",
+'entry-summary'	=> "	padding:24px 0 0;",
 
 /* footer */
 
@@ -129,8 +129,8 @@ $_classes = array(
 				border-top:1px solid #DDDDDD;
 				color:#666666;
 				font-size:12px;
-				line-height:2.2em;
-				padding:2.2em 0.5em;
+				line-height:26px;
+				padding:26px 6px;
 				text-align:center;",
 );
 ?>

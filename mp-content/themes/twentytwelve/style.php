@@ -95,7 +95,8 @@ $_classes = array(
 'entry-meta_a'	=> "	color: #777;
 				outline: medium none;",
 
-'entry-content'	=> "	font-size: 14px;",
+'entry-content'	=> "	font-size: 14px;
+				color:#444",
 
 'entry-footer'	=> "	color: #777;
 				font-size: 12px;
