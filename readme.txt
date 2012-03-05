@@ -78,6 +78,7 @@ MailPress themes and templates do not need to be changed if customized in a prev
 * bug fix : subscription form now working when javascript or ajax not activated
 * Add-Ons
    - MailPress_comment : now subscription to comments can be checked by default (see settings)
+   - MailPress_comment_newsletter_subscription : !!NEW!! Subscribe to a default newsletter from comment form
    - MailPress_mailinglist_country_code : !!NEW!! New Mail : add mailing lists based on country code (beware ! IP geolocation search is not 100% accurate)
    - MailPress_mailinglist_US_state : !!NEW!! New Mail : add mailing lists based on US State (beware ! IP geolocation search is not 100% accurate)
    - MailPress_mailinglist_user_role : !!NEW!! New Mail : add mailing lists based on wp user roles (beware ! Sync_wordpress_user add-on STRONGLY required)
