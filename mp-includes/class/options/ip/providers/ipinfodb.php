@@ -30,6 +30,7 @@ class MP_Ip_ipinfodb extends MP_ip_provider_
 		foreach ($xml as $k => $v)
 		{
 			if ($v == 'n/a') continue;
+			if (empty($v))   continue;
 
 			if (in_array($k, $skip)) continue;
 
