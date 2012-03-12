@@ -76,6 +76,10 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 ** 5.3-alpha ** xx/xx/2012
 * bug fix : subscription form now working when javascript or ajax not activated
+* Useragent
+   - code review
+* IP geolocation provider
+   - new : quova.com (required : 2 constants MP_Ip_quova_ApiKey & MP_Ip_quova_Secret)
 * Add-Ons
    - MailPress_comment : now subscription to comments can be checked by default (see settings)
    - MailPress_comment_newsletter_subscription : !!NEW!! Subscribe to a default newsletter from comment form
@@ -84,8 +88,6 @@ MailPress themes and templates do not need to be changed if customized in a prev
    - MailPress_mailinglist_user_role : !!NEW!! New Mail : add mailing lists based on wp user roles (beware ! Sync_wordpress_user add-on STRONGLY required)
    - MailPress_wp_fromemail : !!NEW!! New Mail : FROM email & name replaced by current user wp values
    - MailPress_write_edit_fromemail : !!NEW!! New Mail : make FROM email and name editable (info ! use Roles_and_capabilities add-on for fine tuning new capability 'MailPress_write_edit_fromemail')
-* IP geolocation provider
-   - new : quova.com (required : 2 constants MP_Ip_quova_ApiKey & MP_Ip_quova_Secret)
 * Custom Post Types
    - preparing dedicated "newsletters for custom post type" integration ...
 

@@ -5,6 +5,12 @@ class MP_Tracking_module_m005 extends MP_tracking_module_
 	var $context= 'normal';
 	var $file 	= __FILE__;
 
+	function __construct($title)
+	{
+		new MP_Useragent_agents();
+		parent::__construct($title);
+	}
+
 	function meta_box($mail)
 	{
 		global $wpdb;
@@ -37,7 +43,9 @@ class MP_Tracking_module_m005 extends MP_tracking_module_
 			}
 			foreach($agent as $k => $v)
 			{
-				$key = MailPress_tracking::get_os($k) . '</td><td>' . MailPress_tracking::get_browser($k) ;
+				$os      = apply_filters('MailPress_useragent_os_get_info',      $k);
+				$browser = apply_filters('MailPress_useragent_browser_get_info', $k);
+				$key = $os . '</td><td>' . $browser;
 				if (isset($agents[$key])) 	$agents[$key] += $v;
 				else 					$agents[$key]  = $v;
 			}
