@@ -14,6 +14,30 @@
 		<pattern><![CDATA[#Chrome/([a-zA-Z0-9.]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
+	 <browser>
+		<name><![CDATA[Microsoft Outlook]]></name>
+		<link><![CDATA[http://www.microsoft.com]]></link>
+		<icon><![CDATA[outlook-2010.png]]></icon>
+		<pattern><![CDATA[#(Microsoft Outlook) ([0-9]+)#i]]></pattern>
+		<versions pattern="0">
+			<id>
+				<name><![CDATA[2007]]></name>
+				<pattern><![CDATA[/12/i]]></pattern>
+				<icon><![CDATA[outlook-2007.png]]></icon>
+			</id>
+			<id>
+				<name><![CDATA[2010]]></name>
+				<pattern><![CDATA[/14/i]]></pattern>
+				<icon><![CDATA[outlook-2010.png]]></icon>
+			</id>
+		</versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Windows Live Mail]]></name>
+		<link><![CDATA[http://www.microsoft.com]]></link>
+		<icon><![CDATA[Windows_Live_Mail.png]]></icon>
+		<pattern><![CDATA[#Outlook-Express#i]]></pattern>
+	 </browser>
     	 <browser>
 		<name><![CDATA[Internet Explorer]]></name>
 		<link><![CDATA[http://www.microsoft.com/windows/products/winfamily/ie/default.mspx]]></link>

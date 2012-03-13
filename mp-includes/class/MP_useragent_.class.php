@@ -14,9 +14,11 @@ abstract class MP_useragent_
 	function get($useragent)
 	{
 		$ug = new stdClass();
+		$count = 0;
 
 		foreach ($this->xml as $i)
 		{
+			$count++;
 			if (!@preg_match($i->pattern, $useragent, $matches)) continue;
 
 			if (!isset($i->versions)) break;
@@ -47,12 +49,14 @@ abstract class MP_useragent_
 			break;
 		}
 
+		$ug->useragent = $useragent;
 		if (isset($i->name)) { $ug->name = (string) $i->name; }
 		if (isset($version)) { $ug->version = (string) $version; }
 		if (isset($i->link)) { $ug->link = (string) $i->link; }
 		if (isset($i->icon)) { $ug->icon = (string) $i->icon; $ug->icon_path = "{$this->img_path}/{$ug->icon}"; }
 
 		$ug->full_name = ($ug->version) ? "{$ug->name} {$ug->version}" : $ug->name;
+		$ug->count = $count;
 
 		return $ug;
 	}
@@ -62,7 +66,7 @@ abstract class MP_useragent_
 		$ug = $this->get($useragent);
 
 		$txt = '';
-		if (isset($ug->icon_path)) $txt .= "<img src='" . $ug->icon_path . "' alt='' />";
+		if (isset($ug->icon_path)) $txt .= "<img src='" . $ug->icon_path . "' alt='" . esc_attr($ug->useragent) . "' />";
 		if (isset($ug->link))
 			$txt .= "&nbsp<a href='" . $ug->link . "' title='" . $ug->full_name . "' >" . $ug->name . '</a>';
 		else
