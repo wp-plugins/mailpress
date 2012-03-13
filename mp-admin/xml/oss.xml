@@ -130,16 +130,35 @@
 		<versions pattern="1"><![CDATA[#iPad\ OS\ ([.\_0-9a-zA-Z]+)#i]]></versions>
 	 </os>
 	 <os>
-		<name><![CDATA[Mac]]></name>
+		<name><![CDATA[Mac OS X]]></name>
 		<link><![CDATA[http://www.apple.com/macosx/]]></link>
+		<icon><![CDATA[mac-3.png]]></icon>
+		<pattern><![CDATA[#(Mac OS X) ([0-9\.\_]+)#i]]></pattern>
+		<versions pattern="0">
+			<id>
+				<name><![CDATA[Tiger (10.4)]]></name>
+				<pattern><![CDATA[/(10_4|10\.4)/i]]></pattern>
+			</id>
+			<id>
+				<name><![CDATA[Leopard (10.5)]]></name>
+				<pattern><![CDATA[/(10_5|10\.5)/i]]></pattern>
+			</id>
+			<id>
+				<name><![CDATA[Snow Leopard (10.6)]]></name>
+				<pattern><![CDATA[/(10_6|10\.6)/i]]></pattern>
+			</id>
+			<id>
+				<name><![CDATA[Lion (10.7)]]></name>
+				<pattern><![CDATA[/(10_7|10\.7)/i]]></pattern>
+			</id>
+		</versions>
+	 </os>
+	 <os>
+		<name><![CDATA[Mac OS]]></name>
+		<link><![CDATA[http://en.wikipedia.org/wiki/Mac_OS]]></link>
 		<icon><![CDATA[mac-1.png]]></icon>
 		<pattern><![CDATA[#(Mac) ([a-zA-Z0-9.\ ]+)#i]]></pattern>
 		<versions pattern="0">
-			<id>
-				<name><![CDATA[OS X]]></name>
-				<pattern><![CDATA[/Mac\ OS\ X\ /i]]></pattern>
-				<icon><![CDATA[mac-3.png]]></icon>
-			</id>
 			<id>
 				<name><![CDATA[OSX]]></name>
 				<pattern><![CDATA[/Mac\ OSX\ /i]]></pattern>
@@ -156,7 +175,49 @@
 		<name><![CDATA[Android]]></name>
 		<link><![CDATA[http://www.android.com/]]></link>
 		<icon><![CDATA[android.png]]></icon>
-		<pattern><![CDATA[/Android/]]></pattern>
+		<pattern><![CDATA[/Android ([0-9\.\-]+)/si]]></pattern>
+		<versions pattern="0">
+			<id>
+				<name><![CDATA[Cupcake (1.5)]]></name>
+				<pattern><![CDATA[/1.5/i]]></pattern>
+			</id>
+			<id>
+				<name><![CDATA[Donut (1.6)]]></name>
+				<pattern><![CDATA[/1.6/i]]></pattern>
+			</id>
+			<id>
+				<name><![CDATA[Eclair (2.0)]]></name>
+				<pattern><![CDATA[/2.0/i]]></pattern>
+			</id>
+			<id>
+				<name><![CDATA[Eclair (2.1)]]></name>
+				<pattern><![CDATA[/2.1/i]]></pattern>
+			</id>
+			<id>
+				<name><![CDATA[Froyo (2.2)]]></name>
+				<pattern><![CDATA[/2.2/i]]></pattern>
+			</id>
+			<id>
+				<name><![CDATA[Gingerbread (2.3)]]></name>
+				<pattern><![CDATA[/2.3/i]]></pattern>
+				<icon><![CDATA[android-gb.png]]></icon>
+			</id>
+			<id>
+				<name><![CDATA[Gingerbread (2.4)]]></name>
+				<pattern><![CDATA[/2.4/i]]></pattern>
+				<icon><![CDATA[android-gb.png]]></icon>
+			</id>
+			<id>
+				<name><![CDATA[Honeycomb (3.)]]></name>
+				<pattern><![CDATA[/3./i]]></pattern>
+				<icon><![CDATA[android-hc.png]]></icon>
+			</id>
+			<id>
+				<name><![CDATA[Ice Cream Sandwich (4.)]]></name>
+				<pattern><![CDATA[/4./i]]></pattern>
+				<icon><![CDATA[android-ics.png]]></icon>
+			</id>
+		</versions>
 	 </os>
 	 <os>
 		<name><![CDATA[ArchLinux]]></name>
@@ -166,6 +227,12 @@
 	 </os>
 	 <os>
 		<pattern><![CDATA[/Barca/]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[Bada]]></name>
+		<link><![CDATA[http://www.bada.com/]]></link>
+		<icon><![CDATA[bada.png]]></icon>
+		<pattern><![CDATA[/Bada\/[0-9\.]+/si]]></pattern>
 	 </os>
 	 <os>
 		<name><![CDATA[BeOS]]></name>
@@ -194,6 +261,12 @@
 		<link><![CDATA[http://en.wikipedia.org/wiki/Google_Chrome_OS]]></link>
 		<icon><![CDATA[chromeos.png]]></icon>
 		<pattern><![CDATA[/CrOS/]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[Chromium OS]]></name>
+		<link><![CDATA[http://sites.google.com/a/chromium.org/dev/chromium-os]]></link>
+		<icon><![CDATA[chromiumos.png]]></icon>
+		<pattern><![CDATA[/^Mozilla.*CrOS.*Chrome/si]]></pattern>
 	 </os>
 	 <os>
 		<name><![CDATA[Debian GNU/Linux]]></name>
@@ -228,6 +301,12 @@
 		<pattern><![CDATA[/FreeBSD/i]]></pattern>
 	 </os>
 	 <os>
+		<name><![CDATA[Haiku OS]]></name>
+		<link><![CDATA[http://www.haiku-os.org/]]></link>
+		<icon><![CDATA[haiku.png]]></icon>
+		<pattern><![CDATA[/BeOS.*Haiku BePC/si]]></pattern>
+	 </os>
+	 <os>
 		<name><![CDATA[Gentoo]]></name>
 		<link><![CDATA[http://www.gentoo.org/]]></link>
 		<icon><![CDATA[gentoo.png]]></icon>
@@ -239,6 +318,12 @@
 		<icon><![CDATA[irix.png]]></icon>
 		<pattern><![CDATA[/IRIX/i]]></pattern>
 		<versions pattern="1"><![CDATA[#IRIX\ ([.\_0-9a-zA-Z]+)#i]]></versions>
+	 </os>
+	 <os>
+		<name><![CDATA[Joli OS]]></name>
+		<link><![CDATA[http://www.jolicloud.com/]]></link>
+		<icon><![CDATA[jolicloud.png]]></icon>
+		<pattern><![CDATA[/^Mozilla\/.*Linux.*Jolicloud/si]]></pattern>
 	 </os>
 	 <os>
 		<name><![CDATA[Kanotix]]></name>
@@ -297,6 +382,12 @@
 		<icon><![CDATA[mandriva.png]]></icon>
 		<pattern><![CDATA[/Mandriva/i]]></pattern>
 		<versions pattern="1"><![CDATA[/mdv([a-zA-Z0-9.]+)/i]]></versions>
+	 </os>
+	 <os>
+		<name><![CDATA[MINIX 3 ]]></name>
+		<link><![CDATA[http://www.minix3.org/]]></link>
+		<icon><![CDATA[minix.png]]></icon>
+		<pattern><![CDATA[/Minix 3/si]]></pattern>
 	 </os>
 	 <os>
 		<name><![CDATA[Motorola]]></name>

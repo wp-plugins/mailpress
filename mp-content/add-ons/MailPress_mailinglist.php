@@ -51,8 +51,6 @@ class MailPress_mailinglist
 
 // for autoresponder
 		add_action('MailPress_load_Autoresponders_events',	array(__CLASS__, 'load_Autoresponders_events'));
-// for form
-		//add_action('MailPress_load_Form_field_types',		array(__CLASS__, 'load_Form_field_types'));
 
 // for sync wordpress user
 		add_filter('MailPress_has_subscriptions', array(__CLASS__, 'has_subscriptions'), 8, 2);
@@ -330,13 +328,6 @@ class MailPress_mailinglist
 	public static function load_Autoresponders_events()
 	{
 		new MP_Autoresponder_events_mailinglist();
-	}
-
-//// Forms ////
-
-	public static function load_Form_field_types()
-	{
-		new MP_Form_field_types_mailinglist();
 	}
 
 // Sync wordpress user

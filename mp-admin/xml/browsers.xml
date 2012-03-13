@@ -40,7 +40,7 @@
 	 <browser>
 		<name><![CDATA[Windows Live Mail]]></name>
 		<link><![CDATA[http://www.microsoft.com]]></link>
-		<icon><![CDATA[Windows_Live_Mail.png]]></icon>
+		<icon><![CDATA[windows_live_mail.png]]></icon>
 		<pattern><![CDATA[#Outlook-Express#i]]></pattern>
 	 </browser>
     	 <browser>

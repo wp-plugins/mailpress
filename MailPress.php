@@ -13,25 +13,25 @@ Version: 5.3-alpha
 /** for admin plugin pages */
 define ('MailPress_page_mails', 	'mailpress_mails');
 define ('MailPress_page_write', 	'mailpress_write');
-define ('MailPress_page_edit', 	MailPress_page_mails . '&file=write');
+define ('MailPress_page_edit',		MailPress_page_mails . '&file=write');
 define ('MailPress_page_revision', 	MailPress_page_mails . '&file=revision');
 define ('MailPress_page_themes', 	'mailpress_themes');
 define ('MailPress_page_settings', 	'mailpress_settings');
 define ('MailPress_page_users', 	'mailpress_users');
-define ('MailPress_page_user', 	MailPress_page_users . '&file=uzer');
+define ('MailPress_page_user',		MailPress_page_users . '&file=uzer');
 define ('MailPress_page_addons', 	'mailpress_addons');
 
 /** for admin plugin urls */
 $mp_file = 'admin.php';
-define ('MailPress_mails', 		$mp_file . '?page=' 	. MailPress_page_mails);
-define ('MailPress_write', 		$mp_file . '?page=' 	. MailPress_page_write);
-define ('MailPress_edit', 		$mp_file . '?page=' 	. MailPress_page_edit);
+define ('MailPress_mails',		$mp_file . '?page=' 	. MailPress_page_mails);
+define ('MailPress_write',		$mp_file . '?page=' 	. MailPress_page_write);
+define ('MailPress_edit',		$mp_file . '?page=' 	. MailPress_page_edit);
 define ('MailPress_revision', 	$mp_file . '?page=' 	. MailPress_page_revision);
-define ('MailPress_themes', 		$mp_file . '?page=' 	. MailPress_page_themes);
+define ('MailPress_themes',	$mp_file . '?page=' 	. MailPress_page_themes);
 define ('MailPress_settings', 	'options-general.php' . '?page=' 	. MailPress_page_settings);
-define ('MailPress_users', 		$mp_file . '?page=' 	. MailPress_page_users);
-define ('MailPress_user', 		$mp_file . '?page=' 	. MailPress_page_user);
-define ('MailPress_addons', 		'plugins.php' . '?page=' 	. MailPress_page_addons);
+define ('MailPress_users',		$mp_file . '?page=' 	. MailPress_page_users);
+define ('MailPress_user',		$mp_file . '?page=' 	. MailPress_page_user);
+define ('MailPress_addons',	'plugins.php' . '?page=' 	. MailPress_page_addons);
 
 /** for mysql */
 global $wpdb;
@@ -72,12 +72,12 @@ class MailPress
 		{
 			register_activation_hook(plugin_basename(__FILE__), 	array(__CLASS__, 'install'));					// for install
 
-			add_action('admin_init', 					array(__CLASS__, 'admin_init'));				// for admin css
-			add_action('admin_menu', 					array(__CLASS__, 'admin_menu'));				// for menu
+			add_action('admin_init', 		array(__CLASS__, 'admin_init'));				// for admin css
+			add_action('admin_menu', 		array(__CLASS__, 'admin_menu'));				// for menu
 
 			$in_plugin_update_message = 'in_plugin_update_message-' . MP_FOLDER . '/' . __FILE__;				// for plugin
-			add_action($in_plugin_update_message,  			array(__CLASS__, 'in_plugin_update_message') ); 	//  * update message
-			add_filter('plugin_action_links', 				array(__CLASS__, 'plugin_action_links'), 10, 2 );	//  * page links
+			add_action($in_plugin_update_message,		array(__CLASS__, 'in_plugin_update_message') ); 	//  * update message
+			add_filter('plugin_action_links',		array(__CLASS__, 'plugin_action_links'), 10, 2 );	//  * page links
 		}
 
 		add_shortcode('mailpress', 		array(__CLASS__, 'shortcode'));			// for shortcode
@@ -152,7 +152,7 @@ class MailPress
 	// for global css
 		$pathcss		= MP_ABSPATH . 'mp-admin/css/colors_' . get_user_option('admin_color') . '.css';
 		$css_url		= '/' . MP_PATH . 'mp-admin/css/colors_' . get_user_option('admin_color') . '.css';
-		$css_url_default 	= '/' . MP_PATH . 'mp-admin/css/colors_fresh.css';
+		$css_url_default= '/' . MP_PATH . 'mp-admin/css/colors_fresh.css';
 		$css_url		= (is_file($pathcss)) ? $css_url : $css_url_default;
 		wp_register_style ( 'MailPress_colors', 	$css_url);
 		wp_enqueue_style  ( 'MailPress_colors' );
@@ -186,11 +186,11 @@ class MailPress
 					MailPress_page_write 	=> 'write', 
 					MailPress_page_edit 	=> 'write', 
 					MailPress_page_revision => 'revision', 
-					MailPress_page_themes 	=> 'themes', 
+					MailPress_page_themes	=> 'themes', 
 					MailPress_page_settings => 'settings', 
 					MailPress_page_users 	=> 'users', 
 					MailPress_page_user 	=> 'user',
-					MailPress_page_addons 	=> 'addons'
+					MailPress_page_addons	=> 'addons'
 		);
 		$hub  = apply_filters('MailPress_load_admin_page', $hub);
 		if (!isset($hub[$admin_page])) return;

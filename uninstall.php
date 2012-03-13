@@ -1,6 +1,6 @@
 <?php
 
-if(!defined('ABSPATH') && !defined('WP_UNINSTALL_PLUGIN')) die();
+if (!defined('ABSPATH') && !defined('WP_UNINSTALL_PLUGIN')) die();
 
 class MP_uninstall
 {

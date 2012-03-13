@@ -14,7 +14,7 @@
 define ('MP_TXTDOM', 'MailPress');
 
 /** Absolute path to the MailPress directory. */
-define ('MP_ABSPATH', 	dirname(__FILE__) . '/');
+define ('MP_ABSPATH',	dirname(__FILE__) . '/');
 
 /** Folder name of MailPress plugin. */
 define ('MP_FOLDER', 	basename( MP_ABSPATH ));
@@ -25,7 +25,7 @@ define ('MP_PATH', 	PLUGINDIR . '/' . MP_FOLDER . '/' );
 /** Plugin version. */
 require_once (ABSPATH . 'wp-admin/includes/plugin.php');
 $plugin_data = get_plugin_data( MP_ABSPATH . 'MailPress.php' );
-define ('MP_Version', 	$plugin_data['Version']);
+define ('MP_Version',	$plugin_data['Version']);
 
 /** Loading optional mailpress-config.php file in current directory or parent directory */
 $mp_config = 'mailpress-config.php';
@@ -37,13 +37,13 @@ foreach (array(MP_ABSPATH . $mp_config, dirname(MP_ABSPATH) . '/' . $mp_config) 
 }
 
 /** Folder name of MailPress 'mp-content'. */
-defined('MP_CONTENT_FOLDER') 	or define ('MP_CONTENT_FOLDER', 	'mp-content');
+defined('MP_CONTENT_FOLDER') 	or define ('MP_CONTENT_FOLDER',	'mp-content');
 
 /** Absolute path to the MailPress 'mp-content' folder. */
-defined('MP_CONTENT_DIR')	or define ('MP_CONTENT_DIR', 		MP_ABSPATH . MP_CONTENT_FOLDER . '/');
+defined('MP_CONTENT_DIR') 		or define ('MP_CONTENT_DIR',	MP_ABSPATH . MP_CONTENT_FOLDER . '/');
 
 /** Relative path to the MailPress 'mp-content' folder. */
-defined('MP_PATH_CONTENT')	or define ('MP_PATH_CONTENT', 	MP_PATH    . MP_CONTENT_FOLDER . '/');
+defined('MP_PATH_CONTENT') 	or define ('MP_PATH_CONTENT',	MP_PATH . MP_CONTENT_FOLDER . '/');
 
 if ( defined('WP_DEBUG') && WP_DEBUG && !defined('MP_DEBUG_LOG') ) 
 	define('MP_DEBUG_LOG', true);

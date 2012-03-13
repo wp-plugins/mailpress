@@ -42,9 +42,6 @@ class MailPress_newsletter
 		add_filter('MailPress_mailinglists', 			array(__CLASS__, 'mailinglists'), 50, 1);
 		add_filter('MailPress_query_mailinglist', 		array(__CLASS__, 'query_mailinglist'), 50, 2);
 
-// for form
-		//add_action('MailPress_load_Form_field_types',	array(__CLASS__, 'load_Form_field_types'));
-
 // for sync wordpress user
 		add_filter('MailPress_has_subscriptions', array(__CLASS__, 'has_subscriptions'), 8, 2);
 		add_action('MailPress_sync_subscriptions',array(__CLASS__, 'sync_subscriptions'), 8, 2);	
@@ -310,14 +307,6 @@ class MailPress_newsletter
 		$new = MP_Newsletter::get_object_terms($newid);
 
 		MP_Newsletter::set_object_terms($newid, array_merge($old, $new));
-	}
-
-
-// Forms
-
-	public static function load_Form_field_types()
-	{
-		new MP_Form_field_types_newsletter();
 	}
 
 ////  ADMIN  ////
