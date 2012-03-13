@@ -21,14 +21,19 @@
 		<pattern><![CDATA[#(Microsoft Outlook) ([0-9]+)#i]]></pattern>
 		<versions pattern="0">
 			<id>
+				<name><![CDATA[2010]]></name>
+				<pattern><![CDATA[/14/i]]></pattern>
+				<icon><![CDATA[outlook-2010.png]]></icon>
+			</id>
+			<id>
 				<name><![CDATA[2007]]></name>
 				<pattern><![CDATA[/12/i]]></pattern>
 				<icon><![CDATA[outlook-2007.png]]></icon>
 			</id>
 			<id>
-				<name><![CDATA[2010]]></name>
-				<pattern><![CDATA[/14/i]]></pattern>
-				<icon><![CDATA[outlook-2010.png]]></icon>
+				<name><![CDATA[2000]]></name>
+				<pattern><![CDATA[//i]]></pattern>
+				<icon><![CDATA[outlook-2000.png]]></icon>
 			</id>
 		</versions>
 	 </browser>
