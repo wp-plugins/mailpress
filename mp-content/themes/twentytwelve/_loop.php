@@ -37,7 +37,7 @@ if ( $categories_list = get_the_category_list( __( ', ', 'twentytwelve' ) ) )
 if ( $tags_list = get_the_tag_list( '', ', ' ) )
 {
 	if ( $show_sep ) echo ' '; 
-	printf( '<span><span style="font-size:12px;color:#777;font-style:italic;">Tagged</span> %2$s</span>', $tags_list );
+	printf( '<span><span style="font-size:12px;color:#777;font-style:italic;">Tagged</span> %1$s</span>', $tags_list );
 	$show_sep = true;
 }
 // End tags

@@ -176,7 +176,7 @@
 		<link><![CDATA[http://www.android.com/]]></link>
 		<icon><![CDATA[android.png]]></icon>
 		<pattern><![CDATA[/Android ([0-9\.\-]+)/si]]></pattern>
-		<versions pattern="0">
+		<versions pattern="1">
 			<id>
 				<name><![CDATA[Cupcake (1.5)]]></name>
 				<pattern><![CDATA[/1.5/i]]></pattern>

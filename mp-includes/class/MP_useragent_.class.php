@@ -18,9 +18,11 @@ abstract class MP_useragent_
 
 		foreach ($this->xml as $i)
 		{
+			unset($icon);
 			$count++;
-			if (!@preg_match($i->pattern, $useragent, $matches)) continue;
 
+			if (!@preg_match($i->pattern, $useragent, $matches)) continue;
+			$icon = $i->icon;
 			if (!isset($i->versions)) break;
 
 			foreach($i->versions as $attrs) $vp = (int) $attrs['pattern'];
@@ -33,7 +35,7 @@ abstract class MP_useragent_
 						if (@preg_match($ver->pattern, $matches[$vp]))
 						{
 							$version = (string) $ver->name;
-							if (isset($ver->icon)) $i->icon = (string) $ver->icon;
+							if (isset($ver->icon)) $icon = (string) $ver->icon;
 							break;
 						}
 					}
@@ -53,7 +55,7 @@ abstract class MP_useragent_
 		if (isset($i->name)) { $ug->name = (string) $i->name; }
 		if (isset($version)) { $ug->version = (string) $version; }
 		if (isset($i->link)) { $ug->link = (string) $i->link; }
-		if (isset($i->icon)) { $ug->icon = (string) $i->icon; $ug->icon_path = "{$this->img_path}/{$ug->icon}"; }
+		if (isset($icon))    { $ug->icon = (string) $icon; $ug->icon_path = "{$this->img_path}/{$ug->icon}"; }
 
 		$ug->full_name = ($ug->version) ? "{$ug->name} {$ug->version}" : $ug->name;
 		$ug->count = $count;

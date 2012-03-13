@@ -7,7 +7,7 @@ class MP_Tracking_module_m005 extends MP_tracking_module_
 
 	function __construct($title)
 	{
-		new MP_Useragent_agents();
+		if (!class_exists('MP_Useragent_agents', false)) new MP_Useragent_agents();
 		parent::__construct($title);
 	}
 
