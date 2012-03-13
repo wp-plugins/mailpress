@@ -4,8 +4,8 @@ abstract class MP_useragent_
 	function __construct() 
 	{
 		$this->img_path = site_url() . '/' . MP_PATH . "mp-admin/images/{$this->id}";
-		$this->xml = new SimpleXMLElement(file_get_contents(MP_ABSPATH . "mp-admin/xml/{$this->id}s.xml"));
-		$this->xml = $this->xml->{$this->id};
+		$xml = new SimpleXMLElement(file_get_contents(MP_ABSPATH . "mp-admin/xml/{$this->id}s.xml"));
+		$this->xml = $xml->{$this->id};
 
 		add_filter('MailPress_useragent_' . $this->id . '_get',		array(&$this, 'get'), 	8, 1);
 		add_filter('MailPress_useragent_' . $this->id . '_get_info',	array(&$this, 'get_info'),	8, 1);

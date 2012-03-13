@@ -4,7 +4,7 @@
 		<name><![CDATA[Windows]]></name>
 		<link><![CDATA[http://www.microsoft.com/windows/]]></link>
 		<icon><![CDATA[win.png]]></icon>
-		<pattern><![CDATA[#(Windows|Win) ([a-zA-Z0-9.\ ]+)#i]]></pattern>
+		<pattern><![CDATA[#(Windows|Win) ([a-zA-Z0-9.\ \;\:]+)#i]]></pattern>
 		<versions pattern="0">
 			<id>
 				<name><![CDATA[7 x64 Edition]]></name>
@@ -13,7 +13,7 @@
 			</id>
 			<id>
 				<name><![CDATA[7 x64 Edition]]></name>
-				<pattern><![CDATA[/NT 6.1\; WOW64\;/i]]></pattern>
+				<pattern><![CDATA[/NT 6.1; WOW64/i]]></pattern>
 				<icon><![CDATA[win-4.png]]></icon>
 			</id>
 			<id>
@@ -181,7 +181,7 @@
 		<link><![CDATA[http://www.centos.org/]]></link>
 		<icon><![CDATA[centos.png]]></icon>
 		<pattern><![CDATA[/CentOs/]]></pattern>
-		<versions pattern="1"><![CDATA[#\.el([.0-9a-zA-Z]+).centos#i]]></versions>
+		<versions pattern="1"><![CDATA[#\.el([a-zA-Z0-9.]+).centos#i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[Chakra]]></name>
@@ -212,14 +212,14 @@
 		<link><![CDATA[http://edubuntu.org]]></link>
 		<icon><![CDATA[edubuntu.png]]></icon>
 		<pattern><![CDATA[/Edubuntu/i]]></pattern>
-		<versions pattern="1"><![CDATA[#Edubuntu/([.0-9a-zA-Z]+)#i]]></versions>
+		<versions pattern="1"><![CDATA[#Edubuntu/([a-zA-Z0-9.]+)#i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[Fedora]]></name>
 		<link><![CDATA[http://www.fedoraproject.org/]]></link>
 		<icon><![CDATA[fedora.png]]></icon>
 		<pattern><![CDATA[/Fedora/i]]></pattern>
-		<versions pattern="1"><![CDATA[#\.fc([.0-9a-zA-Z]+)#i]]></versions>
+		<versions pattern="1"><![CDATA[#\.fc([a-zA-Z0-9.]+)#i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[FreeBSD]]></name>
@@ -257,7 +257,7 @@
 		<link><![CDATA[http://kubuntu.org]]></link>
 		<icon><![CDATA[kubuntu.png]]></icon>
 		<pattern><![CDATA[/Kubuntu/i]]></pattern>
-		<versions pattern="1"><![CDATA[#Kubuntu/([.0-9a-zA-Z]+)#i]]></versions>
+		<versions pattern="1"><![CDATA[#Kubuntu/([a-zA-Z0-9.]+)#i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[LG]]></name>
@@ -282,21 +282,21 @@
 		<link><![CDATA[http://www.linuxmint.com/]]></link>
 		<icon><![CDATA[mint.png]]></icon>
 		<pattern><![CDATA[/Linux\ Mint/i]]></pattern>
-		<versions pattern="1"><![CDATA[#Linux\ Mint/([.0-9a-zA-Z]+)#i]]></versions>
+		<versions pattern="1"><![CDATA[#Linux\ Mint/([a-zA-Z0-9.]+)#i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[Lubuntu]]></name>
 		<link><![CDATA[http://lubuntu.net]]></link>
 		<icon><![CDATA[lubuntu.png]]></icon>
 		<pattern><![CDATA[/Lubuntu/i]]></pattern>
-		<versions pattern="1"><![CDATA[#Lubuntu/([.0-9a-zA-Z]+)#i]]></versions>
+		<versions pattern="1"><![CDATA[#Lubuntu/([a-zA-Z0-9.]+)#i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[Mandriva]]></name>
 		<link><![CDATA[http://www.mandriva.com/]]></link>
 		<icon><![CDATA[mandriva.png]]></icon>
 		<pattern><![CDATA[/Mandriva/i]]></pattern>
-		<versions pattern="1"><![CDATA[/mdv([.0-9a-zA-Z]+)/i]]></versions>
+		<versions pattern="1"><![CDATA[/mdv([a-zA-Z0-9.]+)/i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[Motorola]]></name>
@@ -339,7 +339,7 @@
 		<link><![CDATA[http://www.nova.cu]]></link>
 		<icon><![CDATA[nova.png]]></icon>
 		<pattern><![CDATA[#Nova/#i]]></pattern>
-		<versions pattern="1"><![CDATA[#Nova[\/|\ ]([.0-9a-zA-Z]+)#i]]></versions>
+		<versions pattern="1"><![CDATA[#Nova[\/|\ ]([a-zA-Z0-9.]+)#i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[OLPC (XO)]]></name>
@@ -414,7 +414,7 @@
 		<link><![CDATA[http://www.symbianos.org/]]></link>
 		<icon><![CDATA[symbianos.png]]></icon>
 		<pattern><![CDATA[/SymbianOS/i]]></pattern>
-		<versions pattern="1"><![CDATA[#SymbianOS/([.0-9a-zA-Z]+)#i]]></versions>
+		<versions pattern="1"><![CDATA[#SymbianOS/([a-zA-Z0-9.]+)#i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[VectorLinux]]></name>
@@ -433,7 +433,7 @@
 		<link><![CDATA[http://en.wikipedia.org/wiki/WebOS]]></link>
 		<icon><![CDATA[palm.png]]></icon>
 		<pattern><![CDATA[/webOS/i]]></pattern>
-		<versions pattern="1"><![CDATA[#webOS/([.0-9a-zA-Z]+)#i]]></versions>
+		<versions pattern="1"><![CDATA[#webOS/([a-zA-Z0-9.]+)#i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[Xandros]]></name>
@@ -446,7 +446,7 @@
 		<link><![CDATA[http://xubuntu.org]]></link>
 		<icon><![CDATA[xubuntu.png]]></icon>
 		<pattern><![CDATA[/Xubuntu/i]]></pattern>
-		<versions pattern="1"><![CDATA[#Xubuntu/([.0-9a-zA-Z]+)#i]]></versions>
+		<versions pattern="1"><![CDATA[#Xubuntu/([a-zA-Z0-9.]+)#i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[Zenwalk GNU Linux]]></name>
@@ -458,7 +458,7 @@
 		<name><![CDATA[Ubuntu]]></name>
 		<link><![CDATA[http://ubuntu.org]]></link>
 		<icon><![CDATA[ubuntu.png]]></icon>
-		<pattern><![CDATA[#Ubuntu/([.0-9a-zA-Z]+)#i]]></pattern>
+		<pattern><![CDATA[#Ubuntu/([a-zA-Z0-9.]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </os>
 	 <os>
