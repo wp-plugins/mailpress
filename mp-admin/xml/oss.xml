@@ -109,6 +109,9 @@
 		</versions>
 	 </os>
 	 <os>
+		<pattern><![CDATA[/OutlookConnector/i]]></pattern>
+	 </os>
+	 <os>
 		<name><![CDATA[iPod]]></name>
 		<link><![CDATA[http://www.apple.com/itunes]]></link>
 		<icon><![CDATA[iphone.png]]></icon>
@@ -170,6 +173,12 @@
 				<icon><![CDATA[mac-1.png]]></icon>
 			</id>
 		</versions>
+	 </os>
+	 <os>
+		<name><![CDATA[Mac OS]]></name>
+		<link><![CDATA[http://en.wikipedia.org/wiki/Mac_OS]]></link>
+		<icon><![CDATA[mac-1.png]]></icon>
+		<pattern><![CDATA[#(Mac_PPC|Mac_PowerPC)#i]]></pattern>
 	 </os>
 	 <os>
 		<name><![CDATA[Android]]></name>
@@ -566,7 +575,8 @@
 
 	 </os>
 	 <os>
-		<name><![CDATA[Unknown]]></name>
+		<name><![CDATA[?]]></name>
+		<icon><![CDATA[unknown.png]]></icon>
 		<pattern><![CDATA[//i]]></pattern>
 	 </os>
 </oss>

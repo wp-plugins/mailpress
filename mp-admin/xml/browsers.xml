@@ -43,9 +43,68 @@
 		<icon><![CDATA[windows_live_mail.png]]></icon>
 		<pattern><![CDATA[#Outlook-Express#i]]></pattern>
 	 </browser>
+	 <browser>
+		<name><![CDATA[Microsoft Outlook 2007]]></name>
+		<link><![CDATA[http://www.microsoft.com]]></link>
+		<icon><![CDATA[outlook-2007.png]]></icon>
+		<pattern><![CDATA[#OutlookConnector#i]]></pattern>
+	 </browser>
     	 <browser>
 		<name><![CDATA[Internet Explorer]]></name>
-		<link><![CDATA[http://www.microsoft.com/windows/products/winfamily/ie/default.mspx]]></link>
+		<link><![CDATA[http://www.microsoft.com]]></link>
+		<icon><![CDATA[ie.png]]></icon>
+		<pattern><![CDATA[#MSIE ([0-9]+)#i]]></pattern>
+		<versions pattern="1">
+			<id>
+				<name><![CDATA[]]></name>
+				<pattern><![CDATA[/1/i]]></pattern>
+				<icon><![CDATA[msie1.png]]></icon>
+			</id>
+			<id>
+				<name><![CDATA[2]]></name>
+				<pattern><![CDATA[/2/i]]></pattern>
+				<icon><![CDATA[msie2.png]]></icon>
+			</id>
+			<id>
+				<name><![CDATA[3]]></name>
+				<pattern><![CDATA[/3/i]]></pattern>
+				<icon><![CDATA[msie3.png]]></icon>
+			</id>
+			<id>
+				<name><![CDATA[4]]></name>
+				<pattern><![CDATA[/4/i]]></pattern>
+				<icon><![CDATA[msie4.png]]></icon>
+			</id>
+			<id>
+				<name><![CDATA[5]]></name>
+				<pattern><![CDATA[/5/i]]></pattern>
+				<icon><![CDATA[msie4.png]]></icon>
+			</id>
+			<id>
+				<name><![CDATA[6]]></name>
+				<pattern><![CDATA[/6/i]]></pattern>
+				<icon><![CDATA[msie6.png]]></icon>
+			</id>
+			<id>
+				<name><![CDATA[7]]></name>
+				<pattern><![CDATA[/7/i]]></pattern>
+				<icon><![CDATA[msie7.png]]></icon>
+			</id>
+			<id>
+				<name><![CDATA[8]]></name>
+				<pattern><![CDATA[/8/i]]></pattern>
+				<icon><![CDATA[msie7.png]]></icon>
+			</id>
+			<id>
+				<name><![CDATA[9]]></name>
+				<pattern><![CDATA[/9/i]]></pattern>
+				<icon><![CDATA[msie9.png]]></icon>
+			</id>
+		</versions>
+	 </browser>
+    	 <browser>
+		<name><![CDATA[Internet Explorer]]></name>
+		<link><![CDATA[http://www.microsoft.com]]></link>
 		<icon><![CDATA[ie.png]]></icon>
 		<pattern><![CDATA[/MSIE/]]></pattern>
 		<versions pattern="1"><![CDATA[/MSIE ([0-9.]+)/i]]></versions>
@@ -1483,7 +1542,8 @@
 		<versions pattern="1"><![CDATA[/rv:([a-zA-Z0-9.]+)/i]]></versions>
 	 </browser>
 	 <browser>
-		<name><![CDATA[Unknown]]></name>
+		<name><![CDATA[?]]></name>
+		<icon><![CDATA[unknown.png]]></icon>
 		<pattern><![CDATA[//i]]></pattern>
 	 </browser>
 </browsers>

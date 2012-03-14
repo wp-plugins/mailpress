@@ -22,7 +22,7 @@ abstract class MP_useragent_
 			$count++;
 
 			if (!@preg_match($i->pattern, $useragent, $matches)) continue;
-			$icon = $i->icon;
+			if (isset($i->icon)) $icon = $i->icon;
 			if (!isset($i->versions)) break;
 
 			foreach($i->versions as $attrs) $vp = (int) $attrs['pattern'];
