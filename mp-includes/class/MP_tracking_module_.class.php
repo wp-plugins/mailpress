@@ -16,6 +16,7 @@ abstract class MP_tracking_module_
 
 		$modules[$this->id]['title'] = $this->title;
 		if (isset($this->parms)) $modules[$this->id]['parms'] = $this->parms;
+		ksort($modules);
 		return $modules;
 	}
 

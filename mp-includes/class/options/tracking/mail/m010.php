@@ -72,4 +72,4 @@ class MP_Tracking_module_m010 extends MP_tracking_module_
 		}
 	}
 }
-new MP_Tracking_module_m010(__('System info bis', MP_TXTDOM));
+new MP_Tracking_module_m010(__('System info II', MP_TXTDOM));

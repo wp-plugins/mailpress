@@ -75,21 +75,26 @@ MailPress themes and templates do not need to be changed if customized in a prev
 == Changelog ==
 
 ** 5.3-alpha ** xx/xx/2012
+
 * Switmailer 4.1.5
+
 * bug fix : subscription form now working when javascript or ajax not activated
-* code review : use of checked() function
-* Useragent : code review
-* IP geolocation provider
-   - new : quova.com (required : 2 constants MP_Ip_quova_ApiKey & MP_Ip_quova_Secret)
+
+* Code Reviews
+   - use of checked() function
+   - new ip geolocation provider: quova.com (required : 2 constants MP_Ip_quova_ApiKey & MP_Ip_quova_Secret)
+   - useragent search engine, datas and icons
+
 * Add-Ons
    - MailPress_comment : now subscription to comments can be checked by default (see settings)
-   - MailPress_tracking : new modules for mail & user (System info bis)
+   - MailPress_tracking : new modules for mail & user (System info II)
    - !!NEW!! MailPress_comment_newsletter_subscription : Subscribe to a default newsletter from comment form
-   - !!NEW!! MailPress_mailinglist_country_code : New Mail > add mailing lists based on country code (beware ! IP geolocation search is not 100% accurate)
-   - !!NEW!! MailPress_mailinglist_US_state :     New Mail > add mailing lists based on US State (beware ! IP geolocation search is not 100% accurate)
+   - !!NEW!! MailPress_mailinglist_country_code : New Mail > add mailing lists based on country code  (beware ! IP geolocation search is not 100% accurate)
+   - !!NEW!! MailPress_mailinglist_US_state :     New Mail > add mailing lists based on US State      (beware ! IP geolocation search is not 100% accurate)
    - !!NEW!! MailPress_mailinglist_user_role :    New Mail > add mailing lists based on wp user roles (beware ! Sync_wordpress_user add-on STRONGLY required)
    - !!NEW!! MailPress_wp_fromemail :             New Mail > FROM email & name replaced by current user wp values
-   - !!NEW!! MailPress_write_edit_fromemail :     New Mail > make FROM email and name editable (info ! use Roles_and_capabilities add-on for fine tuning new capability 'MailPress_write_edit_fromemail')
+   - !!NEW!! MailPress_write_edit_fromemail :     New Mail > make FROM email and name editable        (info ! use Roles_and_capabilities add-on for fine tuning new capability 'MailPress_write_edit_fromemail')
+
 * Custom Post Types
    - preparing dedicated "newsletters for custom post type" integration ...
 
