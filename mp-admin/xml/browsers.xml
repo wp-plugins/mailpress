@@ -249,13 +249,6 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
-		<name><![CDATA[BlackBerry]]></name>
-		<link><![CDATA[http://www.blackberry.com/]]></link>
-		<icon><![CDATA[blackberry.png]]></icon>
-		<pattern><![CDATA[#BlackBerry([a-zA-Z0-9.]+)#i]]></pattern>
-		<versions pattern="1"></versions>
-	 </browser>
-	 <browser>
 		<name><![CDATA[Blackbird]]></name>
 		<link><![CDATA[http://www.blackbirdbrowser.com/]]></link>
 		<icon><![CDATA[blackbird.png]]></icon>
@@ -895,9 +888,6 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
-		<pattern><![CDATA[#\ MIB/#i]]></pattern><!-- Motorola -->
-	 </browser>
-	 <browser>
 		<name><![CDATA[Midori]]></name>
 		<link><![CDATA[http://www.twotoasts.de/index.php?/pages/midori_summary.html]]></link>
 		<icon><![CDATA[midori.png]]></icon>
@@ -924,6 +914,12 @@
 		<icon><![CDATA[minimo.png]]></icon>
 		<pattern><![CDATA[#Minimo/([a-zA-Z0-9.]+)#i]]></pattern>
 		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Moozilla]]></name>
+		<link><![CDATA[http://www.moo.ca/moozilla/]]></link>
+		<icon><![CDATA[moozilla.png]]></icon>
+		<pattern><![CDATA[#^Moozilla#i]]></pattern>
 	 </browser>
 	 <browser>
 		<name><![CDATA[Mosaic]]></name>
@@ -1542,8 +1538,13 @@
 		<versions pattern="1"><![CDATA[/rv:([a-zA-Z0-9.]+)/i]]></versions>
 	 </browser>
 	 <browser>
-		<name><![CDATA[?]]></name>
-		<icon><![CDATA[unknown.png]]></icon>
+		<name><![CDATA[BlackBerry]]></name>
+		<link><![CDATA[http://www.blackberry.com/]]></link>
+		<icon><![CDATA[blackberry.png]]></icon>
+		<pattern><![CDATA[#BlackBerry([a-zA-Z0-9. ]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<pattern><![CDATA[//i]]></pattern>
 	 </browser>
 </browsers>

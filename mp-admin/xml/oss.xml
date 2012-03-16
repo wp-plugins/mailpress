@@ -109,9 +109,6 @@
 		</versions>
 	 </os>
 	 <os>
-		<pattern><![CDATA[/OutlookConnector/i]]></pattern>
-	 </os>
-	 <os>
 		<name><![CDATA[iPod]]></name>
 		<link><![CDATA[http://www.apple.com/itunes]]></link>
 		<icon><![CDATA[iphone.png]]></icon>
@@ -235,9 +232,6 @@
 		<pattern><![CDATA[/Arch/]]></pattern>
 	 </os>
 	 <os>
-		<pattern><![CDATA[/Barca/]]></pattern>
-	 </os>
-	 <os>
 		<name><![CDATA[Bada]]></name>
 		<link><![CDATA[http://www.bada.com/]]></link>
 		<icon><![CDATA[bada.png]]></icon>
@@ -250,7 +244,11 @@
 		<pattern><![CDATA[/BeOS/]]></pattern>
 	 </os>
 	 <os>
-		<pattern><![CDATA[/BlackBerry/i]]></pattern>
+		<name><![CDATA[BlackBerry]]></name>
+		<link><![CDATA[http://www.blackberry.com/]]></link>
+		<icon><![CDATA[blackberry.png]]></icon>
+		<pattern><![CDATA[#BlackBerry([a-zA-Z0-9. ]+)#i]]></pattern>
+		<versions pattern="1"></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[CentOs]]></name>
@@ -393,7 +391,7 @@
 		<versions pattern="1"><![CDATA[/mdv([a-zA-Z0-9.]+)/i]]></versions>
 	 </os>
 	 <os>
-		<name><![CDATA[MINIX 3 ]]></name>
+		<name><![CDATA[MINIX 3]]></name>
 		<link><![CDATA[http://www.minix3.org/]]></link>
 		<icon><![CDATA[minix.png]]></icon>
 		<pattern><![CDATA[/Minix 3/si]]></pattern>
@@ -575,8 +573,6 @@
 
 	 </os>
 	 <os>
-		<name><![CDATA[?]]></name>
-		<icon><![CDATA[unknown.png]]></icon>
 		<pattern><![CDATA[//i]]></pattern>
 	 </os>
 </oss>
