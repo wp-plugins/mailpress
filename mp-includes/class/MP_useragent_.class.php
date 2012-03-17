@@ -1,14 +1,23 @@
 <?php
 abstract class MP_useragent_
 {
-	function __construct() 
+	function __construct($title)
 	{
+		$this->title = $title;
 		$this->img_path = site_url() . '/' . MP_PATH . "mp-admin/images/{$this->id}";
+    
 		$xml = new SimpleXMLElement(file_get_contents(MP_ABSPATH . "mp-admin/xml/{$this->id}s.xml"));
 		$this->xml = $xml->{$this->id};
 
+		add_filter('MailPress_useragent_agents_register', 			array(&$this, 'register'), 8, 1);
 		add_filter('MailPress_useragent_' . $this->id . '_get',		array(&$this, 'get'), 	8, 1);
 		add_filter('MailPress_useragent_' . $this->id . '_get_info',	array(&$this, 'get_info'),	8, 1);
+	}
+
+	function register($agents)
+	{
+		$agents[$this->id] = $this->title;
+		return $agents;
 	}
 
 	function get($useragent)

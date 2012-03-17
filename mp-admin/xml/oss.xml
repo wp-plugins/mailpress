@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <oss>
 	 <os>
 		<name><![CDATA[Windows]]></name>
@@ -109,25 +109,25 @@
 		</versions>
 	 </os>
 	 <os>
-		<name><![CDATA[iPod]]></name>
-		<link><![CDATA[http://www.apple.com/itunes]]></link>
-		<icon><![CDATA[iphone.png]]></icon>
+		<name><![CDATA[iOS]]></name>
+		<link><![CDATA[http://www.apple.com/]]></link>
+		<icon><![CDATA[ios.png]]></icon>
 		<pattern><![CDATA[/iPod/i]]></pattern>
-		<versions pattern="1"><![CDATA[#iPhone\ OS\ ([.\_0-9a-zA-Z]+)#i]]></versions>
+		<versions pattern="1"><![CDATA[#iPhone\ OS\ ([._0-9a-zA-Z]+)#i]]></versions>
 	 </os>
 	 <os>
-		<name><![CDATA[iPhone]]></name>
-		<link><![CDATA[http://www.apple.com/iphone]]></link>
-		<icon><![CDATA[iphone.png]]></icon>
+		<name><![CDATA[iOS]]></name>
+		<link><![CDATA[http://www.apple.com/]]></link>
+		<icon><![CDATA[ios.png]]></icon>
 		<pattern><![CDATA[/iPhone/i]]></pattern>
-		<versions pattern="1"><![CDATA[#iPhone\ OS\ ([.\_0-9a-zA-Z]+)#i]]></versions>
+		<versions pattern="1"><![CDATA[#iPhone\ OS\ ([._0-9a-zA-Z]+)#i]]></versions>
 	 </os>
 	 <os>
-		<name><![CDATA[iPad]]></name>
+		<name><![CDATA[iOS]]></name>
 		<link><![CDATA[http://www.apple.com/ipad]]></link>
-		<icon><![CDATA[ipad.png]]></icon>
+		<icon><![CDATA[ios.png]]></icon>
 		<pattern><![CDATA[/iPad/i]]></pattern>
-		<versions pattern="1"><![CDATA[#iPad\ OS\ ([.\_0-9a-zA-Z]+)#i]]></versions>
+		<versions pattern="1"><![CDATA[#CPU\ OS\ ([._0-9a-zA-Z]+)#i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[Mac OS X]]></name>
@@ -174,7 +174,7 @@
 	 <os>
 		<name><![CDATA[Mac OS]]></name>
 		<link><![CDATA[http://en.wikipedia.org/wiki/Mac_OS]]></link>
-		<icon><![CDATA[mac-1.png]]></icon>
+		<icon><![CDATA[mac.png]]></icon>
 		<pattern><![CDATA[#(Mac_PPC|Mac_PowerPC)#i]]></pattern>
 	 </os>
 	 <os>
@@ -224,6 +224,12 @@
 				<icon><![CDATA[android-ics.png]]></icon>
 			</id>
 		</versions>
+	 </os>
+	 <os>
+		<name><![CDATA[Amiga OS]]></name>
+		<link><![CDATA[http://www.amigaos.net/]]></link>
+		<icon><![CDATA[amigaos.png]]></icon>
+		<pattern><![CDATA[/amiga/si]]></pattern>
 	 </os>
 	 <os>
 		<name><![CDATA[ArchLinux]]></name>
@@ -292,7 +298,7 @@
 		<link><![CDATA[http://edubuntu.org]]></link>
 		<icon><![CDATA[edubuntu.png]]></icon>
 		<pattern><![CDATA[/Edubuntu/i]]></pattern>
-		<versions pattern="1"><![CDATA[#Edubuntu/([a-zA-Z0-9.]+)#i]]></versions>
+		<versions pattern="1"><![CDATA[#Edubuntu[\/|\ ]([.0-9a-zA-Z]+)#i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[Fedora]]></name>
@@ -300,6 +306,13 @@
 		<icon><![CDATA[fedora.png]]></icon>
 		<pattern><![CDATA[/Fedora/i]]></pattern>
 		<versions pattern="1"><![CDATA[#\.fc([a-zA-Z0-9.]+)#i]]></versions>
+	 </os>
+	 <os>
+		<name><![CDATA[Foresight]]></name>
+		<link><![CDATA[http://www.foresightlinux.org/]]></link>
+		<icon><![CDATA[foresight.png]]></icon>
+		<pattern><![CDATA[/Foresight/i]]></pattern>
+		<versions pattern="1"><![CDATA[#Foresight\ Linux\/([.0-9a-zA-Z]+)#i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[FreeBSD]]></name>
@@ -312,6 +325,12 @@
 		<link><![CDATA[http://www.haiku-os.org/]]></link>
 		<icon><![CDATA[haiku.png]]></icon>
 		<pattern><![CDATA[/BeOS.*Haiku BePC/si]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[Inferno]]></name>
+		<link><![CDATA[http://www.vitanuova.com/inferno/]]></link>
+		<icon><![CDATA[inferno.png]]></icon>
+		<pattern><![CDATA[/Inferno/i]]></pattern>
 	 </os>
 	 <os>
 		<name><![CDATA[Gentoo]]></name>
@@ -397,16 +416,81 @@
 		<pattern><![CDATA[/Minix 3/si]]></pattern>
 	 </os>
 	 <os>
+		<name><![CDATA[moonOS]]></name>
+		<link><![CDATA[http://www.moonos.org/]]></link>
+		<icon><![CDATA[moonos.png]]></icon>
+		<pattern><![CDATA[/moonOS/i]]></pattern>
+		<versions pattern="1"><![CDATA[/moonOS\/([.0-9a-zA-Z]+)/i]]></versions>
+	 </os>
+	 <os>
+		<name><![CDATA[MorphOS]]></name>
+		<link><![CDATA[http://www.morphos-team.net/]]></link>
+		<icon><![CDATA[morphos.png]]></icon>
+		<pattern><![CDATA[/MorphOS/si]]></pattern>
+	 </os>
+ 	 <os>
+		<name><![CDATA[Motorola]]></name>
+		<link><![CDATA[http://www.motorola.com/]]></link>
+		<icon><![CDATA[motorola.png]]></icon>
+		<pattern><![CDATA[/\ Droid/i]]></pattern>
+		<versions pattern="0">
+			<id>
+				<name><![CDATA[Droid]]></name>
+				<pattern><![CDATA[//i]]></pattern>
+			</id>
+		</versions>
+	 </os>
+ 	 <os>
+		<name><![CDATA[Motorola]]></name>
+		<link><![CDATA[http://www.motorola.com/]]></link>
+		<icon><![CDATA[motorola.png]]></icon>
+		<pattern><![CDATA[/XT720/i]]></pattern>
+		<versions pattern="0">
+			<id>
+				<name><![CDATA[Motoroi (XT720)]]></name>
+				<pattern><![CDATA[//i]]></pattern>
+			</id>
+		</versions>
+	 </os>
+ 	 <os>
 		<name><![CDATA[Motorola]]></name>
 		<link><![CDATA[http://www.motorola.com/]]></link>
 		<icon><![CDATA[motorola.png]]></icon>
 		<pattern><![CDATA[/MOT\-/i]]></pattern>
+		<versions pattern="0">
+			<id>
+				<pattern><![CDATA[/MOTO([.0-9a-zA-Z]+)/i]]></pattern>
+			</id>
+			<id>
+				<pattern><![CDATA[/MOT-([.0-9a-zA-Z]+)/i]]></pattern>
+			</id>
+		</versions>
 	 </os>
-	 <os>
+ 	 <os>
 		<name><![CDATA[Motorola]]></name>
 		<link><![CDATA[http://www.motorola.com/]]></link>
 		<icon><![CDATA[motorola.png]]></icon>
 		<pattern><![CDATA[/MIB/i]]></pattern>
+		<versions pattern="0">
+			<id>
+				<pattern><![CDATA[/MOTO([.0-9a-zA-Z]+)/i]]></pattern>
+			</id>
+			<id>
+				<pattern><![CDATA[/MOT-([.0-9a-zA-Z]+)/i]]></pattern>
+			</id>
+		</versions>
+	 </os>
+ 	 <os>
+		<name><![CDATA[Motorola]]></name>
+		<link><![CDATA[http://www.motorola.com/]]></link>
+		<icon><![CDATA[motorola.png]]></icon>
+		<pattern><![CDATA[/XOOM/i]]></pattern>
+		<versions pattern="0">
+			<id>
+				<name><![CDATA[Xoom]]></name>
+				<pattern><![CDATA[//i]]></pattern>
+			</id>
+		</versions>
 	 </os>
 	 <os>
 		<name><![CDATA[NetBSD]]></name>
@@ -415,22 +499,43 @@
 		<pattern><![CDATA[/NetBSD/i]]></pattern>
 	 </os>
 	 <os>
-		<name><![CDATA[Nintendo DSi]]></name>
-		<link><![CDATA[http://www.nintendodsi.com/]]></link>
-		<icon><![CDATA[nintendodsi.png]]></icon>
-		<pattern><![CDATA[/Nintendo DSi/i]]></pattern>
-	 </os>
-	 <os>
-		<name><![CDATA[Nintendo Wii]]></name>
-		<link><![CDATA[http://www.nintendo.com/wii]]></link>
-		<icon><![CDATA[nintendowii.png]]></icon>
-		<pattern><![CDATA[/Nintendo Wii/i]]></pattern>
+		<name><![CDATA[Nintendo]]></name>
+		<link><![CDATA[http://www.motorola.com/]]></link>
+		<icon><![CDATA[nintendo.png]]></icon>
+		<pattern><![CDATA[/Nintendo/i]]></pattern>
+		<versions pattern="0">
+			<id>
+				<icon><![CDATA[nintendo-dsi.png]]></icon>
+				<pattern><![CDATA[/Nintendo DSi/i]]></pattern>
+			</id>
+			<id>
+				<icon><![CDATA[nintendo-ds.png]]></icon>
+				<pattern><![CDATA[/Nintendo DS/i]]></pattern>
+			</id>
+			<id>
+				<icon><![CDATA[nintendo-wii.png]]></icon>
+				<pattern><![CDATA[/Nintendo Wii/i]]></pattern>
+			</id>
+		</versions>
 	 </os>
 	 <os>
 		<name><![CDATA[Nokia]]></name>
 		<link><![CDATA[http://www.nokia.com/]]></link>
 		<icon><![CDATA[nokia.png]]></icon>
-		<pattern><![CDATA[#Nokia/#i]]></pattern>
+		<pattern><![CDATA[/S(eries)?60/i]]></pattern>
+		<versions pattern="0">
+			<id>
+				<name><![CDATA[Series60]]></name>
+				<pattern><![CDATA[//i]]></pattern>
+			</id>
+		</versions>
+	 </os>
+	 <os>
+		<name><![CDATA[Nokia]]></name>
+		<link><![CDATA[http://www.nokia.com/]]></link>
+		<icon><![CDATA[nokia.png]]></icon>
+		<pattern><![CDATA[/Nokia/i]]></pattern>
+		<versions pattern="1"><![CDATA[/Nokia([EN0-9]+)/i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[Nova]]></name>
@@ -452,16 +557,46 @@
 		<pattern><![CDATA[/OpenBSD/i]]></pattern>
 	 </os>
 	 <os>
+		<name><![CDATA[Oracle]]></name>
+		<link><![CDATA[http://www.oracle.com/us/technologies/linux/]]></link>
+		<icon><![CDATA[oracle.png]]></icon>
+		<pattern><![CDATA[#Oracle/#i]]></pattern>
+		<versions pattern="0">
+			<id>
+				<name><![CDATA[Enterprise Linux]]></name>
+				<pattern><![CDATA[/.el([._0-9a-zA-Z]+)/i]]></pattern>
+			</id>
+			<id>
+				<name><![CDATA[Linux]]></name>
+				<pattern><![CDATA[//i]]></pattern>
+			</id>
+		</versions>
+	 </os>
+	 <os>
+		<name><![CDATA[Palm webOS]]></name>
+		<link><![CDATA[http://en.wikipedia.org/wiki/WebOS]]></link>
+		<icon><![CDATA[palm.png]]></icon>
+		<pattern><![CDATA[/webOS/i]]></pattern>
+		<versions pattern="1"><![CDATA[#webOS/([a-zA-Z0-9.]+)#i]]></versions>
+	 </os>
+	 <os>
+		<name><![CDATA[PCLinuxOS]]></name>
+		<link><![CDATA[http://www.pclinuxos.com/]]></link>
+		<icon><![CDATA[pclinuxos.png]]></icon>
+		<pattern><![CDATA[#PCLinuxOS/#i]]></pattern>
+		<versions pattern="1"><![CDATA[#/PCLinuxOS\/([0-9a-z\.\-]+)#i]]></versions>
+	 </os>
+	 <os>
 		<name><![CDATA[Red Hat]]></name>
 		<link><![CDATA[http://www.redhat.com/]]></link>
-		<icon><![CDATA[mandriva.png]]></icon>
+		<icon><![CDATA[red-hat.png]]></icon>
 		<pattern><![CDATA[/Red\ Hat/i]]></pattern>
 		<versions pattern="1"><![CDATA[#\.el([._0-9a-zA-Z]+)#i]]></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[Red Hat]]></name>
 		<link><![CDATA[http://www.redhat.com/]]></link>
-		<icon><![CDATA[mandriva.png]]></icon>
+		<icon><![CDATA[red-hat.png]]></icon>
 		<pattern><![CDATA[/RedHat/i]]></pattern>
 		<versions pattern="1"><![CDATA[#\.el([._0-9a-zA-Z]+)#i]]></versions>
 	 </os>
@@ -510,9 +645,16 @@
 	 <os>
 		<name><![CDATA[SymbianOS]]></name>
 		<link><![CDATA[http://www.symbianos.org/]]></link>
-		<icon><![CDATA[symbianos.png]]></icon>
+		<icon><![CDATA[symbian.png]]></icon>
 		<pattern><![CDATA[/SymbianOS/i]]></pattern>
 		<versions pattern="1"><![CDATA[#SymbianOS/([a-zA-Z0-9.]+)#i]]></versions>
+	 </os>
+	 <os>
+		<name><![CDATA[Ubuntu]]></name>
+		<link><![CDATA[http://ubuntu.org]]></link>
+		<icon><![CDATA[ubuntu.png]]></icon>
+		<pattern><![CDATA[#Ubuntu/([a-zA-Z0-9.]+)#i]]></pattern>
+		<versions pattern="1"></versions>
 	 </os>
 	 <os>
 		<name><![CDATA[VectorLinux]]></name>
@@ -526,13 +668,7 @@
 		<icon><![CDATA[venenux.png]]></icon>
 		<pattern><![CDATA[/venenux/i]]></pattern>
 	 </os>
-	 <os>
-		<name><![CDATA[Palm webOS]]></name>
-		<link><![CDATA[http://en.wikipedia.org/wiki/WebOS]]></link>
-		<icon><![CDATA[palm.png]]></icon>
-		<pattern><![CDATA[/webOS/i]]></pattern>
-		<versions pattern="1"><![CDATA[#webOS/([a-zA-Z0-9.]+)#i]]></versions>
-	 </os>
+
 	 <os>
 		<name><![CDATA[Xandros]]></name>
 		<link><![CDATA[http://www.xandros.com/]]></link>
@@ -552,13 +688,7 @@
 		<icon><![CDATA[zenwalk.png]]></icon>
 		<pattern><![CDATA[/Zenwalk/i]]></pattern>
 	 </os>
-	 <os>
-		<name><![CDATA[Ubuntu]]></name>
-		<link><![CDATA[http://ubuntu.org]]></link>
-		<icon><![CDATA[ubuntu.png]]></icon>
-		<pattern><![CDATA[#Ubuntu/([a-zA-Z0-9.]+)#i]]></pattern>
-		<versions pattern="1"></versions>
-	 </os>
+
 	 <os>
 		<name><![CDATA[GNU/Linux]]></name>
 		<link><![CDATA[http://www.linux.org/]]></link>
@@ -566,11 +696,22 @@
 		<pattern><![CDATA[/Linux/i]]></pattern>
 	 </os>
 	 <os>
+		<name><![CDATA[Unix]]></name>
+		<link><![CDATA[http://www.unix.org/]]></link>
+		<icon><![CDATA[unix.png]]></icon>
+		<pattern><![CDATA[#Unix#i]]></pattern>
+	 </os>
+	 <os>
+		<name><![CDATA[JVM]]></name>
+		<link><![CDATA[http://en.wikipedia.org/wiki/Jvm]]></link>
+		<icon><![CDATA[java.png]]></icon>
+		<pattern><![CDATA[#java\/[0-9a-z\.]+#si]]></pattern>
+	 </os>
+	 <os>
 		<name><![CDATA[Windows]]></name>
 		<link><![CDATA[http://www.microsoft.com/windows/]]></link>
 		<icon><![CDATA[win.png]]></icon>
 		<pattern><![CDATA[#(Windows|Win)#i]]></pattern>
-
 	 </os>
 	 <os>
 		<pattern><![CDATA[//i]]></pattern>

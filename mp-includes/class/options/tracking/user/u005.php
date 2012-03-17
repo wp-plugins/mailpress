@@ -1,5 +1,5 @@
 <?php
-class MP_Tracking_module_u005 extends MP_tracking_module_sys_info_
+class MP_Tracking_module_u005 extends MP_tracking_module_sysinfo_
 {
 	var $id	= 'u005';
 	var $context= 'side';

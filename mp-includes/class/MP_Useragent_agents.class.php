@@ -3,9 +3,8 @@ class MP_Useragent_agents extends MP_options_
 {
 	var $path = 'useragent/agents';
 
-	function __construct()
+	public static function get_all()
 	{
-		parent::__construct();
-		do_action('MailPress_load_Useragent_agents');
+		return apply_filters('MailPress_useragent_agents_register', array());
 	}
 }

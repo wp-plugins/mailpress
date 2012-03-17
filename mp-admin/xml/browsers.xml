@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <browsers>
 	 <browser>
+		<name><![CDATA[Opera Mini]]></name>
+		<link><![CDATA[http://www.opera.com/mini/]]></link>
+		<icon><![CDATA[opera-mini.png]]></icon>
+		<pattern><![CDATA[/Opera Mini/i]]></pattern>
+		<versions pattern="1"><![CDATA[#Version/([a-zA-Z0-9.]+)#i]]></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Opera]]></name>
+		<link><![CDATA[http://opera.com]]></link>
+		<icon><![CDATA[opera.png]]></icon>
+		<pattern><![CDATA[/Opera/i]]></pattern>
+		<versions pattern="1"><![CDATA[#Version/([a-zA-Z0-9.]+)#i]]></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Google Chrome Frame]]></name>
 		<link><![CDATA[http://code.google.com/chrome/chromeframe/]]></link>
 		<icon><![CDATA[google.png]]></icon>
@@ -52,7 +66,7 @@
     	 <browser>
 		<name><![CDATA[Internet Explorer]]></name>
 		<link><![CDATA[http://www.microsoft.com]]></link>
-		<icon><![CDATA[ie.png]]></icon>
+		<icon><![CDATA[msie.png]]></icon>
 		<pattern><![CDATA[#MSIE ([0-9]+)#i]]></pattern>
 		<versions pattern="1">
 			<id>
@@ -105,7 +119,7 @@
     	 <browser>
 		<name><![CDATA[Internet Explorer]]></name>
 		<link><![CDATA[http://www.microsoft.com]]></link>
-		<icon><![CDATA[ie.png]]></icon>
+		<icon><![CDATA[msie.png]]></icon>
 		<pattern><![CDATA[/MSIE/]]></pattern>
 		<versions pattern="1"><![CDATA[/MSIE ([0-9.]+)/i]]></versions>
 	 </browser>
@@ -129,21 +143,13 @@
 		<icon><![CDATA[firefox.png]]></icon>
 		<pattern><![CDATA[/Firefox/i]]></pattern>
 	 </browser>
-	 <browser>
-		<name><![CDATA[Opera Mini]]></name>
-		<link><![CDATA[http://www.opera.com/mini/]]></link>
-		<icon><![CDATA[opera-2.png]]></icon>
-		<pattern><![CDATA[/Opera Mini/i]]></pattern>
-		<versions pattern="1"><![CDATA[#Version/([a-zA-Z0-9.]+)#i]]></versions>
-	 </browser>
-	 <browser>
-		<name><![CDATA[Opera]]></name>
-		<link><![CDATA[http://opera.com]]></link>
-		<icon><![CDATA[opera-1.png]]></icon>
-		<pattern><![CDATA[/Opera/i]]></pattern>
-		<versions pattern="1"><![CDATA[#Version/([a-zA-Z0-9.]+)#i]]></versions>
-	 </browser>
 
+	 <browser>
+		<name><![CDATA[360Safe Explorer]]></name>
+		<link><![CDATA[http://se.360.cn/]]></link>
+		<icon><![CDATA[360se.png]]></icon>
+		<pattern><![CDATA[/360se/i]]></pattern>
+	 </browser>
 	 <browser>
 		<name><![CDATA[Abolimba]]></name>
 		<link><![CDATA[http://www.aborange.de/products/freeware/abolimba-multibrowser.php]]></link>
@@ -791,13 +797,6 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
-		<name><![CDATA[KMLite]]></name>
-		<link><![CDATA[http://en.wikipedia.org/wiki/K-Meleon]]></link>
-		<icon><![CDATA[kmlite.png]]></icon>
-		<pattern><![CDATA[#KMLite/([a-zA-Z0-9.]+)#i]]></pattern>
-		<versions pattern="1"></versions>
-	 </browser>
-	 <browser>
 		<name><![CDATA[Konqueror]]></name>
 		<link><![CDATA[http://konqueror.kde.org]]></link>
 		<icon><![CDATA[konqueror.png]]></icon>
@@ -1068,6 +1067,12 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[Oregano Web Browser]]></name>
+		<link><![CDATA[http://www.sand-labs.org/owb]]></link>
+		<icon><![CDATA[owb.png]]></icon>
+		<pattern><![CDATA[#Origyn\ Web\ Browser#i]]></pattern>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Orca]]></name>
 		<link><![CDATA[http://www.orcabrowser.com/]]></link>
 		<icon><![CDATA[orca.png]]></icon>
@@ -1093,6 +1098,13 @@
 		<link><![CDATA[http://www.palm.com/us/products/phones/pre/index.html]]></link>
 		<icon><![CDATA[palmpre.png]]></icon>
 		<pattern><![CDATA[#\ Pre/([a-zA-Z0-9.]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Patriott]]></name>
+		<link><![CDATA[http://madgroup.x10.mx/patriott1.php]]></link>
+		<icon><![CDATA[patriott.png]]></icon>
+		<pattern><![CDATA[#Patriott\:\:Browser/([a-zA-Z0-9.]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -1514,6 +1526,13 @@
 		<link><![CDATA[http://www.xsmiles.org/]]></link>
 		<icon><![CDATA[x-smiles.png]]></icon>
 		<pattern><![CDATA[#X-Smiles/([a-zA-Z0-9.]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[ZipZap]]></name>
+		<link><![CDATA[http://www.zipzaphome.com/]]></link>
+		<icon><![CDATA[zipzap.png]]></icon>
+		<pattern><![CDATA[#ZipZap/([a-zA-Z0-9.]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 
