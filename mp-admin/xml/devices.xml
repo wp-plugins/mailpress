@@ -121,19 +121,18 @@
 <!-- LG -->
 	 <device>
 		<name><![CDATA[LG]]></name>
-		<link><![CDATA[http://en.wikipedia.org/wiki/Amazon_Kindle]]></link>
-		<icon><![CDATA[kindle.png]]></icon>
-		<pattern><![CDATA[/Kindle/i]]></pattern>
-		<versions pattern="1"><![CDATA[#Kindle\/([.0-9a-zA-Z]+)#i]]></versions>
+		<link><![CDATA[http://www.lgmobile.com]]></link>
+		<icon><![CDATA[lg.png]]></icon>
+		<pattern><![CDATA[/LG/i]]></pattern>
+		<versions pattern="1"><![CDATA[/LG[E]?[\ |-|\/]([.0-9a-zA-Z]+)/i]]></versions>
 	 </device>
 
 <!-- Google -->
  	 <device>
 		<name><![CDATA[Nexus One]]></name>
-		<link><![CDATA[http://www.lgmobile.com]]></link>
-		<icon><![CDATA[lg.png]]></icon>
-		<pattern><![CDATA[/LG/i]]></pattern>
-		<versions pattern="1"><![CDATA[#LG[E]?[\ |-|\/]([.0-9a-zA-Z]+)#i]]></versions>
+		<link><![CDATA[http://en.wikipedia.org/wiki/Nexus_One]]></link>
+		<icon><![CDATA[google-nexusone.png]]></icon>
+		<pattern><![CDATA[/Nexus One/i]]></pattern>
 	 </device>
 
 <!-- Microsoft -->
@@ -219,7 +218,7 @@
 <!-- Nintendo -->
  	 <device>
 		<name><![CDATA[Nintendo]]></name>
-		<link><![CDATA[http://www.motorola.com/]]></link>
+		<link><![CDATA[http://www.nintendo.com/]]></link>
 		<icon><![CDATA[nintendo.png]]></icon>
 		<pattern><![CDATA[/Nintendo/i]]></pattern>
 		<versions pattern="0">
@@ -340,11 +339,10 @@
 
 <!-- Sony Ericsson -->
  	 <device>
-		<name><![CDATA[Sony Ericsson]]></name>
-		<link><![CDATA[http://en.wikipedia.org/wiki/SonyEricsson]]></link>
-		<icon><![CDATA[samsung.png]]></icon>
+		<name><![CDATA[SonyEricsson]]></name>
+		<link><![CDATA[http://www.SonyEricsson.com/]]></link>
+		<icon><![CDATA[sonyericsson.png]]></icon>
 		<pattern><![CDATA[/SonyEricsson/i]]></pattern>
-		<versions pattern="1"><![CDATA[/SonyEricsson([.0-9a-zA-Z]+)/i]]></versions>
 	 </device>
 
 	 <device>

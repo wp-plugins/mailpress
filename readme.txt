@@ -85,7 +85,7 @@ MailPress themes and templates do not need to be changed if customized in a prev
    - mp themes review + new mp theme TwentyTwelve
    - New Mail > new way to add mailinglists (see 3 new add-ons)
    - new ip geolocation provider : quova.com (required : 2 constants MP_Ip_quova_ApiKey & MP_Ip_quova_Secret)
-   - useragent search engine, datas, icons, tracking modules
+   - useragent search engine, datas, icons, new tracking modules
 
 * Add-Ons
    - MailPress_comment : now subscription to comments can be checked by default (see settings)

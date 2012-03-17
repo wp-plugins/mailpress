@@ -471,6 +471,12 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[Dolphin]]></name>
+		<link><![CDATA[http://www.dolphin-browser.com/]]></link>
+		<icon><![CDATA[dolphin.png]]></icon>
+		<pattern><![CDATA[#Dolphin#i]]></pattern>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Dooble]]></name>
 		<link><![CDATA[http://dooble.sourceforge.net/]]></link>
 		<icon><![CDATA[dooble.png]]></icon>
