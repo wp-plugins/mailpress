@@ -66,7 +66,8 @@ abstract class MP_useragent_
 		if (isset($i->link)) { $ug->link = (string) $i->link; }
 		if (isset($icon))    { $ug->icon = (string) $icon; $ug->icon_path = "{$this->img_path}/{$ug->icon}"; }
 
-		$ug->full_name = ($ug->version) ? "{$ug->name} {$ug->version}" : $ug->name;
+		if (isset($ug->name))	$ug->full_name = (isset($ug->version)) ? "{$ug->name} {$ug->version}" : $ug->name;
+		else				$ug->name = $ug->full_name = '';
 		$ug->count = $count;
 
 		return $ug;

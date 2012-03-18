@@ -39,7 +39,7 @@ abstract class MP_tracking_module_sysinfo_ extends MP_tracking_module_
 	function _010($tracks)
 	{
 		echo '<br />';
-		$total = 0; $first = true;
+		$total = $z = 0;
 		foreach($tracks as $track)
 		{
 			$agent[$track->agent] = $track->count;
@@ -48,22 +48,22 @@ abstract class MP_tracking_module_sysinfo_ extends MP_tracking_module_
 
 		$items = MP_Useragent_agents::get_all();
 		$count = count($items);
-		$z = 0;
 
-		echo '<table width="100%"><tr>';
+		$int_width = 3;
+		$width = (100 - ($int_width * ($count - 1)))/$count;
+
+		echo '<table id ="tracking_mp_010"><tr>';
 		foreach($items as $item => $desc)
 		{
-			$z++;
-			echo "<th>$desc</th>";
-			if ($z != $count) echo '<th width="5px"></th>';
+			echo "<th class='border' width='{$width}%'>$desc</th>";
+			if (++$z != $count) echo "<th width='{$int_width}%'></th>";
 		}
 		echo '</tr><tr>';
 
 		$z = 0;
 		foreach($items as $item => $desc)
 		{
-			echo '<td style="vertical-align:top;"><table width="100%">';
-			$x = array(); $z++;
+			$x = array();
 			foreach($agent as $k => $v)
 			{
 				$ug = apply_filters('MailPress_useragent_' . $item . '_get',      $k);
@@ -73,13 +73,18 @@ abstract class MP_tracking_module_sysinfo_ extends MP_tracking_module_
 				if (isset($ug->icon_path) && !isset($x[$key]['img'])) $x[$key]['img'] = $ug->icon_path;
 			}
 			arsort($x);
+
+			echo '<td class="border"><table>';
 			foreach($x as $k => $v)
 			{
-				if (empty($k)) $k = __('others', MP_TXTDOM);
-				echo '<tr><td><img src="' . $v['img'] . '" alt="" /> ' . $k . '</td><td style="text-align:right;">' . sprintf("%01.2f %%",100 * $v['count']/$total ) . '</td></tr>';
+				echo '<tr><td>';
+				if (isset($v['img'])) echo '<img src="' . $v['img'] . '" alt="" /> ';
+				echo (empty($k)) ? __('others', MP_TXTDOM) : $k;
+				echo ' </td><td style="text-align:right;">' . sprintf("%01.2f %%",100 * $v['count']/$total );
+				echo '</td></tr>';
 			}
 			echo '</table></td>';
-			if ($z != $count) echo '<td></td>';
+			if (++$z != $count) echo '<td></td>';
 		}
 		echo '</tr></table>';
 	}

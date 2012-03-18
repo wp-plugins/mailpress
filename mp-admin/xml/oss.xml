@@ -726,6 +726,6 @@
 
 
 	 <os>
-		<pattern><![CDATA[//i]]></pattern>
+		<pattern><![CDATA[//]]></pattern>
 	 </os>
 </oss>

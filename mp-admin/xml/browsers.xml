@@ -1570,6 +1570,6 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
-		<pattern><![CDATA[//i]]></pattern>
+		<pattern><![CDATA[//]]></pattern>
 	 </browser>
 </browsers>

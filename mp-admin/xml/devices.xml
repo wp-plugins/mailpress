@@ -99,7 +99,7 @@
 		<name><![CDATA[HTC Touch Pro2]]></name>
 		<link><![CDATA[http://www.htc.com/]]></link>
 		<icon><![CDATA[htc.png]]></icon>
-		<pattern><![CDATA[/[Rhodium|WMD-50433]/i]]></pattern>
+		<pattern><![CDATA[/(Rhodium|WMD-50433)/i]]></pattern>
 	 </device>
  	 <device>
 		<name><![CDATA[HTC]]></name>
@@ -346,6 +346,6 @@
 	 </device>
 
 	 <device>
-		<pattern><![CDATA[//i]]></pattern>
+		<pattern><![CDATA[//]]></pattern>
 	 </device>
 </devices>
