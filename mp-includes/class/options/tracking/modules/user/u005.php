@@ -16,8 +16,8 @@ class MP_Tracking_module_u005 extends MP_tracking_module_sysinfo_
 
 		foreach($tracks as $track) 
 		{
-			$os      = apply_filters('MailPress_useragent_os_get_info',      $track->agent);
-			$browser = apply_filters('MailPress_useragent_browser_get_info', $track->agent);
+			$os      = apply_filters('MailPress_tracking_agents_os_get_info',      $track->agent);
+			$browser = apply_filters('MailPress_tracking_agents_browser_get_info', $track->agent);
 			echo $os . ' ' . $browser . '&#160;&#160;&#160;@&#160;' . $track->ip . '<br />'; 
 		}
 	}

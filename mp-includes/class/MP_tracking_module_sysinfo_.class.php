@@ -5,7 +5,7 @@ abstract class MP_tracking_module_sysinfo_ extends MP_tracking_module_
 
 	function __construct($title)
 	{
-		if (!class_exists('MP_Useragent_agents', false)) new MP_Useragent_agents();
+		if (!class_exists('MP_Tracking_agents', false)) new MP_Tracking_agents();
 		parent::__construct($title);
 	}
 
@@ -46,7 +46,7 @@ abstract class MP_tracking_module_sysinfo_ extends MP_tracking_module_
 			$total += $track->count;
 		}
 
-		$items = MP_Useragent_agents::get_all();
+		$items = MP_Tracking_agents::get_all();
 		$count = count($items);
 
 		$int_width = 3;
@@ -66,7 +66,7 @@ abstract class MP_tracking_module_sysinfo_ extends MP_tracking_module_
 			$x = array();
 			foreach($agent as $k => $v)
 			{
-				$ug = apply_filters('MailPress_useragent_' . $item . '_get',      $k);
+				$ug = apply_filters('MailPress_tracking_agents_' . $item . '_get',      $k);
 				$key = $ug->name;
 				if (isset($x[$key]['count'])) 	$x[$key]['count'] += $v;
 				else 						$x[$key]['count']  = $v;

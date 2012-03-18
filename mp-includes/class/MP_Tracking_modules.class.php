@@ -1,7 +1,7 @@
 <?php
 class MP_Tracking_modules extends MP_options_
 {
-	var $path = 'tracking/';
+	var $path = 'tracking/modules/';
 
 	function __construct($type, $settings = false)
 	{

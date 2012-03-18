@@ -17,8 +17,8 @@ class MP_Tracking_module_m005 extends MP_tracking_module_sysinfo_
 		}
 		foreach($agent as $k => $v)
 		{
-			$os      = apply_filters('MailPress_useragent_os_get_info',      $k);
-			$browser = apply_filters('MailPress_useragent_browser_get_info', $k);
+			$os      = apply_filters('MailPress_tracking_agents_os_get_info',      $k);
+			$browser = apply_filters('MailPress_tracking_agents_browser_get_info', $k);
 			$key = $os . '</td><td>' . $browser;
 			if (isset($agents[$key])) 	$agents[$key] += $v;
 			else 					$agents[$key]  = $v;

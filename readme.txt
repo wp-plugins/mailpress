@@ -89,7 +89,7 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 * Add-Ons
    - MailPress_comment : now subscription to comments can be checked by default (see settings)
-   - MailPress_tracking : new modules for mail & user (System info II)
+   - MailPress_tracking : new modules for mail & user (System info II + Domain recipients)
    - !!NEW!! MailPress_comment_newsletter_subscription : Subscribe to a default newsletter from comment form
    - !!NEW!! MailPress_mailinglist_country_code : New Mail > add mailing lists based on country code  (beware ! IP geolocation search is not 100% accurate)
    - !!NEW!! MailPress_mailinglist_US_state :     New Mail > add mailing lists based on US State      (beware ! IP geolocation search is not 100% accurate)
