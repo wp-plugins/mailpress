@@ -72,7 +72,10 @@ abstract class MP_tracking_metabox_sysinfo_ extends MP_tracking_metabox_
 				else 						$x[$key]['count']  = $v;
 				if (isset($ug->icon_path) && !isset($x[$key]['img'])) $x[$key]['img'] = $ug->icon_path;
 			}
-			arsort($x);
+
+			if (isset($x[''])) { $w = $x['']; unset($x['']); }
+			uasort($x, create_function('$a, $b', 'return $b["count"] - $a["count"];'));
+			if (isset($w)) $x[''] = $w;
 
 			echo '<td class="border"><table>';
 			foreach($x as $k => $v)

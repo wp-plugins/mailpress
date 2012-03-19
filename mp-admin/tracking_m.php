@@ -10,7 +10,7 @@ class MP_AdminPage extends MP_adminpage_list_
 
 	public static function title() 
 	{ 
-		new MP_Tracking_modules('mail');
+		new MP_Tracking_metaboxes('mail');
 
 		global $title; 
 		$title = __('Tracking', MP_TXTDOM); 

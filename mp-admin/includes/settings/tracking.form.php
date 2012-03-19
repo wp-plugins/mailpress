@@ -3,8 +3,8 @@ if (!isset($tracking)) $tracking = get_option(MailPress_tracking::option_name);
 
 foreach(array('mail', 'user') as $folder)
 {
-	$MP_Tracking_modules = new MP_Tracking_modules($folder, array());
-	$tracking_reports[$folder] = $MP_Tracking_modules->get_all($folder);
+	$MP_Tracking_metaboxes = new MP_Tracking_metaboxes($folder, array());
+	$tracking_reports[$folder] = $MP_Tracking_metaboxes->get_all($folder);
 }
 
 $formname = substr(basename(__FILE__), 0, -4); 
