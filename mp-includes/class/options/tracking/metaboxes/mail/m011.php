@@ -35,7 +35,7 @@ class MP_Tracking_metabox_m011 extends MP_tracking_metabox_
 			}
 		}
 
-		if (isset($x[''])) { $w = $x['']; unset($x['']); }
+		if (isset($x[''])) { $w = $x['']; unset($x['']); } else unset($w);
 		uasort($x, create_function('$a, $b', 'return $b["count"] - $a["count"];'));
 		if (isset($w)) $x[''] = $w;
 
