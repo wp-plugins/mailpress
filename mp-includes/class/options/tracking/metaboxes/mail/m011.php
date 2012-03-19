@@ -27,7 +27,7 @@ class MP_Tracking_metabox_m011 extends MP_tracking_metabox_
 			if (isset($x[$key]['count'])) 	$x[$key]['count']++;
 			else 						$x[$key]['count'] = 1;
 			if (isset($ug->icon_path) && !isset($x[$key]['img'])) $x[$key]['img'] = $ug->icon_path;
-			$opened = $wpdb->get_var( $wpdb->prepare( "SELECT user_id FROM $wpdb->mp_tracks WHERE mail_id = %d AND user_id = %d AND track = %s ;", $mail->id, $v['{{_user_id}}'], MailPress_tracking_openedmail) );
+			$opened = $wpdb->get_var( $wpdb->prepare( "SELECT DISTINCT user_id FROM $wpdb->mp_tracks WHERE mail_id = %d AND user_id = %d AND track = %s ;", $mail->id, $v['{{_user_id}}'], MailPress_tracking_openedmail) );
 			if ($opened)
 			{
 				if (isset($x[$key]['opened'])) 	$x[$key]['opened']++;
