@@ -467,7 +467,14 @@
 		<name><![CDATA[Dolfin]]></name>
 		<link><![CDATA[http://www.samsungmobile.com/]]></link>
 		<icon><![CDATA[samsung.png]]></icon>
-		<pattern><![CDATA[#Dolfin/([a-zA-Z0-9.]+)#i]]></pattern>
+		<pattern><![CDATA[/^SAMSUNG.*Dolfin\/([0-9\.]+)/si]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Dolphin]]></name>
+		<link><![CDATA[http://www.dolphin-browser.com/]]></link>
+		<icon><![CDATA[dolphin.png]]></icon>
+		<pattern><![CDATA[/^Mozilla.*Dolfin\/([0-9\.]+)/si]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -858,6 +865,13 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[Lotus-Notes]]></name>
+		<link><![CDATA[http://www-01.ibm.com/software/lotus/products/notes/]]></link>
+		<icon><![CDATA[lotus-notes.png]]></icon>
+		<pattern><![CDATA[/mozilla.*Lotus-Notes\/([0-9a-z\+\-\.]+).*/si]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Lunascape]]></name>
 		<link><![CDATA[http://www.lunascape.tv]]></link>
 		<icon><![CDATA[lunascape.png]]></icon>
@@ -1135,6 +1149,13 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[PocoMail]]></name>
+		<link><![CDATA[http://www.pocosystems.com]]></link>
+		<icon><![CDATA[pocomail.png]]></icon>
+		<pattern><![CDATA[/^Pocomail\/([0-9\.]+)$/si]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Pogo]]></name>
 		<link><![CDATA[http://en.wikipedia.org/wiki/AT%26T_Pogo]]></link>
 		<icon><![CDATA[pogo.png]]></icon>
@@ -1146,6 +1167,13 @@
 		<link><![CDATA[http://www.infraware.co.kr/eng/01_product/product02.asp]]></link>
 		<icon><![CDATA[polaris.png]]></icon>
 		<pattern><![CDATA[#Polaris/([a-zA-Z0-9.]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Postbox]]></name>
+		<link><![CDATA[http://www.postbox-inc.com/]]></link>
+		<icon><![CDATA[postbox.png]]></icon>
+		<pattern><![CDATA[/^Mozilla.*Postbox\/([0-9a-zA-Z\.]+)/si]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -1238,6 +1266,13 @@
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
+		<name><![CDATA[Shredder]]></name>
+		<link><![CDATA[http://www.mozillamessaging.com/en-US/thunderbird/3.0a1/releasenotes/]]></link>
+		<icon><![CDATA[thunderbird.png]]></icon>
+		<pattern><![CDATA[/^Mozilla.*Shredder\/([0-9a-zA-Z\.]+)/si]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[SiteKiosk]]></name>
 		<link><![CDATA[http://www.sitekiosk.com/SiteKiosk/Default.aspx]]></link>
 		<icon><![CDATA[sitekiosk.png]]></icon>
@@ -1277,6 +1312,13 @@
 		<link><![CDATA[http://getsongbird.com/]]></link>
 		<icon><![CDATA[songbird.png]]></icon>
 		<pattern><![CDATA[#Songbird/([a-zA-Z0-9.]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[Spicebird]]></name>
+		<link><![CDATA[http://www.spicebird.com/]]></link>
+		<icon><![CDATA[spicebird.png]]></icon>
+		<pattern><![CDATA[/mozilla.*rv:[0-9\.]+.*gecko.*Spicebird\/([0-9a-z\+\-\.]+).*/si]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>
@@ -1367,6 +1409,13 @@
 		<link><![CDATA[http://www.tencent.com/en-us/index.shtml]]></link>
 		<icon><![CDATA[tencenttraveler.png]]></icon>
 		<pattern><![CDATA[#TencentTraveler/([a-zA-Z0-9.]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[TheBat!]]></name>
+		<link><![CDATA[http://www.ritlabs.com/en/products/thebat/]]></link>
+		<icon><![CDATA[thebat.png]]></icon>
+		<pattern><![CDATA[/^The Bat! ([0-9\.]+)$/si]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>

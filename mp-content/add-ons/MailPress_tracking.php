@@ -207,7 +207,7 @@ class MailPress_tracking
 			foreach ($matches as $match)
 			{
 				if (strpos($match[1], 'mailto:') !== false) continue;
-				if (strpos($match[1], '#')       !== false) continue;
+				if ('#' == $match[1][1]) continue;
 
 				$meta_id = self::get_mmid($mail->id, '_MailPress_mail_link', str_replace('&amp;', '&', $match[1]));
 
