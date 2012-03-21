@@ -12,7 +12,7 @@ class MP_Tracking_metabox_m002 extends MP_tracking_metabox_
 
 		if ($tracks) 
 		{
-			echo '<table cellpadding="0" cellspacing="0">';
+			echo '<table>';
 
 			foreach($tracks as $track)
 			{

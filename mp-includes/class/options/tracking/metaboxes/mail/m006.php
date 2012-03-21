@@ -60,7 +60,7 @@ class MP_Tracking_metabox_m006 extends MP_tracking_metabox_
 					$user = MP_User::get($track->user_id);
 					if (get_option('show_avatars')) $x['info'] = get_avatar( $user->email, 32 );
 					$flag   = (('ZZ' == $user->created_country) || empty($user->created_country)) ? '' : "<img class='flag' alt='" . strtolower($user->created_country) . "' title='" . strtolower($user->created_country) . "' src='" . site_url() . '/' . MP_PATH . 'mp-admin/images/flag/' . strtolower($user->created_country) . ".gif' />";
- 					$x['info'] = "<table cellspacing='0' cellpadding='0'><tr><td style='text-align:center;'>" . ((get_option('show_avatars')) ? get_avatar( $user->email, 32 ) : '') . "<br style='line-height:0;' /><br style='line-height:3px;' />{$flag}</td><td style='text-align:center;padding-left:5px;'>{$user->email}<br />" . esc_js($user->name) . "<br />{$track->ip}</td></tr></table>";
+ 					$x['info'] = "<table><tr><td style='text-align:center;'>" . ((get_option('show_avatars')) ? get_avatar( $user->email, 32 ) : '') . "<br style='line-height:0;' /><br style='line-height:3px;' />{$flag}</td><td style='text-align:center;padding-left:5px;'>{$user->email}<br />" . esc_js($user->name) . "<br />{$track->ip}</td></tr></table>";
 
 					$m['t006'][] = $x;
 				}

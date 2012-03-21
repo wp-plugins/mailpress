@@ -34,7 +34,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 		<tr>
 			<th><?php _e('To', MP_TXTDOM); ?></th>
 			<td style='padding:0;'>
-				<table class='subscriptions' cellspacing='0'>
+				<table class='subscriptions'>
 					<tr>
 						<td class='pr10<?php if (isset($toemailclass)) echo " $form_invalid"; ?>'>
 							<?php _e('Email : ', MP_TXTDOM); ?> 

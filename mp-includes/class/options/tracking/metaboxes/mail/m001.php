@@ -11,7 +11,7 @@ class MP_Tracking_metabox_m001 extends MP_tracking_metabox_
 		$tracks = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->mp_tracks WHERE mail_id = %d ORDER BY tmstp DESC LIMIT 10;", $mail->id ) );
 		if ($tracks) 
 		{
-			echo '<table cellpadding="0" cellspacing="0">';
+			echo '<table>';
 
 			foreach($tracks as $track) 
 			{

@@ -113,7 +113,7 @@ foreach ($flipflops as $flipflop)
 		</div>
 		<div class="clear"></div>
 
-		<table class='widefat' cellspacing='0'>
+		<table class='widefat'>
 			<thead>
 				<tr>
 <?php MP_AdminPage::columns_list(); ?>
@@ -141,7 +141,7 @@ foreach ($flipflops as $flipflop)
 		case 2 :
 ?>
 	<form name='<?php echo $action; ?>'  id='<?php echo $action; ?>'  method='post' action='' class='<?php echo $action; ?>:<?php echo MP_AdminPage::list_id; ?>: validate'>
-		<table class='widefat' cellspacing='0'>
+		<table class='widefat'>
 			<thead>
 				<tr>
 <?php

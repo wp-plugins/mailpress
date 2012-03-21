@@ -33,7 +33,7 @@ class MP_Tracking_metabox_u002 extends MP_tracking_metabox_
 		$tracks = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->mp_usermeta WHERE mp_user_id = %d AND meta_key = %s ORDER BY meta_id DESC LIMIT 10;", $mp_user->id, '_MailPress_mail_sent') );
 		if ($tracks)
 		{
-			echo '<table cellpadding="0" cellspacing="0">';
+			echo '<table>';
 			foreach($tracks as $track)
 			{
 				$mail = $wpdb->get_results($wpdb->prepare( "SELECT subject, created, sent FROM $wpdb->mp_mails WHERE id = %d ;", $track->meta_value));

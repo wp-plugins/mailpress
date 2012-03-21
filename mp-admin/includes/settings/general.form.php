@@ -23,7 +23,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 		<tr valign='top' class='mp_sep'>
 			<th scope='row'><?php _e('All Mails sent from', MP_TXTDOM); ?></th>
 			<td style='padding:0;'>
-				<table class='subscriptions' cellspacing='0'>
+				<table class='subscriptions'>
 					<tr>
 						<td class='pr10<?php if (isset($fromemailclass)) echo " $form_invalid"; ?>'>
 							<?php _e('Email : ', MP_TXTDOM); ?> 

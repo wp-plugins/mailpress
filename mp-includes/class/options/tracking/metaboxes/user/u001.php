@@ -33,7 +33,7 @@ class MP_Tracking_metabox_u001 extends MP_tracking_metabox_
 		$tracks = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->mp_tracks WHERE user_id = %d ORDER BY tmstp DESC LIMIT 10;", $mp_user->id) );
 		if ($tracks) 
 		{
-			echo '<table cellpadding="0" cellspacing="0">';
+			echo '<table>';
 			foreach($tracks as $track) 
 			{
 				$view_url	= esc_url(add_query_arg( array('action' => 'iview', 'id' => $track->mail_id, 'mp_user_id' => $mp_user->id, 'key' => $mp_user->confkey, 'preview_iframe' => 1, 'TB_iframe' => 'true'), MP_Action_url ));

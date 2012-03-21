@@ -36,7 +36,7 @@ if ($items)
 			<br />
 			<?php _e('To get started, choose a system to import/export from below:', MP_TXTDOM); ?>
 		</p>
-		<table class='widefat' cellspacing='0'>
+		<table class='widefat'>
 			<thead>
 				<tr>
 <?php 	MP_AdminPage::columns_list(); ?>

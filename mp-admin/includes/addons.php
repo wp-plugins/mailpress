@@ -72,7 +72,7 @@ if ($items) {
 		</div>
 		<div class="clear"></div>
 
-		<table class='widefat plugins' cellspacing='0'>
+		<table class='widefat plugins'>
 			<thead>
 				<tr>
 <?php MP_AdminPage::columns_list(); ?>

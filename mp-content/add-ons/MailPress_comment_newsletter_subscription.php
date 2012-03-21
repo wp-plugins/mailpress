@@ -133,7 +133,7 @@ class MailPress_comment_newsletter_subscription
 			<tr valign='top' class='mp_sep'>
 				<th scope='row'><?php _e('Default Newsletter', MP_TXTDOM); ?></th>
 				<td style='padding:0;'>
-					<table cellspacing='0'>
+					<table>
 						<tr>
 							<td>
 								<?php echo MailPress_newsletter::get_checklist(false, $args); ?>

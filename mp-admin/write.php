@@ -557,7 +557,7 @@ var draft_id = <?php echo $draft_id; ?>;
 
 ?>
 	<div id='attachement-item-<?php echo $meta['meta_id']; ?>' class='attachement-item child-of-<?php echo $meta['mp_mail_id']; ?>'>
-		<table cellspacing='0'>
+		<table>
 			<tr>
 				<td>
 					<input type='checkbox' class='mp_fileupload_cb' checked='checked' name='Files[<?php echo $meta['meta_id']; ?>]' value='<?php echo $meta['meta_id']; ?>' />
@@ -589,7 +589,7 @@ var draft_id = <?php echo $draft_id; ?>;
 			</tr>
 		</thead>
 		<tbody id='the-list' class='list:mailmeta'>
-			<tr><td></td></tr>
+			<tr><td></td><td></td></tr>
 		</tbody>
 	</table>
 <?php else : ?>

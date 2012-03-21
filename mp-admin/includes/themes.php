@@ -129,7 +129,7 @@ if ( count($broken_themes) )
 	<h2><?php _e('Broken Themes'); ?></h2>
 	<p><?php _e('The following themes are installed but incomplete.  Themes must have a stylesheet and a template.'); ?></p>
 
-	<table class='widefat' width="100%" cellpadding="3" cellspacing="3">
+	<table class='widefat' width="100%">
 		<thead>
 			<tr>
 				<th><?php _e('Folder', MP_TXTDOM); ?></th>
