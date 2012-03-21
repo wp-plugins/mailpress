@@ -196,9 +196,19 @@ class MP_Newsletter
 
 	public static function register_files($args)
 	{
+		$files = array();
+
 		extract( $args );		
 
-		$root  = apply_filters($root_filter, $root);
+		if (isset($post_type))
+		{
+			$_post_type = get_post_type_object( $post_type );
+			if (empty($_post_type)) return;
+		}
+
+		if (isset($root_filter)) $root  = apply_filters($root_filter, $root);
+
+		if (empty($files)) return;
 
 		$xml = '';
 		foreach($files as $file)
@@ -211,25 +221,85 @@ class MP_Newsletter
 				$xml .= trim(ob_get_contents());
 			ob_end_clean();
 		}
-		$xml = '<?xml version="1.0" encoding="UTF-8"?><newsletters>' . $xml . '</newsletters>';
-		$newsletters = new MP_Xml($xml);
-		foreach($newsletters->object->children as $newsletter) self::register(self::convert($newsletter));
+
+		if (empty($xml)) return;
+
+		self::xml_register($xml);
 	}
 
-	public static function convert($child)
+	public static function register_taxonomy($args)
+	{
+		$files = array();
+
+		extract( $args );
+
+		if (isset($post_type))
+		{
+			$_post_type = get_post_type_object( $post_type );
+			if (empty($_post_type)) return;
+		}
+
+		$terms = get_terms($taxonomy, (isset($get_terms_args)) ? $get_terms_args : array());
+		if (empty($terms)) return;
+		if ( is_a($terms, 'WP_Error') ) return;
+
+		if (isset($root_filter)) $root  = apply_filters($root_filter, $root);
+
+   		$dir  = @opendir($root);
+		if ($dir) while ( ($file = readdir($dir)) !== false ) if (preg_match("/{$taxonomy}-[0-9]*\.xml/", $file)) $files[] = substr($file, 0, -4);
+		if ($dir) @closedir($dir);
+		if (empty($files)) return;
+
+		$xml = '';
+		foreach($files as $file)
+		{
+			$fullpath = "$root/$file.xml";
+			if (!is_file($fullpath)) continue;
+
+	            if ($folder == $file)
+	            {
+				foreach ($terms as $term)
+				{
+					ob_start();
+						include($fullpath);
+						$xml .= trim(ob_get_contents());
+					ob_end_clean();
+				}
+	            }
+	            else
+	            {
+				ob_start();
+					include($fullpath);
+					$xml .= trim(ob_get_contents());
+				ob_end_clean();
+      	      }
+		}
+		if (empty($xml)) return;
+
+		self::xml_register($xml);
+	}
+
+	public static function xml_register($xml)
+	{
+		$xml = '<?xml version="1.0" encoding="UTF-8"?><newsletters>' . $xml . '</newsletters>';
+		$newsletters = new MP_Xml($xml);
+		foreach($newsletters->object->children as $newsletter) self::register(self::xml_convert($newsletter));
+	}
+
+	public static function xml_convert($child)
 	{
 		if (isset($child->textValue) && !empty($child->textValue)) $array = (is_numeric($child->textValue)) ? (int) $child->textValue : $child->textValue;
 		if (isset($child->attributes)) foreach($child->attributes as $k => $v) $array[$k] = (is_numeric($v)) ? (int) $v : $v;
 		if (isset($child->children))   foreach($child->children as $children) 
 		{
 			if (!isset($array[$children->name]))
-				$array[$children->name]   = self::convert($children);
+				$array[$children->name]   = self::xml_convert($children);
 			elseif (is_array($array[$children->name]))
-				$array[$children->name][] = self::convert($children);
+				$array[$children->name][] = self::xml_convert($children);
 			else
 			{
 				$array[$children->name] = array($array[$children->name]);
-				$array[$children->name][] = self::convert($children);
+				$array[$children->name][] = self::xml_convert($children);
 			}
 		}
 		return (isset($array)) ? $array : false;

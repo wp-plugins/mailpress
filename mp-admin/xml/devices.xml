@@ -298,6 +298,15 @@
 		<pattern><![CDATA[/Palm/i]]></pattern>
 	 </device>
 
+<!-- Philips -->
+ 	 <device>
+		<name><![CDATA[Philips]]></name>
+		<link><![CDATA[http://www.philips.com/]]></link>
+		<icon><![CDATA[philips.png]]></icon>
+		<pattern><![CDATA[/PHILIPS/i]]></pattern>
+		<versions pattern="1"><![CDATA[/PHILIPS[-|\ ]?([.\-0-9a-zA-Z]+)/i]]></versions>
+	 </device>
+
 <!-- Playstation -->
  	 <device>
 		<name><![CDATA[Playstation]]></name>
@@ -340,9 +349,18 @@
 <!-- Sony Ericsson -->
  	 <device>
 		<name><![CDATA[SonyEricsson]]></name>
-		<link><![CDATA[http://www.SonyEricsson.com/]]></link>
+		<link><![CDATA[http://www.sonyericsson.com/]]></link>
 		<icon><![CDATA[sonyericsson.png]]></icon>
 		<pattern><![CDATA[/SonyEricsson/i]]></pattern>
+	 </device>
+
+<!-- Sony  -->
+ 	 <device>
+		<name><![CDATA[Sony]]></name>
+		<link><![CDATA[http://www.sony.com/]]></link>
+		<icon><![CDATA[sony.png]]></icon>
+		<pattern><![CDATA[/Sony/i]]></pattern>
+		<versions pattern="1"><![CDATA[/Cellphone\; Sony ([.\-0-9a-zA-Z]+)/i]]></versions>
 	 </device>
 
 	 <device>

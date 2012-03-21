@@ -17,7 +17,7 @@ class MailPress_newsletter
 	{
 // for wordpress hooks
 // for plugin
-		add_action('MailPress_addons_loaded', 	array(__CLASS__, 'addons_loaded'));
+		add_action('init', 	array(__CLASS__, 'init'), 99);
 
 // register form
 		add_action('user_register', 			array(__CLASS__, 'user_register'), 10, 1);
@@ -155,7 +155,7 @@ class MailPress_newsletter
 
 //// Plugin ////
 
-	public static function addons_loaded()
+	public static function init()
 	{
 		do_action('MailPress_register_newsletter');
 		do_action('MailPress_registered_newsletters');

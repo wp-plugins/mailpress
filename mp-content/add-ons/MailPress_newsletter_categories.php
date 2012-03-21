@@ -68,9 +68,9 @@ class MailPress_newsletter_categories
 				ob_end_clean();
       	      }
 		}
-		$xml = '<?xml version="1.0" encoding="UTF-8"?><newsletters>' . $xml . '</newsletters>';
-		$newsletters = new MP_Xml($xml);
-		foreach($newsletters->object->children as $newsletter) MP_Newsletter::register(MP_Newsletter::convert($newsletter));
+		if (empty($xml)) return;
+
+		MP_Newsletter::xml_register($xml);
 	}
 
 ////  ADMIN  ////

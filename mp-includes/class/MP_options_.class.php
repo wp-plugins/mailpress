@@ -8,6 +8,8 @@ abstract class MP_options_
 		$dir  = @opendir($root);
 		if ($dir) while ( ($file = readdir($dir)) !== false ) if ($file[0] != '.') $this->load($root, $file);
 		@closedir($dir);
+
+		do_action('MailPress_load_' . ucfirst(str_replace('/', '_', $this->path)));
 	}
 
 	function load($root, $file)

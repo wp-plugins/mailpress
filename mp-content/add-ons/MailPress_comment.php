@@ -35,7 +35,7 @@ class MailPress_comment
 		add_action('MailPress_delete_user', 			array(__CLASS__, 'delete_user'), 8, 1);	
 
 // for autoresponder
-		add_action('MailPress_load_Autoresponders_events',	array(__CLASS__, 'load_Autoresponders_events'));
+		add_action('MailPress_load_Autoresponder_events',	array(__CLASS__, 'load_Autoresponder_events'));
 
 // for sync wordpress user
 		add_filter('MailPress_has_subscriptions', 		array(__CLASS__, 'has_subscriptions'), 8, 2);
@@ -336,7 +336,7 @@ class MailPress_comment
 
 //// Autoresponders ////
 
-	public static function load_Autoresponders_events()
+	public static function load_Autoresponder_events()
 	{
 		new MP_Autoresponder_events_comment();
 	}

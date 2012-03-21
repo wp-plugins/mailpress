@@ -4,12 +4,6 @@ class MP_Form_field_types extends MP_options_
 	var $path = 'form/field_types';
 	var $deep = true;
 
-	function __construct()
-	{
-		parent::__construct();
-		do_action('MailPress_load_Form_field_types');
-	}
-
 	public static function get_all()
 	{
 		$x = apply_filters('MailPress_form_field_types_register', array());
