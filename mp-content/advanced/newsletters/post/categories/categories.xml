@@ -28,6 +28,7 @@
 
 	<params>
 		<cat_id><?php echo $category->cat_ID; ?></cat_id>
+		<term_id><?php echo $category->cat_ID; ?></term_id>
 	</params>
 
 </newsletter>
@@ -67,6 +68,7 @@
 
 	<params>
 		<cat_id><?php echo $category->cat_ID; ?></cat_id>
+		<term_id><?php echo $category->cat_ID; ?></term_id>
 	</params>
 
 </newsletter>
@@ -108,6 +110,7 @@
 
 	<params>
 		<cat_id><?php echo $category->cat_ID; ?></cat_id>
+		<term_id><?php echo $category->cat_ID; ?></term_id>
 	</params>
 
 </newsletter>
@@ -150,6 +153,7 @@
 
 	<params>
 		<cat_id><?php echo $category->cat_ID; ?></cat_id>
+		<term_id><?php echo $category->cat_ID; ?></term_id>
 	</params>
 
 </newsletter>

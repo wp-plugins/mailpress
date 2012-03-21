@@ -16,6 +16,11 @@ The WordPress mailing platform
 1. Newsletters/Post notifications on a per post, daily, weekly, monthly basis.
 1. Optional : full control on all mails sent by WordPress.
 
+
+!!!!  post newsletters xml files changed from mp-content/advanced/newsletters to mp-content/advanced/newsletters/post
+
+!!!!  post category newsletters xml files changed from mp-content/advanced/newsletters/categories to mp-content/advanced/newsletters/post/categories
+
 **Follow Installation or Upgrade guidelines**
 
 Some technical stuff :
@@ -75,6 +80,10 @@ MailPress themes and templates do not need to be changed if customized in a prev
 == Changelog ==
 
 ** 5.3-alpha ** xx/xx/2012
+
+* !!!!  post newsletters xml files changed from mp-content/advanced/newsletters to mp-content/advanced/newsletters/post
+
+* !!!!  post category newsletters xml files changed from mp-content/advanced/newsletters/categories to mp-content/advanced/newsletters/post/categories
 
 * Switmailer 4.1.5
 

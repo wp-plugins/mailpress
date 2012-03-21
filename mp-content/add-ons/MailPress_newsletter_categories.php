@@ -30,18 +30,25 @@ class MailPress_newsletter_categories
 // for plugin
 	public static function register() 
 	{
-		if ( function_exists( 'create_initial_taxonomies' ) ) create_initial_taxonomies();
-		$args = array('hierarchical' => false, 'depth'=>false, 'echo'=>false, 'get'=>'all');
-		$categories = get_categories($args);
+		$taxonomy_s = 'categories';
+		$args = array(	'root' 		=> MP_CONTENT_DIR . "advanced/newsletters/post/{$taxonomy_s}",
+					'root_filter' 	=> 'MailPress_advanced_newsletters_root',
+					'folder'		=> $taxonomy_s,
+					'files'		=> array($taxonomy_s),
+					'taxonomy'		=> 'cat',
+					'get_terms_args'=> array('hierarchical' => false, 'depth'=>false, 'echo'=>false, 'get'=>'all'),
+		);
 
-		$root  = MP_CONTENT_DIR . 'advanced/newsletters';
-		$root  = apply_filters('MailPress_advanced_newsletters_root', $root);
-		$root .= '/categories';
-		$files = array('categories');
+		extract( $args );
+
+		$categories = get_categories($get_terms_args);
+
+		if (isset($root_filter)) $root  = apply_filters($root_filter, $root);
 
    		$dir  = @opendir($root);
-		if ($dir) while ( ($file = readdir($dir)) !== false ) if (preg_match('/category-[0-9]*\.xml/', $file)) $files[] = substr($file, 0, -4);
+		if ($dir) while ( ($file = readdir($dir)) !== false ) if (preg_match("/category-[0-9]*\.xml/", $file)) $files[] = substr($file, 0, -4);
 		if ($dir) @closedir($dir);
+		if (empty($files)) return;
 
 		$xml = '';
 		foreach($files as $file)
@@ -49,7 +56,7 @@ class MailPress_newsletter_categories
 			$fullpath = "$root/$file.xml";
 			if (!is_file($fullpath)) continue;
 
-	            if ('categories' == $file)
+	            if ($folder == $file)
 	            {
 				foreach ($categories as $category)
 				{

@@ -232,7 +232,7 @@ class MailPress_newsletter
 
 	public static function register() 
 	{
-		$args = array(	'root' 		=> MP_CONTENT_DIR . 'advanced/newsletters',
+		$args = array(	'root' 		=> MP_CONTENT_DIR . 'advanced/newsletters/post',
 					'root_filter' 	=> 'MailPress_advanced_newsletters_root',
 					'files'		=> array('new_post', 'daily', 'weekly', 'monthly'),
 		);

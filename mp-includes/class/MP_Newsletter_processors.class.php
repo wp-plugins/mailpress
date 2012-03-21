@@ -92,7 +92,7 @@ class MP_Newsletter_processors extends MP_options_
 	}
 
 	public static function message_report($newsletter, $text, $trace, $error = false) { MP_Newsletter_schedulers::message_report($newsletter, $text, $trace, $error); }
-	public static function item_report($text, $maxlength = 0, $end = ' ! ') { return MP_Newsletter_schedulers::item_report($text, $maxlength, $end);  }
+	public static function item_report($item, $max = false, $trailer = ' ! ') { return MP_Newsletter_schedulers::item_report($item, $max, $trailer);  }
 	public static function sep_report($trace) { MP_Newsletter_schedulers::sep_report($trace); }
 	public static function footer_report($trace) { MP_Newsletter_schedulers::footer_report($trace); }
 }
