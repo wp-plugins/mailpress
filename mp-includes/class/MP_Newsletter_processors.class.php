@@ -1,7 +1,7 @@
 <?php
 class MP_Newsletter_processors extends MP_options_
 {
-	const bt = 130;
+	const bt = 150;
 
 	var $path = 'newsletter/processors';
 
@@ -27,7 +27,7 @@ class MP_Newsletter_processors extends MP_options_
 		}
 		else
 		{
-			$bm = ' ' . $newsletter['id'] 	. str_repeat( ' ', 30 - strlen($newsletter['id'])) 	. ' ! ';
+			$bm = ' ' . self::item_report($newsletter['id'], 30);
 			if ( !isset($newsletter['processor']['id']) )
 				self::message_report($newsletter, 'no processor in newsletter (see xml file) ', $trace, true);
 			elseif ( !isset($processors[$newsletter['processor']['id']]) )
@@ -82,15 +82,17 @@ class MP_Newsletter_processors extends MP_options_
 
 		self::sep_report($trace);
 		$bm = 'Processing Newsletter    ' . '  processor : ' . $newsletter['processor']['id'] . ' ' ;
-		$trace->log('!' . str_repeat( ' ', 5) . $bm . str_repeat( ' ', self::bt - 5 - strlen($bm)) . '!');
+		$trace->log('!' . self::item_report(str_repeat( ' ', 5) . $bm, self::bt, '!'));
 		self::sep_report($trace);
-		$bm = ' Newsletter id                  ! ';
-		$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
+		$bm = ' ';
+		$bm .= self::item_report('Newsletter id', 30);
+		$trace->log('!' . self::item_report($bm, self::bt, '!'));
 
 		return $trace;
 	}
 
 	public static function message_report($newsletter, $text, $trace, $error = false) { MP_Newsletter_schedulers::message_report($newsletter, $text, $trace, $error); }
+	public static function item_report($text, $maxlength = 0, $end = ' ! ') { return MP_Newsletter_schedulers::item_report($text, $maxlength, $end);  }
 	public static function sep_report($trace) { MP_Newsletter_schedulers::sep_report($trace); }
 	public static function footer_report($trace) { MP_Newsletter_schedulers::footer_report($trace); }
 }

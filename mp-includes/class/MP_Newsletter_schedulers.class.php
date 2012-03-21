@@ -1,7 +1,7 @@
 <?php
 class MP_Newsletter_schedulers extends MP_options_
 {
-	const bt = 130;
+	const bt = 150;
 
 	var $path = 'newsletter/schedulers';
 
@@ -63,10 +63,15 @@ class MP_Newsletter_schedulers extends MP_options_
 
 		self::sep_report($trace);
 		$bm = "Scheduling Newsletters    event : $event ";
-		$trace->log('!' . str_repeat( ' ', 5) . $bm . str_repeat( ' ', self::bt - 5 - strlen($bm)) . '!');
+		$trace->log('!' . self::item_report(str_repeat( ' ', 5) . $bm, self::bt, '!'));
 		self::sep_report($trace);
-		$bm = ' Newsletter id                  ! scheduler  ! processor  ! timestamp  ! time';
-		$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
+		$bm = ' ';
+		$bm .= self::item_report('Newsletter id', 30);
+		$bm .= self::item_report('scheduler',     20);
+		$bm .= self::item_report('processor',     20);
+		$bm .= self::item_report('timestamp',     10);
+		$bm .= self::item_report('time');
+		$trace->log('!' . self::item_report($bm, self::bt, '!'));
 
 		return $trace;
 	}
@@ -74,24 +79,34 @@ class MP_Newsletter_schedulers extends MP_options_
 	public static function schedule_report($newsletter, $timestamp, $id)
 	{
 		$bm = ' ';
-		$bm .= $newsletter['id']. str_repeat( ' ', 30 - strlen($newsletter['id'])) 	. ' ! ';
-		$bm .= $id 			. str_repeat( ' ', 10 - strlen($id)) 			. ' ! ';
-		$bm .= $newsletter['processor']['id'] 	. str_repeat( ' ', 10 - strlen($newsletter['processor']['id'])) 	. ' ! ';
-		$bm .= $timestamp		. str_repeat( ' ', 10 - strlen($timestamp)) 		. ' ! ';
-		$bm .= date_i18n( 'l jS \of F Y H:i', strtotime(get_date_from_gmt(gmdate('Y-m-d H:i:s', $timestamp))));
-
-		return array('timestamp' => $timestamp, 'log' => '!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
+		$bm .= self::item_report($newsletter['id'],			30);
+		$bm .= self::item_report($id,					20);
+		$bm .= self::item_report($newsletter['processor']['id'],	20);
+		$bm .= self::item_report($timestamp,				10);
+		$bm .= self::item_report(date_i18n( 'l jS \of F Y H:i', strtotime(get_date_from_gmt(gmdate('Y-m-d H:i:s', $timestamp)))));
+		return array('timestamp' => $timestamp, 'log' => '!' . self::item_report($bm, self::bt, '!'));
 	}
 
 	public static function message_report($newsletter, $text, $trace, $error = false)
 	{
+		$bm = ' ';
 		if ($error)
-			$bm = ($newsletter) ? ' ' . $newsletter['id'] . str_repeat( ' ', 30 - strlen($newsletter['id'])) . ' ! ' : ' ';
+			$bm .= ($newsletter) ? self::item_report($newsletter['id'], 30) : '';
 		else
-			$bm = ($newsletter) ? ' ' . $newsletter['id'] . str_repeat( ' ', 30 - strlen($newsletter['id'])) . ' ! ' : str_repeat( ' ', 31 ) . ' ! ';
+			$bm .= ($newsletter) ? self::item_report($newsletter['id'], 30) : self::item_report(' ', 30);
 
 		$bm .= $text;
-		$trace->log('!' . $bm . str_repeat( ' ', self::bt - strlen($bm)) . '!');
+		$trace->log('!' . self::item_report($bm, self::bt, '!'));
+	}
+
+	public static function item_report($item, $max = false, $trailer = ' ! ')
+	{
+		if (false === $max) return $item;
+
+		$l = $max - strlen($item);
+
+		if ($l < 0) return $item . $trailer;
+		return $item . str_repeat(' ', $l) . $trailer;
 	}
 
 	public static function sep_report($trace)
