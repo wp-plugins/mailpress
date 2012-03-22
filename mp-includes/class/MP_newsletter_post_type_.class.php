@@ -22,7 +22,11 @@ abstract class MP_newsletter_post_type_
 		//				'root_filter' 	=> "MailPress_advanced_newsletters_{$this->post_type}_root",
 						'files'		=> array("new_post_type", "daily", "weekly", "monthly"),
 
+						'Template'		=> $this->post_type,
+
 						'post_type'	=> $this->post_type,
+
+
 		);
 	}
 

@@ -13,6 +13,8 @@ abstract class MP_newsletter_post_type_taxonomy_ extends MP_newsletter_post_type
 						'taxonomy'		=> $this->taxonomy,
 						'get_terms_args'=> array('hide_empty' => false),
 
+						'Template'		=> $this->post_type,
+
 						'post_type'	=> $this->post_type,
 		);
 	}
