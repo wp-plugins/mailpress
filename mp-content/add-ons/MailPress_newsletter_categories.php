@@ -109,7 +109,7 @@ class MailPress_newsletter_categories
 // settings
 	public static function subscriptions_newsletter_th($th, $newsletter)
 	{
-		if (isset($newsletter['mail']['the_category'])) return $newsletter['mail']['the_category'];
+		if (isset($newsletter['mail']['the_category'])) return __('Post') . '/' . $newsletter['mail']['the_category'];
 		return $th;
 	}
 }

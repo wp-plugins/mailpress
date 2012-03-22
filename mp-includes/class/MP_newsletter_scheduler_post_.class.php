@@ -59,7 +59,7 @@ abstract class MP_newsletter_scheduler_post_ extends MP_newsletter_scheduler_
 	{
 		$trailer = '';
 
-		if (isset($this->post_type) && 'post' != $this->post_type) $trailer .= "_{$this->post_type}";
+		if ('post' != $this->post_type) $trailer .= "_{$this->post_type}";
 		if (isset($this->taxonomy))
 		{
 			$trailer .= "_{$this->taxonomy}";

@@ -30,7 +30,7 @@ foreach ($mp_registered_newsletters as $mp_registered_newsletter)
 		$tr = true; 
 		$td = 0;
 		echo "<tr valign='top' $alternate><th scope='row'>";
-		echo apply_filters('MailPress_subscriptions_newsletter_th', __("** Blog **", MP_TXTDOM), $mp_registered_newsletter);
+		echo apply_filters('MailPress_subscriptions_newsletter_th', '** ' . __('Post') . ' **', $mp_registered_newsletter);
 		echo "</th>\n";
 	}
 	if (intval ($j/$item) == $j/$item ) { echo "<td class='field' style=''>\n"; ++$td; }

@@ -5,6 +5,8 @@ abstract class MP_newsletter_post_type_
 	{
 		add_action('MailPress_register_newsletter',	array(&$this, 'register'));
 
+		if (method_exists(&$this,'init')) add_action('init', array(&$this, 'init'), 1);
+
 		if (is_admin())
 		{
 		// settings
@@ -15,6 +17,13 @@ abstract class MP_newsletter_post_type_
 		// for link on plugin page
 			add_filter('plugin_action_links',					array(&$this, 'plugin_action_links'), 10, 2 );
 		}
+
+		$this->args = array(	'root' 		=> MP_CONTENT_DIR . "advanced/newsletters/{$this->post_type}",
+		//				'root_filter' 	=> "MailPress_advanced_newsletters_{$this->post_type}_root",
+						'files'		=> array("new_post_type", "daily", "weekly", "monthly"),
+
+						'post_type'	=> $this->post_type,
+		);
 	}
 
 	function register() 
