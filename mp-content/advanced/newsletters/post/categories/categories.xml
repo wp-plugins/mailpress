@@ -19,7 +19,7 @@
 	</processor>
 
 	<scheduler>
-		<id>post_cat</id>
+		<id>post_category</id>
 		<args>            <!-- release the newsletter -->
 			<hour>00</hour>		<!-- [00 to 23] -->
 			<minute>00</minute>	<!-- [00 to 59] -->

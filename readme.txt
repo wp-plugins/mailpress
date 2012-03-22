@@ -17,9 +17,14 @@ The WordPress mailing platform
 1. Optional : full control on all mails sent by WordPress.
 
 
+
+!!!!  in mp-content/advanced/newsletters/categories/categories.xml scheduler id post_cat changed to post_category
+
 !!!!  post newsletters xml files changed from mp-content/advanced/newsletters to mp-content/advanced/newsletters/post
 
 !!!!  post category newsletters xml files changed from mp-content/advanced/newsletters/categories to mp-content/advanced/newsletters/post/categories
+
+
 
 **Follow Installation or Upgrade guidelines**
 

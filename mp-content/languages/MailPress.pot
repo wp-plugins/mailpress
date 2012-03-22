@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-22 19:39+0100\n"
+"POT-Creation-Date: 2012-03-22 23:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3383,7 +3383,7 @@ msgstr ""
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:93
 #, php-format
-msgid "[%1$s] Weekly  {{the_post_types}} newsletter for {{the_taxonomy}}"
+msgid "[%1$s] Weekly {{the_post_types}} newsletter for {{the_taxonomy}}"
 msgstr ""
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:133
@@ -3398,7 +3398,7 @@ msgstr ""
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:139
 #, php-format
-msgid "[%1$s] Monthly  {{the_post_types}} newsletter for {{the_taxonomy}}"
+msgid "[%1$s] Monthly {{the_post_types}} newsletter for {{the_taxonomy}}"
 msgstr ""
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\daily.xml:4
@@ -5216,7 +5216,7 @@ msgstr ""
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\ad_listing.php:7
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\ad_listing_ad_cat.php:8
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\post.php:7
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\post_cat.php:8
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\post_category.php:8
 #, php-format
 msgid "Each %s"
 msgstr ""
