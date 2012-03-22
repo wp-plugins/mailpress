@@ -3,9 +3,8 @@ abstract class MP_newsletter_scheduler_post_ extends MP_newsletter_scheduler_
 {
 	function __construct($description)
 	{
-		if (!isset($this->post_type)) $this->post_type = 'post'; 
-
 		parent::__construct($description);
+
 		add_action("publish_{$this->post_type}",	array(&$this, 'publish'), 8, 1);
 	}
 

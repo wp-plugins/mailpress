@@ -79,7 +79,7 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 == Changelog ==
 
-** 5.3-alpha ** xx/xx/2012
+** 5.3-beta 2 ** xx/xx/2012
 
 * !!!!  post newsletters xml files changed from mp-content/advanced/newsletters to mp-content/advanced/newsletters/post
 

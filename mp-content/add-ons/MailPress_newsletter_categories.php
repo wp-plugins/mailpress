@@ -13,7 +13,7 @@ class MailPress_newsletter_categories
 	function __construct() 
 	{
 // for plugin
-		add_action('MailPress_register_newsletter',	array(__CLASS__, 'register'));
+		add_action('MailPress_register_newsletter',	array(__CLASS__, 'register'), 2);
 // for wp admin
 		if (is_admin())
 		{
