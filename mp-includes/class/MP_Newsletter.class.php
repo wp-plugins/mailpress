@@ -221,7 +221,7 @@ class MP_Newsletter
 
 		if (empty($xml)) return;
 
-		self::xml_register($xml);
+		self::register_xml($xml);
 	}
 
 	public static function register_taxonomy($args)
@@ -278,30 +278,30 @@ class MP_Newsletter
 		}
 		if (empty($xml)) return;
 
-		self::xml_register($xml);
+		self::register_xml($xml);
 	}
 
-	public static function xml_register($xml)
+	public static function register_xml($xml)
 	{
 		$xml = '<?xml version="1.0" encoding="UTF-8"?><newsletters>' . $xml . '</newsletters>';
 		$newsletters = new MP_Xml($xml);
-		foreach($newsletters->object->children as $newsletter) self::register(self::xml_convert($newsletter));
+		foreach($newsletters->object->children as $newsletter) self::register(self::convert_xml($newsletter));
 	}
 
-	public static function xml_convert($child)
+	public static function convert_xml($child)
 	{
 		if (isset($child->textValue) && !empty($child->textValue)) $array = (is_numeric($child->textValue)) ? (int) $child->textValue : $child->textValue;
 		if (isset($child->attributes)) foreach($child->attributes as $k => $v) $array[$k] = (is_numeric($v)) ? (int) $v : $v;
 		if (isset($child->children))   foreach($child->children as $children) 
 		{
 			if (!isset($array[$children->name]))
-				$array[$children->name]   = self::xml_convert($children);
+				$array[$children->name]   = self::convert_xml($children);
 			elseif (is_array($array[$children->name]))
-				$array[$children->name][] = self::xml_convert($children);
+				$array[$children->name][] = self::convert_xml($children);
 			else
 			{
 				$array[$children->name] = array($array[$children->name]);
-				$array[$children->name][] = self::xml_convert($children);
+				$array[$children->name][] = self::convert_xml($children);
 			}
 		}
 		return (isset($array)) ? $array : false;

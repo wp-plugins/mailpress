@@ -17,9 +17,7 @@
 <p>Welcome. MailPress is a very special project to me and I'm proud to be a part of it ;-). Lot of hours have gone into MailPress, and I am dedicated to making it better every day. Thank you for making it part of your world.</p>
 <p style="text-align: right;">&#8212; Andr&eacute; Renaut</p>
 
-<p style='color:red;'><b>in <code style='color:#333;'>mp-content/advanced/newsletters/categories/categories.xml</code> scheduler id <code style='color:#333;'>post_cat</code> changed to <code style='color:#333;'>post_category</code></b></p>
-<p style='color:red;'><b>post newsletters xml files changed from <code style='color:#333;'>mp-content/advanced/newsletters</code> to <code style='color:#333;'>mp-content/advanced/newsletters/post</code></b></p>
-<p style='color:red;'><b>post category newsletters xml files changed from <code style='color:#333;'>mp-content/advanced/newsletters/categories</code> to <code style='color:#333;'>mp-content/advanced/newsletters/post/categories</code></b></p>
+<p style='color:red;'><strong>If Upgrading, please read the Upgrading section.</strong></p>
 
 
 <h1>System requirements</h1>
@@ -47,21 +45,29 @@
 </ol>
 
 <h1>Upgrading</h1>
-<p><b>Never use WordPress automatic upgrade</b> : you will loose the content of <code>mailpress/mp-content</code> and <code>mailpress/tmp</code> folders !</p>
+<p><b>Never use WordPress automatic upgrade</b> : if you have any customized file, WordPress will delete them !</p>
 <ol>
-	<li> Point your browser to "Plugins > MailPress Add-ons" page and deactivate all add ons.</li>
-	<li> Point your browser to "Plugins" page and deactivate MailPress plugin.</li>
-	<li> Save or Back-up <code>mailpress/tmp</code> folder + your MP theme + any customized file in <code>mailpress/mp-content/advanced</code> (since 5.0.1, <b>xml format changed</b> in <code>mp-content/advanced/newsletters</code>).</li>
-	<li> Delete <code>wp-content/plugins/mailpress</code> folder.</li>
-	<li> Unzip the MailPress package.</li>
-	<li> Upload the <code>mailpress</code> folder into <code>wp-content/plugins</code>.</li>
-	<li> Make sure the <code>wp-content/plugins/mailpress/tmp</code> folder is writable.</li>
-	<li> Restore <code>mailpress/tmp</code> folder + your MP theme + any customized file in <code>mailpress/mp-content/advanced</code> (since 5.0.1, <b>xml format changed</b> in <code>mp-content/advanced/newsletters</code>).</li>
-	<li> If you implemented page or category template, upgrade from <code>mailpress/mp-content/xtras</code> folder if necessary.</li>
-	<li> Refresh "Plugins" page and activate MailPress plugin.</li>
-	<li> Activate MailPress previous add-ons (Plugins > MailPress Add-ons) + new ones such as Newsletter or Comment if previously used.</li>
+	<li>Point your browser to "Plugins &gt; MailPress Add-ons" page and deactivate all add ons.</li>
+	<li>Point your browser to "Plugins" page and deactivate MailPress plugin.</li>
+	<li>Save or Back-up <code>mailpress/tmp</code> folder + your MP theme + any customized file : In 5.3
+		<ul>
+			<li>standards newsletters xml files have their path changed : <code>mailpress/mp-content/advanced/newsletters/post/</code> (formerly <code>mailpress/mp-content/advanced/newsletters/</code>)</li>
+			<li>post newsletter xml file has its path & name changed : <code>mailpress/mp-content/advanced/newsletters/post/post.xml</code> (formerly <code>mailpress/mp-content/advanced/newsletters/new_post.xml</code>)</li>
+			<li>category newsletters xml file(s) have their path changed : <code>mailpress/mp-content/advanced/newsletters/post/categories</code> (formerly <code>mailpress/mp-content/advanced/newsletters/categories</code>)</li>
+			<li>scheduler id <code>post_cat</code> is renamed in <code>post_category</code></li>
+			<li>processor id <code>now</code> is renamed in <code>post</code></li>
+		</ul>
+	</li>
+	<li>Delete <code>wp-content/plugins/mailpress</code> folder.</li>
+	<li>Unzip the MailPress package.</li>
+	<li>Upload the mailpress folder into <code>wp-content/plugins</code>.</li>
+	<li>Make sure the </code>wp-content/plugins/mailpress/tmp</code> folder is writable.</li>
+	<li>Restore <code>mailpress/tmp</code> folder + your MP theme + any customized file (read step 3 for any <code>mailpress/mp-content/advanced/newsletters/</code> restore)</li>
+	<li>Refresh "Plugins" page and activate MailPress plugin</li>
+	<li>Activate MailPress previous add-ons (Plugins &gt; MailPress Add-ons)</li>
 </ol>
 <p>MailPress themes and templates do not need to be changed if customized in a previous MailPress release. </p>
+<p><b>Never use WordPress automatic upgrade</b> : if you have any customized file, WordPress will delete them !</p>
 
 <h1>Upgrading from another system</h1>
 <p>
