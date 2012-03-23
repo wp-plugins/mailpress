@@ -200,11 +200,8 @@ class MP_Newsletter
 
 		extract( $args );		
 
-		if (isset($post_type))
-		{
-			$_post_type = get_post_type_object( $post_type );
-			if (empty($_post_type)) return;
-		}
+		$_post_type = get_post_type_object( $post_type );
+		if (empty($_post_type)) return;
 
 		if (isset($root_filter)) $root  = apply_filters($root_filter, $root);
 
@@ -233,15 +230,19 @@ class MP_Newsletter
 
 		extract( $args );
 
-		if (isset($post_type))
-		{
-			$_post_type = get_post_type_object( $post_type );
-			if (empty($_post_type)) return;
-		}
+		$_post_type = get_post_type_object( $post_type );
+		if (empty($_post_type)) return;
 
-		$terms = get_terms($taxonomy, (isset($get_terms_args)) ? $get_terms_args : array());
+		if ('category' == $taxonomy)
+		{
+			$terms = get_categories((isset($get_terms_args)) ? $get_terms_args : array());
+		}
+		else
+		{
+			$terms = get_terms($taxonomy, (isset($get_terms_args)) ? $get_terms_args : array());
+			if ( is_a($terms, 'WP_Error') ) return;
+		}
 		if (empty($terms)) return;
-		if ( is_a($terms, 'WP_Error') ) return;
 
 		if (isset($root_filter)) $root  = apply_filters($root_filter, $root);
 
@@ -260,6 +261,7 @@ class MP_Newsletter
 	            {
 				foreach ($terms as $term)
 				{
+					if ('category' == $taxonomy) $category = $term; // backward compatibility
 					ob_start();
 						include($fullpath);
 						$xml .= trim(ob_get_contents());

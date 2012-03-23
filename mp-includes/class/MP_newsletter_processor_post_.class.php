@@ -1,5 +1,5 @@
 <?php
-abstract class MP_newsletter_processor_now_ extends MP_newsletter_processor_
+abstract class MP_newsletter_processor_post_ extends MP_newsletter_processor_
 {
 	function process($newsletter, $trace)
 	{

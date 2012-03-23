@@ -63,7 +63,7 @@ abstract class MP_newsletter_scheduler_post_ extends MP_newsletter_scheduler_
 		{
 			$trailer .= "_{$this->taxonomy}";
 			if (isset($this->newsletter['params']['term_id'])) 	$trailer .= "_{$this->newsletter['params']['term_id']}";
-			elseif (isset($this->newsletter['params']['cat_id']))	$trailer .= "_{$this->newsletter['params']['cat_id']}";
+			elseif (isset($this->newsletter['params']['cat_id']))	$trailer .= "_{$this->newsletter['params']['cat_id']}";  // backward compatibility
 		}
 
 		return "_MailPress_published{$trailer}";

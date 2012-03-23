@@ -234,7 +234,9 @@ class MailPress_newsletter
 	{
 		$args = array(	'root' 		=> MP_CONTENT_DIR . 'advanced/newsletters/post',
 					'root_filter' 	=> 'MailPress_advanced_newsletters_root',
-					'files'		=> array('new_post', 'daily', 'weekly', 'monthly'),
+					'files'		=> array('post', 'daily', 'weekly', 'monthly'),
+
+					'post_type'	=> 'post',
 		);
 
 		MP_Newsletter::register_files($args);

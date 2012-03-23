@@ -1,17 +1,19 @@
 ﻿<newsletter id='new_post'>
 
 	<descriptions>
-		<admin><![CDATA[<?php _e('Per post', MP_TXTDOM); ?>]]></admin>
-		<blog><![CDATA[<?php  _e('For each new post', MP_TXTDOM); ?>]]></blog>
+		<admin><![CDATA[<?php printf(__('Per %1$s', MP_TXTDOM), 		$_post_type->labels->singular_name); ?>]]></admin>
+		<blog><![CDATA[<?php  printf(__('For each new %1$s', MP_TXTDOM), 	$_post_type->labels->singular_name); ?>]]></blog>
 	</descriptions>
 
 	<mail>
 		<Template>single</Template>
 		<subject><![CDATA[<?php printf( __('[%1$s] New Post : {{the_title}}', MP_TXTDOM), get_bloginfo('name')); ?>]]></subject>
+		<the_post_types><![CDATA[<?php echo $_post_type->labels->name; ?>]]></the_post_types>
+		<the_post_type><![CDATA[<?php echo $_post_type->labels->singular_name; ?>]]></the_post_type>
 	</mail>
 
 	<processor>
-		<id>now</id>
+		<id>post</id>
 	</processor>
 
 	<scheduler>

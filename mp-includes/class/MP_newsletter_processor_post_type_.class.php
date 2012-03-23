@@ -1,5 +1,5 @@
 <?php
-abstract class MP_newsletter_processor_now_post_type_ extends MP_newsletter_processor_now_
+abstract class MP_newsletter_processor_post_type_ extends MP_newsletter_processor_post_
 {
 	function what_else()
 	{

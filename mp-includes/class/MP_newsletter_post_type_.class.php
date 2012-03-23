@@ -1,9 +1,11 @@
 <?php
 abstract class MP_newsletter_post_type_
 {
+	var $register_priority = 10;
+
 	function __construct() 
 	{
-		add_action('MailPress_register_newsletter',	array(&$this, 'register'));
+		add_action('MailPress_register_newsletter',	array(&$this, 'register'), $this->register_priority);
 
 		if (method_exists(&$this,'init')) add_action('init', array(&$this, 'init'), 1);
 
@@ -19,8 +21,8 @@ abstract class MP_newsletter_post_type_
 		}
 
 		$this->args = array(	'root' 		=> MP_CONTENT_DIR . "advanced/newsletters/{$this->post_type}",
-		//				'root_filter' 	=> "MailPress_advanced_newsletters_{$this->post_type}_root",
-						'files'		=> array("new_post_type", "daily", "weekly", "monthly"),
+						'root_filter' 	=> "MailPress_advanced_newsletters_{$this->post_type}_root",
+						'files'		=> array("post_type", "daily", "weekly", "monthly"),
 
 						'Template'		=> $this->post_type,
 
