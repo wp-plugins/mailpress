@@ -23,8 +23,7 @@ class MailPress_newsletter_categories extends MP_newsletter_post_type_taxonomy_
 		parent::__construct();
 
 		unset($this->args['Template']);
-		$this->args['root_filter']    = MP_CONTENT_DIR . 'advanced/newsletters/post';
-		$this->args['get_terms_args'] = array('parent' => 0);
+		$this->args['get_terms_args'] = array('parent' => 0, 'hide_empty' => 0);
 	}
 
 	function subscriptions_newsletter_th($th, $newsletter)

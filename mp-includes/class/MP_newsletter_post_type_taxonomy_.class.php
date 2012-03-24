@@ -5,8 +5,10 @@ abstract class MP_newsletter_post_type_taxonomy_ extends MP_newsletter_post_type
 	{
 		parent::__construct();
 
+		$filter = ('post' == $this->post_type) ? '' : "_{$this->post_type}";
+
 		$this->args = array(	'root' 		=> MP_CONTENT_DIR . "advanced/newsletters/{$this->post_type}/{$this->taxonomy_s}",
-						'root_filter' 	=> "MailPress_advanced_newsletters_{$this->post_type}_root",
+						'root_filter' 	=> "MailPress_advanced_newsletters{$filter}_root",
 						'folder'		=> $this->taxonomy_s,
 						'files'		=> array($this->taxonomy_s),
 

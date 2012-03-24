@@ -3,7 +3,7 @@ class MP_Newsletter_processors extends MP_options_
 {
 	const bt = 150;
 
-	var $path = 'newsletter/processors';
+	var $path 	  = 'newsletter/processors';
 
 	public static function get_all()
 	{

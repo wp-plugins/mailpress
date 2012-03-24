@@ -196,15 +196,14 @@ class MP_Newsletter
 
 	public static function register_files($args)
 	{
-		$files = array();
+		$defaults = array('file' => array());
 
-		extract( $args );		
+		extract( wp_parse_args($args, $defaults) );		
 
 		$_post_type = get_post_type_object( $post_type );
 		if (empty($_post_type)) return;
 
-		if (isset($root_filter)) $root  = apply_filters($root_filter, $root);
-
+		if (isset($root_filter)) $root = apply_filters($root_filter, $root);
 		if (empty($files)) return;
 
 		$xml = '';
@@ -218,7 +217,6 @@ class MP_Newsletter
 				$xml .= trim(ob_get_contents());
 			ob_end_clean();
 		}
-
 		if (empty($xml)) return;
 
 		self::register_xml($xml);
@@ -226,30 +224,23 @@ class MP_Newsletter
 
 	public static function register_taxonomy($args)
 	{
-		$files = array();
+		$defaults = array('file' => array(), 'get_terms_args' => array());
 
-		extract( $args );
+		extract( wp_parse_args($args, $defaults) );
 
 		$_post_type = get_post_type_object( $post_type );
 		if (empty($_post_type)) return;
+		if (!taxonomy_exists( $taxonomy ) ) return;
 
-		if ('category' == $taxonomy)
-		{
-			$terms = get_categories((isset($get_terms_args)) ? $get_terms_args : array());
-		}
-		else
-		{
-			$terms = get_terms($taxonomy, (isset($get_terms_args)) ? $get_terms_args : array());
-			if ( is_a($terms, 'WP_Error') ) return;
-		}
-		if (empty($terms)) return;
-
-		if (isset($root_filter)) $root  = apply_filters($root_filter, $root);
-
+		if (isset($root_filter)) $root = apply_filters($root_filter, $root);
    		$dir  = @opendir($root);
 		if ($dir) while ( ($file = readdir($dir)) !== false ) if (preg_match("/{$taxonomy}-[0-9]*\.xml/", $file)) $files[] = substr($file, 0, -4);
 		if ($dir) @closedir($dir);
 		if (empty($files)) return;
+
+		$terms = ('category' == $taxonomy) ? get_categories($get_terms_args) : get_terms($taxonomy, $get_terms_args);
+		if ( is_a($terms, 'WP_Error') ) return;
+		if (empty($terms)) return;
 
 		$xml = '';
 		foreach($files as $file)

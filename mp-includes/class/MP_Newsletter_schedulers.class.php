@@ -3,7 +3,7 @@ class MP_Newsletter_schedulers extends MP_options_
 {
 	const bt = 150;
 
-	var $path = 'newsletter/schedulers';
+	var $path    = 'newsletter/schedulers';
 
 	public static function get_all()
 	{
