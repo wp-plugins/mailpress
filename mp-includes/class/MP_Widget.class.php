@@ -114,19 +114,6 @@ class MP_Widget extends WP_Widget
 		return $options;
 	}
 
-	public static function get_wp_user_unsubscribe_url()
-	{
-		$url = false;
-		$email = MP_WP_User::get_email();
-
-		if (is_email($email))
-		{
-			$key = MP_User::get_key_by_email($email);
-			if ($key) $url = MP_User::get_unsubscribe_url($key);
-		}
-		return $url;
-	}
-
 ////  Form  ////
 
 	public static function widget_form($options = array()) 

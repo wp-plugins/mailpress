@@ -2,7 +2,7 @@
 Contributors: andre renaut
 Donate link: http://www.mailpress.org/wiki
 Tags: mail, mails, comments, comment, subscribe, newsletters, newsletter, Wordpress, Plugin, swiftmailer, post, posts, smtp, sendmail, phpmail, notification, notifications, mail, mails, contact form
-Requires at least: 3.3
+Requires at least: 3.4
 Tested up to: 3.4
 Stable tag: 5.2.1
 
@@ -37,7 +37,7 @@ Thank you
 
 == Installation ==
 
-1. Make sure you have already installed WordPress 3.3 or above.
+1. Make sure you have already installed WordPress 3.4 or above.
 1. Unzip the MailPress package.
 1. Upload the mailpress folder into wp-content/plugins.
 1. Make sure the wp-content/plugins/mailpress/tmp folder is writable.
