@@ -11,31 +11,33 @@ class MP_oEmbed extends WP_oEmbed
 		if (has_filter($filter)) $html = apply_filters($filter, $html, $data, $url);
 		if (!empty($html)) return $html;
 
-		if (isset($data->thumbnail_width, $data->thumbnail_height, $data->thumbnail_url, $data->title))
+		foreach(array('thumbnail_width', 'thumbnail_height', 'thumbnail_url', 'title') as $var)
 		{
-			$url = (isset($data->url)) ? $data->url : $url;
+			if (isset($data->{$var}) && !empty($data->{$var})) continue;
 
-			$html  = "<a target='_blank' href=\"" . esc_url($url) . "\"";
-			if (isset($data->title))			$html .= " title=\"" . esc_html($data->title) . "\"";
+			$html .= "<a target='_blank' href=\"" . esc_url($url) . "\"";
+			if (isset($data->title)) 		$html .= " title=\"" . esc_html($data->title) . "\"";
 			$html .= ">";
-
-			$html .= "<img";
-			if (isset($data->thumbnail_width))	$html .= " width='{$data->thumbnail_width}px'";
-			if (isset($data->thumbnail_height))	$html .= " height='{$data->thumbnail_height}px'";
-			if (isset($data->thumbnail_url))	$html .= " src='{$data->thumbnail_url}'";
-			if (isset($data->title))			$html .= " title=\"" . esc_html($data->title) . "\" alt=\"" . esc_html($data->title) . "\"";
-			$html .= " />";
-
+			$html .= (isset($data->title)) ? $data->title : $url;
 			$html .= "</a>";
 		}
 		if (!empty($html)) return $html;
 
-		$html .= "<a target='_blank' href=\"" . esc_url($url) . "\"";
-		if (isset($data->title))    	   $html .= " title=\"" . esc_html($data->title) . "\"";
+		if (!isset($data->url)) $data->url = $url;
+
+		$html  = "<a target='_blank' href=\"" . esc_url($data->url) . "\"";
+		$html .= " title=\"" . esc_html($data->title) . "\"";
 		$html .= ">";
-		$html .= (isset($data->title)) ? $data->title : $url;
+
+		$html .= "<img";
+		$html .= " width='{$data->thumbnail_width}px'";
+		$html .= " height='{$data->thumbnail_height}px'";
+		$html .= " src='{$data->thumbnail_url}'";
+		$html .= " title=\"" . esc_html($data->title) . "\" alt=\"" . esc_html($data->title) . "\"";
+		$html .= " />";
+
 		$html .= "</a>";
-                                
+
 		return $html;
 	}
 }

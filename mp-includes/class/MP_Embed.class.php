@@ -1,12 +1,7 @@
 <?php
 class MP_Embed 
 {
-	const html_filter = 'mp_embed_oembed_html';
-	const unknown = '{{unknown}}';
-
 	var $handlers = array();
-	var $post_ID;
-	var $usecache = true;
 
 	/**
 	 * Constructor
@@ -44,9 +39,11 @@ class MP_Embed
 
 	function shortcode( $attr, $url = '' ) 
 	{
-		global $post;
-
 		if ( empty($url) ) return '';
+
+		global $post;
+		$post_ID = ( !empty($post->ID) ) ? $post->ID : null;
+		if (!$post_ID) return $url;
 
 		$rawattr = $attr;
 		$attr = wp_parse_args( $attr, wp_embed_defaults() );
@@ -69,39 +66,27 @@ class MP_Embed
 			}
 		}
 
-		$post_ID = ( !empty($post->ID) ) ? $post->ID : null;
-		if ( !empty($this->post_ID) )
-			$post_ID = $this->post_ID;
-
 		// Unknown URL format. Let oEmbed have a go.
-		if ( $post_ID ) 
+		if ( MailPress_embed::usecache )
 		{
-			if ( $this->usecache )
-			{
-				$cachekey = MailPress_embed::meta_key . md5( $url . serialize( $attr ) );
-				$html = get_post_meta( $post_ID, $cachekey, true );
-				if ( self::unknown === $html ) 	return $this->maybe_make_link( $url );		// Failures are cached
-				if ( !empty($html) )			return apply_filters( self::html_filter, $html, $url, $attr, $post_ID );
-			}
-
-			// Use oEmbed to get the HTML
-			$attr['discover'] = ( apply_filters('mp_embed_oembed_discover', false) && author_can( $post_ID, 'unfiltered_html' ) );
-			$html = MailPress_Embed::_oembed_get( $url, $attr );
-
-			if ( $this->usecache )
-				update_post_meta( $post_ID, $cachekey, ( $html ) ? $html : self::unknown );
-
-			if ( $html )
-				return apply_filters( self::html_filter, $html, $url, $attr, $post_ID );
+			$cachekey = MailPress_embed::meta_key . md5( $url . serialize( $attr ) );
+			$html = get_post_meta( $post_ID, $cachekey, true );
+			if ( MailPress_embed::unknown === $html ) 	return $url;		// Failures are cached
+			if ( !empty($html) )			return apply_filters( MailPress_embed::html_filter, $html, $url, $attr, $post_ID );
 		}
 
-		// Still unknown
-		return $this->maybe_make_link( $url );
-	}
+		// Use oEmbed to get the HTML
+		$attr['discover'] = ( apply_filters('mp_embed_oembed_discover', false) && author_can( $post_ID, 'unfiltered_html' ) );
+		$html = MailPress_Embed::_oembed_get( $url, $attr );
 
-	function maybe_make_link( $url )
-	{
-		return apply_filters( 'embed_maybe_make_link', $url, $url );
+		if ( MailPress_embed::usecache )
+			update_post_meta( $post_ID, $cachekey, ( $html ) ? $html : MailPress_embed::unknown );
+
+		if ( $html )
+			return apply_filters( MailPress_embed::html_filter, $html, $url, $attr, $post_ID );
+
+		// Still unknown
+		return $url;
 	}
 }
 
