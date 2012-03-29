@@ -1,9 +1,9 @@
 <?php
 abstract class MP_newsletter_
 {
-	function __construct($description)
+	function __construct($desc)
 	{
-		$this->description = $description;
+		$this->desc = $desc;
 
 		$this->time = current_time('timestamp');
 
@@ -19,7 +19,7 @@ abstract class MP_newsletter_
 		add_filter('MailPress_newsletter_' . $this->args . 's_register',	array(&$this, 'register'), 8, 1);
 	}
 
-	function register($x) { $x[$this->id] = $this->description; return $x; }
+	function register($x) { $x[$this->id] = $this->desc; return $x; }
 
 	function get_day($y, $m) 
 	{

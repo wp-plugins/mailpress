@@ -4,10 +4,10 @@ abstract class MP_import_importer_
 	const bt 			= 133;
 	var 	$trace_header 	= false;
 
-	function __construct($description, $header, $callback = false) 
+	function __construct($desc, $header, $callback = false) 
 	{
-		$this->description 	= $description;
-		$this->header 		= $header;
+		$this->desc 	= $desc;
+		$this->header 	= $header;
 		if (!$callback) $this->callback = array($this, 'dispatch');
 
 		add_filter('MailPress_import_importers_register', array(&$this, 'register'), 8, 1);
@@ -16,7 +16,7 @@ abstract class MP_import_importer_
 	function register($importers) 
 	{
 		if ( is_wp_error( $this->callback ) ) return $importers;
-		$importers[$this->id] = array ( $this->id, $this->description, $this->callback);
+		$importers[$this->id] = array ( $this->id, $this->desc, $this->callback);
 		return $importers;
 	}
 

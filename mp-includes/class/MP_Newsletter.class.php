@@ -200,8 +200,7 @@ class MP_Newsletter
 
 		extract( wp_parse_args($args, $defaults) );		
 
-		$_post_type = get_post_type_object( $post_type );
-		if (empty($_post_type)) return;
+		if (!$_post_type = get_post_type_object( $post_type )) return;
 
 		if (isset($root_filter)) $root = apply_filters($root_filter, $root);
 		if (empty($files)) return;
@@ -228,8 +227,7 @@ class MP_Newsletter
 
 		extract( wp_parse_args($args, $defaults) );
 
-		$_post_type = get_post_type_object( $post_type );
-		if (empty($_post_type)) return;
+		if (!$_post_type = get_post_type_object( $post_type )) return;
 		if (!taxonomy_exists( $taxonomy ) ) return;
 
 		if (isset($root_filter)) $root = apply_filters($root_filter, $root);
@@ -239,8 +237,8 @@ class MP_Newsletter
 		if (empty($files)) return;
 
 		$terms = ('category' == $taxonomy) ? get_categories($get_terms_args) : get_terms($taxonomy, $get_terms_args);
-		if ( is_a($terms, 'WP_Error') ) return;
 		if (empty($terms)) return;
+		if (is_wp_error($terms)) return;
 
 		$xml = '';
 		foreach($files as $file)

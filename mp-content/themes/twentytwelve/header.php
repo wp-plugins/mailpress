@@ -1,10 +1,4 @@
-<?php 
-add_filter( 'comments_popup_link_attributes', 	array('MP_theme_2012_html', 'comments_popup_link_attributes'), 8, 1 );
-add_filter( 'the_category', 				array('MP_theme_2012_html', 'the_category'), 8, 3 );
-add_filter( 'term_links-post_tag', 			array('MP_theme_2012_html', 'term_links_post_tag'), 8, 1 );
-
-$post_id = (isset($this->args->newsletter['params']['post_id'])) ? $this->args->newsletter['params']['post_id'] : false; 
-?>
+<?php $post_id = (isset($this->args->newsletter['params']['post_id'])) ? $this->args->newsletter['params']['post_id'] : false; ?>
 <?php $this->get_template_part('head'); ?>
 	<body style='padding:0;margin:0;'>
 		<div <?php $this->classes('* body'); ?>>
@@ -30,7 +24,7 @@ $post_id = (isset($this->args->newsletter['params']['post_id'])) ? $this->args->
 							</ul>
 						</div>
 					</nav><!-- #access -->
-					<img src="<?php MP_theme_2012_html::header_image('images/header-1.jpg', $post_id); ?>" style="width:760px;" alt="img" />
+					<img src="<?php MP_theme_html_2012::header_image('images/header-1.jpg', $post_id); ?>" style="width:760px;" alt="img" />
 				</header><!-- #branding -->
 				<div <?php $this->classes('* cb'); ?>>
 					<div <?php $this->classes('* primary'); ?>>

@@ -44,7 +44,7 @@ class MailPress_tracking
 // prepare mail
 		add_filter('MailPress_is_tracking',  		array(__CLASS__, 'is_tracking'), 1, 1);
 		add_filter('MailPress_header_url',			array(__CLASS__, 'header_url'), 8, 2);
-		add_filter('MailPress_mail',				array(__CLASS__, 'mail'), 8, 1);
+		add_filter('MailPress_mail',				array(__CLASS__, 'mail'), 8, 2);
 // process link
 		add_action('mp_action_tracking', 			array(__CLASS__, 'tracking'), 8, 1);
 

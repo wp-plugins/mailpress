@@ -17,7 +17,4 @@
 <?php } ?>
 		</div><!-- #body -->
 	</body>
-</html><?php 
-remove_filter( 'comments_popup_link_attributes',array('MP_theme_2012_html', 'comments_popup_link_attributes') );
-remove_filter( 'the_category', 				array('MP_theme_2012_html', 'the_category') );
-remove_filter( 'term_links-post_tag', 		array('MP_theme_2012_html', 'term_links_post_tag') );
+</html>

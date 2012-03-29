@@ -310,11 +310,9 @@ class MailPress_sync_wordpress_user
 		$sync_wordpress_user = get_option(self::option_name);
 ?>
 <tr valign='top'>
-	<th scope='row'><?php _e('Allow subscriptions from', MP_TXTDOM); ?></th>
+	<th scope='row'><label for='sync_wordpress_user_register_form'><?php _e('Registration Form subscriptions', MP_TXTDOM); ?></label></th>
 	<td>
-		<label for='sync_wordpress_user_register_form'>
-			<input type='checkbox' name='sync_wordpress_user[register_form]' id='sync_wordpress_user_register_form'<?php if (isset($sync_wordpress_user['register_form'])) checked($sync_wordpress_user['register_form'], 'on'); ?> />&#160;&#160;<?php _e('Registration Form', MP_TXTDOM); ?><br />
-		</label>
+		<input type='checkbox' name='sync_wordpress_user[register_form]' id='sync_wordpress_user_register_form'<?php if (isset($sync_wordpress_user['register_form'])) checked($sync_wordpress_user['register_form'], 'on'); ?> />
 	</td>
 </tr>
 <?php

@@ -24,9 +24,4 @@
 			</div><!-- #body -->
 		</div>
 	</body>
-</html><?php 
-remove_filter( 'wp_nav_menu', 				array('MP_theme_2011_html', 'wp_nav_menu'));
-remove_filter( 'wp_page_menu', 				array('MP_theme_2011_html', 'wp_nav_menu'));
-remove_filter( 'comments_popup_link_attributes', 	array('MP_theme_2011_html', 'comments_popup_link_attributes') );
-remove_filter( 'the_category', 				array('MP_theme_2011_html', 'the_category') );
-remove_filter( 'term_links-post_tag', 			array('MP_theme_2011_html', 'term_links_post_tag') );
+</html>

@@ -4,9 +4,9 @@ abstract class MP_form_field_type_
 	var $field  = null;
 	var $prefix = MailPress_form::prefix;
 
-	function __construct($description)
+	function __construct($desc)
 	{
-		$this->description = $description;
+		$this->desc = $desc;
 		$this->settings	 = dirname($this->file) . '/settings.xml';
 
 		add_filter('MailPress_form_field_types_register',				array(&$this, 'register'), 		8, 1);
@@ -21,7 +21,7 @@ abstract class MP_form_field_type_
 		add_action('MailPress_form_field_type_' . $this->id . '_settings_form',	array(&$this, 'settings_form'),	8, 1);
 	}
 
-	function register($field_types) { $field_types[$this->id] = array( 'desc' => $this->description, 'order' => $this->order ); return $field_types; }
+	function register($field_types) { $field_types[$this->id] = array( 'desc' => $this->desc, 'order' => $this->order ); return $field_types; }
 	function have_file($have_file) { return $have_file; }
 
 	function submitted($field)

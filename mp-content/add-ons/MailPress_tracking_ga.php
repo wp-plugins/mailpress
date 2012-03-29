@@ -14,7 +14,7 @@ class MailPress_tracking_ga
 	{
 		if (class_exists('MailPress_tracking')) return;
 // prepare mail
-		add_filter('MailPress_mail',	array(__CLASS__, 'mail'), 8, 1);
+		add_filter('MailPress_mail',	array(__CLASS__, 'mail'), 8, 2);
 	}
 
 // prepare mail

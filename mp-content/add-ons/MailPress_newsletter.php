@@ -440,7 +440,7 @@ class MailPress_newsletter
 		if ('post' != $page) return;
 		if ('side' != $type) return;
 
-		wp_register_script('mp-meta-box-post-test', 	'/' . MP_PATH . 'mp-includes/js/mp_meta_box_post_test.js', array('wp-ajax-response'), false, 1);
+		wp_register_script('mp-meta-box-post-test', 	'/' . MP_PATH . 'mp-includes/js/meta_boxes/post/test.js', array('wp-ajax-response'), false, 1);
 		wp_localize_script('mp-meta-box-post-test', 	'mpMeta_box_postL10n', array( 
 			'url' => MP_Action_url
 		) );
@@ -454,7 +454,7 @@ class MailPress_newsletter
 
 	public static function meta_box_post_test($post) 
 	{
-		include (MP_ABSPATH . 'mp-includes/mp_meta_box_post_test.php');
+		include (MP_ABSPATH . 'mp-includes/meta_boxes/post/test.php');
 	}
 
 

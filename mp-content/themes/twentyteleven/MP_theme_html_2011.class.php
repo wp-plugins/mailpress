@@ -1,10 +1,40 @@
 <?php
-class MP_theme_2011_html
+class MP_theme_html_2011
 {
 	const HEADER_IMAGE_WIDTH = 760;
 	const HEADER_IMAGE_HEIGHT = 219;
 
 	public static $_comments_1st = false;
+
+	function __construct()
+	{
+		add_action('MailPress_build_mail_content_start',	array(__CLASS__, 'build_mail_content_start'));
+		add_action('MailPress_build_mail_content_end',		array(__CLASS__, 'build_mail_content_end'));
+	}
+
+	public static function build_mail_content_start($type)
+	{
+		if ('html' != $type) return;
+
+		add_filter( 'wp_nav_menu', 				array(__CLASS__, 'wp_nav_menu'), 8, 2 );
+		add_filter( 'wp_page_menu', 				array(__CLASS__, 'wp_nav_menu'), 8, 2 );
+		add_filter( 'comments_popup_link_attributes', 	array(__CLASS__, 'comments_popup_link_attributes'), 8, 1 );
+		add_filter( 'the_category', 				array(__CLASS__, 'the_category'), 8, 3 );
+		add_filter( 'term_links-post_tag', 			array(__CLASS__, 'term_links_post_tag'), 8, 1 );
+	}
+
+	public static function build_mail_content_end($type)
+	{
+		if ('html' != $type) return;
+
+		remove_filter( 'wp_nav_menu', 				array(__CLASS__, 'wp_nav_menu'));
+		remove_filter( 'wp_page_menu', 				array(__CLASS__, 'wp_nav_menu'));
+		remove_filter( 'comments_popup_link_attributes',array(__CLASS__, 'comments_popup_link_attributes') );
+		remove_filter( 'the_category', 				array(__CLASS__, 'the_category') );
+		remove_filter( 'term_links-post_tag', 		array(__CLASS__, 'term_links_post_tag') );
+	}
+
+
 
 	public static function header_image($default, $post_id = false)
 	{
@@ -61,3 +91,4 @@ class MP_theme_2011_html
 		return $term_links;
 	}
 }
+new MP_theme_html_2011();

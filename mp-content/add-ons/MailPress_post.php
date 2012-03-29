@@ -80,7 +80,7 @@ class MailPress_post
 		if ('side' != $type) return;
 		if (!current_user_can('MailPress_manage_posts')) return;
 
-		wp_register_script('mp-meta-box-post-drafts', 	'/' . MP_PATH . 'mp-includes/js/mp_meta_box_post_drafts.js', false, false, 1);
+		wp_register_script('mp-meta-box-post-drafts', 	'/' . MP_PATH . 'mp-includes/js/meta_boxes/post/drafts.js', false, false, 1);
 		wp_enqueue_script('mp-meta-box-post-drafts');
 
 		wp_register_script( 'mp-thickbox', 		'/' . MP_PATH . 'mp-includes/js/mp_thickbox.js', array('thickbox'), false, 1);
@@ -91,7 +91,7 @@ class MailPress_post
 
 	public static function meta_box_post($post) 
 	{
-		include (MP_ABSPATH . 'mp-includes/mp_meta_box_post_drafts.php');
+		include (MP_ABSPATH . 'mp-includes/meta_boxes/post/drafts.php');
 	}
 
 	public static function wp_ajax_add_mpdraft()

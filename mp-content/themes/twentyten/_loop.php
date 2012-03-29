@@ -1,10 +1,4 @@
-<?php
-add_filter( 'comments_popup_link_attributes', 	array('MP_theme_html', 'comments_popup_link_attributes'), 8, 1 );
-add_filter( 'the_category', 				array('MP_theme_html', 'the_category'), 8, 3 );
-add_filter( 'term_links-post_tag', 			array('MP_theme_html', 'term_links_post_tag'), 8, 1 );
-
-while (have_posts()) : the_post(); 
-?>
+<?php while (have_posts()) : the_post(); ?>
 
 <div id="post-<?php the_ID(); ?>"  <?php $this->classes('entry'); ?>>
 	<div>
@@ -50,9 +44,4 @@ while (have_posts()) : the_post();
 	</div><!-- #entry-utility -->	
 </div><!-- #post-<?php the_ID(); ?> -->
 
-<?php 
-endwhile;
-
-remove_filter( 'comments_popup_link_attributes', 	array('MP_theme_html', 'comments_popup_link_attributes') );
-remove_filter( 'the_category', 				array('MP_theme_html', 'the_category') );
-remove_filter( 'term_links-post_tag', 			array('MP_theme_html', 'term_links_post_tag') );
+<?php endwhile;
