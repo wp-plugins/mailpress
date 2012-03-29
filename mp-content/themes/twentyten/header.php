@@ -29,7 +29,7 @@
 									</td>
 								</tr>
 							</table>
-							<img src="<?php MP_theme_html::header_image('images/header-1.jpg', $post_id); ?>" width="<?php echo MP_theme_html::HEADER_IMAGE_WIDTH; ?>" height="<?php echo MP_theme_html::HEADER_IMAGE_HEIGHT; ?>" alt="img" <?php $this->classes('nopmb header_img'); ?> />
+							<img src="<?php do_action('MailPress_theme_html_header_image', 'images/header-1.jpg', $post_id); ?>"  width="<?php echo MP_theme_html_2010::HEADER_IMAGE_WIDTH; ?>" height="<?php echo MP_theme_html_2010::HEADER_IMAGE_HEIGHT; ?>" alt="img" <?php $this->classes('nopmb header_img'); ?> />
 						</div>
 					</div>
 				</div>

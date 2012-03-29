@@ -510,11 +510,12 @@ class MP_Mail extends MP_mail_
 
 	//¤ build the content ¤//
 
-		$content = "<?php do_action('MailPress_build_mail_content_start', '$type');?>";
+		$content = '';
 	//¤ call functions.php ¤//
 		foreach($this->get_template_paths('functions.php', true) as $file)
 			if (is_file($file)) $content .= "<?php require_once ('{$file}'); ?>";
-
+	//¤ call any start action after functions.php ¤//
+		$content .= "<?php do_action('MailPress_build_mail_content_start', '$type');?>";
 	//¤ call template or default ¤//
 		$content .= (is_file($template_name)) ? '<?php $this->load_template(\'' . $template_name . '\'); ?>' : '<?php $this->get_header(); $this->the_content(); $this->get_footer(); ?>';
 		$content .= "<?php do_action('MailPress_build_mail_content_end', '$type');?>";

@@ -24,7 +24,7 @@
 							</ul>
 						</div>
 					</nav><!-- #access -->
-					<img src="<?php MP_theme_html_2012::header_image('images/header-1.jpg', $post_id); ?>" style="width:760px;" alt="img" />
+					<img src="<?php do_action('MailPress_theme_html_header_image', 'images/header-1.jpg', $post_id); ?>" style="width:760px;" alt="img" />
 				</header><!-- #branding -->
 				<div <?php $this->classes('* cb'); ?>>
 					<div <?php $this->classes('* primary'); ?>>

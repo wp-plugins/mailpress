@@ -28,12 +28,13 @@
 $show_sep = false;
 $categories_list = get_the_category_list( __( ', ', 'twentyeleven' ) );
 if ( $categories_list ):
+	$show_sep = true;
 ?>
 		<span <?php $this->classes('*'); ?>>
-<?php 
-printf( '<span ' . $this->classes('*', 0) . '>Posted in</span> %1$s', $categories_list );
-$show_sep = true;
-?>
+			<span <?php $this->classes('*'); ?>>
+				Posted in
+			</span>
+			<?php echo $categories_list; ?>
 		</span>
 <?php 
 endif; // End if categories
@@ -45,12 +46,13 @@ if ( $tags_list ):
 		<span <?php $this->classes('*'); ?>> | </span>
 <?php 
 	endif; // End if $show_sep
+	$show_sep = true;
 ?>
 		<span <?php $this->classes('*'); ?>>
-<?php 
-printf( '<span ' . $this->classes('*', 0) . '>Tagged</span> %2$s', $tags_list );
-$show_sep = true;
-?>
+			<span <?php $this->classes('*'); ?>>
+				Tagged
+			</span>
+			<?php echo $tags_list; ?>
 		</span>
 <?php 
 endif; // End if $tags_list 
@@ -62,7 +64,7 @@ if ( comments_open() ) :
 <?php 
 	endif; // End if $show_sep
 ?>
-		<span <?php $this->classes('*'); ?>><?php comments_popup_link( '<span ' . $this->classes('*', 0) . '>>' . __( 'Leave a reply', 'twentyeleven' ) . '</span>', __( '<b>1</b> Reply', 'twentyeleven' ), __( '<b>%</b> Replies', 'twentyeleven' ), 'hover_underline' ); ?></span>
+		<span <?php $this->classes('*'); ?>><?php comments_popup_link( '<span ' . $this->classes('*', 0) . '>' . __( 'Leave a reply', 'twentyeleven' ) . '</span>', __( '<b>1</b> Reply', 'twentyeleven' ), __( '<b>%</b> Replies', 'twentyeleven' ), 'hover_underline' ); ?></span>
 <?php 
 endif; // End if comments_open() 
 ?>
