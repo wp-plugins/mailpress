@@ -72,7 +72,7 @@ class MP_Embed
 			$cachekey = MailPress_embed::meta_key . md5( $url . serialize( $attr ) );
 			$html = get_post_meta( $post_ID, $cachekey, true );
 			if ( MailPress_embed::unknown === $html ) 	return $url;		// Failures are cached
-			if ( !empty($html) )			return apply_filters( MailPress_embed::html_filter, $html, $url, $attr, $post_ID );
+			if ( !empty($html) )					return apply_filters( MailPress_embed::html_filter, $html, $url, $attr, $post_ID );
 		}
 
 		// Use oEmbed to get the HTML

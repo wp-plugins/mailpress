@@ -25,19 +25,6 @@ class MP_oEmbed extends WP_oEmbed
 
 		if (!isset($data->url)) $data->url = $url;
 
-		$html  = "<a target='_blank' href=\"" . esc_url($data->url) . "\"";
-		$html .= " title=\"" . esc_html($data->title) . "\"";
-		$html .= ">";
-
-		$html .= "<img";
-		$html .= " width='{$data->thumbnail_width}px'";
-		$html .= " height='{$data->thumbnail_height}px'";
-		$html .= " src='{$data->thumbnail_url}'";
-		$html .= " title=\"" . esc_html($data->title) . "\" alt=\"" . esc_html($data->title) . "\"";
-		$html .= " />";
-
-		$html .= "</a>";
-
-		return $html;
+		return MailPress_embed::_embed_get($data);
 	}
 }
