@@ -2,7 +2,7 @@
 if (class_exists('MailPress') && !class_exists('MailPress_embed'))
 {
 /*
-Plugin Name: MailPress_embed
+Plugin Name: MailPress_embed (equivalent of WordPress video embedding but for mails)
 Description: Mail oEmbed
 Version: 5.3
 */
