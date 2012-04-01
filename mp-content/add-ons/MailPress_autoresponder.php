@@ -507,12 +507,12 @@ class MailPress_autoresponder
 		$mail_id = (int) $mail_id;
 		if (isset($_POST['autoresponder']['schedule'])) foreach ($_POST['autoresponder']['schedule'] as $k => $v) if ($v <10) $_POST['autoresponder']['schedule'][$k] = '0' . $v;
 
-		$metakey 	= isset($_POST['autoresponderselect']) ? '_MailPress_autoresponder_' . trim( $_POST['autoresponderselect'] ) : '';
-		$metavalue 	= isset($_POST['autoresponder']['schedule']) ? $_POST['autoresponder']['schedule'] : array();
+		$meta_key 	= isset($_POST['autoresponderselect']) ? '_MailPress_autoresponder_' . trim( $_POST['autoresponderselect'] ) : '';
+		$meta_value= isset($_POST['autoresponder']['schedule']) ? $_POST['autoresponder']['schedule'] : array();
 
-		if ( empty($metavalue) || empty ($metakey) ) return false;
+		if ( empty($meta_value) || empty ($meta_key) ) return false;
 
-		return MP_Mail_meta::add( $mail_id, $metakey, $metavalue );
+		return MP_Mail_meta::add( $mail_id, $meta_key, $meta_value );
 	}
 
 	public static function mp_action_delete_wa()

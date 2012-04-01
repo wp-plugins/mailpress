@@ -16,7 +16,7 @@
 	</header><!-- .entry-header -->
 
 	<div <?php $this->classes('* entry-content'); ?>>
-		<?php the_excerpt(); ?>
+		<?php the_content(); ?>
 	</div><!-- .entry-content -->
 
 	<footer <?php $this->classes('entry-footer'); ?>>

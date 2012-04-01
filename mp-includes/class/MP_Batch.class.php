@@ -91,8 +91,8 @@ class MP_Batch
 			if ($this->mailmeta['try']) 	$this->mailmeta['failed'] = array_merge($maybe_failures, $this->mailmeta['failed']);
 			else  				$this->mailmeta['failed'] = array_merge($this->mailmeta['failed'], $maybe_failures);
 
-			if (!MP_Mail_meta::add($this->mail->id, MailPress_batch_send::metakey, $this->mailmeta, true))
-				MP_Mail_meta::update($this->mail->id, MailPress_batch_send::metakey, $this->mailmeta);
+			if (!MP_Mail_meta::add($this->mail->id, MailPress_batch_send::meta_key, $this->mailmeta, true))
+				MP_Mail_meta::update($this->mail->id, MailPress_batch_send::meta_key, $this->mailmeta);
 			$this->trace->restart();
 
 	// sending
@@ -129,8 +129,8 @@ class MP_Batch
 		}
 	// saving context
 		$this->report['end']  = $this->mailmeta;
-		if (!MP_Mail_meta::add($this->mail->id, MailPress_batch_send::metakey, $this->mailmeta, true))
-			MP_Mail_meta::update($this->mail->id, MailPress_batch_send::metakey, $this->mailmeta);
+		if (!MP_Mail_meta::add($this->mail->id, MailPress_batch_send::meta_key, $this->mailmeta, true))
+			MP_Mail_meta::update($this->mail->id, MailPress_batch_send::meta_key, $this->mailmeta);
 
 	// the end for this mail ?
 		if ($this->mailmeta['sent'] == $this->mailmeta['count']) 				self::update_mail($this->mail->id);
@@ -140,7 +140,7 @@ class MP_Batch
 // get mailmeta
 	function get_mailmeta($mail)
 	{
-		$mailmeta = MP_Mail_meta::get( $mail->id , MailPress_batch_send::metakey);
+		$mailmeta = MP_Mail_meta::get( $mail->id , MailPress_batch_send::meta_key);
 
 		if (!$mailmeta)
 		{
@@ -186,7 +186,7 @@ class MP_Batch
 		global $wpdb;
 				
 		$x = $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->mp_mails SET status = 'sent' WHERE id = %d ", $id) );
-		if (!$failed) MP_Mail_meta::delete( $id , MailPress_batch_send::metakey);
+		if (!$failed) MP_Mail_meta::delete( $id , MailPress_batch_send::meta_key);
 	}
 
 // batch sending

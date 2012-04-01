@@ -3,7 +3,7 @@ class MP_Bounce_II extends MP_bounce_
 {
 	public $option_name 	= MailPress_bounce_handling_II::option_name;
 	public $option_name_pop3= MailPress_bounce_handling_II::option_name_pop3;
-	public $metakey 		= MailPress_bounce_handling_II::metakey;
+	public $meta_key 		= MailPress_bounce_handling_II::meta_key;
 
 	public $class		= __CLASS__;
 	public $log_name 		= 'mp_process_bounce_handling_II';

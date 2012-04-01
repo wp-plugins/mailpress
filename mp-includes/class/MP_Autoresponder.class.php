@@ -124,8 +124,8 @@ class MP_Autoresponder
 
 		foreach( $terms as $term )
 		{
-			$metakey = '_MailPress_autoresponder_' . $term->term_id;
-			$metadata = MP_Mail_meta::has($object_id, $metakey);
+			$meta_key = '_MailPress_autoresponder_' . $term->term_id;
+			$metadata = MP_Mail_meta::has($object_id, $meta_key);
 			$time = time();
 			if ($metadata) foreach ($metadata as $entry) $_terms[] =	array('term_id' 	=> $term->term_id, 
 														'meta_id' 	=> $entry['meta_id'], 
@@ -146,8 +146,8 @@ class MP_Autoresponder
 
 		foreach( $terms as $term )
 		{
-			$metakey = '_MailPress_autoresponder_' . $term->term_id;
-			$metadata = MP_Mail_meta::has($object_id, $metakey);
+			$meta_key = '_MailPress_autoresponder_' . $term->term_id;
+			$metadata = MP_Mail_meta::has($object_id, $meta_key);
 			if ($metadata) return true;
 		}
 		return false;

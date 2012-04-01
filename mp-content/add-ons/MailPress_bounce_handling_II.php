@@ -9,7 +9,7 @@ Version: 5.3
 
 class MailPress_bounce_handling_II
 {
-	const metakey     	= '_MailPress_bounce_handling';
+	const meta_key     	= '_MailPress_bounce_handling';
 	const option_name 	= 'MailPress_bounce_handling_II';
 	const option_name_pop3 	= 'MailPress_connection_pop3';
 	const log_name = 'bounce_handling_II';
@@ -241,7 +241,7 @@ class MailPress_bounce_handling_II
 // for user page
 	public static function meta_boxes_user($mp_user_id, $screen)
 	{
-		$usermeta = MP_User_meta::get($mp_user_id, self::metakey);
+		$usermeta = MP_User_meta::get($mp_user_id, self::meta_key);
 		if (!$usermeta) return;
 
 		add_meta_box('bouncehandlingdiv', __('Bounces', MP_TXTDOM), array(__CLASS__, 'meta_box_user'), $screen, 'side', 'core');
@@ -249,7 +249,7 @@ class MailPress_bounce_handling_II
 
 	public static function meta_box_user($mp_user)
 	{
-		$usermeta = MP_User_meta::get($mp_user->id, self::metakey);
+		$usermeta = MP_User_meta::get($mp_user->id, self::meta_key);
 		if (!$usermeta) return;
 
 		global $wpdb;
@@ -289,7 +289,7 @@ class MailPress_bounce_handling_II
 				elseif(is_serialized($mail->toemail)) $total = count(unserialize($mail->toemail));
 				else return;
 
-				$result = MP_Mail_meta::get($mail->id, self::metakey);
+				$result = MP_Mail_meta::get($mail->id, self::meta_key);
 				if ($result) if ($total > 0) printf("%01.2f %%", 100 * $result/$total );
 			break;
 		}
@@ -302,7 +302,7 @@ class MailPress_bounce_handling_II
 		$mail_id    = $_GET['mail_id'];
 		$bounce_id  = $_GET['id'];
 
-		$usermeta = MP_User_meta::get($mp_user_id, self::metakey);
+		$usermeta = MP_User_meta::get($mp_user_id, self::meta_key);
 		if (!$usermeta) return;
 
 		$plaintext = $usermeta['bounces'][$mail_id][$bounce_id]['message'];

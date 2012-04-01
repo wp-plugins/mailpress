@@ -10,7 +10,7 @@ Version: 5.3
 
 class MailPress_batch_send
 {
-	const metakey = '_MailPress_batch_send';
+	const meta_key = '_MailPress_batch_send';
 	const option_name = 'MailPress_batch_send';
 	const log_name = 'batch_send';
 
@@ -96,7 +96,7 @@ class MailPress_batch_send
 		self::uninstall();
 
 		global $wpdb;
-		$wpdb->query( $wpdb->prepare("UPDATE $wpdb->mp_mailmeta SET meta_key = %s WHERE meta_key = %s;", self::metakey, 'batch_send') );
+		$wpdb->query( $wpdb->prepare("UPDATE $wpdb->mp_mailmeta SET meta_key = %s WHERE meta_key = %s;", self::meta_key, 'batch_send') );
 
 		$logs = get_option(MailPress::option_name_logs);
 		if (!isset($logs[self::log_name]))
@@ -164,14 +164,14 @@ class MailPress_batch_send
 		if ('mailpress_tracking_m' != $screen) return;
 		if (!isset($_GET['id'])) return;
 
-		if (!MP_Mail_meta::get( $_GET['id'], self::metakey)) return;
+		if (!MP_Mail_meta::get( $_GET['id'], self::meta_key)) return;
 
 		add_meta_box('batchsenddiv', __('Batch current status', MP_TXTDOM), array(__CLASS__, 'meta_box_status'), $screen, 'normal', 'core');
 	}
 
 	public static function meta_box_status($mail)
 	{ 
-		$mailmeta = MP_Mail_meta::get( $mail->id , self::metakey);
+		$mailmeta = MP_Mail_meta::get( $mail->id , self::meta_key);
 ?>
 		<table style='width:100%;'>
 			<tr>
@@ -208,7 +208,7 @@ class MailPress_batch_send
 // for mails list
 	public static function to_mails_column($to, $mail)
 	{
-		$mailmeta = MP_Mail_meta::get( $mail->id , self::metakey);
+		$mailmeta = MP_Mail_meta::get( $mail->id , self::meta_key);
 
 		if ($mailmeta)
 		{

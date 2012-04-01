@@ -12,8 +12,8 @@ Author URI: http://www.mailpress.org
 
 class MailPress_post
 {
-	const metakey        = '_MailPress_post_';
-	const metakey_order  = '_MailPress_post-order';
+	const meta_key        = '_MailPress_post_';
+	const meta_key_order  = '_MailPress_post-order';
 
 	function __construct()
 	{
@@ -258,8 +258,8 @@ class MailPress_post
 			$post_id = str_replace('mppost-', '', $post);
 			$meta_value[$post_id] = $post_id;
 		}
-		if (!MP_Mail_meta::add($mp_mail_id, self::metakey_order, $meta_value, true))
-			MP_Mail_meta::update($mp_mail_id, self::metakey_order, $meta_value);
+		if (!MP_Mail_meta::add($mp_mail_id, self::meta_key_order, $meta_value, true))
+			MP_Mail_meta::update($mp_mail_id, self::meta_key_order, $meta_value);
 	}
 
 	public static function mp_action_delete_mppost()

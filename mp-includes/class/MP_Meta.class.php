@@ -192,18 +192,18 @@ class MP_Meta
 
 		$metakeyselect 	= isset($_POST['metakeyselect']) ? trim( $_POST['metakeyselect'] ) : '';
 		$metakeyinput 	= isset($_POST['metakeyinput'])  ? trim( $_POST['metakeyinput'] )  : '';
-		$metavalue 		= isset($_POST['metavalue'])     ? trim( $_POST['metavalue'] )     : '';
+		$meta_value 	= isset($_POST['metavalue'])     ? trim( $_POST['metavalue'] )     : '';
 
-		if ( ('0' === $metavalue || !empty( $metavalue ) ) && ((('#NONE#' != $metakeyselect) && !empty( $metakeyselect ) ) || !empty( $metakeyinput ) ) )
+		if ( ('0' === $meta_value || !empty( $meta_value ) ) && ((('#NONE#' != $metakeyselect) && !empty( $metakeyselect ) ) || !empty( $metakeyinput ) ) )
 		{
 			// We have a key/value pair. If both the select and the
 			// input for the key have data, the input takes precedence:
 
-			if ('#NONE#' != $metakeyselect)				$metakey = $metakeyselect;
-			if ( $metakeyinput)						$metakey = $metakeyinput; // default
-			if ( in_array($metakey, $protected) )	return false;
+			if ('#NONE#' != $metakeyselect)				$meta_key = $metakeyselect;
+			if ( $metakeyinput)						$meta_key = $metakeyinput; // default
+			if ( in_array($meta_key, $protected) )	return false;
 
-			return self::add( $meta_type, $object_id, $metakey, $metavalue );
+			return self::add( $meta_type, $object_id, $meta_key, $meta_value );
 		}
 		return false;
 	}

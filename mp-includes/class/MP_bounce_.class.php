@@ -91,13 +91,13 @@ abstract class MP_bounce_ extends MP_db_connect_
 		{
 			$bounce = array( 'message' => $this->pop3->message );
 
-			$usermeta = MP_User_meta::get($mp_user_id, $this->metakey);
+			$usermeta = MP_User_meta::get($mp_user_id, $this->meta_key);
 			if (!$usermeta)
 			{
 				$usermeta = array();
 				$usermeta['bounce'] = 1;
 				$usermeta['bounces'][$mail_id][] = $bounce;	
-				MP_User_meta::add($mp_user_id, $this->metakey, $usermeta);
+				MP_User_meta::add($mp_user_id, $this->meta_key, $usermeta);
 			}
 			else
 			{
@@ -126,8 +126,8 @@ abstract class MP_bounce_ extends MP_db_connect_
 
 				if (!$already_stored) $usermeta['bounces'][$mail_id][] = $bounce;
 
-				if (!MP_User_meta::add(    $mp_user_id, $this->metakey, $usermeta, true))
-					MP_User_meta::update($mp_user_id, $this->metakey, $usermeta);
+				if (!MP_User_meta::add(    $mp_user_id, $this->meta_key, $usermeta, true))
+					MP_User_meta::update($mp_user_id, $this->meta_key, $usermeta);
 			}
 
 			switch (true)
@@ -166,10 +166,10 @@ abstract class MP_bounce_ extends MP_db_connect_
 					$mail_logmess = '** WARNING ** mail not in database';
 				break;
 				default :
-					if (!isset(self::$count[$mail_id])) self::$count[$mail_id] = MP_Mail_meta::get($mail_id, $this->metakey);
+					if (!isset(self::$count[$mail_id])) self::$count[$mail_id] = MP_Mail_meta::get($mail_id, $this->meta_key);
 					self::$count[$mail_id] = ( is_numeric(self::$count[$mail_id]) ) ? ( self::$count[$mail_id] + 1 ) : 1;
-					if (!MP_Mail_meta::add($mail_id, $this->metakey, self::$count[$mail_id] , true))
-						MP_Mail_meta::update($mail_id, $this->metakey, self::$count[$mail_id] );
+					if (!MP_Mail_meta::add($mail_id, $this->meta_key, self::$count[$mail_id] , true))
+						MP_Mail_meta::update($mail_id, $this->meta_key, self::$count[$mail_id] );
 					$mailmeta = self::$count[$mail_id];
 
 					$metas = MP_Mail_meta::get( $mail_id, '_MailPress_replacements');
