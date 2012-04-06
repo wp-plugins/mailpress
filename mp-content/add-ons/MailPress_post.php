@@ -275,9 +275,9 @@ class MailPress_post
 		global $MP_post_ids, $mp_general;
 
 		$MP_post_ids = MP_Post::get_object_terms($main_id);
-		if (empty($MP_post_ids)) return false;
+		if (empty($MP_post_ids)) return $template;
 
-		$query_posts = array('post__in' => $MP_post_ids, 'ignore_sticky_posts' => 1 );
+		$query_posts = array('post__in' => $MP_post_ids, 'ignore_sticky_posts' => 1);
 		if (class_exists('MailPress_newsletter') && isset($mp_general['post_limits']) && !empty($mp_general['post_limits']))
 			$query_posts['posts_per_page'] = $mp_general['post_limits'];
 

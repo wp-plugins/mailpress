@@ -89,4 +89,3 @@ class MP_Embed
 		return $url;
 	}
 }
-

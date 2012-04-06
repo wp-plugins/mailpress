@@ -63,7 +63,8 @@ class MP_Newsletter_processors extends MP_options_
 					$bm .= 'a problem occured (further details in appropriate Mail log)';
 				break;
 				case ( 'npst' == $rc ) :
-					$bm .= 'no posts for this newsletter';
+					$post_type = (isset($newsletter['mail']['the_post_type'])) ? strtolower($newsletter['mail']['the_post_type']) : 'post';
+					$bm .= sprintf('no %s for this newsletter', $post_type);
 				break;
 				case ( 'noqp' == $rc ) :
 					$bm .= 'newsletter[\'query_posts\'] not set (error in code ?)';

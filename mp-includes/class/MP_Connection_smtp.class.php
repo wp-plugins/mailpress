@@ -12,8 +12,8 @@ class MP_Connection_smtp extends MP_connection_
 		$conn->setHost($settings['server']);
 		$conn->setPort($settings['port']);
 
-		if (!empty($settings ['ssl']))
-			$conn->setEncryption($settings ['ssl']);
+		if (!empty($settings['ssl']))
+			$conn->setEncryption($settings['ssl']);
 
 		if (empty($settings['username']) && empty($settings['password']))
 		{
@@ -35,7 +35,7 @@ class MP_Connection_smtp extends MP_connection_
 			switch ($settings['smtp-auth'])
 			{
 				case '@PopB4Smtp' :
-					add_filter('MailPress_PopBeforeSmtp', array(__CLASS__, 'MailPress_PopBeforeSmtp'), 8, 1);
+					add_filter('MailPress_swift_registerPlugin', array(__CLASS__, 'registerPlugin'), 8, 1);
 				break;
 			}
 		}
@@ -43,7 +43,7 @@ class MP_Connection_smtp extends MP_connection_
 		return $conn;
 	}
 
-	public static function MailPress_PopBeforeSmtp($_this_swift)
+	public static function registerPlugin($_this_swift)
 	{
 		$settings = get_option(MailPress::option_name_smtp);
 

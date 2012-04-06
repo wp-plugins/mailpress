@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MailPress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-23 11:09+0100\n"
-"PO-Revision-Date: 2012-03-23 11:09+0100\n"
+"POT-Creation-Date: 2012-04-05 10:29+0200\n"
+"PO-Revision-Date: 2012-04-05 10:39+0100\n"
 "Last-Translator: MailPress <contribute@mailpress.org>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -165,8 +165,8 @@ msgstr "%i% en attente"
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\mailinglists.php:148
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\subscriptions.php:49
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\themes.php:136
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\user.php:57
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\write.php:203
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\user.php:53
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\write.php:199
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Form_field.class.php:236
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Mail_links.class.php:89
 msgid "Name"
@@ -188,7 +188,7 @@ msgstr "Ev&eacute;nement"
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\write.php:358
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\write.php:398
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\write.php:411
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\mp_meta_box_post_test.php:65
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\meta_boxes\post\test.php:65
 msgid "Edit"
 msgstr "Modifier"
 
@@ -602,7 +602,7 @@ msgstr "Modifi&eacute;"
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\tracking_u.php:165
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\users.php:318
 msgid "Y/m/d H:i:s"
-msgstr ""
+msgstr "Y/m/d H:i:s"
 
 # C:\wgettext\mailpress\mp-includes\class\MP_Mail.class.php:1307
 # C:\wgettext\mailpress\mp-includes\class\MP_User.class.php:863
@@ -611,7 +611,7 @@ msgstr ""
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\mails.php:437
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_adminpage_list_.class.php:204
 msgid "Y/m/d"
-msgstr ""
+msgstr "Y/m/d"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\revision.php:89
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\write.php:294
@@ -621,7 +621,7 @@ msgstr "Historique du mail"
 # C:\wgettext\mailpress\mp-admin\settings.php:9
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\settings.php:40
 msgid "Save Changes"
-msgstr ""
+msgstr "Enregistrer"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\settings.php:49
 msgid "No logging"
@@ -629,7 +629,7 @@ msgstr "Pas de log"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\settings.php:50
 msgid "simple log"
-msgstr ""
+msgstr "log simple"
 
 # C:\wgettext\mailpress_view_logs\MailPress_view_logs.php:87
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\settings.php:71
@@ -660,12 +660,12 @@ msgstr "Dernière purge"
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\themes.php:88
 #, php-format
 msgid "Activate &#8220;%s&#8221;"
-msgstr ""
+msgstr "Activer &#8220;%s&#8221;"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\themes.php:89
 #, php-format
 msgid "Preview of &#8220;%s&#8221;"
-msgstr ""
+msgstr "Previsualiser &#8220;%s&#8221;"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\themes.php:111
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\themes.php:69
@@ -806,7 +806,7 @@ msgstr "Ajouter un champ personnalis&eacute;"
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\user.php:355
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\write.php:645
 msgid "- Select -"
-msgstr ""
+msgstr "- Selectionner -"
 
 # C:\wgettext\m201\mailpress_custom_fields\mp-admin\includes\template.php:130
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\user.php:366
@@ -824,9 +824,9 @@ msgstr ""
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\form_fields.php:51
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\mailinglists.php:39
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\wp_cron.php:38
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\mp_meta_box_post_test.php:106
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Mail_links.class.php:129
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Mail_links.class.php:176
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\meta_boxes\post\test.php:106
 msgid "Cancel"
 msgstr "Abandonner"
 
@@ -1192,7 +1192,7 @@ msgstr "Plaintext"
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\write.php:303
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\write.php:118
 msgid "M j, Y @ G:i"
-msgstr ""
+msgstr "M j, Y @ G:i"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\write.php:326
 #, php-format
@@ -1212,26 +1212,26 @@ msgid "Name: "
 msgstr "Nom:"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\write.php:363
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\mp_meta_box_post_test.php:3
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\meta_boxes\post\test.php:3
 msgid "Email: "
 msgstr "Email: "
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\write.php:364
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\write.php:404
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\write.php:482
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\mp_meta_box_post_test.php:105
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Mail_links.class.php:128
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Mail_links.class.php:175
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\meta_boxes\post\test.php:105
 msgid "OK"
 msgstr "OK"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\write.php:389
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\mp_meta_box_post_test.php:21
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\meta_boxes\post\test.php:21
 msgid "current"
 msgstr "- th&egrave;me courant -"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\write.php:396
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\mp_meta_box_post_test.php:3
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\meta_boxes\post\test.php:3
 msgid "Theme: "
 msgstr "Th&egrave;me:"
 
@@ -1343,7 +1343,7 @@ msgstr "Chercher"
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\addons.php:103
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\mails.php:165
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\users.php:154
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\mp_meta_box_post_drafts.php:8
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\meta_boxes\post\drafts.php:8
 msgid "No results found."
 msgstr "Aucun r&eacute;sultat."
 
@@ -1445,7 +1445,6 @@ msgid "y/m/w/d/h"
 msgstr "a/m/s/j/h"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\forms.php:8
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:62
 #: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_form.php:96
 #: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_form.php:102
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\dashboard\mails_activity.xml:22
@@ -1510,7 +1509,6 @@ msgid "Attributes"
 msgstr "Attributs"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\forms.php:61
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:47
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\form\field_types\button\settings.xml:58
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\form\field_types\captcha_gd1\settings.xml:118
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\form\field_types\captcha_gd2\settings.xml:95
@@ -1599,8 +1597,8 @@ msgstr "Après &eacute;chec du traitement du formulaire"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\forms.php:249
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\subscriptions.php:43
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\user.php:45
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\write.php:188
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\user.php:41
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\write.php:184
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Form_field.class.php:217
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\form\field_types\email\email.php:54
 msgid "Email"
@@ -1968,7 +1966,7 @@ msgstr "G&eacute;n&eacute;ral"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings.php:19
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\dashboard\mails_activity.xml:49
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\mp_meta_box_post_test.php:49
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\meta_boxes\post\test.php:49
 msgid "Test"
 msgstr "Test"
 
@@ -2293,19 +2291,19 @@ msgstr "Mail PAS envoy&eacute;, aucun destinataire"
 msgid "Mail restored to revision from %s"
 msgstr "Article r&eacute;cup&eacute;r&eacute; depuis la version du %s"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\write.php:185
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\write.php:181
 msgid "To Email:"
 msgstr "&Agrave; Email: "
 
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\write.php:191
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\write.php:187
 msgid "OR all"
 msgstr "OU tous les "
 
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\write.php:200
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\write.php:196
 msgid "To Name:"
 msgstr "&Agrave; Nom"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\write.php:213
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\write.php:209
 msgid "Enter subject here"
 msgstr "Saisir l'objet du message ici"
 
@@ -2361,7 +2359,7 @@ msgid "Delete users"
 msgstr "Supprimer abonn&eacute;s"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\capabilities\capability_groups.php:6
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:43
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:76
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\dashboard\mails_activity.xml:9
 msgid "Admin"
 msgstr "Admin"
@@ -2575,7 +2573,7 @@ msgstr "Supprimer Anciens Mails"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\batches_delete_old_mails.form.php:18
 msgid "Keep sent mails since"
-msgstr ""
+msgstr "Conserver les mails envoy&eacute;s depuis"
 
 # C:\wgettext\mailpress\mailpress_connection_phpmail\mp-admin\includes\settings-phpmail.php:11
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\connection_php_mail.form.php:10
@@ -2777,35 +2775,35 @@ msgstr "Email : "
 msgid "Name : "
 msgstr "Nom : "
 
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:50
-msgid "MailPress version of wp_mail"
-msgstr "version MailPress de wp-mail "
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:43
+msgid "On Blog"
+msgstr "Blog"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:53
-msgid "Dashboard widgets"
-msgstr "Widgets tableau de bord"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:66
-msgid " Manage subscriptions from"
-msgstr "Gestion des abonnements depuis"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:77
-msgid "Page id"
-msgstr "Id de la page"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:78
-msgid "Category id"
-msgstr "Id de la cat&eacute;gorie"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:86
-msgid "View mail"
-msgstr "Visualiser un mail"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:89
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:47
 msgid "View mail in fullscreen"
 msgstr "Voir le mail en pleine page"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:96
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:53
+msgid " Manage subscriptions from"
+msgstr "Gestion des abonnements depuis"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:64
+msgid "Page id"
+msgstr "Id de la page"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:65
+msgid "Category id"
+msgstr "Id de la cat&eacute;gorie"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:80
+msgid "Dashboard widgets"
+msgstr "Widgets tableau de bord"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:86
+msgid "MailPress version of wp_mail"
+msgstr "version MailPress de wp-mail "
+
+#: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\general.form.php:98
 msgid "You can start to update your SMTP config, once you have saved your General settings"
 msgstr "Vous pouvez actualiser votre configuration SMTP d&egrave;s que vous aurez sauvegard&eacute; vos r&eacute;glages G&eacute;n&eacute;ral"
 
@@ -2842,7 +2840,7 @@ msgstr "R&eacute;glages &#8220;Abonnements&#8221; enregistr&eacute;s"
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\subscriptions_comment.form.php:8
 #: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_comment_newsletter_subscription.php:142
 msgid "checked by default"
-msgstr ""
+msgstr "s&eacute;lection par d&eacute;faut"
 
 # C:\wgettext\mailpress_mailing_lists\MailPress_mailing_lists.php:314
 # C:\wgettext\mailpress_mailing_lists\mp-admin\includes\taxonomy.php:51
@@ -2851,7 +2849,7 @@ msgid "You need to create at least one mailinglist."
 msgstr "Veuillez cr&eacute;er une mailing list"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-admin\includes\settings\subscriptions_newsletter.form.php:33
-#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_newsletter_categories.php:32
+#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_newsletter_categories.php:31
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\processors\post.php:6
 msgid "Post"
 msgstr "Article"
@@ -3018,7 +3016,7 @@ msgstr "Ajouter"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_autoresponder.php:377
 msgid "Not more than one year between two scheduled mails."
-msgstr ""
+msgstr "Pas plus d'une ann&eacute;e entre deux mails planifi&eacute;s"
 
 # C:\wgettext\mailpress_batch_send\MailPress_batch_send.php:71
 #: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_batch_send.php:134
@@ -3351,7 +3349,7 @@ msgstr "A tous les \"%1$s\""
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_mailinglist_US_state.php:24
 msgid "US State codes"
-msgstr ""
+msgstr "Codes &Eacute;tats US"
 
 # C:\wgettext\mailpress\mailpress\mp-admin\includes\uzer.php:100
 #: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_name_fields.php:65
@@ -3455,41 +3453,36 @@ msgstr "Vos abonnements"
 msgid "MailPress - Subscriptions"
 msgstr "MailPress - Abonnements "
 
-# C:\wgettext\mailpress\mp-includes\class\MP_Themes.class.php:48
-#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_sync_wordpress_user.php:313
-msgid "Allow subscriptions from"
-msgstr "Autoriser l'abonnement depuis "
-
 # C:\wgettext\mp\mailpress_sync_wordpress_user\mp-admin\includes\settings-sync-wordpress-user.php:14
-#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_sync_wordpress_user.php:316
-msgid "Registration Form"
-msgstr "Le formulaire d'Inscription"
+#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_sync_wordpress_user.php:313
+msgid "Registration Form subscriptions"
+msgstr "Abonnements à partir du formulaire d'inscription"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_sync_wordpress_user.php:331
+#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_sync_wordpress_user.php:329
 msgid "WP User sync"
 msgstr "WP User sync"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_sync_wordpress_user.php:355
+#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_sync_wordpress_user.php:353
 #, php-format
 msgid "WP User # %1$s"
 msgstr "WP User # %1$s"
 
 # C:\wgettext\mailpress_sync_wordpress_user\MailPress_sync_wordpress_user.php:249
-#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_sync_wordpress_user.php:357
+#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_sync_wordpress_user.php:355
 msgid "First name"
 msgstr "Pr&eacute;nom"
 
 # C:\wgettext\mailpress_sync_wordpress_user\MailPress_sync_wordpress_user.php:252
-#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_sync_wordpress_user.php:360
+#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_sync_wordpress_user.php:358
 msgid "Last name"
 msgstr "  \tNom"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_sync_wordpress_user.php:363
+#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_sync_wordpress_user.php:361
 msgid "Nickname"
 msgstr "Nom"
 
 # C:\wgettext\mailpress_sync_wordpress_user\MailPress_sync_wordpress_user.php:283
-#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_sync_wordpress_user.php:373
+#: D:\webserver\gnu\gettext\mailpress\mp-content\add-ons\MailPress_sync_wordpress_user.php:371
 #, php-format
 msgid "%1$s is not a WordPress user"
 msgstr "%1$s n'est pas un utilisateur WordPress"
@@ -3901,69 +3894,69 @@ msgstr ""
 msgid ", "
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyteleven\_loop.php:65
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyteleven\_loop.php:67
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentytwelve\_loop.php:49
 msgid "Leave a reply"
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyteleven\_loop.php:65
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyteleven\_loop.php:67
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentytwelve\_loop.php:49
 msgid "<b>1</b> Reply"
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyteleven\_loop.php:65
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyteleven\_loop.php:67
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentytwelve\_loop.php:49
 msgid "<b>%</b> Replies"
 msgstr ""
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loom.php:10
 msgid "Generated on "
-msgstr ""
+msgstr "G&eacute;n&eacute;r&eacute; le"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:12
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:6
 #, php-format
 msgid "Permalink to %s"
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:19
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:13
 msgid "Posted on "
-msgstr ""
+msgstr "Post&eacute; le"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:26
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:20
 msgid "by "
-msgstr ""
+msgstr "par"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:29
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:23
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentytwelve\_loop.php:12
 #, php-format
 msgid "View all posts by %s"
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:36
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:30
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
-msgstr ""
+msgstr "Suite <span class=\"meta-nav\">&rarr;</span>"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:37
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:31
 msgid "Pages:"
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:43
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:37
 msgid "Posted in "
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:48
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:42
 msgid "Tagged "
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:49
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:43
 msgid "Leave a comment"
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:49
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:43
 msgid "1 Comment"
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:49
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyten\_loop.php:43
 msgid "% Comments"
 msgstr ""
 
@@ -3972,18 +3965,6 @@ msgstr ""
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Pluggable.class.php:274
 msgid "Comment: "
 msgstr "Commentaire : "
-
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\mp_meta_box_post_drafts.php:36
-msgid "+ Add New Draft"
-msgstr "+ Associer &agrave; un brouillon"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\mp_meta_box_post_test.php:3
-msgid "Newsletter: "
-msgstr "Newsletter:"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\mp_meta_box_post_test.php:44
-msgid "Sending ..."
-msgstr "Envoi en cours ..."
 
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:472
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:479
@@ -4301,7 +4282,7 @@ msgstr "<p> &Agrave; : <b>%1$s</b></p>"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Mail_revision.class.php:7
 msgid "Name (from)"
-msgstr ""
+msgstr "Nom (de)"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Mail_revision.class.php:9
 msgid "Name (to)"
@@ -4309,7 +4290,7 @@ msgstr "Nom (&Acute;)"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Mail_revision.class.php:21
 msgid "j F, Y @ G:i"
-msgstr ""
+msgstr "j F, Y @ G:i"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Mail_revision.class.php:22
 #, php-format
@@ -4586,7 +4567,7 @@ msgid "Subscribe"
 msgstr "S'abonner"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Widget.class.php:98
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Widget.class.php:232
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Widget.class.php:219
 msgid "Manage your subscription"
 msgstr "Gestion de votre abonnement"
 
@@ -5744,51 +5725,54 @@ msgstr "Vue plaintext"
 msgid "Html View"
 msgstr "Vue html"
 
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\meta_boxes\post\drafts.php:36
+msgid "+ Add New Draft"
+msgstr "+ Associer &agrave; un brouillon"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\meta_boxes\post\test.php:3
+msgid "Newsletter: "
+msgstr "Newsletter:"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\meta_boxes\post\test.php:44
+msgid "Sending ..."
+msgstr "Envoi en cours ..."
+
+#~ msgid "View mail"
+#~ msgstr "Visualiser un mail"
+
+# C:\wgettext\mailpress\mp-includes\class\MP_Themes.class.php:48
+#~ msgid "Allow subscriptions from"
+#~ msgstr "Autoriser l'abonnement depuis "
 #~ msgid "Per post"
 #~ msgstr "Pour chaque article"
-
 #~ msgid "For each new post"
 #~ msgstr "&Agrave; chaque nouvel article"
-
 #~ msgid "Per post \"%1$s\""
 #~ msgstr "&Agrave; chaque article de  \"%1$s\""
-
 #~ msgid "For each new post in %1$s"
 #~ msgstr "&Agrave; chaque nouvel article  dans %1$s"
-
 #~ msgid "[%1$s] New post in {{the_category}} : {{the_title}}"
 #~ msgstr "[%1$s] Nouvel article dans {{the_category}} : {{the_title}}"
-
 #~ msgid "Daily \"%1$s\""
 #~ msgstr "Quotidienne de \"%1$s\""
-
 #~ msgid "Daily newsletter for %1$s"
 #~ msgstr "Newsletter quotidienne pour %1$s"
-
 #~ msgid "[%1$s] Daily newsletter for {{the_category}}"
 #~ msgstr "[%1$s] Newsletter quotidienne pour {{the_category}}"
-
 #~ msgid "Weekly \"%1$s\""
 #~ msgstr "Hebdomadaire de \"%1$s\""
-
 #~ msgid "Weekly newsletter for %1$s"
 #~ msgstr "Newsletter hebdomadaire pour %1$s"
-
 #~ msgid "[%1$s] Weekly newsletter for {{the_category}}"
 #~ msgstr "[%1$s] Newsletter hebdomadaire pour {{the_category}}"
-
 #~ msgid "Monthly \"%1$s\""
 #~ msgstr "Mensuelle de \"%1$s\""
-
 #~ msgid "Monthly newsletter for %1$s"
 #~ msgstr "Newsletter mensuelle pour %1$s"
-
 #~ msgid "[%1$s] Monthly newsletter for {{the_category}}"
 #~ msgstr "[%1$s] Newsletter mensuelle pour {{the_category}}"
-
 #~ msgid "Now"
 #~ msgstr "Maintenant"
-
 # C:\wgettext\mailpress_newsletter_categories\MailPress_newsletter_categories.php:232
 #~ msgid "** Blog **"
 #~ msgstr "** Blog **"

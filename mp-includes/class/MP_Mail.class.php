@@ -580,7 +580,7 @@ class MP_Mail extends MP_mail_
 	//¤ Swift sending ... ¤//
 		try 
 		{
-			$this->swift = apply_filters('MailPress_PopBeforeSmtp', $this->swift);
+			$this->swift = apply_filters('MailPress_swift_registerPlugin', $this->swift);
 		//¤ batch processing ¤//
 			if ($this->mail->mailpress_batch_send)
 				return apply_filters('MailPress_swift_send', $this);
