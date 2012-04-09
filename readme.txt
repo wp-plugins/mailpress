@@ -25,8 +25,8 @@ The WordPress mailing platform
 
 Some technical stuff :
 
-1. Switmailer 4.1.5
-1. jQuery 1.7.1 supported.
+1. Switmailer 4.1.6
+1. jQuery 1.7.2 supported.
 1. Google Map API V3 supported.
 1. Code Mirror 0.9 (2.2)
 
@@ -91,7 +91,7 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 ** 5.3-beta 2 ** xx/xx/2012
 
-* Switmailer 4.1.5
+* Switmailer 4.1.6
 
 * bug fix : subscription form now working when javascript or ajax not activated
 

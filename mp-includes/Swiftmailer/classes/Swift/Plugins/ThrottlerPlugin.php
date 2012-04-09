@@ -22,7 +22,10 @@ class Swift_Plugins_ThrottlerPlugin
   
   /** Flag for throttling in bytes per minute */
   const BYTES_PER_MINUTE = 0x01;
-  
+
+  /** Flag for throttling in emails per second (Amazon SES) */
+  const MESSAGES_PER_SECOND = 0x11;
+
   /** Flag for throttling in emails per minute */
   const MESSAGES_PER_MINUTE = 0x10;
   
@@ -97,14 +100,21 @@ class Swift_Plugins_ThrottlerPlugin
       $this->_start = $time;
     }
     $duration = $time - $this->_start;
-    
-    if (self::BYTES_PER_MINUTE == $this->_mode)
+
+    switch($this->_mode)
     {
-      $sleep = $this->_throttleBytesPerMinute($duration);
-    }
-    else
-    {
-      $sleep = $this->_throttleMessagesPerMinute($duration);
+        case self::BYTES_PER_MINUTE :
+            $sleep = $this->_throttleBytesPerMinute($duration);
+        break;
+        case self::MESSAGES_PER_SECOND :
+            $sleep = $this->_throttleMessagesPerSecond($duration);
+        break;
+        case self::MESSAGES_PER_MINUTE :
+            $sleep = $this->_throttleMessagesPerMinute($duration);
+        break;
+        default :
+            $sleep = 0;
+        break;
     }
     
     if ($sleep > 0)
@@ -156,7 +166,7 @@ class Swift_Plugins_ThrottlerPlugin
   }
   
   // -- Private methods
-  
+
   /**
    * Get a number of seconds to sleep for.
    * @param int $timePassed
@@ -166,6 +176,18 @@ class Swift_Plugins_ThrottlerPlugin
   private function _throttleBytesPerMinute($timePassed)
   {
     $expectedDuration = $this->getBytesOut() / ($this->_rate / 60);
+    return (int) ceil($expectedDuration - $timePassed);
+  }
+ 
+    /**
+   * Get a second to sleep for.
+   * @param int $timePassed
+   * @return int
+   * @access private
+   */
+  private function _throttleMessagesPerSecond($timePassed)
+  {
+    $expectedDuration = $this->_messages / ($this->_rate);
     return (int) ceil($expectedDuration - $timePassed);
   }
   
@@ -180,5 +202,4 @@ class Swift_Plugins_ThrottlerPlugin
     $expectedDuration = $this->_messages / ($this->_rate / 60);
     return (int) ceil($expectedDuration - $timePassed);
   }
-  
 }
