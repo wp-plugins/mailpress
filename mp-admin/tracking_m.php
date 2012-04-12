@@ -197,7 +197,7 @@ class MP_AdminPage extends MP_adminpage_list_
 ?>
 			<strong>
 				<a class='row-title thickbox thickbox-preview' href='<?php echo $view_url; ?>' title='<?php printf( __('View "%1$s"', MP_TXTDOM) , ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : htmlspecialchars($subject_display, ENT_QUOTES) ); ?>'>
-					<?php echo ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : (( strlen($subject_display) > 40 ) ? $subject_display = substr($subject_display, 0, 39) . '...' : $subject_display); ?>
+					<?php echo ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : (( strlen($subject_display) > 40 ) ? $subject_display = mb_substr($subject_display, 0, 39, get_option('blog_charset')) . '...' : $subject_display); ?>
 				</a>
 			</strong>
 		</td>

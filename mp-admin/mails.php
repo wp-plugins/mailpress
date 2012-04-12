@@ -385,7 +385,7 @@ class MP_AdminPage extends MP_adminpage_list_
 ?>
 			<strong>
 				<a class='row-title<?php echo ('draft' == $mail->status) ? '' : ' thickbox thickbox-preview'; ?>' href='<?php echo ('draft' == $mail->status) ? $edit_url : $view_url; ?>' title='<?php printf( ('draft' == $mail->status) ?  __('Edit "%1$s"', MP_TXTDOM) : __('View "%1$s"', MP_TXTDOM) , ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : htmlspecialchars($subject_display, ENT_QUOTES) ); ?>'>
-					<?php echo ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : (( strlen($subject_display) > 40 ) ? $subject_display = substr($subject_display, 0, 39) . '...' : $subject_display); ?>
+					<?php echo ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : (( strlen($subject_display) > 40 ) ? $subject_display = mb_substr($subject_display, 0, 39, get_option('blog_charset')) . '...' : $subject_display); ?>
 				</a>
 <?php if ('draft' == $mail->status) echo ' - ' . __('Draft'); ?>
 <?php if ('archived' == $mail->status) echo ' - ' . __('Archive', MP_TXTDOM); ?>

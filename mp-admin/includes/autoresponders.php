@@ -197,7 +197,7 @@ $total = ( isset($url_parms['s']) ) ? count(MP_Autoresponder::get_all(array('hid
 			$id   = $_mail['mail_id'];
 			$mail = MP_Mail::get( $id );
 			$subject_display = htmlspecialchars($mail->subject,ENT_QUOTES);
-			if ( strlen($subject_display) > 40 )	$subject_display = substr($subject_display, 0, 39) . '...';
+			if ( strlen($subject_display) > 40 )	$subject_display = mb_substr($subject_display, 0, 39, get_option('blog_charset')) . '...';
 			if ( '' == $mail->subject)  			$subject_display = $mail->subject = htmlspecialchars(__('(no subject)', MP_TXTDOM),ENT_QUOTES);
 
 			$edit_url    	= esc_url(MailPress_edit . "&id=$id");
