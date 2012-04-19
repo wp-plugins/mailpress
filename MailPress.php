@@ -59,7 +59,7 @@ class MailPress
 
 		spl_autoload_register(array(__CLASS__, 'autoload'));						// for class loader
 
-		if (defined('MP_DEBUG_LOG')) { global $mp_debug_log; $mp_debug_log = new MP_Log('debug_mailpress'); }
+		if (defined('MP_DEBUG_LOG')) { global $mp_debug_log; $mp_debug_log = new MP_Log('debug_mailpress', array('option_name' => 'debug')); }
 
 		add_action('plugins_loaded', 		array(__CLASS__, 'plugins_loaded'));		// for add-ons & gettext
 		add_action('init', 				array(__CLASS__, 'init'));				// for init

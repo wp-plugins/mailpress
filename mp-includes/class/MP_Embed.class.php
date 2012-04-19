@@ -9,8 +9,9 @@ class MP_Embed
 	function __construct() 
 	{
 		// Attempts to embed all URLs in a post in a mail
-		if ( get_option('embed_autourls') )
-			add_filter( 'the_content', array(&$this, 'autoembed'), 8 );
+		if ( !get_option('embed_autourls') ) return;
+
+		add_filter( 'the_content', array(&$this, 'autoembed'), 8 );
 	}
 
 	function register_handler( $id, $regex, $callback, $priority = 10 ) 
@@ -43,7 +44,8 @@ class MP_Embed
 
 		global $post;
 		$post_ID = ( !empty($post->ID) ) ? $post->ID : null;
-		if (!$post_ID) return $url;
+//		if (!$post_ID) return $url;
+		if (!$post_ID) $post_ID = -1;
 
 		$rawattr = $attr;
 		$attr = wp_parse_args( $attr, wp_embed_defaults() );

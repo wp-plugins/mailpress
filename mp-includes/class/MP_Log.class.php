@@ -38,7 +38,6 @@ class MP_Log
 		$this->file 	= $this->path . '/' . $this->ftmplt . gmdate('Ymd', current_time('timestamp')) . '.txt';
 
 		$logs = get_option(MailPress::option_name_logs);
-
 		$this->log_options = (isset($logs[$this->option_name])) ? $logs[$this->option_name] : MailPress::$default_option_logs;
 
 		$this->level 	= (isset($this->log_options['level']))    ? (int) $this->log_options['level'] 	: self::noMP_Log ;
@@ -85,17 +84,7 @@ class MP_Log
 			$this->log (" **** Start logging **** {$this->name} *** level : {$this->level}$plugin_version");
 
 // purge log
-		$now = date_i18n('Ymd', current_time('timestamp'));
-		$this->lastpurge 	= (isset($this->log_options['lastpurge'])) ? $this->log_options['lastpurge'] 		: $now;
-		$this->lognbr 	= (isset($this->log_options['lognbr']))    ? (int) $this->log_options['lognbr'] 	: 1;
-		
-		if ($now != $this->lastpurge) 
-		{
-			$this->dopurge();
-			$logs = get_option(MailPress::option_name_logs);
-			$logs[$this->option_name]['lastpurge'] = $now;
-			update_option (MailPress::option_name_logs, $logs);
-		}
+		$this->dopurge();
 
 		ob_start();
 	}
@@ -160,6 +149,20 @@ class MP_Log
 
 	function dopurge()
 	{
+		$now = date_i18n('Ymd', current_time('timestamp'));
+		$this->lastpurge= (isset($this->log_options['lastpurge'])) ? $this->log_options['lastpurge'] 		: $now;
+		$this->lognbr 	= (isset($this->log_options['lognbr']))    ? (int) $this->log_options['lognbr'] 	: 1;
+
+		if ($now == $this->lastpurge) return;
+
+		$this->log_options['lastpurge'] = $now;
+		$this->log_options['lognbr']    = $this->lognbr;
+
+		$logs = get_option(MailPress::option_name_logs);
+		$logs[$this->option_name] = $this->log_options;
+		update_option (MailPress::option_name_logs, $logs);
+
+
 		$xs = array();
 		$l = opendir($this->path);
 		if ($l) 

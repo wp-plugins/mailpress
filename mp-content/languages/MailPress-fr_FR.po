@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: MailPress\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-14 14:22+0200\n"
-"PO-Revision-Date: 2012-04-14 14:22+0100\n"
+"PO-Revision-Date: 2012-04-16 00:42+0100\n"
 "Last-Translator: MailPress <contribute@mailpress.org>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: D:\webserver\gnu\gettext\mailpress\MailPress.php:213
 msgid "IMPORTANT: <a href=\"%$1s\">Read this before attempting to update MailPress</a>"
-msgstr "IMPORTANT: <a href=\"%$1s\">Lisez ceci avant d'essayer de faire la mise &agrave; jour de MailPress</a>"
+msgstr "IMPORTANT: <a href=\"%$1s\" >Lisez ceci avant d'essayer de faire la mise &agrave; jour de MailPress</a>"
 
 #: D:\webserver\gnu\gettext\mailpress\MailPress.php:222
 msgid "Manage MailPress add-ons"
@@ -3616,64 +3616,64 @@ msgid "[%1$s] Weekly {{the_post_types}} newsletter"
 msgstr "[%1$s] Newsletter {{the_post_types}} hebdomadaire"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_daily.xml:8
-#, fuzzy, php-format
+#, php-format
 msgid "Daily sticky %1$s"
-msgstr "Quotidienne %1$s \"%2$s\""
+msgstr "Quotidienne %1$s sticky"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_daily.xml:9
-#, fuzzy, php-format
+#, php-format
 msgid "Daily sticky %1$s newsletter"
-msgstr "Newsletter quotidienne %1$s pour %2$s"
+msgstr "Newsletter quotidienne %1$s sticky"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_daily.xml:14
-#, fuzzy, php-format
+#, php-format
 msgid "[%1$s] Daily sticky {{the_post_types}} newsletter"
-msgstr "[%1$s] Newsletter {{the_post_types}} quotidienne "
+msgstr "[%1$s] Newsletter {{the_post_types}} quotidienne sticky"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_monthly.xml:8
-#, fuzzy, php-format
+#, php-format
 msgid "Monthly sticky %1$s"
-msgstr "Mensuelle %1$s \"%2$s\""
+msgstr "Mensuelle %1$s sticky"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_monthly.xml:9
-#, fuzzy, php-format
+#, php-format
 msgid "Monthly sticky %1$s newsletter"
-msgstr "Newsletter mensuelle %1$s pour %2$s"
+msgstr "Newsletter mensuelle %1$s sticky"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_monthly.xml:14
-#, fuzzy, php-format
+#, php-format
 msgid "[%1$s] Monthly sticky {{the_post_types}} newsletter"
-msgstr "[%1$s] Newsletter {{the_post_types}} mensuelle"
+msgstr "[%1$s] Newsletter {{the_post_types}} mensuelle sticky"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_post_type.xml:8
-#, fuzzy, php-format
+#, php-format
 msgid "Per sticky %1$s"
-msgstr "Par %1$s %2$s"
+msgstr "Par %1$s sticky"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_post_type.xml:9
-#, fuzzy, php-format
+#, php-format
 msgid "For each new sticky %1$s"
-msgstr "&Agrave; chaque nouveau %1$s dans %2$s"
+msgstr "&Agrave; chaque nouveau %1$s sticky"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_post_type.xml:14
-#, fuzzy, php-format
+#, php-format
 msgid "[%1$s] New sticky {{the_post_type}} : {{the_title}}"
-msgstr "[%1$s] Nouveau {{the_post_type}} : {{the_title}}"
+msgstr "[%1$s] Nouveau {{the_post_type}} sticky : {{the_title}}"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_weekly.xml:8
-#, fuzzy, php-format
+#, php-format
 msgid "Weekly sticky %1$s"
-msgstr "Hebdomadaire %1$s \"%2$s\""
+msgstr "Hebdomadaire %1$s sticky"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_weekly.xml:9
-#, fuzzy, php-format
+#, php-format
 msgid "Weekly sticky %1$s newsletter"
-msgstr "Newsletter hebdomadaire %1$s pour %2$s"
+msgstr "Newsletter hebdomadaire %1$s sticky"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_weekly.xml:14
-#, fuzzy, php-format
+#, php-format
 msgid "[%1$s] Weekly sticky {{the_post_types}} newsletter"
-msgstr "[%1$s] Newsletter {{the_post_types}} hebdomadaire"
+msgstr "[%1$s] Newsletter {{the_post_types}} hebdomadaire sticky"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:4
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:4
@@ -3748,64 +3748,64 @@ msgid "[%1$s] Monthly {{the_post_types}} newsletter for {{the_taxonomy}}"
 msgstr "[%1$s] Newsletter {{the_post_types}} mensuelle pour {{the_taxonomy}}"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:8
-#, fuzzy, php-format
+#, php-format
 msgid "Per sticky %1$s \"%2$s\""
-msgstr "Par %1$s %2$s"
+msgstr "Par %1$s sticky %2$s"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:9
-#, fuzzy, php-format
+#, php-format
 msgid "For each new sticky %1$s in %2$s"
-msgstr "&Agrave; chaque nouveau %1$s dans %2$s"
+msgstr "&Agrave; chaque nouveau %1$s sticky dans %2$s"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:14
-#, fuzzy, php-format
+#, php-format
 msgid "[%1$s] New sticky {{the_post_type}} in {{the_taxonomy}} : {{the_title}}"
-msgstr "[%1$s] Nouveau {{the_post_type}} dans {{the_taxonomy}} : {{the_title}}"
+msgstr "[%1$s] Nouveau {{the_post_type}} sticky dans {{the_taxonomy}} : {{the_title}}"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:49
-#, fuzzy, php-format
+#, php-format
 msgid "Daily sticky %1$s \"%2$s\""
-msgstr "Quotidienne %1$s \"%2$s\""
+msgstr "Quotidienne %1$s sticky %2$s"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:50
-#, fuzzy, php-format
+#, php-format
 msgid "Daily sticky %1$s newsletter for %2$s"
-msgstr "Newsletter quotidienne %1$s pour %2$s"
+msgstr "Newsletter quotidienne %1$s sticky pour %2$s"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:55
-#, fuzzy, php-format
+#, php-format
 msgid "[%1$s] Daily sticky {{the_post_types}} newsletter for {{the_taxonomy}}"
-msgstr "[%1$s] Newsletter {{the_post_types}} quotidienne pour {{the_taxonomy}}"
+msgstr "[%1$s] Newsletter {{the_post_types}} quotidienne sticky pour {{the_taxonomy}}"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:95
-#, fuzzy, php-format
+#, php-format
 msgid "Weekly sticky %1$s \"%2$s\""
-msgstr "Hebdomadaire %1$s \"%2$s\""
+msgstr "Hebdomadaire %1$s sticky %2$s"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:96
-#, fuzzy, php-format
+#, php-format
 msgid "Weekly sticky %1$s newsletter for %2$s"
-msgstr "Newsletter hebdomadaire %1$s pour %2$s"
+msgstr "Newsletter hebdomadaire %1$s sticky pour %2$s"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:101
-#, fuzzy, php-format
+#, php-format
 msgid "[%1$s] Weekly sticky {{the_post_types}} newsletter for {{the_taxonomy}}"
-msgstr "[%1$s] Newsletter {{the_post_types}} hebdomadaire pour {{the_taxonomy}}"
+msgstr "[%1$s] Newsletter {{the_post_types}} hebdomadaire sticky pour {{the_taxonomy}}"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:143
-#, fuzzy, php-format
+#, php-format
 msgid "Monthly sticky %1$s \"%2$s\""
-msgstr "Mensuelle %1$s \"%2$s\""
+msgstr "Mensuelle %1$s sticky %2$s"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:144
-#, fuzzy, php-format
+#, php-format
 msgid "Monthly sticky %1$s newsletter for %2$s"
-msgstr "Newsletter mensuelle %1$s pour %2$s"
+msgstr "Newsletter mensuelle %1$s sticky pour %2$s"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:149
-#, fuzzy, php-format
+#, php-format
 msgid "[%1$s] Monthly sticky {{the_post_types}} newsletter for {{the_taxonomy}}"
-msgstr "[%1$s] Newsletter {{the_post_types}} mensuelle pour {{the_taxonomy}}"
+msgstr "[%1$s] Newsletter {{the_post_types}} mensuelle sticky pour {{the_taxonomy}}"
 
 # C:\wgettext\mailpress_newsletter_categories\MailPress_newsletter_categories.php:210
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\daily.xml:4
@@ -5716,9 +5716,9 @@ msgstr "Chaque %s"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\ad_listing_ad_cat_sticky.php:19
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\ad_listing_sticky.php:18
-#, fuzzy, php-format
+#, php-format
 msgid "Each sticky %s"
-msgstr "Chaque %s"
+msgstr "Chaque %s sticky"
 
 # C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:90
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\day.php:21
