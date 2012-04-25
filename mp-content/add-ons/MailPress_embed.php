@@ -47,8 +47,8 @@ class MailPress_embed
 
 		if ('html' == $type)
 		{
-			$mp_embed = $type = null;
 			remove_filter('the_content', array($mp_embed, 'autoembed'), 8 );
+			$mp_embed = $type = null;
 		}
 	}
 

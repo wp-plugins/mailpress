@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MailPress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-14 14:22+0200\n"
-"PO-Revision-Date: 2012-04-16 00:42+0100\n"
+"POT-Creation-Date: 2012-04-23 15:06+0200\n"
+"PO-Revision-Date: 2012-04-23 15:07+0100\n"
 "Last-Translator: MailPress <contribute@mailpress.org>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -3862,6 +3862,7 @@ msgstr ""
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\plaintext\comments.php:10
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyteleven\_loop.php:17
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\_template\comments.php:10
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\oembed\providers\Twitter.php:27
 msgid "Reply"
 msgstr ""
 
@@ -5733,6 +5734,14 @@ msgstr "Caque mois"
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\week.php:23
 msgid "Every week"
 msgstr "Chaque semaine"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\oembed\providers\Twitter.php:27
+msgid "Retweet"
+msgstr "Retweeter"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\oembed\providers\Twitter.php:27
+msgid "Favorite"
+msgstr "Favori"
 
 # C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:2
 # C:\wgettext\mailpress\mailpress_tracking\mp-admin\includes\tracking-reports.php:9

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-14 14:22+0200\n"
+"POT-Creation-Date: 2012-04-23 15:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3583,6 +3583,7 @@ msgstr ""
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\plaintext\comments.php:10
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyteleven\_loop.php:17
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\_template\comments.php:10
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\oembed\providers\Twitter.php:27
 msgid "Reply"
 msgstr ""
 
@@ -5283,6 +5284,14 @@ msgstr ""
 
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\week.php:23
 msgid "Every week"
+msgstr ""
+
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\oembed\providers\Twitter.php:27
+msgid "Retweet"
+msgstr ""
+
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\oembed\providers\Twitter.php:27
+msgid "Favorite"
 msgstr ""
 
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\tracking\metaboxes\mail\m001.php:26

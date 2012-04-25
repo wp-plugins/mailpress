@@ -118,27 +118,27 @@
 	<!-- <table> -->
 		<item>
 			<s><?php $this->get_tag_content('table'); ?></s>
-			<r><![CDATA[<?php echo "\n\n"; ?><?php echo str_repeat('=', 10); ?>$1<?php echo "\n\n"; ?>]]></r>
+			<r><![CDATA[<?php echo "\n\n\n"; ?><?php echo str_repeat('- = ', 10); ?> $1 <?php echo str_repeat('- = ', 10); ?><?php echo "\n\n\n"; ?>]]></r>
 		</item>
 	<!-- <td> -->
 		<item>
 			<s><?php $this->get_tag_content('td'); ?></s>
-			<r><![CDATA[| $1 ]]></r>
+			<r><![CDATA[ | $1 | ]]></r>
 		</item>
 	<!-- <th> -->
 		<item>
 			<s><?php $this->get_tag_content('th', 'ie'); ?></s>
-   			<r><![CDATA[strtoupper('| $1 ')]]></r>
+   			<r><![CDATA[strtoupper('| $1 | ')]]></r>
 		</item>
 	<!-- <tr> -->
 		<item>
 			<s><?php $this->get_tag_content('tr'); ?></s>
-			<r><![CDATA[<?php echo "\n"; ?>$1 |<?php echo "\n"; ?><?php echo str_repeat('=', 10); ?>]]></r>
+			<r><![CDATA[<?php echo "\n"; ?>$1<?php echo "\n"; ?>]]></r>
 		</item>
 	<!-- <ul> & </ul> -->
 		<item>
 			<s><?php $this->get_tag_content('ul'); ?></s>
-			<r><![CDATA[<?php echo "\n\n"; ?>$1<?php echo "\n\n"; ?>]]></r>
+			<r><![CDATA[<?php echo "\n\n"; ?> $1 <?php echo "\n\n"; ?>]]></r>
 		</item>
 	<!-- <var> -->
 		<item>
