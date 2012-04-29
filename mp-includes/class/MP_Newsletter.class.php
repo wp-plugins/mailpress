@@ -180,6 +180,7 @@ class MP_Newsletter
 			wp_reset_query();
 
 		}
+		$qp = apply_filters('MailPress_newsletter_send_qp', $qp);
 		if (!$qp)
 		{
 			query_posts($newsletter['query_posts']);

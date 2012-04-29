@@ -47,6 +47,10 @@ abstract class MP_newsletter_processor_ extends MP_newsletter_
 
 		$query_posts = (isset($this->newsletter[$this->args]['query_posts'])) ? $this->newsletter[$this->args]['query_posts'] : array();
 		$this->newsletter['query_posts'] = $this->query_posts($query_posts);
+
+		if (isset($this->lower_bound)) $this->newsletter['bounds']['lower'] = $this->lower_bound ;
+		if (isset($this->upper_bound)) $this->newsletter['bounds']['upper'] = $this->upper_bound ;
+
 		return false;
 	}
 
