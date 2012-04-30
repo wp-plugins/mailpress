@@ -56,7 +56,7 @@ $ct = $th->current_theme_info();
 
 if ( $ct->screenshot ) : 
 ?>
-		<img src='<?php echo $ct->theme_root_uri . '/' .  $ct->stylesheet . '/' . $ct->screenshot; ?>' alt='<?php _e('Current MailPress theme preview', MP_TXTDOM); ?>' />
+		<img style='margin: 0 10px 0 0;' src='<?php echo $ct->theme_root_uri . '/' .  $ct->stylesheet . '/' . $ct->screenshot; ?>' alt='<?php _e('Current MailPress theme preview', MP_TXTDOM); ?>' />
 <?php endif; ?>
 		<h4><?php printf(__('%1$s %2$s by %3$s'), $ct->title, $ct->version, $ct->author); ?></h4>
 		<p class="description"><?php echo $ct->description; ?></p>
