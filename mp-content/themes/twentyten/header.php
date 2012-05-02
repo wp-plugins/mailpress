@@ -11,7 +11,7 @@
 				<div <?php $this->classes('header'); ?>>
 					<div <?php $this->classes('nopmb'); ?>>
 						<div <?php $this->classes('nopmb w100'); ?>>
-							<table <?php $this->classes('nopmb'); ?> width='100%'>
+							<table <?php $this->classes('nopmb w100'); ?> width='100%'>
 								<tr>
 									<td <?php $this->classes('nopmb'); ?>>
 										<h1 <?php $this->classes('site-title'); ?>>
@@ -22,7 +22,7 @@
 											</span>
 										</h1>
 									</td>
-									<td <?php $this->classes('nopmb tright'); ?>>
+									<td <?php $this->classes('nopmb tright w100'); ?>>
 										<div <?php $this->classes('site-description'); ?> >
 <?php bloginfo( 'description' ); ?>
 										</div>

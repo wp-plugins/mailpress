@@ -15,6 +15,8 @@ $_classes = array(
 
 'tright'		=> "  text-align:right;",
 
+'w100'		=> "  width:100%;",
+
 // header
 
 'body'		=> "	color:#666;
@@ -52,7 +54,8 @@ $_classes = array(
 				padding-right:30px;
 				color:#666;
 				font-size:12px;
-				font-style:italic;",
+				font-style:italic;
+				width:95%;",
 
 'header_img'	=> "	border-top:4px solid #000000;
 				border-bottom:18px solid #000000;

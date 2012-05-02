@@ -23,6 +23,14 @@ class MailPress_embed
 
 		add_action('MailPress_build_mail_content_start',	array(__CLASS__, 'build_mail_content_start'));
 		add_action('MailPress_build_mail_content_end',		array(__CLASS__, 'build_mail_content_end'));
+
+		add_filter('mp_oembed_providers',				array(__CLASS__, 'instagram'));
+	}
+
+	public static function instagram($providers)
+	{
+		$providers['#http://(www\.)?instagr\.am/.*#i'] = array( 'http://api.instagram.com/oembed', true );
+		return $providers;
 	}
 
 	public static function build_mail_content_start($type)
@@ -162,6 +170,7 @@ class MailPress_embed
 	public static function &_oembed_get_object() 
 	{
 		if ( is_null(self::$mp_oembed) ) self::$mp_oembed = new MP_oEmbed();
+		self::$mp_oembed->providers = apply_filters('mp_oembed_providers', self::$mp_oembed->providers);
 		return self::$mp_oembed;
 	}
 }
