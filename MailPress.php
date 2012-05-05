@@ -94,7 +94,7 @@ class MailPress
 	}
 
 	public static function plugins_loaded() 
-	{	
+	{
 		load_plugin_textdomain(MP_TXTDOM, false, MP_FOLDER . '/' . MP_CONTENT_FOLDER . '/' . 'languages');
 
 		new MP_Addons();

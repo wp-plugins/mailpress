@@ -380,7 +380,7 @@ class MP_Actions
 		$mp_user_id	= (isset($_GET['mp_user_id'])  && !empty($_GET['mp_user_id']))  ? $_GET['mp_user_id']  : false;
 
 	// from
-		$from 	= (in_array($mail->status, array('sent', 'archived'))) ? MP_Mail::display_toemail($mail->fromemail, $mail->fromname) : MP_Mail::display_toemail($mp_general['fromemail'], $mp_general['fromname']);
+		$from 	= (!empty($mail->fromemail)) ? MP_Mail::display_toemail($mail->fromemail, $mail->fromname) : MP_Mail::display_toemail($mp_general['fromemail'], $mp_general['fromname']);
 	// to
 		$to 		= MP_Mail::display_toemail($mail->toemail, $mail->toname, '', $mp_user_id);
 	// subject
