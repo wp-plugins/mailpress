@@ -91,7 +91,7 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 ** 5.3-beta 4 ** xx/xx/2012
 
-* Swiftmailer 4.1.6
+* Swiftmailer 4.1.7
 
 * bug fix : subscription form now working when javascript or ajax not activated
 
@@ -118,15 +118,5 @@ MailPress themes and templates do not need to be changed if customized in a prev
    - preparing dedicated "newsletters for custom post type" integration ** read Upgrade Notice ** ...
 
 ** 5.2.1 **	12/25/2011
-
-** 5.2 ** 		12/13/2011
-
-** 5.1.1 ** 	09/03/2011
-
-** 5.1 ** 		07/06/2011
-
-** 5.0.1 ** 	01/12/2010
-
-** 5.0 ** 		06/13/2010
 
 **Please Donate** https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=andre%2erenaut%40gmail%2ecom&lc=US&item_name=MailPress&item_number=gg&amount=5%2e00&currency_code=EUR&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest
