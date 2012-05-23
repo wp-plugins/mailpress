@@ -289,8 +289,8 @@ class MailPress_post
 
 	public static function posts_orderby($orderby = '')
 	{
-		global $MP_post_ids;
-		$orderby = ' FIELD(ID, ' . implode(',', $MP_post_ids) . ')';
+		global $wpdb, $MP_post_ids;
+		$orderby = " FIELD({$wpdb->posts}.ID, " . implode(',', $MP_post_ids) . ')';
 		return $orderby;
 	}
 }
