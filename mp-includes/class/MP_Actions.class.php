@@ -423,6 +423,7 @@ class MP_Actions
 		$id 		= $_GET['id'];
 		$key		= $_GET['key'];
 		$email 	= MP_User::get_email(MP_User::get_id($key));
+		if (empty($email)) wp_die(__('Wrong arguments in url', MP_TXTDOM));
 		$mail 	= MP_Mail::get($id);
 
 		if (!is_email($mail->toemail))
