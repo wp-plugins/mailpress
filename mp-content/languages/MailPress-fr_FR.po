@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MailPress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-23 15:06+0200\n"
-"PO-Revision-Date: 2012-04-23 15:07+0100\n"
+"POT-Creation-Date: 2012-05-28 02:15+0200\n"
+"PO-Revision-Date: 2012-05-28 02:16+0100\n"
 "Last-Translator: MailPress <contribute@mailpress.org>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -3553,260 +3553,6 @@ msgstr " MailPress wp_cron"
 msgid "Edit fromemail"
 msgstr "Modifier l'email \"De\"'"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\daily.xml:4
-#, php-format
-msgid "Daily %1$s"
-msgstr "Quotidienne %1$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\daily.xml:5
-#, php-format
-msgid "Daily %1$s newsletter"
-msgstr "Newsletter quotidienne %1$s "
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\daily.xml:10
-#, php-format
-msgid "[%1$s] Daily {{the_post_types}} newsletter"
-msgstr "[%1$s] Newsletter {{the_post_types}} quotidienne "
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\monthly.xml:4
-#, php-format
-msgid "Monthly %1$s"
-msgstr "Mensuelle %1$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\monthly.xml:5
-#, php-format
-msgid "Monthly %1$s newsletter"
-msgstr "Newsletter mensuelle %1$s "
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\monthly.xml:10
-#, php-format
-msgid "[%1$s] Monthly {{the_post_types}} newsletter"
-msgstr "[%1$s] Newsletter {{the_post_types}} mensuelle"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\post_type.xml:4
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\post.xml:4
-#, php-format
-msgid "Per %1$s"
-msgstr "Par %1$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\post_type.xml:5
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\post.xml:5
-#, php-format
-msgid "For each new %1$s"
-msgstr "Pour chaque nouveau %1$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\post_type.xml:10
-#, php-format
-msgid "[%1$s] New {{the_post_type}} : {{the_title}}"
-msgstr "[%1$s] Nouveau {{the_post_type}} : {{the_title}}"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\weekly.xml:4
-#, php-format
-msgid "Weekly %1$s"
-msgstr "Hebdomadaire %1$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\weekly.xml:5
-#, php-format
-msgid "Weekly %1$s newsletter"
-msgstr "Newsletter hebdomadaire %1$s "
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\weekly.xml:10
-#, php-format
-msgid "[%1$s] Weekly {{the_post_types}} newsletter"
-msgstr "[%1$s] Newsletter {{the_post_types}} hebdomadaire"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_daily.xml:8
-#, php-format
-msgid "Daily sticky %1$s"
-msgstr "Quotidienne %1$s sticky"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_daily.xml:9
-#, php-format
-msgid "Daily sticky %1$s newsletter"
-msgstr "Newsletter quotidienne %1$s sticky"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_daily.xml:14
-#, php-format
-msgid "[%1$s] Daily sticky {{the_post_types}} newsletter"
-msgstr "[%1$s] Newsletter {{the_post_types}} quotidienne sticky"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_monthly.xml:8
-#, php-format
-msgid "Monthly sticky %1$s"
-msgstr "Mensuelle %1$s sticky"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_monthly.xml:9
-#, php-format
-msgid "Monthly sticky %1$s newsletter"
-msgstr "Newsletter mensuelle %1$s sticky"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_monthly.xml:14
-#, php-format
-msgid "[%1$s] Monthly sticky {{the_post_types}} newsletter"
-msgstr "[%1$s] Newsletter {{the_post_types}} mensuelle sticky"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_post_type.xml:8
-#, php-format
-msgid "Per sticky %1$s"
-msgstr "Par %1$s sticky"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_post_type.xml:9
-#, php-format
-msgid "For each new sticky %1$s"
-msgstr "&Agrave; chaque nouveau %1$s sticky"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_post_type.xml:14
-#, php-format
-msgid "[%1$s] New sticky {{the_post_type}} : {{the_title}}"
-msgstr "[%1$s] Nouveau {{the_post_type}} sticky : {{the_title}}"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_weekly.xml:8
-#, php-format
-msgid "Weekly sticky %1$s"
-msgstr "Hebdomadaire %1$s sticky"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_weekly.xml:9
-#, php-format
-msgid "Weekly sticky %1$s newsletter"
-msgstr "Newsletter hebdomadaire %1$s sticky"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\_sticky_weekly.xml:14
-#, php-format
-msgid "[%1$s] Weekly sticky {{the_post_types}} newsletter"
-msgstr "[%1$s] Newsletter {{the_post_types}} hebdomadaire sticky"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:4
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:4
-#, php-format
-msgid "Per %1$s \"%2$s\""
-msgstr "Par %1$s %2$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:5
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:5
-#, php-format
-msgid "For each new %1$s in %2$s"
-msgstr "&Agrave; chaque nouveau %1$s dans %2$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:10
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:10
-#, php-format
-msgid "[%1$s] New {{the_post_type}} in {{the_taxonomy}} : {{the_title}}"
-msgstr "[%1$s] Nouveau {{the_post_type}} dans {{the_taxonomy}} : {{the_title}}"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:43
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:44
-#, php-format
-msgid "Daily %1$s \"%2$s\""
-msgstr "Quotidienne %1$s \"%2$s\""
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:44
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:45
-#, php-format
-msgid "Daily %1$s newsletter for %2$s"
-msgstr "Newsletter quotidienne %1$s pour %2$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:49
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:50
-#, php-format
-msgid "[%1$s] Daily {{the_post_types}} newsletter for {{the_taxonomy}}"
-msgstr "[%1$s] Newsletter {{the_post_types}} quotidienne pour {{the_taxonomy}}"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:87
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:89
-#, php-format
-msgid "Weekly %1$s \"%2$s\""
-msgstr "Hebdomadaire %1$s \"%2$s\""
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:88
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:90
-#, php-format
-msgid "Weekly %1$s newsletter for %2$s"
-msgstr "Newsletter hebdomadaire %1$s pour %2$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:93
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:95
-#, php-format
-msgid "[%1$s] Weekly {{the_post_types}} newsletter for {{the_taxonomy}}"
-msgstr "[%1$s] Newsletter {{the_post_types}} hebdomadaire pour {{the_taxonomy}}"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:133
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:136
-#, php-format
-msgid "Monthly %1$s \"%2$s\""
-msgstr "Mensuelle %1$s \"%2$s\""
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:134
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:137
-#, php-format
-msgid "Monthly %1$s newsletter for %2$s"
-msgstr "Newsletter mensuelle %1$s pour %2$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats\ad_cats.xml:139
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:142
-#, php-format
-msgid "[%1$s] Monthly {{the_post_types}} newsletter for {{the_taxonomy}}"
-msgstr "[%1$s] Newsletter {{the_post_types}} mensuelle pour {{the_taxonomy}}"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:8
-#, php-format
-msgid "Per sticky %1$s \"%2$s\""
-msgstr "Par %1$s sticky %2$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:9
-#, php-format
-msgid "For each new sticky %1$s in %2$s"
-msgstr "&Agrave; chaque nouveau %1$s sticky dans %2$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:14
-#, php-format
-msgid "[%1$s] New sticky {{the_post_type}} in {{the_taxonomy}} : {{the_title}}"
-msgstr "[%1$s] Nouveau {{the_post_type}} sticky dans {{the_taxonomy}} : {{the_title}}"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:49
-#, php-format
-msgid "Daily sticky %1$s \"%2$s\""
-msgstr "Quotidienne %1$s sticky %2$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:50
-#, php-format
-msgid "Daily sticky %1$s newsletter for %2$s"
-msgstr "Newsletter quotidienne %1$s sticky pour %2$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:55
-#, php-format
-msgid "[%1$s] Daily sticky {{the_post_types}} newsletter for {{the_taxonomy}}"
-msgstr "[%1$s] Newsletter {{the_post_types}} quotidienne sticky pour {{the_taxonomy}}"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:95
-#, php-format
-msgid "Weekly sticky %1$s \"%2$s\""
-msgstr "Hebdomadaire %1$s sticky %2$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:96
-#, php-format
-msgid "Weekly sticky %1$s newsletter for %2$s"
-msgstr "Newsletter hebdomadaire %1$s sticky pour %2$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:101
-#, php-format
-msgid "[%1$s] Weekly sticky {{the_post_types}} newsletter for {{the_taxonomy}}"
-msgstr "[%1$s] Newsletter {{the_post_types}} hebdomadaire sticky pour {{the_taxonomy}}"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:143
-#, php-format
-msgid "Monthly sticky %1$s \"%2$s\""
-msgstr "Mensuelle %1$s sticky %2$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:144
-#, php-format
-msgid "Monthly sticky %1$s newsletter for %2$s"
-msgstr "Newsletter mensuelle %1$s sticky pour %2$s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\ad_listing\ad_cats_stickies\ad_cats_stickies.xml:149
-#, php-format
-msgid "[%1$s] Monthly sticky {{the_post_types}} newsletter for {{the_taxonomy}}"
-msgstr "[%1$s] Newsletter {{the_post_types}} mensuelle sticky pour {{the_taxonomy}}"
-
 # C:\wgettext\mailpress_newsletter_categories\MailPress_newsletter_categories.php:210
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\daily.xml:4
 msgid "Daily"
@@ -3835,6 +3581,16 @@ msgstr "Newsletter mensuelle"
 msgid "[%1$s] Monthly newsletter"
 msgstr "[%1$s] Newsletter mensuelle"
 
+#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\post.xml:4
+#, php-format
+msgid "Per %1$s"
+msgstr "Par %1$s"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\post.xml:5
+#, php-format
+msgid "For each new %1$s"
+msgstr "Pour chaque nouveau %1$s"
+
 #: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\post.xml:10
 #, php-format
 msgid "[%1$s] New Post : {{the_title}}"
@@ -3853,6 +3609,66 @@ msgstr "Newsletter hebdomadaire"
 #, php-format
 msgid "[%1$s] Weekly newsletter"
 msgstr "[%1$s] Newsletter hebdomadaire"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:4
+#, php-format
+msgid "Per %1$s \"%2$s\""
+msgstr "Par %1$s %2$s"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:5
+#, php-format
+msgid "For each new %1$s in %2$s"
+msgstr "&Agrave; chaque nouveau %1$s dans %2$s"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:10
+#, php-format
+msgid "[%1$s] New {{the_post_type}} in {{the_taxonomy}} : {{the_title}}"
+msgstr "[%1$s] Nouveau {{the_post_type}} dans {{the_taxonomy}} : {{the_title}}"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:44
+#, php-format
+msgid "Daily %1$s \"%2$s\""
+msgstr "Quotidienne %1$s \"%2$s\""
+
+#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:45
+#, php-format
+msgid "Daily %1$s newsletter for %2$s"
+msgstr "Newsletter quotidienne %1$s pour %2$s"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:50
+#, php-format
+msgid "[%1$s] Daily {{the_post_types}} newsletter for {{the_taxonomy}}"
+msgstr "[%1$s] Newsletter {{the_post_types}} quotidienne pour {{the_taxonomy}}"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:89
+#, php-format
+msgid "Weekly %1$s \"%2$s\""
+msgstr "Hebdomadaire %1$s \"%2$s\""
+
+#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:90
+#, php-format
+msgid "Weekly %1$s newsletter for %2$s"
+msgstr "Newsletter hebdomadaire %1$s pour %2$s"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:95
+#, php-format
+msgid "[%1$s] Weekly {{the_post_types}} newsletter for {{the_taxonomy}}"
+msgstr "[%1$s] Newsletter {{the_post_types}} hebdomadaire pour {{the_taxonomy}}"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:136
+#, php-format
+msgid "Monthly %1$s \"%2$s\""
+msgstr "Mensuelle %1$s \"%2$s\""
+
+#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:137
+#, php-format
+msgid "Monthly %1$s newsletter for %2$s"
+msgstr "Newsletter mensuelle %1$s pour %2$s"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-content\advanced\newsletters\post\categories\categories.xml:142
+#, php-format
+msgid "[%1$s] Monthly {{the_post_types}} newsletter for {{the_taxonomy}}"
+msgstr "[%1$s] Newsletter {{the_post_types}} mensuelle pour {{the_taxonomy}}"
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\MailPress\_loop.php:15
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\plaintext\_loop.php:18
@@ -4087,15 +3903,19 @@ msgstr ""
 msgid "Comment: "
 msgstr "Commentaire : "
 
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:472
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:479
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:426
+msgid "Wrong arguments in url"
+msgstr ""
+
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:473
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:480
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_User.class.php:505
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_User.class.php:511
 msgid "Congratulations !"
 msgstr "F&eacute;licitations !"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:474
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:481
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:475
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:482
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_User.class.php:503
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_User.class.php:509
 #, php-format
@@ -4103,56 +3923,56 @@ msgid "We confirm your subscription to %1$s emails"
 msgstr "Nous confirmons votre abonnement &agrave;  %1$s"
 
 # C:\wgettext\mailpress\mp-includes\class\MP_Themes.class.php:48
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:486
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:487
 msgid "\"Subscription management link\""
 msgstr "\"Lien gestion de l'abonnement\""
 
 # C:\wgettext\mailpress\mp-includes\class\MP_Themes.class.php:49
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:487
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:488
 msgid "\"Trouble reading link\""
 msgstr "\"Lien voir sur le site web\""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:531
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:532
 #, php-format
 msgid "Draft saved at %s."
 msgstr "Brouillon enregistr&eacute; &agrave; %s."
 
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:531
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:561
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:532
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:562
 msgid "g:i:s a"
 msgstr "g:i:s a"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:541
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:542
 msgid "Someone"
 msgstr "Quelqu'un"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:542
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:543
 #, php-format
 msgid "Autosave disabled: %s is currently editing this mail."
 msgstr "Sauvegarde automatique desactiv&eacute;e : %s est en train de modifier ce mail"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:561
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:562
 #, php-format
 msgid "Revision saved at %s."
 msgstr "Version enregistr&eacute;e &agrave; %s."
 
 # C:\wgettext\mailpress\mp-includes\action.php:65
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:706
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:707
 msgid "Cannot Open Attachment 1!"
 msgstr "Impossible d'ouvir la pi&egrave;ce jointe (1) !"
 
 # C:\wgettext\mailpress\mp-includes\action.php:66
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:707
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:708
 msgid "Cannot Open Attachment 2! "
 msgstr "Impossible d'ouvir la pi&egrave;ce jointe (2) !"
 
 # C:\wgettext\mailpress\mp-includes\action.php:66
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:707
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:708
 msgid "file_fullpath"
 msgstr ""
 
 # C:\wgettext\mailpress\mp-includes\action.php:65
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:720
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\MP_Actions.class.php:721
 msgid "Cannot Open File !"
 msgstr "Impossible d'ouvir la pi&egrave;ce jointe !"
 
@@ -5707,20 +5527,6 @@ msgstr "Mois pr&eacute;c&eacute;dent"
 msgid "Previous week"
 msgstr "Semaine pr&eacute;cr&eacute;dente"
 
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\ad_listing.php:7
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\ad_listing_ad_cat.php:8
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\post.php:7
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\post_category.php:8
-#, php-format
-msgid "Each %s"
-msgstr "Chaque %s"
-
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\ad_listing_ad_cat_sticky.php:19
-#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\ad_listing_sticky.php:18
-#, php-format
-msgid "Each sticky %s"
-msgstr "Chaque %s sticky"
-
 # C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:90
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\day.php:21
 msgid "Every day"
@@ -5729,6 +5535,12 @@ msgstr "Chaque jour"
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\month.php:27
 msgid "Every month"
 msgstr "Caque mois"
+
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\post.php:7
+#: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\post_category.php:8
+#, php-format
+msgid "Each %s"
+msgstr "Chaque %s"
 
 # C:\wgettext\mailpress_batch_send\mp-admin\includes\settings-batch-send.php:90
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\newsletter\schedulers\week.php:23
@@ -5871,6 +5683,123 @@ msgstr "Newsletter:"
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\meta_boxes\post\test.php:44
 msgid "Sending ..."
 msgstr "Envoi en cours ..."
+
+#~ msgid "Daily %1$s"
+#~ msgstr "Quotidienne %1$s"
+
+#~ msgid "Daily %1$s newsletter"
+#~ msgstr "Newsletter quotidienne %1$s "
+
+#~ msgid "[%1$s] Daily {{the_post_types}} newsletter"
+#~ msgstr "[%1$s] Newsletter {{the_post_types}} quotidienne "
+
+#~ msgid "Monthly %1$s"
+#~ msgstr "Mensuelle %1$s"
+
+#~ msgid "Monthly %1$s newsletter"
+#~ msgstr "Newsletter mensuelle %1$s "
+
+#~ msgid "[%1$s] Monthly {{the_post_types}} newsletter"
+#~ msgstr "[%1$s] Newsletter {{the_post_types}} mensuelle"
+
+#~ msgid "[%1$s] New {{the_post_type}} : {{the_title}}"
+#~ msgstr "[%1$s] Nouveau {{the_post_type}} : {{the_title}}"
+
+#~ msgid "Weekly %1$s"
+#~ msgstr "Hebdomadaire %1$s"
+
+#~ msgid "Weekly %1$s newsletter"
+#~ msgstr "Newsletter hebdomadaire %1$s "
+
+#~ msgid "[%1$s] Weekly {{the_post_types}} newsletter"
+#~ msgstr "[%1$s] Newsletter {{the_post_types}} hebdomadaire"
+
+#~ msgid "Daily sticky %1$s"
+#~ msgstr "Quotidienne %1$s sticky"
+
+#~ msgid "Daily sticky %1$s newsletter"
+#~ msgstr "Newsletter quotidienne %1$s sticky"
+
+#~ msgid "[%1$s] Daily sticky {{the_post_types}} newsletter"
+#~ msgstr "[%1$s] Newsletter {{the_post_types}} quotidienne sticky"
+
+#~ msgid "Monthly sticky %1$s"
+#~ msgstr "Mensuelle %1$s sticky"
+
+#~ msgid "Monthly sticky %1$s newsletter"
+#~ msgstr "Newsletter mensuelle %1$s sticky"
+
+#~ msgid "[%1$s] Monthly sticky {{the_post_types}} newsletter"
+#~ msgstr "[%1$s] Newsletter {{the_post_types}} mensuelle sticky"
+
+#~ msgid "Per sticky %1$s"
+#~ msgstr "Par %1$s sticky"
+
+#~ msgid "For each new sticky %1$s"
+#~ msgstr "&Agrave; chaque nouveau %1$s sticky"
+
+#~ msgid "[%1$s] New sticky {{the_post_type}} : {{the_title}}"
+#~ msgstr "[%1$s] Nouveau {{the_post_type}} sticky : {{the_title}}"
+
+#~ msgid "Weekly sticky %1$s"
+#~ msgstr "Hebdomadaire %1$s sticky"
+
+#~ msgid "Weekly sticky %1$s newsletter"
+#~ msgstr "Newsletter hebdomadaire %1$s sticky"
+
+#~ msgid "[%1$s] Weekly sticky {{the_post_types}} newsletter"
+#~ msgstr "[%1$s] Newsletter {{the_post_types}} hebdomadaire sticky"
+
+#~ msgid "Per sticky %1$s \"%2$s\""
+#~ msgstr "Par %1$s sticky %2$s"
+
+#~ msgid "For each new sticky %1$s in %2$s"
+#~ msgstr "&Agrave; chaque nouveau %1$s sticky dans %2$s"
+
+#~ msgid ""
+#~ "[%1$s] New sticky {{the_post_type}} in {{the_taxonomy}} : {{the_title}}"
+#~ msgstr ""
+#~ "[%1$s] Nouveau {{the_post_type}} sticky dans {{the_taxonomy}} : "
+#~ "{{the_title}}"
+
+#~ msgid "Daily sticky %1$s \"%2$s\""
+#~ msgstr "Quotidienne %1$s sticky %2$s"
+
+#~ msgid "Daily sticky %1$s newsletter for %2$s"
+#~ msgstr "Newsletter quotidienne %1$s sticky pour %2$s"
+
+#~ msgid ""
+#~ "[%1$s] Daily sticky {{the_post_types}} newsletter for {{the_taxonomy}}"
+#~ msgstr ""
+#~ "[%1$s] Newsletter {{the_post_types}} quotidienne sticky pour "
+#~ "{{the_taxonomy}}"
+
+#~ msgid "Weekly sticky %1$s \"%2$s\""
+#~ msgstr "Hebdomadaire %1$s sticky %2$s"
+
+#~ msgid "Weekly sticky %1$s newsletter for %2$s"
+#~ msgstr "Newsletter hebdomadaire %1$s sticky pour %2$s"
+
+#~ msgid ""
+#~ "[%1$s] Weekly sticky {{the_post_types}} newsletter for {{the_taxonomy}}"
+#~ msgstr ""
+#~ "[%1$s] Newsletter {{the_post_types}} hebdomadaire sticky pour "
+#~ "{{the_taxonomy}}"
+
+#~ msgid "Monthly sticky %1$s \"%2$s\""
+#~ msgstr "Mensuelle %1$s sticky %2$s"
+
+#~ msgid "Monthly sticky %1$s newsletter for %2$s"
+#~ msgstr "Newsletter mensuelle %1$s sticky pour %2$s"
+
+#~ msgid ""
+#~ "[%1$s] Monthly sticky {{the_post_types}} newsletter for {{the_taxonomy}}"
+#~ msgstr ""
+#~ "[%1$s] Newsletter {{the_post_types}} mensuelle sticky pour "
+#~ "{{the_taxonomy}}"
+
+#~ msgid "Each sticky %s"
+#~ msgstr "Chaque %s sticky"
 
 #~ msgid "View mail"
 #~ msgstr "Visualiser un mail"
