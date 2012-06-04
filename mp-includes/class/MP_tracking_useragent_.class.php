@@ -16,7 +16,7 @@ abstract class MP_tracking_useragent_ extends MP_tracking_xml_
 		$txt = '';
 		if (isset($ug->icon_path)) $txt .= "<img src='" . $ug->icon_path . "' alt='" . esc_attr($ug->string) . "' />";
 		if (isset($ug->link))
-			$txt .= "&nbsp<a href='" . $ug->link . "' title='" . $ug->full_name . "' >" . $ug->name . '</a>';
+			$txt .= "&#160;<a href='" . $ug->link . "' title='" . $ug->full_name . "' >" . $ug->name . '</a>';
 		else
 			$txt .= '&#160;' . $ug->full_name;
 		return trim($txt);

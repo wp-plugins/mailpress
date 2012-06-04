@@ -20,7 +20,7 @@
 					<nav <?php $this->classes('* cb nav'); ?> role="navigation">
 						<div <?php $this->classes('*'); ?>>
 							<ul <?php $this->classes('* nav-ul'); ?>>
-								<li <?php $this->classes('* nav-li'); ?>><span style='line-height:48px;'>&nbsp;</span></li>
+								<li <?php $this->classes('* nav-li'); ?>><span style='line-height:48px;'>&#160;</span></li>
 							</ul>
 						</div>
 					</nav><!-- #access -->
