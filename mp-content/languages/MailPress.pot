@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-28 02:15+0200\n"
+"POT-Creation-Date: 2012-06-07 14:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3396,7 +3396,7 @@ msgid "(more...)"
 msgstr ""
 
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\plaintext\comments.php:10
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyteleven\_loop.php:17
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyeleven\_loop.php:17
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\_template\comments.php:10
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\oembed\providers\Twitter.php:27
 msgid "Reply"
@@ -3531,31 +3531,31 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyteleven\_loop.php:17
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyeleven\_loop.php:17
 msgid "1"
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyteleven\_loop.php:17
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyeleven\_loop.php:17
 #: D:\webserver\gnu\gettext\mailpress\mp-includes\class\options\tracking\metaboxes\mail\m011.php:43
 msgid "%"
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyteleven\_loop.php:29
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyeleven\_loop.php:29
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentytwelve\_loop.php:28
 msgid ", "
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyteleven\_loop.php:67
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyeleven\_loop.php:67
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentytwelve\_loop.php:49
 msgid "Leave a reply"
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyteleven\_loop.php:67
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyeleven\_loop.php:67
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentytwelve\_loop.php:49
 msgid "<b>1</b> Reply"
 msgstr ""
 
-#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyteleven\_loop.php:67
+#: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentyeleven\_loop.php:67
 #: D:\webserver\gnu\gettext\mailpress\mp-content\themes\twentytwelve\_loop.php:49
 msgid "<b>%</b> Replies"
 msgstr ""
