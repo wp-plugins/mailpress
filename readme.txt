@@ -89,7 +89,7 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 == Changelog ==
 
-** 5.3 RC1 ** xx/xx/2012
+** 5.3 RC2 ** 06/07/2012
 
 * Swiftmailer 4.1.7
 

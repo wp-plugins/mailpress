@@ -141,7 +141,7 @@ class MailPress
 
 	public static function install() 
 	{
-		$min_ver_wp  = '3.3';
+		$min_ver_wp  = '3.4';
 		include (MP_ABSPATH . 'mp-admin/includes/install/mailpress.php');
 	}
 
