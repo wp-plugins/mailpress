@@ -7,7 +7,7 @@ Author: Andre Renaut
 Author URI: http://www.mailpress.org
 Requires at least: 3.3
 Tested up to: 3.4
-Version: 5.3 RC1
+Version: 5.3 RC2
 */
 
 /** for admin plugin pages */
