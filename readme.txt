@@ -22,6 +22,7 @@ The WordPress mailing platform
 **Follow Installation or Upgrade guidelines**
 **Follow Installation or Upgrade guidelines**
 **Follow Installation or Upgrade guidelines**
+**Follow Installation or Upgrade guidelines**
 
 Some technical stuff :
 
