@@ -171,7 +171,11 @@ $draft_dest = MP_User::get_mailinglists();
 <?php endif; ?>
 
 		<div id='poststuff' class='metabox-holder has-right-sidebar'>
-			<div id="post-body" class="metabox-holder columns-2">
+			<div id="side-info-column" class="inner-sidebar">
+<?php do_meta_boxes(MP_AdminPage::screen, 'side', $draft); ?>
+			</div>
+
+			<div id='post-body'>
 				<div id='post-body-content'>
 					<div id='fromtodiv'>
 						<table class='widefat'><tr><td style='border:none;'>
@@ -225,15 +229,9 @@ $draft_dest = MP_User::get_mailinglists();
 							<br class="clear" />
 						</div>
 					</div>
-				</div>
-				<div id="postbox-container-1" class="postbox-container">
-<?php do_meta_boxes(MP_AdminPage::screen, 'side', $draft); ?>
-				</div>
-				<div id="postbox-container-2" class="postbox-container">
 <?php do_meta_boxes(MP_AdminPage::screen, 'normal', $draft); ?>
 				</div>
 			</div>
-			<br class="clear">
 		</div>
 	</form>
 </div>

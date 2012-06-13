@@ -32,8 +32,12 @@ if (isset($_GET['saved'])) 	{$err += 0; if (!empty($message)) $message .= '<br /
 		<?php wp_nonce_field( 'meta-box-order',  'meta-box-order-nonce', false ); ?>
 
 		<div id='poststuff' class='metabox-holder has-right-sidebar'>
-			<div id="post-body" class="metabox-holder columns-2">
-				<div id="post-body-content">
+			<div id="side-info-column" class="inner-sidebar">
+<?php $side_meta_boxes = do_meta_boxes(MP_AdminPage::screen, 'side', $mp_user); ?>
+			</div>
+
+			<div id="post-body" class="<?php echo $side_meta_boxes ? 'has-sidebar' : ''; ?>">
+				<div id="post-body-content" class="has-sidebar-content">
 					<table class='form-table'>
 						<tbody>
 							<tr valign='top'>
@@ -60,15 +64,9 @@ if (isset($_GET['saved'])) 	{$err += 0; if (!empty($message)) $message .= '<br /
 						</tbody>
 					</table>
 					<br />
-				</div>
-				<div id="postbox-container-1" class="postbox-container">
-<?php $side_meta_boxes = do_meta_boxes(MP_AdminPage::screen, 'side', $mp_user); ?>
-				</div>
-				<div id="postbox-container-2" class="postbox-container">
 <?php do_meta_boxes(MP_AdminPage::screen, 'normal', $mp_user); ?>
 				</div>
 			</div>
-			<br class="clear">
 		</div>
 	</form>
 </div>
