@@ -53,8 +53,8 @@ class MP_AdminPage extends MP_adminpage_
 					case isset($_POST['addmeta']) :
 						MP_User_meta::add_meta($id);
 					break;
-					case isset($_POST['updatemeta']) :
-						foreach ($_POST['meta'] as $meta_id => $meta)
+					case isset($_POST['usermeta']) :
+						foreach ($_POST['usermeta'] as $meta_id => $meta)
 						{
 							$meta_key = $meta['key'];
 							$meta_value = $meta['value'];
