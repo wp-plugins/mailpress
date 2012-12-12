@@ -22,10 +22,10 @@ class MailPress_batch_send
 		add_filter('MailPress_status_mail', 		array(__CLASS__, 'status_mail'));
 
 // for batch mode
-		add_action('mp_process_batch_send', 		array(&$this, 'process'));
+		add_action('mp_process_batch_send', 		array(__CLASS__, 'process'));
 
 		$config = get_option(self::option_name);
-		if ('wpcron' == $config['batch_mode'])
+		if (!empty($config['batch_mode']) && 'wpcron' == $config['batch_mode'])
 		{	
 			add_action('MailPress_schedule_batch_send', 	array(__CLASS__, 'schedule'));
 		}

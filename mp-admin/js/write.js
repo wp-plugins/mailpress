@@ -162,21 +162,20 @@ var mp_write = {
 		    jj = jQuery('#jj').val(), 
 		    hh = jQuery('#hh').val(), 
 		    mn = jQuery('#mn').val();
-		var originalDate = mp_write.convertDateToString(new Date( jQuery('#hidden_aa').val(), jQuery('#hidden_mm').val() -1, jQuery('#hidden_jj').val(), jQuery('#hidden_hh').val(), jQuery('#hidden_mn').val() ));
-		var currentDate  = mp_write.convertDateToString(new Date( jQuery('#cur_aa').val(), jQuery('#cur_mm').val() -1, jQuery('#cur_jj').val(), jQuery('#cur_hh').val(), jQuery('#cur_mn').val() ));
-		var attemptedDate = mp_write.convertDateToString(new Date( aa, mm - 1, jj, hh, mn ));
+		var attemptedDate = new Date( aa, mm - 1, jj, hh, mn );
+		var originalDate  = new Date( jQuery('#hidden_aa').val(), jQuery('#hidden_mm').val() -1, jQuery('#hidden_jj').val(), jQuery('#hidden_hh').val(), jQuery('#hidden_mn').val() );
+		var currentDate   = new Date( jQuery('#cur_aa').val(), jQuery('#cur_mm').val() -1, jQuery('#cur_jj').val(), jQuery('#cur_hh').val(), jQuery('#cur_mn').val() );
+
 
 	// attemptedDate is a date ?
-		var controlDate   = aa +'-'+  mm +'-'+ jj +' '+ hh +':'+ mn;
-
-		if ( attemptedDate == controlDate )
-		{
-			jQuery('.timestamp-wrap', '#timestampdiv').removeClass('form-invalid');
-		}
-		else
+		if ( attemptedDate.getFullYear() != aa || (1 + attemptedDate.getMonth()) != mm || attemptedDate.getDate() != jj || attemptedDate.getMinutes() != mn )
 		{
 			jQuery('.timestamp-wrap', '#timestampdiv').addClass('form-invalid');
 			return false;
+		}
+		else
+		{
+			jQuery('.timestamp-wrap', '#timestampdiv').removeClass('form-invalid');
 		}
 
 		if ( attemptedDate == originalDate )

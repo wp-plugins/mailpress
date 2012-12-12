@@ -25,7 +25,7 @@ The WordPress mailing platform
 
 Some technical stuff :
 
-1. Switmailer 4.1.7
+1. Switmailer 4.2.2
 1. jQuery 1.7.2 supported.
 1. Google Map API V3 supported.
 1. Code Mirror 0.9 (2.2)
