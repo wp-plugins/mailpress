@@ -17,7 +17,7 @@ $post_drafts = MP_Post::get_term_objects($post->ID);
 
 ?>
 <div id='mpdrafts'>
-	<ul id='mpdraftchecklist' class='list:mpdraft mpdraftchecklist'>
+	<ul id='mpdraftchecklist' class='list:mpdraft mpdraftchecklist' data-wp-lists='list:mpdraft'>
 <?php
 
 if (!empty($post_drafts))
@@ -46,7 +46,7 @@ foreach( $drafts as $k => $v )
 }
 ?>
 		</select>
-		<input type="button" id="mpdraft-add-submit" class="add:mpdraftchecklist:mpdraft-add button" value="<?php esc_attr_e( 'Add', MP_TXTDOM  ); ?>" tabindex="3" />
+		<input type="button" id="mpdraft-add-submit" class="add:mpdraftchecklist:mpdraft-add button" data-wp-lists="add:mpdraftchecklist:mpdraft-add button"  value="<?php esc_attr_e( 'Add', MP_TXTDOM  ); ?>" tabindex="3" />
 <?php	wp_nonce_field( 'add-mpdraft', '_ajax_nonce', false ); ?>
 		<span id="mpdraft-ajax-response"></span>
 	</p>

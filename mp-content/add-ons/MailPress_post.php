@@ -136,7 +136,7 @@ class MailPress_post
 
 		$delete_url = esc_url(MP_::url( '#', array(), "delete-mpdraft_$id" ));
 		$title      = esc_attr(__('Delete link', MP_TXTDOM));
-		$actions['delete'] = "<a class='delete:mpdraftchecklist:mpdraft-{$id}' href='$delete_url' title=\"$title\"><img src='" . site_url() . '/' . MP_PATH . "mp-admin/images/trash.png' alt='' /></a>";
+		$actions['delete'] = "<a class='delete:mpdraftchecklist:mpdraft-{$id}' data-wp-lists='delete:mpdraftchecklist:mpdraft-{$id}' href='$delete_url' title=\"$title\"><img src='" . site_url() . '/' . MP_PATH . "mp-admin/images/trash.png' alt='' /></a>";
 
 		$out  = "<li id='mpdraft-{$id}' style='margin:0;'>\n";
 		$out .= "\t<table class='widefat' style='background-color:transparent;'>\n";
@@ -196,7 +196,7 @@ class MailPress_post
 		if ( !$post_ids ) return;
 ?>
 <div id='mpposts'>
-	<div id='mppostchecklist' class='list:mppost'>
+	<div id='mppostchecklist' class='list:mppost' data-wp-lists='list:mppost'>
 <?php		foreach ( $post_ids as $post_id ) echo self::get_post_row( $post_id ); ?>
 	</div>
 	<span id="mppost-ajax-response"></span>
