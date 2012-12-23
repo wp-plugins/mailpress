@@ -380,6 +380,7 @@ class MailPress_tracking
 		$date = array_pop($x);
 		$x['tracking_openrate']	=  __('Open rate', MP_TXTDOM);
 		$x['tracking_clicks']	=  __('Clicks', MP_TXTDOM);
+		$x['tracking_unsubscribe']	=  __('Unsubscribed', MP_TXTDOM);
 		$x['date']		= $date;
 		return $x;
 	}
@@ -398,8 +399,23 @@ class MailPress_tracking
 				if ($result) if ($total > 0) printf("%01.2f %%", 100 * count($result)/$total );
 			break;
 			case 'tracking_clicks' :
-				$result = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->mp_tracks WHERE mail_id = %d AND track <> %s ;", $mail->id, MailPress_tracking_openedmail) );
+				$exclude = array(MailPress_tracking_openedmail, '!!unsubscribed!!', '{{unsubscribe}}');
+
+				$result = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->mp_tracks WHERE mail_id = %d AND track NOT IN ( '" . join("','", $exclude) . "' ) ;", $mail->id) );
 				if ($result) echo "<div class='num post-com-count-wrapper'><a class='post-com-count'><span class='comment-count'>$result</span></a></div>";
+			break;
+			case 'tracking_unsubscribe' :
+				$exclude = array('{{unsubscribe}}');
+
+				$r  = $wpdb->get_results( $wpdb->prepare( "SELECT SQL_CALC_FOUND_ROWS DISTINCT user_id FROM $wpdb->mp_tracks WHERE mail_id = %d AND track = %s ;", $mail->id, '!!unsubscribed!!') );
+				$ud = $wpdb->get_var( "SELECT FOUND_ROWS()" );
+
+				$u  = $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->mp_tracks WHERE mail_id = %d AND track IN ('" . join("','", $exclude) .  "') ;", $mail->id) );
+				$title = (!$u) ? '' : esc_attr(sprintf(_n(__('%d click on unsubscribe link',  MP_TXTDOM), __('%d clicks on unsubscribe link',  MP_TXTDOM), $u), $u));
+
+				$r = $ud;
+				if (!$r) return;
+				echo "<a class='post-com-count'><span class='comment-count'><abbr title='{$title}'>{$r}</abbr></span></a>";
 			break;
 		}
 	}

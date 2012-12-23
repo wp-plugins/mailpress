@@ -89,12 +89,13 @@ class MP_import_csv extends MP_import_importer_
 
 	function fileform() 
 	{
+		if (current_user_can('MailPress_manage_mailinglists')) add_filter('admin_print_footer_scripts', array(__CLASS__, 'footer_scripts'), 1);
 ?>
-	<form action="<?php echo MailPress_import; ?>&amp;mp_import=csv&amp;step=2&amp;id=<?php echo $this->file_id; ?>" method="post">
-<?php 	if (class_exists('MailPress_mailinglist')) : ?>
+	<form id="mp_import" action="<?php echo MailPress_import; ?>&amp;mp_import=csv&amp;step=2&amp;id=<?php echo $this->file_id; ?>" method="post">
+<?php 	if (current_user_can('MailPress_manage_mailinglists')) : ?>
 		<h3><?php _e('Mailing list', MP_TXTDOM); ?></h3>
 		<p><?php _e('Optional, you can import the MailPress users in a specific mailing list ...', MP_TXTDOM); ?></p>
-<?php		MP_Mailinglist::dropdown(array('name' => 'mailinglist', 'htmlid' => 'mailinglist', 'selected' => get_option(MailPress_mailinglist::option_name_default), 'hierarchical' => true, 'orderby' => 'name', 'hide_empty' => '0', 'show_option_none' => ' ')); ?>
+<?php			MP_Mailinglist::dropdown(array('name' => 'mailinglist', 'htmlid' => 'mailinglist', 'hierarchical' => true, 'orderby' => 'name', 'hide_empty' => '0', 'show_option_none' => __('Choose mailinglist', MP_TXTDOM))); ?>
 <?php endif; ?>
 <?php if (class_exists('MailPress_newsletter')) : ?>
 		<h3><?php _e('Newsletter', MP_TXTDOM); ?></h3>
@@ -172,6 +173,19 @@ class MP_import_csv extends MP_import_importer_
 		</p>
 	</form>
 <?php
+	}
+
+	public static function footer_scripts() 
+	{
+		wp_register_script( 'mp-import', '/' . MP_PATH . 'mp-includes/js/mp_mailinglist_dropdown.js', array('jquery'), false, 1);
+		wp_localize_script( 'mp-import', 	'mp_ml_select_L10n', array(
+			'error' => __('Please, choose a mailinglist', MP_TXTDOM), 
+			'select' => 'mailinglist', 
+			'form'   => 'mp_import',
+			'l10n_print_after' => 'try{convertEntities(mp_ml_select_L10n);}catch(e){};' 
+		));
+
+		wp_enqueue_script('mp-import');
 	}
 
 // step 2

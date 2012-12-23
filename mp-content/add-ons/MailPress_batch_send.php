@@ -217,6 +217,10 @@ class MailPress_batch_send
 		else
 		{
 			if (self::status_mail() == $mail->status) return __('Pending...', MP_TXTDOM);
+			else
+			{
+				if ('paused' == $mail->status) return __('Paused...', MP_TXTDOM);
+			}
 		}
 
 		return $to;

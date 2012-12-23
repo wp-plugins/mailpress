@@ -8,6 +8,7 @@ class MP_Ip_geoplugin extends MP_ip_provider_
 
 	function content($valid, $content)
 	{
+		if (strpos($content, '<geoplugin_status>404</geoplugin_status>')  !== false) return false;
 		if (strpos($content, '<geoplugin_latitude></geoplugin_latitude>') !== false) return false;
 		return $valid;
 	}

@@ -21,7 +21,7 @@ class MP_Batch
 	function have_batch()
 	{
 		global $wpdb;
-		return $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->mp_mails WHERE status = %s ;", MailPress_batch_send::status_mail() ) );
+		return $wpdb->get_var( $wpdb->prepare( "SELECT count(*) FROM $wpdb->mp_mails WHERE status IN ( %s , %s ) ;", MailPress_batch_send::status_mail(), 'paused' ) );
 	}
 
 // process

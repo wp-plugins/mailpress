@@ -157,6 +157,10 @@ class MP_Mail_draft
 			$query = self::get_query_mailinglist($draft->toemail);
 			if ($query)
 			{
+				MP_Mail_meta::add($mail->id, '_mailinglist_id', $draft->toemail, true);
+				$draft_dest = MP_User::get_mailinglists();
+				MP_Mail_meta::add($mail->id, '_mailinglist_desc', $draft_dest[$draft->toemail], true);
+
 				$mail->recipients_query = $query;
 			}
 			else

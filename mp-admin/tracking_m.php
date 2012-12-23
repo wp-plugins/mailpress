@@ -141,6 +141,7 @@ class MP_AdminPage extends MP_adminpage_list_
 			break;
 		}
 		$email_display = apply_filters('MailPress_to_mails_column', $email_display, $mail);
+		if ($mailinglist_desc = MP_Mail_meta::get($mail->id, '_mailinglist_desc')) $email_display = "<div>{$email_display}</div>{$mailinglist_desc}";
 //	author
 		$author = ( 0 == $mail->sent_user_id) ? $mail->created_user_id : $mail->sent_user_id;
 		if ($author != 0 && is_numeric($author)) 
@@ -188,17 +189,25 @@ class MP_AdminPage extends MP_adminpage_list_
 ?>
 		<td  <?php echo $attributes ?>>
 <?php
+			if ('paused' == $mail->status) :
+?>
+			<span class='icon paused' title="<?php _e('Paused', MP_TXTDOM); ?>"></span>
+<?php
+			endif;
 			if ($attach) :
 ?>
 			<span class='icon attachement' title="<?php _e('Attachments', MP_TXTDOM); ?>"></span>
 <?php
 			endif;
+
 			do_action('MailPress_get_icon_mails', $id);
 ?>
 			<strong>
 				<a class='row-title thickbox thickbox-preview' href='<?php echo $view_url; ?>' title='<?php printf( __('View "%1$s"', MP_TXTDOM) , ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : htmlspecialchars($subject_display, ENT_QUOTES) ); ?>'>
 					<?php echo ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : (( strlen($subject_display) > 40 ) ? $subject_display = mb_substr($subject_display, 0, 39, get_option('blog_charset')) . '...' : $subject_display); ?>
 				</a>
+<?php if ('paused' == $mail->status) echo ' - ' . __('Paused', MP_TXTDOM); ?>
+<?php if ('archived' == $mail->status) echo ' - ' . __('Archive', MP_TXTDOM); ?>
 			</strong>
 		</td>
 <?php

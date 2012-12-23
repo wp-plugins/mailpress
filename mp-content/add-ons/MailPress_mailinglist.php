@@ -94,6 +94,9 @@ class MailPress_mailinglist
 		add_action('MailPress_form_visitor_subscription', 	array(__CLASS__, 'form_visitor_subscription'), 8, 1);
 		add_action('MailPress_visitor_subscription', 		array(__CLASS__, 'visitor_subscription'), 8, 3);
 
+// for tracking (add mailinglist)
+		add_action('MailPress_do_bulk_action_' . MailPress_page_users, array(__CLASS__, 'create_tracking_mailinglist'), 8, 1);
+
 // for ajax
 		add_action('mp_action_add_mlnglst', 	array(__CLASS__, 'mp_action_add_mlnglst'));
 		add_action('mp_action_delete_mlnglst', 	array(__CLASS__, 'mp_action_delete_mlnglst'));
@@ -693,6 +696,53 @@ class MailPress_mailinglist
 			break;
 		}
 	}
+
+// for tracking (add mailinglist)
+	public static function create_tracking_mailinglist($action)
+	{
+		if (!current_user_can('MailPress_manage_mailinglists')) MailPress::mp_die('-1');
+		if ('create_tracking_mailinglist' != $action) 	return false;
+		if (!isset($_GET['mail_id'], $_GET['track']))	return false;
+
+		$mail_id = $_GET['mail_id'];
+		$track   = $_GET['track'];
+                
+		// create mailinglist name
+		$ml_date = date('Ymd');
+
+		global $wpdb;
+		$ml_subject = $wpdb->get_var( $wpdb->prepare("SELECT subject FROM $wpdb->mp_mails WHERE id = %s LIMIT 1;", $mail_id) );
+		$ml_subject = substr($ml_subject, 0 , 10);
+
+		$ml_track = $track;
+		foreach (array('http://', 'https://') as $http) $ml_track = str_replace($http, '', $ml_track);
+		$ml_track = substr( str_replace(MailPress_tracking_openedmail, __('MailOpened', MP_TXTDOM), $ml_track) , 0 , 10);
+
+		$ml_name = "{$ml_date} {$ml_subject} {$ml_track}";
+
+		// create mailinglist
+		$ml_id = MP_Mailinglist::get_id($ml_name);
+		if ($ml_id) MP_Mailinglist::delete($ml_id);
+		$ml_id = MP_Mailinglist::insert(array('name' => $ml_name, 'description' => $ml_name ));
+		if (!$ml_id) return false;
+
+		// get_users
+		global $wpdb;
+		$users = $wpdb->get_results( $wpdb->prepare( "SELECT DISTINCT a.user_id as id FROM $wpdb->mp_tracks a, $wpdb->mp_users b WHERE a.mail_id = %d AND a.track = %s AND a.user_id = b.id AND b.status = 'active' ORDER BY 1", $mail_id, $track) );
+   		if (empty($users)) return false;
+		foreach($users as $user) 
+		{
+			$mls = array();
+			$mls = MP_Mailinglist::get_object_terms($user->id);
+			$mls[] = $ml_id;
+			$mls = MP_Mailinglist::set_object_terms($user->id, $mls);
+		}
+
+		MailPress::mp_redirect( MailPress::url(MailPress_users, array('mailinglist' => $ml_id) ) );
+		die();
+	}
+
+
 
 // for ajax	
 	public static function mp_action_add_mlnglst()

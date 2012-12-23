@@ -15,7 +15,7 @@ class MP_Tracking_metabox_u006 extends MP_tracking_metabox_
 	
 	function scripts($scripts)
 	{
-        if (!isset($_GET['id'])) return;
+        if (!isset($_GET['id'])) return $scripts;
 	// google map
 		wp_register_script( 'google-map',	'http://maps.googleapis.com/maps/api/js?sensor=false', false, false, 1);
 

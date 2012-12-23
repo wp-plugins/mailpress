@@ -19,6 +19,14 @@ class MP_AdminPage extends MP_adminpage_
 
 		switch($action) 
 		{
+			case 'pause' :
+				if (MP_Mail::set_status($id, 'paused'))	$list_url .= '&paused=1';
+				self::mp_redirect($list_url);
+			break;
+			case 'restart' :
+				if (MP_Mail::set_status($id, 'unsent'))	$list_url .= '&restartd=1';
+				self::mp_redirect($list_url);
+			break;
 			case 'archive' :
 				if (MP_Mail::set_status($id, 'archived'))	$list_url .= '&archived=1';
 				self::mp_redirect($list_url);

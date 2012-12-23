@@ -23,6 +23,12 @@ class MP_AdminPage extends MP_adminpage_list_
 
 		switch($action)
 		{
+			case 'bulk-pause' :
+				foreach($checked as $id) if (MP_Mail::set_status($id, 'paused'))  $$count++;
+			break;
+			case 'bulk-restart' :
+				foreach($checked as $id) if (MP_Mail::set_status($id, 'unsent'))  $$count++;
+			break;
 			case 'bulk-archive' :
 				foreach($checked as $id) if (MP_Mail::set_status($id, 'archived'))  $$count++;
 			break;
@@ -136,7 +142,7 @@ class MP_AdminPage extends MP_adminpage_list_
 
 		$subsubsub_urls = false;
 
-		$libs = array( 'all' => __('All'), 'draft' =>	__('Draft', MP_TXTDOM), 'unsent' => __('Unsent', MP_TXTDOM), 'sending' => __('Pending', MP_TXTDOM), 'sent' => __('Sent', MP_TXTDOM), 'archived' => __('Archive', MP_TXTDOM), 'search' => __('Search Results') );
+		$libs = array( 'all' => __('All'), 'draft' =>	__('Draft', MP_TXTDOM), 'unsent' => __('Unsent', MP_TXTDOM), 'paused' => __('Paused', MP_TXTDOM), 'sending' => __('Pending', MP_TXTDOM), 'sent' => __('Sent', MP_TXTDOM), 'archived' => __('Archive', MP_TXTDOM), 'search' => __('Search Results') );
 
 		$counts = array();
 		$query = "SELECT status, count(*) as count FROM $wpdb->mp_mails GROUP BY status;";
@@ -189,11 +195,17 @@ class MP_AdminPage extends MP_adminpage_list_
 
 		$edit_url    	= esc_url(self::url( MailPress_edit, array_merge($args, $url_parms) ));
 
+		$args['action']		= 'pause';
+		$pause_url    	= esc_url(self::url( MailPress_write, array_merge($args, $url_parms) ));
+
+		$args['action']		= 'restart';
+		$restart_url   	= esc_url(self::url( MailPress_write, array_merge($args, $url_parms) ));
+
 		$args['action'] 	= 'archive';
-		$archive_url 	= esc_url(MP_AdminPage::url( MailPress_write, array_merge($args, $url_parms), "archive-mail_{$mail->id}" ));
+		$archive_url 	= esc_url(self::url( MailPress_write, array_merge($args, $url_parms), "archive-mail_{$mail->id}" ));
 
 		$args['action'] 	= 'unarchive';
-		$unarchive_url 	= esc_url(MP_AdminPage::url( MailPress_write, array_merge($args, $url_parms), "unarchive-mail_{$mail->id}" ));
+		$unarchive_url 	= esc_url(self::url( MailPress_write, array_merge($args, $url_parms), "unarchive-mail_{$mail->id}" ));
 
 		$args['action'] 	= 'send';
 		$send_url    	= esc_url(self::url( MailPress_write, array_merge($args, $url_parms) ));
@@ -210,8 +222,9 @@ class MP_AdminPage extends MP_adminpage_list_
 // actions
 		$actions = array();
 		$actions['edit']	= "<a href='$edit_url'   	title='" .  __('Edit') . "'>" . __('Edit') . '</a>';
-		$actions['send'] 	= "<a href='$send_url' 		title='" . __('Send this mail', MP_TXTDOM ) . "'>" . __( 'Send', MP_TXTDOM ) . '</a>';
-
+		$actions['send'] 	= "<a href='$send_url' 	title='" . __('Send this mail', MP_TXTDOM ) . "'>" . __( 'Send', MP_TXTDOM ) . '</a>';
+		$actions['pause']	= "<a href='$pause_url' 	title='" . __('Pause', MP_TXTDOM ) . "'>" 	. __('Pause', MP_TXTDOM) . '</a>';
+		$actions['restart'] 	= "<a href='$restart_url' 	title='" . __('Restart', MP_TXTDOM ) . "'>"	 . __('Restart', MP_TXTDOM) . '</a>';
 		$actions = apply_filters('MailPress_mails_actions', $actions, $mp_mail, $url_parms);
 
 		$actions['approve']   = "<a href='$unarchive_url' 	class='dim:the-mail-list:mail-$id:unapproved:e7e7d3:e7e7d3:?mode=" . $url_parms['mode'] . "' title='" . __('Unarchive this mail', MP_TXTDOM ) . "'>" . __( 'Unarchive', MP_TXTDOM ) . '</a>';
@@ -220,30 +233,36 @@ class MP_AdminPage extends MP_adminpage_list_
 		$actions['delete']= "<a href='$delete_url' 	class='submitdelete' title='" . __('Delete this mail', MP_TXTDOM ) . "'>" 	. __('Delete', MP_TXTDOM) . '</a>';
 		$actions['view'] 	= "<a href='$view_url' 		class='thickbox thickbox-preview'  title='" . __('View', MP_TXTDOM ) . "'>"								. __('View', MP_TXTDOM) . '</a>';
 
+		//$include = array('edit', 'send', 'pause', 'restart', 'tracking', 'approve', 'unapprove', 'delete', 'view');
 		switch($mail->status)
 		{
 			case 'draft' :
-				unset($actions['approve']);
-				unset($actions['unapprove']);
-			break;
-			case 'sent' :
-				unset($actions['send']);
-				unset($actions['edit']);
+				$include = array('edit', 'send', 'delete', 'view');
 			break;
 			case 'unsent' :
+				$include = array('pause', 'tracking', 'view');
+			break;
 			case 'sending' :
-				unset($actions['approve']);
-				unset($actions['unapprove']);
-			default : /* 'archived' */
-				unset($actions['send']);
-				unset($actions['edit']);
-				unset($actions['delete']);
+				$include = array('pause', 'tracking', 'view');
+			break;
+			case 'paused' :
+				$include = array('restart', 'tracking', 'delete', 'view');
+			break;
+			case 'sent' :
+				$include = array('tracking', 'approve', 'unapprove', 'delete', 'view');
+			break;
+			case 'archived' :
+				$include = array('tracking', 'approve', 'unapprove', 'view');
+			break;
+			default :
+				$include = array('view');
 			break;
 		}
+		foreach($actions as $k => $v) if (!in_array($k, $include)) unset($actions[$k]);
 
 		if (!current_user_can('MailPress_send_mails')) 		unset($actions['send']);
 		if (!current_user_can('MailPress_delete_mails')) 	unset($actions['delete']);
-		if (!current_user_can('MailPress_archive_mails'))    {unset($actions['archive']); unset($actions['unarchive']);}
+		if (!current_user_can('MailPress_archive_mails'))    {unset($actions['approve']); unset($actions['unapprove']);}
 
 // table row 
 //	class
@@ -270,13 +289,13 @@ class MP_AdminPage extends MP_adminpage_list_
 				$mail_url2 	    = "<a class='row-title' href='$mail_url'  title='" . sprintf( __('Search "%1$s"', MP_TXTDOM), $mail->toemail) . "'>";
 				if ( ('detail' == $url_parms['mode']) && (get_option('show_avatars') ) )
 				{
-					$email_display .= "<div style='float:left;margin-right:10px;'>";
+					$email_display .= "<div>";
 					$email_display .= $mail_url2;
 					$email_display .= get_avatar( $mail->toemail, 32 );
 					$email_display .= '</a>';
 					$email_display .= '</div>';
 				}
-				$email_display .= "<div style='float:left;'>";
+				$email_display .= "<div>";
 				$email_display .= $mail_url2;
 				$email_display .= '<strong>';
 				$email_display .= ( strlen($mail->toemail) > 40 ) ? substr($mail->toemail, 0, 39) . '...' : $mail->toemail;
@@ -297,6 +316,8 @@ class MP_AdminPage extends MP_adminpage_list_
 			break;
 		}
 		$email_display = apply_filters('MailPress_to_mails_column', $email_display, $mail);
+		if ($mailinglist_desc = MP_Mail_meta::get($mail->id, '_mailinglist_desc')) $email_display = "<div>{$email_display}</div>{$mailinglist_desc}";
+
 //	author
 		$author = ( 0 == $mail->sent_user_id) ? $mail->created_user_id : $mail->sent_user_id;
 		if ($author != 0 && is_numeric($author)) 
@@ -351,26 +372,22 @@ class MP_AdminPage extends MP_adminpage_list_
 			{
 
 				case 'cb':
-					if (in_array($mail->status, array('unsent', 'archived')))
-					{
 ?>
 		<th class='check-column' scope='row'>
-		</th>
-<?php 				}
-					else 
-					{ 
-?>
-		<th class='check-column' scope='row'>
+<?php					if (isset($actions['delete'])) : ?>
 			<input type='checkbox' name='checked[]' value='<?php echo $id; ?>'<?php echo $disabled; ?> />
-		</th>
-<?php
-	 				} 
+<?php					endif;
 				break;
 				case 'title':
 					$attributes = 'class="post-title column-title"' . $style;
 ?>
 		<td  <?php echo $attributes ?>>
 <?php
+			if ('paused' == $mail->status) :
+?>
+			<span class='icon paused' title="<?php _e('Paused', MP_TXTDOM); ?>"></span>
+<?php
+			endif;
 			if ($attach) :
 ?>
 			<span class='icon attachement' title="<?php _e('Attachments', MP_TXTDOM); ?>"></span>
@@ -381,6 +398,7 @@ class MP_AdminPage extends MP_adminpage_list_
 			<span class='icon scheduled' title="<?php _e('Scheduled', MP_TXTDOM); ?>"></span>
 <?php
 			endif;
+
 			do_action('MailPress_get_icon_mails', $id);
 ?>
 			<strong>
@@ -388,6 +406,7 @@ class MP_AdminPage extends MP_adminpage_list_
 					<?php echo ( '' == $subject_display) ? __('(no subject)', MP_TXTDOM) : (( strlen($subject_display) > 40 ) ? $subject_display = mb_substr($subject_display, 0, 39, get_option('blog_charset')) . '...' : $subject_display); ?>
 				</a>
 <?php if ('draft' == $mail->status) echo ' - ' . __('Draft'); ?>
+<?php if ('paused' == $mail->status) echo ' - ' . __('Paused', MP_TXTDOM); ?>
 <?php if ('archived' == $mail->status) echo ' - ' . __('Archive', MP_TXTDOM); ?>
 			</strong>
 <?php			echo self::get_actions($actions); ?>

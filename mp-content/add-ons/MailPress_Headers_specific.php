@@ -21,27 +21,24 @@ class MailPress_Headers_specific
 	{
 		if ($row->template == 'new_subscriber') return $message;
 
-		$url = MP_User::get_unsubscribe_url( (isset($row->mp_user_id)) ? MP_User::get_key_by_email(MP_User::get_email($row->mp_user_id)) : '{{_confkey}}' );
-		$url = apply_filters('MailPress_header_url', $url, $row);
+		$url = apply_filters('MailPress_header_url', '{{unsubscribe}}', $row);
+		if ('{{unsubscribe}}' == $url) $url = MP_User::get_unsubscribe_url( '{{_confkey}}' );
 
-		global $wpdb;
+		if (isset($row->mp_user_id))
+		{
+			$confkey = MP_User::get_key_by_email(MP_User::get_email($row->mp_user_id));
+			$url = str_replace('{{_confkey}}', $confkey, $url);
+		}
+
 		$headers = array(
-					array(	'type' => Swift_Mime_Header::TYPE_TEXT , 
-							'name' => 'List-Unsubscribe', 
-							'value' => '<mailto:toto@toto.com>'
-					),
 					array(	'type' => Swift_Mime_Header::TYPE_TEXT , 
 							'name' => 'List-Unsubscribe', 
 							'value' => "<$url>"
 					),
 					array(	'type' => Swift_Mime_Header::TYPE_TEXT , 
 							'name' => 'List-ID', 
-							'value' => "mp_mail_id_{$wpdb->blogid}_{$row->id}"
-					),
-					array(	'type' => Swift_Mime_Header::TYPE_TEXT , 
-							'name' => 'Precedence', 
-							'value' => 'bulk'
-					),
+							'value' => get_option( 'blogname' )
+					)
 				);
 
 

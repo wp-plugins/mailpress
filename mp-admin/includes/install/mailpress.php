@@ -137,7 +137,7 @@ $queries = array();
 $queries[] = 
 "CREATE TABLE $wpdb->mp_mails (
  id                bigint(20)       UNSIGNED NOT NULL AUTO_INCREMENT,
- status            enum('draft', 'unsent', 'sending', 'sent', 'archived', '') NOT NULL,
+ status            enum('draft', 'unsent', 'sending', 'sent', 'archived', '', 'paused') NOT NULL,
  theme             varchar(255)     NOT NULL default '',
  themedir          varchar(255)     NOT NULL default '',
  template          varchar(255)     NOT NULL default '',

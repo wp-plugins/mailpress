@@ -15,7 +15,27 @@ class MailPress_bulk_import
 	function __construct()
 	{
 		add_action('MailPress_users_addon', 		array(__CLASS__, 'form'));
-		add_action('MailPress_users_addon_update', 	array(__CLASS__, 'process_form'));
+		add_action('MailPress_users_addon_update',	array(__CLASS__, 'process_form'));
+
+// for wp admin
+		if (is_admin() && current_user_can('MailPress_manage_mailinglists')) 	add_filter('MailPress_scripts', array(__CLASS__, 'scripts'), 8, 2);
+	}
+
+	public static function scripts($scripts, $screen) 
+	{
+		if ( MailPress_page_users != MailPress::get_admin_page() ) return $scripts;
+
+		wp_register_script( 'mp-import', '/' . MP_PATH . 'mp-includes/js/mp_mailinglist_dropdown.js', array('jquery'), false, 1);
+		wp_localize_script( 'mp-import', 	'mp_ml_select_L10n', array(
+			'error' => __('Please, choose a mailinglist', MP_TXTDOM), 
+			'select' => 'bulk_import_mailinglist', 
+			'form'   => 'bulk-add',
+			'l10n_print_after' => 'try{convertEntities(mp_ml_select_L10n);}catch(e){};' 
+		));
+
+		$scripts[] = 'mp-import';
+
+		return $scripts;
 	}
 
 	public static function form($url_parms)
@@ -26,12 +46,9 @@ class MailPress_bulk_import
 	<input type='text'   name='emails'   value='' id='emails' onclick="document.getElementById('bulk-add').style.width='90%';document.getElementById('emails').style.width='70%';document.getElementById('radios').style.display='block';" />
 	<input type='submit' name='bulk_add' value='<?php _e('Bulk Add', MP_TXTDOM ); ?>' class='button' />
 	<div id="radios" style="display:none">
-<?php 
-if (class_exists('MailPress_mailinglist'))
-{
-	MP_Mailinglist::dropdown(array('name' => 'bulk_import_mailinglist', 'htmlid' => 'bulk_import_mailinglist', 'selected' => get_option(MailPress_mailinglist::option_name_default), 'hierarchical' => true, 'orderby' => 'name', 'hide_empty' => '0'));
-}
-?>
+
+<?php if (current_user_can('MailPress_manage_mailinglists')) MP_Mailinglist::dropdown(array('name' => 'bulk_import_mailinglist', 'htmlid' => 'bulk_import_mailinglist', 'hierarchical' => true, 'orderby' => 'name', 'hide_empty' => '0', 'show_option_none' => __('Choose mailinglist', MP_TXTDOM))); ?>
+
 		<label for='bulki-activate'><input type='radio' id='bulki-activate' name='activate' value='activate' /><?php _e('Activate', MP_TXTDOM); ?></label>
 		<label for='bulki-waiting'><input type='radio'  id='bulki-waiting'  name='activate' value='waiting' checked='checked' /> <?php _e('Require Authorization', MP_TXTDOM); ?></label>
 		<span style="color:#f00;padding-left:50px;">
@@ -82,10 +99,22 @@ if (class_exists('MailPress_mailinglist'))
 					if ($return['result']) $count++;
 				}
 
-				if (class_exists('MailPress_mailinglist'))
+				if (current_user_can('MailPress_manage_mailinglists'))
 				{
 					$mp_user_id  = MP_User::get_id_by_email($email);
 					MP_Mailinglist::set_object_terms(MP_User::get_id_by_email($email), (is_array($_POST['bulk_import_mailinglist'])) ? $_POST['bulk_import_mailinglist'] : array($_POST['bulk_import_mailinglist']) );
+				}
+			}
+			else
+			{
+				if (current_user_can('MailPress_manage_mailinglists'))
+				{
+					$mp_user_id  = MP_User::get_id_by_email($email);
+
+					$mls = array();
+					$mls = MP_Mailinglist::get_object_terms($mp_user_id);
+					$mls[] = $_POST['bulk_import_mailinglist'];
+					$mls = MP_Mailinglist::set_object_terms($mp_user_id, $mls);
 				}
 			}
 		}

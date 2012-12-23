@@ -23,6 +23,8 @@ $results = array(	'deleted'	=> array('s' => __('%s mail deleted', MP_TXTDOM), 'p
 			'notsent'	=> array('s' => __('%s mail NOT sent', MP_TXTDOM),'p' => __('%s mails NOT sent', MP_TXTDOM)),
 			'archived'	=> array('s' => __('%s mail archived', MP_TXTDOM),'p' => __('%s mails archived', MP_TXTDOM)),
 			'unarchived'=> array('s' => __('%s mail unarchived', MP_TXTDOM),'p' => __('%s mails unarchived', MP_TXTDOM)),
+			'paused'	=> array('s' => __('%s mail paused', MP_TXTDOM),'p' => __('%s mails paused', MP_TXTDOM)),
+			'restartd'	=> array('s' => __('%s mail restarted', MP_TXTDOM),'p' => __('%s mails restarted', MP_TXTDOM)),
 			'saved'	=> array('s' => __('Mail saved', MP_TXTDOM),      'p' => __('Mail saved', MP_TXTDOM)),
 );
 
@@ -90,7 +92,7 @@ $url_parms['paged']++;
 	<div id='mp_message'></div>
 	<h2>
 		<?php echo esc_html( $h2 ); ?> 
-		<a href='<?php echo MailPress_write; ?>' class="add-new-h2"><?php echo esc_html(__('Add New')); ?></a> 
+		<a href='<?php echo MailPress_write; ?>' class="add-new-h2"><?php echo esc_html(__('Add New', MP_TXTDOM)); ?></a> 
 <?php if ( isset($url_parms['s']) ) printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_attr( $url_parms['s'] ) ); ?>
 <?php if ( !empty($subtitle) )      echo    "<span class='subtitle'>$subtitle</span>"; ?>
 	</h2>

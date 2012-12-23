@@ -7,6 +7,12 @@
 	text-align:right;
 }
 
+.mp_scroll {
+	max-height:16em;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
 #tracking_mp_m007 td, #tracking_mp_m007 th {
 	font-size:11px;
 }

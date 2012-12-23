@@ -964,6 +964,14 @@ class MP_Mail extends MP_mail_
 				if ('sent' == self::get_status($id)) return self::update_status($id, 'archived');
 				return false;
 			break;
+			case 'paused':
+				if ('unsent' == self::get_status($id)) return self::update_status($id, 'paused');
+				return false;
+			break;
+			case 'unsent':
+				if ('paused' == self::get_status($id)) return self::update_status($id, 'unsent');
+				return false;
+			break;
 			case 'delete':
 				return self::delete($id);
 			break;
