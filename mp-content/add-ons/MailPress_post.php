@@ -3,10 +3,10 @@ if (class_exists('MailPress') && !class_exists('MailPress_post'))
 {
 /*
 Plugin Name: MailPress_post
-Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Post
+Plugin URI: http://blog.mailpress.org/tutorials/add-ons/post/
 Description: New Mail : select posts for draft mails (<span style='color:red;'>required !</span> 'manual' template for your mp theme)
 Author: Roberto Morales O., Andre Renaut
-Version: 5.3
+Version: 5.4
 Author URI: http://www.mailpress.org
 */
 

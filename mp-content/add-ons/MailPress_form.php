@@ -3,9 +3,9 @@ if (class_exists('MailPress') && !class_exists('MailPress_form') )
 {
 /*
 Plugin Name: MailPress_form
-Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Form
+Plugin URI: http://blog.mailpress.org/tutorials/add-ons/form/
 Description: Forms (for contact forms only !)
-Version: 5.3
+Version: 5.4
 */
 
 /** for admin plugin pages */

@@ -3,9 +3,9 @@ if (class_exists('MailPress') && !class_exists('MailPress_import') && (is_admin(
 {
 /*
 Plugin Name: MailPress_import
-Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Import
+Plugin URI: http://blog.mailpress.org/tutorials/add-ons/import/
 Description: Users : Import/Export mp users from/into files
-Version: 5.3
+Version: 5.4
 */
 
 // 3.

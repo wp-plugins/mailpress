@@ -3,8 +3,9 @@ if (class_exists('MailPress') && !class_exists('MailPress_embed'))
 {
 /*
 Plugin Name: MailPress_embed 
+Plugin URI: http://blog.mailpress.org/tutorials/add-ons/embed/
 Description: Mail oEmbed (equivalent of WordPress video embedding but for mails)
-Version: 5.3
+Version: 5.4
 */
 
 class MailPress_embed

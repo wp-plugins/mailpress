@@ -3,9 +3,9 @@ if (class_exists('MailPress') && !class_exists('MailPress_roles_and_capabilities
 {
 /*
 Plugin Name: MailPress_roles_and_capabilities
-Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Roles_and_capabilities
+Plugin URI: http://blog.mailpress.org/tutorials/add-ons/roles_and_capabilities/
 Description: Settings : manage roles &amp; capabilities
-Version: 5.3
+Version: 5.4
 */
 
 class MailPress_roles_and_capabilities

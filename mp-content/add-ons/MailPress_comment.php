@@ -3,9 +3,9 @@ if (class_exists('MailPress') && !class_exists('MailPress_comment') )
 {
 /*
 Plugin Name: MailPress_comment
-Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Comment
+Plugin URI: http://blog.mailpress.org/tutorials/add-ons/comment/
 Description: Subscribe to comments
-Version: 5.3
+Version: 5.4
 */
 
 class MailPress_comment

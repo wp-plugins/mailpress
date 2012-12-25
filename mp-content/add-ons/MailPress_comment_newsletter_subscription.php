@@ -3,8 +3,9 @@ if (class_exists('MailPress') && !class_exists('MailPress_comment_newsletter_sub
 {
 /*
 Plugin Name: MailPress_comment_newsletter_subscription
+Plugin URI: http://blog.mailpress.org/tutorials/add-ons/comment_newsletter_subscription/
 Description: Subscribe to a default newsletter from comment form   (<span style='color:red;'>required !</span> <span style='color:#D54E21;'>Newsletter</span> add-on)
-Version: 5.3
+Version: 5.4
 */
 
 class MailPress_comment_newsletter_subscription

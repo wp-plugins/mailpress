@@ -3,9 +3,9 @@ if (class_exists('MailPress') && !class_exists('MailPress_tracking_ga'))
 {
 /*
 Plugin Name: MailPress_tracking_ga
-Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Tracking_ga
+Plugin URI: http://blog.mailpress.org/tutorials/add-ons/tracking_ga/
 Description: Tracking : mails activity to your site with <a href='http://www.google.com/support/googleanalytics/bin/answer.py?hl=en&amp;answer=55540'>google analytics</a> (<span style='color:red;'>beware !</span> Not compatible with <span style="color:#D54E21;">Tracking</span> add-on)
-Version: 5.3
+Version: 5.4
 */
 
 class MailPress_tracking_ga

@@ -3,9 +3,9 @@ if (class_exists('MailPress') && !class_exists('MailPress_tracking'))
 {
 /*
 Plugin Name: MailPress_tracking
-Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Tracking
+Plugin URI: http://blog.mailpress.org/tutorials/add-ons/tracking/
 Description: Tracking : mails &amp; users activity
-Version: 5.3
+Version: 5.4
 */
 
 /** for admin plugin pages */

@@ -3,9 +3,9 @@ if (class_exists('MailPress') && !class_exists('MailPress_connection_sendmail') 
 {
 /*
 Plugin Name: MailPress_connection_sendmail 
-Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Sendmail
+Plugin URI: http://blog.mailpress.org/tutorials/add-ons/connection_sendmail/
 Description: Connection : use Sendmail
-Version: 5.3
+Version: 5.4
 */
 
 class MailPress_connection_sendmail

@@ -3,9 +3,9 @@ if (class_exists('MailPress') && !class_exists('MailPress_batch_send'))
 {
 /*
 Plugin Name: MailPress_batch_send 
-Plugin URI: http://www.mailpress.org/wiki/index.php?title=Add_ons:Batch_send
+Plugin URI: http://blog.mailpress.org/tutorials/add-ons/batch_send/
 Description: Mails : Send them in batch mode
-Version: 5.3
+Version: 5.4
 */
 
 class MailPress_batch_send
