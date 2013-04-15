@@ -45,7 +45,7 @@ input.TO, select.TO {
 }
 img#html2txt_loading {
 	display:none;
-	margin:-3px 0;
+	margin:-4px 0;
 	padding:0;
 }
 div#plaintextbox div.inside {
@@ -53,9 +53,6 @@ div#plaintextbox div.inside {
 }
 
 #plaintext {
-	border-width:0 1px 1px;
-	border-color:#DFDFDF;
-	border-style:solid;
 	font-family:"Courier",serif;
 	height:10em;
 	margin:0;
@@ -168,4 +165,73 @@ background:transparent url(../images/space.png) repeat;
 
 #to_list optgroup option {
 	padding-left:15px;
+}
+#customfieldsdiv #postcustomstuff .submit {
+    border: 0 none;
+    float: none;
+    padding: 0 8px 8px;
+}
+
+/* mail formats */
+
+
+.mail-format-tip {
+    color: #999999;
+    float: right;
+    font-size: 14px;
+    padding: 6px 10px;
+    text-transform: capitalize;
+}
+
+.mail-format-options {
+    background: none repeat scroll 0 0 #F9F9F9;
+    border: 1px solid #DFDFDF;
+    border-radius: 3px 3px 3px 3px;
+    height: 29px;
+    margin: 0 0 9px 1px;
+    padding: 0;
+}
+
+.mail-format-options a {
+    border-right: 1px solid #EBEBEB;
+    display: inline-block;
+    height: 16px;
+    padding: 6px;
+    position: relative;
+    text-decoration: none;
+    width: 16px;
+}
+
+.mail-format-options a.active, .mail-format-options a:focus, .mail-format-options a:hover {
+    background: none repeat scroll 0 0 #EEEEEE;
+    box-shadow: 0 0 10px #DDDDDD inset;
+    opacity: 1;
+    outline: medium none;
+}
+
+.mail-format-options a div {
+    height: 16px;
+    opacity: 0.4;
+    width: 16px;
+}
+
+.mail-format-options a.active div, .mail-format-options a:focus div, .mail-format-options a:hover div {
+    opacity: 1;
+}
+
+.mail-format-options .standard {
+    background: url("../images/mail-formats.png") no-repeat scroll transparent;
+}
+
+.mail-format-options .plaintext {
+    background: url("../images/mail-formats.png") no-repeat scroll -16px  transparent;
+}
+
+.mp-format-plaintext .mail-formats-fields {
+    display: block;
+}
+.mail-formats-fields .field {
+    display: none;
+    margin-bottom: 10px;
+    overflow: hidden;
 }

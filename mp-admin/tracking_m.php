@@ -1,10 +1,10 @@
 <?php
 class MP_AdminPage extends MP_adminpage_list_
 {
-	const screen 	= 'mailpress_tracking_m';
+	const screen 		= 'mailpress_tracking_m';
 	const capability 	= 'MailPress_tracking_mails';
-	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Add_ons:Tracking';
-	const file        = __FILE__;
+	const help_url		= 'http://blog.mailpress.org/tutorials/add-ons/tracking/';
+	const file       	= __FILE__;
 
 ////  Title  ////
 

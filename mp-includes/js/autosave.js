@@ -59,15 +59,15 @@ var autosave = {
 // data
 	olddata 	: {},
 	newdata 	: {},
-	data 		: { 	toemail : 	'toemail',
+	data 		: { 	toemail 	: 	'toemail',
 				toname	:	'toname',
-				fromemail:	'fromemail',
-				fromname:	'fromname',
+				fromemail	:	'fromemail',
+				fromname	:	'fromname',
 				to_list	:	'to_list',
-				Theme	:	'Theme',
+				Theme		:	'Theme',
 				subject	:	'title',
-				html	:	'content',
-				plaintext:	'plaintext'
+				html		:	'content',
+				plaintext	:	'plaintext'
 			  },
 
 	retrieve_data : function() {
@@ -190,8 +190,6 @@ var autosave = {
 		}
 		dest.append(html2txt.html());
 		html2txt.remove();
-
-		jQuery('#plaintextbox>h3.hndle').append(" <img alt='' id='html2txt_loading' src='images/wpspin_light.gif' />");
 	},
 
 	click_html2txt : function() {

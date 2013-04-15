@@ -1,10 +1,10 @@
 <?php
 class MP_AdminPage extends MP_adminpage_
 {
-	const screen 	= 'mailpress_page_templates';
+	const screen 		= 'mailpress_page_templates';
 	const capability 	= 'MailPress_manage_forms';
-	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Add_ons:Form:Form_Templates';
-	const file        = __FILE__;
+	const help_url		= 'http://blog.mailpress.org/tutorials/add-ons/form/';
+	const file        	= __FILE__;
 
 ////  Redirect  ////
 

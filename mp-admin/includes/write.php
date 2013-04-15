@@ -152,6 +152,34 @@ else
 // or to
 $draft_dest = MP_User::get_mailinglists();
 
+// mail formats
+$format_class = '';
+//$mail_format = get_format();
+if ( ! $mail_format ) $mail_format = 'standard';
+
+$format_class = " class='mp-format-{$mail_format}'";
+
+
+$all_mail_formats =  array(
+						'standard' => array (
+							'description' 	=> __( 'Add a title and use the editor to compose your mail.', MP_TXTDOM ),
+							'part'		=> __( 'Html', MP_TXTDOM )
+						),
+						'plaintext' => array (
+							'description' => __( 'Type plaintext part of mail or generate it automattically using Synchronize button.', MP_TXTDOM ),
+							'part'		=> __( 'Plaintext', MP_TXTDOM )
+						)
+				);
+
+$mail_format_options = '';
+
+foreach($all_mail_formats as $slug => $attr ) { 
+	$mf_class= ''; 
+	if ($mail_format == $slug) { $mf_class = 'class="active"'; $mf_tip = sprintf( __( '%s Part', MP_TXTDOM ), $attr['part'] ); }
+
+	$mail_format_options .= '<a ' . $mf_class . ' href="' . MailPress_write  . '&format=' . $slug . '" data-description="' . esc_attr($attr['description']) . '" data-mp-format="' . esc_attr($slug) . '" title="' . esc_attr( sprintf( __( '%s Part', MP_TXTDOM ), $attr['part'] ) ) . '"><div class="' . $slug . '"></div></a>';
+}
+
 ?>
 	<div class='wrap'>
 		<div id="icon-mailpress-mailnew" class="icon32"><br /></div>
@@ -177,36 +205,28 @@ $draft_dest = MP_User::get_mailinglists();
 
 			<div id='post-body'>
 				<div id='post-body-content'>
+
+					<div class="mail-format-options">
+						<span class="mail-format-tip"><?php echo $mf_tip; ?></span>
+						<?php echo $mail_format_options; ?>
+					</div>
+
 					<div id='fromtodiv'>
-						<table class='widefat'><tr><td style='border:none;'>
-							<table class='form-table' style='margin:0;'>
-								<tr>
-									<td class='nombp'>
-										<?php _e('To Email:', MP_TXTDOM); ?> 
-									</td>	
-									<td class='nombp' >
-										<input  class='w90 <?php echo $class; ?>' type='text' name='toemail' id='toemail' value="<?php echo esc_attr($draft->toemail); ?>" title="<?php _e('Email', MP_TXTDOM); ?>" />
-									</td>
-									<td class='nombp' >
-										<?php _e('OR all', MP_TXTDOM); ?>
-										&#160;&#160;
-										<select name='to_list' id='to_list'  class='<?php echo $class; ?>'>
+							<table class='widefat'><tr><td style='border:none;'>
+								<div style='padding-bottom:5px;'>
+									<select name='to_list' id='to_list'  class='<?php echo $class; ?>'>
 <?php MP_AdminPage::select_optgroup($draft_dest, (isset($draft->to_list)) ? $draft->to_list : '') ?>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td class='nombp'>
-										<?php _e('To Name:', MP_TXTDOM); ?> 
-									</td>	
-									<td class='nombp' >
-										<input  class='w90 <?php echo $class; ?>' type='text' name='toname'  id='toname'  value="<?php echo esc_attr($draft->toname); ?>"  title="<?php _e('Name', MP_TXTDOM); ?>" />
-									</td>
-									<td class='nombp' >
-									</td>
-								</tr>
-							</table>
-						</td></tr></table>
+									</select>
+								</div>
+								<div id='toemail-toname' style='padding-bottom:5px;<?php if (isset($draft->to_list)) echo "display:none;";?>'>
+									<label id='toemail-prompt-text' class='hide-if-no-js' for='toemail' style='color:#bbb;padding:6px 0 0 8px;position:absolute;<?php if (esc_attr($draft->toemail) != '') echo 'visibility:hidden;' ; ?>'><?php _e('Enter email here', MP_TXTDOM); ?></label>
+									<input  class='<?php echo $class; ?>' style='width:45%;' type='text' name='toemail' id='toemail' value="<?php echo esc_attr($draft->toemail); ?>" title="<?php _e('Email', MP_TXTDOM); ?>" />
+									<label id='toname-prompt-text' class='hide-if-no-js' for='toname' style='color:#bbb;padding:6px 0 0 8px;position:absolute;<?php if (esc_attr($draft->toname) != '') echo 'visibility:hidden;' ; ?>'><?php _e('Enter name here', MP_TXTDOM); ?></label>
+									<input  class='<?php echo $class; ?>' style='width:45%;' type='text' name='toname'  id='toname'  value="<?php echo esc_attr($draft->toname); ?>"  title="<?php _e('Name', MP_TXTDOM); ?>" />
+								</div>
+							</td></tr></table>
+
+
 					</div>
 					<div id='titlediv'>
 						<div id='titlewrap'>
@@ -214,7 +234,26 @@ $draft_dest = MP_User::get_mailinglists();
 							<input type='text' name='subject' id='title' size='30' tabindex='1' autocomplete='off' value="<?php echo (isset($draft->subject)) ? esc_attr($draft->subject) : ''; ?>" />
 						</div>
 					</div>
-					<div id="<?php echo user_can_richedit() ? 'postdivrich' : 'postdiv'; ?>" class="postarea">
+
+
+					<div class="mail-format-description"></div>
+					<div class="mail-formats-fields">
+						<input type="hidden" name="mail_format" id="mail_format" value="<?php echo $mail_format; ?>" >
+						<div class="field mp-format-plaintext" id="mp-format-plaintext">
+							<label for="plaintext"><?php _e('Plaintext', MP_TXTDOM); ?></label>
+							<textarea id="plaintext" class="widefat" name="plaintext"></textarea>
+						</div>
+						<div id='div_html2txt' class='hidden'>
+							<a id='html2txt' class='hide-if-no-js' onclick="return false;" title="<?php echo esc_attr(__('Plaintext from Html', MP_TXTDOM)); ?>" href="#">
+								<?php _e('Synchronize', MP_TXTDOM); ?> 
+								<img alt="<?php echo esc_attr(__('Plaintext from Html', MP_TXTDOM)); ?>" src="<?php echo site_url() . '/' . MP_PATH; ?>mp-admin/images/html2txt.png" />
+							</a>
+							<img alt='' id='html2txt_loading' src='images/wpspin_light.gif' />
+						</div>
+					</div>
+
+
+					<div id="<?php echo user_can_richedit() ? 'postdivrich' : 'postdiv'; ?>" class="postarea edit-form-section">
 <?php wp_editor( (isset($draft->html)) ? $draft->html : '', 'content', array( 'media_buttons' => apply_filters('MailPress_upload_media', false), 'tabindex' => 5 ) ); ?>
 						<div id="post-status-info">
 							<span id="wp-word-count" class="alignleft"></span>

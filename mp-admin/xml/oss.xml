@@ -219,9 +219,14 @@
 				<icon><![CDATA[android-hc.png]]></icon>
 			</id>
 			<id>
-				<name><![CDATA[Ice Cream Sandwich (4.)]]></name>
-				<pattern><![CDATA[/4./i]]></pattern>
+				<name><![CDATA[Ice Cream Sandwich (4.0)]]></name>
+				<pattern><![CDATA[/4.0/i]]></pattern>
 				<icon><![CDATA[android-ics.png]]></icon>
+			</id>
+			<id>
+				<name><![CDATA[Jelly Bean (4.x)]]></name>
+				<pattern><![CDATA[/4./i]]></pattern>
+				<icon><![CDATA[android-jb.png]]></icon>
 			</id>
 		</versions>
 	 </os>

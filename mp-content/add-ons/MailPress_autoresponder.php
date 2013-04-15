@@ -370,8 +370,10 @@ class MailPress_autoresponder
 				</td>
 			</tr>
 			<tr>
-				<td class='submit'>
-					<input type='submit' id='addmetasub' name='addwrite_autoresponder' class='add:<?php echo $parms['table_body_id']; ?>:add_<?php echo $parms['tr_prefix_id']; ?>' tabindex='9' value="<?php _e( 'Add', MP_TXTDOM ) ?>" />
+				<td>
+					<div class='submit' style='border: 0 none;float: none;padding: 0 8px 8px;'>
+						<input type='submit' id='addmetasub' name='addwrite_autoresponder' class='add:<?php echo $parms['table_body_id']; ?>:add_<?php echo $parms['tr_prefix_id']; ?> button' tabindex='9' value="<?php _e( 'Add', MP_TXTDOM ) ?>" />
+					</div>
 				</td>
 				<td>
 					<p class='description'><?php _e('Not more than one year between two scheduled mails.', MP_TXTDOM); ?></p>
@@ -414,8 +416,8 @@ class MailPress_autoresponder
 " . MP_::select_option($_autoresponders, $entry['term_id'], false) . "
 					</select>
 					<div class='submit'>
-						<input name='delete_wa-{$entry['meta_id']}' type='submit' class='delete:{$parms['table_body_id']}:{$parms['tr_prefix_id']}-{$entry['meta_id']}::_ajax_nonce=$delete_nonce delete_wa' tabindex='6' value='".esc_attr(__( 'Delete' ))."' />
-						<input name='update_wa-{$entry['meta_id']}' type='submit' tabindex='6' value='".esc_attr(__( 'Update' ))."' class='add:{$parms['table_body_id']}:{$parms['tr_prefix_id']}-{$entry['meta_id']}::_ajax_nonce=$update_nonce update_wa' />
+						<input name='delete_wa-{$entry['meta_id']}' type='submit' class='delete:{$parms['table_body_id']}:{$parms['tr_prefix_id']}-{$entry['meta_id']}::_ajax_nonce=$delete_nonce delete_wa button' tabindex='6' value='".esc_attr(__( 'Delete' ))."' />
+						<input name='update_wa-{$entry['meta_id']}' type='submit' tabindex='6' value='".esc_attr(__( 'Update' ))."' class='add:{$parms['table_body_id']}:{$parms['tr_prefix_id']}-{$entry['meta_id']}::_ajax_nonce=$update_nonce update_wa button' />
 					" . wp_nonce_field( 'change-write_autoresponder', '_ajax_nonce', false, false ) . "
 					</div>
 				</td>

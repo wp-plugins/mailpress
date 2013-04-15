@@ -179,7 +179,7 @@ class MP_Themes
 
 		$mp_themes = array();
 
-		foreach ( (array) $theme_files as $theme_file ) {
+		foreach ( (array) $theme_files as $stylesheet => $theme_file ) {
 			$theme_root = $theme_file['theme_root'];
 			$theme_file = $theme_file['theme_file'];
 
@@ -188,7 +188,8 @@ class MP_Themes
 				continue;
 			}
 
-			$theme_data = get_theme_data("$theme_root/$theme_file");
+			//$theme_data = get_theme_data("$theme_root/$theme_file");
+			$theme_data = wp_get_theme($stylesheet, $theme_root);
 
 			$name		= $theme_data['Name'];
 			$title	= $theme_data['Title'];

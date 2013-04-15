@@ -7,7 +7,7 @@ abstract class MP_newsletter_post_type_
 	{
 		add_action('MailPress_register_newsletter',	array(&$this, 'register'), $this->register_priority);
 
-		if (method_exists(&$this,'init')) add_action('init', array(&$this, 'init'), 1);
+		if (method_exists($this,'init')) add_action('init', array(&$this, 'init'), 1);
 
 		if (is_admin())
 		{

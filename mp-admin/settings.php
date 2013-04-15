@@ -1,10 +1,10 @@
 <?php
 class MP_AdminPage extends MP_adminpage_
 {
-	const screen 	= MailPress_page_settings;
+	const screen 		= MailPress_page_settings;
 	const capability 	= 'MailPress_manage_options';
-	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Manual:MailPress:Settings';
-	const file        = __FILE__;
+	const help_url		= 'http://blog.mailpress.org/tutorials/';
+	const file        	= __FILE__;
 
 	public static $first = true;
 

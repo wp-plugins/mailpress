@@ -1,10 +1,10 @@
 <?php
 class MP_AdminPage extends MP_adminpage_
 {
-	const screen 	= MailPress_page_themes;
+	const screen 		= MailPress_page_themes;
 	const capability 	= 'MailPress_switch_themes';
-	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Manual:MailPress:Configuring:Themes';
-	const file        = __FILE__;
+	const help_url		= 'http://blog.mailpress.org/tutorials/';
+	const file        	= __FILE__;
 
 ////  Redirect  ////
 

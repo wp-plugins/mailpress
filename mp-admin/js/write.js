@@ -19,6 +19,27 @@ var mp_write = {
 		//autosave
 		autosave.init();
 
+		//mail formats
+		var mf = jQuery('.mail-format-options a');
+		mf.hover( function() { jQuery('.mail-format-tip').html( jQuery(this).prop('title') );}, function() {jQuery('.mail-format-tip').html( jQuery('.mail-format-options a.active').prop('title') );} );
+		mf.click( function(e) {
+			e.preventDefault();
+			var of = jQuery('.mail-format-options a.active')
+ 
+			var old_format = of.attr('data-mp-format');
+			var new_format = jQuery(this).attr('data-mp-format');
+			if (old_format == new_format) return false;
+
+			of.removeClass('active');
+			jQuery(this).addClass('active');
+
+			jQuery('#mail_format').val(new_format);
+
+			jQuery('.mail-formats-fields #mp-format-' + old_format).slideUp();
+			jQuery('.mail-formats-fields #mp-format-' + new_format).slideDown();
+		});
+
+
 		if ( jQuery('#title').val() == '' )
 			jQuery('#title').siblings('#title-prompt-text').css('visibility', '');
 		jQuery('#title-prompt-text').click(function(){
@@ -34,6 +55,45 @@ var mp_write = {
 			jQuery(this).siblings('#title-prompt-text').css('visibility', 'hidden');
 			jQuery(this).unbind(e);
 		});
+
+
+		//toemail
+		if ( jQuery('#toemail').val() == '' )
+			jQuery('#toemail').siblings('#toemail-prompt-text').css('visibility', '');
+		jQuery('#toemail-prompt-text').click(function(){
+			jQuery(this).css('visibility', 'hidden').siblings('#toemail').focus();
+		});
+		jQuery('#toemail').blur( function() {
+			if (this.value == '') jQuery(this).siblings('#toemail-prompt-text').css('visibility', '');
+		}).focus(function(){
+			jQuery(this).siblings('#toemail-prompt-text').css('visibility', 'hidden');
+		}).keydown(function(e){
+			jQuery(this).siblings('#toemail-prompt-text').css('visibility', 'hidden');
+			jQuery(this).unbind(e);
+		});
+
+		//toname
+		if ( jQuery('#toname').val() == '' )
+			jQuery('#toname').siblings('#toname-prompt-text').css('visibility', '');
+		jQuery('#toname-prompt-text').click(function(){
+			jQuery(this).css('visibility', 'hidden').siblings('#toname').focus();
+		});
+		jQuery('#toname').blur( function() {
+			if (this.value == '') jQuery(this).siblings('#toname-prompt-text').css('visibility', '');
+		}).focus(function(){
+			jQuery(this).siblings('#toname-prompt-text').css('visibility', 'hidden');
+		}).keydown(function(e){
+			jQuery(this).siblings('#toname-prompt-text').css('visibility', 'hidden');
+			jQuery(this).unbind(e);
+		});
+
+		jQuery('#to_list').change(function(){
+//			var v = (this.value == '') ? '' : 'none';
+//			jQuery('#toemail-toname').css('display', v);
+			if (this.value == '') jQuery('#toemail-toname').slideDown("normal");
+			else                  jQuery('#toemail-toname').slideUp("normal");
+		});
+
 
 		// submitdiv : save context
 		mp_write.submit.stamp  = jQuery('#timestamp').html();

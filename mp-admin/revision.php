@@ -1,10 +1,10 @@
 <?php
 class MP_AdminPage extends MP_adminpage_
 {
-	const screen 	= 'mailpress_revision';
+	const screen 		= 'mailpress_revision';
 	const capability 	= 'MailPress_edit_mails';
-	const help_url	= false;
-	const file        = __FILE__;
+	const help_url		= false;
+	const file        	= __FILE__;
 
 ////  Redirect  ////
 

@@ -3,7 +3,7 @@ class MP_AdminPage extends MP_adminpage_
 {
 	const screen 	= MailPress_page_write;
 	const capability= 'MailPress_edit_mails';
-	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Help:Admin:New_Mail';
+	const help_url	= 'http://blog.mailpress.org/tutorials/';
 	const file		= __FILE__;
 
 ////  Redirect  ////
@@ -288,7 +288,6 @@ class MP_AdminPage extends MP_adminpage_
 	{
 		$id = (isset($_GET['id'])) ? $_GET['id'] : 0;
 		add_meta_box('submitdiv', 		__('Send', MP_TXTDOM), 			array('MP_AdminPage', 'meta_box_submit'), 		self::screen, 'side', 'core');
-		add_meta_box('plaintextbox', 		__('Plain Text', MP_TXTDOM), 		array('MP_AdminPage', 'meta_box_plaintext'), 		self::screen, 'normal', 'high');
 		add_meta_box('attachementsdiv', 	__('Attachments', MP_TXTDOM),		array('MP_AdminPage', 'meta_box_attachements'), 	self::screen, 'side', 'core');
 
 		if ( current_user_can('MailPress_mail_custom_fields') )
@@ -678,9 +677,11 @@ var draft_id = <?php echo $draft_id; ?>;
 				</td>
 			</tr>
 			<tr>
-				<td colspan='2' class='submit'>
-					<input type='submit' id='addmetasub' name='addmailmeta' class='add:the-list:newmeta' tabindex='9' value="<?php _e( 'Add Custom Field' ) ?>" />
-					<?php wp_nonce_field( 'add-mailmeta', '_ajax_nonce', false ); ?>
+				<td colspan='2'>
+					<div class='submit'>
+						<input type='submit' id='addmetasub' name='addmailmeta' class='add:the-list:newmeta button' tabindex='9' value="<?php _e( 'Add Custom Field' ) ?>" />
+						<?php wp_nonce_field( 'add-mailmeta', '_ajax_nonce', false ); ?>
+					</div>
 				</td>
 			</tr>
 		</tbody>
@@ -717,8 +718,8 @@ var draft_id = <?php echo $draft_id; ?>;
 					</label>
 					<input name='mailmeta[{$entry['meta_id']}][key]' id='mailmeta[{$entry['meta_id']}][key]' tabindex='6' type='text' size='20' value=\"" . esc_attr($entry['meta_key']) . "\" />
 					<div class='submit'>
-						<input name='deletemailmeta[{$entry['meta_id']}]' type='submit' class='delete:the-list:mailmeta-{$entry['meta_id']}::_ajax_nonce=$delete_nonce deletemailmeta' tabindex='6' value='" . esc_attr(__( 'Delete' )) . "' />
-						<input name='updatemailmeta' type='submit' tabindex='6' value='" . esc_attr(__( 'Update' )) . "' class='add:the-list:mailmeta-{$entry['meta_id']}::_ajax_nonce=$update_nonce updatemailmeta' />
+						<input name='deletemailmeta[{$entry['meta_id']}]' type='submit' class='delete:the-list:mailmeta-{$entry['meta_id']}::_ajax_nonce=$delete_nonce deletemailmeta button' tabindex='6' value='" . esc_attr(__( 'Delete' )) . "' />
+						<input name='updatemailmeta' type='submit' tabindex='6' value='" . esc_attr(__( 'Update' )) . "' class='add:the-list:mailmeta-{$entry['meta_id']}::_ajax_nonce=$update_nonce updatemailmeta button' />
 					</div>
 " . wp_nonce_field( 'change-mailmeta', '_ajax_nonce', false, false ) . "
 				</td>

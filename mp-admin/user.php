@@ -1,10 +1,10 @@
 <?php
 class MP_AdminPage extends MP_adminpage_
 {
-	const screen 	= 'mailpress_user';
+	const screen 		= 'mailpress_user';
 	const capability 	= 'MailPress_edit_users';
-	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Help:Admin:User';
-	const file        = __FILE__;
+	const help_url		= 'http://blog.mailpress.org/tutorials/';
+	const file        	= __FILE__;
 
 ////  Redirect  ////
 
@@ -380,9 +380,11 @@ class MP_AdminPage extends MP_adminpage_
 				</td>
 			</tr>
 			<tr>
-				<td colspan='2' class='submit'>
-					<input type='submit' id='addmetasub' name='addmeta' class='add:the-list:newmeta' tabindex='9' value="<?php _e( 'Add Custom Field' ) ?>" />
-					<?php wp_nonce_field( 'add-usermeta', '_ajax_nonce', false ); ?>
+				<td colspan='2'>
+					<div  class='submit'>
+						<input type='submit' id='addmetasub' name='addmeta' class='add:the-list:newmeta button' tabindex='9' value="<?php _e( 'Add Custom Field' ) ?>" />
+						<?php wp_nonce_field( 'add-usermeta', '_ajax_nonce', false ); ?>
+					</div>
 				</td>
 			</tr>
 		</tbody>
@@ -419,8 +421,8 @@ class MP_AdminPage extends MP_adminpage_
 					</label>
 					<input name='usermeta[{$entry['meta_id']}][key]' id='usermeta[{$entry['meta_id']}][key]' tabindex='6' type='text' size='20' value=\"" . esc_attr($entry['meta_key']) . "\" />
 					<div class='submit'>
-						<input name='deleteusermeta[{$entry['meta_id']}]' type='submit' class='delete:the-list:usermeta-{$entry['meta_id']}::_ajax_nonce=$delete_nonce deleteusermeta' tabindex='6' value='" . esc_attr(__( 'Delete' )) . "' />
-						<input name='updateusermeta' type='submit' tabindex='6' value='" . esc_attr(__( 'Update' )) . "' class='add:the-list:usermeta-{$entry['meta_id']}::_ajax_nonce=$update_nonce updateusermeta' />
+						<input name='deleteusermeta[{$entry['meta_id']}]' type='submit' class='delete:the-list:usermeta-{$entry['meta_id']}::_ajax_nonce=$delete_nonce deleteusermeta button' tabindex='6' value='" . esc_attr(__( 'Delete' )) . "' />
+						<input name='updateusermeta' type='submit' tabindex='6' value='" . esc_attr(__( 'Update' )) . "' class='add:the-list:usermeta-{$entry['meta_id']}::_ajax_nonce=$update_nonce updateusermeta button' />
 					</div>
 " . wp_nonce_field( 'change-usermeta', '_ajax_nonce', false, false ) . "
 				</td>

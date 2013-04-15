@@ -1,10 +1,10 @@
 <?php
 class MP_AdminPage extends MP_adminpage_
 {
-	const screen 	= 'mailpress_viewlog';
+	const screen 		= 'mailpress_viewlog';
 	const capability	= 'MailPress_view_logs';
-	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Add_ons:View_logs';
-	const file        = __FILE__;
+	const help_url		= 'http://blog.mailpress.org/tutorials/add-ons/view_logs/';
+	const file        	= __FILE__;
 
 	// for path
 	public static function get_path() 

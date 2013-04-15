@@ -1,14 +1,14 @@
 <?php
 class MP_AdminPage extends MP_adminpage_list_
 {
-	const screen 	= MailPress_page_forms;
+	const screen 		= MailPress_page_forms;
 	const capability 	= 'MailPress_manage_forms';
-	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Add_ons:Form:Forms';
-	const file        = __FILE__;
+	const help_url		= 'http://blog.mailpress.org/tutorials/add-ons/form/';
+	const file        	= __FILE__;
 
-	const add_form_id = 'add';
-	const list_id 	= 'the-list';
-	const tr_prefix_id = 'form';
+	const add_form_id 	= 'add';
+	const list_id 		= 'the-list';
+	const tr_prefix_id 	= 'form';
 
 ////  Redirect  ////
 

@@ -18,8 +18,8 @@
 	- mp_bounce_handling : sample for external scheduling
 	- mp_tracking_rewrite_url : .htaccess sample for add-on MailPress_tracking_rewrite_url
 
-	- category-xx.php  : category template to copy inside your WordPress theme folder (see http://www.mailpress.org/wiki/index.php?title=Manual:MailPress:Settings:General#Forms). 
-	- pt_MailPress.php : page     template to copy inside your WordPress theme folder (see http://www.mailpress.org/wiki/index.php?title=Manual:MailPress:Settings:General#Forms). 
+	- category-xx.php  : category template to copy inside your WordPress theme folder (see http://blog.mailpress.org/tutorials). 
+	- pt_MailPress.php : page     template to copy inside your WordPress theme folder (see http://blog.mailpress.org/tutorials). 
 
 === miscellaneous ===
 

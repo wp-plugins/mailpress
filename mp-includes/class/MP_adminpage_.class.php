@@ -40,7 +40,7 @@ abstract class MP_adminpage_ extends MP_
 			'title'        => __('Overview'),
 			'content'    =>
 				  '<p><strong>' . __( 'For more information:' ) . '</strong></p>'
-				. '<p>' . sprintf(__('<a href="%1$s" target="_blank">Documentation</a>', MP_TXTDOM), (MP_AdminPage::help_url) ? MP_AdminPage::help_url : 'http://www.mailpress.org/wiki/' ) . '</p>'
+				. '<p>' . sprintf(__('<a href="%1$s" target="_blank">Tutorials</a>', MP_TXTDOM), (MP_AdminPage::help_url) ? MP_AdminPage::help_url : 'http://blog.mailpress.org/tutorials/' ) . '</p>'
 				. '<p>' . sprintf(__('<a href="%1$s" target="_blank">Support Forum</a>', MP_TXTDOM), 'http://groups.google.com/group/mailpress') . '</p>'
 			)
 		);

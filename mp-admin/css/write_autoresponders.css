@@ -18,3 +18,10 @@ padding:0 8px;
 .arschedule {
 text-align:center;
 }
+
+
+#normal-sortables .postbox .submit {
+    border: 0 none;
+    float: left;
+    padding: 0 8px 8px;
+}

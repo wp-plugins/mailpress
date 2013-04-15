@@ -1,14 +1,14 @@
 <?php
 class MP_AdminPage extends MP_adminpage_list_
 {
-	const screen 	= MailPress_page_wp_cron;
+	const screen 		= MailPress_page_wp_cron;
 	const capability	= 'MailPress_manage_wp_cron';
-	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Add_ons:Wp_cron';
-	const file        = __FILE__;
+	const help_url		= 'http://blog.mailpress.org/tutorials/add-ons/wp_cron/';
+	const file        	= __FILE__;
 
-	const add_form_id = 'add';
-	const list_id 	= 'the-list';
-	const tr_prefix_id = 'wpcron';
+	const add_form_id 	= 'add';
+	const list_id 		= 'the-list';
+	const tr_prefix_id 	= 'wpcron';
 
 ////  Redirect  ////
 

@@ -210,7 +210,7 @@ class MailPress
 	{
 ?>
 		<p style="color:red;margin:3px 0 0 0;border-top:1px solid #ddd;padding-top:3px">
-			<?php printf(__( 'IMPORTANT: <a href="%$1s">Read this before attempting to update MailPress</a>', MP_TXTDOM), 'http://www.mailpress.org/wiki/index.php?title=Manual:MailPress:Upgrading'); ?>
+			<?php printf(__( 'IMPORTANT: <a href="%$1s">Read this before attempting to update MailPress</a>', MP_TXTDOM), 'http://blog.mailpress.org/tutorials/'); ?>
 		</p>
 <?php
 	}

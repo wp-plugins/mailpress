@@ -32,6 +32,11 @@ td.avatar {
 #postcustomstuff #newmeta .submit {
 	padding:0 8px;
 }
+#customfieldsdiv #postcustomstuff .submit {
+    border: 0 none;
+    float: none;
+    padding: 0 8px 8px;
+}
 
 /* IP_info */
 

@@ -1,12 +1,12 @@
 <?php
 class MP_AdminPage extends MP_adminpage_list_
 {
-	const screen 	= MailPress_page_import;
+	const screen 		= MailPress_page_import;
 	const capability 	= 'MailPress_import';
-	const help_url	= 'http://www.mailpress.org/wiki/index.php?title=Add_ons:Import';
-	const file        = __FILE__;
+	const help_url		= 'http://blog.mailpress.org/tutorials/add-ons/import/';
+	const file        	= __FILE__;
 
-	const per_page 	= false;
+	const per_page 		= false;
 
 ////  Title  ////
 
