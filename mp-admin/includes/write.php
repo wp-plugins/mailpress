@@ -241,7 +241,7 @@ foreach($all_mail_formats as $slug => $attr ) {
 						<input type="hidden" name="mail_format" id="mail_format" value="<?php echo $mail_format; ?>" >
 						<div class="field mp-format-plaintext" id="mp-format-plaintext">
 							<label for="plaintext"><?php _e('Plaintext', MP_TXTDOM); ?></label>
-							<textarea id="plaintext" class="widefat" name="plaintext"></textarea>
+							<textarea id="plaintext" class="widefat" name="plaintext"><?php echo (isset($draft->plaintext)) ? str_replace('&', '&amp;', $draft->plaintext) : ''; ?></textarea>
 						</div>
 						<div id='div_html2txt' class='hidden'>
 							<a id='html2txt' class='hide-if-no-js' onclick="return false;" title="<?php echo esc_attr(__('Plaintext from Html', MP_TXTDOM)); ?>" href="#">
