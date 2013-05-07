@@ -91,7 +91,7 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 ** 5.4 ** 12/13/2012
 
-* Swiftmailer 4.2.2
+* Swiftmailer 5.0.0
 
 * bug fix : fixing wpList changes, new html5 attribute data-wp-lists introduced in WP 3.5 (MailPress_Post add-on, drafts list)
 

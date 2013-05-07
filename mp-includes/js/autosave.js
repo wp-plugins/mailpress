@@ -67,7 +67,8 @@ var autosave = {
 				Theme		:	'Theme',
 				subject	:	'title',
 				html		:	'content',
-				plaintext	:	'plaintext'
+				plaintext	:	'plaintext',
+				mail_format:	'mail_format'
 			  },
 
 	retrieve_data : function() {

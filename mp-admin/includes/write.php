@@ -153,12 +153,8 @@ else
 $draft_dest = MP_User::get_mailinglists();
 
 // mail formats
-$format_class = '';
-//$mail_format = get_format();
-if ( ! $mail_format ) $mail_format = 'standard';
-
-$format_class = " class='mp-format-{$mail_format}'";
-
+if (isset($draft->id)) $mail_format = MP_Mail_meta::get($draft->id, '_MailPress_format');
+if ( !$mail_format ) $mail_format = 'standard';
 
 $all_mail_formats =  array(
 						'standard' => array (

@@ -56,6 +56,14 @@ class MP_Mail_draft
 			if ($file_exits) foreach($file_exits as $entry) MP_Mail_meta::delete_by_id( $entry->meta_id );
 		}
 
+// mail_format
+
+		if (isset($_POST['mail_format']))
+		{
+			MP_Mail_meta::delete($id, '_MailPress_format');
+			if (!empty($_POST['mail_format'])) MP_Mail_meta::add($id, '_MailPress_format', $_POST['mail_format'], true);
+		}
+
 // recipients
 		if (isset($_POST['to_list']) && !empty($_POST['to_list']))
 		{
