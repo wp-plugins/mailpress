@@ -231,7 +231,6 @@ background:transparent url(../images/space.png) repeat;
     display: block;
 }
 .mail-formats-fields .field {
-    display: none;
     margin-bottom: 10px;
     overflow: hidden;
 }

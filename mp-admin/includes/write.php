@@ -153,8 +153,7 @@ else
 $draft_dest = MP_User::get_mailinglists();
 
 // mail formats
-if (isset($draft->id)) $mail_format = MP_Mail_meta::get($draft->id, '_MailPress_format');
-if ( !$mail_format ) $mail_format = 'standard';
+$mail_format = ( isset($draft->id) ) ? MP_Mail_meta::get($draft->id, '_MailPress_format') : 'standard';
 
 $all_mail_formats =  array(
 						'standard' => array (
@@ -235,7 +234,7 @@ foreach($all_mail_formats as $slug => $attr ) {
 					<div class="mail-format-description"></div>
 					<div class="mail-formats-fields">
 						<input type="hidden" name="mail_format" id="mail_format" value="<?php echo $mail_format; ?>" >
-						<div class="field mp-format-plaintext" id="mp-format-plaintext">
+						<div class="<?php if ('plaintext' != $mail_format) echo 'hidden '; ?>field mp-format-plaintext" id="mp-format-plaintext">
 							<label for="plaintext"><?php _e('Plaintext', MP_TXTDOM); ?></label>
 							<textarea id="plaintext" class="widefat" name="plaintext"><?php echo (isset($draft->plaintext)) ? str_replace('&', '&amp;', $draft->plaintext) : ''; ?></textarea>
 						</div>
