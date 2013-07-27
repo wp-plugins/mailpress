@@ -263,7 +263,7 @@ class MailPress_bounce_handling_II
 				$subject = $wpdb->get_var("SELECT subject FROM $wpdb->mp_mails WHERE id = " . $mail_id . ';');
 				$subject = ($subject) ? $subject : __('(deleted)', MP_TXTDOM);
 
-				$view_url		= clean_url(add_query_arg( array('action' => 'view_bounce', 'user_id' => $mp_user->id, 'mail_id' => $mail_id, 'id' => $k, 'preview_iframe' => 1, 'TB_iframe' => 'true'), MP_Action_url ));
+				$view_url		= esc_url(add_query_arg( array('action' => 'view_bounce', 'user_id' => $mp_user->id, 'mail_id' => $mail_id, 'id' => $k, 'preview_iframe' => 1, 'TB_iframe' => 'true'), MP_Action_url ));
 				$actions['view'] = "<a href='$view_url' class='thickbox thickbox-preview'  title='" . __('View', MP_TXTDOM) . "'>" . $subject . '</a>';
 
 				echo '(' . $mail_id . ') ' . $actions['view'];

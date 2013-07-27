@@ -15,8 +15,8 @@ class MP_Tracking_metabox_m008ml extends MP_tracking_metabox_
 			$users = $wpdb->get_results( $wpdb->prepare( "SELECT SQL_CALC_FOUND_ROWS DISTINCT user_id FROM $wpdb->mp_tracks WHERE mail_id = %d AND track = %s;", $mail->id, $track->track ) );
 			$total = $wpdb->get_var( "SELECT FOUND_ROWS()" );
 
-			$url = clean_url(add_query_arg(array_map ( 'urlencode', array('action' => 'create_tracking_mailinglist', 'mail_id' => $mail->id, 'track' => $track->track)), MailPress_users));
-			$title = sprintf(__ngettext( __('create mailinglist with %s user', MP_TXTDOM), __('create mailinglist with %s users', MP_TXTDOM), $total ), $total );
+			$url = esc_url(add_query_arg(array_map ( 'urlencode', array('action' => 'create_tracking_mailinglist', 'mail_id' => $mail->id, 'track' => $track->track)), MailPress_users));
+			$title = sprintf(_n( __('create mailinglist with %s user', MP_TXTDOM), __('create mailinglist with %s users', MP_TXTDOM), $total ), $total );
 		//	echo "({$track->count}) " . MailPress_tracking::translate_track($track->track, $mail->id, 50) . "<span style='float:right'><a class='post-com-count' href='{$url}' title='{$title}'><span class='comment-count' style='font-size:12px;'>" . $total . "</span></a></span><br /><br />";
 
 			$lib_url = (current_user_can('MailPress_manage_mailinglists')) ? "<a href='{$url}'>" . __('Create corresponding mailing list', MP_TXTDOM) . "</a><br /><br />" : '';

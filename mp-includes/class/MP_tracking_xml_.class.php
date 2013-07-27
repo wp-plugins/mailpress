@@ -9,8 +9,8 @@ abstract class MP_tracking_xml_
 		$xml = new SimpleXMLElement(file_get_contents(MP_ABSPATH . "mp-admin/xml/{$this->id}s.xml"));
 		$this->xml = $xml->{$this->id};
 
-		add_filter("MailPress_tracking_{$this->folder}_register",		array(&$this, 'register'),	8, 1);
-		add_filter("MailPress_tracking_{$this->folder}_{$this->id}_get",array(&$this, 'get'), 	8, 1);
+		add_filter("MailPress_tracking_{$this->folder}_register",		array($this, 'register'),	8, 1);
+		add_filter("MailPress_tracking_{$this->folder}_{$this->id}_get",array($this, 'get'), 	8, 1);
 	}
 
 	function register($items)

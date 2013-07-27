@@ -299,7 +299,7 @@ class MP_Query
 		}
 
 		// Allow plugins to contextually add/remove/modify the search section of the database query
-		$search = apply_filters_ref_array('MailPress_mails_search', array( $search, &$this ) );
+		$search = apply_filters_ref_array('MailPress_mails_search', array( $search, $this ) );
 
 		// Author/user stuff
 

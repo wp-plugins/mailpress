@@ -7,7 +7,7 @@ abstract class MP_newsletter_processor_ extends MP_newsletter_
 	{
 		parent::__construct($description);
 
-		add_action('MailPress_newsletter_processor_' . $this->id . '_process', array(&$this, 'process'), 8, 2);
+		add_action('MailPress_newsletter_processor_' . $this->id . '_process', array($this, 'process'), 8, 2);
 	}
 
 	function process($newsletter, $trace)
@@ -21,7 +21,7 @@ abstract class MP_newsletter_processor_ extends MP_newsletter_
 
 		MP_Newsletter_processors::send($this->newsletter, $this->trace, false);
 
-		remove_filter('posts_where', array(&$this, 'posts_where'));
+		remove_filter('posts_where', array($this, 'posts_where'));
 	}
 
 	function already_processed()
@@ -65,7 +65,7 @@ abstract class MP_newsletter_processor_ extends MP_newsletter_
 		MP_Newsletter_processors::message_report(false, "filter(posts_where) : \" AND $wpdb->posts.post_date >= '{$this->lower_bound}'\"", $this->trace);
 		MP_Newsletter_processors::message_report(false, "filter(posts_where) : \" AND $wpdb->posts.post_date <  '{$this->upper_bound}'\"", $this->trace);
 
-		add_filter('posts_where', array(&$this, 'posts_where'), 8, 1);
+		add_filter('posts_where', array($this, 'posts_where'), 8, 1);
 	}
 
 	function posts_where($where)

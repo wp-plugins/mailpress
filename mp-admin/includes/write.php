@@ -239,9 +239,9 @@ foreach($all_mail_formats as $slug => $attr ) {
 							<textarea id="plaintext" class="widefat" name="plaintext"><?php echo (isset($draft->plaintext)) ? str_replace('&', '&amp;', $draft->plaintext) : ''; ?></textarea>
 						</div>
 						<div id='div_html2txt' class='hidden'>
-							<a id='html2txt' class='hide-if-no-js' onclick="return false;" title="<?php echo esc_attr(__('Plaintext from Html', MP_TXTDOM)); ?>" href="#">
+							<a id='html2txt' class='button hide-if-no-js' onclick="return false;" title="<?php echo esc_attr(__('Plaintext from Html', MP_TXTDOM)); ?>" href="#">
+								<span class="mp-media-buttons-icon"></span>
 								<?php _e('Synchronize', MP_TXTDOM); ?> 
-								<img alt="<?php echo esc_attr(__('Plaintext from Html', MP_TXTDOM)); ?>" src="<?php echo site_url() . '/' . MP_PATH; ?>mp-admin/images/html2txt.png" />
 							</a>
 							<img alt='' id='html2txt_loading' src='images/wpspin_light.gif' />
 						</div>

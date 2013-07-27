@@ -6,13 +6,13 @@ abstract class MP_autoresponder_event_
 	function __construct($desc)
 	{
 		$this->desc = $desc;
-		if (!isset($this->callback)) $this->callback = array(&$this, 'callback');
+		if (!isset($this->callback)) $this->callback = array($this, 'callback');
 
-		add_filter('MailPress_autoresponder_events_register',	array(&$this, 'register'), 8, 1);
+		add_filter('MailPress_autoresponder_events_register',	array($this, 'register'), 8, 1);
 		add_action($this->event, $this->callback, 8, 1);
-		add_action('mp_process_autoresponder_' . $this->id, array(&$this, 'process'), 8, 1);
+		add_action('mp_process_autoresponder_' . $this->id, array($this, 'process'), 8, 1);
 
-		add_action('MailPress_autoresponder_' . $this->id . '_settings_form',	array(&$this, 'settings_form'),	8, 1);
+		add_action('MailPress_autoresponder_' . $this->id . '_settings_form',	array($this, 'settings_form'),	8, 1);
 	}
 
 	function register($events)

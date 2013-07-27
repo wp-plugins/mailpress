@@ -16,7 +16,7 @@ class MailPress_delete_old_mails
 
 	function __construct()
 	{
-		add_action('mp_process_delete_old_mails', 			array(&$this, 'process'));
+		add_action('mp_process_delete_old_mails', 			array($this, 'process'));
 
 		$config = get_option(self::option_name);
 		if ('wpcron' == $config['batch_mode'])

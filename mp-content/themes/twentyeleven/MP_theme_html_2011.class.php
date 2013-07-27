@@ -12,8 +12,8 @@ class MP_theme_html_2011 extends MP_theme_html_
 	{
 		if ('html' != $type) return;
 
-		add_filter( 'wp_nav_menu', 				array(&$this, 'wp_nav_menu'), 8, 2 );
-		add_filter( 'wp_page_menu', 				array(&$this, 'wp_nav_menu'), 8, 2 );
+		add_filter( 'wp_nav_menu', 				array($this, 'wp_nav_menu'), 8, 2 );
+		add_filter( 'wp_page_menu', 				array($this, 'wp_nav_menu'), 8, 2 );
 
 		parent::build_mail_content_start($type);
 	}
@@ -22,8 +22,8 @@ class MP_theme_html_2011 extends MP_theme_html_
 	{
 		if ('html' != $type) return;
 
-		remove_filter( 'wp_nav_menu', 				array(&$this, 'wp_nav_menu'));
-		remove_filter( 'wp_page_menu', 				array(&$this, 'wp_nav_menu'));
+		remove_filter( 'wp_nav_menu', 				array($this, 'wp_nav_menu'));
+		remove_filter( 'wp_page_menu', 				array($this, 'wp_nav_menu'));
 
 		parent::build_mail_content_end($type);
 	}

@@ -9,16 +9,16 @@ abstract class MP_form_field_type_
 		$this->desc = $desc;
 		$this->settings	 = dirname($this->file) . '/settings.xml';
 
-		add_filter('MailPress_form_field_types_register',				array(&$this, 'register'), 		8, 1);
-		add_filter('MailPress_form_field_type_' . $this->id . '_have_file',	array(&$this, 'have_file'), 		8, 1);
+		add_filter('MailPress_form_field_types_register',				array($this, 'register'), 		8, 1);
+		add_filter('MailPress_form_field_type_' . $this->id . '_have_file',	array($this, 'have_file'), 		8, 1);
 
-		add_filter('MailPress_form_field_type_' . $this->id . '_submitted',	array(&$this, 'submitted'), 		8, 1);
+		add_filter('MailPress_form_field_type_' . $this->id . '_submitted',	array($this, 'submitted'), 		8, 1);
 
-		add_filter('MailPress_form_field_type_' . $this->id . '_get_tag',		array(&$this, 'get_tag'), 		8, 2);
-		add_filter('MailPress_form_field_type_' . $this->id . '_get_id',		array(&$this, 'get_id'), 		8, 1);
-		add_filter('MailPress_form_field_type_' . $this->id . '_get_name',	array(&$this, 'get_name'), 		8, 1);
+		add_filter('MailPress_form_field_type_' . $this->id . '_get_tag',		array($this, 'get_tag'), 		8, 2);
+		add_filter('MailPress_form_field_type_' . $this->id . '_get_id',		array($this, 'get_id'), 		8, 1);
+		add_filter('MailPress_form_field_type_' . $this->id . '_get_name',	array($this, 'get_name'), 		8, 1);
 
-		add_action('MailPress_form_field_type_' . $this->id . '_settings_form',	array(&$this, 'settings_form'),	8, 1);
+		add_action('MailPress_form_field_type_' . $this->id . '_settings_form',	array($this, 'settings_form'),	8, 1);
 	}
 
 	function register($field_types) { $field_types[$this->id] = array( 'desc' => $this->desc, 'order' => $this->order ); return $field_types; }

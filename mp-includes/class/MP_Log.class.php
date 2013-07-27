@@ -62,7 +62,7 @@ class MP_Log
 		}
 		if (!is_dir($this->path)) $this->level = self::noMP_Log ;
 		if (self::noMP_Log == $this->level) return;
-		if ( 0  != $this->level) set_error_handler(array(&$this, 'logError'), $this->level);
+		if ( 0  != $this->level) set_error_handler(array($this, 'logError'), $this->level);
 
 		$this->start($force);
 	}

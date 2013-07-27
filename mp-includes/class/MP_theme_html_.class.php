@@ -5,30 +5,30 @@ abstract class MP_theme_html_
 
 	function __construct()
 	{ 
-		add_action('MailPress_build_mail_content_start',	array(&$this, 'build_mail_content_start'));
-		add_action('MailPress_build_mail_content_end',		array(&$this, 'build_mail_content_end'));
+		add_action('MailPress_build_mail_content_start',	array($this, 'build_mail_content_start'));
+		add_action('MailPress_build_mail_content_end',		array($this, 'build_mail_content_end'));
 	}
 
 	function build_mail_content_start($type)
 	{
 		if ('html' != $type) return;
 
-		add_action('MailPress_theme_html_header_image',		array(&$this, 'header_image'), 8, 2);
+		add_action('MailPress_theme_html_header_image',		array($this, 'header_image'), 8, 2);
 
-		add_filter( 'comments_popup_link_attributes', 		array(&$this, 'comments_popup_link_attributes'), 8, 1 );
-		add_filter( 'the_category', 					array(&$this, 'the_category'), 8, 3 );
-		add_filter( 'term_links-post_tag', 				array(&$this, 'term_links_post_tag'), 8, 1 );
+		add_filter( 'comments_popup_link_attributes', 		array($this, 'comments_popup_link_attributes'), 8, 1 );
+		add_filter( 'the_category', 					array($this, 'the_category'), 8, 3 );
+		add_filter( 'term_links-post_tag', 				array($this, 'term_links_post_tag'), 8, 1 );
 	}
 
 	function build_mail_content_end($type)
 	{
 		if ('html' != $type) return;
 
-		remove_filter('MailPress_theme_html_header_image',	array(&$this, 'header_image'), 8, 2);
+		remove_filter('MailPress_theme_html_header_image',	array($this, 'header_image'), 8, 2);
 
-		remove_filter( 'comments_popup_link_attributes',	array(&$this, 'comments_popup_link_attributes') );
-		remove_filter( 'the_category', 					array(&$this, 'the_category') );
-		remove_filter( 'term_links-post_tag', 			array(&$this, 'term_links_post_tag') );
+		remove_filter( 'comments_popup_link_attributes',	array($this, 'comments_popup_link_attributes') );
+		remove_filter( 'the_category', 					array($this, 'the_category') );
+		remove_filter( 'term_links-post_tag', 			array($this, 'term_links_post_tag') );
 	}
 
 	function header_image($default, $post_id = false)

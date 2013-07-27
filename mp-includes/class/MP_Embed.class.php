@@ -11,7 +11,7 @@ class MP_Embed
 		// Attempts to embed all URLs in a post in a mail
 		if ( !get_option('embed_autourls') ) return;
 
-		add_filter( 'the_content', array(&$this, 'autoembed'), 8 );
+		add_filter( 'the_content', array($this, 'autoembed'), 8 );
 	}
 
 	function register_handler( $id, $regex, $callback, $priority = 10 ) 
@@ -29,7 +29,7 @@ class MP_Embed
 
 	function autoembed( $content ) 
 	{
-		return preg_replace_callback( '|^\s*(https?://[^\s"]+)\s*$|im', array(&$this, 'autoembed_callback'), $content );
+		return preg_replace_callback( '|^\s*(https?://[^\s"]+)\s*$|im', array($this, 'autoembed_callback'), $content );
 	}
 
 	function autoembed_callback( $match ) 

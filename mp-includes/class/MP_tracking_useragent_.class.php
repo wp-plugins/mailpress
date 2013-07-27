@@ -5,7 +5,7 @@ abstract class MP_tracking_useragent_ extends MP_tracking_xml_
 
 	function __construct($title)
 	{
-		add_filter("MailPress_tracking_{$this->folder}_{$this->id}_get_info",		array(&$this, 'get_info'),	8, 1);
+		add_filter("MailPress_tracking_{$this->folder}_{$this->id}_get_info",		array($this, 'get_info'),	8, 1);
 		parent::__construct($title);
 	}
 

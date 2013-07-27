@@ -10,7 +10,7 @@ abstract class MP_import_importer_
 		$this->header 	= $header;
 		if (!$callback) $this->callback = array($this, 'dispatch');
 
-		add_filter('MailPress_import_importers_register', array(&$this, 'register'), 8, 1);
+		add_filter('MailPress_import_importers_register', array($this, 'register'), 8, 1);
 	}
 
 	function register($importers) 

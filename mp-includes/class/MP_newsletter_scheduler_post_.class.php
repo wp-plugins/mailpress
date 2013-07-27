@@ -5,7 +5,7 @@ abstract class MP_newsletter_scheduler_post_ extends MP_newsletter_scheduler_
 	{
 		parent::__construct($description);
 
-		add_action("publish_{$this->post_type}",	array(&$this, 'publish'), 8, 1);
+		add_action("publish_{$this->post_type}",	array($this, 'publish'), 8, 1);
 	}
 
 	function publish($post_id)

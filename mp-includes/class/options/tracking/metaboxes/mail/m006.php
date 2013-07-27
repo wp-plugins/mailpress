@@ -9,7 +9,7 @@ class MP_Tracking_metabox_m006 extends MP_tracking_metabox_
 
 	function __construct($title)
 	{
-		add_filter('MailPress_scripts', array(&$this, 'scripts'), 8, 2);
+		add_filter('MailPress_scripts', array($this, 'scripts'), 8, 2);
 		parent::__construct($title);
 	}
 	

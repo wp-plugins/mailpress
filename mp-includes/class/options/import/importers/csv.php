@@ -210,7 +210,7 @@ class MP_import_csv extends MP_import_importer_
 			if ($mailinglist_ok)
 			{
 				$this->mailinglist_ID = $_POST['mailinglist'];
-				add_filter('MailPress_mailinglist_default', array(&$this, 'mailinglist_default'), 8, 1);
+				add_filter('MailPress_mailinglist_default', array($this, 'mailinglist_default'), 8, 1);
 
 				$mailinglist_name = MP_Mailinglist::get_name($this->mailinglist_ID);
 			}

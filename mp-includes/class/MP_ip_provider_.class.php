@@ -3,10 +3,10 @@ abstract class MP_ip_provider_
 {
 	function __construct()
 	{
-		add_filter('MailPress_ip_providers_register', 	array(&$this, 'register'), 8, 1);
-		add_filter('MailPress_ip_url_'     . $this->id, array(&$this, 'url'), 8, 1);
-		add_filter('MailPress_ip_content_' . $this->id, array(&$this, 'content'), 8, 2);
-		add_filter('MailPress_ip_data_'    . $this->id, array(&$this, 'data'), 8, 2);
+		add_filter('MailPress_ip_providers_register', 	array($this, 'register'), 8, 1);
+		add_filter('MailPress_ip_url_'     . $this->id, array($this, 'url'), 8, 1);
+		add_filter('MailPress_ip_content_' . $this->id, array($this, 'content'), 8, 2);
+		add_filter('MailPress_ip_data_'    . $this->id, array($this, 'data'), 8, 2);
 	}
 
 	function register($providers)

@@ -16,7 +16,7 @@ abstract class MP_newsletter_
 
 		$this->wday  = (int) gmdate('w', $this->time);
 
-		add_filter('MailPress_newsletter_' . $this->args . 's_register',	array(&$this, 'register'), 8, 1);
+		add_filter('MailPress_newsletter_' . $this->args . 's_register',	array($this, 'register'), 8, 1);
 	}
 
 	function register($x) { $x[$this->id] = $this->desc; return $x; }

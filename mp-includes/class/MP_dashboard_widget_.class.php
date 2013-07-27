@@ -5,7 +5,7 @@ abstract class MP_dashboard_widget_
 
 	function __construct($name)
 	{
-		wp_add_dashboard_widget( $this->id, $name, array(&$this, 'widget'), (method_exists($this, 'control')) ? array(&$this, 'control') : null );
+		wp_add_dashboard_widget( $this->id, $name, array($this, 'widget'), (method_exists($this, 'control')) ? array($this, 'control') : null );
 	}
 
 	function widget_size($size) 

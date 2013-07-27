@@ -8,7 +8,7 @@ abstract class MP_newsletter_scheduler_ extends MP_newsletter_
 	{
 		parent::__construct($description);
 
-		add_filter('MailPress_newsletter_scheduler_' . $this->id . '_schedule',	array(&$this, 'schedule'), 8, 1);
+		add_filter('MailPress_newsletter_scheduler_' . $this->id . '_schedule',	array($this, 'schedule'), 8, 1);
 	}
 
 	function schedule($newsletter) { $this->newsletter = $newsletter; return false; }

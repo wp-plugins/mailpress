@@ -243,7 +243,7 @@ class MP_AdminPage extends MP_adminpage_
 		$m = array('mp_swfupload' => array(
 				'flash_url' 			=> includes_url('js/swfupload/swfupload.swf'), 
 
-				'button_text' 			=> "<span class='mp_button'>" .  esc_js(__('Attach a file', MP_TXTDOM)) . "</span>", 
+				'button_text' 			=> esc_js(__('Attach a file', MP_TXTDOM)), 
 				'button_text_style' 		=> '.mp_button { text-align: left; color: #21759B; text-decoration: underline; font-family:Verdana, Arial, "Bitstream Vera Sans", sans-serif; } .mp_button:hover {cursor:pointer;}', 
 				'another_button_text'		=> "<span class='mp_button'>" .  esc_js(__('Attach another file', MP_TXTDOM)) . "</span>", 
 
@@ -499,9 +499,9 @@ class MP_AdminPage extends MP_adminpage_
 ?>
 <textarea id='plaintext' name='plaintext' cols='40' rows='1'><?php echo (isset($draft->plaintext)) ? str_replace('&', '&amp;', $draft->plaintext) : ''; ?></textarea>
 <div id='div_html2txt' class='hidden'>
-	<a id='html2txt' class='hide-if-no-js' onclick="return false;" title="<?php echo esc_attr(__('Plaintext from Html', MP_TXTDOM)); ?>" href="#">
+	<a id='html2txt' class='button hide-if-no-js' onclick="return false;" title="<?php echo esc_attr(__('Plaintext from Html', MP_TXTDOM)); ?>" href="#">
+		<span class="mp-media-buttons-icon"></span>
 		<?php _e('Synchronize', MP_TXTDOM); ?> 
-		<img alt="<?php echo esc_attr(__('Plaintext from Html', MP_TXTDOM)); ?>" src="<?php echo site_url() . '/' . MP_PATH; ?>mp-admin/images/html2txt.png" />
 	</a>
 </div>
 <?php

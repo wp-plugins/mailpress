@@ -212,7 +212,7 @@ class MP_Batch
 		if (!is_array($m)) $m = array();
 		$_this->mail->replacements = $m;
 
-		add_filter('MailPress_swift_send', array(&$this, 'swift_send'), 8, 1);
+		add_filter('MailPress_swift_send', array($this, 'swift_send'), 8, 1);
 		return $_this->swift_processing(); // will activate swift_send function
 	}
 

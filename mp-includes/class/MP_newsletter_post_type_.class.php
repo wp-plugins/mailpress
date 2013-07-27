@@ -5,19 +5,19 @@ abstract class MP_newsletter_post_type_
 
 	function __construct() 
 	{
-		add_action('MailPress_register_newsletter',	array(&$this, 'register'), $this->register_priority);
+		add_action('MailPress_register_newsletter',	array($this, 'register'), $this->register_priority);
 
-		if (method_exists($this,'init')) add_action('init', array(&$this, 'init'), 1);
+		if (method_exists($this,'init')) add_action('init', array($this, 'init'), 1);
 
 		if (is_admin())
 		{
 		// settings
-			add_filter('MailPress_subscriptions_newsletter_th',		array(&$this, 'subscriptions_newsletter_th'), 10, 2 );
+			add_filter('MailPress_subscriptions_newsletter_th',		array($this, 'subscriptions_newsletter_th'), 10, 2 );
 		// install
-			register_activation_hook(  plugin_basename($this->file),	array(&$this, 'install'));
-			register_deactivation_hook(plugin_basename($this->file),	array(&$this, 'uninstall'));
+			register_activation_hook(  plugin_basename($this->file),	array($this, 'install'));
+			register_deactivation_hook(plugin_basename($this->file),	array($this, 'uninstall'));
 		// for link on plugin page
-			add_filter('plugin_action_links',					array(&$this, 'plugin_action_links'), 10, 2 );
+			add_filter('plugin_action_links',					array($this, 'plugin_action_links'), 10, 2 );
 		}
 
 		$this->args = array(	'root' 		=> MP_CONTENT_DIR . "advanced/newsletters/{$this->post_type}",

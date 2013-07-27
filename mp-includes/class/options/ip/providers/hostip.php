@@ -18,7 +18,7 @@ class MP_Ip_hostip extends MP_ip_provider_
 		$html = '';
 		try 
 		{
-			set_error_handler(array(&$this, 'HandleXmlError'));
+			set_error_handler(array($this, 'HandleXmlError'));
 			$dom = New DOMDocument();
 			$dom->loadXML($content);
 			restore_error_handler();
