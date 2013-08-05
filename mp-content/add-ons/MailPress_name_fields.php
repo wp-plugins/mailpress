@@ -43,10 +43,15 @@ class MailPress_name_fields
 
 	public static function update_name($mp_user_id, $name)
 	{
-		$space = strpos($name,' ');
-		$x['firstname'] = ($name != '') ? ucfirst(strtolower($space ? substr($name,0,$space) : $name)) : false;
-		$x['lastname']  = ($space) ? ucfirst(strtolower(substr($name,$space+1))) : false;
-		$x['fullname']  = ucwords(strtolower($name));
+		//$space = strpos($name,' ');
+		//$x['firstname'] = ($name != '') ? ucfirst(strtolower($space ? substr($name,0,$space) : $name)) : false;
+		//$x['lastname']  = ($space) ? ucfirst(strtolower(substr($name,$space+1))) : false;
+		//$x['fullname']  = ucwords(strtolower($name));
+
+		preg_match('/^(\S+)(?:\s+(.*))?/u', $name, $matches);
+		$x['firstname']= (empty($matches[1])) ? false : mb_strtoupper(mb_substr($matches[1], 0, 1)) . mb_substr($matches[1], 1);
+		$x['lastname'] = (empty($matches[2])) ? false : mb_strtoupper(mb_substr($matches[2], 0, 1)) . mb_substr($matches[2], 1);
+		$x['fullname'] = (empty($matches[0])) ? $name : $x['firstname'] . ' ' . $x['lastname'];
 
 		foreach($x as $key => $value)
 		{
