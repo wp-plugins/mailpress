@@ -174,6 +174,8 @@ class MailPress_comment
 		global $wpdb, $comment;
 
 		$comment 	= $wpdb->get_row("SELECT * FROM $wpdb->comments WHERE comment_ID = $id LIMIT 1");
+		if ('spam' == $comment->comment_approved) return;
+
 		$post_id 	= $comment->comment_post_ID;
 
 		$email 	= MP_WP_User::get_email();
@@ -186,7 +188,7 @@ class MailPress_comment
 
 			if ($mp_user_id)
 			{
-				if (isset($_POST['MailPress']['subscribe_to_comments'])) 
+				if (isset($_POST['MailPress']['subscribe_to_comments']) && !self::is_subscriber($post_id, $mp_user_id)) 
 				{
 					add_post_meta($post_id, self::meta_key, $mp_user_id);
 					new MP_Stat('c', $post_id, 1);

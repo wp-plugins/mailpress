@@ -67,7 +67,11 @@ class MailPress_comment_newsletter_subscription
 
 	public static function comment_post($id) 
 	{
-		global $comment;
+		global $wpdb, $comment;
+
+		$comment 	= $wpdb->get_row("SELECT * FROM $wpdb->comments WHERE comment_ID = $id LIMIT 1");
+		if ('spam' == $comment->comment_approved) return;
+
 		$name 	= $comment->comment_author;
 
 		$settings 	= get_option(self::option_name);
