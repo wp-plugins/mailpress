@@ -5,7 +5,7 @@ if (class_exists('MailPress_newsletter') && !class_exists('MailPress_newsletter_
 Plugin Name: MailPress_newsletter_categories
 Plugin URI: http://blog.mailpress.org/tutorials/add-ons/newsletter_categories/
 Description: Newsletters : for posts per category  (<span style='color:red;'>required !</span> <span style='color:#D54E21;'>Newsletter</span> add-on)
-Version: 5.4
+Version: 5.4.1
 */
 
 class MailPress_newsletter_categories extends MP_newsletter_post_type_taxonomy_

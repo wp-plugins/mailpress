@@ -99,8 +99,21 @@ class MP_Pluggable
 			$mail->fromname   = apply_filters('wp_mail_from_name', $from_name );
 		}
 													// Set destination address
-		$mail->toemail = (is_array($to)) ? $to['email'] : $to;
-		$mail->toname  = (is_array($to)) ? $to['name']  : '';
+
+// Set destination addresses
+//		$mail->toemail = (is_array($to)) ? $to['email'] : $to;
+//		$mail->toname  = (is_array($to)) ? $to['name']  : '';
+
+                if (!is_array($to)) $to = explode(',', $to);
+//
+		$mail->replacements = $mail->recipients = array();
+		foreach((array) $to as $recipient){
+			// Break $recipient into name and address parts if in the format "Foo <bar@baz.com>"
+			if(preg_match('/(.*)<(.+)>/usS', $recipient, $matches) && (count($matches) == 3))
+				$mail->recipients[$matches[2]] = $matches[1];
+			else
+				$mail->recipients[$recipient] = '';
+		}
 													// Set mail's subject and body
 		$mail->subject = $subject;
 

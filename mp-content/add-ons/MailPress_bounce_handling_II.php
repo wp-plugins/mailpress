@@ -5,7 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_bounce_handling_II'))
 Plugin Name: MailPress_bounce_handling_II
 Plugin URI: http://blog.mailpress.org/tutorials/add-ons/bounce_handling_ii/
 Description: Users : bounce management (based on mail headers & string detection in mail body)
-Version: 5.4
+Version: 5.4.1
 */
 
 class MailPress_bounce_handling_II

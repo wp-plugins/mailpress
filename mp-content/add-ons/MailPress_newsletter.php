@@ -5,7 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_newsletter') )
 Plugin Name: MailPress_newsletter
 Plugin URI: http://blog.mailpress.org/tutorials/add-ons/newsletter/
 Description: Newsletters : for posts
-Version: 5.4
+Version: 5.4.1
 */
 
 class MailPress_newsletter

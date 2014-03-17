@@ -5,7 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_mailinglist_user_role'
 Plugin Name: MailPress_mailinglist_user_role
 Plugin URI: http://blog.mailpress.org/tutorials/add-ons/mailinglist_user_role/
 Description: New Mail : Mailing lists : based on WP user roles (<span style='color:red;'>beware !</span> <span style='color:#D54E21;'>Sync_wordpress_user</span> add-on STRONGLY required)
-Version: 5.4
+Version: 5.4.1
 */
 
 class MailPress_mailinglist_user_role

@@ -17,16 +17,11 @@ class MP_Dashboard_users_map extends MP_dashboard_widget_
 
 		$chd = $chld = array();
 
-		if ('usa' == $options['code'])
-		{
-			$countalls = $wpdb->get_var("SELECT count(*) FROM $wpdb->mp_users WHERE created_country = 'US' and created_US_state <> 'ZZ'  ;");
-			$users = $wpdb->get_results( $wpdb->prepare( "SELECT created_US_state as toto, count(*) as count FROM $wpdb->mp_users WHERE created_country = %s and created_US_state <> %s GROUP BY created_US_state;", 'US' , 'ZZ'  ) );
-		}
-		else
-		{
-			$countalls = $wpdb->get_var("SELECT count(*) FROM $wpdb->mp_users WHERE created_country <> 'ZZ' ;");
-			$users = $wpdb->get_results( $wpdb->prepare( "SELECT created_country as toto, count(*) as count FROM $wpdb->mp_users WHERE created_country <> %s GROUP BY created_country;", 'ZZ' ) );
-		}
+		$where = "status='active'";
+		$where .= ('usa' == $options['code']) ? " AND created_country = 'US' AND created_US_state <> 'ZZ'" : " AND created_country <> 'ZZ'";
+
+		$countalls = $wpdb->get_var("SELECT count(*) FROM $wpdb->mp_users WHERE $where ;");
+		$users = $wpdb->get_results("SELECT created_US_state as toto, count(*) as count FROM $wpdb->mp_users WHERE $where GROUP BY created_US_state;");
 
 		foreach($users as $user)
 		{

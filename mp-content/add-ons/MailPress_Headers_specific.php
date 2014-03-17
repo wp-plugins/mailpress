@@ -5,7 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_Headers_specific'))
 Plugin Name: MailPress_Headers_specific
 Plugin URI: http://blog.mailpress.org/tutorials/add-ons/headers_specific/
 Description: Mails : Adding specific headers in mail (sample)
-Version: 5.4
+Version: 5.4.1
 */
 
 class MailPress_Headers_specific
