@@ -196,10 +196,11 @@ class MP_AdminPage extends MP_adminpage_list_
 
 		$mailinglist->allowed = (isset($mp_subscriptions['display_mailinglists'][$mailinglist->term_id]));
 
+		$row_class = ('alternate' == substr($row_class, 0, 9)) ? '' : 'alternate '; $row_class .= 'iedit';
 		$tr_style = (isset($mailinglist->_found)) ? '' : " style='background-color:#EBEEEF;'"; 
 
 		$out = '';
-		$out .= "<tr id='" . self::tr_prefix_id . "-$mailinglist->term_id' class='iedit $row_class'$tr_style>";
+		$out .= "<tr id='" . self::tr_prefix_id . "-$mailinglist->term_id' class='$row_class'$tr_style>";
 
 		$columns = self::get_columns();
 		$hidden  = self::get_hidden_columns();

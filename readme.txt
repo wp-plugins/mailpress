@@ -25,7 +25,7 @@ The WordPress mailing platform
 
 Some technical stuff :
 
-1. Switmailer 5.0.1
+1. Switmailer 5.1.0
 1. jQuery 1.7.2 supported.
 1. Google Map API V3 supported.
 1. Code Mirror 0.9 (2.2)
@@ -88,6 +88,11 @@ MailPress themes and templates do not need to be changed if customized in a prev
 1. none
 
 == Changelog ==
+
+** 5.4.1 ** xx/xx/2014
+
+* Swiftmailer 5.1.0
+
 
 ** 5.4 ** 05/08/2013
 

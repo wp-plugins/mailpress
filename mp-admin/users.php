@@ -183,6 +183,7 @@ class MP_AdminPage extends MP_adminpage_list_
 	public static function get_row( $id, $url_parms, $checkbox = true ) {
 
 		global $mp_user;
+		static $row_class = '';
 
 		$mp_user = $user = MP_User::get( $id );
 		$the_user_status = $user->status;
@@ -237,10 +238,10 @@ class MP_AdminPage extends MP_adminpage_list_
 
 // table row 
 //	class
-		$row_class = '';
-		if ('waiting' == $the_user_status) $row_class = 'unapproved';
-		if ('bounced' == $the_user_status) $row_class = 'bounced';
-		if ('unsubscribed' == $the_user_status) $row_class = 'unsubscribed';
+		$row_class = ('alternate' == substr($row_class, 0, 9)) ? '' : 'alternate ';
+		if ('waiting' == $the_user_status) $row_class .= 'unapproved';
+		if ('bounced' == $the_user_status) $row_class .= 'bounced';
+		if ('unsubscribed' == $the_user_status) $row_class .= 'unsubscribed';
 // 	checkbox
 		$disabled = (!current_user_can('MailPress_delete_users')) ? " disabled='disabled'" : '';
 // 	email

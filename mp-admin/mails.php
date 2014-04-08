@@ -185,6 +185,7 @@ class MP_AdminPage extends MP_adminpage_list_
 	public static function get_row( $id, $url_parms, $xtra = false) 
 	{
 		global $mp_mail;
+		static $row_class = '';
 
 		$mp_mail = $mail = MP_Mail::get( $id );
 		$the_mail_status = $mail->status;
@@ -266,10 +267,10 @@ class MP_AdminPage extends MP_adminpage_list_
 
 // table row 
 //	class
-		$row_class = '';
-		if ('archived' == $the_mail_status)  $row_class = 'unapproved';
-		if ('draft' == $the_mail_status)  $row_class = 'draft';
-		if ('unsent' == $the_mail_status) $row_class = 'unsent';
+		$row_class = ('alternate' == substr($row_class, 0, 9)) ? '' : 'alternate ';
+		if ('archived' == $the_mail_status)  $row_class .= 'unapproved';
+		if ('draft' == $the_mail_status)  $row_class .= 'draft';
+		if ('unsent' == $the_mail_status) $row_class .= 'unsent';
 // 	checkbox
 		$disabled = (!current_user_can('MailPress_delete_mails') && !current_user_can('MailPress_send_mails')) ? " disabled='disabled'" : '';
 //	to

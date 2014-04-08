@@ -208,8 +208,9 @@ class MP_AdminPage extends MP_adminpage_list_
 		$actions['do_now'] = "<a href='$do_now_url'>" . __('Do now', MP_TXTDOM) . "</a>";
 		$actions['delete'] = "<a href='$delete_url'>" . __('Delete') . "</a>";
 
+		$row_class = (" class='alternate'" == $row_class) ? '' : " class='alternate'";
 		$out  = '';
-		$out .= "<tr id='wp_cron::$id' class='$row_class'>";
+		$out .= "<tr id='wp_cron::$id' $row_class>";
 
 		$columns = self::get_columns();
 		$hidden  = self::get_hidden_columns();

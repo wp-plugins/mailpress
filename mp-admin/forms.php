@@ -196,10 +196,10 @@ class MP_AdminPage extends MP_adminpage_list_
 		$actions['delete'] = "<a class='submitdelete' href='$delete_url'>" . __('Delete') . "</a>";
 		$actions['view'] = "<a class='thickbox thickbox-preview' href='$view_url' title=\"" . esc_attr(sprintf(__('Form preview #%1$s (%2$s)', MP_TXTDOM), $form->id, $form->label)) . "\" >" . __('Preview', MP_TXTDOM) . "</a>";
 
-		$row_class = 'alternate' == $row_class ? '' : 'alternate';
+		$row_class = ('alternate' == substr($row_class, 0, 9)) ? '' : 'alternate '; $row_class .= 'iedit';
 
 		$out = '';
-		$out .= "<tr id='" . self::tr_prefix_id . "-$form->id' class='iedit $row_class'>";
+		$out .= "<tr id='" . self::tr_prefix_id . "-$form->id' class='$row_class'>";
 
 		$columns = self::get_columns();
 		$hidden  = self::get_hidden_columns();
