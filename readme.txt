@@ -2,9 +2,9 @@
 Contributors: andre renaut
 Donate link: http://blog.mailpress.org
 Tags: mail, mails, comments, comment, subscribe, newsletters, newsletter, Wordpress, Plugin, swiftmailer, post, posts, smtp, sendmail, phpmail, notification, notifications, mail, mails, contact form
-Requires at least: 3.6
-Tested up to: 3.6
-Stable tag: 5.4
+Requires at least: 4.0
+Tested up to: 4.0
+Stable tag: 5.4.1
 
 The WordPress mailing platform 
 
@@ -25,7 +25,7 @@ The WordPress mailing platform
 
 Some technical stuff :
 
-1. Switmailer 5.1.0
+1. Switmailer 5.2.1
 1. jQuery 1.7.2 supported.
 1. Google Map API V3 supported.
 1. Code Mirror 0.9 (2.2)
@@ -91,7 +91,7 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 ** 5.4.1 ** xx/xx/2014
 
-* Swiftmailer 5.1.0
+* Swiftmailer 5.2.1
 
 
 ** 5.4 ** 05/08/2013

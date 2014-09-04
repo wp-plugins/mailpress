@@ -33,7 +33,7 @@ class MailPress_mailinglist_user_role
 		$query = "SELECT COUNT(*) FROM $wpdb->usermeta WHERE meta_key = '" . $wpdb->get_blog_prefix(get_current_blog_id()) . "capabilities' AND meta_value LIKE '%%%s%%'";
 
 		foreach ( $wp_roles->get_names() as $role => $name )
-			if ( $wpdb->get_var( sprintf( $query, like_escape( $role ) ) ) )
+			if ( $wpdb->get_var( sprintf( $query, $wpdb->esc_like( $role ) ) ) )
 				$draft_dest[__CLASS__ . '~' . $role] = sprintf( __('To all "%1$s"', MP_TXTDOM), translate_user_role( $name ) );
 
 		return $draft_dest;
