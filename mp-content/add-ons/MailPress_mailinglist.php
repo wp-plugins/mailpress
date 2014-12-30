@@ -274,7 +274,7 @@ class MailPress_mailinglist
 		if (!$options['mailinglist']) return;
 
 		$x = array();
-		foreach (array_map(trim, explode(',', $options['mailinglist'])) as $k => $v) if (MP_Mailinglist::get_name($v)) $x[] = $v;
+		foreach (array_map("trim", explode(',', $options['mailinglist'])) as $k => $v) if (MP_Mailinglist::get_name($v)) $x[] = $v;
 		if (empty($x)) return;
 
 		echo "<input type='hidden' name='mailinglist' value='" . join(', ', $x) . "' />\n";

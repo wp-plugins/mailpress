@@ -557,7 +557,7 @@ class MailPress_newsletter
 
 		$post_id = $_POST['post_id'];
 		if (empty($post_id))			return new WP_Error( 'post', __('post not saved', MP_TXTDOM) );
-		$post = &get_post($post_id);
+		$post = get_post($post_id);
 		if (!$post)					return new WP_Error( 'post', __('post not saved', MP_TXTDOM) );
 
 		$newsletter = MP_Newsletter::get($_POST['newsletter']);

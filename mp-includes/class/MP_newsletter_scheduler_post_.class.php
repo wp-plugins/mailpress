@@ -15,7 +15,7 @@ abstract class MP_newsletter_scheduler_post_ extends MP_newsletter_scheduler_
 		$newsletters = MP_Newsletter::get_active_by_scheduler($this->id);
 		if (empty($newsletters)) return true;
 
-		$post = &get_post($post_id);
+		$post = get_post($post_id);
 		$the_title = apply_filters('the_title', $post->post_title );
 
 		$y = $this->year;
