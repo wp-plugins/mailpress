@@ -1,0 +1,17 @@
+/*
+Theme Name: Twenty thirteen Theme
+Theme URI: 
+Description: Twenty thirteen theme ported to MailPress by Casimo (GPLv3 licensed).
+Version: beta
+Author: Casimo
+Author URI: 
+Template: _template
+*/
+p {
+	line-height:1.4em;
+	font-size:0.85em;
+}
+
+a.more-link {
+	color:#6D8C82;
+}
