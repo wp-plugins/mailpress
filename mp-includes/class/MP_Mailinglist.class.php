@@ -95,6 +95,7 @@ class MP_Mailinglist
 	{
 		$defaults = array();
 		$args     = wp_parse_args($args, $defaults);
+
 		$terms    = get_terms(self::taxonomy, $args);
 		if (empty($terms)) return array();
 		foreach ($terms as $k => $term) 
@@ -199,7 +200,7 @@ class MP_Mailinglist
 					'hide_empty' 	=> 1, 
 					'hierarchical'	=> 0, 
 					'htmlid'		=> 'mailinglist_dropdown', 
-					'name' 		=> 'mailinglist', 
+					'htmlname' 	=> 'mailinglist', 
 					'order' 		=> 'ASC', 
 					'orderby' 		=> 'ID', 
 					'selected' 		=> 0, 
@@ -222,8 +223,8 @@ class MP_Mailinglist
 		$output = '';
 		if ( ! empty($mailinglists) ) 
 		{
-			$htmlid = ($htmlid === true) ? "id='$name'" : "id='$htmlid'" ;
-			$output = "<select name='$name' $htmlid class='$class' $tab_index_attribute>\n";
+			$htmlid = ($htmlid === true) ? "id='$htmlname'" : "id='$htmlid'" ;
+			$output = "<select name='$htmlname' $htmlid class='$class' $tab_index_attribute>\n";
 
 			if ( $show_option_all ) 
 				$output .= "\t<option value='0'>$show_option_all</option>\n";

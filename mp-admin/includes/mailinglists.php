@@ -161,7 +161,7 @@ $total = ( isset($url_parms['s']) ) ? count(MP_Mailinglist::get_all(array('hide_
 						</div>
 						<div class="form-field" style='margin:0;padding:0;'>
 							<label for='mailinglist_parent'><?php _e('Mailing list Parent', MP_TXTDOM) ?></label>
-							<?php MP_Mailinglist::dropdown(array('hide_empty' => 0, 'name' => 'parent', 'orderby' => 'name', 'htmlid' => 'mailinglist_parent', 'selected' => (isset($mailinglist->parent)) ? $mailinglist->parent : '', 'exclude' => (isset($id)) ? $id : '', 'hierarchical' => true, 'show_option_none' => __('None', MP_TXTDOM))); ?>
+							<?php MP_Mailinglist::dropdown(array('hide_empty' => 0, 'htmlname' => 'parent', 'orderby' => 'name', 'htmlid' => 'mailinglist_parent', 'selected' => (isset($mailinglist->parent)) ? $mailinglist->parent : '', 'exclude' => (isset($id)) ? $id : '', 'hierarchical' => true, 'show_option_none' => __('None', MP_TXTDOM))); ?>
 							<p><?php _e("Mailing list can have a hierarchy. You might have a Rock'n roll mailing list, and under that have children mailing lists for Elvis and The Beatles. Totally optional !", MP_TXTDOM); ?></p>
 						</div>
 						<p class='submit'>

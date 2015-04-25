@@ -94,7 +94,7 @@ class MailPress_newsletter
 		if (empty( $mp_subscriptions['newsletters'])) return false;
 
 		$checklist = '';
-		$defaults = array (	'name' 	=> 'keep_newsletters', 
+		$defaults = array (	'htmlname' 	=> 'keep_newsletters', 
 						'admin' 	=> 0, 
 						'selected' 	=> false, 
 						'type'	=> 'checkbox',
@@ -125,8 +125,8 @@ class MailPress_newsletter
 
 						$v		 = $mp_registered_newsletters[$k]['descriptions'][$lib_nl];
 
-						$tag 		 = "<input type='$_type' id='{$name}_{$k}' name='{$name}[{$k}]'$checked />";
-						$htmlstart2  = str_replace('{{id}}', "{$name}_{$k}", $htmlstart);
+						$tag 		 = "<input type='$_type' id='{$htmlname}_{$k}' name='{$htmlname}[{$k}]'$checked />";
+						$htmlstart2  = str_replace('{{id}}', "{$htmlname}_{$k}", $htmlstart);
 						$htmlmiddle2 = $htmlmiddle . str_replace('&#160;', '', $v);
 						$htmlend2    = $htmlend;
 
@@ -143,7 +143,7 @@ class MailPress_newsletter
 					break;
 				}
 		}
-		if ('select' == $type) $checklist = "\n{$htmlstart}\n<select name='{$name}'>\n{$checklist}</select>\n{$htmlend}\n";
+		if ('select' == $type) $checklist = "\n{$htmlstart}\n<select name='{$htmlname}'>\n{$checklist}</select>\n{$htmlend}\n";
 
 		return $checklist;
 	}
@@ -524,8 +524,8 @@ class MailPress_newsletter
 		$defaults = array('class'		=> 'postform',
 					'echo' 		=> 1,
 					'htmlid'		=> 'newsletter_dropdown',
-					'name' 		=> 'newsletter',
-					'selected' 		=> 0
+					'htmlname' 	=> 'newsletter',
+					'selected' 	=> 0
 					);
 
 		$r = wp_parse_args( $args, $defaults );
@@ -539,8 +539,8 @@ class MailPress_newsletter
 			if ( $show_option_all ) $list[0] = $show_option_all;
 			foreach($x as $k => $v) $list[$k] = $v;
 
-			$htmlid = ($htmlid === true) ? "id='$name'" : "id='$htmlid'" ;
-			$output = "<select name='$name' $htmlid class='$class'>\n";
+			$htmlid = ($htmlid === true) ? "id='$htmlname'" : "id='$htmlid'" ;
+			$output = "<select name='$htmlname' $htmlid class='$class'>\n";
 			$output .= MP_::select_option($list, $selected, false);
 			$output .= "</select>\n";
 		}

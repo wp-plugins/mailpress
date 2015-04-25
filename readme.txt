@@ -2,8 +2,8 @@
 Contributors: andre renaut
 Donate link: http://blog.mailpress.org
 Tags: mail, mails, comments, comment, subscribe, newsletters, newsletter, Wordpress, Plugin, swiftmailer, post, posts, smtp, sendmail, phpmail, notification, notifications, mail, mails, contact form
-Requires at least: 4.1
-Tested up to: 4.1
+Requires at least: 4.2
+Tested up to: 4.2
 Stable tag: 5.4.1
 
 The WordPress mailing platform 

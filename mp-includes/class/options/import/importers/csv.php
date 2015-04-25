@@ -95,7 +95,7 @@ class MP_import_csv extends MP_import_importer_
 <?php 	if (current_user_can('MailPress_manage_mailinglists')) : ?>
 		<h3><?php _e('Mailing list', MP_TXTDOM); ?></h3>
 		<p><?php _e('Optional, you can import the MailPress users in a specific mailing list ...', MP_TXTDOM); ?></p>
-<?php			MP_Mailinglist::dropdown(array('name' => 'mailinglist', 'htmlid' => 'mailinglist', 'hierarchical' => true, 'orderby' => 'name', 'hide_empty' => '0', 'show_option_none' => __('Choose mailinglist', MP_TXTDOM))); ?>
+<?php			MP_Mailinglist::dropdown(array('htmlname' => 'mailinglist', 'htmlid' => 'mailinglist', 'hierarchical' => true, 'orderby' => 'name', 'hide_empty' => '0', 'show_option_none' => __('Choose mailinglist', MP_TXTDOM))); ?>
 <?php endif; ?>
 <?php if (class_exists('MailPress_newsletter')) : ?>
 		<h3><?php _e('Newsletter', MP_TXTDOM); ?></h3>

@@ -419,7 +419,7 @@ class MailPress_mailinglist
 	public static function settings_general()
 	{
 		$default_mailinglist	= get_option(self::option_name_default);
-		$dropdown_options = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'selected' => $default_mailinglist, 'name' => 'default_mailinglist' );
+		$dropdown_options = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'selected' => $default_mailinglist, 'htmlname' => 'default_mailinglist' );
 ?>
 			<tr><th></th><td></td></tr>
 			<tr>
@@ -522,7 +522,7 @@ class MailPress_mailinglist
 		<label class="screen-reader-text">
 			<?php _e('Parent Mailing list', MP_TXTDOM); ?> :
 		</label>
-		<?php MP_Mailinglist::dropdown( array( 'hide_empty' => 0, 'name' => 'newmailinglist_parent', 'orderby' => 'name', 'hierarchical' => 1, 'show_option_none' => __('Parent Mailing list', MP_TXTDOM), 'tab_index' => 3 ) ); ?>
+		<?php MP_Mailinglist::dropdown( array( 'hide_empty' => 0, 'htmlname' => 'newmailinglist_parent', 'orderby' => 'name', 'hierarchical' => 1, 'show_option_none' => __('Parent Mailing list', MP_TXTDOM), 'tab_index' => 3 ) ); ?>
 		<input type="button" id="mailinglist-add-submit" class="add:mailinglistchecklist:mailinglist-add button" value="<?php esc_attr_e( 'Add', MP_TXTDOM  ); ?>" tabindex="3" />
 <?php	wp_nonce_field( 'add-mailinglist', '_ajax_nonce', false ); ?>
 		<span id="mailinglist-ajax-response"></span>
@@ -670,7 +670,7 @@ class MailPress_mailinglist
 ?>
 										<label for='visitor_mailinglist'><small><?php _e('Mailing list', MP_TXTDOM); ?></small></label>
 <?php
-		$dropdown_options = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'selected' => $selected, 'name' => 'settings[visitor][mailinglist]', 'htmlid' => 'visitor_mailinglist' );
+		$dropdown_options = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'selected' => $selected, 'htmlname' => 'settings[visitor][mailinglist]', 'htmlid' => 'visitor_mailinglist' );
 		MP_Mailinglist::dropdown($dropdown_options);
 	}
 

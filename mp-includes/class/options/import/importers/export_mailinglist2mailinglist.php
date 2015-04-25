@@ -49,7 +49,7 @@ class MP_export_mailinglist_mailinglist extends MP_import_importer_
 		<p>
 			<label for='download'><?php _e( "Choose the 'From' mailing list :", MP_TXTDOM ); ?></label>
 <?php
-			$dropdown_options = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'htmlid' => 'export_mailinglist', 'name' => 'export_mailinglist', 'selected' => get_option(MailPress_mailinglist::option_name_default));
+			$dropdown_options = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'htmlid' => 'export_mailinglist', 'htmlname' => 'export_mailinglist', 'selected' => get_option(MailPress_mailinglist::option_name_default));
 			MP_Mailinglist::dropdown($dropdown_options);
 ?>
 		</p>
@@ -75,7 +75,7 @@ class MP_export_mailinglist_mailinglist extends MP_import_importer_
 			<label for='download'><?php _e( "Choose the 'To' mailing list :", MP_TXTDOM ); ?></label>
 			<input type='hidden' name='from_mailinglist' value='<?php echo $_POST['export_mailinglist']; ?>' />
 <?php
-			$dropdown_options = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'htmlid' => 'to_mailinglist', 'name' => 'to_mailinglist', 'exclude' => $_POST['export_mailinglist'] );
+			$dropdown_options = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'htmlid' => 'to_mailinglist', 'htmlname' => 'to_mailinglist', 'exclude' => $_POST['export_mailinglist'] );
 			MP_Mailinglist::dropdown($dropdown_options);
 ?>
 		</p>

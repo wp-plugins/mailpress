@@ -14,7 +14,7 @@ abstract class MP_autoresponder_event_mailinglist_ extends MP_autoresponder_even
 ?>
 							<label for='autoresponder_mailinglist_<?php echo $this->id; ?>'><?php _e('Mailing list', MP_TXTDOM) ?></label>
 <?php		
-		MP_Mailinglist::dropdown(array('name' => "description[settings][{$this->id}][mailinglist_id]", 'htmlid' => "autoresponder_mailinglist_{$this->id}", 'selected' => $mailinglist_id, 'hierarchical' => true, 'orderby' => 'name', 'hide_empty' => '0'));
+		MP_Mailinglist::dropdown(array('htmlname' => "description[settings][{$this->id}][mailinglist_id]", 'htmlid' => "autoresponder_mailinglist_{$this->id}", 'selected' => $mailinglist_id, 'hierarchical' => true, 'orderby' => 'name', 'hide_empty' => '0'));
 ?>
 							<p><?php _e('For that mailinglist', MP_TXTDOM) ?></p>
 <?php
