@@ -288,14 +288,14 @@ class MP_import_subscribe2 extends MP_import_importer_
 					if (class_exists('MailPress_newsletter')) 
 					{
 						$this->step1 .= "<td style='text-align:center;'>\n";
-						$dropdown_options = array('show_option_all' => __('None', MP_TXTDOM), 'echo' => 0, 'type' => 'select', 'name' => 'usermeta_nl_' . $cat_id, 'admin' => true, 'selected' => $this->get_newsletter_id($cat_id));
-						$this->step1 .= MP_Newsletter::get_checklist(false, $dropdown_options) . "\n";
+						$dropdown_options = array('show_option_all' => __('None', MP_TXTDOM), 'echo' => 0, 'type' => 'select', 'htmlname' => 'usermeta_nl_' . $cat_id, 'admin' => true, 'selected' => $this->get_newsletter_id($cat_id));
+						$this->step1 .= MailPress_newsletter::get_checklist(false, $dropdown_options) . "\n";
 						$this->step1 .= "</td>\n";
 					}
 					if (class_exists('MailPress_mailinglist')) 
 					{
 						$this->step1 .= "<td>\n";
-						$dropdown_options = array('show_option_all' => __('None', MP_TXTDOM), 'echo' => 0, 'type' => 'select', 'name' => 'usermeta_ml_' . $cat_id);
+						$dropdown_options = array('show_option_all' => __('None', MP_TXTDOM), 'echo' => 0, 'type' => 'select', 'htmlname' => 'usermeta_ml_' . $cat_id);
 						$this->step1 .= MailPress_mailinglist::get_checklist(false, $dropdown_options) . "\n";
 						$this->step1 .= "</td>\n";
 					}

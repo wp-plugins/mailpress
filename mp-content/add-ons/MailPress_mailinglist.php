@@ -117,7 +117,7 @@ class MailPress_mailinglist
 		if (empty( $mp_subscriptions['display_mailinglists'])) return false;
 
 		$checklist = '';
-		$defaults = array (	'name' 	=> 'keep_mailinglists', 
+		$defaults = array (	'htmlname' 	=> 'keep_mailinglists', 
 						'selected' 	=> false, 
 						'type'	=> 'checkbox', 
 						'show_option_all' => false,
@@ -161,8 +161,8 @@ class MailPress_mailinglist
 						$checked = " value='on'";
 					}
 
-					$tag 		 = "<input type='$_type' id='{$name}_{$k}' name='{$name}[{$k}]'$checked />";
-					$htmlstart2  = ('checkbox' == $_type) ? str_replace('{{id}}', "{$name}_{$k}", $htmlstart) : '';
+					$tag 		 = "<input type='$_type' id='{$htmlname}_{$k}' name='{$htmlname}[{$k}]'$checked />";
+					$htmlstart2  = ('checkbox' == $_type) ? str_replace('{{id}}', "{$htmlname}_{$k}", $htmlstart) : '';
 					$htmlmiddle2 = ('checkbox' == $_type) ? $htmlmiddle . str_replace('&#160;', '', $v) : "<!-- " . str_replace('&#160;', '', $v) . "-->";
 					$htmlend2    = ('checkbox' == $_type) ? $htmlend    : "\n";
 
@@ -181,7 +181,7 @@ class MailPress_mailinglist
 				break;
 			}
 		}
-		if ('select' == $type) $checklist = "\n{$htmlstart}\n<select name='{$name}'>\n{$checklist}</select>\n{$htmlend}\n";
+		if ('select' == $type) $checklist = "\n{$htmlstart}\n<select name='{$htmlname}'>\n{$checklist}</select>\n{$htmlend}\n";
 
 		return $checklist;
 	}

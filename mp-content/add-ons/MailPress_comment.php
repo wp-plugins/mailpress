@@ -81,7 +81,7 @@ class MailPress_comment
 	public static function get_checklist($mp_user_id = false, $args = '') 
 	{
 		$checklist = '';
-		$defaults = array (	'name' 	=> 'keep_comment_sub', 
+		$defaults = array (	'htmlname' 	=> 'keep_comment_sub', 
 						'echo' 	=> 1, 
 
 						'type'	=> 'checkbox', 
@@ -100,8 +100,8 @@ class MailPress_comment
 			$k		 = $comment_sub->meta_id;
 			$v		 = apply_filters('the_title', $comment_sub->post_title );
 
-			$tag 		 = "<input type='$typ2' id='{$name}_{$k}' name='{$name}[{$k}]' checked='checked' />";
-			$htmlstart2  = str_replace('{{id}}', "{$name}_{$k}", $htmlstart);
+			$tag 		 = "<input type='$typ2' id='{$htmlname}_{$k}' name='{$htmlname}[{$k}]' checked='checked' />";
+			$htmlstart2  = str_replace('{{id}}', "{$htmlname}_{$k}", $htmlstart);
 			$htmlmiddle2 = $htmlmiddle . str_replace('&#160;', '', $v);
 			$htmlend2    = $htmlend;
 

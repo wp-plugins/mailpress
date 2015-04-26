@@ -124,7 +124,7 @@ class MailPress_comment_newsletter_subscription
 	public static function settings_general()
 	{
 		$settings = get_option(self::option_name);
-		$args = array(	'name' 			=> 'comment_newsletter_subscription[default]', 
+		$args = array(	'htmlname' 			=> 'comment_newsletter_subscription[default]', 
 					'admin' 			=> true, 
 					'type' 			=> 'select',
 					'selected' 		=> (isset($settings['default'])) ? $settings['default'] : '',

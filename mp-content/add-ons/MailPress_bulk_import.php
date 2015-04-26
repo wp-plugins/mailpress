@@ -47,7 +47,7 @@ class MailPress_bulk_import
 	<input type='submit' name='bulk_add' value='<?php _e('Bulk Add', MP_TXTDOM ); ?>' class='button' />
 	<div id="radios" style="display:none">
 
-<?php if (current_user_can('MailPress_manage_mailinglists')) MP_Mailinglist::dropdown(array('name' => 'bulk_import_mailinglist', 'htmlid' => 'bulk_import_mailinglist', 'hierarchical' => true, 'orderby' => 'name', 'hide_empty' => '0', 'show_option_none' => __('Choose mailinglist', MP_TXTDOM))); ?>
+<?php if (current_user_can('MailPress_manage_mailinglists')) MP_Mailinglist::dropdown(array('htmlname' => 'bulk_import_mailinglist', 'htmlid' => 'bulk_import_mailinglist', 'hierarchical' => true, 'orderby' => 'name', 'hide_empty' => '0', 'show_option_none' => __('Choose mailinglist', MP_TXTDOM))); ?>
 
 		<label for='bulki-activate'><input type='radio' id='bulki-activate' name='activate' value='activate' /><?php _e('Activate', MP_TXTDOM); ?></label>
 		<label for='bulki-waiting'><input type='radio'  id='bulki-waiting'  name='activate' value='waiting' checked='checked' /> <?php _e('Require Authorization', MP_TXTDOM); ?></label>
