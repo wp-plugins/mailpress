@@ -290,7 +290,7 @@ class MailPress_mailinglist
 
 	public static function mailinglists( $draft_dest = array() ) 
 	{
-		$args = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'name' => 'default_mailinglist' );
+		$args = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'htmlname' => 'default_mailinglist' );
 		foreach (MP_Mailinglist::array_tree($args) as $k => $v) $draft_dest[$k] = $v;
 		return $draft_dest;
 	}

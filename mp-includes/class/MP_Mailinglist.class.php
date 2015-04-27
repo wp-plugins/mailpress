@@ -259,7 +259,7 @@ class MP_Mailinglist
 					'exclude' 		=> '',
 					'hide_empty' 	=> 1,
 					'hierarchical'	=> 0,	
-					'name' 		=> 'mailinglist',
+					'htmlname' 		=> 'mailinglist',
 					'order' 		=> 'ASC',
 					'orderby' 		=> 'ID',
 					'selected' 		=> 0,
