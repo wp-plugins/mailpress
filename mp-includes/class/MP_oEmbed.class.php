@@ -16,6 +16,7 @@ class MP_oEmbed extends WP_oEmbed
 			if (isset($data->{$var}) && !empty($data->{$var})) continue;
 
 			$html .= "<a target='_blank' href=\"" . esc_url($url) . "\"";
+			$html .= " class='mp_{$data->provider_name}'";
 			if (isset($data->title)) 		$html .= " title=\"" . esc_html($data->title) . "\"";
 			$html .= ">";
 			$html .= (isset($data->title)) ? $data->title : $url;

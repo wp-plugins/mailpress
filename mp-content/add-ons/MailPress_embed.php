@@ -140,6 +140,7 @@ class MailPress_embed
 		$html .= ">";
 
 		$html .= "<img";
+		$html .= " class='mp_{$data->provider_name}'";
 		$html .= " width='{$data->thumbnail_width}px'";
 		$html .= " height='{$data->thumbnail_height}px'";
 		$html .= " src='{$data->thumbnail_url}'";
