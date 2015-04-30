@@ -89,6 +89,11 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 == Changelog ==
 
+** 5.4.2 ** 29/04/2015
+
+* Swiftmailer 5.4.0
+* bug fix de to changes in wp 4.2 in get_terms() taxonomy function, introducing support of 'name' parameter
+
 ** 5.4.1 ** xx/xx/2014
 
 * Swiftmailer 5.2.1

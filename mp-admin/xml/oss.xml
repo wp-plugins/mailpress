@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <oss>
 	 <os>
 		<name><![CDATA[Windows]]></name>
@@ -6,6 +6,51 @@
 		<icon><![CDATA[win.png]]></icon>
 		<pattern><![CDATA[#(Windows|Win) ([a-zA-Z0-9.\ \;\:]+)#i]]></pattern>
 		<versions pattern="0">
+                        <id>
+				<name><![CDATA[10 x64 Edition]]></name>
+				<pattern><![CDATA[/Windows NT 6.4; Win64; x64/i]]></pattern>
+				<icon><![CDATA[win-6.png]]></icon>
+			</id>
+                        <id>
+				<name><![CDATA[10 x64 Edition]]></name>
+				<pattern><![CDATA[/Windows NT 6.4; WOW64/i]]></pattern>
+				<icon><![CDATA[win-6.png]]></icon>
+			</id>
+                        <id>
+				<name><![CDATA[10]]></name>
+				<pattern><![CDATA[/Windows NT 6.4/i]]></pattern>
+				<icon><![CDATA[win-6.png]]></icon>
+                        </id>
+                        <id>
+				<name><![CDATA[8.1 x64 Edition]]></name>
+				<pattern><![CDATA[/Windows NT 6.3; Win64; x64/i]]></pattern>
+				<icon><![CDATA[win-5.png]]></icon>
+			</id>
+                        <id>
+				<name><![CDATA[8.1 x64 Edition]]></name>
+				<pattern><![CDATA[/Windows NT 6.3; WOW64/i]]></pattern>
+				<icon><![CDATA[win-5.png]]></icon>
+			</id>
+                        <id>
+				<name><![CDATA[8.1]]></name>
+				<pattern><![CDATA[/Windows NT 6.3/i]]></pattern>
+				<icon><![CDATA[win-5.png]]></icon>
+			</id>
+                                            	<id>
+				<name><![CDATA[8 x64 Edition]]></name>
+				<pattern><![CDATA[/Windows NT 6.2; Win64; x64/i]]></pattern>
+				<icon><![CDATA[win-5.png]]></icon>
+			</id>
+                                            	<id>
+				<name><![CDATA[8 x64 Edition]]></name>
+				<pattern><![CDATA[/Windows NT 6.2; WOW64/i]]></pattern>
+				<icon><![CDATA[win-5.png]]></icon>
+			</id>
+                    	<id>
+				<name><![CDATA[8]]></name>
+				<pattern><![CDATA[/Windows NT 6.2;/i]]></pattern>
+				<icon><![CDATA[win-5.png]]></icon>
+			</id>
 			<id>
 				<name><![CDATA[7 x64 Edition]]></name>
 				<pattern><![CDATA[/Windows NT 6.1; Win64; x64;/i]]></pattern>
@@ -268,6 +313,12 @@
 		<pattern><![CDATA[/Chakra/]]></pattern>
 	 </os>
 	 <os>
+		<name><![CDATA[Crunchbang]]></name>
+		<link><![CDATA[http://www.crunchbanglinux.org/]]></link>
+		<icon><![CDATA[crunchbang.png]]></icon>
+		<pattern><![CDATA[/Crunchbang/i]]></pattern>
+	 </os>
+	 <os>
 		<name><![CDATA[Google Chrome OS]]></name>
 		<link><![CDATA[http://en.wikipedia.org/wiki/Google_Chrome_OS]]></link>
 		<icon><![CDATA[chromeos.png]]></icon>
@@ -319,6 +370,12 @@
 		<pattern><![CDATA[/FreeBSD/i]]></pattern>
 	 </os>
 	 <os>
+		<name><![CDATA[Gentoo]]></name>
+		<link><![CDATA[http://www.gentoo.org/]]></link>
+		<icon><![CDATA[gentoo.png]]></icon>
+		<pattern><![CDATA[/Gentoo/i]]></pattern>
+	 </os>
+	 <os>
 		<name><![CDATA[Haiku OS]]></name>
 		<link><![CDATA[http://www.haiku-os.org/]]></link>
 		<icon><![CDATA[haiku.png]]></icon>
@@ -329,12 +386,6 @@
 		<link><![CDATA[http://www.vitanuova.com/inferno/]]></link>
 		<icon><![CDATA[inferno.png]]></icon>
 		<pattern><![CDATA[/Inferno/i]]></pattern>
-	 </os>
-	 <os>
-		<name><![CDATA[Gentoo]]></name>
-		<link><![CDATA[http://www.gentoo.org/]]></link>
-		<icon><![CDATA[gentoo.png]]></icon>
-		<pattern><![CDATA[/Gentoo/i]]></pattern>
 	 </os>
 	 <os>
 		<name><![CDATA[IRIX Linux]]></name>
@@ -393,6 +444,12 @@
 		<icon><![CDATA[lubuntu.png]]></icon>
 		<pattern><![CDATA[/Lubuntu/i]]></pattern>
 		<versions pattern="1"><![CDATA[#Lubuntu/([a-zA-Z0-9.]+)#i]]></versions>
+	 </os>
+	 <os>
+		<name><![CDATA[Mageia]]></name>
+		<link><![CDATA[http://www.mageia.org/]]></link>
+		<icon><![CDATA[mageia.png]]></icon>
+		<pattern><![CDATA[/Mageia/i]]></pattern>
 	 </os>
 	 <os>
 		<name><![CDATA[Mandriva]]></name>
@@ -463,6 +520,12 @@
 		<versions pattern="1"><![CDATA[#webOS/([a-zA-Z0-9.]+)#i]]></versions>
 	 </os>
 	 <os>
+		<name><![CDATA[Pardus]]></name>
+		<link><![CDATA[http://www.pardus.org.tr/en/]]></link>
+		<icon><![CDATA[pardus.png]]></icon>
+		<pattern><![CDATA[/Pardus/i]]></pattern>
+	 </os>
+	 <os>
 		<name><![CDATA[PCLinuxOS]]></name>
 		<link><![CDATA[http://www.pclinuxos.com/]]></link>
 		<icon><![CDATA[pclinuxos.png]]></icon>
@@ -482,6 +545,12 @@
 		<icon><![CDATA[red-hat.png]]></icon>
 		<pattern><![CDATA[/RedHat/i]]></pattern>
 		<versions pattern="1"><![CDATA[#\.el([._0-9a-zA-Z]+)#i]]></versions>
+	 </os>
+	 <os>
+		<name><![CDATA[Rosa]]></name>
+		<link><![CDATA[http://www.rosalab.com/]]></link>
+		<icon><![CDATA[rosa.png]]></icon>
+		<pattern><![CDATA[/Rosa/i]]></pattern>
 	 </os>
 	 <os>
 		<name><![CDATA[Sabayon Linux]]></name>
