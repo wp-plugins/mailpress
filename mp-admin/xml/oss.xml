@@ -269,9 +269,19 @@
 				<icon><![CDATA[android-ics.png]]></icon>
 			</id>
 			<id>
+				<name><![CDATA[KitKat (4.4)]]></name>
+				<pattern><![CDATA[/4.4/i]]></pattern>
+				<icon><![CDATA[android-kk.png]]></icon>
+			</id>
+			<id>
 				<name><![CDATA[Jelly Bean (4.x)]]></name>
 				<pattern><![CDATA[/4./i]]></pattern>
 				<icon><![CDATA[android-jb.png]]></icon>
+			</id>
+			<id>
+				<name><![CDATA[Lollipop (5.x)]]></name>
+				<pattern><![CDATA[/5./i]]></pattern>
+				<icon><![CDATA[android-lp.png]]></icon>
 			</id>
 		</versions>
 	 </os>
