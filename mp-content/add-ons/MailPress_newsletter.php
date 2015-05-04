@@ -394,7 +394,7 @@ class MailPress_newsletter
 				<td style='padding:0;'>
 					<select name='general[post_limits]'>
 <option value="0">&#160;</option>
-<?php MP_AdminPage::select_number(1, 30, (isset($mp_general['post_limits'])) ? $mp_general['post_limits'] : ''); ?>
+<?php MP_AdminPage::select_number(1, 99, (isset($mp_general['post_limits'])) ? $mp_general['post_limits'] : ''); ?>
 					</select>
 					&#160;<?php _e('posts <i>(blank = WordPress Reading setting)</i>', MP_TXTDOM); ?>
 				</td>

@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<bounces>
+	<subject>
+		<text><![CDATA[**Message you sent blocked by our bulk email filter**]]></text>
+		<text><![CDATA[delayed 24 hours]]></text>
+		<text><![CDATA[delayed 48 hours]]></text>
+		<text><![CDATA[delayed 72 hours]]></text>
+		<text><![CDATA[Delivery Failure]]></text>
+		<text><![CDATA[Delivery is delayed]]></text>
+		<text><![CDATA[delivery notification]]></text>
+		<text><![CDATA[Delivery Notification: Delivery has failed]]></text>
+		<text><![CDATA[delivery report]]></text>
+		<text><![CDATA[Delivery Status Notification]]></text>
+		<text><![CDATA[Delivery status notification]]></text>				<!-- rob -->
+		<text><![CDATA[Delivery unsuccessful]]></text>
+		<text><![CDATA[delivery_failure]]></text>
+		<text><![CDATA[error delivering mail]]></text>
+		<text><![CDATA[Expired Delivery Retry Notification]]></text>
+		<text><![CDATA[failure delivery]]></text>
+		<text><![CDATA[Failure Notice]]></text>
+		<text><![CDATA[Mail could not be delivered]]></text>
+		<text><![CDATA[mail delivery error]]></text>
+		<text><![CDATA[Mail delivery failed]]></text>
+		<text><![CDATA[Mail Delivery Problem]]></text>
+		<text><![CDATA[mail not delivered]]></text>
+		<text><![CDATA[mail status report]]></text>
+		<text><![CDATA[Mail System Error - Returned Mail]]></text>
+		<text><![CDATA[Marked As Spam:]]></text>
+		<text><![CDATA[Message status - undeliverable]]></text>
+		<text><![CDATA[Non delivery report]]></text>
+		<text><![CDATA[Nondeliverable mail]]></text>
+		<text><![CDATA[Returned mail]]></text>
+		<text><![CDATA[Undeliverable Mail]]></text>
+		<text><![CDATA[Undeliverable message]]></text>
+		<text><![CDATA[Undeliverable:]]></text>	
+		<text><![CDATA[Undeliverable]]></text>						<!-- rob -->
+		<text><![CDATA[Undelivered Mail Returned to Sender]]></text>
+		<text><![CDATA[Warning: could not send message]]></text>
+		<text><![CDATA[Message undeliverable]]></text>					<!-- rob -->
+	</subject>
+	<body>
+		<regex><![CDATA[/(--[^\s]*?)\sContent-Type\s*?\:\s*?message\/delivery-status\s(.*?)\1/is]]></regex>
+<!-- mailbox full --> 
+		<text><![CDATA[ is FULL]]></text>
+		<text><![CDATA[521 Syntax error]]></text>							<!-- rob //AOL// -->
+		<text><![CDATA[mail could not be delivered]]></text>						<!-- rob //AOL// -->
+		<text><![CDATA[550 5.1.10 RESOLVER.ADR.RecipientNotFound]]></text>				<!-- rob //mcpn.org// -->
+		<text><![CDATA[Errors in Exchange]]></text>							<!-- rob //mcpn.org// -->
+		<text><![CDATA[The e-mail address you entered couldn't be found]]></text>			<!-- rob -->
+		<text><![CDATA[Recipient address rejected: User unknown in relay recipient table]]></text>	<!-- rob //jeffco.k12.co.us// -->
+		<text><![CDATA[5.1.1 User unknown (in reply to RCPT TO command)]]></text>			<!-- rob -->
+		<text><![CDATA[permanent failure]]></text>							<!-- rob -->
+		<text><![CDATA[Delivery has failed to these recipients or groups]]></text>			<!-- rob -->
+		<text><![CDATA[remote server closed connection]]></text>					<!-- rob -->
+		<text><![CDATA[insufficient system storage]]></text>						<!-- rob -->
+		<text><![CDATA[522_mailbox_full]]></text>
+		<text><![CDATA[account is full]]></text>
+		<text><![CDATA[Can't create output]]></text>
+		<text><![CDATA[Delivery failed: Over quota]]></text>
+		<text><![CDATA[disk full]]></text>
+		<text><![CDATA[does not have enough space]]></text>
+		<text><![CDATA[exceed mailbox quota]]></text>
+		<text><![CDATA[exceed maximum allowed storage]]></text>
+		<text><![CDATA[exceed the quota for the mailbox]]></text>
+		<text><![CDATA[exceed the quota for the mailbox]]></text>
+		<text><![CDATA[exceeded his/her quota]]></text>
+		<text><![CDATA[exceeded storage allocation]]></text>
+		<text><![CDATA[exceeded the space quota]]></text>
+		<text><![CDATA[exceeds allowed message count]]></text>
+		<text><![CDATA[exceeds size limit]]></text>
+		<text><![CDATA[File too large]]></text>
+		<text><![CDATA[Inbox is full]]></text>
+		<text><![CDATA[incoming mailbox for user ]]></text>
+		<text><![CDATA[insufficient disk space]]></text>
+		<text><![CDATA[mail box space not enough]]></text>
+		<text><![CDATA[Mailbox disk quota exceeded]]></text>
+		<text><![CDATA[mailbox full]]></text>
+		<text><![CDATA[Mailbox has exceeded the limit]]></text>
+		<text><![CDATA[Mailbox has exceeded the limit]]></text>
+		<text><![CDATA[mailbox is full]]></text>
+		<text><![CDATA[mailbox is full]]></text>
+		<text><![CDATA[mailbox_quota_exceeded]]></text>
+		<text><![CDATA[maildir has overdrawn his diskspace quota]]></text>
+		<text><![CDATA[mailfolder is full]]></text>
+		<text><![CDATA[message is larger than the space available]]></text>
+		<text><![CDATA[Message would exceed ]]></text>
+		<text><![CDATA[message would exceed quota]]></text>
+		<text><![CDATA[not able to receive any more mail]]></text>
+		<text><![CDATA[Not enough storage space]]></text>
+		<text><![CDATA[over disk quota]]></text>
+		<text><![CDATA[Over quota]]></text>
+		<text><![CDATA[over quota]]></text>
+		<text><![CDATA[over the allowed quota]]></text>
+		<text><![CDATA[over the maximum allowed mailbox size]]></text>
+		<text><![CDATA[over the maximum allowed number of messages]]></text>
+		<text><![CDATA[over the storage quota]]></text>
+		<text><![CDATA[over their disk quota]]></text>
+		<text><![CDATA[Quota exceed]]></text>
+		<text><![CDATA[Quota exceeded]]></text>
+		<text><![CDATA[quota for the mailbox]]></text>
+		<text><![CDATA[Quota violation]]></text>
+		<text><![CDATA[recipient exceeded dropfile size quota]]></text>
+		<text><![CDATA[Recipient exceeded email quota]]></text>
+		<text><![CDATA[recipient storage full]]></text>
+		<text><![CDATA[Requested mailbox exceeds quota]]></text>
+		<text><![CDATA[Status: 5.2.2]]></text>
+		<text><![CDATA[Storage quota reached]]></text>
+		<text><![CDATA[The incoming mailbox for user]]></text>
+		<text><![CDATA[The user has not enough diskspace available]]></text>
+		<text><![CDATA[The user's space has used up.]]></text>
+		<text><![CDATA[too many messages in this mailbox]]></text>
+		<text><![CDATA[too many messages on this mailbox]]></text>
+		<text><![CDATA[User account is overquota]]></text>
+		<text><![CDATA[user has full mailbox]]></text>
+		<text><![CDATA[user is invited to retry]]></text>
+		<text><![CDATA[user is over quota]]></text>
+		<text><![CDATA[user is over their quota]]></text>
+		<text><![CDATA[User is overquota]]></text>
+		<text><![CDATA[User mailbox exceeds allowed size]]></text>
+		<text><![CDATA[user overdrawn his diskspace quota]]></text>
+<!--  -->
+		<text><![CDATA[errno=28]]></text>
+<!-- blocked content --> 
+		<text><![CDATA[actively refused]]></text>							<!-- rob -->
+		<text><![CDATA[ This message has been blocked because it contains FortiSpamshield blocking URL']]></text>
+		<text><![CDATA[5.7.1 Content-Policy reject]]></text>
+		<text><![CDATA[5.7.1 Message cannot be accepted, spam rejection]]></text>
+		<text><![CDATA[5.7.1 reject content]]></text>
+		<text><![CDATA[5.7.1 URL/Phone Number Filter]]></text>
+		<text><![CDATA[550 POSSIBLE SPAM]]></text>
+		<text><![CDATA[550 Protocol violation]]></text>
+		<text><![CDATA[550 Rule imposed mailbox access for]]></text>
+		<text><![CDATA[554 Transaction failed]]></text>
+		<text><![CDATA[appears to be spam]]></text>
+		<text><![CDATA[black listed url host]]></text>
+		<text><![CDATA[Blacklisted]]></text>
+		<text><![CDATA[blocked because it contains FortiGuard - AntiSpam blocking URL]]></text>
+		<text><![CDATA[Blocked for abuse]]></text>
+		<text><![CDATA[Blocked for spam]]></text>
+		<text><![CDATA[blocked using ]]></text>
+		<text><![CDATA[Connection refused due to abuse]]></text>
+		<text><![CDATA[considered unsolicited bulk e-mail]]></text>
+		<text><![CDATA[Denied by policy]]></text>
+		<text><![CDATA[email is considered spam]]></text>
+		<text><![CDATA[envelope sender is in my badmailfrom]]></text>
+		<text><![CDATA[Error: content rejected]]></text>
+		<text><![CDATA[extremely high on spam scale]]></text>
+		<text><![CDATA[has exceeded maximum attachment count limit]]></text>
+		<text><![CDATA[headers consistent with spam]]></text>
+		<text><![CDATA[high spam probability]]></text>
+		<text><![CDATA[HTML tag unacceptable]]></text>
+		<text><![CDATA[is not accepting mail from this sender]]></text>
+		<text><![CDATA[is on RBL list]]></text>
+		<text><![CDATA[is refused. See http://spamblock.outblaze.com]]></text>
+		<text><![CDATA[listed in multi.surbl.org]]></text>
+		<text><![CDATA[Mail appears to be unsolicited]]></text>
+		<text><![CDATA[Mail contained a URL rejected by SURBL]]></text>
+		<text><![CDATA[Mail From IP Banned]]></text>
+		<text><![CDATA[mail server is currently blocked]]></text>
+		<text><![CDATA[Message cannot be accepted, content filter rejection]]></text>
+		<text><![CDATA[message contains potential spam]]></text>
+		<text><![CDATA[Message contains unacceptable attachment]]></text>
+		<text><![CDATA[message content rejected]]></text>
+		<text><![CDATA[Message Denied: Restricted attachment]]></text>
+		<text><![CDATA[message filtered]]></text>
+		<text><![CDATA[message held before permitting delivery]]></text>
+		<text><![CDATA[Message held for human verification]]></text>
+		<text><![CDATA[Message identified as SPAM]]></text>
+		<text><![CDATA[message looks like a spam]]></text>
+		<text><![CDATA[message looks like spam]]></text>
+		<text><![CDATA[Message rejected because of unacceptable content]]></text>
+		<text><![CDATA[not accepting mail with attachments or embedded images]]></text>
+		<text><![CDATA[not accepting mail with attachments or embedded images]]></text>
+		<text><![CDATA[on spam scale]]></text>
+		<text><![CDATA[rejected as bulk]]></text>
+		<text><![CDATA[rejected by an anti-spam]]></text>
+		<text><![CDATA[rejected by anti-spam]]></text>
+		<text><![CDATA[rejected for policy reasons]]></text>
+		<text><![CDATA[sender denied]]></text>
+		<text><![CDATA[Sender is on domain's blacklist]]></text>
+		<text><![CDATA[Spam detected]]></text>
+		<text><![CDATA[Spam origin]]></text>
+		<text><![CDATA[Spam rejected]]></text>
+		<text><![CDATA[spamblock]]></text>
+		<text><![CDATA[they are not accepting mail]]></text>
+		<text><![CDATA[This message does not comply with required standards]]></text>
+		<text><![CDATA[This message has been flagged as spam]]></text>
+		<text><![CDATA[this message scored ]]></text>
+		<text><![CDATA[You have been blocked by the recipient]]></text>
+		<text><![CDATA[Your e-mail was rejected for policy reasons on this gateway]]></text>
+		<text><![CDATA[No mail servers appear to exists for the recipient's address]]></text>		<!-- rob -->
+<!-- remote configuration error -->
+		<text><![CDATA[connected party did not properly respond after a period of time]]></text>	<!-- rob -->
+		<text><![CDATA[ but connection died]]></text>
+		<text><![CDATA[4.3.2 service shutting down]]></text>
+		<text><![CDATA[5.7.1 Transaction failed]]></text>
+		<text><![CDATA[542 Rejected]]></text>
+		<text><![CDATA[550 authentication required]]></text>
+		<text><![CDATA[550 System error]]></text>
+		<text><![CDATA[all relevant MX records point to non-existent hosts]]></text>
+		<text><![CDATA[Can't open mailbox]]></text>
+		<text><![CDATA[cannot store document]]></text>
+		<text><![CDATA[CNAME lookup failed temporarily]]></text>
+		<text><![CDATA[Command died with status]]></text>
+		<text><![CDATA[Command rejected]]></text>
+		<text><![CDATA[Command time limit exceeded]]></text>
+		<text><![CDATA[Connection refused]]></text>
+		<text><![CDATA[Connection timed out]]></text>
+		<text><![CDATA[delivery expired (message too old)]]></text>
+		<text><![CDATA[Delivery failed 1 attempt]]></text>
+		<text><![CDATA[delivery temporarily suspended]]></text>
+		<text><![CDATA[delivery time expired]]></text>
+		<text><![CDATA[delivery was refused]]></text>
+		<text><![CDATA[Error in processing]]></text>
+		<text><![CDATA[error on maildir delivery]]></text>
+		<text><![CDATA[Error opening input/output file]]></text>
+		<text><![CDATA[failed on DATA command]]></text>
+		<text><![CDATA[Failed, 4.4.7 (delivery time expired)]]></text>
+		<text><![CDATA[has exceeded the max emails per hour]]></text>
+		<text><![CDATA[has installed an invalid MX record with an IP address instead of a domain name on the right hand side.]]></text>
+		<text><![CDATA[Hop count exceeded]]></text>
+		<text><![CDATA[internal server error]]></text>
+		<text><![CDATA[internal software error]]></text>
+		<text><![CDATA[loop count exceeded]]></text>
+		<text><![CDATA[loops back to myself]]></text>
+		<text><![CDATA[maildir delivery failed]]></text>
+		<text><![CDATA[malformed or unexpected name server reply]]></text>
+		<text><![CDATA[not capable to receive mail]]></text>
+		<text><![CDATA[operation timed out]]></text>
+		<text><![CDATA[Please receive your mail before sending]]></text>
+		<text><![CDATA[Remote sending only allowed with authentication]]></text>
+		<text><![CDATA[Resources temporarily not available]]></text>
+		<text><![CDATA[Resources temporarily unavailable]]></text>
+		<text><![CDATA[several matches found in domino]]></text>
+		<text><![CDATA[sorry, that domain isn't in my list of allowed rcpthosts]]></text>
+		<text><![CDATA[sorry, that domain isn't in my list of allowed rcpthosts]]></text>
+		<text><![CDATA[temporarily deferred]]></text>
+		<text><![CDATA[Temporary error on maildir delivery]]></text>
+		<text><![CDATA[temporary failure]]></text>
+		<text><![CDATA[temporary problem]]></text>
+		<text><![CDATA[The host does not have any mail exchanger]]></text>
+		<text><![CDATA[this message has been in the queue too long]]></text>
+		<text><![CDATA[This message is looping]]></text>
+		<text><![CDATA[timed out while receiving the initial server greeting]]></text>
+		<text><![CDATA[TLS connect failed: timed out]]></text>
+		<text><![CDATA[Too many results returned]]></text>
+		<text><![CDATA[unable to connect successfully to the destination mail server]]></text>
+		<text><![CDATA[Unable to create a dot-lock]]></text>
+		<text><![CDATA[unable to deliver a message to]]></text>
+		<text><![CDATA[Undeliverable message]]></text>
+		<text><![CDATA[unreachable for too long]]></text>
+		<text><![CDATA[user path does not exist]]></text>
+		<text><![CDATA[user path no exist]]></text>
+		<text><![CDATA[your "received:" header counts]]></text>
+<!-- local configuration error -->
+		<text><![CDATA[Address does not pass the Sender Policy Framework]]></text>
+		<text><![CDATA[but sender was rejected]]></text>
+		<text><![CDATA[could indicate a mail loop]]></text>
+		<text><![CDATA[Could not complete sender verify callout]]></text>
+		<text><![CDATA[lost connection with]]></text>
+		<text><![CDATA[Mail only accepted from IPs with valid reverse lookups]]></text>
+		<text><![CDATA[Name service error]]></text>
+		<text><![CDATA[only accepts mail from known senders]]></text>
+		<text><![CDATA[Remote host said: 542 Rejected]]></text>
+		<text><![CDATA[Remote host said: 554 Failure]]></text>
+		<text><![CDATA[SC-001 Mail rejected by Windows Live Hotmail for policy reasons.]]></text>
+		<text><![CDATA[sender id (pra) not permitted]]></text>
+		<text><![CDATA[Sender verification error]]></text>
+<!-- local condition error -->
+		<text><![CDATA[does not have a valid PTR record associated with it.]]></text>
+		<text><![CDATA[You will need to add a PTR record (also known as reverse lookup) before you are able to send email into the iiNet network.]]></text>
+<!-- inactive -->
+		<text><![CDATA[refused to talk to me: 452 try later]]></text>
+<!-- inactive -->
+		<text><![CDATA[ is disabled]]></text>
+		<text><![CDATA[Account closed due to inactivity]]></text>
+		<text><![CDATA[account deactivated]]></text>
+		<text><![CDATA[account expired]]></text>
+		<text><![CDATA[Account has been suspended]]></text>
+		<text><![CDATA[account has been temporarily suspended]]></text>
+		<text><![CDATA[Account inactive as unread]]></text>
+		<text><![CDATA[Account inactive]]></text>
+		<text><![CDATA[account is locked]]></text>
+		<text><![CDATA[account is not active]]></text>
+		<text><![CDATA[Blocked address]]></text>
+		<text><![CDATA[deactivated mailbox]]></text>
+		<text><![CDATA[disabled due to inactivity]]></text>
+		<text><![CDATA[disabled mailbox]]></text>
+		<text><![CDATA[extended inactivity new mail is not currently being accepted]]></text>
+		<text><![CDATA[inactive on this domain]]></text>
+		<text><![CDATA[inactive user]]></text>
+		<text><![CDATA[Mailaddress is administratively disabled]]></text>
+		<text><![CDATA[Mailaddress is administrativley disabled]]></text>
+		<text><![CDATA[Mailbox currently suspended]]></text>
+		<text><![CDATA[Mailbox disabled]]></text>
+		<text><![CDATA[mailbox temporarily disabled]]></text>
+		<text><![CDATA[Mailbox_currently_suspended]]></text>
+		<text><![CDATA[message refused]]></text>
+		<text><![CDATA[not an active address]]></text>
+		<text><![CDATA[permission denied]]></text>
+		<text><![CDATA[recipient never logged onto]]></text>
+		<text><![CDATA[said: 550 5.2.1]]></text>
+		<text><![CDATA[Sorry, I wasn't able to establish an SMTP connection]]></text>
+		<text><![CDATA[Status: 5.2.1]]></text>
+		<text><![CDATA[this account has been disabled or discontinued]]></text>
+		<text><![CDATA[This account is not allowed]]></text>
+		<text><![CDATA[unavailable to take delivery of the message]]></text>
+		<text><![CDATA[user account disabled]]></text>
+		<text><![CDATA[user account is expired]]></text>
+		<text><![CDATA[User hasn't entered during last ]]></text>
+		<text><![CDATA[User is inactive]]></text>
+		<text><![CDATA[user mailbox is inactive]]></text>
+		<text><![CDATA[user mailbox is inactive]]></text>
+<!-- box doesnt exist -->
+		<text><![CDATA[550 5.1.10]]></text>								<!-- rob -->
+		<text><![CDATA[ does not exist]]></text>
+		<text><![CDATA[_does_not_exist_here]]></text>
+		<text><![CDATA[> does not exist]]></text>
+		<text><![CDATA[550 5.1.1 User unknown]]></text>
+		<text><![CDATA[550 5.1.1]]></text>
+		<text><![CDATA[554 delivery error: This user doesn't have]]></text>
+		<text><![CDATA[account closed]]></text>
+		<text><![CDATA[account does not exist]]></text>
+		<text><![CDATA[address doesn't exist]]></text>
+		<text><![CDATA[Address invalid]]></text>
+		<text><![CDATA[address is no longer active]]></text>
+		<text><![CDATA[address is not valid]]></text>
+		<text><![CDATA[Address rejected]]></text>
+		<text><![CDATA[Addressee unknown]]></text>
+		<text><![CDATA[bad address ]]></text>
+		<text><![CDATA[bad destination email address]]></text>
+		<text><![CDATA[can't create user output file]]></text>
+		<text><![CDATA[deactivated due to abuse]]></text>
+		<text><![CDATA[Delivery to the following recipient failed permanently]]></text>
+		<text><![CDATA[Delivery to the following recipients failed]]></text>
+		<text><![CDATA[destination addresses were unknown]]></text>
+		<text><![CDATA[Destination server rejected recipients]]></text>
+		<text><![CDATA[does not have an email]]></text>
+		<text><![CDATA[does not like recipient]]></text>
+		<text><![CDATA[doesn't have an account]]></text>
+		<text><![CDATA[doesn't_have_a_yahoo]]></text>
+		<text><![CDATA[email has changed]]></text>
+		<text><![CDATA[email name is not found]]></text>
+		<text><![CDATA[I am no longer with]]></text>
+		<text><![CDATA[I have now left ]]></text>
+		<text><![CDATA[invalid address]]></text>
+		<text><![CDATA[invalid domain mailbox user]]></text>
+		<text><![CDATA[invalid e-mail address]]></text>
+		<text><![CDATA[Invalid final delivery user]]></text>
+		<text><![CDATA[invalid mailbox]]></text>
+		<text><![CDATA[Invalid or unknown virtual user]]></text>
+		<text><![CDATA[invalid recipient]]></text>
+		<text><![CDATA[Invalid User]]></text>
+		<text><![CDATA[isn't in my list of allowed recipients]]></text>
+		<text><![CDATA[mail receiving disabled]]></text>
+		<text><![CDATA[mailbox is currently unavailable]]></text>
+		<text><![CDATA[mailbox is not valid]]></text>
+		<text><![CDATA[mailbox not available]]></text>
+		<text><![CDATA[mailbox not found]]></text>
+		<text><![CDATA[mailbox unavailable]]></text>
+		<text><![CDATA[mailbox unavailable]]></text>
+		<text><![CDATA[no existe]]></text>
+		<text><![CDATA[no longer available]]></text>
+		<text><![CDATA[no longer in use]]></text>
+		<text><![CDATA[No mailbox here by that name]]></text>
+		<text><![CDATA[no recipients]]></text>
+		<text><![CDATA[No such account ]]></text>
+		<text><![CDATA[no such address]]></text>
+		<text><![CDATA[No such mailbox]]></text>
+		<text><![CDATA[No such recipient]]></text>
+		<text><![CDATA[No such user here]]></text>
+		<text><![CDATA[no such user here]]></text>
+		<text><![CDATA[No such user]]></text>
+		<text><![CDATA[No such virtual user here]]></text>
+		<text><![CDATA[no users here by that name]]></text>
+		<text><![CDATA[no valid recipients]]></text>
+		<text><![CDATA[non esiste]]></text>
+		<text><![CDATA[not a recognised email account]]></text>
+		<text><![CDATA[not a valid email account]]></text>
+		<text><![CDATA[not a valid mailbox]]></text>
+		<text><![CDATA[Not a valid recipient]]></text>
+		<text><![CDATA[not a valid user]]></text>
+		<text><![CDATA[not have a final email delivery point]]></text>
+		<text><![CDATA[not known at this site]]></text>
+		<text><![CDATA[not listed in domino directory]]></text>
+		<text><![CDATA[not our customer]]></text>
+		<text><![CDATA[Permanent error in automatic homedir creation]]></text>
+		<text><![CDATA[permanent fatal delivery]]></text>
+		<text><![CDATA[permanent fatal errors]]></text>
+		<text><![CDATA[Please check the recipients e-mail address]]></text>
+		<text><![CDATA[Recipient address rejected]]></text>
+		<text><![CDATA[recipient is invalid]]></text>
+		<text><![CDATA[Recipient no longer on server]]></text>
+		<text><![CDATA[Recipient not allowed]]></text>
+		<text><![CDATA[recipient not found]]></text>
+		<text><![CDATA[recipient rejected]]></text>
+		<text><![CDATA[Recipient unknown]]></text>
+		<text><![CDATA[recipient's account is disabled]]></text>
+		<text><![CDATA[recipients are invalid]]></text>
+		<text><![CDATA[Remote host said: 553]]></text>
+		<text><![CDATA[553 Requested action not taken: mailbox name not allowed]]></text>		<!-- rob -->
+		<text><![CDATA[551 User not local]]></text>							<!-- rob -->
+		<text><![CDATA[501 Syntax error in parameters or arguments]]></text>				<!-- rob -->
+		<text><![CDATA[retry time not reached for any host after a long failure period]]></text>
+		<text><![CDATA[retry timeout exceeded]]></text>
+		<text><![CDATA[said: 553 sorry,]]></text>
+		<text><![CDATA[server doesn't handle mail for that user]]></text>
+		<text><![CDATA[sorry, no mailbox]]></text>
+		<text><![CDATA[Status: 5.1.1]]></text>
+		<text><![CDATA[511 Syntax error]]></text>							<!-- rob -->
+		<text><![CDATA[The following recipients are unknown]]></text>
+		<text><![CDATA[The mailbox is not available on this system]]></text>
+		<text><![CDATA[The recipient cannot be verified]]></text>
+		<text><![CDATA[The recipient name is not recognized]]></text>
+		<text><![CDATA[There is no user by that name]]></text>
+		<text><![CDATA[This address does not receive mail]]></text>
+		<text><![CDATA[This address is no longer valid]]></text>
+		<text><![CDATA[This address no longer accepts mail]]></text>
+		<text><![CDATA[This Gmail user does not exist]]></text>
+		<text><![CDATA[This is a permanent error. The following address]]></text>
+		<text><![CDATA[This recipient e-mail address was not found]]></text>
+		<text><![CDATA[This user doesn't have a ]]></text>
+		<text><![CDATA[This user doesn't have a yahoo]]></text>
+		<text><![CDATA[this user doesn't have a yahoo.com account]]></text>
+		<text><![CDATA[Unable to chdir to maildir]]></text>
+		<text><![CDATA[Unable to find alias user]]></text>
+		<text><![CDATA[unable to validate recipient]]></text>
+		<text><![CDATA[unavailable mailbox]]></text>
+		<text><![CDATA[undeliverable to the following]]></text>
+		<text><![CDATA[Unknown account ]]></text>
+		<text><![CDATA[Unknown address error]]></text>
+		<text><![CDATA[unknown address or alias]]></text>
+		<text><![CDATA[unknown address]]></text>
+		<text><![CDATA[Unknown destination address]]></text>
+		<text><![CDATA[unknown email address]]></text>
+		<text><![CDATA[Unknown local part]]></text>
+		<text><![CDATA[Unknown local-part]]></text>
+		<text><![CDATA[unknown or illegal alias]]></text>
+		<text><![CDATA[unknown recipient]]></text>
+		<text><![CDATA[Unknown user]]></text>								<!-- rob -->
+		<text><![CDATA[unknown user account]]></text>
+		<text><![CDATA[unknown user]]></text>
+		<text><![CDATA[unrouteable address]]></text>
+		<text><![CDATA[Unrouteable address]]></text>
+		<text><![CDATA[User Does Not Exist]]></text>
+		<text><![CDATA[user invalid]]></text>
+		<text><![CDATA[user is no longer available]]></text>
+		<text><![CDATA[User is unknown]]></text>
+		<text><![CDATA[user not found]]></text>
+		<text><![CDATA[User not known]]></text>
+		<text><![CDATA[User reject the mail]]></text>
+		<text><![CDATA[User unknown in local recipient table]]></text>
+		<text><![CDATA[User unknown in virtual alias table]]></text>
+		<text><![CDATA[User unknown in virtual mailbox table]]></text>
+		<text><![CDATA[User unknown in virtual mailbox]]></text>
+		<text><![CDATA[user unknown]]></text>
+		<text><![CDATA[user_unknown]]></text>
+		<text><![CDATA[Your email has not been delivered]]></text>
+		<text><![CDATA[Your e-mail has not been delivered]]></text>
+		<text><![CDATA[Your mail has not been delivered]]></text>
+<!-- domain doesnt exist -->
+		<text><![CDATA[DNS query has failed]]></text>							<!-- rob -->
+		<text><![CDATA[address does not exist]]></text>
+		<text><![CDATA[an MX or SRV record indicated no SMTP service]]></text>
+		<text><![CDATA[bad destination host]]></text>
+		<text><![CDATA[Cannot resolve the IP address of the following domain]]></text>
+		<text><![CDATA[Domain does not exist, please check your spelling]]></text>
+		<text><![CDATA[Domain must resolve]]></text>
+		<text><![CDATA[Domain not used for mail]]></text>
+		<text><![CDATA[host not found]]></text>
+		<text><![CDATA[Host or domain name not found]]></text>
+		<text><![CDATA[I couldn't find a mail exchanger or IP address]]></text>
+		<text><![CDATA[I couldn't find any host by that name]]></text>
+		<text><![CDATA[I couldn't find any host named]]></text>
+		<text><![CDATA[illegal host/domain]]></text>
+		<text><![CDATA[message could not be delivered for \d+ days]]></text>
+		<text><![CDATA[name or service not known]]></text>
+		<text><![CDATA[no matches to nameserver query]]></text>
+		<text><![CDATA[no route to host]]></text>
+		<text><![CDATA[No such domain at this location]]></text>
+		<text><![CDATA[no such domain]]></text>
+		<text><![CDATA[unrouteable mail domain]]></text>
+<!-- relay error -->
+		<text><![CDATA[5.7.1 Unable to deliver to ]]></text>
+		<text><![CDATA[554 denied]]></text>
+		<text><![CDATA[access denied]]></text>
+		<text><![CDATA[Although I'm listed as a best-preference MX or A for that host]]></text>
+		<text><![CDATA[Authentication required for relay]]></text>
+		<text><![CDATA[Cannot relay]]></text>
+		<text><![CDATA[dns loop]]></text>
+		<text><![CDATA[is currently not permitted to relay]]></text>
+		<text><![CDATA[loop: too many hops]]></text>
+		<text><![CDATA[mail server permanently rejected message]]></text>
+		<text><![CDATA[message could not be delivered]]></text>
+		<text><![CDATA[not a gateway]]></text>
+		<text><![CDATA[not permitted to relay through this server]]></text>
+		<text><![CDATA[relay not permitted]]></text>
+		<text><![CDATA[relaying denied]]></text>
+		<text><![CDATA[relaying disallowed]]></text>
+		<text><![CDATA[Relaying is prohibited]]></text>
+		<text><![CDATA[relaying mail to]]></text>
+		<text><![CDATA[Relaying not allowed]]></text>
+		<text><![CDATA[Sender verify failed]]></text>
+		<text><![CDATA[they are not accepting mail from]]></text>
+		<text><![CDATA[This mail server requires authentication when attempting to send to a non-local e-mail address.]]></text>
+		<text><![CDATA[This system is not configured to relay mail]]></text>
+		<text><![CDATA[too many hops, this message is looping]]></text>
+		<text><![CDATA[Unable to relay for]]></text>
+		<text><![CDATA[we do not relay]]></text>
+<!-- invalid email -->
+		<text><![CDATA[550_Invalid_recipient]]></text>
+		<text><![CDATA[bad address syntax]]></text>
+		<text><![CDATA[Bad destination mailbox address]]></text>
+		<text><![CDATA[domain missing or malformed]]></text>
+		<text><![CDATA[Invalid Address]]></text>
+		<text><![CDATA[not our customer]]></text>
+	</body>
+</bounces>
