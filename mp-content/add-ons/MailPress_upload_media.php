@@ -5,7 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_upload_media') && (is_
 Plugin Name: MailPress_upload_media
 Plugin URI: http://blog.mailpress.org/tutorials/add-ons/upload_media/
 Description: New Mail : add upload media button
-Version: 5.4.1
+Version: 5.4.3
 */
 
 class MailPress_upload_media

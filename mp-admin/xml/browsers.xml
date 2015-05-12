@@ -1,3 +1,5 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!-- was: no XML declaration present -->
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <browsers>
 	 <browser>
@@ -1741,6 +1743,13 @@
 		<pattern><![CDATA[#uzbl#i]]></pattern>
 	 </browser>
 	 <browser>
+		<name><![CDATA[Vivaldi]]></name>
+		<link><![CDATA[http://www.vivaldi.com/]]></link>
+		<icon><![CDATA[vivaldi.png]]></icon>
+		<pattern><![CDATA[#Vivaldi/([a-zA-Z0-9.]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
 		<name><![CDATA[Vimprobable]]></name>
 		<link><![CDATA[http://www.vimprobable.org/]]></link>
 		<icon><![CDATA[null.png]]></icon>
@@ -1780,6 +1789,13 @@
 		<link><![CDATA[http://webian.org/shell/]]></link>
 		<icon><![CDATA[webianshell.png]]></icon>
 		<pattern><![CDATA[#WebianShell/([a-zA-Z0-9.]+)#i]]></pattern>
+		<versions pattern="1"></versions>
+	 </browser>
+	 <browser>
+		<name><![CDATA[WebOsBrowser]]></name>
+		<link><![CDATA[https://www.openwebosproject.org/]]></link>
+		<icon><![CDATA[webos.png]]></icon>
+		<pattern><![CDATA[#wOSBrowser/([a-zA-Z0-9.]+)#i]]></pattern>
 		<versions pattern="1"></versions>
 	 </browser>
 	 <browser>

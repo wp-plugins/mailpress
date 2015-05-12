@@ -6,7 +6,7 @@ Plugin Name: MailPress_post
 Plugin URI: http://blog.mailpress.org/tutorials/add-ons/post/
 Description: New Mail : select posts for draft mails (<span style='color:red;'>required !</span> 'manual' template for your mp theme)
 Author: Roberto Morales O., Andre Renaut
-Version: 5.4.1
+Version: 5.4.3
 Author URI: http://www.mailpress.org
 */
 

@@ -5,7 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_mailinglist') )
 Plugin Name: MailPress_mailinglist
 Plugin URI: http://blog.mailpress.org/tutorials/add-ons/mailinglist/
 Description: Mailing lists
-Version: 5.4.1
+Version: 5.4.3
 */
 
 // 3.

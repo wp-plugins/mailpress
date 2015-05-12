@@ -5,7 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_mailinglist_country_co
 Plugin Name: MailPress_mailinglist_country_code
 Plugin URI: http://blog.mailpress.org/tutorials/add-ons/mailinglist_country_code/
 Description: New Mail : Mailing lists : based on country code (<span style='color:red;'>beware !</span> IP geolocation search is not 100% accurate)
-Version: 5.4.1
+Version: 5.4.3
 */
 
 class MailPress_mailinglist_country_code

@@ -6,7 +6,7 @@ Plugin Name: MailPress_fix_TinyMCE
 Plugin URI: http://blog.mailpress.org/tutorials/add-ons/fix_tinymce/
 Description: New Mail : Fix TinyMCE with Viper Video Quicktags and Cforms
 Author: Amaury Balmer, Andre Renaut
-Version: 5.4.1
+Version: 5.4.3
 Author URI: http://www.herewithme.fr
 */
 

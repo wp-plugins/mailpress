@@ -5,7 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_mailinglist_US_state')
 Plugin Name: MailPress_mailinglist_US_state
 Plugin URI: http://blog.mailpress.org/tutorials/add-ons/mailinglist_us_state/
 Description: New Mail : Mailing lists : based on US State (<span style='color:red;'>beware !</span> IP geolocation search is not 100% accurate)
-Version: 5.4.1
+Version: 5.4.3
 */
 
 class MailPress_mailinglist_US_state

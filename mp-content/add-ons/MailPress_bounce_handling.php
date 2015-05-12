@@ -5,7 +5,7 @@ if (class_exists('MailPress') && !class_exists('MailPress_bounce_handling'))
 Plugin Name: MailPress_bounce_handling
 Plugin URI: http://blog.mailpress.org/tutorials/add-ons/bounce_handling/
 Description: Users : bounce management (based on <a href='http://en.wikipedia.org/wiki/VERP'>VERP</a>)
-Version: 5.4.1
+Version: 5.4.3
 */
 
 class MailPress_bounce_handling

@@ -5,7 +5,7 @@ if (class_exists('MailPress') && class_exists('MailPress_tracking') && !class_ex
 Plugin Name: MailPress_tracking_rewrite_url
 Plugin URI: http://blog.mailpress.org/tutorials/add-ons/tracking_rewrite_url/ 
 Description: Tracking : rewrite urls  (<span style='color:red;'>required !</span> <span style='color:#D54E21;'>Tracking</span> add-on + modified <span style='color:#D54E21;'>.htaccess</span> (sample in mp-content/xtras/mp_tracking_rewrite_url))
-Version: 5.4.1
+Version: 5.4.3
 */
 
 class MailPress_tracking_rewrite_url
