@@ -19,7 +19,7 @@ if (!isset($batch_spool_send)) $batch_spool_send = get_option(MailPress_batch_sp
 	<th scope='row'><?php _e('Spool Path', MP_TXTDOM); ?></th>
 	<td class='field'>
 		<input type='text' size='100' name='batch_spool_send[path]' value="<?php if (isset($batch_spool_send['path'])) echo $batch_spool_send['path']; ?>" />
-		<br /><?php printf(__('If empty, default path is %s but can be deleted anytime by automatic upgrade', MP_TXTDOM), '"<code>' . MP_ABSPATH . 'tmp/spool/(mail id)</code>"'  ); ?>
+		<br /><?php printf(__('If empty, default path is %s but can be deleted anytime by automatic upgrade', MP_TXTDOM), '"<code>' . MP_ABSPATH . 'tmp/spool</code>"'  ); ?>
 	</td>
 </tr>
 

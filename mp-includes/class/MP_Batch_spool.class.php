@@ -31,7 +31,7 @@ class MP_Batch_spool extends MP_db_connect_
 		self::$count++;
 
 	// select path
-		$this->path = (empty($this->config['spool_path'])) ? MP_ABSPATH . 'tmp/spool/' : $this->config['spool_path'] . '/' ;
+		$this->path = (empty($this->config['path'])) ? MP_ABSPATH . 'tmp/spool/' : $this->config['path'] . '/' ;
 
 	// select mail
 		global $wpdb;

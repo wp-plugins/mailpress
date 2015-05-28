@@ -21,7 +21,7 @@ if (class_exists('MailPress_batch_send'))
 if (class_exists('MailPress_batch_spool_send'))
 {
 	$batch_spool_send = $_POST['batch_spool_send'];
-        $batch_spool_send['path'] = trim($batch_spool_send['path']);
+     $batch_spool_send['path'] = trim(stripslashes($batch_spool_send['path']));
 
 	$old_batch_spool_send = get_option(MailPress_batch_spool_send::option_name);
 

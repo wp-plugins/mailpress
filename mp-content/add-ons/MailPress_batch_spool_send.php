@@ -46,7 +46,7 @@ class MailPress_batch_spool_send
 		// for settings logs
 			add_action('MailPress_settings_logs', 	array(__CLASS__, 'settings_logs'), 20, 1);
 
-			if ('wpcron' == $config['batch_mode'])
+			if (isset($config['batch_mode']) && ('wpcron' == $config['batch_mode']))
 			{	
 			// for autorefresh
 				add_filter('MailPress_autorefresh_every', array(__CLASS__, 'autorefresh_every'), 8, 1);
