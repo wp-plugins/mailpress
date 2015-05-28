@@ -3,7 +3,7 @@ class MP_Connection_sendmail extends MP_connection_
 {
 	public $Swift_Connection_type = 'SENDMAIL';
 
-	function connect($x, $y)
+	function connect($mail_id, $y)
 	{
 		$settings = get_option(MailPress_connection_sendmail::option_name);
 

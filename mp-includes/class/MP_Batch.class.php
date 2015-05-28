@@ -37,28 +37,31 @@ class MP_Batch
 		if (!$mails) { $this->alldone(); return; }
 
 		$mail = $mailmeta = $this->mail = $this->mailmeta = false;
-		$this->mailmeta['try'] = 10000;
+		$try = 10000;
 
-		foreach ($mails as $mail)
+		foreach ($mails as $this->mail)
 		{
-			$mailmeta = $this->get_mailmeta($mail);
-			if (!$mailmeta) continue;
+			$this->mailmeta = $this->get_mailmeta();
+			if (!$this->mailmeta) continue;
 
-			if ($mailmeta['try'] < $this->mailmeta['try'])
+			if ($this->mailmeta['try'] < $try)
 			{
-				$this->mail 	= $mail;
-				$this->mailmeta	= $mailmeta;
+				$try = $this->mailmeta['try'];
+				$mail = $this->mail;
+				$mailmeta = $this->mailmeta;				
 			}
 		}
+		if (!$mail) { $this->alldone(); return; }
 
-		if (!$this->mail) { $this->alldone(); return; }
+		$this->mail 	= $mail;
+		$this->mailmeta	= $mailmeta;
 		unset($mails, $mail, $mailmeta);
 
 		$this->mailmeta['pass']++;
 		$this->report['header'] = 'Batch Report mail #' . $this->mail->id . '  / count : ' . $this->mailmeta['count'] . ' / per_pass : ' . $this->config ['per_pass'] . ' / max_try : ' . $this->config ['max_retry'];
 		$this->report['start']  = $this->mailmeta;
 
-	// select recipients
+	// recipients
 		$recipients = unserialize($this->mail->toemail);
 		$this->toemail= array();
 
@@ -124,8 +127,8 @@ class MP_Batch
 				unset($this->mailmeta['failed'][$k]);
 				if ($this->mailmeta['try']) $this->mailmeta['offset']-- ;
 			}
-			if ($this->mailmeta['try'])	$this->mailmeta['failed'] = array_merge($ko, $this->mailmeta['failed']);
-			else  $this->mailmeta['failed'] = array_merge($this->mailmeta['failed'], $ko);
+			if ($this->mailmeta['try']) $this->mailmeta['failed'] = array_merge($ko, $this->mailmeta['failed']);
+			else $this->mailmeta['failed'] = array_merge($this->mailmeta['failed'], $ko);
 		}
 	// saving context
 		$this->report['end']  = $this->mailmeta;
@@ -133,24 +136,23 @@ class MP_Batch
 			MP_Mail_meta::update($this->mail->id, MailPress_batch_send::meta_key, $this->mailmeta);
 
 	// the end for this mail ?
-		if ($this->mailmeta['sent'] == $this->mailmeta['count']) 				self::update_mail($this->mail->id);
-		if ($this->mailmeta['try']  >= $this->config ['max_retry'] + 1) 	self::update_mail($this->mail->id, count($this->mailmeta['failed']));
+		if ($this->mailmeta['sent'] == $this->mailmeta['count']) 		$this->update_mail_status();
+		if ($this->mailmeta['try']  >= $this->config ['max_retry'] + 1) 	$this->update_mail_status(count($this->mailmeta['failed']));
 	}
 
 // get mailmeta
-	function get_mailmeta($mail)
+	function get_mailmeta()
 	{
-		$mailmeta = MP_Mail_meta::get( $mail->id , MailPress_batch_send::meta_key);
+		$mailmeta = MP_Mail_meta::get($this->mail->id , MailPress_batch_send::meta_key);
 
 		if (!$mailmeta)
 		{
 			$mailmeta = array();
 
-			if (is_serialized ($mail->toemail))	$mailmeta['count'] = count(unserialize($mail->toemail));
+			if (is_serialized ($this->mail->toemail))	$mailmeta['count'] = count(unserialize($this->mail->toemail));
 			else						$mailmeta['count'] = 1;
 
-			$mailmeta['sent'] = $mailmeta['try'] = 0;
-			$mailmeta['processed'] = $mailmeta['offset'] = $mailmeta['pass'] = 0;
+			$mailmeta['sent'] = $mailmeta['try'] = $mailmeta['processed'] = $mailmeta['pass'] = $mailmeta['offset'] = 0;
 			$mailmeta['failed'] = array();
 			return $mailmeta;
 		}
@@ -163,7 +165,7 @@ class MP_Batch
 
 		$failed = (isset($mailmeta['failed'])) ? count($mailmeta['failed']) : 0;
 
-		if ($mailmeta['sent'] == $mailmeta['count']) { self::update_mail($mail->id, $failed); return false; }
+		if ($mailmeta['sent'] == $mailmeta['count']) { $this->update_mail_status($failed); return false; }
 
 		$processed = ($mailmeta['try']) ? $mailmeta['offset'] : $mailmeta['processed'];
 		$count     = ($mailmeta['try']) ? $failed : $mailmeta['count'];
@@ -174,19 +176,19 @@ class MP_Batch
 			$mailmeta['try']++;			
 		}
 
-		if ($mailmeta['try'] >= $this->config ['max_retry'] + 1) { self::update_mail($mail->id, $failed); return false; }
-		if ($mailmeta['try'] && !$failed) 						 { self::update_mail($mail->id, $failed); return false; }
+		if ($mailmeta['try'] >= $this->config ['max_retry'] + 1) { $this->update_mail_status($failed); return false; }
+		if ($mailmeta['try'] && !$failed) 			 { $this->update_mail_status($failed); return false; }
 
 		return $mailmeta;
 	}
 
 // finish
-	public static function update_mail($id, $failed = false)
+	function update_mail_status($failed = 0)
 	{
 		global $wpdb;
 				
-		$x = $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->mp_mails SET status = 'sent' WHERE id = %d ", $id) );
-		if (!$failed) MP_Mail_meta::delete( $id , MailPress_batch_send::meta_key);
+		$x = $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->mp_mails SET status = 'sent' WHERE id = %d ", $this->mail->id) );
+		if (!$failed) MP_Mail_meta::delete( $this->mail->id , MailPress_batch_send::meta_key);
 	}
 
 // batch sending

@@ -3,7 +3,7 @@ class MP_Connection_smtp extends MP_connection_
 {
 	public $Swift_Connection_type = 'SMTP';
 
-	function connect($x, $y)
+	function connect($mail_id, $y)
 	{
 		$settings = get_option(MailPress::option_name_smtp);
 

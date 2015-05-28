@@ -168,7 +168,8 @@ class MP_Mail extends MP_mail_
 /*trace*/	$this->trace->log($x, $this->trace->levels[512]);
 
 		$this->mail->swift_batchSend 		= (1 < $this->mail->recipients_count);
-		$this->mail->mailpress_batch_send	= ($this->mail->swift_batchSend) ? apply_filters('MailPress_status_mail', false) : false;
+		$this->mail->mailpress_batch_send	= ($this->mail->swift_batchSend) ? class_exists('MailPress_batch_send') : false;
+		$this->mail->mailpress_batch_spool_send = ($this->mail->swift_batchSend) ? class_exists('MailPress_batch_spool_send') : false;
 
 ////  Send it  ////
 
@@ -229,7 +230,7 @@ class MP_Mail extends MP_mail_
 			}
 
 	//¤ status ¤//
-			$this->row->status = ($this->mail->mailpress_batch_send) ? (apply_filters('MailPress_status_mail', 'sent')) : 'sent';
+			$this->row->status = ($this->mail->swift_batchSend) ? (apply_filters('MailPress_status_mail', 'sent')) : 'sent';
 			if (!isset($this->row->toname)) $this->row->toname = '';
 
 			wp_cache_delete($this->row->id, 'mp_mail');
@@ -558,20 +559,21 @@ class MP_Mail extends MP_mail_
 
 	//¤ Swift connection ¤//
 
-		if (!has_filter('MailPress_Swift_Connection_type')) new MP_Connection_smtp();
+		if ($this->mail->mailpress_batch_spool_send) 		new MP_Connection_spool();
+		if (!has_filter('MailPress_Swift_Connection_type')) 	new MP_Connection_smtp();
 
 		try 
 		{
 			$Swift_Connection_type = apply_filters('MailPress_Swift_Connection_type', null);
 
-			$conn = apply_filters('MailPress_Swift_Connection_' . $Swift_Connection_type , null, $this->trace );
+			$conn = apply_filters('MailPress_Swift_Connection_' . $Swift_Connection_type , $this->row->id, $this->trace );
 
 			$this->swift = Swift_Mailer::newInstance($conn);
 		}
 		catch (Swift_SwiftException $e) 
 		{
 			$this->trace->log('SWIFTMAILER [ERROR] - ' . "There was a problem connecting with $Swift_Connection_type :\n\n" . $e->getMessage() . "\n\n");	
-			$this->mysql_connect("MP_Mail connect error :  $Swift_Connection_type");
+			$this->mysql_connect(__CLASS__ . ' connect error :  ' . $Swift_Connection_type);
 			return false;
 		} 
 
@@ -593,7 +595,7 @@ class MP_Mail extends MP_mail_
 				$this->swift->registerPlugin(new Swift_Plugins_DecoratorPlugin($this->row->replacements));
 				if (!$this->swift_batchSend())
 				{
-					$this->mysql_connect('MP_Mail batchSend');
+					$this->mysql_connect(__CLASS__ . ' batchSend');
 					return false;
 				}
 			}
@@ -603,21 +605,22 @@ class MP_Mail extends MP_mail_
 			{
 				if (!$this->swift->send($this->message)) 
 				{
-					$this->mysql_connect('MP_Mail send');
+					$this->mysql_connect(__CLASS__ . ' send');
 					return false;
 				}
 			}
-
-			$this->mysql_connect(__CLASS__);
-
-			return true;
 		}
 		catch (Swift_SwiftException $e) 
 		{
 			$this->trace->log('SWIFTMAILER [ERROR] - ' . "There was a problem sending with $Swift_Connection_type :\n\n" . $e->getMessage() . "\n\n");	
-			$this->mysql_connect("MP_Mail sending error :  $Swift_Connection_type");
+			$this->mysql_connect(__CLASS__ . ' sending error : ' . $Swift_Connection_type);
 			return false;
 		}
+
+		$this->mysql_connect(__CLASS__);
+                        
+		if ($this->mail->mailpress_batch_spool_send) do_action('MailPress_schedule_batch_spool_send');
+
 		return true;
 	}
 

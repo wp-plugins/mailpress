@@ -1,5 +1,6 @@
 <?php
 $mp_general['tab'] = 'batches';
+$message = false;
 
 if (class_exists('MailPress_batch_send'))
 {
@@ -15,6 +16,35 @@ if (class_exists('MailPress_batch_send'))
 		if ('wpcron' != $batch_send['batch_mode']) wp_clear_scheduled_hook('mp_process_batch_send');
 		else							 MailPress_batch_send::schedule();
 	}
+}
+
+if (class_exists('MailPress_batch_spool_send'))
+{
+	$batch_spool_send = $_POST['batch_spool_send'];
+        $batch_spool_send['path'] = trim($batch_spool_send['path']);
+
+	$old_batch_spool_send = get_option(MailPress_batch_spool_send::option_name);
+
+	switch (true)
+	{
+		case ( !empty($batch_spool_send['path']) && !MailPress_batch_spool_send::is_path($batch_spool_send['path']) ) :
+			$spoolpath = true;
+			$message = __('path is invalid', MP_TXTDOM); $no_error = false;
+		break;
+		default :
+			update_option(MailPress_batch_spool_send::option_name, $batch_spool_send);
+	
+			if (empty($batch_spool_send['path']) && !is_dir(MP_ABSPATH . 'tmp/spool')) mkdir(MP_ABSPATH . 'tmp/spool');
+
+			if (!isset($old_batch_spool_send['batch_mode'])) $old_batch_spool_send['batch_mode'] = '';
+			if ($old_batch_spool_send['batch_mode'] != $batch_spool_send['batch_mode'])
+			{
+				if ('wpcron' != $batch_spool_send['batch_mode']) wp_clear_scheduled_hook('mp_process_batch_spool_send');
+				else							 		 MailPress_batch_spool_send::schedule();
+			}
+		break;
+	}
+
 }
 
 if (class_exists('MailPress_bounce_handling'))
@@ -67,4 +97,4 @@ if (class_exists('MailPress_delete_old_mails'))
 
 update_option(MailPress::option_name_general, $mp_general);
 
-$message = __("'Batches' settings saved", MP_TXTDOM);
+if (!$message) $message = __("'Batches' settings saved", MP_TXTDOM);

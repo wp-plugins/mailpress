@@ -3,7 +3,7 @@ class MP_Connection_php_mail extends MP_connection_
 {
 	public $Swift_Connection_type = 'PHP_MAIL';
 
-	function connect($x)
+	function connect($mail_id, $y)
 	{
 		$settings = get_option(MailPress_connection_php_mail::option_name);
 

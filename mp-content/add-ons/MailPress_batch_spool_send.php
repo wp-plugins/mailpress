@@ -1,39 +1,39 @@
 <?php
-if (class_exists('MailPress') && !class_exists('MailPress_batch_send'))
+if (class_exists('MailPress') && !class_exists('MailPress_batch_spool_send'))
 {
 /*
-Plugin Name: MailPress_batch_send 
-Plugin URI: http://blog.mailpress.org/tutorials/add-ons/batch_send/
-Description: Mails : Send them in batch mode  (<span style='color:red;'>not compatible with Batch_spool_send</span> add-on)
+Plugin Name: MailPress_batch_spool_send 
+Plugin URI: http://blog.mailpress.org/tutorials/add-ons/batch_spool_send/
+Description: Mails : Send them in batch mode via spool (<span style='color:red;'>not compatible with Batch_send</span> add-on)
 Version: 5.4.3
 */
 
-class MailPress_batch_send
+class MailPress_batch_spool_send
 {
-	const meta_key = '_MailPress_batch_send';
-	const option_name = 'MailPress_batch_send';
-	const log_name = 'batch_send';
+	const meta_key = '_MailPress_batch_spool_send';
+	const option_name = 'MailPress_batch_spool_send';
+	const log_name = 'batch_spool_send';
 
 	const bt = 132;
 
 	function __construct()
 	{
 // prepare mail
-		add_filter('MailPress_status_mail', 		array(__CLASS__, 'status_mail'));
+		add_filter('MailPress_status_mail',		array(__CLASS__, 'status_mail'));
 
 // for batch mode
-		add_action('mp_process_batch_send', 		array(__CLASS__, 'process'));
+		add_action('mp_process_batch_spool_send',	array(__CLASS__, 'process'));
 
 		$config = get_option(self::option_name);
 		if (!empty($config['batch_mode']) && 'wpcron' == $config['batch_mode'])
 		{	
-			add_action('MailPress_schedule_batch_send', 	array(__CLASS__, 'schedule'));
+			add_action('MailPress_schedule_batch_spool_send', 	array(__CLASS__, 'schedule'));
 		}
 
 		if (is_admin())
 		{
 		// for install
-			register_activation_hook(plugin_basename(__FILE__), 	array(__CLASS__, 'install'));
+			register_activation_hook(plugin_basename(__FILE__),	 array(__CLASS__, 'install'));
 			register_deactivation_hook(plugin_basename(__FILE__), array(__CLASS__, 'uninstall'));
 		// for link on plugin page
 			add_filter('plugin_action_links', 		array(__CLASS__, 'plugin_action_links'), 10, 2 );
@@ -60,6 +60,16 @@ class MailPress_batch_send
 // for to mails column
 		add_filter('MailPress_to_mails_column', 		array(__CLASS__, 'to_mails_column'), 8, 2);
 	}
+        
+// spool
+	public static function is_path($p)
+	{
+		if (is_writable($p)) return $p;
+
+		if (!is_dir($p)) if (mkdir($p)) return $p;
+
+		return false;
+	}
 
 // prepare mail
 	public static function status_mail()
@@ -72,7 +82,7 @@ class MailPress_batch_send
 	{
 		MP_::no_abort_limit();
 
-		new MP_Batch();
+		new MP_Batch_spool();
 	}
 
 // schedule
@@ -81,8 +91,8 @@ class MailPress_batch_send
 		$config = get_option(self::option_name);
 		$now4cron = current_time('timestamp', 'gmt');
 
-		if (!wp_next_scheduled( 'mp_process_batch_send' )) 
-			wp_schedule_single_event($now4cron + $config['every'], 'mp_process_batch_send');
+		if (!wp_next_scheduled( 'mp_process_batch_spool_send' )) 
+			wp_schedule_single_event($now4cron + $config['every'], 'mp_process_batch_spool_send');
 	}
 
 ////  ADMIN  ////
@@ -96,7 +106,7 @@ class MailPress_batch_send
 		self::uninstall();
 
 		global $wpdb;
-		$wpdb->query( $wpdb->prepare("UPDATE $wpdb->mp_mailmeta SET meta_key = %s WHERE meta_key = %s;", self::meta_key, 'batch_send') );
+		$wpdb->query( $wpdb->prepare("UPDATE $wpdb->mp_mailmeta SET meta_key = %s WHERE meta_key = %s;", self::meta_key, 'batch_spool_send') );
 
 		$logs = get_option(MailPress::option_name_logs);
 		if (!isset($logs[self::log_name]))
@@ -105,12 +115,12 @@ class MailPress_batch_send
 			update_option(MailPress::option_name_logs, $logs );
 		}
 
-		do_action('MailPress_schedule_batch_send');
+		do_action('MailPress_schedule_batch_spool_send');
 	}
 
 	public static function uninstall() 
 	{
-		wp_clear_scheduled_hook('mp_process_batch_send');
+		wp_clear_scheduled_hook('mp_process_batch_spool_send');
 	}
 
 // for link on plugin page
@@ -124,8 +134,8 @@ class MailPress_batch_send
 	{
 		if ($screen != MailPress_page_settings) return $scripts;
 
-		wp_register_script( 'mp-batchsend', 	'/' . MP_PATH . 'mp-admin/js/settings_batch_send.js', array(), false, 1);
-		$scripts[] = 'mp-batchsend';
+		wp_register_script( 'mp-batchspoolsend', 	'/' . MP_PATH . 'mp-admin/js/settings_batch_spool_send.js', array(), false, 1);
+		$scripts[] = 'mp-batchspoolsend';
 		return $scripts;
 	}
 
@@ -137,12 +147,12 @@ class MailPress_batch_send
 
 	public static function settings_batches()
 	{
-		include (MP_ABSPATH . 'mp-admin/includes/settings/batches_batch_send.form.php');
+		include (MP_ABSPATH . 'mp-admin/includes/settings/batches_batch_spool_send.form.php');
 	}
 
 	public static function settings_logs($logs)
 	{
-		MP_AdminPage::logs_sub_form(self::log_name, $logs, __('Batch', MP_TXTDOM));
+		MP_AdminPage::logs_sub_form(self::log_name, $logs, __('Spool', MP_TXTDOM));
 	}
 
 	public static function autorefresh_every($every = 30)
@@ -166,7 +176,7 @@ class MailPress_batch_send
 
 		if (!MP_Mail_meta::get( $_GET['id'], self::meta_key)) return;
 
-		add_meta_box('batchsenddiv', __('Batch current status', MP_TXTDOM), array(__CLASS__, 'meta_box_status'), $screen, 'normal', 'core');
+		add_meta_box('batchspoolsenddiv', __('Batch Spool current status', MP_TXTDOM), array(__CLASS__, 'meta_box_status'), $screen, 'normal', 'core');
 	}
 
 	public static function meta_box_status($mail)
@@ -175,7 +185,7 @@ class MailPress_batch_send
 ?>
 		<table style='width:100%;'>
 			<tr>
-				<td><?php _e('Batch status', MP_TXTDOM); ?></td>
+				<td><?php _e('Batch Spool status', MP_TXTDOM); ?></td>
 				<td colspan='3'><?php echo $mail->status; ?></td>
 			</tr>
 <?php 	if (is_array($mailmeta)) : ?>
@@ -226,5 +236,5 @@ class MailPress_batch_send
 		return $to;
 	}
 }
-new MailPress_batch_send();
+new MailPress_batch_spool_send();
 }
