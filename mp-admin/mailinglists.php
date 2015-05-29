@@ -218,7 +218,7 @@ class MP_AdminPage extends MP_adminpage_list_
 			switch ($column_name) 
 			{
 				case 'cb':
-					$out .= "<th scope='row' class='check-column'>";
+					$out .= "<th class='check-column'>";
 					if ( $default_mailinglist_id != $mailinglist->term_id ) {
 						$out .= "<input type='checkbox' name='checked[]' value='$mailinglist->term_id' />";
 					} else {

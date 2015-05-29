@@ -149,7 +149,7 @@ foreach ($flipflops as $flipflop)
 	{
 		$display_name = ('next' != $key) ? $display_name : "<abbr title='" . __('e.g., "now", "tomorrow", "+2 days", or "06/04/08 15:27:09"', MP_TXTDOM) . "'>$display_name</abbr>";
 		$display_name = ('args' != $key) ? $display_name : "<abbr title='" . __('JSON encoded string', MP_TXTDOM) . "'>$display_name</abbr>";
-		echo "<th scope='col'>$display_name</th>";
+		echo "<th>$display_name</th>";
 	} 
 ?>
 				</tr>

@@ -54,8 +54,8 @@ switch ( $action )
 		<col class="th" />
 <?php if ( 'diff' == $action ) : ?>
 		<tr id="revision">
-			<th scope="row"></th>
-			<th scope="col" class="th-full">
+			<th></th>
+			<th class="th-full">
 				<span class="alignleft"><?php  printf( __('Older: %s', MP_TXTDOM), MP_Mail_revision::title( $left_revision, $left_link ) ); ?></span>
 				<span class="alignright"><?php printf( __('Newer: %s', MP_TXTDOM), MP_Mail_revision::title( $right_revision, $right_link ) ); ?></span>
 			</th>
@@ -81,7 +81,7 @@ foreach ( $autosave_data as $field => $field_title ) :
 	}
 	?>
 		<tr id="revision-field-<?php echo $field; ?>">
-			<th scope="row"><?php echo esc_html( $field_title ); ?></th>
+			<th><?php echo esc_html( $field_title ); ?></th>
 			<td><div class="pre"><?php echo $content; ?></div></td>
 		</tr>
 <?php

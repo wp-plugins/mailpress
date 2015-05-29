@@ -30,7 +30,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 		</tr>
 		<tr>
 			<th><?php _e('Password', MP_TXTDOM); ?></th>
-			<td colspan='2'>
+			<td>
 				<input type='password' size='25' name='connection_pop3[password]' value="<?php if (isset($connection_pop3['password'])) echo $connection_pop3['password']; ?>" />
 			</td>
 		</tr>

@@ -57,4 +57,4 @@ if (!isset($batch_delete_old_mails)) $batch_delete_old_mails = get_option(MailPr
 		</table>
 	</td>
 </tr>
-<tr class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>
+<tr class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td><td></td></tr>

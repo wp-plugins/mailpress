@@ -66,8 +66,8 @@ class MP_AdminPage extends MP_adminpage_
 		{
 			self::$first = false;
 ?>
-<tr valign='top' class='mp_sep'>
-	<th scope='row'><strong><?php _e('Logs', MP_TXTDOM); ?></strong></th>
+<tr class='mp_sep'>
+	<th><strong><?php _e('Logs', MP_TXTDOM); ?></strong></th>
 	<td><strong><?php _e('Level', MP_TXTDOM); ?></strong></td>
 	<td><strong><?php _e('Days', MP_TXTDOM); ?></strong></td>
 	<td><strong><?php _e('Last purge', MP_TXTDOM); ?></strong></td>
@@ -75,8 +75,8 @@ class MP_AdminPage extends MP_adminpage_
 <?php
 		}
 ?>
-<tr valign='top' class='mp_sep'>
-	<th scope='row'><strong><?php echo $headertext; ?></strong></th>
+<tr class='mp_sep'>
+	<th><strong><?php echo $headertext; ?></strong></th>
 	<td>
 		<select name='logs[<?php echo $name ?>][level]'>
 <?php self::select_option($xlevel, $data[$name]['level']);?>

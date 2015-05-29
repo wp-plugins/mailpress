@@ -388,8 +388,8 @@ class MailPress_newsletter
 				<th class='thtitle'><?php _e('Newsletters', MP_TXTDOM); ?></th>
 				<td></td>
 			</tr>
-			<tr valign='top' class='mp_sep'>
-				<th scope='row'><?php _e('Newsletters show at most', MP_TXTDOM); ?></th>
+			<tr class='mp_sep'>
+				<th><?php _e('Newsletters show at most', MP_TXTDOM); ?></th>
 				<td style='padding:0;'>
 					<select name='general[post_limits]'>
 <option value="0">&#160;</option>
@@ -430,7 +430,7 @@ class MailPress_newsletter
 	public static function meta_box($mp_user)
 	{ 
 		$check_newsletters = self::get_checklist($mp_user->id, array('admin' => true));
-		echo ($check_newsletters) ? $check_newsletters : __('Nothing to subscribe for ...', MP_TXTDOM) . " <a href='" . MailPress_settings . "&tab=subscriptions'>" . __('Settings') . '</a>';
+		echo ($check_newsletters) ? $check_newsletters : __('Nothing to subscribe for ...', MP_TXTDOM) . " <a href='" . MailPress_settings . "&amp;tab=subscriptions'>" . __('Settings') . '</a>';
 	}
 
 // for meta box in write post  ////

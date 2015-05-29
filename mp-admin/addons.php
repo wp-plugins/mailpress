@@ -181,7 +181,7 @@ class MP_AdminPage extends MP_adminpage_list_
 
 				case 'cb':
 ?>
-		<th class='check-column' scope='row'>
+		<th class='check-column'>
 			<input type='checkbox' name='checked[]' value="<?php echo $addon['file']; ?>" />
 		</th>
 <?php

@@ -69,4 +69,4 @@ if (!isset($batch_send)) $batch_send = get_option(MailPress_batch_send::option_n
 		</table>
 	</td>
 </tr>
-<tr class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>
+<tr class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td><td></td></tr>

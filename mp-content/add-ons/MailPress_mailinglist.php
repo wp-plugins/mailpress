@@ -425,8 +425,8 @@ class MailPress_mailinglist
 				<th class='thtitle'><?php _e('Mailing lists', MP_TXTDOM); ?></th>
 				<td></td>
 			</tr>
-			<tr valign='top' class='mp_sep'>
-				<th scope='row'><?php _e('Default Mailing list', MP_TXTDOM); ?></th>
+			<tr class='mp_sep'>
+				<th><?php _e('Default Mailing list', MP_TXTDOM); ?></th>
 				<td style='padding:0;'>
 					<?php	MP_Mailinglist::dropdown($dropdown_options); ?>
 				</td>

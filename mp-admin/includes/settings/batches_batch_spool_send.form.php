@@ -85,4 +85,4 @@ if (!isset($batch_spool_send)) $batch_spool_send = get_option(MailPress_batch_sp
 		</table>
 	</td>
 </tr>
-<tr class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>
+<tr class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td><td></td></tr>

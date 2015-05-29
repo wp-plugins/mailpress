@@ -52,7 +52,7 @@ class MP_Dashboard__right_now extends MP_dashboard_widget_
 	<div class="versions">
 		<p>
 <?php 	
-		$theme_title = (current_user_can('MailPress_switch_themes')) ? "<a href='<?php echo MailPress_themes; ?>'>{$ct->title}</a>" : $ct->title;
+		$theme_title = (current_user_can('MailPress_switch_themes')) ? "<a href='" . MailPress_themes . "'>{$ct->title}</a>" : $ct->title;
 		printf(__('Theme %s', MP_TXTDOM),"<span class='b'>" . $theme_title . "</span>");
 ?>
 		</p>

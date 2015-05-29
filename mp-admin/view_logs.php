@@ -133,13 +133,13 @@ class MP_AdminPage extends MP_adminpage_list_
 		$attributes = "class='post-title column-title'";
 ?>
 	<tr<?php echo $row_class; ?>>
-		<th class="check-column" scope="row">
+		<th class="check-column">
 			<input type="checkbox" value="<?php echo $file; ?>" name="checked[]" />
 		</th>
 		<td  <?php echo $attributes ?>>
 			<span style='display:block;'>
 				<strong style='display:inline;'>
-					<a class='row-title'href='<?php echo $view_url; ?>' title='<?php printf( __('View "%1$s"', MP_TXTDOM) , $file ); ?>'>
+					<a class='row-title' href='<?php echo $view_url; ?>' title='<?php printf( __('View "%1$s"', MP_TXTDOM) , $file ); ?>'>
 						<?php echo $file; ?>
 					</a>
 				</strong>

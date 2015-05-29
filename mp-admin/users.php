@@ -285,7 +285,7 @@ class MP_AdminPage extends MP_adminpage_list_
 				case 'cb':
 					if ( $checkbox ) : 
 ?>
-		<th class='check-column' scope='row'>
+		<th class='check-column'>
 			<input type='checkbox' name='checked[]' value='<?php echo $id; ?>'<?php echo $disabled; ?> />
 		</th>
 <?php

@@ -40,20 +40,20 @@ if (class_exists('MailPress_mailinglist')) if ($active)	$checklist_mailinglists 
 
 		<table class="form-table">
 			<tr>
-				<th scope='row'><?php _e('Email', MP_TXTDOM); ?></th>
+				<th><?php _e('Email', MP_TXTDOM); ?></th>
 				<td>
 					<input type='text' disabled='disabled' value='<?php echo $mp_user->email; ?>' size='30' />
 				</td>
 			</tr>
 			<tr>
-				<th scope='row'><?php _e('Name', MP_TXTDOM); ?></th>
+				<th><?php _e('Name', MP_TXTDOM); ?></th>
 				<td>
 					<input name='mp_user_name' type='text' value="<?php echo esc_attr($mp_user->name); ?>" size='30' />
 				</td>
 			</tr>
 <?php if ($checklist_comments) : $ok = true; ?>
 			<tr>
-				<th scope="row"><?php _e('Comments'); ?></th>
+				<th><?php _e('Comments'); ?></th>
 				<td>
 					<?php echo $checklist_comments; ?>
 				</td>
@@ -61,7 +61,7 @@ if (class_exists('MailPress_mailinglist')) if ($active)	$checklist_mailinglists 
 <?php endif; ?> 	
 <?php if ($checklist_newsletters) : $ok = true; ?>
 			<tr>
-				<th scope="row"><?php _e('Newsletters', MP_TXTDOM); ?></th>
+				<th><?php _e('Newsletters', MP_TXTDOM); ?></th>
 				<td>
 					<?php echo $checklist_newsletters; ?>
 				</td>
@@ -69,7 +69,7 @@ if (class_exists('MailPress_mailinglist')) if ($active)	$checklist_mailinglists 
 <?php endif; ?> 	
 <?php if ($checklist_mailinglists) : $ok = true; ?>
 			<tr>
-				<th scope="row"><?php _e('Mailing lists', MP_TXTDOM); ?></th>
+				<th><?php _e('Mailing lists', MP_TXTDOM); ?></th>
 				<td>
 					<?php echo $checklist_mailinglists; ?>
 				</td>

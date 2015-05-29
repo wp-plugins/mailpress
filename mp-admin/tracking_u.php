@@ -77,7 +77,7 @@ class MP_AdminPage extends MP_adminpage_list_
 			$class = ( 'cb' === $key ) ? " class='check-column'" : " class='manage-column column-$key'";
 			$style = ( in_array($key, $hidden) ) ? " style='display:none;'" : '';
 
-			echo "<th scope='col'$thid$class$style>$display_name</th>";
+			echo "<th$thid$class$style>$display_name</th>";
 		} 
 	}
 

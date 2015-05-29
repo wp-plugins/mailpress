@@ -233,7 +233,7 @@ class MP_AdminPage extends MP_adminpage_list_
 			switch ($column_name) 
 			{
 				case 'cb':
-					$out .= (!$disabled) ? '<th scope="row" class="check-column"> <input type="checkbox" name="checked[]" value="' . $field->id . '" /></th>' : '<th scope="row" class="check-column"></th>';
+					$out .= (!$disabled) ? '<th class="check-column"> <input type="checkbox" name="checked[]" value="' . $field->id . '" /></th>' : '<th class="check-column"></th>';
 				break;
 				case 'name':
 					$out .= '<td ' . $attributes . '><strong><a class="row-title" href="' . $edit_url . '" title="' . esc_attr(sprintf(__('Edit "%s"'), $field->label)) . '">' . $field->label . '</a></strong><br />';

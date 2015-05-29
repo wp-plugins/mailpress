@@ -113,7 +113,7 @@ class MP_import_subscribe_to_comments extends MP_import_importer_
 	 	$this->step1 .= "<h3>" . __('Data Analysis', MP_TXTDOM) . "</h3>\n";
 	 	$this->step1 .= "<table class='form-table'>\n";
 	 	$this->step1 .= "<tr>\n";
-	 	$this->step1 .= "<th scope='row'>" . $this->column_name . "</th>\n";
+	 	$this->step1 .= "<th>" . $this->column_name . "</th>\n";
 	 	$this->step1 .= "<td>\n";
 	 	$this->step1 .= "<p>" . sprintf(__('*** ERROR *** Column not detected in %1$s', MP_TXTDOM), $wpdb->comments) . "</p>\n";
 	 	$this->step1 .= "</td>\n";
@@ -161,7 +161,7 @@ class MP_import_subscribe_to_comments extends MP_import_importer_
 			$this->message_report('             ! ' . sprintf('%1$s subscriber(s) found', count($subs) ));
 
 			$this->step1 .= "<tr>\n";
-			$this->step1 .= "<th scope='row'>" . $wpdb->comments . "</th>\n";
+			$this->step1 .= "<th>" . $wpdb->comments . "</th>\n";
 			$this->step1 .= "<td>\n";
 			$this->step1 .= "<p>" .  sprintf(__('%1$s subscriber(s) found', MP_TXTDOM), count($subs) ) . "</p>\n";
 			$this->step1 .= "</td>\n";
@@ -172,7 +172,7 @@ class MP_import_subscribe_to_comments extends MP_import_importer_
 			$this->message_report('             ! Comments table: no data');
 
 			$this->step1 .= "<tr>\n";
-			$this->step1 .= "<th scope='row'>" . $wpdb->comments . "</th>\n";
+			$this->step1 .= "<th>" . $wpdb->comments . "</th>\n";
 			$this->step1 .= "<td>\n";
 			$this->step1 .= "<p>" .  __('no data', MP_TXTDOM) . "</p>\n";
 			$this->step1 .= "</td>\n";

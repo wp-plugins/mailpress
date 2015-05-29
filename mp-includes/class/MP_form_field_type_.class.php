@@ -123,7 +123,7 @@ abstract class MP_form_field_type_
 
 		if (empty($tabs)) return;
 ?>
-<div id='field_type_<?php echo $this->id; ?>_settings' class='field_type_settings'<?php echo ( ($this->type_ok) ? '' : "style='display:none;'" ); ?>>
+<div id='field_type_<?php echo $this->id; ?>_settings' class='field_type_settings' <?php echo ( ($this->type_ok) ? '' : "style='display:none;'" ); ?>>
 	<ul>
 <?php 	foreach ($tabs as $tab_type => $tab) echo "<li><a href='#settings_tab_" . $this->id . '_' . $tab_type . "'><span>$tab</span></a></li>\n"; ?>
 	</ul>

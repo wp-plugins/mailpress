@@ -91,7 +91,7 @@ class MP_Mail_revision
 					$actions = '';
 
 				$rows .= "<tr$class>\n";
-				$rows .= "\t<th style='white-space: nowrap' scope='row'><input type='radio' name='left' value='$rev_id'$left_checked /><input type='radio' name='right' value='$rev_id'$right_checked /></th>\n";
+				$rows .= "\t<th style='white-space: nowrap'><input type='radio' name='left' value='$rev_id'$left_checked /><input type='radio' name='right' value='$rev_id'$right_checked /></th>\n";
 				$rows .= "\t<td>$date</td>\n";
 				$rows .= "\t<td>$name</td>\n";
 				$rows .= "\t<td class='action-links'>$actions</td>\n";
@@ -126,10 +126,10 @@ class MP_Mail_revision
 		<col style="width: 33%" />
 		<thead>
 			<tr>
-				<th scope="col"></th>
-				<th scope="col"><?php _e( 'Date Created', MP_TXTDOM ); ?></th>
-				<th scope="col"><?php _e( 'Author' , MP_TXTDOM); ?></th>
-				<th scope="col" class="action-links"><?php _e( 'Actions', MP_TXTDOM ); ?></th>
+				<th></th>
+				<th><?php _e( 'Date Created', MP_TXTDOM ); ?></th>
+				<th><?php _e( 'Author' , MP_TXTDOM); ?></th>
+				<th class="action-links"><?php _e( 'Actions', MP_TXTDOM ); ?></th>
 			</tr>
 		</thead>
 		<tbody>

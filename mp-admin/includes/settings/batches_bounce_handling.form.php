@@ -77,4 +77,4 @@ if (!isset($bounce_handling)) $bounce_handling = get_option(MailPress_bounce_han
 		</table>
 	</td>
 </tr>
-<tr class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>
+<tr class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td><td></td></tr>

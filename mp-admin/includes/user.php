@@ -40,8 +40,8 @@ if (isset($_GET['saved'])) 	{$err += 0; if (!empty($message)) $message .= '<br /
 				<div id="post-body-content" class="has-sidebar-content">
 					<table class='form-table'>
 						<tbody>
-							<tr valign='top'>
-								<th scope='row' class='h1em'>
+							<tr>
+								<th class='h1em'>
 									<?php _e('Email', MP_TXTDOM); ?>
 								</th>
 								<td class='h1em'>
@@ -52,8 +52,8 @@ if (isset($_GET['saved'])) 	{$err += 0; if (!empty($message)) $message .= '<br /
 <?php echo MP_User::get_flag_IP(); ?>
 								</td>
 							</tr>
-							<tr valign='top'>
-								<th scope='row' class='h1em'>
+							<tr>
+								<th class='h1em'>
 									<?php _e('Name', MP_TXTDOM); ?>
 								</th>
 								<td class='h1em'>

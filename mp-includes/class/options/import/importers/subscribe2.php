@@ -119,7 +119,7 @@ class MP_import_subscribe2 extends MP_import_importer_
 	 	$this->step1 .= "<h3>" . __('Data Analysis', MP_TXTDOM) . "</h3>\n";
 	 	$this->step1 .= "<table class='form-table'>\n";
 	 	$this->step1 .= "<tr>\n";
-	 	$this->step1 .= "<th scope='row'>" . $this->maintable . "</th>\n";
+	 	$this->step1 .= "<th>" . $this->maintable . "</th>\n";
 	 	$this->step1 .= "<td>\n";
 	 	$this->step1 .= "<p>" . __('*** ERROR *** Table not detected', MP_TXTDOM) . "</p>\n";
 	 	$this->step1 .= "</td>\n";
@@ -174,7 +174,7 @@ class MP_import_subscribe2 extends MP_import_importer_
 			$this->message_report("** ERROR ** ! " . sprintf('Usermeta table: %1$s, no data', $wpdb->usermeta ));
 
 			$this->step1 .= "<tr>\n";
-			$this->step1 .= "<th scope='row'>" . $wpdb->usermeta . "</th>\n";
+			$this->step1 .= "<th>" . $wpdb->usermeta . "</th>\n";
 			$this->step1 .= "<td>\n";
 			$this->step1 .= "<p>" . __('no data', MP_TXTDOM) . "</p>\n";
 			$this->step1 .= "</td>\n";
@@ -194,7 +194,7 @@ class MP_import_subscribe2 extends MP_import_importer_
 			$this->message_report("** ERROR ** ! " . sprintf('Database error : %1$s', $wpdb->last_error));
 
 			$this->step1 .= "<tr>\n";
-			$this->step1 .= "<th scope='row'>" . $this->maintable . "</th>\n";
+			$this->step1 .= "<th>" . $this->maintable . "</th>\n";
 			$this->step1 .= "<td>\n";
 			$this->step1 .= $this->error('<p>' . sprintf(__("*** ERROR *** Database error : %1$s", MP_TXTDOM), $wpdb->last_error) . "</p>\n", false);
 			$this->step1 .= "</td>\n";
@@ -205,7 +205,7 @@ class MP_import_subscribe2 extends MP_import_importer_
 			$this->message_report("** ERROR ** ! " . sprintf('Main table : %1$s empty', $this->maintable ));
 
 			$this->step1 .= "<tr>\n";
-			$this->step1 .= "<th scope='row'>" . $this->maintable . "</th>\n";
+			$this->step1 .= "<th>" . $this->maintable . "</th>\n";
 			$this->step1 .= "<td>\n";
 			$this->step1 .= "<p>" . __('no data', MP_TXTDOM) . "</p>\n";
 			$this->step1 .= "</td>\n";
@@ -237,7 +237,7 @@ class MP_import_subscribe2 extends MP_import_importer_
 		sort($recap);
 
 		$this->step1 .= "<tr>\n";
-		$this->step1 .= "<th scope='row'>" . $wpdb->usermeta . "</th>\n";
+		$this->step1 .= "<th>" . $wpdb->usermeta . "</th>\n";
 		$this->step1 .= "<td>\n";
 
 		if (class_exists('MailPress_sync_wordpress_user')) 
@@ -341,7 +341,7 @@ class MP_import_subscribe2 extends MP_import_importer_
 		if (class_exists('MailPress_mailinglist')) $checklist_mailinglists = MailPress_mailinglist::get_checklist();
 
 		$this->step1 .= "<tr>\n";
-		$this->step1 .= "<th scope='row'>" . $this->maintable . "</th>\n";
+		$this->step1 .= "<th>" . $this->maintable . "</th>\n";
 		$this->step1 .= "<td>\n";
 		$this->step1 .= "<ul>\n";
 
