@@ -13,12 +13,12 @@ $formname = substr(basename(__FILE__), 0, -4);
 	<input type='hidden' name='formname' value='<?php echo $formname ?>' />
 	<table class='form-table rc-table'>
 		<tr>
-			<th scope='row'></th>
-			<th scope='row'><strong><?php _e('User', MP_TXTDOM); ?></strong></th>
-			<th scope='row'><strong><?php _e('Mail', MP_TXTDOM); ?></strong></th>
+			<th></th>
+			<th><?php _e('User', MP_TXTDOM); ?></th>
+			<th><?php _e('Mail', MP_TXTDOM); ?></th>
 		</tr>
 		<tr>
-			<td style='vertical-align:top;'><strong><i><?php _e('Boxes', MP_TXTDOM); ?></i></strong></td>
+			<th style='vertical-align:top;'><?php _e('Boxes', MP_TXTDOM); ?></th>
 			<td class='field'>
 <?php
 foreach ($tracking_reports['user'] as $k => $v)

@@ -130,10 +130,9 @@ class MailPress_comment_newsletter_subscription
 					'selected' 		=> (isset($settings['default'])) ? $settings['default'] : '',
 		);
 ?>
-			<tr><th></th><td></td></tr>
 			<tr>
-				<th style='padding:0;'><strong><?php _e('Comment Newsletter subscription', MP_TXTDOM); ?></strong></th>
-				<td style='padding:0;'></td>
+				<th class='thtitle'><?php _e('Comment Newsletter subscription', MP_TXTDOM); ?></th>
+        <td  colspan='2'></td>
 			</tr>
 			<tr valign='top' class='mp_sep'>
 				<th scope='row'><?php _e('Default Newsletter', MP_TXTDOM); ?></th>

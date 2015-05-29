@@ -17,11 +17,11 @@ $formname = substr(basename(__FILE__), 0, -4);
 
 <!-- From -->
 		<tr>
-			<th style='padding:0;'><strong><?php _e('From', MP_TXTDOM); ?></strong></th>
+			<th class='thtitle'><?php _e('From', MP_TXTDOM); ?></th>
 			<td style='padding:0;'></td>
 		</tr>
-		<tr valign='top' class='mp_sep'>
-			<th scope='row'><?php _e('All Mails sent from', MP_TXTDOM); ?></th>
+		<tr class='mp_sep'>
+			<th><?php _e('All Mails sent from', MP_TXTDOM); ?></th>
 			<td style='padding:0;'>
 				<table class='subscriptions'>
 					<tr>
@@ -38,19 +38,18 @@ $formname = substr(basename(__FILE__), 0, -4);
 			</td>
 		</tr>
 <!-- Blog -->
-		<tr><th></th><td></td></tr>
-		<tr valign='top'>
-			<th style='padding:0;'><strong><?php _e('On Blog', MP_TXTDOM); ?></strong></th>
+		<tr>
+			<th class='thtitle'><?php _e('On Blog', MP_TXTDOM); ?></th>
 			<td style='padding:0;'></td>
 		</tr>
-		<tr valign='top'>
-			<th scope='row'><label for='fullscreen'><?php _e('View mail in fullscreen', MP_TXTDOM); ?></label></th>
+		<tr>
+			<th><label for='fullscreen'><?php _e('View mail in fullscreen', MP_TXTDOM); ?></label></th>
 			<td>
 				<input id='fullscreen' name='general[fullscreen]' type='checkbox'<?php checked( isset($mp_general['fullscreen']) ); ?> />
 			</td>
 		</tr>
-		<tr valign='top'>
-			<th scope='row'><?php _e(' Manage subscriptions from', MP_TXTDOM); ?></th>
+		<tr>
+			<th><?php _e(' Manage subscriptions from', MP_TXTDOM); ?></th>
 			<td style='padding:0;'>
 				<table>
 					<tr>
@@ -69,27 +68,26 @@ $formname = substr(basename(__FILE__), 0, -4);
 			</td>
 		</tr>
 <?php do_action('MailPress_settings_general_forms'); ?>
-		<tr valign='top' class='mp_sep' style='line-height:2px;padding:0;'><th style='line-height:2px;padding:0;'></th><td style='line-height:2px;padding:0;'></td></tr>
+		<tr class='mp_sep' style='line-height:2px;padding:0;'><th style='line-height:2px;padding:0;'></th><td style='line-height:2px;padding:0;'></td></tr>
 <!-- Admin -->
-		<tr><th></th><td></td></tr>
 		<tr>
-			<th style='padding:0;'><strong><?php _e('Admin', MP_TXTDOM); ?></strong></th>
+			<th class='thtitle'><?php _e('Admin', MP_TXTDOM); ?></th>
 			<td style='padding:0;'></td>
 		</tr>
-		<tr valign='top'>
-			<th scope='row'><label for='dshbrd'><?php _e('Dashboard widgets', MP_TXTDOM); ?></label></th>
+		<tr>
+			<th><label for='dshbrd'><?php _e('Dashboard widgets', MP_TXTDOM); ?></label></th>
 			<td>
 				<input id='dshbrd' name='general[dashboard]' type='checkbox'<?php checked( isset($mp_general['dashboard']) ); ?> />
 			</td>
 		</tr>
-		<tr valign='top'>
-			<th scope='row'><label for='wpmail'><?php _e('MailPress version of wp_mail', MP_TXTDOM); ?></label></th>
+		<tr>
+			<th><label for='wpmail'><?php _e('MailPress version of wp_mail', MP_TXTDOM); ?></label></th>
 			<td>
 				<input id='wpmail' name='general[wp_mail]' type='checkbox'<?php checked( isset($mp_general['wp_mail']) ); ?> />
 			</td>
 		</tr>
 <?php do_action('MailPress_settings_general_admin'); ?>
-		<tr valign='top' class='mp_sep' style='line-height:2px;padding:0;'><th style='line-height:2px;padding:0;'></th><td style='line-height:2px;padding:0;'></td></tr>
+		<tr class='mp_sep' style='line-height:2px;padding:0;'><th style='line-height:2px;padding:0;'></th><td style='line-height:2px;padding:0;'></td></tr>
 
 <!-- Add ons -->
 <?php do_action('MailPress_settings_general'); ?>

@@ -1,4 +1,4 @@
-.ui-tabs-nav li {
+#settings-tabs li {
 	line-height:26px;
 	list-style:none;
 	float:left;
@@ -7,8 +7,12 @@
 .ui-tabs-nav li a {
 	text-decoration:none;
 }
-li.ui-tabs-selected a span {
-	color:#D54E21;
+li.ui-tabs-active a span {
+    background: #ccc none repeat scroll 0 0 !important;
+    border-color: #aaa !important;
+    box-shadow: none !important;
+    color: #000 !important;
+    text-decoration: none !important;
 }
 .general td {
 	border:none;
@@ -28,9 +32,6 @@ li.ui-tabs-selected a span {
 .w30 {
 	width:30%;
 }
-.pr10 {
-	padding-right:10px;
-}
 .startmsg {
 	text-align:left;
 	font-weight:bold;
@@ -38,4 +39,17 @@ li.ui-tabs-selected a span {
 }
 .form-table input.redbd {
 	border-color:#f00;
+}
+
+
+.pr10 {
+	padding:0 10px 5px 0 !important;
+}
+.fragments {
+	clear:both;
+}
+.thtitle {
+	background-color: #ddd;
+	font-style: italic;
+	padding: 20px 10px 10px 20px !important;
 }

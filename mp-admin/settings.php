@@ -66,7 +66,6 @@ class MP_AdminPage extends MP_adminpage_
 		{
 			self::$first = false;
 ?>
-<tr><th></th><td colspan='4'></td></tr>
 <tr valign='top' class='mp_sep'>
 	<th scope='row'><strong><?php _e('Logs', MP_TXTDOM); ?></strong></th>
 	<td><strong><?php _e('Level', MP_TXTDOM); ?></strong></td>

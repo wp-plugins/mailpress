@@ -7,8 +7,8 @@ $formname = substr(basename(__FILE__), 0, -4);
 <form name='<?php echo $formname ?>' action='' method='post' class='mp_settings'>
 	<input type='hidden' name='formname' value='<?php echo $formname ?>' />
 	<table class='form-table'>
-		<tr valign='top'>
-			<th scope='row'><?php _e('Connect', MP_TXTDOM); ?></th>
+		<tr>
+			<th><?php _e('Connect', MP_TXTDOM); ?></th>
 			<td class='field'>
 				<label for='connection_sendmail_radio1'>
 					<input name='connection_sendmail[cmd]' type='radio'<?php checked($connection_sendmail['cmd'],'std'); ?>  value='std' class='connection_sendmail' id='connection_sendmail_radio1' />

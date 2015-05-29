@@ -2,15 +2,13 @@
 global $mp_general, $mp_subscriptions;
 if (!isset($subscriptions)) $subscriptions = $mp_subscriptions;
 ?>
-<tr valign='top'>
-	<th style='padding:0;'><strong><?php _e('Mailing lists', MP_TXTDOM); ?></strong></th>
-	<td style='padding:0;' colspan='4'></td>
+<tr>
+	<th class='thtitle'><?php _e('Mailing lists', MP_TXTDOM); ?></th>
+	<td colspan='4'><input type='hidden'   name='mailinglist[on]' value='on' /></td>
 </tr>
-<tr valign='top' class="rc_role">
-	<th scope='row'>
-		<input type='hidden'   name='mailinglist[on]' value='on' />
-	</th>
-	<td colspan='4'>
+<tr class="rc_role">
+	<th style='margin:0;padding:0;'></th>
+	<td  style='margin:0;padding:0;' colspan='4'>
 		<table id='mailinglists' class='general'>
 			<tr>
 				<td>
@@ -47,6 +45,4 @@ else
 		</table>
 	</td>
 </tr>
-<tr valign='top' style='line-height:10px;padding:0;'><td colspan='5' style='line-height:10px;padding:0;'>&#160;</td></tr>
-<tr valign='top' class='mp_sep' style='line-height:2px;padding:0;'><td colspan='5' style='line-height:2px;padding:0;'></td></tr>
-<tr><th></th><td colspan='4'></td></tr>
+<tr class='mp_sep' style='line-height:2px;'><td colspan='5' style='line-height:2px;padding:10px;'></td></tr>

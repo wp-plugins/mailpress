@@ -10,20 +10,20 @@ $xevery = array (	10 	=> sprintf(__('%1$s days', MP_TXTDOM), '10'),
 
 if (!isset($batch_delete_old_mails)) $batch_delete_old_mails = get_option(MailPress_delete_old_mails::option_name);
 ?>
-<tr valign='top'>
-	<th style='padding:0;'><strong><?php _e('Deleting Old Mails', MP_TXTDOM); ?></strong></th>
+<tr>
+	<th class='thtitle'><?php _e('Deleting Old Mails', MP_TXTDOM); ?></th>
 	<td></td>
 </tr>
-<tr valign='top'>
-	<th scope='row'><?php _e('Keep sent mails since', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Keep sent mails since', MP_TXTDOM); ?></th>
 	<td class='field'>
 		<select name='batch_delete_old_mails[days]'>
 <?php MP_AdminPage::select_option($xevery, $batch_delete_old_mails['days']);?>
 		</select>
 	</td>
 </tr>
-<tr valign='top'>
-	<th scope='row'><?php _e('Submit batch with', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Submit batch with', MP_TXTDOM); ?></th>
 	<td>
 		<table class='general'>
 			<tr>
@@ -57,6 +57,4 @@ if (!isset($batch_delete_old_mails)) $batch_delete_old_mails = get_option(MailPr
 		</table>
 	</td>
 </tr>
-<tr valign='top' style='line-height:10px;padding:0;'><td style='line-height:10px;padding:0;'>&#160;</td></tr>
-<tr valign='top' class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>
-<tr><th></th><td colspan='4'></td></tr>
+<tr class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>

@@ -49,7 +49,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 			</td>
 		</tr>
 		<tr>
-			<th scope='row'>
+			<th>
 				<?php _e("Advanced options", MP_TXTDOM); ?> 
 			</th>
 			<td> 

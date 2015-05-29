@@ -10,8 +10,8 @@ $formname = substr(basename(__FILE__), 0, -4);
 <form name='<?php echo $formname ?>' action='' method='post' class='mp_settings'>
 	<input type='hidden' name='formname' value='<?php echo $formname ?>' />
 	<table class='form-table'>
-		<tr valign='top'>
-			<th scope='row'><?php _e('&lt;img&gt; defaults', MP_TXTDOM); ?></th>
+		<tr>
+			<th><?php _e('&lt;img&gt; defaults', MP_TXTDOM); ?></th>
 			<td class='field'>
 				<table>
 					<tr>
@@ -37,7 +37,7 @@ $formname = substr(basename(__FILE__), 0, -4);
 			</td>
 		</tr>
 		<tr>
-			<th scope='row'><?php _e('Enter full &lt;img&gt; html tag', MP_TXTDOM); ?></th>
+			<th><?php _e('Enter full &lt;img&gt; html tag', MP_TXTDOM); ?></th>
 			<td>
 				<textarea rows='2' cols='72' name='filter_img[img]'  style='font-family:Courier, "Courier New", monospace;'><?php echo esc_attr($filter_img['img']); ?></textarea>
 			</td>
@@ -47,7 +47,7 @@ if (!empty($filter_img['img']))
 {
 ?>
 		<tr>
-			<th scope='row'><?php _e('Filter result', MP_TXTDOM); ?></th>
+			<th><?php _e('Filter result', MP_TXTDOM); ?></th>
 			<td style='font-family:Courier, "Courier New", monospace;'>
 				<div class='filter-img bkgndc bd1sc'>
 <?php 
@@ -64,8 +64,8 @@ if (!empty($filter_img['img']))
 			</td>
 		</tr>
 <?php } ?>
-		<tr valign='top'>
-			<th scope='row'><?php _e('Keep url', MP_TXTDOM); ?></th>
+		<tr>
+			<th><?php _e('Keep url', MP_TXTDOM); ?></th>
 			<td class='field'>
 				<input name='filter_img[keepurl]' type='checkbox'<?php if (isset($filter_img['keepurl'])) checked($filter_img['keepurl'],'on'); ?>  id='attach-none' value='on' style='margin-right:10px;' />
 				<label for='attach-none'><?php printf(__('NO mail attachements with site images when full url (<i>&lt;img src="<b>%1$s/...</b>"</i>) is provided.', MP_TXTDOM), site_url()); ?></label>

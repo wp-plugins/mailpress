@@ -12,14 +12,14 @@ $formname = substr(basename(__FILE__), 0, -4);
 	<input type='hidden' name='formname' value='<?php echo $formname ?>' />
 	<table class='form-table rc-table'>
 		<tr>
-			<th scope='row'></th>
+			<th></th>
 <?php
 foreach($wp_roles->role_names as $role => $name)
 {
 	if ('administrator' == $role) continue;
 	$name = __($name);
 ?>
-			<th scope='row'><strong><?php echo $name; ?></strong></th>
+			<th><?php echo $name; ?></th>
 <?php
 }
 ?>
@@ -38,7 +38,7 @@ foreach ($capability_groups as $group => $groupname)
 		$capname = $capabilities[$capability]['name'];
 ?>
 		<tr<?php if ($total_count == $count) echo " class='mp_sep'"; ?>>
-			<td><?php if ($prev_groupname != $groupname) {$prev_groupname = $groupname; echo "<strong><i>$groupname</i></strong>";} ?></td>
+			<th><?php if ($prev_groupname != $groupname) {$prev_groupname = $groupname; echo $groupname;} ?></th>
 <?php
 		foreach($wp_roles->role_names as $role => $name)
 		{

@@ -11,12 +11,12 @@ $xevery = array (	30 	=> sprintf(__('%1$s seconds', MP_TXTDOM), '30'),
 
 if (!isset($batch_send)) $batch_send = get_option(MailPress_batch_send::option_name);
 ?>
-<tr valign='top'>
-	<th style='padding:0;'><strong><?php _e('Sending Mails', MP_TXTDOM); ?></strong></th>
+<tr>
+	<th class='thtitle'><?php _e('Sending Mails', MP_TXTDOM); ?></th>
 	<td></td>
 </tr>
-<tr valign='top'>
-	<th scope='row'><?php _e('Max mails sent per batch', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Max mails sent per batch', MP_TXTDOM); ?></th>
 	<td class='field'>
 		<select name='batch_send[per_pass]'>
 <?php MP_AdminPage::select_number(1, 10, $batch_send['per_pass'], 1);?>
@@ -26,16 +26,16 @@ if (!isset($batch_send)) $batch_send = get_option(MailPress_batch_send::option_n
 		</select>
 	</td>
 </tr>
-<tr valign='top'>
-	<th scope='row'><?php _e('Max retries', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Max retries', MP_TXTDOM); ?></th>
 	<td class='field'>
 		<select name='batch_send[max_retry]'  style='width:4em;'>
 <?php MP_AdminPage::select_number(0, 5, $batch_send['max_retry']);?>
 		</select>
 	</td>
 </tr>
-<tr valign='top'>
-	<th scope='row'><?php _e('Submit batch with', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Submit batch with', MP_TXTDOM); ?></th>
 	<td>
 		<table class='general'>
 			<tr>
@@ -69,6 +69,4 @@ if (!isset($batch_send)) $batch_send = get_option(MailPress_batch_send::option_n
 		</table>
 	</td>
 </tr>
-<tr valign='top' style='line-height:10px;padding:0;'><td style='line-height:10px;padding:0;'>&#160;</td></tr>
-<tr valign='top' class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>
-<tr><th></th><td colspan='4'></td></tr>
+<tr class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>

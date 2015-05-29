@@ -15,37 +15,37 @@ $xmailboxstatus = array(	0	=>	__('no changes', MP_TXTDOM),
 
 if (!isset($bounce_handling_II)) $bounce_handling_II = get_option(MailPress_bounce_handling_II::option_name);
 ?>
-<tr valign='top'>
-	<th style='padding:0;'><strong><?php _e('Handling Bounces', MP_TXTDOM); ?> II</strong></th>
+<tr>
+	<th class='thtitle'><?php _e('Handling Bounces', MP_TXTDOM); ?> II</th>
 	<td></td>
 </tr>
 <?php if (!class_exists('MailPress_bounce_handling')) : ?>
-<tr valign='top'>
-	<th scope='row'><?php _e('Return-Path', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Return-Path', MP_TXTDOM); ?></th>
 	<td class='field'>
 		<input type='text' size='25' name='bounce_handling_II[Return-Path]' value="<?php if (isset($bounce_handling_II['Return-Path'])) echo $bounce_handling_II['Return-Path']; ?>" />
 		<br /><?php _e('optional', MP_TXTDOM); ?>
 	</td>
 </tr>
 <?php endif; ?>
-<tr valign='top'>
-	<th scope='row'><?php _e('Max bounces per user', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Max bounces per user', MP_TXTDOM); ?></th>
 	<td class='field'>
 		<select name='bounce_handling_II[max_bounces]'  style='width:4em;'>
 <?php MP_AdminPage::select_number(0, 5, ( (isset($bounce_handling_II['max_bounces'])) ? $bounce_handling_II['max_bounces'] : 1 ) );?>
 		</select>
 	</td>
 </tr>
-<tr valign='top'>
-	<th scope='row'><?php _e('Bounce in mailbox', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Bounce in mailbox', MP_TXTDOM); ?></th>
 	<td class='field'>
 		<select name='bounce_handling_II[mailbox_status]'>
 <?php MP_AdminPage::select_option($xmailboxstatus, ( (isset($bounce_handling_II['mailbox_status'])) ? $bounce_handling_II['mailbox_status'] : 2 ) );?>
 		</select>
 	</td>
 </tr>
-<tr valign='top'>
-	<th scope='row'><?php _e('Submit batch with', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Submit batch with', MP_TXTDOM); ?></th>
 	<td>
 		<table class='general'>
 			<tr>
@@ -79,6 +79,4 @@ if (!isset($bounce_handling_II)) $bounce_handling_II = get_option(MailPress_boun
 		</table>
 	</td>
 </tr>
-<tr valign='top' style='line-height:10px;padding:0;'><td style='line-height:10px;padding:0;'>&#160;</td></tr>
-<tr valign='top' class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>
-<tr><th></th><td colspan='4'></td></tr>
+<tr class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>

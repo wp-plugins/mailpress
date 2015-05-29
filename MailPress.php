@@ -229,7 +229,7 @@ class MailPress
 	{
 		if ($basename != $file) return $links;
 
-		$settings_link = "<a href='" . MailPress_settings . "#fragment-$tab'>" . __('Settings') . '</a>';
+		$settings_link = "<a href='" . MailPress_settings . "&tab=$tab'>" . __('Settings') . '</a>';
 		array_unshift ($links, $settings_link);
 		return $links;
 	}

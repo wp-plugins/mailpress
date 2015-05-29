@@ -11,28 +11,28 @@ $xevery = array (	30 	=> sprintf(__('%1$s seconds', MP_TXTDOM), '30'),
 
 if (!isset($batch_spool_send)) $batch_spool_send = get_option(MailPress_batch_spool_send::option_name);
 ?>
-<tr valign='top'>
-	<th style='padding:0;'><strong><?php _e('Sending Mails from spool', MP_TXTDOM); ?></strong></th>
+<tr>
+	<th class='thtitle'><?php _e('Sending Mails from spool', MP_TXTDOM); ?></th>
 	<td></td>
 </tr>
-<tr valign='top'<?php if (isset($spoolpath)) echo " class='form-invalid'"; ?>>
-	<th scope='row'><?php _e('Spool Path', MP_TXTDOM); ?></th>
+<tr<?php if (isset($spoolpath)) echo " class='form-invalid'"; ?>>
+	<th><?php _e('Spool Path', MP_TXTDOM); ?></th>
 	<td class='field'>
 		<input type='text' size='100' name='batch_spool_send[path]' value="<?php if (isset($batch_spool_send['path'])) echo $batch_spool_send['path']; ?>" />
 		<br /><?php printf(__('If empty, default path is %s but can be deleted anytime by automatic upgrade', MP_TXTDOM), '"<code>' . MP_ABSPATH . 'tmp/spool</code>"'  ); ?>
 	</td>
 </tr>
 
-<tr valign='top'>
-	<th scope='row'><?php _e('Time limit in seconds', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Time limit in seconds', MP_TXTDOM); ?></th>
 	<td class='field'>
 		<select name='batch_spool_send[time_limit]'>
 <?php MP_AdminPage::select_option($xevery, $batch_spool_send['time_limit']);?>
 		</select>
 	</td>
 </tr>
-<tr valign='top'>
-	<th scope='row'><?php _e('Max mails sent per batch', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Max mails sent per batch', MP_TXTDOM); ?></th>
 	<td class='field'>
 		<select name='batch_spool_send[per_pass]'>
 <?php MP_AdminPage::select_number(1, 10, $batch_spool_send['per_pass'], 1);?>
@@ -42,16 +42,16 @@ if (!isset($batch_spool_send)) $batch_spool_send = get_option(MailPress_batch_sp
 		</select>
 	</td>
 </tr>
-<tr valign='top'>
-	<th scope='row'><?php _e('Max retries', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Max retries', MP_TXTDOM); ?></th>
 	<td class='field'>
 		<select name='batch_spool_send[max_retry]'  style='width:4em;'>
 <?php MP_AdminPage::select_number(0, 5, $batch_spool_send['max_retry']);?>
 		</select>
 	</td>
 </tr>
-<tr valign='top'>
-	<th scope='row'><?php _e('Submit batch with', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Submit batch with', MP_TXTDOM); ?></th>
 	<td>
 		<table class='general'>
 			<tr>
@@ -85,6 +85,4 @@ if (!isset($batch_spool_send)) $batch_spool_send = get_option(MailPress_batch_sp
 		</table>
 	</td>
 </tr>
-<tr valign='top' style='line-height:10px;padding:0;'><td style='line-height:10px;padding:0;'>&#160;</td></tr>
-<tr valign='top' class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>
-<tr><th></th><td colspan='4'></td></tr>
+<tr class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>

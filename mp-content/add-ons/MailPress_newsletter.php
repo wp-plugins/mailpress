@@ -384,10 +384,9 @@ class MailPress_newsletter
 	{
 		global $mp_general;
 ?>
-			<tr><th></th><td></td></tr>
 			<tr>
-				<th style='padding:0;'><strong><?php _e('Newsletters', MP_TXTDOM); ?></strong></th>
-				<td style='padding:0;'></td>
+				<th class='thtitle'><?php _e('Newsletters', MP_TXTDOM); ?></th>
+				<td></td>
 			</tr>
 			<tr valign='top' class='mp_sep'>
 				<th scope='row'><?php _e('Newsletters show at most', MP_TXTDOM); ?></th>
@@ -431,7 +430,7 @@ class MailPress_newsletter
 	public static function meta_box($mp_user)
 	{ 
 		$check_newsletters = self::get_checklist($mp_user->id, array('admin' => true));
-		echo ($check_newsletters) ? $check_newsletters : __('Nothing to subscribe for ...', MP_TXTDOM) . " <a href='" . MailPress_settings . "#fragment-subscriptions'>" . __('Settings') . '</a>';
+		echo ($check_newsletters) ? $check_newsletters : __('Nothing to subscribe for ...', MP_TXTDOM) . " <a href='" . MailPress_settings . "&tab=subscriptions'>" . __('Settings') . '</a>';
 	}
 
 // for meta box in write post  ////

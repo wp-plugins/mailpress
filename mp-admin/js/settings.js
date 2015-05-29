@@ -3,7 +3,7 @@
 var mp_settings = {
 	
 	init : function() {
-		jQuery('#example').tabs();
+		jQuery('#settings-tabs').tabs({ active:MP_AdminPage_var.the_tab });
 		//general
 
 		// test

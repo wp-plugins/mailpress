@@ -15,35 +15,35 @@ $xmailboxstatus = array(	0	=>	__('no changes', MP_TXTDOM),
 
 if (!isset($bounce_handling)) $bounce_handling = get_option(MailPress_bounce_handling::option_name);
 ?>
-<tr valign='top'>
-	<th style='padding:0;'><strong><?php _e('Handling Bounces', MP_TXTDOM); ?></strong></th>
+<tr>
+	<th class='thtitle'><?php _e('Handling Bounces', MP_TXTDOM); ?></th>
 	<td></td>
 </tr>
-<tr valign='top'>
-	<th scope='row'><?php _e('Return-Path', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Return-Path', MP_TXTDOM); ?></th>
 	<td class='field'>
 		<input type='text' size='25' name='bounce_handling[Return-Path]' value="<?php if (isset($bounce_handling['Return-Path'])) echo $bounce_handling['Return-Path']; ?>" />
 		<br /><?php printf(__('generated Return-Path will be %1$s', MP_TXTDOM), (!isset($bounce_handling['Return-Path'])) ?  __('start_of_email<i>+mail_id</i>+<i>mp_user_id</i>@mydomain.com', MP_TXTDOM) : substr($bounce_handling['Return-Path'], 0, strpos($bounce_handling['Return-Path'], '@')) . '<i>+mail_id</i>+<i>mp_user_id</i>@' . substr($bounce_handling['Return-Path'], strpos($bounce_handling['Return-Path'], '@') + 1) ); ?>
 	</td>
 </tr>
-<tr valign='top'>
-	<th scope='row'><?php _e('Max bounces per user', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Max bounces per user', MP_TXTDOM); ?></th>
 	<td class='field'>
 		<select name='bounce_handling[max_bounces]'  style='width:4em;'>
 <?php MP_AdminPage::select_number(0, 5, ( (isset($bounce_handling['max_bounces'])) ? $bounce_handling['max_bounces'] : 1 ) );?>
 		</select>
 	</td>
 </tr>
-<tr valign='top'>
-	<th scope='row'><?php _e('Bounce in mailbox', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Bounce in mailbox', MP_TXTDOM); ?></th>
 	<td class='field'>
 		<select name='bounce_handling[mailbox_status]'>
 <?php MP_AdminPage::select_option($xmailboxstatus, ( (isset($bounce_handling['mailbox_status'])) ? $bounce_handling['mailbox_status'] : 2 ) );?>
 		</select>
 	</td>
 </tr>
-<tr valign='top'>
-	<th scope='row'><?php _e('Submit batch with', MP_TXTDOM); ?></th>
+<tr>
+	<th><?php _e('Submit batch with', MP_TXTDOM); ?></th>
 	<td>
 		<table class='general'>
 			<tr>
@@ -77,6 +77,4 @@ if (!isset($bounce_handling)) $bounce_handling = get_option(MailPress_bounce_han
 		</table>
 	</td>
 </tr>
-<tr valign='top' style='line-height:10px;padding:0;'><td style='line-height:10px;padding:0;'>&#160;</td></tr>
-<tr valign='top' class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>
-<tr><th></th><td colspan='4'></td></tr>
+<tr class='mp_sep' style='line-height:2px;padding:0;'><td style='line-height:2px;padding:0;'></td></tr>

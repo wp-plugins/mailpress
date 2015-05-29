@@ -421,10 +421,9 @@ class MailPress_mailinglist
 		$default_mailinglist	= get_option(self::option_name_default);
 		$dropdown_options = array('hide_empty' => 0, 'hierarchical' => true, 'show_count' => 0, 'orderby' => 'name', 'selected' => $default_mailinglist, 'htmlname' => 'default_mailinglist' );
 ?>
-			<tr><th></th><td></td></tr>
 			<tr>
-				<th style='padding:0;'><strong><?php _e('Mailing lists', MP_TXTDOM); ?></strong></th>
-				<td style='padding:0;'></td>
+				<th class='thtitle'><?php _e('Mailing lists', MP_TXTDOM); ?></th>
+				<td></td>
 			</tr>
 			<tr valign='top' class='mp_sep'>
 				<th scope='row'><?php _e('Default Mailing list', MP_TXTDOM); ?></th>
