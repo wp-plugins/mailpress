@@ -105,7 +105,7 @@ do_action('admin_print_scripts' );
 		</div>
 <?php do_action('admin_print_footer_scripts'); ?>
 <script type="text/javascript">
-	jQuery(document).ready(function(){ jQuery('#example').tabs(); });
+	jQuery(document).ready(function(){ jQuery('#example').tabs({active:1}); });
 </script>
 	</body>
 </html>
