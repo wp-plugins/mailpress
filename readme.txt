@@ -17,21 +17,13 @@ The WordPress mailing platform
 1. Optional : full control on all mails sent by WordPress.
 
 
-**Never use WordPress automatic upgrade** : if you have any customized file, WordPress will delete them !
+**Never use WordPress automatic upgrade** : if you have any customized file inside MailPress plugin folder, WordPress will delete them !
 
 **Follow Installation or Upgrade guidelines**
 **Follow Installation or Upgrade guidelines**
 **Follow Installation or Upgrade guidelines**
-
-Some technical stuff :
-
-1. Switmailer 5.3.1
-1. jQuery 1.7.2 supported.
-1. Google Map API V3 supported.
-1. Code Mirror 0.9 (2.2)
 
 Please report any bug in the mailpress google group http://groups.google.com/group/mailpress
-starting your subject title with : "(MailPress 5.2)".
 
 Thank you
 
@@ -89,6 +81,12 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 == Changelog ==
 
+** 5.4.3 ** 10/06/2015
+
+* Swiftmailer 5.4.1
+* Introducing new add-on Batch_spool_send (see http://blog.mailpress.org/2015/05/28/preparing-mailpress-5-4-3/)
+* Fixing some bugs on tabs (mailpress settings page, preview mail)
+
 ** 5.4.2 ** 29/04/2015
 
 * Swiftmailer 5.4.0
@@ -103,10 +101,5 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 * Swiftmailer 5.0.1
 
-* bug fix : fixing wpList changes, new html5 attribute data-wp-lists introduced in WP 3.5 (MailPress_Post add-on, drafts list)
-
-** 5.3  ** 06/14/2012
-
-** 5.2.1 **	12/25/2011
 
 **Please Donate** https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=andre%2erenaut%40gmail%2ecom&lc=US&item_name=MailPress&item_number=gg&amount=5%2e00&currency_code=EUR&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest
