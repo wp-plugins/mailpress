@@ -2,10 +2,10 @@
 $url_parms = MP_AdminPage::get_url_parms(array('s', 'paged', 'id'));
 
 //
-// MANAGING H2
+// MANAGING H1
 //
 
-$h2 = __('Forms', MP_TXTDOM);
+$h1 = __('Forms', MP_TXTDOM);
 
 //
 // MANAGING MESSAGE
@@ -128,10 +128,10 @@ $url_parms['paged']++;
 ?>
 <div class='wrap nosubsub'>
 	<div id='icon-mailpress-tools' class='icon32'><br /></div>
-	<h2>
-		<?php echo esc_html( $h2 ); ?> 
+	<h1>
+		<?php echo esc_html( $h1 ); ?> 
 <?php if ( isset($url_parms['s']) ) printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_attr( $url_parms['s'] ) ); ?>
-	</h2>
+	</h1>
 <?php if (isset($message)) MP_AdminPage::message($message, ($_GET['message'] < 90)); ?>
 	<form class='search-form topmargin' action='' method='get'>
 		<input type='hidden' name='page' value='<?php echo MP_AdminPage::screen; ?>' />

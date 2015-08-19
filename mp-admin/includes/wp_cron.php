@@ -2,10 +2,10 @@
 $url_parms = MP_AdminPage::get_url_parms();
 
 //
-// MANAGING H2
+// MANAGING H1
 //
 
-$h2 = __('Wp_cron', MP_TXTDOM);
+$h1 = __('Wp_cron', MP_TXTDOM);
 
 //
 // MANAGING MESSAGE
@@ -87,9 +87,9 @@ $url_parms['paged']++;
 <div class='wrap'>
 	<div id="icon-mailpress-tools" class="icon32"><br /></div>
 	<div id='mp_message'></div>
-	<h2>
-		<?php echo esc_html( $h2 ); ?>
-	</h2>
+	<h1>
+		<?php echo esc_html( $h1 ); ?>
+	</h1>
 <?php if (isset($message)) MP_AdminPage::message($message, ($_GET['message'] < 90)); ?>
 	<br class='clear' />
 <?php

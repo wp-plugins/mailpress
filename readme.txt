@@ -2,9 +2,9 @@
 Contributors: andre renaut
 Donate link: http://blog.mailpress.org
 Tags: mail, mails, comments, comment, subscribe, newsletters, newsletter, Wordpress, Plugin, swiftmailer, post, posts, smtp, sendmail, phpmail, notification, notifications, mail, mails, contact form
-Requires at least: 4.2
-Tested up to: 4.2
-Stable tag: 5.4.2
+Requires at least: 4.3
+Tested up to: 4.3
+Stable tag: 5.4.3
 
 The WordPress mailing platform 
 
@@ -29,7 +29,7 @@ Thank you
 
 == Installation ==
 
-1. Make sure you have already installed WordPress 3.4 or above.
+1. Make sure you have already installed WordPress 4.3 or above.
 1. Unzip the MailPress package.
 1. Upload the mailpress folder into wp-content/plugins.
 1. Make sure the wp-content/plugins/mailpress/tmp folder is writable.
@@ -81,11 +81,13 @@ MailPress themes and templates do not need to be changed if customized in a prev
 
 == Changelog ==
 
-** 5.4.3 ** 10/06/2015
+** 5.4.3 ** 19/08/2015
 
 * Swiftmailer 5.4.1
 * Introducing new add-on Batch_spool_send (see http://blog.mailpress.org/2015/05/28/preparing-mailpress-5-4-3/)
 * Fixing some bugs on tabs (mailpress settings page, preview mail)
+* Fixing Attachement bug in MailPress wp_mail()
+* Cleaning html (attribute scope, h2 => h1 ...)
 
 ** 5.4.2 ** 29/04/2015
 

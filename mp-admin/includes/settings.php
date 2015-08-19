@@ -35,7 +35,7 @@ $divs = array();
 ?>
 <div class='wrap'>
 	<div id='icon-mailpress-settings' class='icon32'><br /></div>
-	<h2><?php _e('MailPress Settings', MP_TXTDOM); ?></h2>
+	<h1><?php _e('MailPress Settings', MP_TXTDOM); ?></h1>
 <?php if (isset($message)) MP_AdminPage::message($message, $no_error); ?>
 	<div id='settings-tabs'>
 		<ul>

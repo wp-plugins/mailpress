@@ -1,7 +1,7 @@
 <?php
 $url_parms = MP_AdminPage::get_url_parms();
 
-$h2 = __('MailPress Themes', MP_TXTDOM); 
+$h1 = __('MailPress Themes', MP_TXTDOM); 
 
 $max_cols = 3;
 $max_rows = 5;
@@ -33,7 +33,7 @@ if ($url_parms['paged'] <= 1) unset($url_parms['paged']);
 ?>
 <div class='wrap'>
 	<div id="icon-mailpress-themes" class="icon32"><br /></div>
-	<h2><?php echo $h2; ?></h2>
+	<h1><?php echo $h1; ?></h1>
 <?php
 		if ( ! $th->validate_current_theme() ) 
 		{

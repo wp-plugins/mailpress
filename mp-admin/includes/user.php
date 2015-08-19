@@ -12,7 +12,7 @@ if (!isset($_GET['id'])) MP_AdminPage::mp_redirect( MP_AdminPage::url(MailPress_
 $mp_user = MP_User::get( $_GET['id'] );
 $active  = ('active' == $mp_user->status) ? true : false;
 
-$h2 = sprintf( __('Edit MailPress User # %1$s', MP_TXTDOM), $mp_user->id);
+$h1 = sprintf( __('Edit MailPress User # %1$s', MP_TXTDOM), $mp_user->id);
 
 // messages
 $message = ''; $err = 0;
@@ -20,7 +20,7 @@ if (isset($_GET['saved'])) 	{$err += 0; if (!empty($message)) $message .= '<br /
 ?>
 <div class='wrap'>
 	<div id="icon-mailpress-users" class="icon32"><br /></div>
-	<h2><?php echo $h2; ?></h2>
+	<h1><?php echo $h1; ?></h1>
 <?php if ($message) MP_AdminPage::message($message, ($err) ? false : true); ?>
 	<form id='mp_user' name='mp_user_form' action='' method='post'>
 

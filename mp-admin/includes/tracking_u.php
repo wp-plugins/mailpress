@@ -4,7 +4,7 @@ global $title, $mp_user;
 <div class='wrap'>
 	<div id="icon-mailpress-users" class="icon32"><br /></div>
 	<div id='mp_message'></div>
-	<h2><?php echo esc_html( $title ); ?></h2>
+	<h1><?php echo esc_html( $title ); ?></h1>
 <?php if (isset($message)) MP_AdminPage::message($message); ?>
 	<table class='widefat'>
 		<thead>

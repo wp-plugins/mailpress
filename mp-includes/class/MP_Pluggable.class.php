@@ -16,7 +16,7 @@ class MP_Pluggable
 		if (is_array($attachments))
 		{
 			$f = true;
-			$attachements = @str_replace("\\", "/", $attachment);
+			$attachements = @str_replace("\\", "/", $attachments);
 
 			foreach ($attachments as $attachment)
 			{

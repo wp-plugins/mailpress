@@ -2,10 +2,10 @@
 $url_parms = MP_AdminPage::get_url_parms();
 
 //
-// MANAGING H2
+// MANAGING H1
 //
 
-$h2 = __('MailPress Add-ons', MP_TXTDOM);
+$h1 = __('MailPress Add-ons', MP_TXTDOM);
 
 //
 // MANAGING MESSAGE / CHECKBOX RESULTS
@@ -44,10 +44,10 @@ list($items, $subsubsub_urls) = MP_AdminPage::get_list(array('url_parms' => $url
 <div class='wrap'>
 	<div id="icon-mailpress-addons" class="icon32"><br /></div>
 	<div id='mp_message'></div>
-	<h2>
-		<?php echo esc_html( $h2 ); ?> 
+	<h1>
+		<?php echo esc_html( $h1 ); ?> 
 <?php if ( isset($url_parms['s']) ) printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_attr( $url_parms['s'] ) ); ?>
-	</h2>
+	</h1>
 <?php if (isset($message)) MP_AdminPage::message($message); ?>
 
 	<ul class='subsubsub'><?php echo $subsubsub_urls; ?></ul>

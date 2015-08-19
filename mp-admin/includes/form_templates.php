@@ -32,7 +32,7 @@ $file_status = is_writeable($template_file);
 ?>
 <div class='wrap'>
 	<div id='icon-mailpress-tools' class='icon32'><br /></div>
-	<h2><?php _e('Edit Form templates', MP_TXTDOM); ?></h2>
+	<h1><?php _e('Edit Form templates', MP_TXTDOM); ?></h1>
 <?php if (isset($message)) MP_AdminPage::message($message); ?>
 	<br class='clear' />
 	<div class='fileedit-sub'>

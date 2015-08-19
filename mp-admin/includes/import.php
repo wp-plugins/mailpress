@@ -24,7 +24,7 @@ $items = MP_AdminPage::get_list();
 ?>
 <div class='wrap'>
 	<div id="icon-mailpress-tools" class="icon32"><br /></div>
-	<h2><?php _e('Import/Export'); ?></h2>
+	<h1><?php _e('Import/Export'); ?></h1>
 <?php
 if ($items)
 {

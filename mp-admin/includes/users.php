@@ -4,10 +4,10 @@ do_action('MailPress_users_addon_update');
 $url_parms = MP_AdminPage::get_url_parms(array('status','s','paged','author','mailinglist','newsletter','startwith'));
 
 //
-// MANAGING H2
+// MANAGING H1
 //
 
-$h2 = __('Users', MP_TXTDOM);
+$h1 = __('Users', MP_TXTDOM);
 $subtitle = '';
 
 if (isset($url_parms['startwith'])) 
@@ -81,11 +81,11 @@ $url_parms['paged']++;
 <div class='wrap'>
 	<div id='icon-mailpress-users' class='icon32'><br /></div>
 	<div id='mp_message'></div>
-	<h2>
-		<?php echo esc_html( $h2 ); ?>
+	<h1>
+		<?php echo esc_html( $h1 ); ?>
 <?php if ( isset($url_parms['s']) ) printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_attr( $url_parms['s'] ) ); ?>
 <?php if ( !empty($subtitle) )      echo    "<span class='subtitle'>$subtitle</span>"; ?>
-	</h2>
+	</h1>
 <?php if (isset($message)) MP_AdminPage::message($message); ?>
 
 	<form id='posts-filter' action='' method='get'>

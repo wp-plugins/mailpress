@@ -28,12 +28,12 @@ if (class_exists('MailPress_mailinglist')) if ($active)	$checklist_mailinglists 
 //
 // MANAGING TITLE
 //
-	$h2    =  __('Manage Subscriptions', MP_TXTDOM);
+	$h1    =  __('Manage Subscriptions', MP_TXTDOM);
 ?>
 <div class='wrap'>
 	<form id='posts-filter' action='' method='post'>
 		<div id="icon-mailpress-users" class="icon32"><br /></div>
-	<h2><?php echo $h2; ?></h2>
+	<h1><?php echo $h1; ?></h1>
 <?php if (isset($message)) MP_AdminPage::message($message); ?>
 		<input type='hidden' name='page' value='<?php echo MailPress_page_subscriptions; ?>' />
 		<input type='hidden' name='formname' value='sync_wordpress_user_subscriptions' />

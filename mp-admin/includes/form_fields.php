@@ -4,11 +4,11 @@ $url_parms = MP_AdminPage::get_url_parms(array('s', 'paged', 'id', 'form_id'));
 $form = MP_Form::get($url_parms['form_id']);
 
 //
-// MANAGING H2
+// MANAGING H1
 //
 
-$h2 = sprintf(__('Fields in form &#8220;%1$s&#8221;', MP_TXTDOM), $form->label);
-$h2_preview_url = esc_url(MP_AdminPage::url(MP_Action_url, array('id' => $form->id, 'action' => 'ifview', 'preview_iframe' => 1, 'TB_iframe' => 'true')));
+$h1 = sprintf(__('Fields in form &#8220;%1$s&#8221;', MP_TXTDOM), $form->label);
+$h1_preview_url = esc_url(MP_AdminPage::url(MP_Action_url, array('id' => $form->id, 'action' => 'ifview', 'preview_iframe' => 1, 'TB_iframe' => 'true')));
 
 //
 // MANAGING MESSAGE
@@ -94,11 +94,11 @@ $url_parms['paged']++;
 ?>
 <div class='wrap nosubsub'>
 	<div id='icon-mailpress-tools' class='icon32'><br /></div>
-	<h2>
-		<?php echo esc_html( $h2 ); ?> 
-		<?php printf('<a href="%1$s" title="%2$s" class="thickbox thickbox-preview add-new-h2" >%3$s</a>', $h2_preview_url, esc_attr(sprintf(__('Form preview #%1$s (%2$s)', MP_TXTDOM), $form->id, $form->label)), esc_html(__('Preview', MP_TXTDOM))); ?>
+	<h1>
+		<?php echo esc_html( $h1 ); ?> 
+		<?php printf('<a href="%1$s" title="%2$s" class="thickbox thickbox-preview add-new-h2" >%3$s</a>', $h1_preview_url, esc_attr(sprintf(__('Form preview #%1$s (%2$s)', MP_TXTDOM), $form->id, $form->label)), esc_html(__('Preview', MP_TXTDOM))); ?>
 <?php if ( isset($url_parms['s']) ) printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_attr( $url_parms['s'] ) ); ?>
-	</h2>
+	</h1>
 <?php if (isset($message)) MP_AdminPage::message($message, ($_GET['message'] < 90)); ?>
 	<form class='search-form topmargin' action='' method='get'>
 		<input type='hidden' name='page' value='<?php echo MailPress_page_forms; ?>' />

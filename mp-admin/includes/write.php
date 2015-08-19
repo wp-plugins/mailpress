@@ -16,13 +16,13 @@ if (isset($_GET['id']))
 $autosave	= true;
 $notice 	= false;
 
-$h2 		= __('Add New Mail', MP_TXTDOM);
+$h1 		= __('Add New Mail', MP_TXTDOM);
 $hidden  	= "\t\t\t<input type='hidden' id='mail_id' name='id' value='0' />\n";
 $list_url 	= MP_AdminPage::url(MailPress_mails, $url_parms);
 
 if (isset($draft))
 {
-	$h2 		= sprintf( __('Edit Draft # %1$s', MP_TXTDOM), $draft->id);
+	$h1 		= sprintf( __('Edit Draft # %1$s', MP_TXTDOM), $draft->id);
 	$hidden  	= "\t\t\t<input type='hidden' id='mail_id' name='id' value='$draft->id' />\n";
 	$delete_url = esc_url(MailPress_write ."&amp;action=delete&amp;id=$draft->id");
 
@@ -178,7 +178,7 @@ foreach($all_mail_formats as $slug => $attr ) {
 ?>
 	<div class='wrap'>
 		<div id="icon-mailpress-mailnew" class="icon32"><br /></div>
-		<h2><?php echo $h2; ?></h2>
+		<h1><?php echo $h1; ?></h1>
 <?php if ($message) MP_AdminPage::message($message, ($err) ? false : true); ?>
 		<form id='writeform' name='writeform' action='' method='post'>
 
